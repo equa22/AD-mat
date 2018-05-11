@@ -1889,8 +1889,7 @@
             "homepage": "https://www.drupal.org/project/adminimal_theme",
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
-            },
-            "time": "2017-07-08T17:49:05+00:00"
+            }
         },
         {
             "name": "drupal/backup_migrate",
@@ -3402,8 +3401,7 @@
             "homepage": "https://www.drupal.org/project/install_profile_generator",
             "support": {
                 "source": "http://cgit.drupalcode.org/install_profile_generator"
-            },
-            "time": "2017-12-20T09:13:41+00:00"
+            }
         },
         {
             "name": "drupal/linkit",
@@ -3821,8 +3819,7 @@
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
-            },
-            "time": "2018-05-11T10:05:34+00:00"
+            }
         },
         {
             "name": "drupal/paragraphs_edit",
@@ -4099,8 +4096,7 @@
             "homepage": "https://www.drupal.org/project/slick_paragraphs",
             "support": {
                 "source": "http://cgit.drupalcode.org/slick_paragraphs"
-            },
-            "time": "2016-12-27T06:11:30+00:00"
+            }
         },
         {
             "name": "drupal/svg_image",
