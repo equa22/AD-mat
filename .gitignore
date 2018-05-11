@@ -6,7 +6,6 @@ web/core
 web/libraries
 web/modules/contrib
 web/themes/contrib
-web/profiles/contrib
 
 # Ignore Drupal's file directory
 web/sites/default/files
