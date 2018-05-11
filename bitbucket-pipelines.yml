@@ -1,0 +1,30 @@
+# This is a sample build configuration for 
+# Agiledrop - Bitbucket pipelines - Pantheon Workflow 
+# 
+image: drupal:8-apache
+
+pipelines:
+  branches:
+    develop:
+      - step:
+          name: Agiledrop Bitbucket pipelines - Pantheon Workflow
+          caches:
+            - composer
+          script:
+            - apt-get update && apt-get install -y unzip git 
+            - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            - composer install
+            - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
+            - rm -Rf .git
+            - echo "Debugging ...."
+            - echo $SSH_HOST >> ~/.ssh/known_hosts
+            - cat /opt/atlassian/pipelines/agent/data/id_rsa > ~/.ssh/id_rsa
+            - echo "Cloning ..."
+            - git clone $PANTHEON_REPO $PANTHEON_CODE_PATH
+            - cd $PANTHEON_CODE_PATH
+            - /bin/cp -rf $BITBUCKET_CLONE_DIR/. .
+            - git config --global user.name "$GIT_USER"
+            - git config --global user.email $GIT_EMAIL
+            - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
+            - git push
+
