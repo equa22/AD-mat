@@ -1,0 +1,5 @@
+name: 'Cotailored base drush commands'
+type: module
+description: 'Cotailored base drush commands'
+core: 8.x
+package: 'Custom'

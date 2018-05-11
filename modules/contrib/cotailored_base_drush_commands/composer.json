@@ -1,0 +1,21 @@
+{
+    "name": "alesbencina/cotailored_base_drush_commands",
+    "description": "This extension provides new commands for Drush.",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Ales Bencina",
+            "email": "ales.bencina@agiledrop.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9"
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains cotailored_base_drush_commands.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function cotailored_base_drush_commands_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the cotailored_base_drush_commands module.
+    case 'help.page.cotailored_base_drush_commands':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      return $output;
+
+    default:
+  }
+}
+

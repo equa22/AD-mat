@@ -1,0 +1,5 @@
+services:
+  cotailored_base_drush_commands.commands:
+    class: \Drupal\cotailored_base_drush_commands\Commands\CotailoredBaseDrushCommandsCommands
+    tags:
+      - { name: drush.command }
