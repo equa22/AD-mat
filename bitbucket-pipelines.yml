@@ -23,7 +23,6 @@ pipelines:
             - git clone $PANTHEON_REPO $PANTHEON_CODE_PATH
             - cd $PANTHEON_CODE_PATH
             - /bin/cp -rf $BITBUCKET_CLONE_DIR/. .
-            - ls -la modules/contrib/
             - git config --global user.name "$GIT_USER"
             - git config --global user.email $GIT_EMAIL
             - git add .
