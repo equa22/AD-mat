@@ -2,13 +2,14 @@
 drush/contrib
 vendor
 bin
-web/core
-web/libraries
-web/modules/contrib
-web/themes/contrib
+core
+libraries
+modules/contrib
+themes/contrib
+profiles/contrib
 
 # Ignore Drupal's file directory
-web/sites/default/files
+sites/default/files
 private/*
 tmp/*
 
@@ -19,16 +20,16 @@ tmp/*
 .DS_Store
 
 # Ignore configuration files that may contain sensitive information.
-web/sites/*/settings.local.php
-web/sites/*/settings.devdesktop.php
-web/sites/*/services*.yml
+sites/*/settings.local.php
+sites/*/settings.devdesktop.php
+sites/*/services*.yml
 
 # Ignore paths that contain user-generated content.
-web/sites/*/files
-web/sites/*/private
+sites/*/files
+sites/*/private
 
 # Ignore SimpleTest multi-site environment.
-web/sites/simpletest
+sites/simpletest
 
 # Ignore Acquia Dev Desktop configs.
-web/sites/*.dd
+sites/*.dd
