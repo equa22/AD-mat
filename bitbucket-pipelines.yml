@@ -28,6 +28,7 @@ pipelines:
             - git config core.autocrlf true
             - git add .
             - git status
+            - ls -la modules/contrib/media_entity_browser/
             - git add modules/contrib/media_entity_browser/
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
             - git push
