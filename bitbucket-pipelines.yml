@@ -27,8 +27,8 @@ pipelines:
             - git config --global user.name "$GIT_USER"
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
-            - cat .gitignore
             - git add -A
+            - git add -f modules/contrib/paragraph
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
             - git push
 
