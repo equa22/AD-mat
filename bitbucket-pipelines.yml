@@ -25,7 +25,7 @@ pipelines:
             - /bin/cp -rf $BITBUCKET_CLONE_DIR/. .
             - git config --global user.name "$GIT_USER"
             - git config --global user.email $GIT_EMAIL
-            - git config core.autocrlf true
+            - git config core.autocrlf false
             - git add .
             - git status
             - ls -la modules/contrib/media_entity_browser/
