@@ -16,6 +16,7 @@ pipelines:
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - rm -Rf .git
             - composer install
+            - sh scripts/bitbucket-pipelines/cleanup.sh  
             - echo "Debugging ...."
             - echo $SSH_HOST >> ~/.ssh/known_hosts
             - cat /opt/atlassian/pipelines/agent/data/id_rsa > ~/.ssh/id_rsa
@@ -23,7 +24,6 @@ pipelines:
             - git clone $PANTHEON_REPO $PANTHEON_CODE_PATH
             - cd $PANTHEON_CODE_PATH
             - /bin/cp -rf $BITBUCKET_CLONE_DIR/. .
-            - sh scripts/bitbucket-pipelines/cleanup.sh            
             - git config --global user.name "$GIT_USER"
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
