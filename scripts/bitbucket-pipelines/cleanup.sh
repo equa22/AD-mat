@@ -1,9 +1,6 @@
 #!/bin/sh
 
 
-# Remove main .git
-rm -Rf .git
-
 # Remove .git from modules
 rm -Rf modules/contrib/media_entity_browser/.git
 rm -Rf modules/contrib/install_profile_generator/.git
