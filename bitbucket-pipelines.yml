@@ -15,7 +15,7 @@ pipelines:
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - composer install
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
-            - rm -Rf .git
+            - sh scripts/bitbucket-pipelines/cleanup.sh
             - echo "Debugging ...."
             - echo $SSH_HOST >> ~/.ssh/known_hosts
             - cat /opt/atlassian/pipelines/agent/data/id_rsa > ~/.ssh/id_rsa
