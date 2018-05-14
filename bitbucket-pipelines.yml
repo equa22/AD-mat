@@ -27,9 +27,6 @@ pipelines:
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
             - git add -A
-            - git status
-            - ls -la modules/contrib/media_entity_browser/
-            - git add modules/contrib/media_entity_browser/
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
             - git push
 
