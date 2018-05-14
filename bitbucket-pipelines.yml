@@ -29,6 +29,7 @@ pipelines:
             - git config core.autocrlf false
             - git add -A
             - git add -f modules/contrib/paragraphs
+            - git ls-files modules/contrib/paragraphs
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
             - git push
 
