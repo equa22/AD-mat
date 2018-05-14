@@ -27,8 +27,11 @@ pipelines:
             - git config --global user.name "$GIT_USER"
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
+            - ls -la modules/contrib/media_entity_browser/
+            - ls -la modules/contrib/install_profile_generator/
+            - ls -la modules/contrib/paragraphs/
+            - ls -la modules/contrib/slick_paragraphs/
             - git add -A
-            - git ls-files --others -i --exclude-standard
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
             - git push
 
