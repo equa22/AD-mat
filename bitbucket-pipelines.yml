@@ -13,7 +13,6 @@ pipelines:
           script:
             - apt-get update && apt-get install -y unzip git 
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-            - composer install
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - sh scripts/bitbucket-pipelines/cleanup.sh
             - echo "Debugging ...."
@@ -23,11 +22,11 @@ pipelines:
             - git clone $PANTHEON_REPO $PANTHEON_CODE_PATH
             - cd $PANTHEON_CODE_PATH
             - /bin/cp -rf $BITBUCKET_CLONE_DIR/. .
+            - composer install
             - git config --global user.name "$GIT_USER"
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
             - git add -A
-            - git status --ignored
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
             - git push
 
