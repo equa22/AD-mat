@@ -28,10 +28,7 @@ pipelines:
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
             - git add -A
-            - ls -la modules/contrib/
-            - ls -la modules/contrib/paragraphs
-            - git add -f modules/contrib/paragraphs
-            - git ls-files modules/contrib/paragraphs
+            - git clean -ndX
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
             - git push
 
