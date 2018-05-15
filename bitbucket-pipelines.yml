@@ -28,8 +28,6 @@ pipelines:
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
             - git add -A
-            - git rm --cached themes/contrib/adminimal_theme
-            - git add -f themes/contrib/adminimal_theme
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ($BITBUCKET_COMMIT)."
             - git push
 
