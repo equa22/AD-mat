@@ -33,3 +33,6 @@ sites/simpletest
 
 # Ignore Acquia Dev Desktop configs.
 sites/*.dd
+
+# Workspace files are user-specific
+*.sublime-workspace
