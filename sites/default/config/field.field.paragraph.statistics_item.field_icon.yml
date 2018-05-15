@@ -1,15 +1,15 @@
-uuid: 7e3c44a0-a0ce-4ac8-8982-feaeea2a29b9
+uuid: ac8f919e-c4de-427e-b24b-cf79ef5ba8b2
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_class_name
+    - field.storage.paragraph.field_icon
     - paragraphs.paragraphs_type.statistics_item
-id: paragraph.statistics_item.field_class_name
-field_name: field_class_name
+id: paragraph.statistics_item.field_icon
+field_name: field_icon
 entity_type: paragraph
 bundle: statistics_item
-label: 'Class name'
+label: Icon
 description: ''
 required: true
 translatable: false

@@ -1,18 +1,16 @@
-uuid: 1ed00958-989d-4d59-8a5b-83ce1930652f
+uuid: ef5ce930-389b-4a4d-a119-4c3c4e130f21
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_media_background
+    - field.storage.paragraph.field_media_foreground
     - media.type.image
     - paragraphs.paragraphs_type.landing_page_highlight
-_core:
-  default_config_hash: Qr0CzoUUvvQNERR0cmEdbsHTqejst4BrqC8YYFI2Mc0
-id: paragraph.landing_page_highlight.field_media_background
-field_name: field_media_background
+id: paragraph.landing_page_highlight.field_media_foreground
+field_name: field_media_foreground
 entity_type: paragraph
 bundle: landing_page_highlight
-label: 'Media Background'
+label: 'Media Foreground'
 description: ''
 required: true
 translatable: false

@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.statistics_item.field_class_name
+    - field.field.paragraph.statistics_item.field_icon
     - field.field.paragraph.statistics_item.field_number
     - field.field.paragraph.statistics_item.field_text
     - field.field.paragraph.statistics_item.field_title
@@ -16,14 +16,11 @@ targetEntityType: paragraph
 bundle: statistics_item
 mode: default
 content:
-  field_class_name:
-    weight: 4
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+  field_icon:
+    weight: 5
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_number:
     weight: 2

@@ -1,12 +1,12 @@
-uuid: 302fca72-b5f7-498e-9631-c8d2d98ce9f3
+uuid: 307653be-f923-4a66-b53b-d94c077d611d
 langcode: en
 status: true
 dependencies:
   module:
     - classy_paragraphs
     - paragraphs
-id: paragraph.field_class_name
-field_name: field_class_name
+id: paragraph.field_icon
+field_name: field_icon
 entity_type: paragraph
 type: entity_reference
 settings:

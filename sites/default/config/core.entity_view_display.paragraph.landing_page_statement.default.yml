@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.paragraph.landing_page_statement.field_link
     - field.field.paragraph.landing_page_statement.field_text
-    - field.field.paragraph.landing_page_statement.field_title
     - paragraphs.paragraphs_type.landing_page_statement
   module:
     - link
@@ -33,13 +32,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
-  field_title:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
     region: content
 hidden: {  }
