@@ -37,6 +37,6 @@ pipelines:
             - git rm --cached profiles/contrib/tdx-distribution/
             - git add -f profiles/contrib/tdx-distribution/
             - git clean -ndX
-            - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ."
+            - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ($BITBUCKET_COMMIT)."
             - git push
 
