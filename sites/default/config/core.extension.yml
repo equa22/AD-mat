@@ -2,7 +2,6 @@ module:
   addtoany: 0
   admin_toolbar: 0
   adminimal_admin_toolbar: 0
-  automated_cron: 0
   blazy: 0
   blazy_ui: 0
   block: 0
@@ -61,7 +60,6 @@ module:
   svg_image: 0
   swiftmailer: 0
   switch_page_theme: 0
-  syslog: 0
   system: 0
   tab_toolbar: 0
   taxonomy: 0

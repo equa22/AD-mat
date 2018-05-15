@@ -5,15 +5,19 @@ dependencies:
   config:
     - entity_browser.browser.media_entity_browser
     - field.field.paragraph.landing_page_highlight.field_background_image
+    - field.field.paragraph.landing_page_highlight.field_highlight_statement
     - field.field.paragraph.landing_page_highlight.field_image
     - field.field.paragraph.landing_page_highlight.field_media
     - field.field.paragraph.landing_page_highlight.field_media_background
+    - field.field.paragraph.landing_page_highlight.field_media_foreground
     - field.field.paragraph.landing_page_highlight.field_text
+    - field.field.paragraph.landing_page_highlight.field_text_align
     - field.field.paragraph.landing_page_highlight.field_title
     - paragraphs.paragraphs_type.landing_page_highlight
   module:
     - content_moderation
     - entity_browser
+    - paragraphs
     - text
 _core:
   default_config_hash: 0QxaduRoWYtyTWh8Xql3ylkDsbVf1RVP32xl7DwfbGU
@@ -22,8 +26,20 @@ targetEntityType: paragraph
 bundle: landing_page_highlight
 mode: default
 content:
-  field_media:
-    weight: 5
+  field_highlight_statement:
+    type: entity_reference_paragraphs
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_media_background:
+    weight: 4
     settings:
       entity_browser: media_entity_browser
       field_widget_display: rendered_entity
@@ -36,8 +52,8 @@ content:
     third_party_settings: {  }
     type: entity_browser_entity_reference
     region: content
-  field_media_background:
-    weight: 6
+  field_media_foreground:
+    weight: 3
     settings:
       entity_browser: media_entity_browser
       field_widget_display: rendered_entity
@@ -51,20 +67,18 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_text:
-    weight: 2
+    weight: 1
     settings:
-      rows: 5
+      rows: 2
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
+  field_text_align:
+    weight: 5
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: options_select
     region: content
   moderation_state:
     type: moderation_state_default
@@ -76,5 +90,7 @@ hidden:
   created: true
   field_background_image: true
   field_image: true
+  field_media: true
+  field_title: true
   status: true
   uid: true

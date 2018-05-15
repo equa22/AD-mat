@@ -1,0 +1,21 @@
+uuid: 5455948f-afb6-460d-8020-899aa6e8fba5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_align
+    - paragraphs.paragraphs_type.landing_page_highlight
+id: paragraph.landing_page_highlight.field_text_align
+field_name: field_text_align
+entity_type: paragraph
+bundle: landing_page_highlight
+label: 'Text align'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:classy_paragraphs_style'
+  handler_settings: {  }
+field_type: entity_reference

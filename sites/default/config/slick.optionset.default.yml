@@ -55,7 +55,7 @@ options:
     speed: 500
     swipe: true
     swipeToSlide: false
-    edgeFriction: 0.35000000000002
+    edgeFriction: 0.35
     touchMove: true
     touchThreshold: 5
     useCSS: true

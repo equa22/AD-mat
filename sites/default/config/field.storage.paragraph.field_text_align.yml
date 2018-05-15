@@ -1,0 +1,20 @@
+uuid: 7762d306-bcaf-4fc7-afe9-17c5afc4f33d
+langcode: en
+status: true
+dependencies:
+  module:
+    - classy_paragraphs
+    - paragraphs
+id: paragraph.field_text_align
+field_name: field_text_align
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: classy_paragraphs_style
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

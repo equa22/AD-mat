@@ -1,0 +1,7 @@
+uuid: 487e4124-7ea3-457f-835a-6a79b318a74f
+langcode: en
+status: true
+dependencies: {  }
+id: align_right
+label: Right
+classes: right

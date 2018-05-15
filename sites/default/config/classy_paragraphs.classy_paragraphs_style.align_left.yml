@@ -1,0 +1,7 @@
+uuid: 5ef5a126-9568-4ecf-a4f1-8619c55f7ea4
+langcode: en
+status: true
+dependencies: {  }
+id: align_left
+label: Left
+classes: left
