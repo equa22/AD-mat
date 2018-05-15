@@ -1,0 +1,307 @@
+// ========================================
+//
+// @file _navigation.scss
+// All the navigation elements on the page
+//
+// ========================================
+
+.navigation.menu--main {
+  display: flex;
+  width: 100%;
+
+  @media (max-width: $screen-xs-max) {
+    display: none;
+  }
+
+  > ul {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+
+    &:hover li.menu-item:not(:hover) > a,
+    &:hover li.menu-item:not(:hover) > span {
+      opacity: .5;
+    }
+
+    > li {
+      @media (min-width: $screen-sm-min) {
+        padding: 0 1.8vw;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.navigation.menu--main {
+  > ul {
+    position: relative;
+    flex-direction: column;
+
+    @media (min-width: $screen-sm-min) {
+      justify-content: flex-end;
+      flex-direction: row;
+    }
+
+    > li > a,
+    > li > span {
+      position: relative;
+      @include font-size($font-size-large);
+      text-transform: capitalize;
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        font-size: 2vw;
+      }
+      
+    }
+
+    a,
+    span {
+      display: block;
+      color: #4A4A4A;
+      cursor: pointer;
+      padding: 3rem $grid-gutter-width;
+
+      @media (min-width: $screen-sm-min) {
+        padding: 2rem 0;
+      }
+    }
+
+    span {
+      transition: .4s;
+    }
+
+    li.menu-item--expanded {
+      position: relative;
+
+      > a,
+      > span {
+        padding-right: 2.5rem;
+
+        &:before {
+          display: inline-block;
+          font-style: normal;
+          font-variant: normal;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          font-size: .9em;
+          vertical-align: middle;
+          font-family: $font-awesome;
+          font-weight: 900;
+          content: "\f078";
+          position: absolute;
+          top: 2.3rem;
+          right: 0;
+          color: #4A4A4A;
+        }
+      }
+
+      li.menu-item--expanded {
+        > a,
+        > span {
+          &:before {
+            @media (min-width: $screen-sm-min) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    > li.menu-item--expanded {
+      // Submenu menu (dropdown)
+      .menu {
+        @media (min-width: $screen-sm-min) {
+          display: none;
+          width: 17rem;
+          position: absolute;
+          left: 50%;
+          margin-left: -8.5rem;
+          @include font-size($font-size-small);
+          border-radius: $border-radius-base;
+          border: 1px solid $border-color-base;
+          box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+
+          > li {
+            position: relative;
+            z-index: 2;
+            background-color: $white;
+            border-bottom: 1px solid $border-color-base;
+
+            a {
+              padding: 2rem 2rem;
+            }
+          }
+
+          &:before {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            width: 22px;
+            height: 22px;
+            background-color: $white;
+            transform: rotate(45deg);
+            top: -11px;
+            left: 50%;
+            margin-left: -10px;
+            box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+
+      &:hover > .menu {
+        @media (min-width: $screen-sm-min) {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Mobile navigation
+body.mobile-menu--opened {
+  @media (max-width: $screen-xs-max) { 
+    overflow: hidden;
+
+    #header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: $z-index-header;
+      overflow-y: auto;
+      background-color: $white;
+    }
+
+    .region-header {
+      height: auto;
+      background-color: $white;
+
+      .container {
+        flex-direction: column;
+        align-items: start;
+        padding: 0;
+        margin-bottom: 11rem;
+      }
+
+      .block.branding {
+        margin-left: $grid-gutter-width;
+        height: 6rem;
+      }
+    }
+
+    .navigation.menu--main {
+      display: flex;
+
+      > ul > li {
+        border-top: 2px solid #DEDEDE;
+      }
+
+      /*
+      li.menu-item--hovered {
+        > a,
+        > span {
+          color: lighten(#4A4A4A, 50%);
+        }
+      }
+      */
+
+      // Submenu menu (accordion)
+      li.menu-item--expanded {
+        > a,
+        > span {
+          padding-right: 6rem;
+          cursor: pointer;
+
+          &:before {
+            top: 3rem;
+            right: $grid-gutter-width;
+            font-size: 1.2em;
+            //color: lighten(#4A4A4A, 50%);
+            transform: rotate(-90deg);
+            transition: .4s;
+          }
+        }
+
+        .menu {
+          //display: none;
+        }
+
+        li {
+          border-top: 1px solid #EAEAEA;
+
+          a,
+          span {
+            padding: 2.3rem 5rem;
+          }
+        }
+
+        > .menu {
+          margin: 0 ($grid-gutter-width / 2);
+
+          > li {
+            @include font-size($font-size-large);
+
+            &.menu-item--expanded {
+              > a,
+              > span { 
+                &:before {
+                  top: 2.3rem;
+                  right: ($grid-gutter-width / 2);
+                }
+              }
+            }
+
+            .menu {
+              margin: 0;
+
+              li {
+                @include font-size($font-size-base);
+
+                a,
+                span {
+                  padding-top: 1.9rem;
+                  padding-bottom: 1.9rem;
+                }
+              }
+            }
+          }
+        }
+       
+        &.menu-item--opened {
+          > a[aria-expanded="true"],
+          > span[aria-expanded="true"] {
+            color: #173F7C !important;
+            opacity: 1;
+
+            &:before {
+              color: #173F7C !important;
+              transform: rotate(0);
+            }
+          }
+
+          .menu li {
+            > a[aria-expanded="true"],
+            > span[aria-expanded="true"] {
+              color: #4A4A4A;
+
+              &:before {
+                color: #4A4A4A;
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+

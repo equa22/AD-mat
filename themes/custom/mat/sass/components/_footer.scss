@@ -1,0 +1,121 @@
+// ========================================
+//
+// @file _footer.scss
+// Footer element on the page
+//
+// ========================================
+
+#footer {
+  padding-bottom: 4.5rem;
+  background-color: $gray-light;
+
+  .region-footer-menu {
+    padding: 7rem 0 3rem 0;
+    background-color: $white;
+
+    @media (min-width: $screen-sm-min) {
+      padding: 9.5rem 0 7rem 0;
+    }
+  }
+
+  .navigation.menu--footer {
+    @extend .container;
+    @include font-size($font-size-large);
+
+    > ul {
+      @include make-row;
+
+      .menu-item--expanded {
+        @extend %col;
+        flex-direction: column;
+        margin-bottom: 5rem;
+        color: #4A4A4A;
+
+        @media (max-width: $screen-xs-max) {
+          flex-basis: 50%;
+        }
+
+        > .menu {
+          margin-top: 1.7rem;
+
+          @media (min-width: $screen-sm-min) {
+            margin-top: 3rem;
+          }
+
+          .menu-item {
+            padding-bottom: .5rem;
+
+            @media (min-width: $screen-sm-min) {
+              padding-bottom: 2rem;
+            }
+
+            a {
+              color: lighten(#4A4A4A, 35%);
+
+              @media (max-width: $screen-xs-max) {
+                @include font-size($font-size-small);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .region-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @extend .container;
+
+    @media (min-width: $screen-sm-min) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding-top: 4.5rem;
+    }
+
+    .logo_donate-life {
+      display: flex;
+
+      @media (max-width: $screen-xs-max) {
+        flex-direction: column;
+        margin-bottom: 6.5rem;
+      }
+
+      img:nth-of-type(1) {
+        margin: -2rem 0 3rem 0;
+
+        @media (min-width: $screen-sm-min) {
+          margin: 0 2rem 0 0;
+        }
+      }
+    }
+
+    .logo {
+      width: 160px;
+
+      @media (max-width: $screen-xs-max) {
+        order: 2;
+        margin: 6rem 0 1.5rem 0;
+      }
+    }
+
+    #block-testsociallinks {
+      @media (max-width: $screen-xs-max) {
+        order: 1;
+      }
+    }
+  }
+
+  .region-copyright {
+    padding-top: 2.5rem;
+    @include font-size($font-size-small);
+    text-align: center;
+
+    a {
+      color: lighten(#4A4A4A, 50%);
+    }
+  }
+}
