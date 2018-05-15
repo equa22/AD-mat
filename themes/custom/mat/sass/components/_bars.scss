@@ -1,0 +1,53 @@
+// ========================================
+//
+// @file _bars.scss
+// Bars for mobile main navigation
+//
+// ========================================
+
+.bars {
+  @extend %flex-center-vertical;
+  position: absolute;
+  top: 10rem;
+  right: $grid-gutter-width;
+  width: 24px;
+  height: 24px;
+  margin-top: -12px;
+  cursor: pointer;
+  z-index: $z-index-bars;
+
+  @media (min-width: $screen-sm-min) {
+    display: none;
+  }
+
+  .line-wrapper {
+    width: 100%;
+  }
+
+  .line {
+    display: block;
+    height: 2px;
+    margin: 5px 0;
+    background-color: #4A4A4A;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+body.mobile-menu--opened {
+  .bars {
+    .line {
+      &:nth-child(1){
+        transform: rotate(45deg) translateX(5px) translateY(5px);
+        transition-delay: 0.2s;
+      }
+      &:nth-child(2){
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      &:nth-child(3){
+        transform: rotate(-45deg) translateX(5px) translateY(-5px);
+        transition-delay: 0.2s;
+      }
+    }
+  }
+}

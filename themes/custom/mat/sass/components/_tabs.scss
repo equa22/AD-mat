@@ -1,0 +1,24 @@
+// ========================================
+//
+// @file _tabs.scss
+// All the tabs elements on the page
+//
+// ========================================
+
+nav.tabs {
+  display: flex;
+  align-items: center;
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    > li {
+      a {
+        display: block;
+        padding: 10px 20px;
+      }
+    }
+  }
+}

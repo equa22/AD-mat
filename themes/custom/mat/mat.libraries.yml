@@ -1,0 +1,28 @@
+# Fonts
+fontawesome:
+  version: 5.0.12
+  css:
+    component:
+      '//use.fontawesome.com/releases/v5.0.12/css/all.css': {type: external}
+# Global CSS files
+global-css:
+  version: 1.x
+  css:
+    theme:
+      assets/stylesheets/application.css:
+        minified: false
+
+# Global JS files
+global-js:
+  version: 1.x
+  js:
+    assets/scripts/application.js:
+      minified: false
+    assets/scripts/vendor/bootstrap/bootstrap.min.js:
+      minified: false
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once

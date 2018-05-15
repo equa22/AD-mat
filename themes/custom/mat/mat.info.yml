@@ -1,0 +1,26 @@
+# Theme information
+name: mat
+type: theme
+description: Mid-America Transplant theme.
+core: 8.x
+version: 1.x
+base theme: tdx_base
+
+
+# Include libraries
+libraries:
+  - mat/fontawesome
+  - mat/global-css
+  - mat/global-js
+
+# Regions
+regions:
+  topbar: 'Topbar'
+  header: 'Header'
+  navigation: 'Navigation'
+  precontent: 'Precontent'
+  content: 'Content'
+  sidebar: 'Sidebar'
+  footer_menu: 'Footer menu'
+  footer_links: 'Footer links'
+  copyright: 'Copyright'

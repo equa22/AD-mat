@@ -1,0 +1,210 @@
+// ========================================
+//
+// @file _header.scss
+// Header element on the page
+//
+// ========================================
+
+#header {
+  position: relative;
+}
+
+.region-topbar {
+  @include font-size($font-size-small);
+  color: $white;
+  @include gradient(90deg, #2DB0DF, #2DB0DF, #2F2D83);
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    @include font-size(1.2);
+  }
+  
+  > .block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @extend .container;
+    height: 6rem;
+
+    @media (max-width: 991px) {
+      padding-left: ($grid-gutter-width / 2);
+      padding-right: ($grid-gutter-width / 2);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .field--name-body {
+      display: none;
+      padding: 5px 0 5px 3.8rem;
+      position: relative;
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        padding-left: 3.5vw;
+      }
+
+      &:before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        font-size: 1.6em;
+        vertical-align: middle;
+        font-family: $font-awesome;
+        font-weight: 900;
+        content: "\f06a";
+        position: absolute;
+        top: 3px;
+        left: 0;
+        transform: rotate(180deg);
+      }
+
+      @media (min-width: $screen-sm-min) {
+        display: block;
+      }
+
+      a {
+        color: $white;
+        opacity: .5;
+      }
+    }
+
+    .topbar_links--group {
+      display: flex;
+
+      @media (max-width: $screen-xs-max) {
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        margin-right: 3vw;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        margin-right: 2.5rem;
+      }
+    }
+
+    .field--type-link {
+      @media (min-width: $screen-sm-min) {
+        margin-right: 1.5rem;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        margin-right: 1.1vw;
+      }
+
+      a {
+        @include btn();
+        padding: .7rem 1.3rem .7rem 1.3rem;
+        font-weight: 700;
+        background-position: 1.2rem 1rem;
+        background-size: 14px auto;
+        border: 2px solid $white;
+        border-radius: 30px;
+
+        @media (min-width: $screen-sm-min) {
+          padding-left: 3.8rem;
+          padding-right: 2.2rem;
+        }
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          padding-left: 4vw;
+          padding-right: 1.8vw;
+          background-position: 1rem .9rem;
+        }
+
+      }
+    }
+
+    .field--name-field-link-foundation a {
+      @media (min-width: $screen-sm-min) {
+        @include image('icons/i-together.svg');
+      }
+    }
+
+    .field--name-field-link-donation a {
+      @media (min-width: $screen-sm-min) {
+        @include image('icons/i-give-life.svg');
+      }
+    }
+
+    #topbar_search-icon {
+      display: none;
+      
+      
+      
+
+      @media (min-width: $screen-sm-min) {
+        display: block;
+        position: absolute;
+        right: $grid-gutter-width;
+        font-size: 1.6em;
+        cursor: pointer;
+      }
+
+      @media (max-width: 991px) {
+        right: ($grid-gutter-width / 2);
+      }
+    }
+  }
+}
+
+.region-header {
+  padding-top: 2rem;
+  height: 8rem;
+  background-color: $color-white;
+  
+  @media (min-width: $screen-sm-min) {
+    padding: 3.5rem 0;
+    height: auto;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // Logotype
+  .block.branding {
+    a {
+      display: inline-block;
+
+      @media (min-width: $screen-sm-min) {
+        width: 160px;
+      }
+
+      @media (max-width: 991px) {
+        width: 105px;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // Search block (small screens only)
+  #block-testsearchmobile {
+    display: none;
+  }
+}
+
+body.mobile-menu--opened {
+  @media (max-width: $screen-xs-max) { 
+    #block-testsearchmobile {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 11rem;
+      background-color: #F1F1F1;
+      box-shadow: inset 0 7px 10px -7px rgba(0, 0, 0, 0.3);
+      z-index: $z-index-mobile-menu;
+    }
+  }
+}
