@@ -1,0 +1,7 @@
+uuid: 83f960eb-4d71-4224-8126-79532377c9c2
+langcode: en
+status: true
+dependencies: {  }
+id: icon_exchange
+label: 'Icon exchange'
+classes: i-exchange

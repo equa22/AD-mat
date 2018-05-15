@@ -1,0 +1,22 @@
+uuid: 5d83ed09-df9f-4ba0-95e2-1e5ad89bfe2e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - tdx_adminal
+_core:
+  default_config_hash: _0A4IIat6wcYmtcsftMGqR8-T9z3fqd5dydXX9CAcho
+id: tdx_adminal_messages
+theme: tdx_adminal
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

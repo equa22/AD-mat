@@ -1,0 +1,22 @@
+uuid: e139e079-8985-40dd-ba99-10ad532e87da
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - stark
+_core:
+  default_config_hash: ubXhp1MnSDeRUDTkN9j_HrUHTBDBGan9qa6hhG8cRPE
+id: stark_content
+theme: stark
+region: content
+weight: 1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

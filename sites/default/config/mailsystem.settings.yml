@@ -1,0 +1,19 @@
+theme: current
+defaults:
+  sender: php_mail
+  formatter: php_mail
+_core:
+  default_config_hash: b6m28mQxeQ0zdHx4OfuDYO-OCvSF2P6Qr6nnRma3XFI
+modules:
+  swiftmailer:
+    none:
+      formatter: swiftmailer
+      sender: swiftmailer
+  system:
+    none:
+      formatter: swiftmailer
+      sender: swiftmailer
+  simplenews:
+    none:
+      formatter: swiftmailer
+      sender: swiftmailer

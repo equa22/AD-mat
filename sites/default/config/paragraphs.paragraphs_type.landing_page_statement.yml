@@ -1,0 +1,9 @@
+uuid: a95ce7db-574a-424a-9636-31e13a9755b1
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_statement
+label: Statement
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

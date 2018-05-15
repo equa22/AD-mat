@@ -1,0 +1,22 @@
+uuid: d4eb7f1d-3fda-4230-90de-539413f6795b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - tdx_adminal
+_core:
+  default_config_hash: syWWRksT50BynVbACs8vzWGy3HoGFf051qw_uRmI6uQ
+id: tdx_adminal_primary_local_tasks
+theme: tdx_adminal
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: false
+visibility: {  }

@@ -1,0 +1,24 @@
+uuid: ede087e9-9f39-47eb-981c-27cc38a4958f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_statistics.field_statistics_item
+    - paragraphs.paragraphs_type.landing_page_statistics
+  module:
+    - entity_reference_revisions
+id: paragraph.landing_page_statistics.default
+targetEntityType: paragraph
+bundle: landing_page_statistics
+mode: default
+content:
+  field_statistics_item:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

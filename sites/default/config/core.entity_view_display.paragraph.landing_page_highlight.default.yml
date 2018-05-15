@@ -1,0 +1,57 @@
+uuid: cc6905a3-f37e-49a3-b917-1ce387be9051
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_highlight.field_background_image
+    - field.field.paragraph.landing_page_highlight.field_image
+    - field.field.paragraph.landing_page_highlight.field_media
+    - field.field.paragraph.landing_page_highlight.field_media_background
+    - field.field.paragraph.landing_page_highlight.field_text
+    - field.field.paragraph.landing_page_highlight.field_title
+    - paragraphs.paragraphs_type.landing_page_highlight
+  module:
+    - text
+_core:
+  default_config_hash: D-Xw7uRmCLh8rVsYf7zOGltn1XEN0T3OEMhdXlTJp7I
+id: paragraph.landing_page_highlight.default
+targetEntityType: paragraph
+bundle: landing_page_highlight
+mode: default
+content:
+  field_media:
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_media_background:
+    type: entity_reference_entity_view
+    weight: 5
+    label: hidden
+    settings:
+      view_mode: background
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_background_image: true
+  field_image: true

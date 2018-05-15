@@ -1,0 +1,11 @@
+uuid: d858cd57-eaaf-4cbd-8e30-221f644a5849
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.topbar_block
+id: block_content.topbar_block
+target_entity_type_id: block_content
+target_bundle: topbar_block
+default_langcode: site_default
+language_alterable: false

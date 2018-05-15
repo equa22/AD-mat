@@ -1,0 +1,22 @@
+uuid: 563d030c-cd53-45ca-b884-c589d4d9f91c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - tdx_base
+_core:
+  default_config_hash: r3ZniPa5WVcH2LKYIjqWbOMU-_u5xOg8xitl80Sx9kE
+id: tdx_base_powered
+theme: tdx_base
+region: copyright
+weight: -10
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

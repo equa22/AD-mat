@@ -1,0 +1,25 @@
+uuid: 9f581b4d-9f8c-47d3-9ad1-629b069c0cd1
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:topbar_block:17cee78b-e9cf-4eb0-b13f-53066518c99c'
+  module:
+    - block_content
+  theme:
+    - mat
+id: topbar
+theme: mat
+region: topbar
+weight: -5
+provider: null
+plugin: 'block_content:17cee78b-e9cf-4eb0-b13f-53066518c99c'
+settings:
+  id: 'block_content:17cee78b-e9cf-4eb0-b13f-53066518c99c'
+  label: 'Top bar for announcement'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

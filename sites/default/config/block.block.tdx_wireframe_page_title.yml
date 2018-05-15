@@ -1,0 +1,20 @@
+uuid: ccfba70c-62d8-4ae4-b372-96e144f58daf
+langcode: en
+status: true
+dependencies:
+  theme:
+    - tdx_wireframe
+_core:
+  default_config_hash: pMKDx7Nu2J930eCCdwF45LvA7Zktq951BPByJA1l7SM
+id: tdx_wireframe_page_title
+theme: tdx_wireframe
+region: content
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

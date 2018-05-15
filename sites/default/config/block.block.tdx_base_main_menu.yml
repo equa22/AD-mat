@@ -1,0 +1,26 @@
+uuid: 499cd877-0dab-4f3b-9835-a578f4a8d5da
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - tdx_base
+_core:
+  default_config_hash: eZyUKy9P881iUaruTKIosUdB1JUskH_q2pTdkLm8SBY
+id: tdx_base_main_menu
+theme: tdx_base
+region: header
+weight: 1
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 2
+visibility: {  }

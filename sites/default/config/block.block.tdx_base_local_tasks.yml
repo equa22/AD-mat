@@ -1,0 +1,22 @@
+uuid: 8174fb42-c800-4a51-8544-6163d6591498
+langcode: en
+status: true
+dependencies:
+  theme:
+    - tdx_base
+_core:
+  default_config_hash: wfbGCCkdHl-xMGgwStOZGzRtkihj_rdnqsEgnxNrkqY
+id: tdx_base_local_tasks
+theme: tdx_base
+region: precontent
+weight: 10
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

@@ -1,0 +1,23 @@
+uuid: b4345c6a-2abc-41b1-80cf-d0d56b3b31b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.topbar_block
+    - field.storage.block_content.field_link_foundation
+  module:
+    - link
+id: block_content.topbar_block.field_link_foundation
+field_name: field_link_foundation
+entity_type: block_content
+bundle: topbar_block
+label: 'Foundation link'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

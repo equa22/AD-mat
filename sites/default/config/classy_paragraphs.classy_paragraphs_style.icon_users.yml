@@ -1,0 +1,7 @@
+uuid: 1e1b6d43-f4dc-41e9-a967-bbb4268f45de
+langcode: en
+status: true
+dependencies: {  }
+id: icon_users
+label: 'Icon users'
+classes: i-users

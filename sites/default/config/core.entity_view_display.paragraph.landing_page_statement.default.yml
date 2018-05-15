@@ -1,0 +1,45 @@
+uuid: ff44aa92-8f65-4856-b04b-9639034c98ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_statement.field_link
+    - field.field.paragraph.landing_page_statement.field_text
+    - field.field.paragraph.landing_page_statement.field_title
+    - paragraphs.paragraphs_type.landing_page_statement
+  module:
+    - link
+    - text
+id: paragraph.landing_page_statement.default
+targetEntityType: paragraph
+bundle: landing_page_statement
+mode: default
+content:
+  field_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

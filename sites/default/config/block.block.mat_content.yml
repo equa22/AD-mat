@@ -1,0 +1,30 @@
+uuid: 9e67ee99-2006-4262-9b86-99c7f02bfc4a
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - system
+  theme:
+    - mat
+_core:
+  default_config_hash: wV4_RsAayoOGMUA4UHq2stC40MzwVDJJ400OD4a7Ae4
+id: mat_content
+theme: mat
+region: content
+weight: -4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      landing_page: landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'

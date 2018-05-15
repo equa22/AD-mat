@@ -1,0 +1,23 @@
+uuid: 7e3c44a0-a0ce-4ac8-8982-feaeea2a29b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_class_name
+    - paragraphs.paragraphs_type.statistics_item
+id: paragraph.statistics_item.field_class_name
+field_name: field_class_name
+entity_type: paragraph
+bundle: statistics_item
+label: 'Class name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:classy_paragraphs_style'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

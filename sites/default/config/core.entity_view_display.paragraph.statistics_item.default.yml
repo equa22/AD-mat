@@ -1,0 +1,42 @@
+uuid: a367f987-fe71-451c-882f-c2e76fa112d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.statistics_item.field_class_name
+    - field.field.paragraph.statistics_item.field_number
+    - field.field.paragraph.statistics_item.field_text
+    - field.field.paragraph.statistics_item.field_title
+    - paragraphs.paragraphs_type.statistics_item
+  module:
+    - text
+id: paragraph.statistics_item.default
+targetEntityType: paragraph
+bundle: statistics_item
+mode: default
+content:
+  field_number:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_class_name: true

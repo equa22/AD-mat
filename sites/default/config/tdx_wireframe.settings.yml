@@ -1,0 +1,5 @@
+logo:
+  use_default: false
+  path: profiles/contrib/tdx-distribution/themes/tdx_wireframe/logo.svg
+_core:
+  default_config_hash: 3Ix3hP69xbJK9cBswd2wY7weuQh-ZPYGFbeCvXJ12h4

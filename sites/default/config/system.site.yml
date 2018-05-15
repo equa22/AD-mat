@@ -1,0 +1,14 @@
+uuid: a44882e5-6ec7-4a54-b7f6-93cba7079939
+name: 'Mid-America Transplant'
+mail: mat@example.com
+slogan: 'Design ambitious websites'
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: hv8BuZhPk6zWfOF5ld1Rq04Bnawm2QXZ6pQ0pM1EJ0Y

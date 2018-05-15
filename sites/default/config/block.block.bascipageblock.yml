@@ -1,0 +1,32 @@
+uuid: 9f0c3229-1082-4bbd-ab73-88446ac79d01
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+  theme:
+    - tdx_wireframe
+_core:
+  default_config_hash: qh02z92I40UyunyLctmNE3v_WAiQb7wbI-HOzb_D-8E
+id: bascipageblock
+theme: tdx_wireframe
+region: sidebar
+weight: 0
+provider: null
+plugin: 'block_content:dd87d3c8-69dc-4f60-a0fc-85dbaa5e899d'
+settings:
+  id: 'block_content:dd87d3c8-69dc-4f60-a0fc-85dbaa5e899d'
+  label: 'Basic page block'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      basic_page: basic_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

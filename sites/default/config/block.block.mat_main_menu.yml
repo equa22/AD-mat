@@ -1,0 +1,26 @@
+uuid: 77e923ea-e565-436c-9e2c-aaddba70b294
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - mat
+_core:
+  default_config_hash: SkROmuCkjm6ga3BONi9c3IkM09crVMy7e98Mxr6mpps
+id: mat_main_menu
+theme: mat
+region: header
+weight: -3
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 3
+visibility: {  }

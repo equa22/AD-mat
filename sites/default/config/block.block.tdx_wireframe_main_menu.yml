@@ -1,0 +1,26 @@
+uuid: 064623ce-4a25-494f-9c8d-826057fddb3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - tdx_wireframe
+_core:
+  default_config_hash: eZyUKy9P881iUaruTKIosUdB1JUskH_q2pTdkLm8SBY
+id: tdx_wireframe_main_menu
+theme: tdx_wireframe
+region: header
+weight: 1
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 2
+visibility: {  }

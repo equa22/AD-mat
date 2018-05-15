@@ -1,0 +1,19 @@
+uuid: fa99ee46-ce77-489b-b382-a9b9562ff575
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_statement
+    - paragraphs.paragraphs_type.slide
+id: paragraph.slide.field_statement
+field_name: field_statement
+entity_type: paragraph
+bundle: slide
+label: Statement
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

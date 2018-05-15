@@ -1,0 +1,22 @@
+uuid: 0d007b0d-fbb5-40df-9cf4-00f2b9473dc3
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mat
+_core:
+  default_config_hash: HmRPUM9ENPRDhKgR9eQBtD2XJBkMmY8dOv4lPmYq6EE
+id: mat_powered
+theme: mat
+region: copyright
+weight: -3
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

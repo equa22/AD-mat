@@ -1,0 +1,23 @@
+uuid: 865897c0-420f-4a8b-b539-7314508e554b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.topbar_block
+    - field.storage.block_content.field_link_donation
+  module:
+    - link
+id: block_content.topbar_block.field_link_donation
+field_name: field_link_donation
+entity_type: block_content
+bundle: topbar_block
+label: 'Donation link'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

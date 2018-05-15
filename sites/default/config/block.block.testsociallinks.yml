@@ -1,0 +1,25 @@
+uuid: efd3cadb-e7ff-4520-bf18-27683236b9fc
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic_block:70c82fea-f6c4-47a4-9b10-7983ded7e502'
+  module:
+    - block_content
+  theme:
+    - mat
+id: testsociallinks
+theme: mat
+region: footer_links
+weight: 0
+provider: null
+plugin: 'block_content:70c82fea-f6c4-47a4-9b10-7983ded7e502'
+settings:
+  id: 'block_content:70c82fea-f6c4-47a4-9b10-7983ded7e502'
+  label: 'Test social links'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

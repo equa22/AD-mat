@@ -1,0 +1,29 @@
+uuid: 41a6f156-ec18-4104-8050-2b5b9ec5dbf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+  theme:
+    - mat
+_core:
+  default_config_hash: 2pfTwr9wsn1N5k06-0kdetb_lOGDWZ_tXFOcTwUgj3s
+id: mat_page_title
+theme: mat
+region: content
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      landing_page: landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'

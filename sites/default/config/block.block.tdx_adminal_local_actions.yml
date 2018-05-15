@@ -1,0 +1,20 @@
+uuid: 5e6f6b1c-296f-40ec-a9ec-467c9fa10226
+langcode: en
+status: true
+dependencies:
+  theme:
+    - tdx_adminal
+_core:
+  default_config_hash: b4hNjuJ0zddAeEDC_oSv3v_vJTSkzrI7txAZe1-S6Ho
+id: tdx_adminal_local_actions
+theme: tdx_adminal
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

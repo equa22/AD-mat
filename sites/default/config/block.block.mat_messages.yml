@@ -1,0 +1,22 @@
+uuid: b162c714-6e61-4a52-828f-a24a78d29b1f
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - mat
+_core:
+  default_config_hash: TPcAIqbzjff3fPTy9puyfvtTUxUGuvbkJ9oAbjOfaHE
+id: mat_messages
+theme: mat
+region: content
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

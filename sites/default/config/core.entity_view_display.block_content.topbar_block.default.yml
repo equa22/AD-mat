@@ -1,0 +1,71 @@
+uuid: 7cc9556d-69e7-435d-b7b8-90ce64623401
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.topbar_block
+    - field.field.block_content.topbar_block.body
+    - field.field.block_content.topbar_block.field_link_donation
+    - field.field.block_content.topbar_block.field_link_foundation
+  module:
+    - field_group
+    - link
+    - text
+third_party_settings:
+  field_group:
+    group_topbar_links:
+      children:
+        - field_link_foundation
+        - field_link_donation
+      parent_name: ''
+      weight: 20
+      format_type: html_element
+      format_settings:
+        label: 'Topbar links group'
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: topbar_links--group
+      label: 'Topbar links group'
+id: block_content.topbar_block.default
+targetEntityType: block_content
+bundle: topbar_block
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_link_donation:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_link_foundation:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  langcode: true

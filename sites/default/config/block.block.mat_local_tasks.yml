@@ -1,0 +1,22 @@
+uuid: 8da95ac5-7433-4657-aad0-ad4f23e1713b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - mat
+_core:
+  default_config_hash: j-3w1SLAI8jjGEWAtORy6KqYTDeTonNLdqfCBJxx7Mc
+id: mat_local_tasks
+theme: mat
+region: precontent
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

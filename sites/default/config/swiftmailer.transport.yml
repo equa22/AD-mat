@@ -1,0 +1,14 @@
+transport: native
+smtp_host: 127.0.0.1
+smtp_port: 25
+smtp_encryption: ''
+sendmail_path: /usr/sbin/sendmail
+sendmail_mode: bs
+spool_directory: ''
+_core:
+  default_config_hash: uZ7W_b5GvIzwpiq0AjUnFzCKnhs-b_nx3IQbJns8q8U
+smtp_credential_provider: swiftmailer
+smtp_credentials:
+  swiftmailer:
+    username: ''
+    password: ''

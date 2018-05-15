@@ -1,0 +1,22 @@
+uuid: 3f1ba987-5ba1-43ba-bfa0-cc69ea8ca59d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - tdx_adminal
+_core:
+  default_config_hash: HEvn9Me0NBvf-yBKVlQsepMmWmfZVvXGwuTY_ZyQ6P4
+id: tdx_adminal_breadcrumbs
+theme: tdx_adminal
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

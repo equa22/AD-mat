@@ -1,0 +1,11 @@
+country:
+  default: US
+first_day: 0
+timezone:
+  default: America/New_York
+  user:
+    configurable: true
+    warn: false
+    default: 0
+_core:
+  default_config_hash: MxvYY1p5pAWcfi7-Jl_BQ7nHjXFYT4QO0CFAfY1lABg

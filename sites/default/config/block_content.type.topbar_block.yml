@@ -1,0 +1,8 @@
+uuid: 55be251c-0156-446a-9cec-099d28264248
+langcode: en
+status: true
+dependencies: {  }
+id: topbar_block
+label: 'Top bar block'
+revision: 1
+description: 'A block for an announcement in the top line of the header.'

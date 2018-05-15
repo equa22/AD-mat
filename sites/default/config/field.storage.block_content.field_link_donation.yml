@@ -1,0 +1,19 @@
+uuid: d21af008-2234-4e9d-86f1-5b9712130282
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - link
+id: block_content.field_link_donation
+field_name: field_link_donation
+entity_type: block_content
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

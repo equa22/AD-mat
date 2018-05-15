@@ -1,0 +1,11 @@
+uuid: a4446596-3fc5-4c59-847e-6a4971fdd4f2
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: lI2cbKerGpuu257fq45fnFne8NPLhyV0B2Xf7Cl1oys
+id: landing_page_box
+label: Box
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

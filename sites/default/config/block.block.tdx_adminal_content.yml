@@ -1,0 +1,22 @@
+uuid: a6908188-cb52-4c17-94a7-f521c52219ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - tdx_adminal
+_core:
+  default_config_hash: 9pbwJt-hg22jB0NBFIYys-Ef5WleWtX85Xu6-PuEJXE
+id: tdx_adminal_content
+theme: tdx_adminal
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }
