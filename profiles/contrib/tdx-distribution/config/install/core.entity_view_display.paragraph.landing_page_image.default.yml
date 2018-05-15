@@ -1,0 +1,28 @@
+uuid: a3dd190c-c542-4331-9775-7da60cd3384c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_image.field_media
+    - field.field.paragraph.landing_page_image.field_paragraph_column
+    - field.field.paragraph.landing_page_image.field_style
+    - paragraphs.paragraphs_type.landing_page_image
+_core:
+  default_config_hash: y43gObHOqf2z6HoECYuvtZEbNeoQUxIlu1olgBYYHI4
+id: paragraph.landing_page_image.default
+targetEntityType: paragraph
+bundle: landing_page_image
+mode: default
+content:
+  field_media:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_paragraph_column: true
+  field_style: true
