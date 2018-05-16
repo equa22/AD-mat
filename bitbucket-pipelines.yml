@@ -11,7 +11,7 @@ pipelines:
           caches:
             - composer
           script:
-            - apt-get update  && sudo apt-get -y upgrade 
+            - apt-get update  && apt-get -y upgrade 
             - apt-get install -y unzip git nodejs
             - node -v
             - npm -v
