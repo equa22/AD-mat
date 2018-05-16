@@ -1,0 +1,70 @@
+uuid: 8b4c92d0-3162-45d3-a8c4-9ce66531b0c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_myths_vs_facts
+    - paragraphs.paragraphs_type.myth_vs_fact
+    - paragraphs.paragraphs_type.timeline_facts
+  module:
+    - entity_reference_revisions
+id: paragraph.timeline_facts.field_myths_vs_facts
+field_name: field_myths_vs_facts
+entity_type: paragraph
+bundle: timeline_facts
+label: 'Myths vs facts'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      myth_vs_fact: myth_vs_fact
+    target_bundles_drag_drop:
+      landing_page_box:
+        weight: 15
+        enabled: false
+      landing_page_columns:
+        weight: 16
+        enabled: false
+      landing_page_form:
+        weight: 17
+        enabled: false
+      landing_page_highlight:
+        weight: 18
+        enabled: false
+      landing_page_image:
+        weight: 19
+        enabled: false
+      landing_page_list:
+        weight: 20
+        enabled: false
+      landing_page_rich_text:
+        weight: 21
+        enabled: false
+      landing_page_slider:
+        weight: 22
+        enabled: false
+      landing_page_statement:
+        weight: 23
+        enabled: false
+      landing_page_statistics:
+        weight: 24
+        enabled: false
+      myth_vs_fact:
+        enabled: true
+        weight: 25
+      slide:
+        weight: 26
+        enabled: false
+      statistics_item:
+        weight: 27
+        enabled: false
+      timeline_facts:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions

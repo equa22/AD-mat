@@ -1,0 +1,36 @@
+uuid: 5eca6aed-3f60-4141-96ad-f1ebd5310e12
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.myth_vs_fact.field_fact_description
+    - field.field.paragraph.myth_vs_fact.field_fact_headline
+    - field.field.paragraph.myth_vs_fact.field_myth
+    - paragraphs.paragraphs_type.myth_vs_fact
+id: paragraph.myth_vs_fact.default
+targetEntityType: paragraph
+bundle: myth_vs_fact
+mode: default
+content:
+  field_fact_description:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_fact_headline:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_myth:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden: {  }
