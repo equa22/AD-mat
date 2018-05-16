@@ -13,7 +13,7 @@ pipelines:
           script:
             - apt-get update  && apt-get -y upgrade 
             - apt-get install -y unzip git
-            - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+            - curl -sL https://deb.nodesource.com/setup_8.x | bash -
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - rm -Rf .git
