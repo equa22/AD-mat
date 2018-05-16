@@ -1,0 +1,50 @@
+uuid: 43b69965-1892-421c-9af0-29e8174d6406
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.myth_vs_fact.field_fact_description
+    - field.field.paragraph.myth_vs_fact.field_fact_headline
+    - field.field.paragraph.myth_vs_fact.field_myth
+    - paragraphs.paragraphs_type.myth_vs_fact
+  module:
+    - content_moderation
+id: paragraph.myth_vs_fact.default
+targetEntityType: paragraph
+bundle: myth_vs_fact
+mode: default
+content:
+  field_fact_description:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_fact_headline:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_myth:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 3
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

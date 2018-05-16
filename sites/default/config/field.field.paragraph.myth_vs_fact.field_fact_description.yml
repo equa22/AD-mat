@@ -1,0 +1,19 @@
+uuid: 9ffb0201-f541-4b78-bbe1-d86804f25595
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fact_description
+    - paragraphs.paragraphs_type.myth_vs_fact
+id: paragraph.myth_vs_fact.field_fact_description
+field_name: field_fact_description
+entity_type: paragraph
+bundle: myth_vs_fact
+label: 'Fact description'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
