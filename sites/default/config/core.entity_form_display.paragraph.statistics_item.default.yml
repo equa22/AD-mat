@@ -61,5 +61,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_class_name: true
   status: true
   uid: true
