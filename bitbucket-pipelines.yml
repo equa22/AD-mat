@@ -18,6 +18,10 @@ pipelines:
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - rm -Rf .git
             - composer install
+            - cd $BITBUCKET_CLONE_DIR/themes/custom/mat/.npm
+            - npm install
+            - npm install -g gulp
+            - gulp build
             - sh scripts/bitbucket-pipelines/cleanup.sh  
             - echo "Debugging ...."
             - echo $SSH_HOST >> ~/.ssh/known_hosts
