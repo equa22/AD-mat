@@ -11,7 +11,7 @@ pipelines:
           caches:
             - composer
           script:
-            - apt-get update && apt-get install -y unzip git 
+            - apt-get update && apt-get install -y unzip git npm
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - rm -Rf .git
@@ -28,6 +28,7 @@ pipelines:
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
             - git add -A
+            - git status
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ($BITBUCKET_COMMIT)."
-            - git push
+#            - git push
 
