@@ -33,5 +33,5 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-hidden: 
-    field_title: true
+hidden:
+  field_title: true

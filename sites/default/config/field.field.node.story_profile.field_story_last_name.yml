@@ -1,0 +1,19 @@
+uuid: e7c5b846-a205-4a06-9d11-1cb13116a84e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_story_last_name
+    - node.type.story_profile
+id: node.story_profile.field_story_last_name
+field_name: field_story_last_name
+entity_type: node
+bundle: story_profile
+label: 'Story last name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

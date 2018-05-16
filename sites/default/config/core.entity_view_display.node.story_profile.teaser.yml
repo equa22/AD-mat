@@ -1,0 +1,30 @@
+uuid: b28c014b-7cf3-4e37-8d88-1a238588fb91
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.story_profile.body
+    - node.type.story_profile
+  module:
+    - text
+    - user
+id: node.story_profile.teaser
+targetEntityType: node
+bundle: story_profile
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  langcode: true
