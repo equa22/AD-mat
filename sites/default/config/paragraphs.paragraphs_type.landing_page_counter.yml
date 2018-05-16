@@ -1,0 +1,9 @@
+uuid: 75294860-4862-43e0-8f60-9ce671ec7e86
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_counter
+label: Counter
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

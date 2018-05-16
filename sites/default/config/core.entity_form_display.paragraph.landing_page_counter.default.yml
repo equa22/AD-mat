@@ -1,0 +1,42 @@
+uuid: 41a6869c-7063-4d5a-ab3c-247fd1a6ca61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_counter.field_text
+    - field.field.paragraph.landing_page_counter.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_counter
+  module:
+    - content_moderation
+    - text
+id: paragraph.landing_page_counter.default
+targetEntityType: paragraph
+bundle: landing_page_counter
+mode: default
+content:
+  field_text:
+    weight: 102
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_title_formatted:
+    weight: 101
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

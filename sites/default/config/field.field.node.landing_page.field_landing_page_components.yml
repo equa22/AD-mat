@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_landing_page_components
     - node.type.landing_page
+    - paragraphs.paragraphs_type.landing_page_counter
     - paragraphs.paragraphs_type.landing_page_cta
     - paragraphs.paragraphs_type.landing_page_hero
     - paragraphs.paragraphs_type.landing_page_highlight
@@ -31,12 +32,13 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      landing_page_highlight: landing_page_highlight
       landing_page_slider: landing_page_slider
+      landing_page_highlight: landing_page_highlight
       landing_page_cta: landing_page_cta
       landing_page_statement: landing_page_statement
       landing_page_hero: landing_page_hero
       landing_page_statistics: landing_page_statistics
+      landing_page_counter: landing_page_counter
       timeline_facts: timeline_facts
     target_bundles_drag_drop:
       landing_page_columns:
@@ -57,10 +59,10 @@ settings:
       landing_page_rich_text:
         weight: 12
         enabled: false
-      landing_page_highlight:
+      landing_page_slider:
         enabled: true
         weight: 13
-      landing_page_slider:
+      landing_page_highlight:
         enabled: true
         weight: 13
       slide:
@@ -79,6 +81,9 @@ settings:
         enabled: true
         weight: 21
       landing_page_statistics:
+        enabled: true
+        weight: 22
+      landing_page_counter:
         enabled: true
         weight: 22
       myth_vs_fact:

@@ -40,6 +40,6 @@ content:
     type: string
     region: content
 hidden:
-  field_class_name: true	
+  field_class_name: true
   field_color: true
   field_icon: true
