@@ -11,7 +11,9 @@ pipelines:
           caches:
             - composer
           script:
-            - apt-get update && apt-get install -y unzip git nodejs
+            - apt-get update  && sudo apt-get -y upgrade 
+            - apt-get install -y unzip git nodejs
+            - node -v
             - npm -v
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
