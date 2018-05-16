@@ -1,0 +1,73 @@
+uuid: df85736b-98c6-408f-838b-c31fb4239000
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_statement
+    - paragraphs.paragraphs_type.landing_page_hero
+    - paragraphs.paragraphs_type.landing_page_statement
+  module:
+    - entity_reference_revisions
+id: paragraph.landing_page_hero.field_statement
+field_name: field_statement
+entity_type: paragraph
+bundle: landing_page_hero
+label: Statement
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      landing_page_statement: landing_page_statement
+    target_bundles_drag_drop:
+      cta_item:
+        weight: 16
+        enabled: false
+      landing_page_box:
+        weight: 17
+        enabled: false
+      landing_page_columns:
+        weight: 18
+        enabled: false
+      landing_page_cta:
+        weight: 19
+        enabled: false
+      landing_page_form:
+        weight: 20
+        enabled: false
+      landing_page_hero:
+        weight: 21
+        enabled: false
+      landing_page_highlight:
+        weight: 22
+        enabled: false
+      landing_page_image:
+        weight: 23
+        enabled: false
+      landing_page_list:
+        weight: 24
+        enabled: false
+      landing_page_rich_text:
+        weight: 25
+        enabled: false
+      landing_page_slider:
+        weight: 26
+        enabled: false
+      landing_page_statement:
+        enabled: true
+        weight: 27
+      landing_page_statistics:
+        weight: 28
+        enabled: false
+      slide:
+        weight: 29
+        enabled: false
+      statistics_item:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

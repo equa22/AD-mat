@@ -1,18 +1,18 @@
-uuid: fa99ee46-ce77-489b-b382-a9b9562ff575
+uuid: aba49252-5512-43c4-9314-b233f52d20d2
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_statement
+    - field.storage.paragraph.field_content
     - paragraphs.paragraphs_type.slide
-id: paragraph.slide.field_statement
-field_name: field_statement
+id: paragraph.slide.field_content
+field_name: field_content
 entity_type: paragraph
 bundle: slide
-label: Statement
+label: Content
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }

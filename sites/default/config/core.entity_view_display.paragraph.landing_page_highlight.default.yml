@@ -4,14 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_highlight.field_background_image
-    - field.field.paragraph.landing_page_highlight.field_highlight_statement
     - field.field.paragraph.landing_page_highlight.field_image
     - field.field.paragraph.landing_page_highlight.field_media
     - field.field.paragraph.landing_page_highlight.field_media_background
     - field.field.paragraph.landing_page_highlight.field_media_foreground
-    - field.field.paragraph.landing_page_highlight.field_text
+    - field.field.paragraph.landing_page_highlight.field_statement
     - field.field.paragraph.landing_page_highlight.field_text_align
-    - field.field.paragraph.landing_page_highlight.field_title
+    - field.field.paragraph.landing_page_highlight.field_title_formatted
     - paragraphs.paragraphs_type.landing_page_highlight
   module:
     - entity_reference_revisions
@@ -23,18 +22,9 @@ targetEntityType: paragraph
 bundle: landing_page_highlight
 mode: default
 content:
-  field_highlight_statement:
-    type: entity_reference_revisions_entity_view
-    weight: 1
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    region: content
   field_media_background:
     type: entity_reference_entity_view
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       view_mode: background
@@ -43,14 +33,23 @@ content:
     region: content
   field_media_foreground:
     type: entity_reference_entity_view
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
     region: content
-  field_text:
+  field_statement:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_title_formatted:
     weight: 0
     label: hidden
     settings: {  }
@@ -62,4 +61,3 @@ hidden:
   field_image: true
   field_media: true
   field_text_align: true
-  field_title: true
