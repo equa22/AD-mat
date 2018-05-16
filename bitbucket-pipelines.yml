@@ -12,9 +12,8 @@ pipelines:
             - composer
           script:
             - apt-get update  && apt-get -y upgrade 
-            - apt-get install -y unzip git nodejs
-            - node -v
-            - npm -v
+            - apt-get install -y unzip git python-software-properties
+            - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - rm -Rf .git
