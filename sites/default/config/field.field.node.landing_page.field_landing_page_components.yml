@@ -5,8 +5,8 @@ dependencies:
   config:
     - field.storage.node.field_landing_page_components
     - node.type.landing_page
-    - paragraphs.paragraphs_type.landing_page_columns
     - paragraphs.paragraphs_type.landing_page_cta
+    - paragraphs.paragraphs_type.landing_page_hero
     - paragraphs.paragraphs_type.landing_page_highlight
     - paragraphs.paragraphs_type.landing_page_slider
     - paragraphs.paragraphs_type.landing_page_statement
@@ -31,17 +31,17 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      landing_page_columns: landing_page_columns
       landing_page_highlight: landing_page_highlight
       landing_page_slider: landing_page_slider
       landing_page_cta: landing_page_cta
       landing_page_statement: landing_page_statement
+      landing_page_hero: landing_page_hero
       landing_page_statistics: landing_page_statistics
       timeline_facts: timeline_facts
     target_bundles_drag_drop:
       landing_page_columns:
-        enabled: true
         weight: 8
+        enabled: false
       landing_page_box:
         weight: 9
         enabled: false
@@ -75,6 +75,9 @@ settings:
       landing_page_statement:
         enabled: true
         weight: 19
+      landing_page_hero:
+        enabled: true
+        weight: 21
       landing_page_statistics:
         enabled: true
         weight: 22

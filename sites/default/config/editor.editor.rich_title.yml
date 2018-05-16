@@ -1,0 +1,33 @@
+uuid: 33332b90-e87c-4c21-a365-8bdde72f953f
+langcode: en
+status: false
+dependencies:
+  config:
+    - filter.format.rich_title
+  module:
+    - ckeditor
+format: rich_title
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Underline
+  plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

@@ -1,0 +1,17 @@
+uuid: 11a878fe-807e-44e2-825e-dbec22f5f624
+langcode: en
+status: true
+dependencies: {  }
+name: 'Basic editor'
+format: basic_editor
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: ' <em> <strong><u>'
+      filter_html_help: true
+      filter_html_nofollow: false
