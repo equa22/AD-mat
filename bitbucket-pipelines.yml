@@ -21,6 +21,7 @@ pipelines:
             - pwd
             - ls -la
             - composer install
+            - ls -la libraries/
             - cd $BITBUCKET_CLONE_DIR/themes/custom/mat/.npm
             - npm install
             - npm install -g gulp
