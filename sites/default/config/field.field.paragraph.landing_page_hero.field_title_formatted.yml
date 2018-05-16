@@ -1,0 +1,21 @@
+uuid: fad87d83-5361-4260-aed1-7578ea220b56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_hero
+  module:
+    - text
+id: paragraph.landing_page_hero.field_title_formatted
+field_name: field_title_formatted
+entity_type: paragraph
+bundle: landing_page_hero
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

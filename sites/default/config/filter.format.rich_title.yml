@@ -1,0 +1,17 @@
+uuid: b095d1f5-e7d4-4696-b40c-6fe88437c7c7
+langcode: en
+status: false
+dependencies: {  }
+name: 'Rich title'
+format: rich_title
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<em> <strong> <u>'
+      filter_html_help: true
+      filter_html_nofollow: false
