@@ -1,12 +1,12 @@
-uuid: 7db63daa-c4df-400f-9fd3-28cfd57bc3f3
+uuid: 7c4b9717-8238-4854-a7ff-672a98002666
 langcode: en
 status: true
 dependencies:
   module:
     - entity_reference_revisions
     - paragraphs
-id: paragraph.field_statistics_item
-field_name: field_statistics_item
+id: paragraph.field_statistics_items
+field_name: field_statistics_items
 entity_type: paragraph
 type: entity_reference_revisions
 settings:

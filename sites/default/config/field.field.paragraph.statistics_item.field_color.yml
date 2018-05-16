@@ -1,0 +1,23 @@
+uuid: 3689b65a-bf0f-4d35-8e3f-08bbf396f8f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.statistics_item
+id: paragraph.statistics_item.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: statistics_item
+label: Color
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:classy_paragraphs_style'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

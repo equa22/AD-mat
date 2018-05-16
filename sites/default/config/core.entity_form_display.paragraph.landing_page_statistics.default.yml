@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.landing_page_statistics.field_statistics_item
+    - field.field.paragraph.landing_page_statistics.field_statistics_items
     - paragraphs.paragraphs_type.landing_page_statistics
   module:
     - content_moderation
@@ -13,7 +13,7 @@ targetEntityType: paragraph
 bundle: landing_page_statistics
 mode: default
 content:
-  field_statistics_item:
+  field_statistics_items:
     type: entity_reference_paragraphs
     weight: 101
     settings:

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.statistics_item.field_color
     - field.field.paragraph.statistics_item.field_icon
     - field.field.paragraph.statistics_item.field_number
     - field.field.paragraph.statistics_item.field_text
@@ -39,4 +40,5 @@ content:
     type: string
     region: content
 hidden:
+  field_color: true
   field_icon: true
