@@ -36,6 +36,8 @@ pipelines:
             - git config --global user.email $GIT_EMAIL
             - git config core.autocrlf false
             - git add -A
+            # Adding asset.
+            - git add -f themes/custom/mat/assets/
             - git status
             - git commit -am "Deploying build nr. $BITBUCKET_BUILD_NUMBER ($BITBUCKET_COMMIT)."
 #            - git push
