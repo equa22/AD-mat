@@ -14,6 +14,7 @@ pipelines:
             - apt-get update  && apt-get -y upgrade
             - apt-get install -y unzip git gnupg
             - curl -sL https://deb.nodesource.com/setup_8.x | bash -
+            - apt-get install -y nodejs
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - rm -Rf .git
@@ -22,6 +23,7 @@ pipelines:
             - npm install
             - npm install -g gulp
             - gulp build
+            - cd $BITBUCKET_CLONE_DIR
             - sh scripts/bitbucket-pipelines/cleanup.sh  
             - echo "Debugging ...."
             - echo $SSH_HOST >> ~/.ssh/known_hosts
