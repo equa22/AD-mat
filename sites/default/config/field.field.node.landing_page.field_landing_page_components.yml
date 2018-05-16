@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.landing_page_slider
     - paragraphs.paragraphs_type.landing_page_statement
     - paragraphs.paragraphs_type.landing_page_statistics
+    - paragraphs.paragraphs_type.timeline_facts
   module:
     - entity_reference_revisions
 _core:
@@ -36,6 +37,7 @@ settings:
       landing_page_cta: landing_page_cta
       landing_page_statement: landing_page_statement
       landing_page_statistics: landing_page_statistics
+      timeline_facts: timeline_facts
     target_bundles_drag_drop:
       landing_page_columns:
         enabled: true
@@ -76,7 +78,13 @@ settings:
       landing_page_statistics:
         enabled: true
         weight: 22
+      myth_vs_fact:
+        weight: 28
+        enabled: false
       statistics_item:
         weight: 28
         enabled: false
+      timeline_facts:
+        enabled: true
+        weight: 31
 field_type: entity_reference_revisions
