@@ -1,0 +1,7 @@
+uuid: aa76b44e-2a92-4319-9d2b-97fc4dc46331
+langcode: en
+status: true
+dependencies: {  }
+id: icon_search
+label: 'Icon search'
+classes: i-search

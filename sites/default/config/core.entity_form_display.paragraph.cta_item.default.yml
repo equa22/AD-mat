@@ -1,49 +1,49 @@
-uuid: 3b04c40f-4ed7-46dc-9d38-0219ada26e7e
+uuid: 363098f2-9f30-495f-b646-7365261bbb34
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.statistics_item.field_color
-    - field.field.paragraph.statistics_item.field_icon
-    - field.field.paragraph.statistics_item.field_number
-    - field.field.paragraph.statistics_item.field_text
-    - field.field.paragraph.statistics_item.field_title
-    - paragraphs.paragraphs_type.statistics_item
+    - field.field.paragraph.cta_item.field_color
+    - field.field.paragraph.cta_item.field_content
+    - field.field.paragraph.cta_item.field_icon
+    - field.field.paragraph.cta_item.field_link
+    - field.field.paragraph.cta_item.field_title
+    - paragraphs.paragraphs_type.cta_item
   module:
     - content_moderation
-    - text
-id: paragraph.statistics_item.default
+    - link
+id: paragraph.cta_item.default
 targetEntityType: paragraph
-bundle: statistics_item
+bundle: cta_item
 mode: default
 content:
   field_color:
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_icon:
     weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
-  field_number:
+  field_content:
     weight: 2
     settings:
-      size: 60
+      rows: 2
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string_textarea
     region: content
-  field_text:
+  field_icon:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_link:
     weight: 3
     settings:
-      rows: 5
-      placeholder: ''
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
-    type: text_textarea
+    type: link_default
     region: content
   field_title:
     weight: 1

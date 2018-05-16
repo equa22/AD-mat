@@ -1,21 +1,21 @@
-uuid: ede087e9-9f39-47eb-981c-27cc38a4958f
+uuid: c6ef04ef-0795-4974-abf7-8b9bd413799a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.landing_page_statistics.field_statistics_items
-    - paragraphs.paragraphs_type.landing_page_statistics
+    - field.field.paragraph.landing_page_cta.field_cta_items
+    - paragraphs.paragraphs_type.landing_page_cta
   module:
     - entity_reference_revisions
-id: paragraph.landing_page_statistics.default
+id: paragraph.landing_page_cta.default
 targetEntityType: paragraph
-bundle: landing_page_statistics
+bundle: landing_page_cta
 mode: default
 content:
-  field_statistics_items:
+  field_cta_items:
     type: entity_reference_revisions_entity_view
     weight: 0
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''

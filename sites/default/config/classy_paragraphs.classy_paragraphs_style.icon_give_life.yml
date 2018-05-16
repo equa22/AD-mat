@@ -1,0 +1,7 @@
+uuid: 190e25d4-1b1a-4e4f-9661-6bf2d24734f7
+langcode: en
+status: true
+dependencies: {  }
+id: icon_give_life
+label: 'Icon give life'
+classes: i-give-life

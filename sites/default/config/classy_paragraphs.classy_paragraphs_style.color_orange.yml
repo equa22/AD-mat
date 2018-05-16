@@ -1,0 +1,7 @@
+uuid: 80e35819-a4f5-4fa7-898c-d8a6f62e0a9d
+langcode: en
+status: true
+dependencies: {  }
+id: color_orange
+label: 'Color orange'
+classes: orange
