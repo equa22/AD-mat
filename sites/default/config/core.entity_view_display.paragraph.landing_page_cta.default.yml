@@ -1,0 +1,24 @@
+uuid: c6ef04ef-0795-4974-abf7-8b9bd413799a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_cta.field_cta_items
+    - paragraphs.paragraphs_type.landing_page_cta
+  module:
+    - entity_reference_revisions
+id: paragraph.landing_page_cta.default
+targetEntityType: paragraph
+bundle: landing_page_cta
+mode: default
+content:
+  field_cta_items:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

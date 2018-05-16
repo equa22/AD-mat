@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_landing_page_components
     - node.type.landing_page
     - paragraphs.paragraphs_type.landing_page_columns
+    - paragraphs.paragraphs_type.landing_page_cta
     - paragraphs.paragraphs_type.landing_page_highlight
     - paragraphs.paragraphs_type.landing_page_slider
     - paragraphs.paragraphs_type.landing_page_statement
@@ -32,6 +33,7 @@ settings:
       landing_page_columns: landing_page_columns
       landing_page_highlight: landing_page_highlight
       landing_page_slider: landing_page_slider
+      landing_page_cta: landing_page_cta
       landing_page_statement: landing_page_statement
       landing_page_statistics: landing_page_statistics
     target_bundles_drag_drop:
@@ -62,13 +64,19 @@ settings:
       slide:
         weight: 14
         enabled: false
+      cta_item:
+        weight: 15
+        enabled: false
+      landing_page_cta:
+        enabled: true
+        weight: 18
       landing_page_statement:
         enabled: true
         weight: 19
       landing_page_statistics:
         enabled: true
         weight: 22
-      stats:
-        weight: 24
+      statistics_item:
+        weight: 28
         enabled: false
 field_type: entity_reference_revisions
