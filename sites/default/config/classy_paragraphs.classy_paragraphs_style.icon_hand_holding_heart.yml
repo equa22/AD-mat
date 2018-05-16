@@ -1,0 +1,7 @@
+uuid: 05c0a524-056e-4c49-bfbc-a42707950220
+langcode: en
+status: true
+dependencies: {  }
+id: icon_hand_holding_heart
+label: 'Icon hand holding heart'
+classes: i-hand-holding-heart

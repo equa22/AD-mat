@@ -1,0 +1,7 @@
+uuid: a4ff1329-87e4-460c-be5f-23818d8c2a1f
+langcode: en
+status: true
+dependencies: {  }
+id: color_dark_blue
+label: 'Color dark blue'
+classes: blue-dark

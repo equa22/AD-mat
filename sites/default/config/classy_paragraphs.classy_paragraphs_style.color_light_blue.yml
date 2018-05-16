@@ -1,0 +1,7 @@
+uuid: 72d0648a-4566-4eae-bd1c-90eb9f1a63f7
+langcode: en
+status: true
+dependencies: {  }
+id: color_light_blue
+label: 'Color light blue'
+classes: blue-light

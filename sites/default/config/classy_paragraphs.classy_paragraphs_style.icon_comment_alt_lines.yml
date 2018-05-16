@@ -1,0 +1,7 @@
+uuid: e459e90c-9969-47b2-be02-ae6337c2fe0b
+langcode: en
+status: true
+dependencies: {  }
+id: icon_comment_alt_lines
+label: 'Icon comment alt lines'
+classes: i-comment-alt-lines

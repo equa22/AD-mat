@@ -1,0 +1,7 @@
+uuid: ba3906db-b170-4a46-ae9e-f74f0143986d
+langcode: en
+status: true
+dependencies: {  }
+id: icon_walking
+label: 'Icon walking'
+classes: i-walking
