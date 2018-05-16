@@ -1,0 +1,19 @@
+uuid: c3085afa-783d-4fcc-abba-bdf6a44799a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fact_headline
+    - paragraphs.paragraphs_type.myth_vs_fact
+id: paragraph.myth_vs_fact.field_fact_headline
+field_name: field_fact_headline
+entity_type: paragraph
+bundle: myth_vs_fact
+label: 'Fact headline'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
