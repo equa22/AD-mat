@@ -1,19 +1,19 @@
-uuid: fc03dd67-fd3b-4e1f-9b15-7b32370a6b14
+uuid: 1762ce7a-51e8-4a0f-b971-3e025eec5c4d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.landing_page_statistics.field_statistics_items
-    - paragraphs.paragraphs_type.landing_page_statistics
+    - field.field.paragraph.landing_page_cta.field_cta_items
+    - paragraphs.paragraphs_type.landing_page_cta
   module:
     - content_moderation
     - paragraphs
-id: paragraph.landing_page_statistics.default
+id: paragraph.landing_page_cta.default
 targetEntityType: paragraph
-bundle: landing_page_statistics
+bundle: landing_page_cta
 mode: default
 content:
-  field_statistics_items:
+  field_cta_items:
     type: entity_reference_paragraphs
     weight: 101
     settings:

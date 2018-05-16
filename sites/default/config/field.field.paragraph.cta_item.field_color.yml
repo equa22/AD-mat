@@ -1,0 +1,26 @@
+uuid: f17b1baf-b9d4-4aa0-b48d-cddb3772636a
+langcode: en
+status: true
+dependencies:
+  config:
+    - classy_paragraphs.classy_paragraphs_style.color_green
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.cta_item
+id: paragraph.cta_item.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: cta_item
+label: Color
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: c6978777-bc51-4b46-b324-f17c83bea9ec
+default_value_callback: ''
+settings:
+  handler: 'default:classy_paragraphs_style'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

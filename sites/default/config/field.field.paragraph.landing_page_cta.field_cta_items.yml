@@ -1,20 +1,20 @@
-uuid: ba13a42f-f3c9-4db0-9fdb-10393d6b53b5
+uuid: 3a8b5636-4308-4811-9eb7-d2e8f41c3d95
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_statistics_item
-    - paragraphs.paragraphs_type.landing_page_statistics
-    - paragraphs.paragraphs_type.statistics_item
+    - field.storage.paragraph.field_cta_items
+    - paragraphs.paragraphs_type.cta_item
+    - paragraphs.paragraphs_type.landing_page_cta
   module:
     - entity_reference_revisions
-id: paragraph.landing_page_statistics.field_statistics_item
-field_name: field_statistics_item
+id: paragraph.landing_page_cta.field_cta_items
+field_name: field_cta_items
 entity_type: paragraph
-bundle: landing_page_statistics
-label: 'Statistics item'
+bundle: landing_page_cta
+label: 'CTA items'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -23,42 +23,48 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      statistics_item: statistics_item
+      cta_item: cta_item
     target_bundles_drag_drop:
-      landing_page_box:
-        weight: 13
-        enabled: false
-      landing_page_columns:
-        weight: 14
-        enabled: false
-      landing_page_form:
+      cta_item:
+        enabled: true
         weight: 15
-        enabled: false
-      landing_page_highlight:
+      landing_page_box:
         weight: 16
         enabled: false
-      landing_page_image:
+      landing_page_columns:
         weight: 17
         enabled: false
-      landing_page_list:
+      landing_page_cta:
         weight: 18
         enabled: false
-      landing_page_rich_text:
+      landing_page_form:
         weight: 19
         enabled: false
-      landing_page_slider:
+      landing_page_highlight:
         weight: 20
         enabled: false
-      landing_page_statement:
+      landing_page_image:
         weight: 21
         enabled: false
-      landing_page_statistics:
+      landing_page_list:
         weight: 22
         enabled: false
-      slide:
+      landing_page_rich_text:
         weight: 23
         enabled: false
-      statistics_item:
-        enabled: true
+      landing_page_slider:
         weight: 24
+        enabled: false
+      landing_page_statement:
+        weight: 25
+        enabled: false
+      landing_page_statistics:
+        weight: 26
+        enabled: false
+      slide:
+        weight: 27
+        enabled: false
+      statistics_item:
+        weight: 28
+        enabled: false
 field_type: entity_reference_revisions

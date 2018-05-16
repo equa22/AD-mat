@@ -1,0 +1,7 @@
+uuid: 47275b61-ebd0-4835-9b63-e1b6df3ec4bc
+langcode: en
+status: true
+dependencies: {  }
+id: icon_together
+label: 'Icon together'
+classes: i-together

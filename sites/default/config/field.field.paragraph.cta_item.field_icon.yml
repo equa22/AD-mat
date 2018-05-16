@@ -1,0 +1,23 @@
+uuid: 2c31bf08-f9ee-4e68-a866-2b73d8206a06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon
+    - paragraphs.paragraphs_type.cta_item
+id: paragraph.cta_item.field_icon
+field_name: field_icon
+entity_type: paragraph
+bundle: cta_item
+label: Icon
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:classy_paragraphs_style'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

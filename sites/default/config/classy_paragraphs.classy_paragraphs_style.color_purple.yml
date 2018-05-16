@@ -1,0 +1,7 @@
+uuid: cb293051-46fd-45af-b66c-7a96ac22ad47
+langcode: en
+status: true
+dependencies: {  }
+id: color_purple
+label: 'Color purple'
+classes: purple
