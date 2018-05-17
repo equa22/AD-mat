@@ -88,7 +88,10 @@ content:
 hidden:
   created: true
   field_background_image: true
+  field_highlight_statement: true
   field_image: true
   field_media: true
+  field_text: true
+  field_title: true
   status: true
   uid: true

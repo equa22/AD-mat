@@ -59,6 +59,8 @@ content:
     region: content
 hidden:
   created: true
+  field_statement: true
+  field_text: true
   moderation_state: true
   status: true
   uid: true
