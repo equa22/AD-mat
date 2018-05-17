@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_hero.field_statement
+    - field.field.paragraph.landing_page_hero.field_text_align
     - field.field.paragraph.landing_page_hero.field_title_formatted
     - paragraphs.paragraphs_type.landing_page_hero
   module:
@@ -30,4 +31,5 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-hidden: {  }
+hidden:
+  field_text_align: true

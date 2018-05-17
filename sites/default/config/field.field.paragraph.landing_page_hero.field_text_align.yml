@@ -1,0 +1,23 @@
+uuid: 76a51f39-2900-4e11-8d51-23014440f9fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_align
+    - paragraphs.paragraphs_type.landing_page_hero
+id: paragraph.landing_page_hero.field_text_align
+field_name: field_text_align
+entity_type: paragraph
+bundle: landing_page_hero
+label: 'Text align'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:classy_paragraphs_style'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

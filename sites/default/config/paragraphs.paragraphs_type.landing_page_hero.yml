@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: landing_page_hero
-label: Hero
+label: 'Hero (Give Life)'
 icon_uuid: null
-description: ''
+description: 'Examples: Why give life, Here''s how you can plan.'
 behavior_plugins: {  }

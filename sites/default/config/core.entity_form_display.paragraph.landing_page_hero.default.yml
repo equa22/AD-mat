@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_hero.field_statement
+    - field.field.paragraph.landing_page_hero.field_text_align
     - field.field.paragraph.landing_page_hero.field_title_formatted
     - paragraphs.paragraphs_type.landing_page_hero
   module:
@@ -26,6 +27,12 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
+    region: content
+  field_text_align:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_title_formatted:
     weight: 1
