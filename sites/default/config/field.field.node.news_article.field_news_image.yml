@@ -1,0 +1,28 @@
+uuid: 7f62294e-9415-45c3-84a9-3c0b792b4b82
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_news_image
+    - media.type.image
+    - node.type.news_article
+id: node.news_article.field_news_image
+field_name: field_news_image
+entity_type: node
+bundle: news_article
+label: 'News image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
