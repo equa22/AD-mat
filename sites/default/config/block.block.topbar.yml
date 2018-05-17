@@ -1,4 +1,4 @@
-uuid: 9f581b4d-9f8c-47d3-9ad1-629b069c0cd1
+uuid: 91141842-2b52-4695-aac1-bab2719032ca
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ dependencies:
 id: topbar
 theme: mat
 region: topbar
-weight: -5
+weight: 0
 provider: null
 plugin: 'block_content:17cee78b-e9cf-4eb0-b13f-53066518c99c'
 settings:
