@@ -1,0 +1,9 @@
+uuid: aca8d3af-1506-4602-8bee-e7fb3824e20c
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_why_register
+label: 'Why Register'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,21 @@
+uuid: 6fc5403d-0ee1-4c90-b9c7-5dd377fdb729
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.landing_page_why_register
+  module:
+    - text
+id: paragraph.landing_page_why_register.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: landing_page_why_register
+label: Text
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

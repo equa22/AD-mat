@@ -1,0 +1,68 @@
+uuid: 14795792-dd53-4918-858d-f1b9cbbcd553
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.media_entity_browser
+    - field.field.paragraph.landing_page_why_register.field_media
+    - field.field.paragraph.landing_page_why_register.field_subtext
+    - field.field.paragraph.landing_page_why_register.field_text
+    - field.field.paragraph.landing_page_why_register.field_title
+    - paragraphs.paragraphs_type.landing_page_why_register
+  module:
+    - content_moderation
+    - entity_browser
+    - text
+id: paragraph.landing_page_why_register.default
+targetEntityType: paragraph
+bundle: landing_page_why_register
+mode: default
+content:
+  field_media:
+    weight: 4
+    settings:
+      entity_browser: media_entity_browser
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: teaser
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_subtext:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_text:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 0
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

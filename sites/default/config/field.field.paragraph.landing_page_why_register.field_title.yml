@@ -1,0 +1,19 @@
+uuid: c4498d06-fef6-443f-8d12-9bbf701fc9f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.landing_page_why_register
+id: paragraph.landing_page_why_register.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: landing_page_why_register
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

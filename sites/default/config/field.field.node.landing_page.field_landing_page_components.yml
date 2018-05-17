@@ -12,6 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.landing_page_slider
     - paragraphs.paragraphs_type.landing_page_statement
     - paragraphs.paragraphs_type.landing_page_statistics
+    - paragraphs.paragraphs_type.landing_page_why_register
     - paragraphs.paragraphs_type.timeline_facts
   module:
     - entity_reference_revisions
@@ -40,6 +41,7 @@ settings:
       landing_page_statistics: landing_page_statistics
       landing_page_counter: landing_page_counter
       timeline_facts: timeline_facts
+      landing_page_why_register: landing_page_why_register
     target_bundles_drag_drop:
       landing_page_columns:
         weight: 8
@@ -95,4 +97,7 @@ settings:
       timeline_facts:
         enabled: true
         weight: 31
+      landing_page_why_register:
+        enabled: true
+        weight: 35
 field_type: entity_reference_revisions

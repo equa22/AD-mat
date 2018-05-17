@@ -1,0 +1,28 @@
+uuid: 90ddbe16-abb2-49de-90ca-43fd822b62ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media
+    - media.type.image
+    - paragraphs.paragraphs_type.landing_page_why_register
+id: paragraph.landing_page_why_register.field_media
+field_name: field_media
+entity_type: paragraph
+bundle: landing_page_why_register
+label: Media
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
