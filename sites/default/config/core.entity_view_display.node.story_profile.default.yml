@@ -9,8 +9,10 @@ dependencies:
     - field.field.node.story_profile.field_story_last_name
     - field.field.node.story_profile.field_story_main_image
     - field.field.node.story_profile.field_story_secondary_images
+    - image.style.large
     - node.type.story_profile
   module:
+    - media
     - text
     - user
 id: node.story_profile.default
@@ -50,12 +52,12 @@ content:
     type: string
     region: content
   field_story_main_image:
-    type: entity_reference_entity_view
+    type: media_thumbnail
     weight: 0
     label: hidden
     settings:
-      view_mode: default
-      link: false
+      image_style: large
+      image_link: ''
     third_party_settings: {  }
     region: content
   field_story_secondary_images:

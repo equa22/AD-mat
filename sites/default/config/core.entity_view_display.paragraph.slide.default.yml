@@ -53,6 +53,6 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-hidden: 
-    field_statement: true
-    field_text: true
+hidden:
+  field_statement: true
+  field_text: true
