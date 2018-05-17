@@ -1,0 +1,19 @@
+uuid: 6ebbd7c5-95c9-419d-9c0f-70ada34b612b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_small_title
+    - paragraphs.paragraphs_type.carousel
+id: paragraph.carousel.field_small_title
+field_name: field_small_title
+entity_type: paragraph
+bundle: carousel
+label: 'Small title'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
