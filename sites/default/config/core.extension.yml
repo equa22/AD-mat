@@ -55,6 +55,7 @@ module:
   page_cache: 0
   paragraphs_edit: 0
   path: 0
+  recreate_block_content: 0
   responsive_image: 0
   simplenews: 0
   slick: 0
