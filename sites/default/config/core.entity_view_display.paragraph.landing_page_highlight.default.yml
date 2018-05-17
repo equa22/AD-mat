@@ -63,3 +63,4 @@ hidden:
   field_media: true
   field_text: true
   field_text_align: true
+  field_title: true
