@@ -3,5 +3,5 @@ langcode: en
 status: true
 dependencies: {  }
 id: align_left
-label: Left
+label: 'Align left'
 classes: left

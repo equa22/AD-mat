@@ -1,0 +1,19 @@
+uuid: 3a04ef7a-cd98-4d5c-82b3-77c817ecfa7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_number
+    - paragraphs.paragraphs_type.landing_page_counter
+id: paragraph.landing_page_counter.field_number
+field_name: field_number
+entity_type: paragraph
+bundle: landing_page_counter
+label: Number
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

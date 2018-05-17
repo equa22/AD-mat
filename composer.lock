@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "5158f507f0b2ec50d2993504d68ce119",
@@ -1890,7 +1890,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
             },
-            "time": "2017-07-08T17:49:05+00:00"
+            "time": "2017-07-08 17:49:05"
         },
         {
             "name": "drupal/backup_migrate",
@@ -1955,6 +1955,65 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/backup_migrate",
                 "issues": "https://www.drupal.org/project/issues/backup_migrate"
+            }
+        },
+        {
+            "name": "drupal/better_exposed_filters",
+            "version": "3.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/better_exposed_filters",
+                "reference": "8.x-3.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-8.x-3.0-alpha4.zip",
+                "reference": "8.x-3.0-alpha4",
+                "shasum": "f42013d1fc36d45212d582e18afc59bc2c364719"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha4",
+                    "datestamp": "1525044484",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jkopel",
+                    "homepage": "https://www.drupal.org/user/66207"
+                },
+                {
+                    "name": "mikeker",
+                    "homepage": "https://www.drupal.org/user/192273"
+                },
+                {
+                    "name": "mortona2k",
+                    "homepage": "https://www.drupal.org/user/1029484"
+                },
+                {
+                    "name": "rlhawk",
+                    "homepage": "https://www.drupal.org/user/352283"
+                }
+            ],
+            "description": "Provides advanced options (such as links, checkboxes, or jQueryUI widgets) for exposed Views elements.",
+            "homepage": "https://www.drupal.org/project/better_exposed_filters",
+            "support": {
+                "source": "http://cgit.drupalcode.org/better_exposed_filters"
             }
         },
         {
@@ -3458,7 +3517,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/install_profile_generator"
             },
-            "time": "2017-12-20T09:13:41+00:00"
+            "time": "2017-12-20 09:13:41"
         },
         {
             "name": "drupal/linkit",
@@ -3686,7 +3745,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/media_entity_browser"
             },
-            "time": "2018-04-05T08:15:29+00:00"
+            "time": "2018-04-05 08:15:29"
         },
         {
             "name": "drupal/menu_link_attributes",
@@ -3877,7 +3936,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
             },
-            "time": "2018-05-11T14:24:08+00:00"
+            "time": "2018-05-11 14:24:08"
         },
         {
             "name": "drupal/paragraphs_edit",
@@ -4206,7 +4265,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/slick_paragraphs"
             },
-            "time": "2016-12-27T06:11:30+00:00"
+            "time": "2016-12-27 06:11:30"
         },
         {
             "name": "drupal/svg_image",
@@ -9647,6 +9706,7 @@
         "agiledrop/tdx-distribution": 20,
         "org/cotailored_base_drush_commands": 20,
         "drupal/contribute": 10,
+        "drupal/better_exposed_filters": 15,
         "behat/mink": 20,
         "behat/mink-selenium2-driver": 20
     },

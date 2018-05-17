@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.landing_page_counter.field_number
     - field.field.paragraph.landing_page_counter.field_text
     - field.field.paragraph.landing_page_counter.field_title_formatted
     - paragraphs.paragraphs_type.landing_page_counter
@@ -14,6 +15,14 @@ targetEntityType: paragraph
 bundle: landing_page_counter
 mode: default
 content:
+  field_number:
+    weight: 103
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_text:
     weight: 102
     settings:

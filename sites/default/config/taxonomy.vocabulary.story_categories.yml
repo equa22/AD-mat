@@ -1,0 +1,9 @@
+uuid: 199e8ebd-ddae-4709-af6c-3e9598471825
+langcode: en
+status: true
+dependencies: {  }
+name: 'Story Categories'
+vid: story_categories
+description: ''
+hierarchy: 0
+weight: 0
