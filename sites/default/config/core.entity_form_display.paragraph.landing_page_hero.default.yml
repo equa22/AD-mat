@@ -1,0 +1,47 @@
+uuid: 2e8b54a2-90e0-436d-ba7e-2d3e599d25ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_hero.field_statement
+    - field.field.paragraph.landing_page_hero.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_hero
+  module:
+    - content_moderation
+    - paragraphs
+    - text
+id: paragraph.landing_page_hero.default
+targetEntityType: paragraph
+bundle: landing_page_hero
+mode: default
+content:
+  field_statement:
+    type: entity_reference_paragraphs
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_title_formatted:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 0
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

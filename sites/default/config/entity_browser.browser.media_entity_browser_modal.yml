@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - media.type.image
     - views.view.media_entity_browser
   module:
-    - entity_browser_entity_form
+    - dropzonejs_eb_widget
+    - media
     - views
 _core:
   default_config_hash: VOi0Ua3BAuJlwzee4EWw-XHxybYY-IqVBetnROZff_I
@@ -16,29 +18,38 @@ display_configuration:
   width: '1070'
   height: '500'
   link_text: 'Select media'
-  auto_open: true
+  auto_open: false
 selection_display: no_display
 selection_display_configuration: {  }
 widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
-  fc729026-c85f-4561-acd5-38d4082b69fb:
+  2b0a1e9d-813b-404c-8a42-1653639a0179:
+    settings:
+      form_mode: default
+      media_type: image
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop files here to upload them'
+      max_filesize: 32M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: !!float 1
+      resize_method: contain
+      thumbnail_method: contain
+      submit_text: 'Select entities'
+    uuid: 2b0a1e9d-813b-404c-8a42-1653639a0179
+    weight: -10
+    label: 'Import images'
+    id: dropzonejs_media_entity_inline_entity_form
+  18465328-fb5b-4c91-b64b-73d78c7d4dd0:
     settings:
       view: media_entity_browser
-      view_display: media_browser_all
-      submit_text: 'Select media'
+      view_display: entity_browser_1
+      submit_text: 'Select entities'
       auto_select: false
-    uuid: fc729026-c85f-4561-acd5-38d4082b69fb
+    uuid: 18465328-fb5b-4c91-b64b-73d78c7d4dd0
     weight: -9
-    label: 'Choose existing media'
+    label: 'Select Image'
     id: view
-  9769d4e4-1f9c-4313-8b01-fe8cff8aa5a1:
-    settings:
-      entity_type: media
-      bundle: image
-      form_mode: default
-      submit_text: 'Save image'
-    uuid: 9769d4e4-1f9c-4313-8b01-fe8cff8aa5a1
-    weight: -10
-    label: 'Upload new image'
-    id: entity_form

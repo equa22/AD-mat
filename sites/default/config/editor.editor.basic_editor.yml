@@ -1,0 +1,33 @@
+uuid: 9208cec3-3e41-42cb-a0bf-866142b29fff
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_editor
+  module:
+    - ckeditor
+format: basic_editor
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - Underline
+  plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

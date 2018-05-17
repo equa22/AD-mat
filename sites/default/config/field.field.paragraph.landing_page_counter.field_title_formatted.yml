@@ -1,0 +1,21 @@
+uuid: 46c367b0-20fd-433c-b64b-ca2f42080ba1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_counter
+  module:
+    - text
+id: paragraph.landing_page_counter.field_title_formatted
+field_name: field_title_formatted
+entity_type: paragraph
+bundle: landing_page_counter
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -27,4 +27,9 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_story_category: true
+  field_story_first_name: true
+  field_story_last_name: true
+  field_story_main_image: true
+  field_story_secondary_images: true
   langcode: true

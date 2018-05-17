@@ -1,0 +1,33 @@
+uuid: f423686f-ac45-4fde-8bb7-eed2ad616ee1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_hero.field_statement
+    - field.field.paragraph.landing_page_hero.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_hero
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.landing_page_hero.default
+targetEntityType: paragraph
+bundle: landing_page_hero
+mode: default
+content:
+  field_statement:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_title_formatted:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

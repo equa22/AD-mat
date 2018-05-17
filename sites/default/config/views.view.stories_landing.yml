@@ -9,12 +9,10 @@ dependencies:
     - field.storage.node.field_story_last_name
     - field.storage.node.field_story_main_image
     - field.storage.node.field_story_secondary_images
-    - image.style.medium
     - node.type.story_profile
     - taxonomy.vocabulary.story_categories
   module:
     - node
-    - svg_image
     - taxonomy
     - text
     - user
@@ -122,15 +120,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: image
+          type: entity_reference_entity_view
           settings:
-            image_style: ''
-            image_link: ''
-            svg_render_as_image: 0
-            svg_attributes:
-              width: ''
-              height: ''
-          group_column: ''
+            view_mode: teaser
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -379,22 +372,17 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: image
+          type: entity_reference_entity_view
           settings:
-            image_style: medium
-            image_link: ''
-            svg_render_as_image: 1
-            svg_attributes:
-              width: ''
-              height: ''
-          group_column: ''
+            view_mode: teaser
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
-          multi_type: ul
+          multi_type: separator
           separator: ', '
           field_api_classes: false
           plugin_id: field

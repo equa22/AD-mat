@@ -1,0 +1,39 @@
+uuid: 8d8dc4dd-cc5f-4691-a2cd-0060ea3da1d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_counter.field_number
+    - field.field.paragraph.landing_page_counter.field_text
+    - field.field.paragraph.landing_page_counter.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_counter
+  module:
+    - text
+id: paragraph.landing_page_counter.default
+targetEntityType: paragraph
+bundle: landing_page_counter
+mode: default
+content:
+  field_number:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title_formatted:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }
