@@ -8,8 +8,8 @@
 // - - - - - - - - - - - - - - - - - - - -
 // Base font size
 // - - - - - - - - - - - - - - - - - - - -
-$font-size-large: 2;
-$font-size-base: 1.6; //16px = 1.6rem = @include font-size($font-size-base);
+$font-size-large: 2;   // @include font-size($font-size-large);
+$font-size-base: 1.6; //  16px = 1.6rem = @include font-size($font-size-base);
 $font-size-small: 1.4;
 
 // - - - - - - - - - - - - - - - - - - - -
@@ -26,6 +26,26 @@ $black: #000;
 // $purple-dark: #2F2D83;
 $gray-base: #9B9B9B;
 $gray-light: #EDEDED; //lighten($gray-base, 25%);
+
+
+$green: 	  #78AB52;
+$green-light: #D5D45C;
+
+$purple:       #6E3375;
+$purple-light: #A1277D;
+
+$orange:       #E6542B;
+$orange-light: #F6AF2D;
+
+
+
+
+
+
+
+
+
+
 
 // Grays
 // -----------------------------------------------------------------------------
@@ -75,7 +95,7 @@ $date:                  lighten($brand-primary, 20%) !default;
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-$font-flama: Flama, Helvetica, sans-serif; // 'Flama'
+$font-flama: Flama, Helvetica, sans-serif;
 $font-roboto: 'Roboto', sans-serif;
 $font-awesome: 'Font Awesome 5 Free';
 
