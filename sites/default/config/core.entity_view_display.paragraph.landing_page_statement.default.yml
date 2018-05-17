@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_statement.field_link
+    - field.field.paragraph.landing_page_statement.field_style
     - field.field.paragraph.landing_page_statement.field_text
     - paragraphs.paragraphs_type.landing_page_statement
   module:
@@ -15,7 +16,7 @@ bundle: landing_page_statement
 mode: default
 content:
   field_link:
-    weight: 2
+    weight: 1
     label: hidden
     settings:
       trim_length: 80
@@ -27,11 +28,12 @@ content:
     type: link
     region: content
   field_text:
-    weight: 1
+    weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
 hidden:
+  field_style: true
   field_title: true

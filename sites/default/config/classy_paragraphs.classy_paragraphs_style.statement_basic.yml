@@ -1,0 +1,7 @@
+uuid: b90b8a2a-7512-4435-9db6-ff4bde8221c0
+langcode: en
+status: true
+dependencies: {  }
+id: statement_basic
+label: 'Statement basic'
+classes: statement--basic

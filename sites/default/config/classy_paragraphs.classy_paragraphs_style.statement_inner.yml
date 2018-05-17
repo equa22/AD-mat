@@ -1,0 +1,7 @@
+uuid: 766764a0-f9b8-457a-a28f-3657fb74c7a9
+langcode: en
+status: true
+dependencies: {  }
+id: statement_inner
+label: 'Statement inner'
+classes: statement--inner

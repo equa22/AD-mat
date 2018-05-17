@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_statement.field_link
+    - field.field.paragraph.landing_page_statement.field_style
     - field.field.paragraph.landing_page_statement.field_text
     - paragraphs.paragraphs_type.landing_page_statement
   module:
@@ -22,6 +23,12 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_style:
+    weight: 104
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_text:
     weight: 102
