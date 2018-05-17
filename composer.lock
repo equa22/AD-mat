@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5158f507f0b2ec50d2993504d68ce119",
+    "content-hash": "50b32913d31c6eb532fc97a00a9a28d0",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
