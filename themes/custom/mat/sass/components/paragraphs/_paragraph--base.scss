@@ -1,7 +1,7 @@
 // ========================================
 //
-// @file _navigation.scss
-// All the navigation elements on the page
+// @file _paragraph--base.scss
+// All the paragraph base elements
 //
 // ========================================
 
@@ -12,15 +12,15 @@
 
   .paragraph {
     .field--name-field-link {
-      margin-top: 20px;
+      //margin-top: 20px;
       a {
-        @include cta(light);
+        //@include cta(light);
       }
     }
   }
 
   > .paragraph {
-    margin-top: 20px;
+    //margin-top: 20px;
 
     &.coloured-light,
     &.coloured-dark {

@@ -39,7 +39,8 @@ $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 // Brand colors
 // -----------------------------------------------------------------------------
 
-$brand-primary:         #000;//#484dbd !default;
+$brand-primary:         #0BAADB !default; // MAT: blue buttons
+
 $brand-primary-alt:     #7e7cce !default;
 $brand-secondary:       #333 !default;
 $brand-success:         #5cb85c !default;
@@ -49,7 +50,7 @@ $brand-info:            #11a03b !default;
 
 // Links
 // -----------------------------------------------------------------------------
-$link-color:            $brand-primary !default;
+$link-color:            #000 !default;
 $link-hover-color:      darken($link-color, 15%) !default;
 
 // Forms
@@ -133,6 +134,8 @@ $z-index-bars: 11;
 // - - - - - - - - - - - - - - - - - - - -
 $border-radius-base: 3px;
 $border-color-base: $gray-light;
+
+$border-radius-large: 33px;
 
 
 

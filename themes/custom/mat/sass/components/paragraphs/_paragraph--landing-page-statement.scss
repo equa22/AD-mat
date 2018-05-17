@@ -1,0 +1,32 @@
+// ========================================
+//
+// @file _paragraph--landing-page-statement.scss
+// Paragraph statement element on the landing page
+// ========================================
+
+// Paragraph statement (basic)
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-statement.statement--basic {
+  padding: 6.5rem 0 7rem 0;
+
+  .statement-content {
+    @extend .container;
+    max-width: 960px;
+    text-align: center;
+  }
+
+  .field--name-field-text {
+    p {
+      @include font-size(3.5);
+      color: #173F7C;
+    }
+  }
+
+  .field--name-field-link {
+    margin-top: 4.5rem;
+
+    a {
+      @include btn-primary();
+    }
+  }
+}

@@ -129,3 +129,12 @@
   text-align: center;
   outline: none;
 }
+
+@mixin btn-primary() {
+  @include btn();
+  padding: 2rem 7rem;
+  background-color: $brand-primary;
+  border-radius: $border-radius-large;
+  font-weight: 500;
+  @include font-size(2);
+}
