@@ -1,0 +1,94 @@
+// ========================================
+//
+// @file _paragraph--landing-page-statistics.scss
+// Paragraph statistics element on the landing page
+// ========================================
+
+// Paragraph statistics
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-statistics {
+  @extend .container;
+
+  // Grid
+  .field--name-field-statistics-items {
+    //@include make-row;
+    display: flex;
+
+    .field__item {
+      //@extend %col;
+    }
+  }
+    
+  // Items basic styles
+  .paragraph--type--statistics-item {
+    text-align: center;
+
+    .field--name-field-number {
+      padding-top: 1rem;
+      font-family: $font-flama;
+      @include font-size(8.5);
+      color: #173F7C;
+    }
+
+    .field--name-field-title {
+      padding: 2rem 0 2.5rem 0;
+      @include font-size(2.4);
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .field--name-field-text {
+      @include font-size($font-size-large);
+
+      p {
+        line-height: 1.7;
+      }
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      width: 10.8rem;
+      height: 10.8rem;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+  }
+
+  // Items color styles
+  .paragraph--type--statistics-item {
+    &.green {
+      .field--name-field-title {
+        color: $green;
+      }
+
+      &:before {
+        @include gradient(90deg, $green, $green-light, $green);
+      }
+    }
+
+    &.purple {
+      .field--name-field-title {
+        color: $purple;
+      }
+
+      &:before {
+        @include gradient(90deg, $purple, $purple-light, $purple);
+      }
+    }
+
+    &.orange {
+      .field--name-field-title {
+        color: $orange;
+      }
+
+       &:before {
+         @include gradient(90deg, $orange, $orange-light, $orange);
+      }
+    }
+  }
+
+
+
+}
