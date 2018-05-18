@@ -290,3 +290,40 @@
     .text { padding: 0; }
   }
 }
+
+
+// Colors and Icons
+%circle--base {
+  position: relative;
+
+  &:before,
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+
+    @media (min-width: $screen-sm-min) {
+      width: 10.8rem;
+      height: 10.8rem;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: center center;
+  }
+}
+
+
+//@mixin circle--color($color) {
+  
+//}
+
+//@mixin circle--icon() {
+
+//}
+

@@ -41,6 +41,7 @@ p {
 }
 
 %h2 {
+  padding-bottom: 1.5rem;
   font-weight: 500;
   @include font-size(2);
   letter-spacing: .13em;
@@ -60,6 +61,6 @@ p {
 
   @media (min-width: $screen-sm-min) {
     @include font-size(3.5);
-    line-height: 1.3;
+    line-height: 1.2;
   }
 }

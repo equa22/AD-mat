@@ -28,7 +28,6 @@
     
   // Items basic styles
   .paragraph--type--statistics-item {
-    position: relative;
     text-align: center;
 
     .field--name-field-number {
@@ -38,38 +37,20 @@
     }
 
     .field--name-field-title {
-      padding: .8rem 0 1.5rem 0;
+      padding-top: .8rem;
       @extend %h2;
     }
 
-    &:before {
-      content: '';
+    .statistics-item--icon {
       display: inline-block;
-      width: 8rem;
-      height: 8rem;
-      border-radius: 50%;
+      @extend %circle--base;
 
-      @media (min-width: $screen-sm-min) {
-        width: 10.8rem;
-        height: 10.8rem;
-      }
-    }
+      &:after {
+        background-size: 3.8rem auto;
 
-    &:after {
-      content: '';
-      display: inline-block;
-      width: 3.8rem;
-      height: 3.8rem;
-      position: absolute;
-      left: 50%;
-      margin-left: -1.9rem;
-      background-size: 3.8rem auto;
-
-      @media (min-width: $screen-sm-min) {
-        background-size: 5rem auto;
-        width: 5rem;
-        height: 5rem;
-        margin-left: -2.5rem;
+        @media (min-width: $screen-sm-min) {
+          background-size: 5rem auto;
+        }
       }
     }
   }
@@ -82,8 +63,10 @@
         color: $green;
       }
 
-      &:before {
-        @include gradient(90deg, $green, $green-light, $green);
+      .statistics-item--icon {
+        &:before {
+          @include gradient(90deg, $green, $green-light, $green);
+        }
       }
     }
 
@@ -92,8 +75,10 @@
         color: $purple;
       }
 
-      &:before {
-        @include gradient(90deg, $purple, $purple-light, $purple);
+      .statistics-item--icon {
+        &:before {
+          @include gradient(90deg, $purple, $purple-light, $purple);
+        }
       }
     }
 
@@ -102,41 +87,34 @@
         color: $orange;
       }
 
-       &:before {
-         @include gradient(90deg, $orange, $orange-light, $orange);
+      .statistics-item--icon {
+        &:before {
+           @include gradient(90deg, $orange, $orange-light, $orange);
+        }
       }
     }
 
     // Icons
     &.i-users {
-      &:after {
-        top: 2.4rem;
-        @include icons('i-users');
-
-        @media (min-width: $screen-sm-min) {
-          top: 3.2rem;
+      .statistics-item--icon {
+        &:after {
+          @include icons('i-users');
         }
       }
     }
 
     &.i-exchange {
-      &:after {
-        top: 2.6rem;
-        @include icons('i-exchange');
-
-        @media (min-width: $screen-sm-min) {
-          top: 3.6rem;
+      .statistics-item--icon {
+        &:after {
+          @include icons('i-exchange');
         }
       }
     }
 
     &.i-home {
-      &:after {
-        top: 1.9rem;
-        @include icons('i-home');
-
-        @media (min-width: $screen-sm-min) {
-          top: 2.7rem;
+      .statistics-item--icon {
+        &:after {
+          @include icons('i-home');
         }
       }
     }
