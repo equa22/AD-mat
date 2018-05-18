@@ -45,9 +45,14 @@
   ]
 %}
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
+  <a {{ attributes.addClass(classes) }} href="{{ content.field_link.0['#url'] }}">
     {% block content %}
-      {{ content }}
+      <span class="cta-item--icon"></span>
+      <div class="cta-item--content">
+      {{ content.field_title }}
+      {{ content.field_content }}
+      </div>
     {% endblock %}
-  </div>
+
+  </a>
 {% endblock paragraph %}
