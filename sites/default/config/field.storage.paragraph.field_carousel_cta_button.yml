@@ -1,0 +1,19 @@
+uuid: 92caa4cf-d7cf-4590-8cde-586c16261f8e
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_carousel_cta_button
+field_name: field_carousel_cta_button
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

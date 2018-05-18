@@ -3,26 +3,41 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.carousel.field_carousel_cta_button
     - field.field.paragraph.carousel.field_content_first
     - field.field.paragraph.carousel.field_content_second
     - field.field.paragraph.carousel.field_main_title
     - field.field.paragraph.carousel.field_slide_items
     - field.field.paragraph.carousel.field_small_title
     - paragraphs.paragraphs_type.carousel
+  module:
+    - link
 id: paragraph.carousel.default
 targetEntityType: paragraph
 bundle: carousel
 mode: default
 content:
+  field_carousel_cta_button:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_content_first:
-    weight: 3
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: content
   field_content_second:
-    weight: 4
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -37,7 +52,7 @@ content:
     type: string
     region: content
   field_slide_items:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       view_mode: teaser
