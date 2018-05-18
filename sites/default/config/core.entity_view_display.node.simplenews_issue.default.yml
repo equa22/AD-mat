@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.simplenews_issue.body
-    - field.field.node.simplenews_issue.simplenews_issue
     - node.type.simplenews_issue
   module:
     - text
@@ -31,4 +30,3 @@ content:
 hidden:
   addtoany: true
   langcode: true
-  simplenews_issue: true

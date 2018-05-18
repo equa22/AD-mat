@@ -60,7 +60,6 @@ module:
   path: 0
   recreate_block_content: 0
   responsive_image: 0
-  simplenews: 0
   slick: 0
   slick_paragraphs: 0
   svg_image: 0

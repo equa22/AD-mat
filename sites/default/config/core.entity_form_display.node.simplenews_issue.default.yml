@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.node.simplenews_issue.body
-    - field.field.node.simplenews_issue.simplenews_issue
     - node.type.simplenews_issue
   module:
     - content_moderation
@@ -56,12 +55,6 @@ content:
     settings:
       display_label: true
     weight: 15
-    third_party_settings: {  }
-    region: content
-  simplenews_issue:
-    type: options_select
-    weight: 3
-    settings: {  }
     third_party_settings: {  }
     region: content
   status:
