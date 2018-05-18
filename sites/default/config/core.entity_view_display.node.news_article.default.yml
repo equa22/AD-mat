@@ -126,4 +126,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_hero_headline: true
   langcode: true
