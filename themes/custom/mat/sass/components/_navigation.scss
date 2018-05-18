@@ -52,7 +52,7 @@
     > li > a,
     > li > span {
       position: relative;
-      //@include font-size(2);
+      @include font-size(2);
       text-transform: capitalize;
 
       @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
@@ -255,7 +255,7 @@ body.mobile-menu--opened {
           margin: 0 ($grid-gutter-width / 2);
 
           > li {
-            //@include font-size(2);
+            @include font-size(2);
 
             &.menu-item--expanded {
               > a,

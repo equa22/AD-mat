@@ -11,53 +11,72 @@
 
   // Grid
   .field--name-field-statistics-items {
-    //@include make-row;
-    display: flex;
+    @include make-row;
 
-    .field__item {
-      //@extend %col;
+    @media (min-width: $screen-sm-min) {
+      flex-wrap: nowrap;
+    }
+
+    > .field__item {
+      @extend %col;
+
+      @media (max-width: $screen-xs-max) {
+        margin-bottom: 13rem;
+      }
     }
   }
     
   // Items basic styles
   .paragraph--type--statistics-item {
+    position: relative;
     text-align: center;
 
     .field--name-field-number {
-      padding-top: 1rem;
       font-family: $font-flama;
       @include font-size(8.5);
       color: #173F7C;
     }
 
     .field--name-field-title {
-      padding: 2rem 0 2.5rem 0;
-      @include font-size(2.4);
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .field--name-field-text {
-      @include font-size($font-size-large);
-
-      p {
-        line-height: 1.7;
-      }
+      padding: .8rem 0 1.5rem 0;
+      @extend %h2;
     }
 
     &:before {
       content: '';
-      display: block;
-      width: 10.8rem;
-      height: 10.8rem;
-      margin: 0 auto;
+      display: inline-block;
+      width: 8rem;
+      height: 8rem;
       border-radius: 50%;
+
+      @media (min-width: $screen-sm-min) {
+        width: 10.8rem;
+        height: 10.8rem;
+      }
+    }
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 3.8rem;
+      height: 3.8rem;
+      position: absolute;
+      left: 50%;
+      margin-left: -1.9rem;
+      background-size: 3.8rem auto;
+
+      @media (min-width: $screen-sm-min) {
+        background-size: 5rem auto;
+        width: 5rem;
+        height: 5rem;
+        margin-left: -2.5rem;
+      }
     }
   }
 
-  // Items color styles
+  // Items color and icons styles
   .paragraph--type--statistics-item {
+    // Color
     &.green {
       .field--name-field-title {
         color: $green;
@@ -87,8 +106,39 @@
          @include gradient(90deg, $orange, $orange-light, $orange);
       }
     }
+
+    // Icons
+    &.i-users {
+      &:after {
+        top: 2.4rem;
+        @include icons('i-users');
+
+        @media (min-width: $screen-sm-min) {
+          top: 3.2rem;
+        }
+      }
+    }
+
+    &.i-exchange {
+      &:after {
+        top: 2.6rem;
+        @include icons('i-exchange');
+
+        @media (min-width: $screen-sm-min) {
+          top: 3.6rem;
+        }
+      }
+    }
+
+    &.i-home {
+      &:after {
+        top: 1.9rem;
+        @include icons('i-home');
+
+        @media (min-width: $screen-sm-min) {
+          top: 2.7rem;
+        }
+      }
+    }
   }
-
-
-
 }
