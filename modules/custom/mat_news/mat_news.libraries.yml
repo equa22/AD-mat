@@ -1,0 +1,6 @@
+newsajax:
+  version: 1.x
+  js:
+    js/newsajax.js: {}
+  dependencies:
+    - core/jquery

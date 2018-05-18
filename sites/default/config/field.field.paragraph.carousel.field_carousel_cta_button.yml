@@ -1,0 +1,23 @@
+uuid: 2f1c26d2-bc13-4f69-bacd-cb210013d2b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_carousel_cta_button
+    - paragraphs.paragraphs_type.carousel
+  module:
+    - link
+id: paragraph.carousel.field_carousel_cta_button
+field_name: field_carousel_cta_button
+entity_type: paragraph
+bundle: carousel
+label: 'Cta Button'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

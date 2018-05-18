@@ -29,5 +29,7 @@ hidden:
   addtoany: true
   field_date: true
   field_hero_background_image: true
+  field_hero_headline: true
   field_news_category: true
+  field_news_image: true
   langcode: true

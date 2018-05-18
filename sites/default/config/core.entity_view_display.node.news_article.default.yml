@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.news_article.field_date
     - field.field.node.news_article.field_hero_background_image
     - field.field.node.news_article.field_news_category
+    - field.field.node.news_article.field_news_image
     - node.type.news_article
   module:
     - datetime
@@ -18,7 +19,6 @@ third_party_settings:
     group_header_section:
       children:
         - field_hero_background_image
-        - field_hero_headline
         - field_date
         - field_news_category
       parent_name: ''
@@ -36,6 +36,7 @@ third_party_settings:
       label: 'Header section'
     group_main_content_area:
       children:
+        - field_news_image
         - body
         - links
       parent_name: ''
@@ -80,7 +81,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 11
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -110,10 +111,20 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_news_image:
+    type: entity_reference_entity_view
+    weight: 13
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
   links:
-    weight: 12
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_hero_headline: true
   langcode: true
