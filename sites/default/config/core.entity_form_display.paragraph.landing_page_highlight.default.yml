@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser
+    - entity_browser.browser.media_entity_browser_modal
     - field.field.paragraph.landing_page_highlight.field_background_image
     - field.field.paragraph.landing_page_highlight.field_image
     - field.field.paragraph.landing_page_highlight.field_media
@@ -28,7 +28,7 @@ content:
   field_media_background:
     weight: 5
     settings:
-      entity_browser: media_entity_browser
+      entity_browser: media_entity_browser_modal
       field_widget_display: rendered_entity
       field_widget_edit: true
       field_widget_remove: true
@@ -42,7 +42,7 @@ content:
   field_media_foreground:
     weight: 4
     settings:
-      entity_browser: media_entity_browser
+      entity_browser: media_entity_browser_modal
       field_widget_display: rendered_entity
       field_widget_edit: true
       field_widget_remove: true
