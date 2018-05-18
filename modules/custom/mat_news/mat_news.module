@@ -1,0 +1,33 @@
+<?php
+
+function mat_news_form_alter(&$form, $form_state, $form_id) {
+  $nids = \Drupal::entityQuery('node')->condition('type','news_article')->execute();
+  $nodes =  \Drupal\node\Entity\Node::loadMultiple($nids);
+  $years = array();
+  foreach ($nodes as $k => $v) {
+    $get_year = date('Y', strtotime($v->field_date->value));
+    $years[] = $get_year;
+  }
+ 
+  $years_clean = array_unique($years);
+  
+  if(isset($form['#id']) && $form['#id'] == 'views-exposed-form-news-landing-page-1') {
+    $output = '<div class="news-filters"><h2>'.t('Categories').'</h2><ul class="news-categories">';
+    foreach ($form['field_news_category_target_id']['#options'] as $key => &$option) {
+      if ($key != 'All') {
+        $output .= '<li><a href="/news?field_news_category_target_id='.$key.'">'.$option.'</a></li>';
+      }
+    }
+    $output .= '</ul>';
+    $output .= '<h2>Archive</h2>';
+    $output .= '<ul class="news-archive">';
+    foreach ($years_clean as $k => $v) {
+      $output .= '<li><a href="/news?year='.$v.'">'.$v.'</a>';
+    }
+    $output .= '</ul>';
+    $output .= '</div>';
+    $form['#attributes']['class'] = 'hide';
+    //$form['#attached']['library'] = 'mat_news/newsajax';
+    $form['#prefix'] = $output;
+  }
+}
