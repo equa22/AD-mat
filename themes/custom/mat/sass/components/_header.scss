@@ -10,7 +10,7 @@
 }
 
 .region-topbar {
-  @include font-size($font-size-small);
+  @include font-size(1.4);
   color: $white;
   @include gradient(90deg, #2DB0DF, #2DB0DF, #2F2D83);
 
@@ -55,9 +55,13 @@
         font-weight: 900;
         content: "\f06a";
         position: absolute;
-        top: 3px;
+        top: -3px;
         left: 0;
         transform: rotate(180deg);
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          top: -1px;
+        }
       }
 
       @media (min-width: $screen-sm-min) {
@@ -98,7 +102,7 @@
 
       a {
         @include btn();
-        padding: .7rem 1.3rem .7rem 1.3rem;
+        padding: .4rem 1.3rem;
         font-weight: 700;
         background-position: 1.2rem 1rem;
         background-size: 14px auto;
@@ -121,13 +125,13 @@
 
     .field--name-field-link-foundation a {
       @media (min-width: $screen-sm-min) {
-        @include image('icons/i-together.svg');
+        @include icons('i-together');
       }
     }
 
     .field--name-field-link-donation a {
       @media (min-width: $screen-sm-min) {
-        @include image('icons/i-give-life.svg');
+        @include icons('i-give-life');
       }
     }
 
@@ -164,7 +168,6 @@
 
   .container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
   }
 

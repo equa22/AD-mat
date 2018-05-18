@@ -8,9 +8,9 @@
 // - - - - - - - - - - - - - - - - - - - -
 // Base font size
 // - - - - - - - - - - - - - - - - - - - -
-$font-size-large: 2;   // @include font-size($font-size-large);
-$font-size-base: 1.6; //  16px = 1.6rem = @include font-size($font-size-base);
-$font-size-small: 1.4;
+//$font-size-large: 2;   // @include font-size($font-size-large);
+//$font-size-base: 1.6; //  16px = 1.6rem = @include font-size($font-size-base);
+//$font-size-small: 1.4;
 
 // - - - - - - - - - - - - - - - - - - - -
 // Colors
@@ -106,6 +106,7 @@ $font-heading: $font-flama;
 // Images
 // - - - - - - - - - - - - - - - - - - - -
 $image-root: "../images/";
+$icon-root: "../images/icons/";
 
 
 // - - - - - - - - - - - - - - - - - - - -
@@ -156,6 +157,5 @@ $border-radius-base: 3px;
 $border-color-base: $gray-light;
 
 $border-radius-large: 33px;
-
 
 
