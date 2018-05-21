@@ -1,0 +1,52 @@
+uuid: 395b1451-e2c8-4f88-88dc-9a335a1949de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_stories.field_link
+    - field.field.paragraph.landing_page_stories.field_text
+    - field.field.paragraph.landing_page_stories.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_stories
+  module:
+    - content_moderation
+    - link
+    - text
+id: paragraph.landing_page_stories.default
+targetEntityType: paragraph
+bundle: landing_page_stories
+mode: default
+content:
+  field_link:
+    weight: 103
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_text:
+    weight: 102
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_title_formatted:
+    weight: 101
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

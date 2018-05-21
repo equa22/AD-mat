@@ -1,0 +1,44 @@
+uuid: cb72cd00-02ef-48f5-a87c-5263703975d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_stories.field_link
+    - field.field.paragraph.landing_page_stories.field_text
+    - field.field.paragraph.landing_page_stories.field_title_formatted
+    - paragraphs.paragraphs_type.landing_page_stories
+  module:
+    - link
+    - text
+id: paragraph.landing_page_stories.default
+targetEntityType: paragraph
+bundle: landing_page_stories
+mode: default
+content:
+  field_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title_formatted:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

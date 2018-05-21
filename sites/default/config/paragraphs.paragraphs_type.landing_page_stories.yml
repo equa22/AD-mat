@@ -1,0 +1,9 @@
+uuid: 5082e459-e43a-46e7-8a43-50a77623bf75
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_stories
+label: Stories
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

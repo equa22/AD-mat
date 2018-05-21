@@ -15,6 +15,7 @@ dependencies:
     - paragraphs.paragraphs_type.landing_page_slider
     - paragraphs.paragraphs_type.landing_page_statement
     - paragraphs.paragraphs_type.landing_page_statistics
+    - paragraphs.paragraphs_type.landing_page_stories
     - paragraphs.paragraphs_type.landing_page_why_register
     - paragraphs.paragraphs_type.timeline_facts
   module:
@@ -48,6 +49,7 @@ settings:
       timeline_facts: timeline_facts
       landing_page_why_register: landing_page_why_register
       landing_page_pillars: landing_page_pillars
+      landing_page_stories: landing_page_stories
     target_bundles_drag_drop:
       landing_page_columns:
         weight: 8
@@ -97,10 +99,10 @@ settings:
       landing_page_statistics:
         enabled: true
         weight: 22
-      statistics_item:
+      myth_vs_fact:
         weight: 28
         enabled: false
-      myth_vs_fact:
+      statistics_item:
         weight: 28
         enabled: false
       landing_page_hero_image:
@@ -115,6 +117,9 @@ settings:
       landing_page_pillars:
         enabled: true
         weight: 37
+      landing_page_stories:
+        enabled: true
+        weight: 43
       pillar_group:
         weight: 44
         enabled: false
