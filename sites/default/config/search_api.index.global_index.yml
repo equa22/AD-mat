@@ -1,0 +1,49 @@
+uuid: 4778701e-5dba-46f3-af9d-8f8ad6d7081c
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.server.global_search
+  module:
+    - search_api
+    - node
+    - paragraphs
+    - taxonomy
+id: global_index
+name: 'Global index'
+description: ''
+read_only: false
+field_settings: {  }
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:paragraph':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:taxonomy_term':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  rendered_item: {  }
+  add_url: {  }
+  aggregated_field: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: global_search
