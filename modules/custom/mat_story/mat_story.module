@@ -2,16 +2,30 @@
 
 function mat_story_form_alter(&$form, $form_state, $form_id) {
   if($form['#id'] == 'views-exposed-form-stories-landing-page-1') {
-    $output = '<ul class="story-categories">';
+    $output = '<div class="stories-filter-left"><ul class="story-categories">';
     foreach ($form['field_story_category_target_id']['#options'] as $key => &$option) {
       if ($key == 'All') {
-        $output .= '<li><a href="/stories?field_story_category_target_id='.$key.'">All Stories</a></li>';
+        $output .= '<li><a href="/stories?field_story_category_target_id='.$key.'">'.t('All Stories').'</a></li>';
       } else {
         $output .= '<li><a href="/stories?field_story_category_target_id='.$key.'">'.$option.'</a></li>';
       }
     }
-    $output .= '</ul>';
+    $output .= '</ul></div>';
     $form['#attributes']['class'] = 'hide';
     $form['#prefix'] = $output;
+    
+
+    $output2 = '<div class="stories-filter-right"><div class="a-z-filter"><p>'.t('Find a story by last name').'</p> <ul class="story-a-z">';
+    foreach ($form['field_story_last_name_value']['#options'] as $key => &$option) {
+      if ($key == 'All') {
+        $output2 .= '<li class="all"><a href="/stories?field_story_last_name_value='.$key.'">A-Z</a></li>';
+      } else {
+        $output2 .= '<li><a href="/stories?field_story_last_name_value='.$key.'">'.$option.'</a></li>';
+      }
+    }
+    $output2 .= '</ul></div></div>';
+
+    $form['#suffix'] = $output2;
+
   }
 }
