@@ -1,0 +1,7 @@
+uuid: 9a414a55-9d4a-4751-bb2a-da69bff0f6b6
+langcode: en
+status: true
+dependencies: {  }
+id: icon_eye
+label: 'Icon eye'
+classes: i-eye

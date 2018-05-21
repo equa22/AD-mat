@@ -1,0 +1,7 @@
+uuid: 6afae2c1-ab63-4294-bf0d-743c209c26ca
+langcode: en
+status: true
+dependencies: {  }
+id: icon_heart
+label: 'Icon heart'
+classes: i-heart

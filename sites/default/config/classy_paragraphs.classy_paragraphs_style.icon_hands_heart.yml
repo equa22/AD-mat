@@ -1,0 +1,7 @@
+uuid: 4ddd5b95-68be-473c-a7db-c03f73371f68
+langcode: en
+status: true
+dependencies: {  }
+id: icon_hands_heart
+label: 'Icon hands heart'
+classes: i-hands-heart

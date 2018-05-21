@@ -1,0 +1,7 @@
+uuid: 72104dfc-3378-4710-ac94-518fc5730587
+langcode: en
+status: true
+dependencies: {  }
+id: icon_shield
+label: 'Icon shield'
+classes: i-shield
