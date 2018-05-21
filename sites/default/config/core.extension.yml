@@ -46,6 +46,7 @@ module:
   link: 0
   mailsystem: 0
   mat_news: 0
+  mat_search: 0
   mat_story: 0
   media: 0
   media_entity_browser: 0
