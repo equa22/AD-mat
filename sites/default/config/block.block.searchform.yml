@@ -1,0 +1,20 @@
+uuid: eae013b7-7d11-415f-a2eb-4bf2ac1fa900
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - mat
+id: searchform
+theme: mat
+region: topbar
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Sitewide search'
+  provider: search
+  label_display: visible
+visibility: {  }

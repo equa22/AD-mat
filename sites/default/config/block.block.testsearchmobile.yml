@@ -11,7 +11,7 @@ dependencies:
 id: testsearchmobile
 theme: mat
 region: header
-weight: -2
+weight: -4
 provider: null
 plugin: 'block_content:54717263-08fd-4b03-8ad8-b19bafb69d2d'
 settings:

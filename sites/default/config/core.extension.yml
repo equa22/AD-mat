@@ -46,6 +46,7 @@ module:
   link: 0
   mailsystem: 0
   mat_news: 0
+  mat_search: 0
   mat_story: 0
   media: 0
   media_entity_browser: 0
@@ -60,6 +61,9 @@ module:
   path: 0
   recreate_block_content: 0
   responsive_image: 0
+  search: 0
+  search_api: 0
+  search_api_db: 0
   slick: 0
   slick_paragraphs: 0
   svg_image: 0

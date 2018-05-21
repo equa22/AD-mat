@@ -16,7 +16,8 @@
         "org/cotailored_base_drush_commands": "dev-master",
         "drupal/contribute": "^5.0@beta",
         "drupal/recreate_block_content": "^2.0",
-        "drupal/better_exposed_filters": "^3.0@alpha"
+        "drupal/better_exposed_filters": "^3.0@alpha",
+        "drupal/search_api": "^1.8"
     },
     "require-dev": {
         "behat/mink": "~1.7",
