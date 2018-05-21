@@ -7,23 +7,6 @@
 // Paragraph CTA
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-cta {
-  @extend .container;
-
-  > .field--name-field-title,
-  > .field--name-field-text {
-    text-align: center;
-  }
-
-  > .field--name-field-title {
-    @extend %h2;
-    color: $brand-primary;
-  }
-
-  > .field--name-field-text {
-    @extend %lead;
-    color: #173F7C;
-  }
-
   // Grid
   .field--name-field-cta-items {
     @include make-row;
@@ -47,6 +30,7 @@
     min-height: 12rem;
     margin-left: 5rem;
     padding: 1.5rem 0 2rem 0;
+    position: relative;
     cursor: pointer;
     background-color: #fff;
     border-radius: 13px;
@@ -58,7 +42,7 @@
       padding: 3rem 0;
     }
 
-    .cta-item--icon {
+    .icon-circled {
       margin-left: -5rem;
       @extend %circle--base;
 
@@ -98,137 +82,5 @@
         line-height: 1.5;
       }
     }
-  }
-
-   // Items color and icons styles
-  .paragraph--type--cta-item {
-    position: relative;
-
-    // Color
-    &.green {
-      .field--name-field-title {
-        color: $green;
-      }
-      
-      .cta-item--icon {
-        &:before {
-          @include gradient-green();
-        }
-      }
-    }
-
-    &.purple {
-      .field--name-field-title {
-        color: $purple;
-      }
-      
-      .cta-item--icon {
-        &:before {
-          @include gradient-purple();
-        }
-      }
-    }
-
-    &.orange {
-      .field--name-field-title {
-        color: $orange;
-      }
-
-      .cta-item--icon {
-        &:before {
-           @include gradient-orange();
-        }
-      }
-    }
-
-    &.blue-dark {
-      .field--name-field-title {
-        color: $blue-dark;
-      }
-      
-      .cta-item--icon {
-        &:before {
-          @include gradient-blue-dark();
-        }
-      }
-    }
-
-    &.blue {
-      .field--name-field-title {
-        color: $blue-dark;
-      }
-      
-      .cta-item--icon {
-        &:before {
-          @include gradient-blue();
-        }
-      }
-    }
-
-    &.blue-light {
-      .field--name-field-title {
-        color: $blue-light;
-      }
-      
-      .cta-item--icon {
-        &:before {
-          @include gradient-blue-light();
-        }
-      }
-    }
-
-
-
-    // Icons
-    &.i-together {
-      .cta-item--icon {
-        &:after {
-          @include icons('i-together');
-        }
-      }
-    }
-
-    &.i-give-life {
-      .cta-item--icon {
-        &:after {
-          @include icons('i-give-life');
-        }
-      }
-    }
-
-    &.i-comment-alt-lines {
-      .cta-item--icon {
-        &:after {
-          @include icons('i-comment-alt-lines');
-        }
-      }
-    }
-
-    &.i-search {
-      .cta-item--icon {
-        &:after {
-          @include icons('i-search');
-        }
-      }
-    }
-
-    &.i-hand-holding-heart {
-      .cta-item--icon {
-        &:after {
-          @include icons('i-hand-holding-heart');
-        }
-      }
-    }
-
-    &.i-walking {
-      .cta-item--icon {
-        &:after {
-          @include icons('i-walking');
-        }
-      }
-    }
-
-
-
   }
 }

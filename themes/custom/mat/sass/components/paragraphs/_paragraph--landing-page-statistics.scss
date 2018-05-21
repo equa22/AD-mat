@@ -6,116 +6,46 @@
 
 // Paragraph statistics
 // -----------------------------------------------------------------------------
-.paragraph--type--landing-page-statistics {
-  @extend .container;
 
-  // Grid
-  .field--name-field-statistics-items {
-    @include make-row;
+// Grid
+.field--name-field-statistics-items {
+  @include make-row;
+
+  > .field__item {
+    @extend %col;
+    flex-basis: 100%;
+    margin-bottom: 13rem;
 
     @media (min-width: $screen-sm-min) {
-      flex-wrap: nowrap;
-    }
-
-    > .field__item {
-      @extend %col;
-
-      @media (max-width: $screen-xs-max) {
-        margin-bottom: 13rem;
-      }
+      flex-basis: 33%;
     }
   }
-    
-  // Items basic styles
-  .paragraph--type--statistics-item {
-    text-align: center;
+}
+  
+// Items basic styles
+.paragraph--type--statistics-item {
+  text-align: center;
 
-    .field--name-field-number {
-      font-family: $font-flama;
-      @include font-size(8.5);
-      color: #173F7C;
-    }
-
-    .field--name-field-title {
-      padding-top: .8rem;
-      @extend %h2;
-    }
-
-    .statistics-item--icon {
-      display: inline-block;
-      @extend %circle--base;
-
-      &:after {
-        background-size: 3.8rem auto;
-
-        @media (min-width: $screen-sm-min) {
-          background-size: 5rem auto;
-        }
-      }
-    }
+  .field--name-field-number {
+    font-family: $font-flama;
+    @include font-size(8.5);
+    color: #173F7C;
   }
 
-  // Items color and icons styles
-  .paragraph--type--statistics-item {
-    // Color
-    &.green {
-      .field--name-field-title {
-        color: $green;
-      }
+  .field--name-field-title {
+    padding-top: .8rem;
+    @extend %h2;
+  }
 
-      .statistics-item--icon {
-        &:before {
-          @include gradient-green();
-        }
-      }
-    }
+  .icon-circled {
+    display: inline-block;
+    @extend %circle--base;
 
-    &.purple {
-      .field--name-field-title {
-        color: $purple;
-      }
+    &:after {
+      background-size: 3.8rem auto;
 
-      .statistics-item--icon {
-        &:before {
-          @include gradient-purple();
-        }
-      }
-    }
-
-    &.orange {
-      .field--name-field-title {
-        color: $orange;
-      }
-
-      .statistics-item--icon {
-        &:before {
-          @include gradient-orange();
-        }
-      }
-    }
-
-    // Icons
-    &.i-users {
-      .statistics-item--icon {
-        &:after {
-          @include icons('i-users');
-        }
-      }
-    }
-
-    &.i-exchange {
-      .statistics-item--icon {
-        &:after {
-          @include icons('i-exchange');
-        }
-      }
-    }
-
-    &.i-home {
-      .statistics-item--icon {
-        &:after {
-          @include icons('i-home');
-        }
+      @media (min-width: $screen-sm-min) {
+        background-size: 5rem auto;
       }
     }
   }

@@ -291,7 +291,34 @@
   }
 }
 
-// Colored circles with icons
+
+
+// MAT paragraphs
+.paragraph--type--landing-page-cta,
+.paragraph--type--landing-page-statistics,
+.paragraph--type--landing-page-year-review {
+  @extend .container;
+}
+
+.paragraph--type--landing-page-cta,
+.paragraph--type--landing-page-statistics {
+  > .field--name-field-title,
+  > .field--name-field-text {
+    text-align: center;
+  }
+
+  > .field--name-field-title {
+    @extend %h2;
+    color: $brand-primary;
+  }
+
+  > .field--name-field-text {
+    @extend %lead;
+    color: #173F7C;
+  }
+}
+
+// Colored circles with icons - BASE
 %circle--base {
   position: relative;
 
@@ -314,6 +341,190 @@
     top: 0;
     left: 0;
     background-position: center center;
+  }
+}
+
+// Colored circles with icons - COLORS
+.paragraph--type--statistics-item,
+.paragraph--type--cta-item {
+  &.blue-dark {
+    .field--name-field-title {
+      color: $blue-dark;
+    }
+    
+    .icon-circled {
+      &:before {
+        @include gradient-blue-dark();
+      }
+    }
+  }
+
+  &.blue {
+    .field--name-field-title {
+      color: $blue;
+    }
+    
+    .icon-circled {
+      &:before {
+        @include gradient-blue();
+      }
+    }
+  }
+
+  &.blue-light {
+    .field--name-field-title {
+      color: $blue-light;
+    }
+    
+    .icon-circled {
+      &:before {
+        @include gradient-blue-light();
+      }
+    }
+  }
+
+  &.green {
+    .field--name-field-title {
+      color: $green;
+    }
+
+    .icon-circled {
+      &:before {
+        @include gradient-green();
+      }
+    }
+  }
+
+  &.orange {
+    .field--name-field-title {
+      color: $orange;
+    }
+
+    .icon-circled {
+      &:before {
+        @include gradient-orange();
+      }
+    }
+  }
+
+  &.purple {
+    .field--name-field-title {
+      color: $purple;
+    }
+
+    .icon-circled {
+      &:before {
+        @include gradient-purple();
+      }
+    }
+  }
+}
+
+// Colored circles with icons - ICONS
+.paragraph--type--statistics-item,
+.paragraph--type--cta-item {
+  &.i-comment-alt-lines {
+    .icon-circled {
+      &:after {
+        @include icons('i-comment-alt-lines');
+      }
+    }
+  }
+
+  &.i-exchange {
+    .icon-circled {
+      &:after {
+        @include icons('i-exchange');
+      }
+    }
+  }
+
+  &.i-eye {
+    .icon-circled {
+      &:after {
+        @include icons('i-eye');
+      }
+    }
+  }
+
+  &.i-give-life {
+    .icon-circled {
+      &:after {
+        @include icons('i-give-life');
+      }
+    }
+  }
+
+  &.i-hand-holding-heart {
+    .icon-circled {
+      &:after {
+        @include icons('i-hand-holding-heart');
+      }
+    }
+  }
+
+  &.i-hands-heart {
+    .icon-circled {
+      &:after {
+        @include icons('i-hands-heart');
+      }
+    }
+  }
+
+  &.i-heart {
+    .icon-circled {
+      &:after {
+        @include icons('i-heart');
+      }
+    }
+  }
+
+  &.i-home {
+    .icon-circled {
+      &:after {
+        @include icons('i-home');
+      }
+    }
+  }
+
+  &.i-search {
+    .icon-circled {
+      &:after {
+        @include icons('i-search');
+      }
+    }
+  }
+
+  &.i-shield {
+    .icon-circled {
+      &:after {
+        @include icons('i-shield');
+      }
+    }
+  }
+
+  &.i-together {
+    .icon-circled {
+      &:after {
+        @include icons('i-together');
+      }
+    }
+  }
+
+  &.i-users {
+    .icon-circled {
+      &:after {
+        @include icons('i-users');
+      }
+    }
+  }
+
+  &.i-walking {
+    .icon-circled {
+      &:after {
+        @include icons('i-walking');
+      }
+    }
   }
 }
 
