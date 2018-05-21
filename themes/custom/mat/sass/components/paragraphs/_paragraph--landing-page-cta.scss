@@ -112,7 +112,7 @@
       
       .cta-item--icon {
         &:before {
-          @include gradient(90deg, $green, $green-light, $green);
+          @include gradient-green();
         }
       }
     }
@@ -124,7 +124,7 @@
       
       .cta-item--icon {
         &:before {
-          @include gradient(90deg, $purple, $purple-light, $purple);
+          @include gradient-purple();
         }
       }
     }
@@ -136,7 +136,7 @@
 
       .cta-item--icon {
         &:before {
-           @include gradient(90deg, $orange, $orange-light, $orange);
+           @include gradient-orange();
         }
       }
     }
@@ -148,7 +148,7 @@
       
       .cta-item--icon {
         &:before {
-          @include gradient(90deg, $purple-darker, $purple-dark, $purple-darker);
+          @include gradient-blue-dark();
         }
       }
     }
@@ -160,7 +160,7 @@
       
       .cta-item--icon {
         &:before {
-          @include gradient(90deg, $purple-dark, $blue-light, $purple-dark);
+          @include gradient-blue();
         }
       }
     }
@@ -172,7 +172,7 @@
       
       .cta-item--icon {
         &:before {
-          @include gradient(90deg, $blue-light, $blue-lighteset, $blue-light);
+          @include gradient-blue-light();
         }
       }
     }

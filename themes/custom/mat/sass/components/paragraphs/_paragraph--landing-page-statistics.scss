@@ -65,7 +65,7 @@
 
       .statistics-item--icon {
         &:before {
-          @include gradient(90deg, $green, $green-light, $green);
+          @include gradient-green();
         }
       }
     }
@@ -77,7 +77,7 @@
 
       .statistics-item--icon {
         &:before {
-          @include gradient(90deg, $purple, $purple-light, $purple);
+          @include gradient-purple();
         }
       }
     }
@@ -89,7 +89,7 @@
 
       .statistics-item--icon {
         &:before {
-           @include gradient(90deg, $orange, $orange-light, $orange);
+          @include gradient-orange();
         }
       }
     }

@@ -13,19 +13,19 @@
 
 // - - Clearfix
 @mixin clearfix {
-	zoom: 1;
+  zoom: 1;
 
-	&:before,
-	&:after {
-		content: "\0020";
-		display: block;
-		height: 0;
-		overflow: hidden;
-	}
+  &:before,
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
 
-	&:after {
-		clear: both;
-	}
+  &:after {
+    clear: both;
+  }
 }
 
 // - - Helper for backgorund image
@@ -38,10 +38,10 @@
 
 // - - Image for retina
 @mixin image-2x ($image, $width, $height) {
-	@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
-		background-image: url($image);
-		background-size: $width $height;
-	}
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+    background-image: url($image);
+    background-size: $width $height;
+  }
 }
 
 // - - Helper for svg icons
@@ -52,7 +52,7 @@
 
 // - - CSS calc function
 @mixin calc ($property, $expression) {
-	#{$property}: calc(#{$expression});
+  #{$property}: calc(#{$expression});
 }
 
 @mixin cta($bg: 'light') {
@@ -126,6 +126,31 @@
   background: linear-gradient($deg, $gradient-bg-start, $gradient-bg-end);
 }
 
+// - - Gradient background - Colors
+@mixin gradient-green() {
+  @include gradient(90deg, $green, $green-light, $green);
+}
+
+@mixin gradient-orange() {
+  @include gradient(90deg, $orange, $orange-light, $orange);
+}
+
+@mixin gradient-purple() {
+  @include gradient(90deg, $purple, $purple-light, $purple);
+}
+
+@mixin gradient-blue-dark() {
+  @include gradient(90deg, $blue-darkest, $blue-darker, $blue-darkest);
+}
+
+@mixin gradient-blue() {
+  @include gradient(90deg, $blue-darker, $blue-light, $blue-darker);
+}
+
+@mixin gradient-blue-light() {
+  @include gradient(90deg, $blue-light, $blue-lighteset, $blue-light);
+}
+
 // - - Buttons
 @mixin btn() {
   display: inline-block;
@@ -145,3 +170,4 @@
   @include font-size(2);
   line-height: 1.7;
 }
+
