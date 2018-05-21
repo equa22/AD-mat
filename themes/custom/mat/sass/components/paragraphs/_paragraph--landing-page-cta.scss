@@ -29,10 +29,6 @@
     @include make-row;
     margin-top: 11rem;
 
-    @media (min-width: $screen-sm-min) {
-      flex-wrap: nowrap;
-    }
-
     > .field__item {
       @extend %col;
       flex-basis: 100%;
@@ -48,12 +44,19 @@
   .paragraph--type--cta-item {
     display: flex;
     align-items: center;
-    min-height: 17.5rem;
-    padding: 3rem 0;
+    min-height: 12rem;
+    margin-left: 5rem;
+    padding: 1.5rem 0 2rem 0;
     cursor: pointer;
     background-color: #fff;
     border-radius: 13px;
     box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 17.5rem;
+      margin-left: 0;
+      padding: 3rem 0;
+    }
 
     .cta-item--icon {
       margin-left: -5rem;
@@ -65,13 +68,19 @@
     }
 
     .cta-item--content {
-      padding: 0 10rem 0 2.5rem;
-      margin-right: 4.5rem;
+      padding: 0 4rem 0 2.5rem;
+      margin-right: 2rem;
       @include icons('i-chevron-circle-right');
       background-position: right center;
+
+      @media (min-width: $screen-sm-min) {
+        padding-right: 10rem;
+        margin-right: 4.5rem;
+      }
     }
 
     .field--name-field-title {
+      @include font-size(2);
       padding-bottom: 1.2rem;
 
       @media (min-width: $screen-sm-min) {
@@ -81,6 +90,9 @@
     }
 
     .field--name-field-content {
+      @include font-size(1.4);
+      line-height: 1.4;
+
       @media (min-width: $screen-sm-min) {
         @include font-size(1.6);
         line-height: 1.5;
@@ -107,7 +119,7 @@
 
     &.purple {
       .field--name-field-title {
-        color: $green;
+        color: $purple;
       }
       
       .cta-item--icon {
@@ -116,6 +128,56 @@
         }
       }
     }
+
+    &.orange {
+      .field--name-field-title {
+        color: $orange;
+      }
+
+      .cta-item--icon {
+        &:before {
+           @include gradient(90deg, $orange, $orange-light, $orange);
+        }
+      }
+    }
+
+    &.blue-dark {
+      .field--name-field-title {
+        color: $blue-dark;
+      }
+      
+      .cta-item--icon {
+        &:before {
+          @include gradient(90deg, $purple-darker, $purple-dark, $purple-darker);
+        }
+      }
+    }
+
+    &.blue {
+      .field--name-field-title {
+        color: $blue-dark;
+      }
+      
+      .cta-item--icon {
+        &:before {
+          @include gradient(90deg, $purple-dark, $blue-light, $purple-dark);
+        }
+      }
+    }
+
+    &.blue-light {
+      .field--name-field-title {
+        color: $blue-light;
+      }
+      
+      .cta-item--icon {
+        &:before {
+          @include gradient(90deg, $blue-light, $blue-lighteset, $blue-light);
+        }
+      }
+    }
+
+
 
     // Icons
     &.i-together {
@@ -133,5 +195,40 @@
         }
       }
     }
+
+    &.i-comment-alt-lines {
+      .cta-item--icon {
+        &:after {
+          @include icons('i-comment-alt-lines');
+        }
+      }
+    }
+
+    &.i-search {
+      .cta-item--icon {
+        &:after {
+          @include icons('i-search');
+        }
+      }
+    }
+
+    &.i-hand-holding-heart {
+      .cta-item--icon {
+        &:after {
+          @include icons('i-hand-holding-heart');
+        }
+      }
+    }
+
+    &.i-walking {
+      .cta-item--icon {
+        &:after {
+          @include icons('i-walking');
+        }
+      }
+    }
+
+
+
   }
 }

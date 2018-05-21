@@ -15,37 +15,36 @@
 // - - - - - - - - - - - - - - - - - - - -
 // Colors
 // - - - - - - - - - - - - - - - - - - - -
+$white:          #fff;
+$black:          #000;
+
+$gray-base:      #9B9B9B;
+$gray-light:     #EDEDED; //lighten($gray-base, 25%);
+
+$green: 	     #78AB52;
+$green-light:    #D5D45C;
+
+$purple-darker:  #05052E;
+$purple-dark:    #2F2D83;
+$purple:         #6E3375;
+$purple-light:   #A1277D;
+
+$orange:         #E6542B;
+$orange-light:   #F6AF2D;
+
+$blue-dark:      #173F7C;
+$blue:           #1B78BA;
+$blue-light: 	 #2DB0DF; 
+$blue-lighter: 	 #22BEE4;
+$blue-lighteset: #C1E9F8;
+
+$brand-primary:  #0BAADB !default; // MAT: blue buttons, blue titles
+
+
+
 
 $color-white: white;
 $color-black: black;
-$white: #fff;
-$black: #000;
-
-// MAT colors
-// $blue-light: #2DB0DF;
-// $purple-dark: #2F2D83;
-$gray-base: #9B9B9B;
-$gray-light: #EDEDED; //lighten($gray-base, 25%);
-
-
-$green: 	  #78AB52;
-$green-light: #D5D45C;
-
-$purple:       #6E3375;
-$purple-light: #A1277D;
-
-$orange:       #E6542B;
-$orange-light: #F6AF2D;
-
-
-
-
-
-
-
-
-
-
 
 // Grays
 // -----------------------------------------------------------------------------
@@ -59,7 +58,7 @@ $gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 // Brand colors
 // -----------------------------------------------------------------------------
 
-$brand-primary:         #0BAADB !default; // MAT: blue buttons
+
 
 $brand-primary-alt:     #7e7cce !default;
 $brand-secondary:       #333 !default;
