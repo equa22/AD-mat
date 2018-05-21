@@ -15,14 +15,14 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
     $output = '<div class="news-filters"><h2>'.t('Categories').'</h2><ul class="news-categories">';
     foreach ($form['field_news_category_target_id']['#options'] as $key => &$option) {
       if ($key != 'All') {
-        $output .= '<li><a href="/news?field_news_category_target_id='.$key.'">'.$option.'</a></li>';
+        $output .= '<li><a href="/newsroom?field_news_category_target_id='.$key.'">'.$option.'</a></li>';
       }
     }
     $output .= '</ul>';
     $output .= '<h2>Archive</h2>';
     $output .= '<ul class="news-archive">';
     foreach ($years_clean as $k => $v) {
-      $output .= '<li><a href="/news?year='.$v.'">'.$v.'</a>';
+      $output .= '<li><a href="/newsroom?year='.$v.'">'.$v.'</a>';
     }
     $output .= '</ul>';
     $output .= '</div>';

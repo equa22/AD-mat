@@ -12,7 +12,7 @@ _core:
 id: mat_content
 theme: mat
 region: content
-weight: -4
+weight: -3
 provider: null
 plugin: system_main_block
 settings:
