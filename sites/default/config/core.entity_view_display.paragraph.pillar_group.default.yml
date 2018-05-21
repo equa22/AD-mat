@@ -1,0 +1,35 @@
+uuid: 8a001fb7-0cef-48b1-bbfb-fad80176c9d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.pillar_group.field_pillar_group_items
+    - field.field.paragraph.pillar_group.field_style
+    - field.field.paragraph.pillar_group.field_title
+    - paragraphs.paragraphs_type.pillar_group
+  module:
+    - entity_reference_revisions
+id: paragraph.pillar_group.default
+targetEntityType: paragraph
+bundle: pillar_group
+mode: default
+content:
+  field_pillar_group_items:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_style: true

@@ -1,0 +1,24 @@
+uuid: 226746e2-6859-4c01-a13c-a224a4bd2256
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_pillars.field_pillar_groups
+    - paragraphs.paragraphs_type.landing_page_pillars
+  module:
+    - entity_reference_revisions
+id: paragraph.landing_page_pillars.default
+targetEntityType: paragraph
+bundle: landing_page_pillars
+mode: default
+content:
+  field_pillar_groups:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

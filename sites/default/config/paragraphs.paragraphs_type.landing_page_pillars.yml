@@ -1,0 +1,9 @@
+uuid: fde7a2c5-a3e7-4b9e-9d3f-74fb6520f2a5
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_pillars
+label: Pillars
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

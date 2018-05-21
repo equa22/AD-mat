@@ -1,0 +1,19 @@
+uuid: df4dff3d-740a-4bd9-a325-03bf6111398d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.pillar_group_item
+id: paragraph.pillar_group_item.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: pillar_group_item
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

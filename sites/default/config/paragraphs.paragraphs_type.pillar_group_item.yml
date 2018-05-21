@@ -1,0 +1,9 @@
+uuid: eb956dde-e516-4359-bf95-a0eba30d7c3e
+langcode: en
+status: true
+dependencies: {  }
+id: pillar_group_item
+label: 'Pillar group item'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

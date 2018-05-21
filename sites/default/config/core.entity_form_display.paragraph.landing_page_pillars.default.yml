@@ -1,0 +1,37 @@
+uuid: 91f846db-f2f0-4c95-9291-546240ce1594
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_pillars.field_pillar_groups
+    - paragraphs.paragraphs_type.landing_page_pillars
+  module:
+    - content_moderation
+    - paragraphs
+id: paragraph.landing_page_pillars.default
+targetEntityType: paragraph
+bundle: landing_page_pillars
+mode: default
+content:
+  field_pillar_groups:
+    type: entity_reference_paragraphs
+    weight: 101
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

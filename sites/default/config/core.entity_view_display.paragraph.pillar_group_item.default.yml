@@ -1,0 +1,63 @@
+uuid: abea4a27-6bec-4035-a8e7-36f99cadc0f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.pillar_group_item.field_content
+    - field.field.paragraph.pillar_group_item.field_link
+    - field.field.paragraph.pillar_group_item.field_media
+    - field.field.paragraph.pillar_group_item.field_small_title
+    - field.field.paragraph.pillar_group_item.field_title
+    - paragraphs.paragraphs_type.pillar_group_item
+  module:
+    - link
+id: paragraph.pillar_group_item.default
+targetEntityType: paragraph
+bundle: pillar_group_item
+mode: default
+content:
+  field_content:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_link:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_media:
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_small_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

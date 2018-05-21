@@ -1,0 +1,19 @@
+uuid: 94faf8e8-dadd-4de6-896d-e2e3973dba63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - paragraphs.paragraphs_type.pillar_group_item
+id: paragraph.pillar_group_item.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: pillar_group_item
+label: Content
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

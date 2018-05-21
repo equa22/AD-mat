@@ -1,0 +1,100 @@
+uuid: ae5933e2-82af-4b6c-b9fe-84099d098325
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_pillar_groups
+    - paragraphs.paragraphs_type.landing_page_pillars
+    - paragraphs.paragraphs_type.pillar_group
+  module:
+    - entity_reference_revisions
+id: paragraph.landing_page_pillars.field_pillar_groups
+field_name: field_pillar_groups
+entity_type: paragraph
+bundle: landing_page_pillars
+label: 'Pillar groups'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      pillar_group: pillar_group
+    target_bundles_drag_drop:
+      carousel:
+        weight: 25
+        enabled: false
+      cta_item:
+        weight: 26
+        enabled: false
+      landing_page_box:
+        weight: 27
+        enabled: false
+      landing_page_columns:
+        weight: 28
+        enabled: false
+      landing_page_counter:
+        weight: 29
+        enabled: false
+      landing_page_cta:
+        weight: 30
+        enabled: false
+      landing_page_form:
+        weight: 31
+        enabled: false
+      landing_page_hero:
+        weight: 32
+        enabled: false
+      landing_page_hero_image:
+        weight: 33
+        enabled: false
+      landing_page_highlight:
+        weight: 34
+        enabled: false
+      landing_page_image:
+        weight: 35
+        enabled: false
+      landing_page_list:
+        weight: 36
+        enabled: false
+      landing_page_pillars:
+        weight: 37
+        enabled: false
+      landing_page_rich_text:
+        weight: 38
+        enabled: false
+      landing_page_slider:
+        weight: 39
+        enabled: false
+      landing_page_statement:
+        weight: 40
+        enabled: false
+      landing_page_statistics:
+        weight: 41
+        enabled: false
+      landing_page_why_register:
+        weight: 42
+        enabled: false
+      myth_vs_fact:
+        weight: 43
+        enabled: false
+      pillar_group:
+        enabled: true
+        weight: 44
+      pillar_group_item:
+        weight: 45
+        enabled: false
+      slide:
+        weight: 46
+        enabled: false
+      statistics_item:
+        weight: 47
+        enabled: false
+      timeline_facts:
+        weight: 48
+        enabled: false
+field_type: entity_reference_revisions
