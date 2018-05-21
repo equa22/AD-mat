@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.paragraph.field_view
     - paragraphs.paragraphs_type.landing_page_list
-    - views.view.paragraph_blogs
   module:
     - viewsreference
 _core:
@@ -18,17 +17,7 @@ label: List
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    options:
-      pager: some
-      argument: ''
-      limit: ''
-      offset: ''
-      title: 0
-    display_id: default
-    data: 'a:5:{s:5:"pager";s:4:"some";s:8:"argument";s:0:"";s:5:"limit";s:0:"";s:6:"offset";s:0:"";s:5:"title";i:0;}'
-    target_uuid: 26099e35-c605-4130-83ec-8539ead4464e
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:view'
