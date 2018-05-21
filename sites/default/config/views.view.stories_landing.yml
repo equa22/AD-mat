@@ -517,6 +517,147 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
+        field_story_last_name_value:
+          id: field_story_last_name_value
+          table: node__field_story_last_name
+          field: field_story_last_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_story_last_name_value_op
+            label: 'Story last name (field_story_last_name)'
+            description: null
+            use_operator: false
+            operator: field_story_last_name_value_op
+            identifier: field_story_last_name_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+          is_grouped: true
+          group_info:
+            label: 'Story last name (field_story_last_name)'
+            description: ''
+            identifier: field_story_last_name_value
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: A
+                operator: starts
+                value: A
+              2:
+                title: B
+                operator: starts
+                value: B
+              3:
+                title: C
+                operator: starts
+                value: C
+              4:
+                title: D
+                operator: starts
+                value: D
+              5:
+                title: E
+                operator: starts
+                value: E
+              6:
+                title: F
+                operator: starts
+                value: F
+              7:
+                title: G
+                operator: starts
+                value: G
+              8:
+                title: H
+                operator: starts
+                value: H
+              9:
+                title: I
+                operator: starts
+                value: I
+              10:
+                title: J
+                operator: starts
+                value: J
+              11:
+                title: K
+                operator: starts
+                value: K
+              12:
+                title: L
+                operator: starts
+                value: L
+              13:
+                title: M
+                operator: starts
+                value: M
+              14:
+                title: 'N'
+                operator: starts
+                value: 'N'
+              15:
+                title: O
+                operator: starts
+                value: O
+              16:
+                title: P
+                operator: starts
+                value: P
+              17:
+                title: Q
+                operator: starts
+                value: Q
+              18:
+                title: R
+                operator: starts
+                value: R
+              19:
+                title: S
+                operator: starts
+                value: S
+              20:
+                title: T
+                operator: starts
+                value: T
+              21:
+                title: U
+                operator: starts
+                value: U
+              22:
+                title: V
+                operator: starts
+                value: V
+              23:
+                title: W
+                operator: starts
+                value: W
+              24:
+                title: X
+                operator: starts
+                value: X
+              25:
+                title: 'Y'
+                operator: starts
+                value: 'Y'
+              26:
+                title: Z
+                operator: starts
+                value: Z
+          plugin_id: string
       sorts:
         created:
           id: created
@@ -534,7 +675,20 @@ display:
             label: ''
           granularity: second
       title: Stories
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<h1>Every day, we are inspired by stories of donation and transplantation.</h1>\n\n<p class=\"lead\">These stories honor the gifts of donors and donor families and celebrate the strength of recipients.</p>\n\n<p><a href=\"/form/story-submission\" class=\"btn\">Share Your Story</a></p>"
+            format: advanced
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships: {  }
