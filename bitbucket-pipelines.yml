@@ -34,7 +34,7 @@ pipelines:
             - echo "Cloning ..."
             - git clone $PANTHEON_REPO $PANTHEON_CODE_PATH
             - cd $PANTHEON_CODE_PATH
-            - rm -Rf *
+            - rm -Rf sites/default/config/*
             - /bin/cp -rf $BITBUCKET_CLONE_DIR/. .
             - git config --global user.name "$GIT_USER"
             - git config --global user.email $GIT_EMAIL
