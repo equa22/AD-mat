@@ -1,0 +1,8 @@
+uuid: eded3f60-7800-4466-a400-f022d59dc597
+langcode: en
+status: true
+dependencies: {  }
+id: title_block
+label: 'Title block'
+revision: 1
+description: 'Block for title'
