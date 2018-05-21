@@ -1,0 +1,19 @@
+uuid: 3af995a0-f813-416d-bb53-b987ce780f33
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_page_label
+    - paragraphs.paragraphs_type.landing_page_hero_image
+id: paragraph.landing_page_hero_image.field_page_label
+field_name: field_page_label
+entity_type: paragraph
+bundle: landing_page_hero_image
+label: 'Page name label'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

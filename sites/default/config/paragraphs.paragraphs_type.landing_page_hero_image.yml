@@ -1,0 +1,9 @@
+uuid: 121bec4b-a11a-4449-92aa-dd4b553cf5b2
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_hero_image
+label: 'Hero image'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

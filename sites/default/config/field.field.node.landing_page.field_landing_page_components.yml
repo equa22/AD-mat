@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.landing_page_counter
     - paragraphs.paragraphs_type.landing_page_cta
     - paragraphs.paragraphs_type.landing_page_hero
+    - paragraphs.paragraphs_type.landing_page_hero_image
     - paragraphs.paragraphs_type.landing_page_highlight
     - paragraphs.paragraphs_type.landing_page_slider
     - paragraphs.paragraphs_type.landing_page_statement
@@ -42,6 +43,7 @@ settings:
       landing_page_hero: landing_page_hero
       landing_page_statistics: landing_page_statistics
       landing_page_counter: landing_page_counter
+      landing_page_hero_image: landing_page_hero_image
       timeline_facts: timeline_facts
       landing_page_why_register: landing_page_why_register
     target_bundles_drag_drop:
@@ -99,6 +101,9 @@ settings:
       statistics_item:
         weight: 28
         enabled: false
+      landing_page_hero_image:
+        enabled: true
+        weight: 30
       timeline_facts:
         enabled: true
         weight: 31

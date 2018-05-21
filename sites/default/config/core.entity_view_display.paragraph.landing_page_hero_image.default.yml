@@ -1,0 +1,50 @@
+uuid: 0f0afcc7-f6eb-4e16-adb1-a31a0e54bf7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_hero_image.field_media
+    - field.field.paragraph.landing_page_hero_image.field_page_label
+    - field.field.paragraph.landing_page_hero_image.field_text
+    - field.field.paragraph.landing_page_hero_image.field_title
+    - paragraphs.paragraphs_type.landing_page_hero_image
+  module:
+    - text
+id: paragraph.landing_page_hero_image.default
+targetEntityType: paragraph
+bundle: landing_page_hero_image
+mode: default
+content:
+  field_media:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_page_label:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_text:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }
