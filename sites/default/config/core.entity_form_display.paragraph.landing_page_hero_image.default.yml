@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser
+    - entity_browser.browser.media_entity_browser_modal
     - field.field.paragraph.landing_page_hero_image.field_media
     - field.field.paragraph.landing_page_hero_image.field_page_label
     - field.field.paragraph.landing_page_hero_image.field_text
@@ -21,7 +21,7 @@ content:
   field_media:
     weight: 4
     settings:
-      entity_browser: media_entity_browser
+      entity_browser: media_entity_browser_modal
       field_widget_display: rendered_entity
       field_widget_edit: true
       field_widget_remove: true
