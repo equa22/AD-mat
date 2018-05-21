@@ -22,7 +22,11 @@ settings:
       type: target_bundles
       target_bundles:
         icon_exchange: icon_exchange
+        icon_eye: icon_eye
+        icon_hands_heart: icon_hands_heart
+        icon_heart: icon_heart
         icon_home: icon_home
+        icon_shield: icon_shield
         icon_users: icon_users
         align_left: 0
         align_right: 0

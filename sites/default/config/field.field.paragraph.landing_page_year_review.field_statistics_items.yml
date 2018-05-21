@@ -1,0 +1,106 @@
+uuid: fc07f51f-7d8b-4025-b16d-2b33fb8509a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_statistics_items
+    - paragraphs.paragraphs_type.landing_page_year_review
+    - paragraphs.paragraphs_type.statistics_item
+  module:
+    - entity_reference_revisions
+id: paragraph.landing_page_year_review.field_statistics_items
+field_name: field_statistics_items
+entity_type: paragraph
+bundle: landing_page_year_review
+label: 'Statistics items'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      statistics_item: statistics_item
+    target_bundles_drag_drop:
+      carousel:
+        weight: 27
+        enabled: false
+      cta_item:
+        weight: 28
+        enabled: false
+      landing_page_box:
+        weight: 29
+        enabled: false
+      landing_page_columns:
+        weight: 30
+        enabled: false
+      landing_page_counter:
+        weight: 31
+        enabled: false
+      landing_page_cta:
+        weight: 32
+        enabled: false
+      landing_page_form:
+        weight: 33
+        enabled: false
+      landing_page_hero:
+        weight: 34
+        enabled: false
+      landing_page_hero_image:
+        weight: 35
+        enabled: false
+      landing_page_highlight:
+        weight: 36
+        enabled: false
+      landing_page_image:
+        weight: 37
+        enabled: false
+      landing_page_list:
+        weight: 38
+        enabled: false
+      landing_page_pillars:
+        weight: 39
+        enabled: false
+      landing_page_rich_text:
+        weight: 40
+        enabled: false
+      landing_page_slider:
+        weight: 41
+        enabled: false
+      landing_page_statement:
+        weight: 42
+        enabled: false
+      landing_page_statistics:
+        weight: 43
+        enabled: false
+      landing_page_stories:
+        weight: 44
+        enabled: false
+      landing_page_why_register:
+        weight: 45
+        enabled: false
+      landing_page_year_review:
+        weight: 46
+        enabled: false
+      myth_vs_fact:
+        weight: 47
+        enabled: false
+      pillar_group:
+        weight: 48
+        enabled: false
+      pillar_group_item:
+        weight: 49
+        enabled: false
+      slide:
+        weight: 50
+        enabled: false
+      statistics_item:
+        enabled: true
+        weight: 51
+      timeline_facts:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

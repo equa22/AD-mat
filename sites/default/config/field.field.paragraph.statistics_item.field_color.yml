@@ -21,15 +21,15 @@ settings:
     filter:
       type: target_bundles
       target_bundles:
+        color_blue: color_blue
+        color_dark_blue: color_dark_blue
         color_green: color_green
+        color_light_blue: color_light_blue
         color_orange: color_orange
         color_purple: color_purple
         align_left: 0
         align_right: 0
         boxed: 0
-        color_blue: 0
-        color_dark_blue: 0
-        color_light_blue: 0
         coloured_dark: 0
         coloured: 0
         icon_comment_alt_lines: 0

@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_statistics.field_statistics_items
+    - field.field.paragraph.landing_page_statistics.field_text
+    - field.field.paragraph.landing_page_statistics.field_title
     - paragraphs.paragraphs_type.landing_page_statistics
   module:
     - content_moderation
     - paragraphs
+    - text
 id: paragraph.landing_page_statistics.default
 targetEntityType: paragraph
 bundle: landing_page_statistics
@@ -15,7 +18,7 @@ mode: default
 content:
   field_statistics_items:
     type: entity_reference_paragraphs
-    weight: 101
+    weight: 3
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -25,9 +28,25 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
     region: content
+  field_text:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   moderation_state:
     type: moderation_state_default
-    weight: 100
+    weight: 0
     settings: {  }
     region: content
     third_party_settings: {  }
