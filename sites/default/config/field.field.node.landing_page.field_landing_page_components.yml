@@ -17,6 +17,7 @@ dependencies:
     - paragraphs.paragraphs_type.landing_page_statistics
     - paragraphs.paragraphs_type.landing_page_stories
     - paragraphs.paragraphs_type.landing_page_why_register
+    - paragraphs.paragraphs_type.landing_page_year_review
     - paragraphs.paragraphs_type.timeline_facts
   module:
     - entity_reference_revisions
@@ -37,19 +38,20 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      landing_page_highlight: landing_page_highlight
       landing_page_slider: landing_page_slider
+      landing_page_highlight: landing_page_highlight
       landing_page_cta: landing_page_cta
       landing_page_statement: landing_page_statement
       carousel: carousel
       landing_page_hero: landing_page_hero
-      landing_page_counter: landing_page_counter
       landing_page_statistics: landing_page_statistics
+      landing_page_counter: landing_page_counter
       landing_page_hero_image: landing_page_hero_image
       timeline_facts: timeline_facts
       landing_page_why_register: landing_page_why_register
       landing_page_pillars: landing_page_pillars
       landing_page_stories: landing_page_stories
+      landing_page_year_review: landing_page_year_review
     target_bundles_drag_drop:
       landing_page_columns:
         weight: 8
@@ -69,10 +71,10 @@ settings:
       landing_page_rich_text:
         weight: 12
         enabled: false
-      landing_page_highlight:
+      landing_page_slider:
         enabled: true
         weight: 13
-      landing_page_slider:
+      landing_page_highlight:
         enabled: true
         weight: 13
       slide:
@@ -93,10 +95,10 @@ settings:
       landing_page_hero:
         enabled: true
         weight: 21
-      landing_page_counter:
+      landing_page_statistics:
         enabled: true
         weight: 22
-      landing_page_statistics:
+      landing_page_counter:
         enabled: true
         weight: 22
       myth_vs_fact:
@@ -126,4 +128,7 @@ settings:
       pillar_group_item:
         weight: 45
         enabled: false
+      landing_page_year_review:
+        enabled: true
+        weight: 46
 field_type: entity_reference_revisions

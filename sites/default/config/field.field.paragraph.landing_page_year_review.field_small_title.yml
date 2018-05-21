@@ -1,0 +1,19 @@
+uuid: ab87280c-a030-4345-aca0-2d0bd0647795
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_small_title
+    - paragraphs.paragraphs_type.landing_page_year_review
+id: paragraph.landing_page_year_review.field_small_title
+field_name: field_small_title
+entity_type: paragraph
+bundle: landing_page_year_review
+label: 'Small title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

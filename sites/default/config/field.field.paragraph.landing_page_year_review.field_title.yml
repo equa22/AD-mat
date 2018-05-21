@@ -1,0 +1,19 @@
+uuid: 0a8d4ffa-fda3-4027-8a0c-f7b9d565af6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.landing_page_year_review
+id: paragraph.landing_page_year_review.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: landing_page_year_review
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

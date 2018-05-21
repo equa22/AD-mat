@@ -1,0 +1,51 @@
+uuid: 22c112d2-b731-4227-aca3-212316a0124a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.landing_page_year_review.field_small_title
+    - field.field.paragraph.landing_page_year_review.field_statistics_items
+    - field.field.paragraph.landing_page_year_review.field_text
+    - field.field.paragraph.landing_page_year_review.field_title
+    - paragraphs.paragraphs_type.landing_page_year_review
+  module:
+    - entity_reference_revisions
+    - text
+id: paragraph.landing_page_year_review.default
+targetEntityType: paragraph
+bundle: landing_page_year_review
+mode: default
+content:
+  field_small_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_statistics_items:
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

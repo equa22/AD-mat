@@ -1,0 +1,9 @@
+uuid: 585b3f30-13a8-44df-8a81-3424f645f6b7
+langcode: en
+status: true
+dependencies: {  }
+id: landing_page_year_review
+label: 'Year in review'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }
