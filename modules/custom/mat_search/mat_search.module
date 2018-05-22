@@ -18,6 +18,6 @@ function mat_search_views_pre_render(ViewExecutable $view) {
     } else {
       $query = '';
     }
-    $view->header['result']->options['content'] = '<span class="total">@total search results for</span> '.$query;
+    $view->header['result']->options['content'] = $view->header['result']->options['content'].' '.$query;
   }
 }
