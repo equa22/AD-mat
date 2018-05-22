@@ -1,0 +1,23 @@
+uuid: a7d733de-5fae-4ec8-a50c-ce681e0b1726
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search
+  module:
+    - views
+  theme:
+    - mat
+id: header_search_block
+theme: mat
+region: topbar
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:search-page_1'
+settings:
+  id: 'views_exposed_filter_block:search-page_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: 'Sitewide Search'
+visibility: {  }
