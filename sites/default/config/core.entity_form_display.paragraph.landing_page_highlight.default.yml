@@ -4,9 +4,6 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.media_entity_browser_modal
-    - field.field.paragraph.landing_page_highlight.field_background_image
-    - field.field.paragraph.landing_page_highlight.field_image
-    - field.field.paragraph.landing_page_highlight.field_media
     - field.field.paragraph.landing_page_highlight.field_media_background
     - field.field.paragraph.landing_page_highlight.field_media_foreground
     - field.field.paragraph.landing_page_highlight.field_statement
@@ -107,10 +104,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_background_image: true
   field_highlight_statement: true
-  field_image: true
-  field_media: true
   field_text: true
   field_title: true
   status: true
