@@ -1,0 +1,7 @@
+uuid: 2921198e-c323-41e6-b1d5-18e114a6f0f8
+langcode: en
+status: true
+dependencies: {  }
+id: icon_facebook
+label: 'Icon facebook'
+classes: i-facebook

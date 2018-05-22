@@ -1,0 +1,7 @@
+uuid: c669b0e8-9250-4aa4-9601-d48469a5f306
+langcode: en
+status: true
+dependencies: {  }
+id: icon_instagram
+label: 'Icon instagram'
+classes: i-instagram

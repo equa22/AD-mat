@@ -1,0 +1,112 @@
+uuid: 0c80376d-66eb-4fc6-b558-a64c399577fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.social_links
+    - field.storage.block_content.field_social_links_group
+    - paragraphs.paragraphs_type.social_link
+  module:
+    - entity_reference_revisions
+id: block_content.social_links.field_social_links_group
+field_name: field_social_links_group
+entity_type: block_content
+bundle: social_links
+label: 'Social links group'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      social_link: social_link
+    target_bundles_drag_drop:
+      carousel:
+        weight: 28
+        enabled: false
+      cta_item:
+        weight: 29
+        enabled: false
+      highlight_slide:
+        weight: 30
+        enabled: false
+      landing_page_box:
+        weight: 31
+        enabled: false
+      landing_page_columns:
+        weight: 32
+        enabled: false
+      landing_page_counter:
+        weight: 33
+        enabled: false
+      landing_page_cta:
+        weight: 34
+        enabled: false
+      landing_page_form:
+        weight: 35
+        enabled: false
+      landing_page_hero:
+        weight: 36
+        enabled: false
+      landing_page_hero_image:
+        weight: 37
+        enabled: false
+      landing_page_highlight:
+        weight: 38
+        enabled: false
+      landing_page_image:
+        weight: 39
+        enabled: false
+      landing_page_list:
+        weight: 40
+        enabled: false
+      landing_page_pillars:
+        weight: 41
+        enabled: false
+      landing_page_rich_text:
+        weight: 42
+        enabled: false
+      landing_page_slider:
+        weight: 43
+        enabled: false
+      landing_page_statement:
+        weight: 44
+        enabled: false
+      landing_page_statistics:
+        weight: 45
+        enabled: false
+      landing_page_stories:
+        weight: 46
+        enabled: false
+      landing_page_why_register:
+        weight: 47
+        enabled: false
+      landing_page_year_review:
+        weight: 48
+        enabled: false
+      myth_vs_fact:
+        weight: 49
+        enabled: false
+      pillar_group:
+        weight: 50
+        enabled: false
+      pillar_group_item:
+        weight: 51
+        enabled: false
+      slide:
+        weight: 52
+        enabled: false
+      statistics_item:
+        weight: 53
+        enabled: false
+      social_link:
+        enabled: true
+        weight: 54
+      timeline_facts:
+        weight: 54
+        enabled: false
+field_type: entity_reference_revisions

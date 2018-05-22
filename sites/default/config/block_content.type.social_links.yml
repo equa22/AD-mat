@@ -1,0 +1,8 @@
+uuid: 791eebf9-77bf-4fb9-a86e-757bbd8dc23e
+langcode: en
+status: true
+dependencies: {  }
+id: social_links
+label: 'Social links'
+revision: 1
+description: 'Block for social links in footer.'

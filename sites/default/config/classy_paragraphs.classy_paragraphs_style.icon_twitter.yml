@@ -1,0 +1,7 @@
+uuid: 08d96a40-14b2-4f74-ab31-08a7e0b2b311
+langcode: en
+status: true
+dependencies: {  }
+id: icon_twitter
+label: 'Icon twitter'
+classes: i-twitter

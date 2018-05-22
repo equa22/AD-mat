@@ -1,0 +1,7 @@
+uuid: dcf4ea40-6f93-4c58-8288-1529c9a4ff36
+langcode: en
+status: true
+dependencies: {  }
+id: icon_vimeo
+label: 'Icon vimeo'
+classes: i-vimeo

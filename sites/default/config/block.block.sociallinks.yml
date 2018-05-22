@@ -1,0 +1,25 @@
+uuid: 7763403d-ee32-4afe-a651-991868be6e6e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:social_links:2f9a9d10-f8fb-4347-b69c-f7b5099e1b68'
+  module:
+    - block_content
+  theme:
+    - mat
+id: sociallinks
+theme: mat
+region: footer_links
+weight: 0
+provider: null
+plugin: 'block_content:2f9a9d10-f8fb-4347-b69c-f7b5099e1b68'
+settings:
+  id: 'block_content:2f9a9d10-f8fb-4347-b69c-f7b5099e1b68'
+  label: 'Social links'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

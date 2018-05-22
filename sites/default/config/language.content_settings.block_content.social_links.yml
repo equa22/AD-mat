@@ -1,0 +1,11 @@
+uuid: 0608a96e-d2be-41df-8cbb-efea9e1490d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.social_links
+id: block_content.social_links
+target_entity_type_id: block_content
+target_bundle: social_links
+default_langcode: site_default
+language_alterable: false

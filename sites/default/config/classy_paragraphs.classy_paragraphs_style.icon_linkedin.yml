@@ -1,0 +1,7 @@
+uuid: 46d15264-bf51-49a4-a58c-93d47486db42
+langcode: en
+status: true
+dependencies: {  }
+id: icon_linkedin
+label: 'Icon linkedin'
+classes: i-linkedin

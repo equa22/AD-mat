@@ -1,0 +1,58 @@
+uuid: f521e83c-67fd-4a56-9b49-d5a15bfdfff7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icon
+    - paragraphs.paragraphs_type.social_link
+id: paragraph.social_link.field_icon
+field_name: field_icon
+entity_type: paragraph
+bundle: social_link
+label: Icon
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: classy_paragraphs
+  handler_settings:
+    filter:
+      type: target_bundles
+      target_bundles:
+        icon_facebook: icon_facebook
+        icon_instagram: icon_instagram
+        icon_linkedin: icon_linkedin
+        icon_twitter: icon_twitter
+        icon_vimeo: icon_vimeo
+        align_left: 0
+        align_right: 0
+        boxed: 0
+        color_blue: 0
+        color_dark_blue: 0
+        color_green: 0
+        color_light_blue: 0
+        color_orange: 0
+        color_purple: 0
+        coloured_dark: 0
+        coloured: 0
+        icon_comment_alt_lines: 0
+        icon_exchange: 0
+        icon_eye: 0
+        icon_give_life: 0
+        icon_hand_holding_heart: 0
+        icon_hands_heart: 0
+        icon_heart: 0
+        icon_home: 0
+        icon_search: 0
+        icon_shield: 0
+        icon_together: 0
+        icon_users: 0
+        icon_walking: 0
+        statement_basic: 0
+        statement_inner: 0
+      negate: 0
+    sort:
+      field: _none
+field_type: entity_reference
