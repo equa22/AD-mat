@@ -1,7 +1,23 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\ViewExecutable;
 
-function mat_search_form_search_block_form_alter(&$form, FormStateInterface $form_state) {
-  $form['keys']['#attributes']['placeholder'] = t('Type here ...');
+function mat_search_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-search-page-1') {
+    $form['search_api_fulltext']['#attributes']['placeholder'] = t('Type here ...');
+    $form['actions']['submit']['#value'] = t('Search');
+  }
+}
+
+function mat_search_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == 'search' && $view->current_display == 'page_1') {
+    $params = \Drupal::request()->query->all();
+    if (isset($params['search_api_fulltext'])) {
+      $query = '<span class="search-query-text">"'.$params['search_api_fulltext'].'"</span>';
+    } else {
+      $query = '';
+    }
+    $view->header['result']->options['content'] = '<span class="total">@total search results for</span> '.$query;
+  }
 }

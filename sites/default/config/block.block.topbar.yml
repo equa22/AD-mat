@@ -11,7 +11,7 @@ dependencies:
 id: topbar
 theme: mat
 region: topbar
-weight: -6
+weight: -7
 provider: null
 plugin: 'block_content:17cee78b-e9cf-4eb0-b13f-53066518c99c'
 settings:
