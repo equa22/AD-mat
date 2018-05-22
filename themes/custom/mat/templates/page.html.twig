@@ -84,6 +84,12 @@
   {{ page.content }}
 </main>
 
+{% if page.highlight_slider %}
+  <section id="highlight-slider">
+    {{ page.highlight_slider }}
+  </section>
+{% endif %}
+
 {% if page.footer_links %}
   <footer id="footer" role="footer">
     {% if page.footer_links %}

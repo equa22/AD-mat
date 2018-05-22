@@ -21,6 +21,7 @@ regions:
   precontent: 'Precontent'
   content: 'Content'
   sidebar: 'Sidebar'
+  highlight_slider: 'Highlight slider'
   footer_menu: 'Footer menu'
   footer_links: 'Footer links'
   copyright: 'Copyright'
