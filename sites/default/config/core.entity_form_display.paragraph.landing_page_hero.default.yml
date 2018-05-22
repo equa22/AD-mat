@@ -9,8 +9,28 @@ dependencies:
     - paragraphs.paragraphs_type.landing_page_hero
   module:
     - content_moderation
+    - field_group
     - paragraphs
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_text_align
+      parent_name: ''
+      weight: 20
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 id: paragraph.landing_page_hero.default
 targetEntityType: paragraph
 bundle: landing_page_hero

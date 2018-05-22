@@ -11,7 +11,28 @@ dependencies:
     - paragraphs.paragraphs_type.statistics_item
   module:
     - content_moderation
+    - field_group
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_icon
+        - field_color
+      parent_name: ''
+      weight: 20
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 id: paragraph.statistics_item.default
 targetEntityType: paragraph
 bundle: statistics_item

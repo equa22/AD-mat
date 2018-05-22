@@ -16,8 +16,28 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - field_group
     - paragraphs
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_text_align
+      parent_name: ''
+      weight: 5
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 _core:
   default_config_hash: 0QxaduRoWYtyTWh8Xql3ylkDsbVf1RVP32xl7DwfbGU
 id: paragraph.landing_page_highlight.default
@@ -26,20 +46,6 @@ bundle: landing_page_highlight
 mode: default
 content:
   field_media_background:
-    weight: 5
-    settings:
-      entity_browser: media_entity_browser_modal
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      open: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: teaser
-    third_party_settings: {  }
-    type: entity_browser_entity_reference
-    region: content
-  field_media_foreground:
     weight: 4
     settings:
       entity_browser: media_entity_browser_modal
@@ -53,8 +59,22 @@ content:
     third_party_settings: {  }
     type: entity_browser_entity_reference
     region: content
-  field_statement:
+  field_media_foreground:
     weight: 3
+    settings:
+      entity_browser: media_entity_browser_modal
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: teaser
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_statement:
+    weight: 2
     settings:
       title: Paragraph
       title_plural: Paragraphs

@@ -9,7 +9,27 @@ dependencies:
     - paragraphs.paragraphs_type.pillar_group
   module:
     - content_moderation
+    - field_group
     - paragraphs
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_style
+      parent_name: ''
+      weight: 20
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 id: paragraph.pillar_group.default
 targetEntityType: paragraph
 bundle: pillar_group
