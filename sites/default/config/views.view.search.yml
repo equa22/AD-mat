@@ -453,7 +453,19 @@ display:
           min_length: null
           fields: {  }
           plugin_id: search_api_fulltext
-      sorts: {  }
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_global_index
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       title: Search
       header:
         result:
@@ -467,7 +479,20 @@ display:
           content: '<span class="total">@total search results for</span>'
           plugin_id: result
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<p>Sorry, nothing was found.</p>'
+            format: advanced
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
