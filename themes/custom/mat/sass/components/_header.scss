@@ -126,18 +126,24 @@
       }
     }
 
-    #topbar_search-icon {
+    .i-search-plain {
+      @media (min-width: $screen-sm-min) {
+        @include icons('i-search-plain');
+        background-size: auto auto;
+      }
+    }
+
+    #topbar--search-icon {
       display: none;
       
-      
-      
-
       @media (min-width: $screen-sm-min) {
         display: block;
         position: absolute;
         right: $grid-gutter-width;
         font-size: 1.6em;
         cursor: pointer;
+        width: 2.5rem;
+        height: 2.5rem;
       }
 
       @media (max-width: 991px) {
@@ -183,14 +189,14 @@
   }
 
   // Search block (small screens only)
-  #block-testsearchmobile {
+  #block-header-search-block {
     display: none;
   }
 }
 
 body.mobile-menu--opened {
   @media (max-width: $screen-xs-max) { 
-    #block-testsearchmobile {
+    #block-header-search-block {
       display: block;
       position: fixed;
       bottom: 0;
@@ -199,6 +205,11 @@ body.mobile-menu--opened {
       background-color: #F1F1F1;
       box-shadow: inset 0 7px 10px -7px rgba(0, 0, 0, 0.3);
       z-index: $z-index-mobile-menu;
+
+      form label,
+      .form-actions {
+        //display: none;
+      }
     }
   }
 }
