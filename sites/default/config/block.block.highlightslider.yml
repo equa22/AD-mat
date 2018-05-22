@@ -1,9 +1,9 @@
-uuid: 8bb88c78-aa71-4bd2-a25e-edf1fecb9740
+uuid: a5924a39-b6f6-4372-bd9f-b1469d34ac6c
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:highlight_slider:982fb028-18e6-4cd3-ad11-7bda970caba6'
+    - 'block_content:highlight_slider:370af45e-b491-4729-8513-b4d57b1d1a0e'
   module:
     - block_content
     - system
@@ -14,12 +14,12 @@ theme: mat
 region: highlight_slider
 weight: 0
 provider: null
-plugin: 'block_content:982fb028-18e6-4cd3-ad11-7bda970caba6'
+plugin: 'block_content:370af45e-b491-4729-8513-b4d57b1d1a0e'
 settings:
-  id: 'block_content:982fb028-18e6-4cd3-ad11-7bda970caba6'
+  id: 'block_content:370af45e-b491-4729-8513-b4d57b1d1a0e'
   label: 'Highlight slider'
   provider: block_content
-  label_display: '0'
+  label_display: visible
   status: true
   info: ''
   view_mode: full
