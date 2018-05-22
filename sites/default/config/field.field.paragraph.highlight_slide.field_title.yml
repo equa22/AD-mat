@@ -1,0 +1,19 @@
+uuid: d8cfc0d1-f281-44b4-99c2-8360c83e61b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.highlight_slide
+id: paragraph.highlight_slide.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: highlight_slide
+label: Title
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

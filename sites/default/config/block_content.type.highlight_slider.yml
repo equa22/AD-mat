@@ -1,0 +1,8 @@
+uuid: af34fb19-3c89-4acc-9040-6ec9ac5ebbbe
+langcode: en
+status: true
+dependencies: {  }
+id: highlight_slider
+label: 'Highlight slider'
+revision: 1
+description: 'Block for highlight slider.'

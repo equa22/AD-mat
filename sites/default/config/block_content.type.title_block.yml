@@ -5,4 +5,4 @@ dependencies: {  }
 id: title_block
 label: 'Title block'
 revision: 1
-description: 'Block for title'
+description: 'Block for title.'

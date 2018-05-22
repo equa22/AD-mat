@@ -5,4 +5,4 @@ dependencies: {  }
 id: topbar_block
 label: 'Top bar block'
 revision: 1
-description: 'A block for an announcement in the top line of the header.'
+description: 'Block for an announcement in the top line of the header.'
