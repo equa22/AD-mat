@@ -4,33 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_statement.field_link
-    - field.field.paragraph.landing_page_statement.field_style
     - field.field.paragraph.landing_page_statement.field_text
     - paragraphs.paragraphs_type.landing_page_statement
   module:
     - content_moderation
-    - field_group
     - link
     - text
-third_party_settings:
-  field_group:
-    group_settings:
-      children:
-        - field_style
-      parent_name: ''
-      weight: 3
-      format_type: html_element
-      format_settings:
-        id: ''
-        classes: settings
-        element: div
-        show_label: true
-        label_element: h3
-        required_fields: true
-        attributes: ''
-        effect: none
-        speed: fast
-      label: Settings
 id: paragraph.landing_page_statement.default
 targetEntityType: paragraph
 bundle: landing_page_statement
@@ -43,12 +22,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_style:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_text:
     weight: 1

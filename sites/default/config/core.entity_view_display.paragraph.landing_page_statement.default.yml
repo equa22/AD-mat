@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_statement.field_link
-    - field.field.paragraph.landing_page_statement.field_style
     - field.field.paragraph.landing_page_statement.field_text
     - paragraphs.paragraphs_type.landing_page_statement
   module:
@@ -35,5 +34,4 @@ content:
     type: text_default
     region: content
 hidden:
-  field_style: true
   field_title: true
