@@ -6,7 +6,14 @@ dependencies:
     - field.storage.paragraph.field_title_formatted
     - paragraphs.paragraphs_type.landing_page_hero
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    basic_editor: basic_editor
+    advanced: '0'
+    rich_editor: '0'
+    plain_text: '0'
 id: paragraph.landing_page_hero.field_title_formatted
 field_name: field_title_formatted
 entity_type: paragraph
