@@ -47,9 +47,10 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-    	<div class="statement-content">
-      		{{ content }}
-      	</div>
+      <div class="container">
+        <h2>{{ content.field_text }}</h2>
+        {{ content.field_link }}
+      </div>
     {% endblock %}
   </div>
 {% endblock paragraph %}

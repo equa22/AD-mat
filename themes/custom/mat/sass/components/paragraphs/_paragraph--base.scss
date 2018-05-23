@@ -308,12 +308,12 @@
   }
 
   > .field--name-field-title {
-    @extend %h2;
+    @extend %h3;
     color: $brand-primary;
   }
 
   > .field--name-field-text {
-    @extend %lead;
+    @extend %h2;
     color: #173F7C;
   }
 }
