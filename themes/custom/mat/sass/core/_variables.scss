@@ -144,9 +144,10 @@ $container-lg: 1170px + $grid-gutter; // 1230px;
 // - - - - - - - - - - - - - - - - - - - -
 // Z-index
 // - - - - - - - - - - - - - - - - - - - -
-$z-index-header: 100;
-$z-index-mobile-menu: 110;
-$z-index-bars: 11;
+$z-index-bars:			 11;
+$z-index-header:		 100;
+$z-index-mobile-menu:	 110;
+$z-index-search-overlay: 120;
 
 
 // - - - - - - - - - - - - - - - - - - - -
