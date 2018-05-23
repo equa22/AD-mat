@@ -44,17 +44,46 @@
 
       setAccordion();
       $(window).on('resize', setAccordion);
-    }
-  };
 
-  // Styling for opened item of the main navigation (on mobile)
-  Drupal.behaviors.openItem = {
-    attach: function (context, settings) {
+      // Styling for opened item of the main navigation (on mobile)
       $('#block-mat-main-menu .menu-item--expanded', context).once('opened-item').on('click', function() {
         $(this).siblings().removeClass('menu-item--opened');
         $(this).addClass('menu-item--opened');
       });
     }
   };
+
+  // Search in main navigation (overlay and mobile)
+  Drupal.behaviors.topbarSearch = {
+    attach: function (context, settings) {
+      // To open Search overlay
+      $('#topbar--search-open', context).once('search-overlay').on('click', function() {
+        $('#block-header-search-block').addClass('search-block--opened');
+      });
+
+      // To close Search overlay
+      $('#topbar--search-close .i-close', context).once('search-overlay-close').on('click', function() {
+        $('#block-header-search-block').removeClass('search-block--opened');
+      });
+
+      // Setting placeholder on mobile
+      var placeholderOrigin = $('#block-header-search-block .form-text').attr('placeholder');
+
+      function setMobilePlaceholder() {
+        var windowWidth = $(window).width();
+        
+        if (windowWidth < 768) {
+         $('#block-header-search-block .form-text').attr('placeholder', Drupal.t('Search'));
+        } else {
+          $('#block-header-search-block .form-text').attr('placeholder', placeholderOrigin);
+        }
+      }
+
+      setMobilePlaceholder();
+      $(window).on('resize', setMobilePlaceholder);
+    }
+  };
+
+  
 
 })(jQuery);
