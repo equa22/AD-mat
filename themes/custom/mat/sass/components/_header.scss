@@ -133,7 +133,7 @@
       }
     }
 
-    #topbar--search-icon {
+    #topbar--search-open {
       display: none;
       
       @media (min-width: $screen-sm-min) {
@@ -191,8 +191,109 @@
   // Search block (small screens only)
   #block-header-search-block {
     display: none;
+
+    #topbar--search-close {
+      display: none;
+    }
+  }
+
+  #block-header-search-block.search-block--opened {
+    @media (min-width: $screen-sm-min) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 120;
+      @include gradient-blue();
+      text-align: center;
+
+      form {
+        .form-item {
+          display: flex;
+          flex-direction: column;
+          padding: 0 $grid-gutter-width;
+          margin-bottom: 5rem;
+        }
+
+        label {
+          @include font-size(2.4);
+          line-height: 1.3;
+          font-weight: 500;
+          letter-spacing: .13em;
+          text-transform: uppercase;
+          color: $white;
+        }
+
+        input.form-text {
+          max-width: 90rem;
+          padding: 0.5rem;
+          margin-top: 3.2rem;
+          @include font-size(8.5);
+          line-height: 1;
+          text-align: center;
+          color: $white;
+          @include placeholder($blue-dark); // should be 50% from $blue-dark
+          border: none;
+          border-bottom: 2px solid $white;
+          background-color: transparent;
+        }
+
+        .form-actions {
+          input {
+            padding: 1rem 2.6rem 1rem 5rem;
+            @include font-size(1.6);
+            font-weight: 500;
+            text-transform: none;
+            border-radius: 30px;
+            @include icons('i-search-plain');
+            background-size: 1.5rem auto;
+            background-position: 2.6rem center;
+          }
+        }
+      }
+
+      #topbar--search-close {
+        display: block;
+        width: 100%;
+        position: absolute;
+        top: 2rem;
+
+        > div {
+          max-width: 122rem;
+          margin: 0 auto;
+          padding: 0 $grid-gutter-width;
+          @include font-size(1.6); 
+          font-weight: 500;
+          letter-spacing: .17em;
+          text-transform: uppercase;
+          text-align: right;
+          color: $white;
+        }
+
+        .i-close {
+          display: inline-block;
+          padding-right: 3.5rem;
+          height: 2.5rem;
+          @include icons('i-close');
+          background-size: auto auto;
+          background-position: center right;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
+
+/*
+body {
+  overflow-y: hidden;
+}
+*/
 
 body.mobile-menu--opened {
   @media (max-width: $screen-xs-max) { 
@@ -202,13 +303,57 @@ body.mobile-menu--opened {
       bottom: 0;
       width: 100%;
       height: 11rem;
+      padding: 3rem $grid-gutter-width 0 $grid-gutter-width;
       background-color: #F1F1F1;
       box-shadow: inset 0 7px 10px -7px rgba(0, 0, 0, 0.3);
       z-index: $z-index-mobile-menu;
 
-      form label,
-      .form-actions {
-        //display: none;
+      form {
+        position: relative;
+
+        .form-item {
+          margin-bottom: 0;
+        }
+
+        label {
+          display: none;
+        }
+
+        input.form-text {
+          width: 100%;
+          padding: 1rem 4rem 1rem 0;
+          @include font-size(2);
+          @include placeholder(#9B9B9B);
+          border: none;
+          background-color: transparent;
+        }
+
+        .form-actions {
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            right: -0.5rem;
+            cursor: pointer;
+            width: 4rem;
+            height: 4rem;
+            @include icons('i-search-plain-dark');
+            background-size: auto auto;
+            background-position: center center;
+          }
+
+          input {
+            width: 4rem;
+            height: 4rem;
+            opacity: 0 !important;
+          }
+        }
+
+        
       }
     }
   }

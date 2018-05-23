@@ -22,6 +22,11 @@ a {
   }
 }
 
+a,
+input {
+  outline: none;
+}
+
 table {
   width: 100%;
   margin: 20px 0;
