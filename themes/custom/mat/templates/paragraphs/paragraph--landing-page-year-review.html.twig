@@ -47,7 +47,14 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      {{ content }}
+       <div class="container-small">
+       	{{ content.field_small_title }}
+        {{ content.field_title }}
+        {{ content.field_text }}
+      </div>
+      <div class="container-large">
+        {{ content.field_statistics_items }}
+      </div>
     {% endblock %}
   </div>
 {% endblock paragraph %}

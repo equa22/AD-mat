@@ -9,16 +9,23 @@
 .paragraph--type--landing-page-cta {
   // Grid
   .field--name-field-cta-items {
-    @include make-row;
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 11rem;
 
+    @media (min-width: $screen-sm-min) {
+      margin-right: 25px;
+      margin-left: 25px;
+    }
+
     > .field__item {
-      @extend %col;
+      display: flex;
       flex-basis: 100%;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
 
       @media (min-width: $screen-sm-min) {
         flex-basis: 50%;
+        padding: 0 50px;
       }
     }
   }
@@ -28,7 +35,7 @@
     display: flex;
     align-items: center;
     min-height: 12rem;
-    margin-left: 5rem;
+    margin-left: 4rem;
     padding: 1.5rem 0 2rem 0;
     position: relative;
     cursor: pointer;
@@ -43,8 +50,12 @@
     }
 
     .icon-circled {
-      margin-left: -5rem;
+      margin-left: -4rem;
       @extend %circle--base;
+
+      @media (min-width: $screen-sm-min) {
+        margin-left: -5rem;
+      }
 
       &:after {
         background-size: 3.5rem auto;
@@ -52,14 +63,15 @@
     }
 
     .cta-item--content {
-      padding: 0 4rem 0 2.5rem;
+      width: 100%;
       margin-right: 2rem;
+      padding: 0 3.8rem 0 2.5rem;
       @include icons('i-chevron-circle-right');
       background-position: right center;
 
       @media (min-width: $screen-sm-min) {
-        padding-right: 10rem;
         margin-right: 4.5rem;
+        padding-right: 10rem;
       }
     }
 

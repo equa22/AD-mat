@@ -6,10 +6,18 @@
 
 // Paragraph statistics
 // -----------------------------------------------------------------------------
+.paragraph--type--landing-page-statistics {
+
+}
 
 // Grid
 .field--name-field-statistics-items {
   @include make-row;
+  margin-top: 8.5rem;
+
+  @media (min-width: $screen-sm-min) {
+    margin-top: 15rem;
+  }
 
   > .field__item {
     @extend %col;

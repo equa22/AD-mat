@@ -294,27 +294,37 @@
 
 
 // MAT paragraphs
-.paragraph--type--landing-page-cta,
-.paragraph--type--landing-page-statistics,
-.paragraph--type--landing-page-year-review {
+.container-small {
   @extend .container;
+  max-width: 100rem;
+}
+
+.container-large {
+  @extend .container;
+  max-width: 1530px;
 }
 
 .paragraph--type--landing-page-cta,
-.paragraph--type--landing-page-statistics {
-  > .field--name-field-title,
-  > .field--name-field-text {
-    text-align: center;
-  }
+.paragraph--type--landing-page-statistics,
+.paragraph--type--landing-page-year-review {
+  //@extend .container;
+}
 
-  > .field--name-field-title {
-    @extend %h3;
-    color: $brand-primary;
-  }
+.paragraph--type--landing-page-cta,
+.paragraph--type--landing-page-statistics,
+.paragraph--type--landing-page-statement {
 
-  > .field--name-field-text {
-    @extend %h2;
-    color: #173F7C;
+  .container-small {
+    .field--name-field-title {
+      @extend %h3;
+      color: $brand-primary;
+      text-align: center;
+    }
+
+    h2 {
+      color: $blue-dark;
+      text-align: center;
+    }
   }
 }
 
