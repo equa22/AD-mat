@@ -20,7 +20,7 @@ pipelines:
             - rm -Rf .git
             - composer install
             # Fix slick
-            - mv -y libraries/slick-carousel libraries/slick
+            - mv libraries/slick-carousel libraries/slick
             # NPM workflow
             - cd $BITBUCKET_CLONE_DIR/themes/custom/mat/.npm
             - npm install
