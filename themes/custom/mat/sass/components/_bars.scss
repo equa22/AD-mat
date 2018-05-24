@@ -33,6 +33,15 @@
   }
 }
 
+// Transparent navigation
+body.page-node-type-landing-page {
+  .bars {
+    .line {
+      background-color: $white;
+    }
+  }
+}
+
 body.mobile-menu--opened {
   .bars {
     .line {

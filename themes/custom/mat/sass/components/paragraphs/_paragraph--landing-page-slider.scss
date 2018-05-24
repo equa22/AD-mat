@@ -85,3 +85,16 @@
     }
   }
 }
+
+// For Logged in users only.
+body.adminimal-admin-toolbar {
+  .paragraph--type--landing-page-slider {
+    @media (min-width: $screen-sm-min) {
+      top: -18rem;
+    }
+    
+    @media (max-width: $screen-sm-max) {
+      top: -5rem;
+    }
+  }
+}
