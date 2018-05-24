@@ -278,9 +278,10 @@ class ParagraphsLibraryItemTest extends BrowserTestBase {
     $page->pressButton('Add From library');
     $edit = [
       'title[0][value]' => 'Test content',
-      'field_paragraphs[0][subform][field_reusable_paragraph][0][target_id]' => 'Test usage nested paragraph'
+      'field_paragraphs[0][subform][field_reusable_paragraph][0][target_id]' => 'Test usage nested paragraph',
     ];
-    $this->drupalPostForm(NULL, $edit,'Save');
+    $this->drupalPostForm(NULL, $edit, 'Save');
+    $node = $this->drupalGetNodeByTitle('Test content');
 
     // Check Usage tab.
     $this->drupalGet('admin/content/paragraphs');
@@ -289,9 +290,9 @@ class ParagraphsLibraryItemTest extends BrowserTestBase {
     $assert_session->pageTextContains('Entity usage information for Test usage nested paragraph');
 
     $assert_session->elementContains('css', 'table tbody tr td:nth-child(1)', 'Test content &gt; field_paragraphs');
-    $assert_session->elementContains('css', 'table tbody tr td:nth-child(2)', 'paragraph');
-    $assert_session->elementContains('css', 'table tbody tr td:nth-child(3)', 'entity_reference');
-    $assert_session->elementContains('css', 'table tbody tr td:nth-child(4)', '1');
+    $assert_session->elementContains('css', 'table tbody tr td:nth-child(2)', 'Paragraph');
+    $assert_session->elementContains('css', 'table tbody tr td:nth-child(3)', 'en');
+    $assert_session->elementContains('css', 'table tbody tr td:nth-child(5)', 'Reusable paragraph');
 
     // Assert breadcrumb.
     $assert_session->elementContains('css', '.breadcrumb ol li:nth-child(1)', 'Home');
@@ -310,10 +311,13 @@ class ParagraphsLibraryItemTest extends BrowserTestBase {
     $this->clickLink('Usage');
     $assert_session->pageTextContains('Entity usage information for Test usage nested paragraph');
 
-    $assert_session->elementContains('css', 'table tbody tr td:nth-child(1)', 'Test content &gt; field_paragraphs (previous revision)');
-    $assert_session->elementContains('css', 'table tbody tr td:nth-child(2)', 'paragraph');
-    $assert_session->elementContains('css', 'table tbody tr td:nth-child(3)', 'entity_reference');
-    $assert_session->elementContains('css', 'table tbody tr td:nth-child(4)', '1');
+    // No usage shows up on this page.
+    // @todo once 2954039 lands, we expect to have a row here indicating that
+    // the host node references the paragraph in a non-default revision.
+    // Alternatively, if 2971131 lands first, we would have here an extra row
+    // with possibly a generic label (just with the entity ID or similar). In
+    // both cases this test will need to be updated.
+    $assert_session->elementNotExists('css', 'table tbody tr');
   }
 
 }

@@ -5,16 +5,12 @@ package: Media
 core: '8.x'
 
 dependencies:
-  - inline_entity_form:inline_entity_form
   - entity_browser:entity_browser
-  - entity_browser:entity_browser_entity_form
   - drupal:media
   - drupal:views
 
 test_dependencies:
-  - inline_entity_form (>=8.x-1.x)
   - entity_browser (>=8.x-2.x)
-  - entity_browser:entity_browser_entity_form (>=8.x-2.x)
   - drupal:media (>=8.4)
   - video_embed_field (>=8.x-2.x)
   - ctools:ctools

@@ -20,7 +20,7 @@ class LibraryItemAccessControlHandler extends EntityAccessControlHandler {
    */
   protected function checkAccess(EntityInterface $library_item, $operation, AccountInterface $account) {
     if ($operation == 'delete') {
-      $usage_data = \Drupal::service('entity_usage.usage')->listUsage($library_item);
+      $usage_data = \Drupal::service('entity_usage.usage')->listSources($library_item);
       if ($usage_data) {
         return AccessResult::forbidden();
       }
