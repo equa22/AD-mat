@@ -40,13 +40,16 @@ settings:
         coloured_dark: 0
         coloured: 0
         icon_comment_alt_lines: 0
+        icon_facebook: 0
         icon_give_life: 0
         icon_hand_holding_heart: 0
+        icon_instagram: 0
+        icon_linkedin: 0
         icon_search: 0
         icon_together: 0
+        icon_twitter: 0
+        icon_vimeo: 0
         icon_walking: 0
-        statement_basic: 0
-        statement_inner: 0
       negate: 0
     sort:
       field: _none
