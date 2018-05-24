@@ -1,0 +1,39 @@
+<?php
+
+use Drupal\Core\Menu\MenuActiveTrailInterface;
+use Drupal\Core\Menu\MenuLinkTreeInterface;
+use Drupal\Core\Menu\MenuLinkInterface;
+use Drupal\Core\Plugin\PluginBase;
+use Drupal\Core\Plugin\PluginFormInterface;
+use Drupal\Core\Entity\EntityManagerInterface;
+
+function mat_global_entity_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+
+  if ($build['#view_mode'] == 'full') {
+    $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+
+    $node_id = \Drupal::routeMatch()->getRawParameter('node');
+    if ($node_id) {
+      $menu_link = $menu_link_manager->loadLinksByRoute('entity.node.canonical', array('node' => $node_id));
+    }
+    
+    if (is_array($menu_link) && count($menu_link)) {
+      $menu_link = reset($menu_link);
+      if ($menu_link->getParent()) {
+        $parents = $menu_link_manager->getParentIds($menu_link->getParent());
+        $parent = reset(array_reverse($parents));
+        $parent_uuid = explode(':', $parent);
+
+        
+
+        $parent_node = \Drupal::entityManager()->loadEntityByUuid($entity->getEntityTypeId(), $parent_uuid[1]);
+        var_dump($menu_link->getParent());
+        die();
+        $title = $menu_link_manager->createInstance($parent)->getTitle();
+        $build['title'][0]['#context']['value'] = $title;
+
+        
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+<?php
+
+use Drupal\webform\WebformSubmissionInterface;
+use Drupal\node\Entity\Node;
+
+use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Entity\EntityInterface;
+
+function mat_webform_webform_submission_insert(WebformSubmissionInterface $submission) {
+  $data = $submission->getData();
+
+  // get file URL
+  $file = \Drupal\file\Entity\File::load($data['featured_photo']);
+  $path = $file->getFileUri();
+  $image = \Drupal::service('image.factory')->get($path);
+  if ($image->isValid()) {
+    $styles = ImageStyle::loadMultiple();
+    $image_uri = $path;
+    foreach ($styles as $style) {
+      $destination = $style->buildUri($image_uri);
+      var_dump($destination);
+      var_dump($image_uri);
+      $style->createDerivative($image_uri, $destination);
+    }
+  }
+
+  // create media (work in progress)
+  // https://www.drupal.org/project/media_entity/issues/2829684
+  Media::create([
+    // The node entity bundle.
+    'type' => 'media_bulk',
+    'langcode' => 'en',
+    'created' => REQUEST_TIME,
+    'changed' => REQUEST_TIME,
+    'title' => 'My test!',
+    'body' => [
+    'summary' => '',
+    'value' => '
+
+    The body of my node.
+
+    ',
+    'format' => 'full_html',
+    ],
+    ]);
+    $media->save();
+  }
+ 
+
+  // get story category ID
+  $story_category     = $data['please_select_one_category'];
+  // get story featured photo
+  $story_image        = $data['featured_photo'];
+  // get story other images
+
+  if (isset($data['additional_photo1'])) {
+    $photo1 = $data['additional_photo1'];
+  }
+  if (isset($data['additional_photo2'])) {
+    $photo2 = $data['additional_photo2'];
+  }
+  if (isset($data['additional_photo3'])) {
+    $photo3 = $data['additional_photo3'];
+  }
+  // add
+
+  $node = Node::create([
+    'type'                            => 'story_profile',
+    'status'                          => 'NODE_NOT_PUBLISHED',
+    'title'                           => $data['first_name'] .' '. $data['last_name'],
+    'body'                            => $data['tell_us_the_story'],
+    'field_story_first_name'          => $data['first_name'],
+    'field_story_last_name'           => $data['last_name'],
+    'field_story_category'            => $story_category,
+    'field_story_main_image'          => $story_image
+  ]);
+  $node->save();
+
+  // save other images (if exists) to this node, when node is created
+  if (isset($data['additional_photo1'])) {
+    \Drupal::database()->insert('node__field_story_secondary_images')->fields(['bundle', 'deleted', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_story_secondary_images_target_id'])->values(array('story_profile', 0, $node->id(), $node->id(), 'en', 0, $photo1))->execute();
+  }
+
+  if (isset($data['additional_photo2'])) {
+    \Drupal::database()->insert('node__field_story_secondary_images')->fields(['bundle', 'deleted', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_story_secondary_images_target_id'])->values(array('story_profile', 0, $node->id(), $node->id(), 'en', 1, $photo2))->execute();
+  }
+
+  if (isset($data['additional_photo3'])) {
+    \Drupal::database()->insert('node__field_story_secondary_images')->fields(['bundle', 'deleted', 'entity_id', 'revision_id', 'langcode', 'delta', 'field_story_secondary_images_target_id'])->values(array('story_profile', 0, $node->id(), $node->id(), 'en', 2, $photo3))->execute();
+  }
+
+  // create media entity
+
+
+  //die();
+
+}
