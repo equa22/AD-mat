@@ -18,10 +18,10 @@ pipelines:
             - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
             - /bin/cp -f scripts/bitbucket-pipelines/.gitignore .gitignore
             - rm -Rf .git
-            - pwd
-            - ls -la
             - composer install
-            - ls -la libraries/
+            # Fix slick
+            - mv libraries/slick-carousel libraries/slick
+            # NPM workflow
             - cd $BITBUCKET_CLONE_DIR/themes/custom/mat/.npm
             - npm install
             - npm install -g gulp
