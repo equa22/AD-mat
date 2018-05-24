@@ -34,7 +34,7 @@
 }
 
 // Transparent navigation
-body.page-node-type-landing-page {
+body.page-node-type-landing-page:not(.mobile-menu--opened) {
   .bars {
     .line {
       background-color: $white;
