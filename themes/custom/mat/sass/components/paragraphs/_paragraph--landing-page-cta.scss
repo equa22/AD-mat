@@ -18,6 +18,11 @@
       margin-left: 25px;
     }
 
+    @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+      margin-right: 1.8vw;
+      margin-left: 1.8vw;
+    }
+
     > .field__item {
       display: flex;
       flex-basis: 100%;
@@ -26,6 +31,10 @@
       @media (min-width: $screen-sm-min) {
         flex-basis: 50%;
         padding: 0 50px;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+        padding: 0 3.1vw;
       }
     }
   }
@@ -65,13 +74,18 @@
     .cta-item--content {
       width: 100%;
       margin-right: 2rem;
-      padding: 0 3.8rem 0 2.5rem;
+      padding: 0 5rem 0 2.5rem;
       @include icons('i-chevron-circle-right');
       background-position: right center;
 
       @media (min-width: $screen-sm-min) {
         margin-right: 4.5rem;
         padding-right: 10rem;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+        margin-right: 2.5vw;
+        padding-right: 6vw;
       }
     }
 
