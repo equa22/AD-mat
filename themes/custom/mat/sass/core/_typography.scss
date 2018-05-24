@@ -60,6 +60,11 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   @extend %h1;
+  padding-bottom: 1.7rem;
+
+  @media (min-width: $screen-sm-min) {
+    padding-bottom: 4.2rem;
+  }
 }
 
 h2 {
@@ -68,6 +73,16 @@ h2 {
 
 h3 {
   @extend %h3;
+}
+
+%lead {
+  @include font-size(1.6);
+  line-height: 1.5;
+
+  @media (min-width: $screen-sm-min) {
+    @include font-size(2.4);
+    line-height: 1.45;
+  }
 }
 
 p {

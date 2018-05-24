@@ -163,7 +163,7 @@
 
 @mixin btn-primary() {
   @include btn();
-  padding: 1.5rem 7rem;
+  padding: 1.5rem 6.2rem;
   background-color: $brand-primary;
   border-radius: $border-radius-large;
   font-weight: 500;

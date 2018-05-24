@@ -184,7 +184,7 @@ body.mobile-menu--opened {
       right: 0;
       top: 0;
       bottom: 0;
-      z-index: $z-index-header;
+      z-index: $z-index-header-mobile;
       overflow-y: auto;
       background-color: $white;
     }

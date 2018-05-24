@@ -154,13 +154,18 @@
 }
 
 .region-header {
-  padding-top: 2rem;
-  height: 8rem;
-  background-color: $color-white;
+  //background-color: $white;
+  position: relative;
+  z-index: 2;
   
   @media (min-width: $screen-sm-min) {
-    padding: 3.5rem 0;
-    height: auto;
+    padding-top: 3.5rem;
+    height: 12.5rem;
+  }
+
+  @media (max-width: $screen-sm-max) {
+    padding-top: 2rem;
+    height: 8rem;
   }
 
   .container {

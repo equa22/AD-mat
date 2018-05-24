@@ -1,0 +1,87 @@
+// ========================================
+//
+// @file _paragraph--landing-page-slider.scss
+// Paragraph Slider element on the landing page
+// ========================================
+
+// Paragraph Slider
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-slider {
+  position: relative;
+
+  @media (min-width: $screen-sm-min) {
+    top: -12.5rem;
+  }
+  
+  @media (max-width: $screen-sm-max) {
+    top: -8rem;
+  }
+}
+
+.paragraph--type--slide {
+  position: relative;
+
+  .slide--image {
+    background-size: cover;
+    background-position: center;
+    height: 305px;
+    
+    @media (min-width: $screen-sm-min) {
+      position: absolute;
+      width: 100%;
+      height: 955px;
+    }
+  }
+
+  .container {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+
+    @media (min-width: $screen-sm-min) {
+      display: flex;
+      align-items: flex-end;
+      height: 955px;
+      margin-top: 0;
+      padding-top: 0;
+      padding-bottom: 19.5rem;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      @include gradient-blue();
+      
+    }
+  }
+
+  .slide--content {
+    max-width: 61rem;
+    color: $white;
+  }
+
+  h1 {
+    font-weight: 700;
+  }
+
+  .field--name-field-title-prefix {
+    white-space: nowrap;
+  }
+
+  .field--name-field-content {
+    @extend %lead;
+  }
+
+  .field--name-field-link {
+    margin-top: 3rem;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 4.5rem;
+    }
+
+    a {
+      @include btn-primary();
+
+      @media (max-width: $screen-xs-max) {
+        padding: .85rem 5.3rem;
+      }
+    }
+  }
+}
