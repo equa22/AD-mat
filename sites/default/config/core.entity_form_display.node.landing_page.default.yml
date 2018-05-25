@@ -5,11 +5,14 @@ dependencies:
   config:
     - field.field.node.landing_page.field_landing_page_components
     - field.field.node.landing_page.field_landing_page_description
+    - field.field.node.landing_page.field_parent_background_image
+    - image.style.thumbnail
     - node.type.landing_page
   module:
     - content_moderation
     - paragraphs
     - path
+    - svg_image
 _core:
   default_config_hash: qVXELxuEIXJAvRmF-8VwInLV-1D186G_A0i8rwhCLTg
 id: node.landing_page.default
@@ -39,6 +42,14 @@ content:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
     third_party_settings: {  }
+    region: content
+  field_parent_background_image:
+    weight: 26
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
     region: content
   langcode:
     type: language_select

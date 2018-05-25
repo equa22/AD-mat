@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.landing_page.field_landing_page_components
     - field.field.node.landing_page.field_landing_page_description
+    - field.field.node.landing_page.field_parent_background_image
     - node.type.landing_page
   module:
     - entity_reference_revisions
@@ -28,5 +29,6 @@ content:
 hidden:
   addtoany: true
   field_landing_page_description: true
+  field_parent_background_image: true
   langcode: true
   links: true
