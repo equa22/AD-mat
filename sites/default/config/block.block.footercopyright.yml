@@ -1,0 +1,21 @@
+uuid: ad5e01e1-498b-4a21-bbea-27b3394ed238
+langcode: en
+status: true
+dependencies:
+  module:
+    - mat_global
+  theme:
+    - mat
+id: footercopyright
+theme: mat
+region: copyright
+weight: 0
+provider: null
+plugin: copyright_block_footer
+settings:
+  id: copyright_block_footer
+  label: 'Footer Copyright'
+  provider: mat_global
+  label_display: '0'
+  legal_terms_url: /legal-terms
+visibility: {  }
