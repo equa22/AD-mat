@@ -6,14 +6,11 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.story_profile.body
     - field.field.node.story_profile.field_story_category
+    - field.field.node.story_profile.field_story_featured_image
     - field.field.node.story_profile.field_story_first_name
     - field.field.node.story_profile.field_story_last_name
-    - field.field.node.story_profile.field_story_main_image
-    - field.field.node.story_profile.field_story_secondary_images
-    - image.style.large
     - node.type.story_profile
   module:
-    - media
     - user
 id: node.story_profile.teaser
 targetEntityType: node
@@ -44,18 +41,9 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_story_main_image:
-    type: media_thumbnail
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      image_style: large
-      image_link: ''
-    third_party_settings: {  }
 hidden:
   addtoany: true
   body: true
-  field_story_secondary_images: true
+  field_story_featured_image: true
   langcode: true
   links: true

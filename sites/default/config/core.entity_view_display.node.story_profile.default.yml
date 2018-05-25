@@ -5,14 +5,15 @@ dependencies:
   config:
     - field.field.node.story_profile.body
     - field.field.node.story_profile.field_story_category
+    - field.field.node.story_profile.field_story_featured_image
     - field.field.node.story_profile.field_story_first_name
+    - field.field.node.story_profile.field_story_image_1
+    - field.field.node.story_profile.field_story_image_2
+    - field.field.node.story_profile.field_story_image_3
     - field.field.node.story_profile.field_story_last_name
-    - field.field.node.story_profile.field_story_main_image
-    - field.field.node.story_profile.field_story_secondary_images
-    - image.style.large
     - node.type.story_profile
   module:
-    - media
+    - svg_image
     - text
     - user
 id: node.story_profile.default
@@ -35,6 +36,19 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_story_featured_image:
+    weight: 7
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
   field_story_first_name:
     weight: 1
     label: hidden
@@ -43,6 +57,45 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  field_story_image_1:
+    weight: 8
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_story_image_2:
+    weight: 9
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_story_image_3:
+    weight: 10
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
   field_story_last_name:
     weight: 2
     label: hidden
@@ -50,24 +103,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_story_main_image:
-    type: media_thumbnail
-    weight: 0
-    label: hidden
-    settings:
-      image_style: large
-      image_link: ''
-    third_party_settings: {  }
-    region: content
-  field_story_secondary_images:
-    type: entity_reference_entity_view
-    weight: 4
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
     region: content
   links:
     weight: 6

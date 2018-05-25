@@ -3,18 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.media_entity_browser_multiple
     - field.field.node.story_profile.body
     - field.field.node.story_profile.field_story_category
+    - field.field.node.story_profile.field_story_featured_image
     - field.field.node.story_profile.field_story_first_name
+    - field.field.node.story_profile.field_story_image_1
+    - field.field.node.story_profile.field_story_image_2
+    - field.field.node.story_profile.field_story_image_3
     - field.field.node.story_profile.field_story_last_name
-    - field.field.node.story_profile.field_story_main_image
-    - field.field.node.story_profile.field_story_secondary_images
+    - image.style.thumbnail
     - node.type.story_profile
   module:
     - content_moderation
-    - entity_browser
     - path
+    - svg_image
     - text
 id: node.story_profile.default
 targetEntityType: node
@@ -45,6 +47,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_story_featured_image:
+    weight: 129
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
   field_story_first_name:
     weight: 122
     settings:
@@ -53,6 +63,30 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_story_image_1:
+    weight: 130
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_image_2:
+    weight: 131
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_image_3:
+    weight: 132
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
   field_story_last_name:
     weight: 123
     settings:
@@ -60,34 +94,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_story_main_image:
-    weight: 127
-    settings:
-      entity_browser: media_entity_browser_modal
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: teaser
-      open: false
-    third_party_settings: {  }
-    type: entity_browser_entity_reference
-    region: content
-  field_story_secondary_images:
-    weight: 128
-    settings:
-      entity_browser: media_entity_browser_multiple
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: teaser
-      open: false
-    third_party_settings: {  }
-    type: entity_browser_entity_reference
     region: content
   langcode:
     type: language_select
