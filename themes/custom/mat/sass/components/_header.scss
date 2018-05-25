@@ -176,19 +176,19 @@
   .block.branding {
     a {
       display: inline-block;
+      background-image: url('/themes/custom/mat/logo.svg');
+      background-repeat: no-repeat;
 
       @media (min-width: $screen-sm-min) {
-        width: 160px;
+        width: 162px;
+        height: 60px;
       }
 
-      @media (max-width: 991px) {
+      @media (max-width: $screen-sm-max) {
         width: 105px;
+        height: 40px;
+        background-size: 105px auto;
       }
-    }
-
-    img {
-      width: 100%;
-      height: auto;
     }
   }
 
@@ -285,6 +285,19 @@
           background-position: center right;
           cursor: pointer;
         }
+      }
+    }
+  }
+}
+
+// Transparent navigation
+body.page-node-type-landing-page:not(.mobile-menu--opened) {
+  .region-header {
+     // Logotype
+    .block.branding {
+      a {
+        display: inline-block;
+        background-image: url('/themes/custom/mat/logo-inverse.svg');
       }
     }
   }
