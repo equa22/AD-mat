@@ -44,7 +44,11 @@ function mat_webform_webform_submission_insert(WebformSubmissionInterface $submi
     'field_story_featured_image'      => $story_image,
     'field_story_image_1'             => $photo1,
     'field_story_image_2'             => $photo2,
-    'field_story_image_3'             => $photo3
+    'field_story_image_3'             => $photo3,
+    'field_submissioner_first_name'   => $data['author_first_name'],
+    'field_submissioner_last_name'    => $data['author_last_name'],
+    'field_submissioner_email'        => $data['author_email'],
+    'field_submissioner_phone_number' => $data['phone']
   ]);
   $node->save();
 
