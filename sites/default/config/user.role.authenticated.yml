@@ -14,4 +14,8 @@ permissions:
   - 'use text format basic_editor'
   - 'use text format rich_editor'
   - 'use text format rich_title'
+  - 'view field_media_background'
+  - 'view field_media_foreground'
   - 'view media'
+  - 'view own field_media_background'
+  - 'view own field_media_foreground'
