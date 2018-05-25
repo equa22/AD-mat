@@ -25,9 +25,15 @@ function mat_global_preprocess_node(&$variables) {
         $get_node = Node::load($parent_node_id);
         $node_title = $get_node->getTitle();
         $image_url = $get_node->field_parent_background_image->entity->getFileUri();
+        if (isset($get_node->field_header_style->value)) {
+          $parent_style = $get_node->field_header_style->value;
+        } else {
+          $parent_style = 'color-none';
+        }
         if ($node_id != $parent_node_id) {
           $variables['parent_title'] = $get_node->getTitle();
           $variables['parent_image'] = file_create_url($image_url);
+          $variables['parent_style'] = $parent_style;
         }
       }
     }
