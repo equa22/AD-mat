@@ -1,38 +1,40 @@
 <?php
-
 use Drupal\Core\Menu\MenuActiveTrailInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuLinkInterface;
 use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\node\Entity\Node;
 
-function mat_global_entity_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
-
-  if ($build['#view_mode'] == 'full') {
+function mat_global_preprocess_node(&$variables) {
+  if ($variables['node']->getType() == 'basic_page') { 
     $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
-
     $node_id = \Drupal::routeMatch()->getRawParameter('node');
     if ($node_id) {
-      $menu_link = $menu_link_manager->loadLinksByRoute('entity.node.canonical', array('node' => $node_id));
+      $menu_links = $menu_link_manager->loadLinksByRoute('entity.node.canonical', array('node' => $node_id));
     }
-    
-    if (is_array($menu_link) && count($menu_link)) {
-      $menu_link = reset($menu_link);
-      if ($menu_link->getParent()) {
-        $parents = $menu_link_manager->getParentIds($menu_link->getParent());
-        $parent = reset(array_reverse($parents));
-        $parent_uuid = explode(':', $parent);
-
-        
-
-        $parent_node = \Drupal::entityManager()->loadEntityByUuid($entity->getEntityTypeId(), $parent_uuid[1]);
-        var_dump($menu_link->getParent());
-        die();
-        $title = $menu_link_manager->createInstance($parent)->getTitle();
-        $build['title'][0]['#context']['value'] = $title;
-
-        
+    foreach ($menu_links as $link) {
+      $parent_route = $link->getParent();
+      if ($parent_route) {
+        $connection = \Drupal::database();
+        $query = $connection->query("SELECT route_param_key FROM menu_tree WHERE id = '$parent_route'");
+        $result = $query->fetchAll();
+        $get_result_id = explode('=', $result[0]->route_param_key);
+        $parent_node_id = $get_result_id[1];
+        $get_node = Node::load($parent_node_id);
+        $node_title = $get_node->getTitle();
+        $image_url = $get_node->field_parent_background_image->entity->getFileUri();
+        if (isset($get_node->field_header_style->value)) {
+          $parent_style = $get_node->field_header_style->value;
+        } else {
+          $parent_style = 'color-none';
+        }
+        if ($node_id != $parent_node_id) {
+          $variables['parent_title'] = $get_node->getTitle();
+          $variables['parent_image'] = file_create_url($image_url);
+          $variables['parent_style'] = $parent_style;
+        }
       }
     }
   }

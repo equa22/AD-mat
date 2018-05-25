@@ -1,0 +1,19 @@
+uuid: 6a971b8b-3822-473d-a692-9345fbd0e7b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_submissioner_last_name
+    - node.type.story_profile
+id: node.story_profile.field_submissioner_last_name
+field_name: field_submissioner_last_name
+entity_type: node
+bundle: story_profile
+label: 'Submissioner Last name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

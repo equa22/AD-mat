@@ -5,14 +5,19 @@ dependencies:
   config:
     - field.field.node.story_profile.body
     - field.field.node.story_profile.field_story_category
+    - field.field.node.story_profile.field_story_featured_image
     - field.field.node.story_profile.field_story_first_name
+    - field.field.node.story_profile.field_story_image_1
+    - field.field.node.story_profile.field_story_image_2
+    - field.field.node.story_profile.field_story_image_3
     - field.field.node.story_profile.field_story_last_name
-    - field.field.node.story_profile.field_story_main_image
-    - field.field.node.story_profile.field_story_secondary_images
-    - image.style.large
+    - field.field.node.story_profile.field_submissioner_email
+    - field.field.node.story_profile.field_submissioner_first_name
+    - field.field.node.story_profile.field_submissioner_last_name
+    - field.field.node.story_profile.field_submissioner_phone_number
     - node.type.story_profile
   module:
-    - media
+    - svg_image
     - text
     - user
 id: node.story_profile.default
@@ -23,19 +28,79 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 5
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: content
   field_story_category:
-    weight: 3
+    weight: 2
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_story_featured_image:
+    weight: 5
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
   field_story_first_name:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_story_image_1:
+    weight: 6
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_story_image_2:
+    weight: 7
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_story_image_3:
+    weight: 8
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_story_last_name:
     weight: 1
     label: hidden
     settings:
@@ -43,37 +108,15 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_story_last_name:
-    weight: 2
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_story_main_image:
-    type: media_thumbnail
-    weight: 0
-    label: hidden
-    settings:
-      image_style: large
-      image_link: ''
-    third_party_settings: {  }
-    region: content
-  field_story_secondary_images:
-    type: entity_reference_entity_view
-    weight: 4
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    region: content
   links:
-    weight: 6
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   addtoany: true
+  field_submissioner_email: true
+  field_submissioner_first_name: true
+  field_submissioner_last_name: true
+  field_submissioner_phone_number: true
   langcode: true

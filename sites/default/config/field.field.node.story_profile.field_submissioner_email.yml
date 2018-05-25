@@ -1,0 +1,19 @@
+uuid: 320b87d6-e045-4a11-ae5f-87498bea2407
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_submissioner_email
+    - node.type.story_profile
+id: node.story_profile.field_submissioner_email
+field_name: field_submissioner_email
+entity_type: node
+bundle: story_profile
+label: 'Submissioner Email'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email
