@@ -7,20 +7,31 @@
 // Paragraph Slider
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-slider {
-  position: relative;
-
   @media (min-width: $screen-sm-min) {
-    top: -12.5rem;
+    margin-top: -12.5rem;
   }
   
   @media (max-width: $screen-sm-max) {
-    top: -8rem;
+    margin-top: -8rem;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    @include gradient-blue();
+  }
+
+  // Slick styles.
+  .slick__arrow {
+    display: none;
+  }
+
+  .slick__slide {
+    outline: none;
   }
 }
 
 .paragraph--type--slide {
   position: relative;
-
+  
   .slide--image {
     background-size: cover;
     background-position: center;
@@ -28,6 +39,7 @@
     
     @media (min-width: $screen-sm-min) {
       position: absolute;
+      top: 0;
       width: 100%;
       height: 955px;
     }
@@ -39,16 +51,9 @@
 
     @media (min-width: $screen-sm-min) {
       display: flex;
-      align-items: flex-end;
       height: 955px;
-      margin-top: 0;
-      padding-top: 0;
-      padding-bottom: 19.5rem;
-    }
-
-    @media (max-width: $screen-xs-max) {
-      @include gradient-blue();
-      
+      padding-top: 21rem;
+      padding-bottom: 0;
     }
   }
 
@@ -58,7 +63,15 @@
   }
 
   h1 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     font-weight: 700;
+
+    @media (min-width: $screen-sm-min) {
+      height: 300px;
+    }
   }
 
   .field--name-field-title-prefix {
@@ -90,11 +103,11 @@
 body.adminimal-admin-toolbar {
   .paragraph--type--landing-page-slider {
     @media (min-width: $screen-sm-min) {
-      top: -18rem;
+      margin-top: -18rem;
     }
     
     @media (max-width: $screen-sm-max) {
-      top: -12.5rem;
+      margin-top: -12.5rem;
     }
   }
 }
