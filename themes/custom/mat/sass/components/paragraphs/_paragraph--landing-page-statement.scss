@@ -8,13 +8,14 @@
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-statement {
   padding: 5rem 0 5.5rem 0;
+  background: #FEFEFE url($image-root + 'bg-inspired/inspired_big_dreams--top.png') repeat-x;
 
   @media (min-width: $screen-sm-min) {
     padding: 11rem 0 7rem 0;
   }
 
   .field--name-field-link {
-    margin-top: 4.5rem;
+    margin-top: 2.6rem;
     text-align: center;
 
     a {

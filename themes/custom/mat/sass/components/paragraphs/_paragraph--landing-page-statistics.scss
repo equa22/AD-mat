@@ -7,16 +7,17 @@
 // Paragraph statistics
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-statistics {
-
+  padding-top: 30rem;
+  background: url($image-root + 'bg-inspired/inspired_gift_of_site--top.png') repeat-x;
 }
 
 // Grid
 .field--name-field-statistics-items {
   @include make-row;
-  margin-top: 8.5rem;
+  margin-top: 7rem;
 
   @media (min-width: $screen-sm-min) {
-    margin-top: 15rem;
+    margin-top: 13rem;
   }
 
   > .field__item {

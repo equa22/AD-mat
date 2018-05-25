@@ -16,10 +16,10 @@
   // Grid
   .field--name-field-cta-items {
     @include make-row;
-    margin-top: 6.5rem;
+    margin-top: 4.8rem;
 
     @media (min-width: $screen-sm-min) {
-      margin-top: 11rem;
+      margin-top: 9rem;
     }
 
     > .field__item {

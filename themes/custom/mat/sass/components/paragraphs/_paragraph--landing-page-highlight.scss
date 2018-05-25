@@ -1,0 +1,144 @@
+// ========================================
+//
+// @file _paragraph--landing-page-highlight.scss
+// Paragraph highlight element on the landing page
+// ========================================
+
+// Paragraph highlight
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-highlight {
+  display: flex;
+  position: relative;
+  height: 1100px;
+  padding-bottom: 8.5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  background-color: #FEFEFE;
+
+  @media (min-width: $screen-sm-min) {
+    align-items: flex-end;
+    height: 880px;
+  }
+
+  .field--name-field-link {
+    margin-top: 3rem;
+
+    a {
+      @include btn-secondary();
+
+      @media (max-width: $screen-xs-max) {
+        border-color: #212529;
+        color: #4A4A4A;
+      }
+    }
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .highlight--image {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .highlight--content {
+    padding-top: 3.8rem;
+    border-top: 1px solid #C4C7C9;
+
+    @media (min-width: $screen-sm-min) {
+      width: 46rem;
+      border-top: none;
+      color: $white;
+    }
+
+    h2 {
+      @media (max-width: $screen-xs-max) {
+        width: 64%;
+        @include font-size(3.5);
+        line-height: 1.2;
+      }
+    }
+  }
+
+  &.right {
+    .highlight--image {
+       margin-left: -130px;
+
+      @media (min-width: $screen-sm-min) {
+        left: 50%;
+        margin-left: -750px;
+      }
+    }
+
+    .highlight--content {
+      @media (min-width: $screen-sm-min) {
+        float: right;
+      }
+    }
+  }
+
+  &.left {
+    .highlight--image {
+       //margin-right: -130px;
+
+      @media (min-width: $screen-sm-min) {
+        //right: 50%;
+        //margin-right: -530px;
+      }
+    }
+  }
+}
+
+/*
+.paragraph--type--landing-page-highlight {
+  &:nth-child(1) {
+    margin-top: 0;
+  }
+
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  &:after {
+    @include overlay($color-white);
+  }
+
+  .inner {
+    @include container;
+    @extend %flex-center-vertical;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    max-width: 1200px;
+
+    h2 {
+      @include font-size(3.8);
+      margin: 0 0 20px;
+    }
+
+    .field--name-field-text {
+      @include font-size(2);
+    }
+
+    .text {
+      flex: 1 1 0;
+      order: 2;
+      @media (min-width: $screen-sm-min) {
+        order: 1;
+      }
+    }
+
+    .field--name-field-media {
+      order: 1;
+      flex: auto;
+      @media (min-width: $screen-sm-min) {
+        order: 2;
+        flex: 0 0 50%;
+      }
+    }
+  }
+}
+*/
