@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_parent_background_image
+    - image.style.thumbnail
     - node.type.basic_page
   module:
     - content_moderation
     - path
+    - svg_image
     - text
 _core:
   default_config_hash: GrlPUkRt_bl_-mumIi-_SlAFpI2SVSj2UDSrVRxUbl8
@@ -31,6 +34,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_parent_background_image:
+    weight: 122
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
   langcode:
     type: language_select
     weight: 2

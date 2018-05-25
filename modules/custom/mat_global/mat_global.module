@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
 
 function mat_global_preprocess_node(&$variables) {
-  if ($variables['node']->getType() == 'landing_page') { 
+  if ($variables['node']->getType() == 'basic_page') { 
     $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
     $node_id = \Drupal::routeMatch()->getRawParameter('node');
     if ($node_id) {
