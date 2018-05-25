@@ -23,6 +23,7 @@ visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
+      basic_page: basic_page
       landing_page: landing_page
       news_article: news_article
     negate: true

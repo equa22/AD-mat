@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_main_description
     - field.field.node.basic_page.field_parent_background_image
     - node.type.basic_page
   module:
@@ -30,5 +31,6 @@ content:
     third_party_settings: {  }
 hidden:
   addtoany: true
+  field_main_description: true
   field_parent_background_image: true
   langcode: true

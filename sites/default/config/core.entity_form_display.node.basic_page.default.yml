@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_main_description
     - field.field.node.basic_page.field_parent_background_image
     - image.style.thumbnail
     - node.type.basic_page
@@ -34,6 +35,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_main_description:
+    weight: 123
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   field_parent_background_image:
     weight: 122
     settings:
