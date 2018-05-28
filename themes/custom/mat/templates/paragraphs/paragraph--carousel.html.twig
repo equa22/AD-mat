@@ -47,7 +47,12 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      {{ content }}
+      <div class="container-small">
+        <h3>{{ content.field_small_title }}</h3>
+        <h2>{{ content.field_main_title }}</h2>
+        {{ content.field_carousel_cta_button }}
+      </div>
+      {{ content.field_slide_items }}
     {% endblock %}
   </div>
 {% endblock paragraph %}

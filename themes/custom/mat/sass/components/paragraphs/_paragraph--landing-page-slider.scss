@@ -27,73 +27,73 @@
   .slick__slide {
     outline: none;
   }
-}
 
-.paragraph--type--slide {
-  position: relative;
-  
-  .slide--image {
-    background-size: cover;
-    background-position: center;
-    height: 305px;
+  .paragraph--type--slide {
+    position: relative;
     
-    @media (min-width: $screen-sm-min) {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 955px;
+    .slide--image {
+      background-size: cover;
+      background-position: center;
+      height: 305px;
+      
+      @media (min-width: $screen-sm-min) {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 955px;
+      }
     }
-  }
 
-  .container {
-    padding-top: 4rem;
-    padding-bottom: 5rem;
+    .container {
+      padding-top: 4rem;
+      padding-bottom: 5rem;
 
-    @media (min-width: $screen-sm-min) {
+      @media (min-width: $screen-sm-min) {
+        display: flex;
+        height: 955px;
+        padding-top: 21rem;
+        padding-bottom: 0;
+      }
+    }
+
+    .slide--content {
+      max-width: 61rem;
+      color: $white;
+    }
+
+    h1 {
       display: flex;
-      height: 955px;
-      padding-top: 21rem;
-      padding-bottom: 0;
-    }
-  }
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-weight: 700;
 
-  .slide--content {
-    max-width: 61rem;
-    color: $white;
-  }
-
-  h1 {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    font-weight: 700;
-
-    @media (min-width: $screen-sm-min) {
-      height: 300px;
-    }
-  }
-
-  .field--name-field-title-prefix {
-    white-space: nowrap;
-  }
-
-  .field--name-field-content {
-    @extend %lead;
-  }
-
-  .field--name-field-link {
-    margin-top: 3rem;
-
-    @media (min-width: $screen-sm-min) {
-      margin-top: 4.5rem;
+      @media (min-width: $screen-sm-min) {
+        height: 300px;
+      }
     }
 
-    a {
-      @include btn-primary();
+    .field--name-field-title-prefix {
+      white-space: nowrap;
+    }
 
-      @media (max-width: $screen-xs-max) {
-        padding: .85rem 5.3rem;
+    .field--name-field-content {
+      @extend %lead;
+    }
+
+    .field--name-field-link {
+      margin-top: 3rem;
+
+      @media (min-width: $screen-sm-min) {
+        margin-top: 4.5rem;
+      }
+
+      a {
+        @include btn-primary();
+
+        @media (max-width: $screen-xs-max) {
+          padding: .85rem 5.3rem;
+        }
       }
     }
   }
