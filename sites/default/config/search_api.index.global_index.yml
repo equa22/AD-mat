@@ -31,7 +31,7 @@ field_settings:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
-    type: string
+    type: text
   body:
     label: Body
     datasource_id: 'entity:node'
@@ -52,7 +52,7 @@ field_settings:
     label: 'Story first name'
     datasource_id: 'entity:node'
     property_path: field_story_first_name
-    type: string
+    type: text
     dependencies:
       config:
         - field.storage.node.field_story_first_name
@@ -60,7 +60,7 @@ field_settings:
     label: 'Story last name'
     datasource_id: 'entity:node'
     property_path: field_story_last_name
-    type: string
+    type: text
     dependencies:
       config:
         - field.storage.node.field_story_last_name
@@ -116,7 +116,7 @@ field_settings:
     label: 'Main title'
     datasource_id: 'entity:paragraph'
     property_path: field_main_title
-    type: string
+    type: text
     dependencies:
       config:
         - field.storage.paragraph.field_main_title
