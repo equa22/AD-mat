@@ -1,0 +1,45 @@
+uuid: 6377bc11-45c9-4fbe-b60e-07f87f8cf583
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.landing_page.field_landing_page_components
+    - field.field.node.landing_page.field_landing_page_description
+    - field.field.node.landing_page.field_search_image_media
+    - image.style.medium
+    - node.type.landing_page
+  module:
+    - entity_reference_revisions
+    - media
+    - user
+_core:
+  default_config_hash: vOR3oE0pnb_59t6IqQaRhxz-3t3r42vxeJF_C2sOPyI
+id: node.landing_page.search_teaser
+targetEntityType: node
+bundle: landing_page
+mode: search_teaser
+content:
+  field_landing_page_components:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_search_image_media:
+    type: media_thumbnail
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  addtoany: true
+  field_landing_page_description: true
+  langcode: true
+  links: true

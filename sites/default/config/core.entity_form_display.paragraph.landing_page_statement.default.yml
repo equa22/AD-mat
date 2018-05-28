@@ -10,6 +10,25 @@ dependencies:
     - content_moderation
     - link
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_style
+      parent_name: ''
+      weight: 3
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 id: paragraph.landing_page_statement.default
 targetEntityType: paragraph
 bundle: landing_page_statement

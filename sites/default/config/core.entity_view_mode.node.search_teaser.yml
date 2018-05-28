@@ -1,0 +1,10 @@
+uuid: 22460055-af12-4836-a8df-81927d6307f1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.search_teaser
+label: 'Search teaser'
+targetEntityType: node
+cache: true

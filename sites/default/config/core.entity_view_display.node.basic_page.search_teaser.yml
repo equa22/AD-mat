@@ -1,9 +1,9 @@
-uuid: 2777ee15-b0f2-44d5-ac26-9938a3bd5f50
+uuid: 42fc9048-ce1f-48e4-9bbd-cf27cd0318ad
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.search_teaser
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_header_style
     - field.field.node.basic_page.field_main_description
@@ -16,18 +16,17 @@ dependencies:
     - text
     - user
 _core:
-  default_config_hash: bdeeQpR2GWgujxBjtLITIngJJj3flwe4bTR0qIIOI3E
-id: node.basic_page.teaser
+  default_config_hash: NXmycy70SuANXNp3MiAkeZRHXSlFM49Hs2RE2T_eZFc
+id: node.basic_page.search_teaser
 targetEntityType: node
 bundle: basic_page
-mode: teaser
+mode: search_teaser
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 2
-    settings:
-      trim_length: 600
+    settings: {  }
     third_party_settings: {  }
     region: content
   field_search_image_media:

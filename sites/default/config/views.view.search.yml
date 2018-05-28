@@ -73,13 +73,14 @@ display:
         options:
           view_modes:
             'entity:node':
-              basic_page: teaser
-              landing_page: teaser
-              news_article: teaser
-              story_profile: teaser
+              basic_page: search_teaser
+              landing_page: search_teaser
+              news_article: search_teaser
+              story_profile: search_teaser
             'entity:paragraph':
               carousel: default
               cta_item: default
+              highlight_slide: default
               landing_page_box: default
               landing_page_columns: default
               landing_page_counter: default
@@ -102,6 +103,7 @@ display:
               pillar_group: default
               pillar_group_item: default
               slide: default
+              social_link: default
               statistics_item: default
               timeline_facts: default
             'entity:taxonomy_term':
