@@ -10,10 +10,11 @@
   display: flex;
   position: relative;
   height: 1100px;
-  padding-bottom: 8.5rem;
+  padding-bottom: 7.5rem;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #FEFEFE;
+
   overflow-x: hidden;
 
   @media (min-width: $screen-sm-min) {
@@ -55,14 +56,13 @@
 
     h2 {
       @media (max-width: $screen-xs-max) {
-        width: 64%;
         @include font-size(3.5);
         line-height: 1.2;
       }
     }
   }
 
-  &.right {
+  &.story--gavin {
     .highlight--image {
       left: 50%;
       margin-left: -290px;
@@ -77,9 +77,15 @@
         float: right;
       }
     }
+
+    h2 {
+      @media (max-width: $screen-xs) {
+        width: 64%;
+      }
+    }
   }
 
-  &.left {
+  &.story--meegale {
     .highlight--image {
       right: 50%;
       margin-right: -175px;
@@ -92,7 +98,37 @@
         margin-right: -440px;
       }
     }
+
+    h2 {
+      @media (max-width: $screen-xs) {
+        width: 74%;
+      }
+    }
   }
+
+  &.story--sisters {
+    height: 1700px;
+    background-position-y: bottom;
+
+    .highlight--image {
+      @media (max-width: $screen-xs) {
+        left: -190px;
+        max-width: 500px;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        left: -300px;
+        max-width: 900px;
+      }
+    }
+
+    .highlight--content {
+      @media (min-width: $screen-sm-min) {
+        float: right;
+      }
+    }
+  }
+
 }
 
 /*
