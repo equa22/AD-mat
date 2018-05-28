@@ -39,7 +39,7 @@ class CopyrightBlock extends BlockBase {
     $legal_terms_url = isset($config['legal_terms_url']) ? $config['legal_terms_url'] : '';
 
     $year = date('Y');
-    $markup = '<p>&copy; '.$year.' '.t('All rights reserved.').' <a href="'.$legal_terms_url.'">'.t('Legal terms').'</a></p>';
+    $markup = '<p>&copy;'.$year.' '.t('All rights reserved.').' <a href="'.$legal_terms_url.'">'.t('Legal terms').'</a></p>';
     return [
       '#markup' => $markup,
       '#cache' => [

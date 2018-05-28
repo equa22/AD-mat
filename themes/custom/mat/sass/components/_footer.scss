@@ -145,13 +145,19 @@
     padding-top: 2rem;
     @include font-size(1.4);
     text-align: center;
+    text-transform: capitalize;
 
     @media (min-width: $screen-sm-min) {
       padding-top: 3.7rem;
     }
 
     a {
-      color: lighten(#4A4A4A, 50%);
+      color: $gray-base;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
