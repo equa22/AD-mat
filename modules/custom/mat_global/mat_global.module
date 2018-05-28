@@ -13,29 +13,30 @@ function mat_global_preprocess_node(&$variables) {
     $node_id = \Drupal::routeMatch()->getRawParameter('node');
     if ($node_id) {
       $menu_links = $menu_link_manager->loadLinksByRoute('entity.node.canonical', array('node' => $node_id));
-    }
-    foreach ($menu_links as $link) {
-      $parent_route = $link->getParent();
-      if ($parent_route) {
-        $connection = \Drupal::database();
-        $query = $connection->query("SELECT route_param_key FROM menu_tree WHERE id = '$parent_route'");
-        $result = $query->fetchAll();
-        $get_result_id = explode('=', $result[0]->route_param_key);
-        $parent_node_id = $get_result_id[1];
-        $get_node = Node::load($parent_node_id);
-        $node_title = $get_node->getTitle();
-        $image_url = $get_node->field_parent_background_image->entity->getFileUri();
-        if (isset($get_node->field_header_style->value)) {
-          $parent_style = $get_node->field_header_style->value;
-        } else {
-          $parent_style = 'color-none';
-        }
-        if ($node_id != $parent_node_id) {
-          $variables['parent_title'] = $get_node->getTitle();
-          $variables['parent_image'] = file_create_url($image_url);
-          $variables['parent_style'] = $parent_style;
+      foreach ($menu_links as $link) {
+        $parent_route = $link->getParent();
+        if ($parent_route) {
+          $connection = \Drupal::database();
+          $query = $connection->query("SELECT route_param_key FROM menu_tree WHERE id = '$parent_route'");
+          $result = $query->fetchAll();
+          $get_result_id = explode('=', $result[0]->route_param_key);
+          $parent_node_id = $get_result_id[1];
+          $get_node = Node::load($parent_node_id);
+          $node_title = $get_node->getTitle();
+          $image_url = $get_node->field_parent_background_image->entity->getFileUri();
+          if (isset($get_node->field_header_style->value)) {
+            $parent_style = $get_node->field_header_style->value;
+          } else {
+            $parent_style = 'color-none';
+          }
+          if ($node_id != $parent_node_id) {
+            $variables['parent_title'] = $get_node->getTitle();
+            $variables['parent_image'] = file_create_url($image_url);
+            $variables['parent_style'] = $parent_style;
+          }
         }
       }
     }
+
   }
 }
