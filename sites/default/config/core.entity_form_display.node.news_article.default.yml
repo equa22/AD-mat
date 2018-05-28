@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.news_article.field_hero_background_image
     - field.field.node.news_article.field_news_category
     - field.field.node.news_article.field_news_image
+    - field.field.node.news_article.field_search_image_media
     - node.type.news_article
   module:
     - content_moderation
@@ -66,6 +67,19 @@ content:
     region: content
   field_news_image:
     weight: 9
+    settings:
+      entity_browser: media_entity_browser_modal
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      open: false
+      field_widget_display_settings: {  }
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_search_image_media:
+    weight: 27
     settings:
       entity_browser: media_entity_browser_modal
       field_widget_display: label

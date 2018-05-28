@@ -1,0 +1,28 @@
+uuid: 6d037486-c7b6-45d3-9839-ba702b2c3a52
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_search_image_media
+    - media.type.image
+    - node.type.story_profile
+id: node.story_profile.field_search_image_media
+field_name: field_search_image_media
+entity_type: node
+bundle: story_profile
+label: 'Search image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

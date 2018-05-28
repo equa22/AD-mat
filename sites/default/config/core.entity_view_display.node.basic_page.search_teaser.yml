@@ -1,31 +1,43 @@
-uuid: 76087a22-0527-4086-a4bc-908854c5d29c
+uuid: 42fc9048-ce1f-48e4-9bbd-cf27cd0318ad
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.search_teaser
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_header_style
     - field.field.node.basic_page.field_main_description
     - field.field.node.basic_page.field_parent_background_image
     - field.field.node.basic_page.field_search_image_media
+    - image.style.medium
     - node.type.basic_page
   module:
+    - media
     - text
     - user
 _core:
   default_config_hash: NXmycy70SuANXNp3MiAkeZRHXSlFM49Hs2RE2T_eZFc
-id: node.basic_page.default
+id: node.basic_page.search_teaser
 targetEntityType: node
 bundle: basic_page
-mode: default
+mode: search_teaser
 content:
   body:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_search_image_media:
+    type: media_thumbnail
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: content
+    third_party_settings: {  }
   links:
     weight: 0
     region: content
@@ -36,5 +48,4 @@ hidden:
   field_header_style: true
   field_main_description: true
   field_parent_background_image: true
-  field_search_image_media: true
   langcode: true

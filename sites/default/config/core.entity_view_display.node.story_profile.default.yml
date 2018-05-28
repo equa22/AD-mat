@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.story_profile.body
+    - field.field.node.story_profile.field_search_image_media
     - field.field.node.story_profile.field_story_category
     - field.field.node.story_profile.field_story_featured_image
     - field.field.node.story_profile.field_story_first_name
@@ -115,6 +116,7 @@ content:
     third_party_settings: {  }
 hidden:
   addtoany: true
+  field_search_image_media: true
   field_submissioner_email: true
   field_submissioner_first_name: true
   field_submissioner_last_name: true

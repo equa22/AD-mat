@@ -1,0 +1,6 @@
+<div class="search-result{% if node.field_search_image_media %} result-with-image{% endif %}">
+  {% if node.field_search_image_media %}
+  <div class="search-img">{{ content.field_search_image_media }}</div>
+  {% endif %}
+  <div class="search-text"><a href="{{ path('entity.node.canonical', {'node': node.id}) }}" class="result-url">{{ path('entity.node.canonical', {'node': node.id}) }}</a> {{ content.body }}</div>
+</div>

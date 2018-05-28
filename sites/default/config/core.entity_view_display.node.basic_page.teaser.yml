@@ -5,8 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_header_style
+    - field.field.node.basic_page.field_main_description
+    - field.field.node.basic_page.field_parent_background_image
+    - field.field.node.basic_page.field_search_image_media
+    - image.style.medium
     - node.type.basic_page
   module:
+    - media
     - text
     - user
 _core:
@@ -19,14 +25,28 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    weight: 2
     settings:
       trim_length: 600
     third_party_settings: {  }
     region: content
-  links:
-    weight: 100
+  field_search_image_media:
+    type: media_thumbnail
+    weight: 1
     region: content
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: content
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   addtoany: true
+  field_header_style: true
+  field_main_description: true
+  field_parent_background_image: true
   langcode: true
