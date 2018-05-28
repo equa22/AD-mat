@@ -96,6 +96,10 @@
     }
 
     #block-sociallinks-2 {
+      @media (min-width: $screen-md-min) {
+        margin-left: 6rem;
+      }
+
       @media (max-width: $screen-xs-max) {
         order: 1;
       }
