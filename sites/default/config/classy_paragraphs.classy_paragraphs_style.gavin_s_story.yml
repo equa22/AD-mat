@@ -1,0 +1,7 @@
+uuid: b06fe9f6-a9b5-44ce-bcba-4252b1c23c3b
+langcode: en
+status: true
+dependencies: {  }
+id: gavin_s_story
+label: 'Gavin''s story'
+classes: story--gavin

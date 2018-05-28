@@ -1,0 +1,7 @@
+uuid: 516fde07-b247-4bdb-8bc9-872f579d0e76
+langcode: en
+status: true
+dependencies: {  }
+id: sisters_story
+label: 'Sisters story'
+classes: story--sisters

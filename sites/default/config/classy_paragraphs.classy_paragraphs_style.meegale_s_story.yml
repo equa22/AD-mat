@@ -1,0 +1,7 @@
+uuid: 4ea2dbcf-9626-47e8-a79a-0b09b18c0850
+langcode: en
+status: true
+dependencies: {  }
+id: meegale_s_story
+label: 'Meegale''s story'
+classes: story--meegale

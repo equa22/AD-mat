@@ -4,7 +4,11 @@ status: true
 dependencies:
   module:
     - classy_paragraphs
+    - field_permissions
     - paragraphs
+third_party_settings:
+  field_permissions:
+    permission_type: public
 _core:
   default_config_hash: YUSFUBB6nEFNFvSBYnGH34m9z1ZK0Ce2YPEuhE9He78
 id: paragraph.field_style

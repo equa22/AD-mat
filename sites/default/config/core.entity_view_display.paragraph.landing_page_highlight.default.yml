@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.landing_page_highlight.field_link
     - field.field.paragraph.landing_page_highlight.field_media_background
     - field.field.paragraph.landing_page_highlight.field_media_foreground
+    - field.field.paragraph.landing_page_highlight.field_style
     - field.field.paragraph.landing_page_highlight.field_text
     - field.field.paragraph.landing_page_highlight.field_text_align
     - field.field.paragraph.landing_page_highlight.field_title_formatted
@@ -34,7 +35,7 @@ content:
     region: content
   field_media_background:
     type: entity_reference_entity_view
-    weight: 5
+    weight: 4
     label: hidden
     settings:
       view_mode: background
@@ -43,7 +44,7 @@ content:
     region: content
   field_media_foreground:
     type: entity_reference_entity_view
-    weight: 4
+    weight: 3
     label: hidden
     settings:
       view_mode: full
@@ -66,5 +67,6 @@ content:
     region: content
 hidden:
   field_highlight_statement: true
+  field_style: true
   field_text_align: true
   field_title: true

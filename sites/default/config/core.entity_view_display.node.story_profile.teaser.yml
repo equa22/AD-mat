@@ -45,5 +45,12 @@ hidden:
   addtoany: true
   body: true
   field_story_featured_image: true
+  field_story_image_1: true
+  field_story_image_2: true
+  field_story_image_3: true
+  field_submissioner_email: true
+  field_submissioner_first_name: true
+  field_submissioner_last_name: true
+  field_submissioner_phone_number: true
   langcode: true
   links: true

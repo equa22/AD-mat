@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.landing_page_highlight.field_link
     - field.field.paragraph.landing_page_highlight.field_media_background
     - field.field.paragraph.landing_page_highlight.field_media_foreground
+    - field.field.paragraph.landing_page_highlight.field_style
     - field.field.paragraph.landing_page_highlight.field_text
     - field.field.paragraph.landing_page_highlight.field_text_align
     - field.field.paragraph.landing_page_highlight.field_title_formatted
@@ -22,9 +23,9 @@ third_party_settings:
   field_group:
     group_settings:
       children:
-        - field_text_align
+        - field_style
       parent_name: ''
-      weight: 7
+      weight: 6
       format_type: html_element
       format_settings:
         id: ''
@@ -45,7 +46,7 @@ bundle: landing_page_highlight
 mode: default
 content:
   field_link:
-    weight: 4
+    weight: 3
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -53,20 +54,6 @@ content:
     type: link_default
     region: content
   field_media_background:
-    weight: 6
-    settings:
-      entity_browser: media_entity_browser_modal
-      field_widget_display: rendered_entity
-      field_widget_edit: true
-      field_widget_remove: true
-      open: true
-      selection_mode: selection_append
-      field_widget_display_settings:
-        view_mode: teaser
-    third_party_settings: {  }
-    type: entity_browser_entity_reference
-    region: content
-  field_media_foreground:
     weight: 5
     settings:
       entity_browser: media_entity_browser_modal
@@ -80,19 +67,33 @@ content:
     third_party_settings: {  }
     type: entity_browser_entity_reference
     region: content
+  field_media_foreground:
+    weight: 4
+    settings:
+      entity_browser: media_entity_browser_modal
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: teaser
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_style:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_text:
-    weight: 3
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: content
-  field_text_align:
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   field_title_formatted:
     weight: 1
@@ -114,6 +115,7 @@ content:
 hidden:
   created: true
   field_highlight_statement: true
+  field_text_align: true
   field_title: true
   status: true
   uid: true
