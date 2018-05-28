@@ -11,7 +11,7 @@ id: node.story_profile.field_story_featured_image
 field_name: field_story_featured_image
 entity_type: node
 bundle: story_profile
-label: 'story featured image'
+label: 'Story featured image'
 description: ''
 required: true
 translatable: false
