@@ -44,6 +44,7 @@ content:
 hidden:
   addtoany: true
   body: true
+  field_search_image_media: true
   field_story_featured_image: true
   field_story_image_1: true
   field_story_image_2: true
