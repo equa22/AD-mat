@@ -4,18 +4,8 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - field.storage.node.field_news_category
     - field.storage.node.field_story_first_name
     - field.storage.node.field_story_last_name
-    - field.storage.paragraph.field_content
-    - field.storage.paragraph.field_content_first
-    - field.storage.paragraph.field_content_second
-    - field.storage.paragraph.field_short_description
-    - field.storage.paragraph.field_fact_description
-    - field.storage.paragraph.field_fact_headline
-    - field.storage.paragraph.field_main_title
-    - field.storage.paragraph.field_myth
-    - field.storage.paragraph.field_title
     - search_api.server.global_search
   module:
     - search_api
@@ -40,14 +30,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
-  field_news_category:
-    label: 'News Category'
-    datasource_id: 'entity:node'
-    property_path: field_news_category
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_news_category
   field_story_first_name:
     label: 'Story first name'
     datasource_id: 'entity:node'
@@ -64,86 +46,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_story_last_name
-  field_content:
-    label: Content
-    datasource_id: 'entity:paragraph'
-    property_path: field_content
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_content
-  field_content_first:
-    label: 'Content first'
-    datasource_id: 'entity:paragraph'
-    property_path: field_content_first
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_content_first
-  field_content_second:
-    label: 'Content second'
-    datasource_id: 'entity:paragraph'
-    property_path: field_content_second
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_content_second
-  field_short_description:
-    label: Description
-    datasource_id: 'entity:paragraph'
-    property_path: field_short_description
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_short_description
-  field_fact_description:
-    label: 'Fact description'
-    datasource_id: 'entity:paragraph'
-    property_path: field_fact_description
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_fact_description
-  field_fact_headline:
-    label: 'Fact headline'
-    datasource_id: 'entity:paragraph'
-    property_path: field_fact_headline
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_fact_headline
-  field_main_title:
-    label: 'Main title'
-    datasource_id: 'entity:paragraph'
-    property_path: field_main_title
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_main_title
-  field_myth:
-    label: Myth
-    datasource_id: 'entity:paragraph'
-    property_path: field_myth
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_myth
-  field_fact_headline_1:
-    label: 'Fact headline'
-    datasource_id: 'entity:paragraph'
-    property_path: field_fact_headline
-    type: text
-    dependencies:
-      config:
-        - field.storage.paragraph.field_fact_headline
-  field_title:
-    label: Title
-    datasource_id: 'entity:paragraph'
-    property_path: field_title
-    type: string
-    dependencies:
-      config:
-        - field.storage.paragraph.field_title
 datasource_settings:
   'entity:node':
     bundles:
