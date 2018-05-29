@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "71c4f3db2bf4422d11c87fc8d746e4d2",
+    "content-hash": "12d898e2481572476d74784e0619068a",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
@@ -1890,7 +1890,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
             },
-            "time": "2017-07-08 17:49:05"
+            "time": "2017-07-08T17:49:05+00:00"
         },
         {
             "name": "drupal/allowed_formats",
@@ -3669,7 +3669,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/install_profile_generator"
             },
-            "time": "2017-12-20 09:13:41"
+            "time": "2017-12-20T09:13:41+00:00"
         },
         {
             "name": "drupal/linkit",
@@ -4152,7 +4152,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
             },
-            "time": "2018-05-16 13:30:41"
+            "time": "2018-05-16T13:30:41+00:00"
         },
         {
             "name": "drupal/paragraphs_edit",
@@ -4547,7 +4547,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/slick_paragraphs"
             },
-            "time": "2016-12-27 06:11:30"
+            "time": "2016-12-27T06:11:30+00:00"
         },
         {
             "name": "drupal/svg_image",
@@ -4817,6 +4817,67 @@
             "homepage": "https://www.drupal.org/project/token",
             "support": {
                 "source": "http://cgit.drupalcode.org/token"
+            }
+        },
+        {
+            "name": "drupal/video_embed_field",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/video_embed_field",
+                "reference": "8.x-2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-2.0.zip",
+                "reference": "8.x-2.0",
+                "shasum": "e864f090b3cb9405376ca324d81ace83613e2019"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "require-dev": {
+                "drupal/colorbox": "*",
+                "drupal/media_entity": "*",
+                "drupal/media_entity_embeddable_video": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x",
+                    "datestamp": "1523338084",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    },
+                    "package": "Field types"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Sam152",
+                    "homepage": "https://www.drupal.org/user/1485048"
+                },
+                {
+                    "name": "jec006",
+                    "homepage": "https://www.drupal.org/user/855980"
+                },
+                {
+                    "name": "plopesc",
+                    "homepage": "https://www.drupal.org/user/282415"
+                }
+            ],
+            "description": "A pluggable field type for storing videos from external video hosts such as Vimeo and YouTube.",
+            "homepage": "https://www.drupal.org/project/video_embed_field",
+            "support": {
+                "source": "http://cgit.drupalcode.org/video_embed_field"
             }
         },
         {
