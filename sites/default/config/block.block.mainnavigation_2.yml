@@ -1,0 +1,43 @@
+uuid: d2beff28-9b2a-44ad-897c-cdc9ccdfc954
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - ctools
+    - menu_block
+    - node
+  theme:
+    - mat
+id: mainnavigation_2
+theme: mat
+region: sidebar
+weight: 0
+provider: null
+plugin: 'menu_block:main'
+settings:
+  id: 'menu_block:main'
+  label: 'Main navigation'
+  provider: menu_block
+  label_display: visible
+  level: 2
+  depth: 2
+  expand: 0
+  parent: 'main:'
+  suggestion: main
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      basic_page: basic_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  node_type:
+    id: node_type
+    bundles:
+      basic_page: basic_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

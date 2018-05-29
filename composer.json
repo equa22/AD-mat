@@ -20,7 +20,8 @@
         "drupal/search_api": "^1.8",
         "drupal/focal_point": "^1.0@beta",
         "drupal/allowed_formats": "^1.1",
-        "drupal/field_permissions": "^1.0@RC"
+        "drupal/field_permissions": "^1.0@RC",
+        "drupal/menu_block": "^1.5"
     },
     "require-dev": {
         "behat/mink": "~1.7",

@@ -6,6 +6,7 @@ use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
+
 function mat_global_preprocess_node(&$variables) {
   if ($variables['node']->getType() == 'basic_page') { 
     $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
@@ -20,30 +21,20 @@ function mat_global_preprocess_node(&$variables) {
           $result = $query->fetchAll();
           $get_result_id = explode('=', $result[0]->route_param_key);
           $parent_node_id = $get_result_id[1];
-          $menu_links_2 = $menu_link_manager->loadLinksByRoute('entity.node.canonical', array('node' => $parent_node_id));
-          foreach ($menu_links_2 as $link2) {
-            $parent_route2 = $link2->getParent();
-            if ($parent_route2) {
-              $query2 = $connection->query("SELECT route_param_key FROM menu_tree WHERE id = '$parent_route2'");
-              $result2 = $query2->fetchAll();
-              $get_result_2_id = explode('=', $result2[0]->route_param_key);
-              $parent_node_id_2 = $get_result_2_id[1];
-              $get_node = Node::load($parent_node_id_2);
+          if ($parent_node_id != null) {
+            $get_node = Node::load($parent_node_id);
+            $node_title = $get_node->getTitle();
+            $image_url = $get_node->field_parent_background_image->entity->getFileUri();
+            if (isset($get_node->field_header_style->value)) {
+              $parent_style = $get_node->field_header_style->value;
             } else {
-              $get_node = Node::load($parent_node_id);
+              $parent_style = 'color-none';
             }
-          }
-          $node_title = $get_node->getTitle();
-          $image_url = $get_node->field_parent_background_image->entity->getFileUri();
-          if (isset($get_node->field_header_style->value)) {
-            $parent_style = $get_node->field_header_style->value;
-          } else {
-            $parent_style = 'color-none';
-          }
-          if ($node_id != $parent_node_id) {
-            $variables['parent_title'] = $get_node->getTitle();
-            $variables['parent_image'] = file_create_url($image_url);
-            $variables['parent_style'] = $parent_style;
+            if ($node_id != $parent_node_id) {
+              $variables['parent_title'] = $get_node->getTitle();
+              $variables['parent_image'] = file_create_url($image_url);
+              $variables['parent_style'] = $parent_style;
+            }
           }
         }
       }
