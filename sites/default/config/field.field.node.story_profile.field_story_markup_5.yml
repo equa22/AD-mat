@@ -1,0 +1,25 @@
+uuid: 4791d088-b5d1-4402-8c0f-52d213d99176
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_story_markup_5
+    - node.type.story_profile
+  module:
+    - markup
+id: node.story_profile.field_story_markup_5
+field_name: field_story_markup_5
+entity_type: node
+bundle: story_profile
+label: 'Story markup 5'
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings:
+  markup:
+    value: "<h2>Agree & Submit</h2>\r\n<p>Nisi aliquip in anim nostrud voluptate enim in dolore non in enim deserunt exercitation est adipisicing veniam consequat laboris cupidatat in consectetur proident occaecat et ea excepteur voluptate eiusmod do pariatur laboris incididunt sit dolor id qui qui dolor deserunt fugiat nostrud minim aliqua culpa nulla ut consectetur in voluptate reprehenderit laborum non et in duis laboris dolore proident irure cupidatat ut enim eu deserunt in ad laboris esse culpa velit incididunt dolor cupidatat voluptate sint et ullamco qui dolor nulla est sint magna velit elit amet et ex veniam nostrud laboris deserunt aute enim dolor dolor enim sint laborum enim cillum elit adipisicing dolore magna cupidatat deserunt adipisicing deserunt sit adipisicing ut aute commodo laborum culpa id ea occaecat in eu consectetur nostrud laborum in voluptate aliquip ex in non culpa irure culpa in velit do magna non do voluptate ad mollit sunt ex fugiat incididunt velit ex irure sint dolore dolore sint mollit ea dolor aliquip minim sunt consequat voluptate consectetur voluptate aute qui pariatur ea laborum sed est dolore irure amet enim non labore est ex fugiat id id cillum esse ut nulla ad qui dolore duis in sit sunt nostrud duis dolore anim nostrud est fugiat ex veniam commodo proident do laboris do sit duis ea quis duis mollit incididunt elit laboris veniam elit consectetur ut nulla dolor officia qui eiusmod sint ad pariatur occaecat quis in esse cillum nostrud fugiat excepteur anim labore ea magna magna ea ea sit elit fugiat nisi sed laborum exercitation ut reprehenderit nisi in excepteur ut irure sunt eiusmod ad laborum consectetur est.</p>"
+    format: advanced
+field_type: markup

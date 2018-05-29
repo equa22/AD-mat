@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.media_entity_browser_modal
     - field.field.node.story_profile.body
+    - field.field.node.story_profile.field_intro_markup
     - field.field.node.story_profile.field_search_image_media
     - field.field.node.story_profile.field_story_category
     - field.field.node.story_profile.field_story_featured_image
@@ -13,10 +14,16 @@ dependencies:
     - field.field.node.story_profile.field_story_image_2
     - field.field.node.story_profile.field_story_image_3
     - field.field.node.story_profile.field_story_last_name
+    - field.field.node.story_profile.field_story_markup_1
+    - field.field.node.story_profile.field_story_markup_2
+    - field.field.node.story_profile.field_story_markup_23
+    - field.field.node.story_profile.field_story_markup_4
+    - field.field.node.story_profile.field_story_markup_5
     - field.field.node.story_profile.field_submissioner_email
     - field.field.node.story_profile.field_submissioner_first_name
     - field.field.node.story_profile.field_submissioner_last_name
     - field.field.node.story_profile.field_submissioner_phone_number
+    - field.field.node.story_profile.field_terms_and_conditions
     - image.style.thumbnail
     - node.type.story_profile
   module:
@@ -46,7 +53,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_search_image_media:
-    weight: 26
+    weight: 21
     settings:
       entity_browser: media_entity_browser_modal
       field_widget_display: label
@@ -204,4 +211,11 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_intro_markup: true
+  field_story_markup_1: true
+  field_story_markup_2: true
+  field_story_markup_23: true
+  field_story_markup_4: true
+  field_story_markup_5: true
+  field_terms_and_conditions: true

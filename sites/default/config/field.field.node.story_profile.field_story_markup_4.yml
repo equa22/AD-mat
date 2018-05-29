@@ -1,0 +1,25 @@
+uuid: 16ccf60f-e5b3-415b-b002-fb97c1f749a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_story_markup_4
+    - node.type.story_profile
+  module:
+    - markup
+id: node.story_profile.field_story_markup_4
+field_name: field_story_markup_4
+entity_type: node
+bundle: story_profile
+label: 'Story markup 4'
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings:
+  markup:
+    value: "<h2>Tell us about yourself</h2>\r\n<p>In case we need to contact you about your story, please provide a few details about yourself.</p>"
+    format: advanced
+field_type: markup

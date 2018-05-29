@@ -1,0 +1,25 @@
+uuid: aa05cc95-3b49-4963-89f1-15e741488744
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_intro_markup
+    - node.type.story_profile
+  module:
+    - markup
+id: node.story_profile.field_intro_markup
+field_name: field_intro_markup
+entity_type: node
+bundle: story_profile
+label: 'Intro markup'
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings:
+  markup:
+    value: "<div class=\"story-submission-intro\">\r\n<h1>Share your story</h1>\r\n<p>Ex quis veniam esse ex do ut enim adipisicing aliquip eiusmod amet ullamco in occaecat proident duis dolore exercitation.</p>\r\n<p>If you have questions, please write to <a href=\"mailto:info@midamericatransplant.org\">info@midamericatransplant.org</a>.</p>\r\n</div>"
+    format: advanced
+field_type: markup

@@ -1,0 +1,25 @@
+uuid: 96ca7ce9-a2eb-46fb-8c7c-c0fa1ab3707a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_story_markup_1
+    - node.type.story_profile
+  module:
+    - markup
+id: node.story_profile.field_story_markup_1
+field_name: field_story_markup_1
+entity_type: node
+bundle: story_profile
+label: 'Story markup 1'
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings:
+  markup:
+    value: "<h2>Who is your story about ?</h2>\r\n\r\n<p>Tell us about the person your story is about. This may be you, a friend, or a family member.</p>\r\n"
+    format: advanced
+field_type: markup
