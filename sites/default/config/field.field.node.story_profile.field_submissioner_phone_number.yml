@@ -9,7 +9,7 @@ id: node.story_profile.field_submissioner_phone_number
 field_name: field_submissioner_phone_number
 entity_type: node
 bundle: story_profile
-label: 'Submissioner Phone Number'
+label: 'Phone #'
 description: ''
 required: false
 translatable: false

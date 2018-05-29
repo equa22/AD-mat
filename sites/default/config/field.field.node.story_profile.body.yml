@@ -6,7 +6,14 @@ dependencies:
     - field.storage.node.body
     - node.type.story_profile
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    advanced: '0'
+    basic_editor: '0'
+    rich_editor: '0'
+    plain_text: '0'
 id: node.story_profile.body
 field_name: body
 entity_type: node
@@ -18,5 +25,5 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  display_summary: true
+  display_summary: false
 field_type: text_with_summary

@@ -9,7 +9,7 @@ id: node.story_profile.field_story_last_name
 field_name: field_story_last_name
 entity_type: node
 bundle: story_profile
-label: 'Story last name'
+label: 'Last Name'
 description: ''
 required: true
 translatable: false
