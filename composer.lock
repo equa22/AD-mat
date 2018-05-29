@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "12d898e2481572476d74784e0619068a",
+    "content-hash": "4e0d18b96d16b7972c46eef2e4e3aa9f",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
@@ -1890,7 +1890,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
             },
-            "time": "2017-07-08T17:49:05+00:00"
+            "time": "2017-07-08 17:49:05"
         },
         {
             "name": "drupal/allowed_formats",
@@ -3669,7 +3669,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/install_profile_generator"
             },
-            "time": "2017-12-20T09:13:41+00:00"
+            "time": "2017-12-20 09:13:41"
         },
         {
             "name": "drupal/linkit",
@@ -4152,7 +4152,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
             },
-            "time": "2018-05-16T13:30:41+00:00"
+            "time": "2018-05-16 13:30:41"
         },
         {
             "name": "drupal/paragraphs_edit",
@@ -4547,7 +4547,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/slick_paragraphs"
             },
-            "time": "2016-12-27T06:11:30+00:00"
+            "time": "2016-12-27 06:11:30"
         },
         {
             "name": "drupal/svg_image",
@@ -10113,6 +10113,7 @@
         "drupal/better_exposed_filters": 15,
         "drupal/focal_point": 10,
         "drupal/field_permissions": 5,
+        "drupal/markup": 10,
         "behat/mink": 20,
         "behat/mink-selenium2-driver": 20
     },

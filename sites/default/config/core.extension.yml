@@ -41,6 +41,7 @@ module:
   file: 0
   filter: 0
   focal_point: 0
+  form_mode_manager: 0
   google_analytics: 0
   image: 0
   inline_entity_form: 0
@@ -49,6 +50,7 @@ module:
   language: 0
   link: 0
   mailsystem: 0
+  markup: 0
   mat_global: 0
   mat_news: 0
   mat_search: 0

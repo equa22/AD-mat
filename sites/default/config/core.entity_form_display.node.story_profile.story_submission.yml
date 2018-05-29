@@ -1,0 +1,210 @@
+uuid: d98843fa-ecc0-4f7c-a876-1b2767c0e959
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.story_submission
+    - field.field.node.story_profile.body
+    - field.field.node.story_profile.field_search_image_media
+    - field.field.node.story_profile.field_story_category
+    - field.field.node.story_profile.field_story_featured_image
+    - field.field.node.story_profile.field_story_first_name
+    - field.field.node.story_profile.field_story_image_1
+    - field.field.node.story_profile.field_story_image_2
+    - field.field.node.story_profile.field_story_image_3
+    - field.field.node.story_profile.field_story_last_name
+    - field.field.node.story_profile.field_submissioner_email
+    - field.field.node.story_profile.field_submissioner_first_name
+    - field.field.node.story_profile.field_submissioner_last_name
+    - field.field.node.story_profile.field_submissioner_phone_number
+    - image.style.thumbnail
+    - node.type.story_profile
+  module:
+    - field_group
+    - svg_image
+    - text
+third_party_settings:
+  field_group:
+    group_step_1:
+      children:
+        - field_story_first_name
+        - field_story_last_name
+        - field_story_category
+      parent_name: ''
+      weight: 20
+      format_type: accordion
+      format_settings:
+        id: step1
+        classes: step1
+        effect: none
+      label: 'Step 1'
+    group_step_2:
+      children:
+        - body
+      parent_name: ''
+      weight: 20
+      format_type: accordion
+      format_settings:
+        id: step2
+        classes: step2
+        effect: none
+      label: 'Step 2'
+    group_step_3:
+      children:
+        - field_story_image_3
+        - field_story_featured_image
+        - field_story_image_1
+        - field_story_image_2
+      parent_name: ''
+      weight: 20
+      format_type: accordion
+      format_settings:
+        id: step3
+        classes: step3
+        effect: none
+      label: 'Step 3'
+    group_step_4:
+      children:
+        - field_submissioner_first_name
+        - field_submissioner_last_name
+        - field_submissioner_email
+        - field_submissioner_phone_number
+      parent_name: ''
+      weight: 20
+      format_type: accordion
+      format_settings:
+        id: step4
+        classes: step4
+        effect: none
+      label: 'Step 4'
+    group_step_5:
+      children: {  }
+      parent_name: ''
+      weight: 20
+      format_type: accordion
+      format_settings:
+        id: step5
+        classes: step5
+        effect: none
+      label: 'Step 5'
+id: node.story_profile.story_submission
+targetEntityType: node
+bundle: story_profile
+mode: story_submission
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 5
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_story_category:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_story_featured_image:
+    weight: 9
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_first_name:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_story_image_1:
+    weight: 10
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_image_2:
+    weight: 11
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_image_3:
+    weight: 8
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_last_name:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_submissioner_email:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_submissioner_first_name:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_submissioner_last_name:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_submissioner_phone_number:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_search_image_media: true
+  langcode: true
+  moderation_state: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

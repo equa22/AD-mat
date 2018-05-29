@@ -1,0 +1,10 @@
+uuid: 8eef90a7-6f6b-4506-abb8-21dfd88955ad
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.story_submission
+label: 'Story Submission'
+targetEntityType: node
+cache: true

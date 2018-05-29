@@ -10,7 +10,10 @@ weight: 1
 is_admin: false
 permissions:
   - 'access content'
+  - 'create story_profile content'
   - 'subscribe to newsletters'
+  - 'use  The form mode default linked to  node entity( story_profile )'
+  - 'use  The form mode story_submission linked to  node entity( story_profile )'
   - 'use text format basic_editor'
   - 'use text format rich_editor'
   - 'use text format rich_title'
