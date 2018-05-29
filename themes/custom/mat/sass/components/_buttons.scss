@@ -12,3 +12,8 @@ input[type=submit] {
 .btn {
   @include btn();
 }
+
+// Story landing add button
+.btn-add-story {
+  @include btn-primary();
+}
