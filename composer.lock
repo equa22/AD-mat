@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e0d18b96d16b7972c46eef2e4e3aa9f",
+    "content-hash": "df09d70d3a0d398ce612e64c1408be0a",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
@@ -395,7 +395,7 @@
             "version": "v2.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/metafizzy/outlayer.git",
+                "url": "git@github.com:metafizzy/outlayer.git",
                 "reference": "bf31c5748bf84fcc2c553d1199a6ecaf0ebd9878"
             },
             "dist": {
@@ -1890,7 +1890,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
             },
-            "time": "2017-07-08 17:49:05"
+            "time": "2017-07-08T17:49:05+00:00"
         },
         {
             "name": "drupal/allowed_formats",
@@ -3504,6 +3504,62 @@
             }
         },
         {
+            "name": "drupal/form_mode_manager",
+            "version": "2.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/form_mode_manager",
+                "reference": "8.x-2.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/form_mode_manager-8.x-2.0-rc1.zip",
+                "reference": "8.x-2.0-rc1",
+                "shasum": "a045b2bbaa75dd1463d441ad3dd59302dbb241a8"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-rc1",
+                    "datestamp": "1526667480",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandre Mallet",
+                    "homepage": "https://github.com/woprrr",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provide an API to use Form modes",
+            "homepage": "https://www.drupal.org/project/image_widget_crop",
+            "keywords": [
+                "Drupal",
+                "Drupal Display modes",
+                "Field Ui",
+                "Form modes"
+            ],
+            "support": {
+                "source": "https://www.drupal.org/project/form_mode_manager",
+                "issues": "https://www.drupal.org/project/issues/form_mode_manager",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
             "name": "drupal/google_analytics",
             "version": "2.2.0",
             "source": {
@@ -3669,7 +3725,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/install_profile_generator"
             },
-            "time": "2017-12-20 09:13:41"
+            "time": "2017-12-20T09:13:41+00:00"
         },
         {
             "name": "drupal/linkit",
@@ -3782,6 +3838,73 @@
             "homepage": "https://www.drupal.org/project/mailsystem",
             "support": {
                 "source": "http://cgit.drupalcode.org/mailsystem"
+            }
+        },
+        {
+            "name": "drupal/markup",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/markup",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/markup-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "7bb8c7623094178b9e40ff711065bcae8538b46f"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1460007239",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Deciphered",
+                    "homepage": "https://www.drupal.org/user/103796"
+                },
+                {
+                    "name": "bcostlow",
+                    "homepage": "https://www.drupal.org/user/1340686"
+                },
+                {
+                    "name": "cYu",
+                    "homepage": "https://www.drupal.org/user/202205"
+                },
+                {
+                    "name": "ebeyrent",
+                    "homepage": "https://www.drupal.org/user/23897"
+                },
+                {
+                    "name": "mqanneh",
+                    "homepage": "https://www.drupal.org/user/2833163"
+                },
+                {
+                    "name": "mrfelton",
+                    "homepage": "https://www.drupal.org/user/305669"
+                }
+            ],
+            "description": "Defines a field type for markup.",
+            "homepage": "https://www.drupal.org/project/markup",
+            "support": {
+                "source": "http://cgit.drupalcode.org/markup"
             }
         },
         {
@@ -4152,7 +4275,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
             },
-            "time": "2018-05-16 13:30:41"
+            "time": "2018-05-16T13:30:41+00:00"
         },
         {
             "name": "drupal/paragraphs_edit",
@@ -4547,7 +4670,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/slick_paragraphs"
             },
-            "time": "2016-12-27 06:11:30"
+            "time": "2016-12-27T06:11:30+00:00"
         },
         {
             "name": "drupal/svg_image",
