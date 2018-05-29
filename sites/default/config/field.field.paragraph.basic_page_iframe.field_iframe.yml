@@ -1,0 +1,28 @@
+uuid: 3909f53e-ef20-47f2-926f-a7d906889d2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_iframe
+    - paragraphs.paragraphs_type.basic_page_iframe
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    advanced: advanced
+    basic_editor: '0'
+    rich_editor: '0'
+    plain_text: '0'
+id: paragraph.basic_page_iframe.field_iframe
+field_name: field_iframe
+entity_type: paragraph
+bundle: basic_page_iframe
+label: Code
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

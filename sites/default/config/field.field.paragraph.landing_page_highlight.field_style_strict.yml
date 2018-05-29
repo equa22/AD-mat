@@ -1,18 +1,18 @@
-uuid: 1adf9ece-2ca9-4df1-9b9a-044363ed6e5d
+uuid: 7ccaa2a0-19fd-474c-b7bf-dca26ff4faed
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_style
-    - paragraphs.paragraphs_type.pillar_group
-id: paragraph.pillar_group.field_style
-field_name: field_style
+    - field.storage.paragraph.field_style_strict
+    - paragraphs.paragraphs_type.landing_page_highlight
+id: paragraph.landing_page_highlight.field_style_strict
+field_name: field_style_strict
 entity_type: paragraph
-bundle: pillar_group
+bundle: landing_page_highlight
 label: Style
 description: ''
 required: true
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -21,15 +21,15 @@ settings:
     filter:
       type: target_bundles
       target_bundles:
-        color_green: color_green
-        color_orange: color_orange
-        color_purple: color_purple
-        align_left: 0
+        align_left: align_left
         align_right: 0
         boxed: 0
         color_blue: 0
         color_dark_blue: 0
+        color_green: 0
         color_light_blue: 0
+        color_orange: 0
+        color_purple: 0
         coloured_dark: 0
         coloured: 0
         gavin_s_story: 0

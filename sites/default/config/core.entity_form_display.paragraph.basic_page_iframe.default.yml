@@ -1,22 +1,20 @@
-uuid: 39cd06a9-4ba8-4963-bf28-d9bc7b91be5f
+uuid: 0ed3c645-aa5d-419e-bc7c-638bde34a92d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.landing_page_rich_text.field_text
-    - paragraphs.paragraphs_type.landing_page_rich_text
+    - field.field.paragraph.basic_page_iframe.field_iframe
+    - paragraphs.paragraphs_type.basic_page_iframe
   module:
     - content_moderation
     - text
-_core:
-  default_config_hash: AsL6ua9sp4ugjcNMHq0Qu4XR9mRbGjZA3rWG4WmKc6Y
-id: paragraph.landing_page_rich_text.default
+id: paragraph.basic_page_iframe.default
 targetEntityType: paragraph
-bundle: landing_page_rich_text
+bundle: basic_page_iframe
 mode: default
 content:
-  field_text:
-    weight: 0
+  field_iframe:
+    weight: 101
     settings:
       rows: 5
       placeholder: ''
@@ -25,7 +23,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 1
+    weight: 100
     settings: {  }
     region: content
     third_party_settings: {  }

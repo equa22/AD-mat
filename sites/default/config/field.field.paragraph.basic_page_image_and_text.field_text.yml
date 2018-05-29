@@ -1,10 +1,10 @@
-uuid: 25e30d28-c5c7-48d5-a18a-a25131e35539
+uuid: b62055a8-c044-499b-a1a1-0da06759569d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_text
-    - paragraphs.paragraphs_type.landing_page_rich_text
+    - paragraphs.paragraphs_type.basic_page_image_and_text
   module:
     - allowed_formats
     - text
@@ -14,12 +14,10 @@ third_party_settings:
     advanced: '0'
     rich_editor: '0'
     plain_text: '0'
-_core:
-  default_config_hash: T2kdG_uP9UZGR5xKXt0fIrsEmMTo1YLYgUx4uodHpus
-id: paragraph.landing_page_rich_text.field_text
+id: paragraph.basic_page_image_and_text.field_text
 field_name: field_text
 entity_type: paragraph
-bundle: landing_page_rich_text
+bundle: basic_page_image_and_text
 label: Text
 description: ''
 required: true

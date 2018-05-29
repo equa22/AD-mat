@@ -3,10 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.landing_page_image.field_image
     - field.field.paragraph.landing_page_image.field_media
-    - field.field.paragraph.landing_page_image.field_paragraph_column
-    - field.field.paragraph.landing_page_image.field_style
     - paragraphs.paragraphs_type.landing_page_image
 _core:
   default_config_hash: 0xOYDK6XZzPTwpYq_GzJDOATMtfjl0EgUTaJ2iBqTO8
@@ -20,11 +17,8 @@ content:
     weight: 1
     label: hidden
     settings:
-      view_mode: default
+      view_mode: full
       link: false
     third_party_settings: {  }
     region: content
-hidden:
-  field_image: true
-  field_paragraph_column: true
-  field_style: true
+hidden: {  }

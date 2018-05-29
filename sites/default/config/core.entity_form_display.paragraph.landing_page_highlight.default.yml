@@ -7,7 +7,7 @@ dependencies:
     - field.field.paragraph.landing_page_highlight.field_link
     - field.field.paragraph.landing_page_highlight.field_media_background
     - field.field.paragraph.landing_page_highlight.field_media_foreground
-    - field.field.paragraph.landing_page_highlight.field_style
+    - field.field.paragraph.landing_page_highlight.field_style_strict
     - field.field.paragraph.landing_page_highlight.field_text
     - field.field.paragraph.landing_page_highlight.field_text_align
     - field.field.paragraph.landing_page_highlight.field_title_formatted
@@ -24,6 +24,7 @@ third_party_settings:
     group_settings:
       children:
         - field_style
+        - field_style_strict
       parent_name: ''
       weight: 6
       format_type: html_element
@@ -81,8 +82,8 @@ content:
     third_party_settings: {  }
     type: entity_browser_entity_reference
     region: content
-  field_style:
-    weight: 7
+  field_style_strict:
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_select

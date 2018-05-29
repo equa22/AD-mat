@@ -1,15 +1,15 @@
-uuid: 1adf9ece-2ca9-4df1-9b9a-044363ed6e5d
+uuid: 38415613-23ae-4c1a-b491-a47dcde6836b
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_style
-    - paragraphs.paragraphs_type.pillar_group
-id: paragraph.pillar_group.field_style
-field_name: field_style
+    - field.storage.paragraph.field_text_align
+    - paragraphs.paragraphs_type.basic_page_image_and_text
+id: paragraph.basic_page_image_and_text.field_text_align
+field_name: field_text_align
 entity_type: paragraph
-bundle: pillar_group
-label: Style
+bundle: basic_page_image_and_text
+label: 'Text align'
 description: ''
 required: true
 translatable: true
@@ -21,15 +21,15 @@ settings:
     filter:
       type: target_bundles
       target_bundles:
-        color_green: color_green
-        color_orange: color_orange
-        color_purple: color_purple
-        align_left: 0
-        align_right: 0
+        align_left: align_left
+        align_right: align_right
         boxed: 0
         color_blue: 0
         color_dark_blue: 0
+        color_green: 0
         color_light_blue: 0
+        color_orange: 0
+        color_purple: 0
         coloured_dark: 0
         coloured: 0
         gavin_s_story: 0

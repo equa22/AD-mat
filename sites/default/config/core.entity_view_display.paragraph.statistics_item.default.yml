@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.statistics_item.field_color
-    - field.field.paragraph.statistics_item.field_icon
+    - field.field.paragraph.statistics_item.field_icon_statistic
     - field.field.paragraph.statistics_item.field_number
     - field.field.paragraph.statistics_item.field_text
     - field.field.paragraph.statistics_item.field_title
@@ -42,4 +42,4 @@ content:
 hidden:
   field_class_name: true
   field_color: true
-  field_icon: true
+  field_icon_statistic: true

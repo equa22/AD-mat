@@ -1,23 +1,20 @@
-uuid: 34167675-71c6-4d52-8b51-91fe6a060b15
+uuid: 2fc206f6-74cd-443a-9e01-415580026ae7
 langcode: en
 status: true
 dependencies:
   module:
     - field_permissions
-    - media
     - paragraphs
+    - text
 third_party_settings:
   field_permissions:
     permission_type: public
-_core:
-  default_config_hash: Mjg_F4x7KK-LmUzv1WMR1ZcrVCRSo8zsG4zqOqHV92E
-id: paragraph.field_media
-field_name: field_media
+id: paragraph.field_iframe
+field_name: field_iframe
 entity_type: paragraph
-type: entity_reference
-settings:
-  target_type: media
-module: core
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

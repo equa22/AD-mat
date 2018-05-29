@@ -1,18 +1,18 @@
-uuid: 1adf9ece-2ca9-4df1-9b9a-044363ed6e5d
+uuid: 120cd3ca-3e82-4d17-a34b-c0a7833f50e5
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_style
-    - paragraphs.paragraphs_type.pillar_group
-id: paragraph.pillar_group.field_style
-field_name: field_style
+    - field.storage.paragraph.field_icon_statistic
+    - paragraphs.paragraphs_type.statistics_item
+id: paragraph.statistics_item.field_icon_statistic
+field_name: field_icon_statistic
 entity_type: paragraph
-bundle: pillar_group
-label: Style
+bundle: statistics_item
+label: Icon
 description: ''
 required: true
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -21,34 +21,34 @@ settings:
     filter:
       type: target_bundles
       target_bundles:
-        color_green: color_green
-        color_orange: color_orange
-        color_purple: color_purple
+        icon_exchange: icon_exchange
+        icon_eye: icon_eye
+        icon_hands_heart: icon_hands_heart
+        icon_heart: icon_heart
+        icon_home: icon_home
+        icon_shield: icon_shield
+        icon_users: icon_users
         align_left: 0
         align_right: 0
         boxed: 0
         color_blue: 0
         color_dark_blue: 0
+        color_green: 0
         color_light_blue: 0
+        color_orange: 0
+        color_purple: 0
         coloured_dark: 0
         coloured: 0
         gavin_s_story: 0
         icon_comment_alt_lines: 0
-        icon_exchange: 0
-        icon_eye: 0
         icon_facebook: 0
         icon_give_life: 0
         icon_hand_holding_heart: 0
-        icon_hands_heart: 0
-        icon_heart: 0
-        icon_home: 0
         icon_instagram: 0
         icon_linkedin: 0
         icon_search: 0
-        icon_shield: 0
         icon_together: 0
         icon_twitter: 0
-        icon_users: 0
         icon_vimeo: 0
         icon_walking: 0
         meegale_s_story: 0

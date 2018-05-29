@@ -1,0 +1,129 @@
+uuid: 46d165c9-6dd0-4e71-bc61-296afe562fbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_basic_page_components
+    - node.type.basic_page
+    - paragraphs.paragraphs_type.basic_page_iframe
+    - paragraphs.paragraphs_type.basic_page_image_and_text
+    - paragraphs.paragraphs_type.basic_page_video
+    - paragraphs.paragraphs_type.landing_page_image
+    - paragraphs.paragraphs_type.landing_page_rich_text
+  module:
+    - entity_reference_revisions
+id: node.basic_page.field_basic_page_components
+field_name: field_basic_page_components
+entity_type: node
+bundle: basic_page
+label: Components
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      landing_page_rich_text: landing_page_rich_text
+      landing_page_image: landing_page_image
+      basic_page_image_and_text: basic_page_image_and_text
+      basic_page_video: basic_page_video
+      basic_page_iframe: basic_page_iframe
+    target_bundles_drag_drop:
+      carousel:
+        weight: -63
+        enabled: false
+      cta_item:
+        weight: -62
+        enabled: false
+      highlight_slide:
+        weight: -61
+        enabled: false
+      landing_page_box:
+        weight: -60
+        enabled: false
+      landing_page_columns:
+        weight: -59
+        enabled: false
+      landing_page_counter:
+        weight: -58
+        enabled: false
+      landing_page_cta:
+        weight: -57
+        enabled: false
+      landing_page_form:
+        weight: -56
+        enabled: false
+      landing_page_hero:
+        weight: -55
+        enabled: false
+      landing_page_hero_image:
+        weight: -54
+        enabled: false
+      landing_page_highlight:
+        weight: -53
+        enabled: false
+      landing_page_rich_text:
+        enabled: true
+        weight: -52
+      landing_page_image:
+        enabled: true
+        weight: -51
+      basic_page_image_and_text:
+        enabled: true
+        weight: -50
+      basic_page_video:
+        enabled: true
+        weight: -49
+      basic_page_iframe:
+        enabled: true
+        weight: -48
+      landing_page_list:
+        weight: -47
+        enabled: false
+      landing_page_pillars:
+        weight: -46
+        enabled: false
+      landing_page_slider:
+        weight: -45
+        enabled: false
+      landing_page_statement:
+        weight: -44
+        enabled: false
+      landing_page_statistics:
+        weight: -43
+        enabled: false
+      landing_page_stories:
+        weight: -42
+        enabled: false
+      landing_page_why_register:
+        weight: -41
+        enabled: false
+      landing_page_year_review:
+        weight: -40
+        enabled: false
+      myth_vs_fact:
+        weight: -39
+        enabled: false
+      pillar_group:
+        weight: -38
+        enabled: false
+      pillar_group_item:
+        weight: -37
+        enabled: false
+      slide:
+        weight: -36
+        enabled: false
+      social_link:
+        weight: -35
+        enabled: false
+      statistics_item:
+        weight: -34
+        enabled: false
+      timeline_facts:
+        weight: -33
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,22 @@
+uuid: 91aaafb0-e26c-46d6-ae06-c9f3a5cfd724
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.basic_page_iframe.field_iframe
+    - paragraphs.paragraphs_type.basic_page_iframe
+  module:
+    - text
+id: paragraph.basic_page_iframe.default
+targetEntityType: paragraph
+bundle: basic_page_iframe
+mode: default
+content:
+  field_iframe:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

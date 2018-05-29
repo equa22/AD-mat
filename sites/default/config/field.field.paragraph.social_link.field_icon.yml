@@ -37,6 +37,7 @@ settings:
         color_purple: 0
         coloured_dark: 0
         coloured: 0
+        gavin_s_story: 0
         icon_comment_alt_lines: 0
         icon_exchange: 0
         icon_eye: 0
@@ -50,8 +51,8 @@ settings:
         icon_together: 0
         icon_users: 0
         icon_walking: 0
-        statement_basic: 0
-        statement_inner: 0
+        meegale_s_story: 0
+        sisters_story: 0
       negate: 0
     sort:
       field: _none

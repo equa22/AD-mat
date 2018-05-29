@@ -1,0 +1,9 @@
+uuid: baea707e-2bb1-4248-98b3-fd9e16454f41
+langcode: en
+status: true
+dependencies: {  }
+id: basic_page_video
+label: Video
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

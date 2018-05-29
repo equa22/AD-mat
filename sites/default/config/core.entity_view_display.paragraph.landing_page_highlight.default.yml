@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.landing_page_highlight.field_link
     - field.field.paragraph.landing_page_highlight.field_media_background
     - field.field.paragraph.landing_page_highlight.field_media_foreground
-    - field.field.paragraph.landing_page_highlight.field_style
+    - field.field.paragraph.landing_page_highlight.field_style_strict
     - field.field.paragraph.landing_page_highlight.field_text
     - field.field.paragraph.landing_page_highlight.field_text_align
     - field.field.paragraph.landing_page_highlight.field_title_formatted
@@ -67,6 +67,6 @@ content:
     region: content
 hidden:
   field_highlight_statement: true
-  field_style: true
+  field_style_strict: true
   field_text_align: true
   field_title: true

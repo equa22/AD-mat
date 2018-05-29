@@ -1,22 +1,20 @@
-uuid: 34167675-71c6-4d52-8b51-91fe6a060b15
+uuid: e56cf0c9-347e-4569-8518-9b0dded385d1
 langcode: en
 status: true
 dependencies:
   module:
+    - classy_paragraphs
     - field_permissions
-    - media
     - paragraphs
 third_party_settings:
   field_permissions:
-    permission_type: public
-_core:
-  default_config_hash: Mjg_F4x7KK-LmUzv1WMR1ZcrVCRSo8zsG4zqOqHV92E
-id: paragraph.field_media
-field_name: field_media
+    permission_type: custom
+id: paragraph.field_icon_statistic
+field_name: field_icon_statistic
 entity_type: paragraph
 type: entity_reference
 settings:
-  target_type: media
+  target_type: classy_paragraphs_style
 module: core
 locked: false
 cardinality: 1

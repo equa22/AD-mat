@@ -1,0 +1,33 @@
+uuid: 85a66b42-acfc-4687-8f4a-7c9bae27888b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.basic_page_video.field_video
+    - paragraphs.paragraphs_type.basic_page_video
+  module:
+    - content_moderation
+id: paragraph.basic_page_video.default
+targetEntityType: paragraph
+bundle: basic_page_video
+mode: default
+content:
+  field_video:
+    weight: 101
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

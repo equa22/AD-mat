@@ -1,4 +1,4 @@
-uuid: 34167675-71c6-4d52-8b51-91fe6a060b15
+uuid: 18828597-b5cf-4833-8ea3-3e534435e6b5
 langcode: en
 status: true
 dependencies:
@@ -9,10 +9,8 @@ dependencies:
 third_party_settings:
   field_permissions:
     permission_type: public
-_core:
-  default_config_hash: Mjg_F4x7KK-LmUzv1WMR1ZcrVCRSo8zsG4zqOqHV92E
-id: paragraph.field_media
-field_name: field_media
+id: paragraph.field_video
+field_name: field_video
 entity_type: paragraph
 type: entity_reference
 settings:

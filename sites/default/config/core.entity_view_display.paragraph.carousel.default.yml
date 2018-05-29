@@ -4,8 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.carousel.field_carousel_cta_button
-    - field.field.paragraph.carousel.field_content_first
-    - field.field.paragraph.carousel.field_content_second
     - field.field.paragraph.carousel.field_main_title
     - field.field.paragraph.carousel.field_slide_items
     - field.field.paragraph.carousel.field_small_title
@@ -28,20 +26,6 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
-  field_content_first:
-    weight: 4
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: content
-  field_content_second:
-    weight: 5
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
     region: content
   field_main_title:
     weight: 1

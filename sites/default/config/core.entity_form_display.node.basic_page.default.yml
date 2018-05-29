@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.media_entity_browser_modal
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_basic_page_components
     - field.field.node.basic_page.field_header_style
     - field.field.node.basic_page.field_main_description
     - field.field.node.basic_page.field_parent_background_image
@@ -14,6 +15,7 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - paragraphs
     - path
     - svg_image
     - text
@@ -39,6 +41,18 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_basic_page_components:
+    type: entity_reference_paragraphs
+    weight: 27
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
   field_header_style:
     weight: 3
     settings: {  }

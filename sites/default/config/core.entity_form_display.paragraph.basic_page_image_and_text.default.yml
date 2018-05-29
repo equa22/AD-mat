@@ -1,26 +1,25 @@
-uuid: 363098f2-9f30-495f-b646-7365261bbb34
+uuid: 0c88bf55-35d0-42a7-b13b-0e06ef802eb6
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.cta_item.field_color
-    - field.field.paragraph.cta_item.field_content
-    - field.field.paragraph.cta_item.field_icon_cta
-    - field.field.paragraph.cta_item.field_link
-    - field.field.paragraph.cta_item.field_title
-    - paragraphs.paragraphs_type.cta_item
+    - entity_browser.browser.media_entity_browser_modal
+    - field.field.paragraph.basic_page_image_and_text.field_media
+    - field.field.paragraph.basic_page_image_and_text.field_text
+    - field.field.paragraph.basic_page_image_and_text.field_text_align
+    - paragraphs.paragraphs_type.basic_page_image_and_text
   module:
     - content_moderation
+    - entity_browser
     - field_group
-    - link
+    - text
 third_party_settings:
   field_group:
     group_settings:
       children:
-        - field_color
-        - field_icon_cta
+        - field_text_align
       parent_name: ''
-      weight: 20
+      weight: 3
       format_type: html_element
       format_settings:
         id: ''
@@ -33,46 +32,38 @@ third_party_settings:
         effect: none
         speed: fast
       label: Settings
-id: paragraph.cta_item.default
+id: paragraph.basic_page_image_and_text.default
 targetEntityType: paragraph
-bundle: cta_item
+bundle: basic_page_image_and_text
 mode: default
 content:
-  field_color:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_content:
-    weight: 2
-    settings:
-      rows: 2
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  field_icon_cta:
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_link:
-    weight: 3
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
-  field_title:
+  field_media:
     weight: 1
     settings:
-      size: 60
+      entity_browser: media_entity_browser_modal
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: teaser
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_text:
+    weight: 2
+    settings:
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: text_textarea
+    region: content
+  field_text_align:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   moderation_state:
     type: moderation_state_default
