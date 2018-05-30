@@ -9,6 +9,26 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_paragraph_column
+        - field_style
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 _core:
   default_config_hash: 9vOogzIq0Kz2jpdxxaN1r_ow7xFdoyjFMPGPiYQKWc8
 id: paragraph.landing_page_image.default

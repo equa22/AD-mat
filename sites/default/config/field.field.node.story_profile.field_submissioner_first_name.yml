@@ -9,7 +9,7 @@ id: node.story_profile.field_submissioner_first_name
 field_name: field_submissioner_first_name
 entity_type: node
 bundle: story_profile
-label: 'Submissioner First name'
+label: 'First name'
 description: ''
 required: false
 translatable: false

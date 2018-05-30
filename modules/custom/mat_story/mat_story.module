@@ -1,6 +1,14 @@
 <?php
 
 function mat_story_form_alter(&$form, $form_state, $form_id) {
+  // for ct form display
+  if ($form['#id'] == 'node-story-profile-story-submission-form') {
+    $form['field_terms_and_conditions']['widget']['value']['#title'] = t('I agree to the <a href="/terms-and-conditions">Terms and Conditions</a>.');
+    $form['actions']['submit']['#value'] = t('Submit Your Story');
+    $form['body']['widget'][0]['#title'] = '';
+    $form['title']['#attributes']['class'][] = 'hidden';
+  }
+  // for web form
   if($form['#id'] == 'views-exposed-form-stories-landing-page-1') {
     $output = '<div class="stories-filter-left"><ul class="story-categories">';
     foreach ($form['field_story_category_target_id']['#options'] as $key => &$option) {

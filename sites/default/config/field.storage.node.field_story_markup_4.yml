@@ -1,21 +1,20 @@
-uuid: d3b730f3-b1c1-4f07-95cc-b3c9dde8adec
+uuid: d5ebbf2a-4b56-406a-b9f3-35542b788d54
 langcode: en
 status: true
 dependencies:
   module:
     - field_permissions
+    - markup
     - node
-    - taxonomy
 third_party_settings:
   field_permissions:
     permission_type: public
-id: node.field_story_category
-field_name: field_story_category
+id: node.field_story_markup_4
+field_name: field_story_markup_4
 entity_type: node
-type: entity_reference
-settings:
-  target_type: taxonomy_term
-module: core
+type: markup
+settings: {  }
+module: markup
 locked: false
 cardinality: 1
 translatable: true

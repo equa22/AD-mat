@@ -1,0 +1,25 @@
+uuid: 1c225944-aa83-4e45-92e8-c5f9d6eebccd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_story_markup_2
+    - node.type.story_profile
+  module:
+    - markup
+id: node.story_profile.field_story_markup_2
+field_name: field_story_markup_2
+entity_type: node
+bundle: story_profile
+label: 'Story markup 2'
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings:
+  markup:
+    value: '<h2>Tell us the story</h2>'
+    format: advanced
+field_type: markup

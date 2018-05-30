@@ -9,7 +9,7 @@ id: node.story_profile.field_submissioner_email
 field_name: field_submissioner_email
 entity_type: node
 bundle: story_profile
-label: 'Submissioner Email'
+label: Email
 description: ''
 required: false
 translatable: false

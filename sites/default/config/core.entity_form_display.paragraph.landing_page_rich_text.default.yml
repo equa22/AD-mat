@@ -8,6 +8,26 @@ dependencies:
   module:
     - content_moderation
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_paragraph_column
+        - field_style
+      parent_name: ''
+      weight: 2
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: false
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 _core:
   default_config_hash: AsL6ua9sp4ugjcNMHq0Qu4XR9mRbGjZA3rWG4WmKc6Y
 id: paragraph.landing_page_rich_text.default
