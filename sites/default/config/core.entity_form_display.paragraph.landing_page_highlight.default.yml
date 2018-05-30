@@ -9,7 +9,6 @@ dependencies:
     - field.field.paragraph.landing_page_highlight.field_media_foreground
     - field.field.paragraph.landing_page_highlight.field_style_strict
     - field.field.paragraph.landing_page_highlight.field_text
-    - field.field.paragraph.landing_page_highlight.field_text_align
     - field.field.paragraph.landing_page_highlight.field_title_formatted
     - paragraphs.paragraphs_type.landing_page_highlight
   module:
@@ -23,7 +22,6 @@ third_party_settings:
   field_group:
     group_settings:
       children:
-        - field_style
         - field_style_strict
       parent_name: ''
       weight: 6
@@ -83,11 +81,11 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_style_strict:
-    weight: 8
+    type: options_select
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   field_text:
     weight: 2
     settings:
@@ -116,7 +114,6 @@ content:
 hidden:
   created: true
   field_highlight_statement: true
-  field_text_align: true
   field_title: true
   status: true
   uid: true

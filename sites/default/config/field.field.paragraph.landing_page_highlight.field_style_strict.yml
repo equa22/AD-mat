@@ -21,7 +21,10 @@ settings:
     filter:
       type: target_bundles
       target_bundles:
-        align_left: align_left
+        gavin_s_story: gavin_s_story
+        meegale_s_story: meegale_s_story
+        sisters_story: sisters_story
+        align_left: 0
         align_right: 0
         boxed: 0
         color_blue: 0
@@ -32,7 +35,6 @@ settings:
         color_purple: 0
         coloured_dark: 0
         coloured: 0
-        gavin_s_story: 0
         icon_comment_alt_lines: 0
         icon_exchange: 0
         icon_eye: 0
@@ -51,8 +53,6 @@ settings:
         icon_users: 0
         icon_vimeo: 0
         icon_walking: 0
-        meegale_s_story: 0
-        sisters_story: 0
       negate: 0
     sort:
       field: _none

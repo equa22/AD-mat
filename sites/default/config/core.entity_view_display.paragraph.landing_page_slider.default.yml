@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.landing_page_slider.field_slides
     - paragraphs.paragraphs_type.landing_page_slider
   module:
-    - slick_paragraphs
+    - entity_reference_revisions
 _core:
   default_config_hash: asB_vvzFhjI5kNL-gnmxDcvcNO6k1WB9xxpHtle8TL8
 id: paragraph.landing_page_slider.default
@@ -15,20 +15,12 @@ bundle: landing_page_slider
 mode: default
 content:
   field_slides:
-    type: slick_paragraphs_vanilla
+    type: entity_reference_revisions_entity_view
     weight: 1
     label: hidden
     settings:
       view_mode: default
-      override: false
-      overridables: {  }
-      skin_arrows: ''
-      skin_dots: ''
-      cache: 0
-      current_view_mode: ''
-      optionset: default
-      skin: ''
-      style: ''
+      link: ''
     third_party_settings: {  }
     region: content
 hidden: {  }
