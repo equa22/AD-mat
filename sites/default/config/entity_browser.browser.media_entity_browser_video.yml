@@ -1,0 +1,31 @@
+uuid: 3b869d82-5441-4e94-bc83-a41191dfa92d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.media_entity_browser
+  module:
+    - views
+name: media_entity_browser_video
+label: 'Media Entity Browser (Video)'
+display: modal
+display_configuration:
+  width: '1070'
+  height: '500'
+  link_text: 'Select media'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  629ca206-a928-45d4-809f-75092a3f733f:
+    settings:
+      view: media_entity_browser
+      view_display: entity_browser_1
+      submit_text: 'Select entities'
+      auto_select: false
+    uuid: 629ca206-a928-45d4-809f-75092a3f733f
+    weight: 1
+    label: 'Select Video'
+    id: view

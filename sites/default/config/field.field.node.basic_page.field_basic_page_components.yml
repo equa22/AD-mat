@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.basic_page_iframe
     - paragraphs.paragraphs_type.basic_page_image_and_text
     - paragraphs.paragraphs_type.basic_page_video
+    - paragraphs.paragraphs_type.landing_page_form
     - paragraphs.paragraphs_type.landing_page_image
     - paragraphs.paragraphs_type.landing_page_rich_text
   module:
@@ -31,6 +32,7 @@ settings:
       landing_page_image: landing_page_image
       basic_page_image_and_text: basic_page_image_and_text
       basic_page_video: basic_page_video
+      landing_page_form: landing_page_form
       basic_page_iframe: basic_page_iframe
     target_bundles_drag_drop:
       carousel:
@@ -54,28 +56,28 @@ settings:
       landing_page_cta:
         weight: -57
         enabled: false
-      landing_page_form:
+      landing_page_hero:
         weight: -56
         enabled: false
-      landing_page_hero:
+      landing_page_hero_image:
         weight: -55
         enabled: false
-      landing_page_hero_image:
-        weight: -54
-        enabled: false
       landing_page_highlight:
-        weight: -53
+        weight: -54
         enabled: false
       landing_page_rich_text:
         enabled: true
-        weight: -52
+        weight: -53
       landing_page_image:
         enabled: true
-        weight: -51
+        weight: -52
       basic_page_image_and_text:
         enabled: true
-        weight: -50
+        weight: -51
       basic_page_video:
+        enabled: true
+        weight: -50
+      landing_page_form:
         enabled: true
         weight: -49
       basic_page_iframe:

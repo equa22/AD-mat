@@ -3,34 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.landing_page_form.field_paragraph_column
-    - field.field.paragraph.landing_page_form.field_style
     - field.field.paragraph.landing_page_form.field_webform
     - paragraphs.paragraphs_type.landing_page_form
   module:
     - content_moderation
-    - field_group
     - webform
-third_party_settings:
-  field_group:
-    group_settings:
-      children:
-        - field_paragraph_column
-        - field_style
-      parent_name: ''
-      weight: 0
-      format_type: html_element
-      format_settings:
-        id: ''
-        classes: settings
-        element: div
-        show_label: true
-        label_element: h3
-        required_fields: true
-        attributes: ''
-        effect: none
-        speed: fast
-      label: Settings
 _core:
   default_config_hash: a1sjw1uE5Ww6j51Tvrx37CuDo1Okzg1De_IKCAJy4qM
 id: paragraph.landing_page_form.default
@@ -38,18 +15,6 @@ targetEntityType: paragraph
 bundle: landing_page_form
 mode: default
 content:
-  field_paragraph_column:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_style:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_webform:
     weight: 2
     settings:
