@@ -72,12 +72,7 @@
 #}
 {%
   set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'carousel-item',
   ]
 %}
 
@@ -85,7 +80,7 @@
 
 {{ attach_library('classy/node') }}
 
-<a href="{{ url }}" class="carousel-item">
+<a{{ attributes.addClass(classes) }} href="{{ url }}">
   <div class="carousel-item--image" style="background-image: url('{{ carousel_item_bg }}')"></div>
   <div class="carousel-item--summary">
     {% if not page %}
