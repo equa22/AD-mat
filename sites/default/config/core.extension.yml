@@ -72,7 +72,6 @@ module:
   responsive_image: 0
   search_api: 0
   search_api_db: 0
-  slick: 0
   svg_image: 0
   swiftmailer: 0
   switch_page_theme: 0
