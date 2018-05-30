@@ -10,7 +10,57 @@
   min-height: 62rem;
   padding-top: 12rem;
   position: relative;
+  z-index: 1;
   @include gradient-blue();
+
+  // Slick styles
+  .slick-arrow {
+    width: 6.5rem;
+    height: 6.5rem;
+    position: absolute;
+    top: 14.25rem;
+    border-radius: 50%;
+    line-height: 0;
+    font-size: 0;
+    cursor: pointer;
+    background: transparent;
+    color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1);
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 6.5rem;
+      height: 6.5rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      background-color: $brand-primary;
+      @include icons('i-chevron-large');
+      background-position: 2.5rem center;
+      
+    }
+  }
+
+  .slick-slide {
+    width: 360px !important;
+    padding: 2.5rem 3rem;
+  }
+
+  .slick-prev {
+    left: -13rem;
+    
+    &:before {
+      transform: rotate(180deg);
+    }
+  }
+
+  .slick-next {
+    right: -13rem;
+  }
 
   .container-small {
     text-align: center;
@@ -25,14 +75,41 @@
   }
 
   .field--name-field-carousel-cta-button {
+    margin-top: 2.8rem;
+
     a {
       @include btn-primary();
     }
   }
 
   .field--name-field-slide-items {
-    position: absolute;
-    margin-top: 11.5rem;
+      position: absolute;
+      left: 50%;
+      bottom: -17.5rem;
+      height: 35rem;
+
+      max-width: 360px; // 1 slide
+      margin-left: -180px;
+      
+      @media (min-width: 1024px) {
+        max-width: 720px; // 2 slids
+        margin-left: -360px;
+      }
+
+      @media (min-width: 1420px) {
+        max-width: 1080px; // 3 slids
+        margin-left: -540px;
+      }
+
+      @media (min-width: 1774px) {
+        max-width: 1440px; // 4 slids
+        margin-left: -720px;
+      }
+
+      @media (min-width: 2220px) {
+        max-width: 1800px; // 5 slids
+        margin-left: -900px;
+      }
   }
 
   .carousel-item {
@@ -45,11 +122,12 @@
       background-position: center center;
       border-radius: 50%;
       border: 10px solid $white;
+      box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1);
     }
 
     .carousel-item--summary {
       display: none;
-      width: 31rem;
+      width: 30rem;
       margin-top: 1rem;
       padding: 0 2rem 2.5rem 2rem;
       position: relative;
@@ -60,16 +138,31 @@
 
       &:before {
         content: "";
+        width: 2rem;
+        height: 2rem;
+        margin-left: -1rem;
         position: absolute;
-        z-index: 1;
-        width: 20px;
-        height: 20px;
-        background-color: $white;
-        transform: rotate(45deg);
-        top: -10px;
+        top: -1rem;
         left: 50%;
-        margin-left: -10px;
+        z-index: 1;
+        transform: rotate(45deg);
+        background-color: $white;
         box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      &:after {
+        content: "";
+        width: 4.2rem;
+        height: 4.2rem;
+        position: absolute;
+        left: 50%;
+        bottom: -2.1rem;
+        margin-left: -2.1rem;
+        z-index: 3;
+        @include icons('i-plus');
+        border-radius: 50%;
+        background-color: $brand-primary;
+        background-position: 10px center;
       }
 
       span {
@@ -92,7 +185,7 @@
     }
 
     &:hover {
-      margin-top: -3.5rem;
+      margin-top: -2.5rem;
 
       .carousel-item--summary {
         display: inline-block;
