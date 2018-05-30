@@ -1,0 +1,8 @@
+#node-story-profile-story-submission-form .field--type-image .description,
+#node-story-profile-story-submission-form #edit-body-0-format,
+#node-story-profile-story-submission-form .step-content {
+  display: none;
+}
+#node-story-profile-story-submission-form .step-content h2 {
+  display: none;
+}
