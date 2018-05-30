@@ -29,6 +29,10 @@
     outline: none;
     box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1);
 
+    @media (max-width: $screen-xs-max) {
+      
+    }
+
     &:before {
       content: '';
       display: inline-block;
@@ -41,17 +45,31 @@
       background-color: $brand-primary;
       @include icons('i-chevron-large');
       background-position: 2.5rem center;
-      
+    }
+
+    @media (max-width: $screen-xs-max) {
+      top: auto;
+      bottom: -19rem;
     }
   }
 
   .slick-slide {
     width: 360px !important;
     padding: 2.5rem 3rem;
+
+    @media (max-width: $screen-xs-max) {
+      width: 315px !important;
+      padding: 2.5rem .75rem;
+    }
   }
 
   .slick-prev {
     left: -13rem;
+
+    @media (max-width: $screen-xs-max) {
+      left: 50%;
+      margin-left: -8rem;
+    }
     
     &:before {
       transform: rotate(180deg);
@@ -60,6 +78,18 @@
 
   .slick-next {
     right: -13rem;
+
+    @media (max-width: $screen-xs-max) {
+      right: 50%;
+      margin-right: -8rem;
+    }
+  }
+
+  .slick-track {
+    @media (max-width: $screen-xs-max) {
+      display: flex;
+      padding-left: 9rem;
+    }
   }
 
   .container-small {
@@ -79,17 +109,34 @@
 
     a {
       @include btn-primary();
+
+      @media (max-width: $screen-xs-max) {
+        padding-right: 3.8rem;
+        padding-left: 3.8rem;
+      }
+    }
+
+    @media (max-width: $screen-xs-max) {
+      margin-right: -2rem;
+      margin-left: -2rem;
     }
   }
 
   .field--name-field-slide-items {
-      position: absolute;
-      left: 50%;
-      bottom: -17.5rem;
       height: 35rem;
 
-      max-width: 360px; // 1 slide
-      margin-left: -180px;
+      @media (max-width: $screen-xs-max) {
+        //max-width: 1080px;
+        margin-top: 6rem;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        position: absolute;
+        left: 50%;
+        bottom: -17.5rem;
+        margin-left: -180px;
+        max-width: 360px; // 1 slide
+      }
       
       @media (min-width: 1024px) {
         max-width: 720px; // 2 slids
@@ -126,7 +173,10 @@
     }
 
     .carousel-item--summary {
-      display: none;
+      @media (min-width: $screen-sm-min) {
+        display: none;
+      }
+
       width: 30rem;
       margin-top: 1rem;
       padding: 0 2rem 2.5rem 2rem;
@@ -170,7 +220,8 @@
         padding-top: .8rem;
         position: relative;
         z-index: 2;
-        @extend %lead;
+        @include font-size(2.4);
+        line-height: 1.45;
         font-weight: 500;
         background-color: $white;
         color: $brand-primary;
@@ -185,7 +236,9 @@
     }
 
     &:hover {
-      margin-top: -2.5rem;
+      @media (min-width: $screen-sm-min) {
+        margin-top: -2.5rem;
+      }
 
       .carousel-item--summary {
         display: inline-block;
