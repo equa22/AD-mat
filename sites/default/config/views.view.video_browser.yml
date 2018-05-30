@@ -1,10 +1,10 @@
-uuid: 1749d08c-e4b8-4680-9239-321875d6a4b9
+uuid: 0d26ff0e-ffbf-4a29-9a98-fc9a15c17e37
 langcode: und
 status: true
 dependencies:
   config:
     - image.style.media_entity_browser_thumbnail
-    - media.type.image
+    - media.type.video
   module:
     - entity_browser
     - media
@@ -12,8 +12,8 @@ dependencies:
     - user
 _core:
   default_config_hash: Tureu_cTrtMhMiK7gTKaJtFEpWapDWgTkvaPPD7XCXY
-id: media_entity_browser
-label: 'Media Browser'
+id: video_browser
+label: 'Video Browser'
 module: views
 description: ''
 tag: ''
@@ -389,7 +389,7 @@ display:
           admin_label: ''
           operator: in
           value:
-            image: image
+            video: video
           group: 1
           exposed: true
           expose:
@@ -521,9 +521,9 @@ display:
         - url.query_args
         - user.permissions
       tags: {  }
-  entity_browser_1:
+  entity_browser_2:
     display_plugin: entity_browser
-    id: entity_browser_1
+    id: entity_browser_2
     display_title: 'Entity browser'
     position: 1
     display_options:

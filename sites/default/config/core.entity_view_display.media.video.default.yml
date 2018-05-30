@@ -4,47 +4,32 @@ status: true
 dependencies:
   config:
     - field.field.media.video.field_media_video_embed_field
+    - image.style.thumbnail
     - media.type.video
   module:
-    - user
     - video_embed_field
 id: media.video.default
 targetEntityType: media
 bundle: video
 mode: default
 content:
-  created:
-    label: hidden
-    type: timestamp
-    weight: 0
-    region: content
-    settings:
-      date_format: medium
-      custom_date_format: ''
-      timezone: ''
-    third_party_settings: {  }
   field_media_video_embed_field:
     type: video_embed_field_lazyload
-    weight: 2
+    weight: 0
     region: content
     label: hidden
     settings:
+      image_style: thumbnail
+      link_image_to: ''
+      autoplay: true
       responsive: true
       width: 854
       height: 480
-      autoplay: true
-      image_style: ''
-      link_image_to: ''
-    third_party_settings: {  }
-  uid:
-    label: hidden
-    type: author
-    weight: 1
-    region: content
-    settings: {  }
     third_party_settings: {  }
 hidden:
   addtoany: true
+  created: true
   langcode: true
   name: true
   thumbnail: true
+  uid: true
