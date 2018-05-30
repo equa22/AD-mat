@@ -8,7 +8,7 @@
 // Transparent navigation
 body.page-node-type-landing-page {
   @media (min-width: $screen-sm-min) {
-    .navigation.menu--main {
+    #block-mat-main-menu {
       > ul > li {
         > a,
         > span {
@@ -23,7 +23,7 @@ body.page-node-type-landing-page {
   }
 }
 
-.navigation.menu--main {
+#block-mat-main-menu {
   display: flex;
   width: 100%;
 
@@ -57,7 +57,7 @@ body.page-node-type-landing-page {
   }
 }
 
-.navigation.menu--main {
+#block-mat-main-menu {
   > ul {
     position: relative;
     flex-direction: column;
@@ -224,7 +224,7 @@ body.mobile-menu--opened {
       }
     }
 
-    .navigation.menu--main {
+    #block-mat-main-menu {
       display: flex;
 
       > ul > li {
