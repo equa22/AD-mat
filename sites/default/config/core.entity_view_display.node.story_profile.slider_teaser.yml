@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.slider_teaser
     - field.field.node.story_profile.body
+    - field.field.node.story_profile.field_intro_markup
     - field.field.node.story_profile.field_search_image_media
     - field.field.node.story_profile.field_story_category
     - field.field.node.story_profile.field_story_featured_image
@@ -13,13 +14,19 @@ dependencies:
     - field.field.node.story_profile.field_story_image_2
     - field.field.node.story_profile.field_story_image_3
     - field.field.node.story_profile.field_story_last_name
+    - field.field.node.story_profile.field_story_markup_1
+    - field.field.node.story_profile.field_story_markup_2
+    - field.field.node.story_profile.field_story_markup_23
+    - field.field.node.story_profile.field_story_markup_4
+    - field.field.node.story_profile.field_story_markup_5
     - field.field.node.story_profile.field_submissioner_email
     - field.field.node.story_profile.field_submissioner_first_name
     - field.field.node.story_profile.field_submissioner_last_name
     - field.field.node.story_profile.field_submissioner_phone_number
+    - field.field.node.story_profile.field_terms_and_conditions
     - node.type.story_profile
   module:
-    - svg_image
+    - image
     - user
 id: node.story_profile.slider_teaser
 targetEntityType: node
@@ -39,26 +46,28 @@ content:
     label: hidden
     settings:
       image_style: ''
-      svg_attributes:
-        width: ''
-        height: ''
-      svg_render_as_image: true
-      image_link: ''
     third_party_settings: {  }
-    type: image
+    type: image_url
     region: content
 hidden:
   addtoany: true
   body: true
+  field_intro_markup: true
   field_search_image_media: true
   field_story_first_name: true
   field_story_image_1: true
   field_story_image_2: true
   field_story_image_3: true
   field_story_last_name: true
+  field_story_markup_1: true
+  field_story_markup_2: true
+  field_story_markup_23: true
+  field_story_markup_4: true
+  field_story_markup_5: true
   field_submissioner_email: true
   field_submissioner_first_name: true
   field_submissioner_last_name: true
   field_submissioner_phone_number: true
+  field_terms_and_conditions: true
   langcode: true
   links: true

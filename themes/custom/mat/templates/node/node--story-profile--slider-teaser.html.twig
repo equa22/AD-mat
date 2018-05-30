@@ -80,9 +80,13 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
+
+{% set carousel_item_bg = content.field_story_featured_image.0 %}
+
 {{ attach_library('classy/node') }}
+
 <a href="{{ url }}" class="carousel-item">
-  <div class="carousel-item--image" style="background-image: url('/sites/default/files/2018-05/kid1.jpg')"></div>
+  <div class="carousel-item--image" style="background-image: url('{{ carousel_item_bg }}')"></div>
   <div class="carousel-item--summary">
     {% if not page %}
       {{ label }}
