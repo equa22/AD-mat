@@ -1,12 +1,29 @@
 <?php
+use Drupal\Core\Form\FormStateInterface;
+
+// after success redirect user to thank you page
+function callback_submit($form, FormStateInterface $form_state) {
+  $form_state->setRedirect('entity.node.canonical',
+    ['node' => 19]
+  );
+}
 
 function mat_story_form_alter(&$form, $form_state, $form_id) {
+  $logged_in = \Drupal::currentUser()->isAuthenticated();
   // for ct form display
   if ($form['#id'] == 'node-story-profile-story-submission-form') {
+    $form['#attached']['library'][] = 'mat_story/storyprofile';
     $form['field_terms_and_conditions']['widget']['value']['#title'] = t('I agree to the <a href="/terms-and-conditions">Terms and Conditions</a>.');
     $form['actions']['submit']['#value'] = t('Submit Your Story');
     $form['body']['widget'][0]['#title'] = '';
     $form['title']['#attributes']['class'][] = 'hidden';
+    foreach (array_keys($form['actions']) as $action) {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        if ($logged_in === false) {
+          $form['actions'][$action]['#submit'][] = 'callback_submit';      
+        }
+      }
+    }
   }
   // for web form
   if($form['#id'] == 'views-exposed-form-stories-landing-page-1') {
@@ -37,3 +54,4 @@ function mat_story_form_alter(&$form, $form_state, $form_id) {
 
   }
 }
+
