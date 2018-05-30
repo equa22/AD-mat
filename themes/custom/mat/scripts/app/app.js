@@ -108,9 +108,6 @@
           {
             breakpoint: 2220,
             settings: {
-              infinite: true,
-              arrows: true,
-              slidesToScroll: 1,
               slidesToShow: 4
             }
           },
