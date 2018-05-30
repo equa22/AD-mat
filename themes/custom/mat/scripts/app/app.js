@@ -84,6 +84,55 @@
     }
   };
 
+
+  // Hero slider on home page
+  Drupal.behaviors.heroSlider = {
+    attach: function (context, settings) {
+      $('.paragraph--type--landing-page-slider .field--name-field-slides', context).once('hero-slider').slick({
+        infinite: true,
+        arrows: false,
+        slidesToShow: 1
+      });
+    }
+  };
+
+  // Carousel
+  Drupal.behaviors.carousel = {
+    attach: function (context, settings) {
+      $('.paragraph--type--carousel .field--name-field-slide-items', context).once('carousel').slick({
+        infinite: true,
+        arrows: true,
+        slidesToScroll: 1,
+        slidesToShow: 5,
+        responsive: [
+          {
+            breakpoint: 2220,
+            settings: {
+              slidesToShow: 4
+            }
+          },
+          {
+            breakpoint: 1774,
+            settings: {
+              slidesToShow: 3
+            }
+          },
+          {
+            breakpoint: 1420,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+    }
+  };
   
 
 })(jQuery);

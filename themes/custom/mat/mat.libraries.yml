@@ -11,12 +11,16 @@ global-css:
     theme:
       assets/stylesheets/application.css:
         minified: false
+      assets/scripts/vendor/slick/css/slick.css:
+        minified: false
 
 # Global JS files
 global-js:
   version: 1.x
   js:
     assets/scripts/application.js:
+      minified: false
+    assets/scripts/vendor/slick/slick.min.js:
       minified: false
     assets/scripts/vendor/bootstrap/bootstrap.min.js:
       minified: false
