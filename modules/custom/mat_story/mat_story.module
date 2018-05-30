@@ -1,12 +1,21 @@
 <?php
+
 use Drupal\Core\Form\FormStateInterface;
 
 // after success redirect user to thank you page
-function callback_submit($form, FormStateInterface $form_state) {
+function _mat_story_callback_submit(&$form, &$form_state) {
   $form_state->setRedirect('entity.node.canonical',
-    ['node' => 19]
+    ['node' => 18]
   );
 }
+
+/* some bugs appear
+function mat_story_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  $logged_in = \Drupal::currentUser()->isAuthenticated();
+  if ($logged_in === false) {
+    $entity->status = FALSE;
+  }
+}*/
 
 function mat_story_form_alter(&$form, $form_state, $form_id) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
@@ -17,12 +26,37 @@ function mat_story_form_alter(&$form, $form_state, $form_id) {
     $form['actions']['submit']['#value'] = t('Submit Your Story');
     $form['body']['widget'][0]['#title'] = '';
     $form['title']['#attributes']['class'][] = 'hidden';
-    foreach (array_keys($form['actions']) as $action) {
-      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
-        if ($logged_in === false) {
-          $form['actions'][$action]['#submit'][] = 'callback_submit';      
-        }
-      }
+    if ($logged_in === false) {
+      // step 1 wrappers
+      $form['field_story_markup_1']['#prefix'] = '<a href="#step1" class="step-link"><span>'.t('Step 1').'</span></a><div class="step-content step1-content">';
+      $form['field_story_category']['#suffix'] = '</div>';
+
+      // step 2 wrappers
+      $form['field_story_markup_2']['#prefix'] = '<a href="#step2" class="step-link"><span>'.t('Step 2').'</span></a><div class="step-content step2-content">';
+      $form['body']['#suffix'] = '</div>';
+
+      // step 3 wrappers
+      $form['field_story_markup_23']['#prefix'] = '<a href="#step3" class="step-link"><span>'.t('Step 3').'</span></a><div class="step-content step3-content">';
+      $form['field_story_image_3']['#suffix'] = '</div>';
+
+      // step 4 wrappers
+      $form['field_story_markup_4']['#prefix'] = '<a href="#step4" class="step-link"><span>'.t('Step 4').'</span></a><div class="step-content step4-content">';
+      $form['field_submissioner_phone_number']['#suffix'] = '</div>';
+
+      // step 5 wrappers
+      $form['field_story_markup_5']['#prefix'] = '<a href="#step5" class="step-link"><span>'.t('Step 5').'</span></a><div class="step-content step5-content">';
+      $form['field_terms_and_conditions']['#suffix'] = '</div>';
+
+
+      $form['field_submissioner_first_name']['widget'][0]['value']['#required']     = true;
+      $form['field_submissioner_last_name']['widget'][0]['value']['#required']      = true;
+      $form['field_submissioner_phone_number']['widget'][0]['value']['#required']   = true;
+      $form['field_submissioner_email']['widget'][0]['value']['#required']          = true;
+      $form['field_story_category']['widget'][0]['value']['#required']              = true;
+      //$form['#submit'][] = '_mat_story_callback_submit';
+
+      $form['actions']['submit']['#submit'][] = '_mat_story_callback_submit';
+      
     }
   }
   // for web form
@@ -38,8 +72,6 @@ function mat_story_form_alter(&$form, $form_state, $form_id) {
     $output .= '</ul></div>';
     $form['#attributes']['class'] = 'hide';
     $form['#prefix'] = $output;
-    
-
     $output2 = '<div class="stories-filter-right"><div class="a-z-filter"><p>'.t('Find a story by last name').'</p> <ul class="story-a-z">';
     foreach ($form['field_story_last_name_value']['#options'] as $key => &$option) {
       if ($key == 'All') {

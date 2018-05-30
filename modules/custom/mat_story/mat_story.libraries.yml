@@ -1,3 +1,6 @@
 storyprofile:
   js:
     js/storyprofile.js: {}
+  css:
+    layout:
+      css/storyprofile.css: {}

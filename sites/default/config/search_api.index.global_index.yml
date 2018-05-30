@@ -72,6 +72,16 @@ processor_settings:
   rendered_item: {  }
   add_url: {  }
   aggregated_field: {  }
+  ignorecase:
+    all_fields: true
+    fields:
+      - title
+      - body
+      - field_story_first_name
+      - field_story_last_name
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
 tracker_settings:
   default:
     indexing_order: fifo
