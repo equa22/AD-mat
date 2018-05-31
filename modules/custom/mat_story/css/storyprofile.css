@@ -1,8 +1,14 @@
 #node-story-profile-story-submission-form .field--type-image .description,
 #node-story-profile-story-submission-form #edit-body-0-format,
-#node-story-profile-story-submission-form .step-content {
-  display: none;
-}
+#node-story-profile-story-submission-form .step-content,
 #node-story-profile-story-submission-form .step-content h2 {
   display: none;
+}
+
+#node-story-profile-story-submission-form {
+  max-width: 1230px;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  margin: 0 auto;
 }

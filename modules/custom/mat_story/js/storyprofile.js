@@ -1,7 +1,8 @@
 (function ($, Drupal) {
   Drupal.behaviors.mat_story_submission_form = {
     attach: function (context, settings) {
-
+      // submit
+      //$('#node-story-profile-story-submission-form input[type="submit"]', context).val('Submit your story');
       // input title
       $('#node-story-profile-story-submission-form input#edit-field-story-first-name-0-value', context).on('change', function() {
         $('#node-story-profile-story-submission-form  input#edit-title-0-value', context).val($(this).val());
@@ -32,7 +33,7 @@
         dropDown.stop(false, true).slideToggle();
         e.preventDefault();
       });
-      
+
     }
   };
 })(jQuery, Drupal);

@@ -1,32 +1,41 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
-// after success redirect user to thank you page
-function _mat_story_callback_submit(&$form, &$form_state) {
-  $form_state->setRedirect('entity.node.canonical',
-    ['node' => 18]
-  );
+function mat_story_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  $logged_in = \Drupal::currentUser()->isAuthenticated();
+  if ($entity->bundle() == 'story_profile' && $logged_in === false) {
+    $entity->set('status', 0);
+  }
 }
 
-/* some bugs appear
-function mat_story_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+function mat_story_node_insert(Drupal\Core\Entity\EntityInterface $entity) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
-  if ($logged_in === false) {
-    $entity->status = FALSE;
+  if ($entity->bundle() == 'story_profile' && $logged_in === false) {
+    // redirect
+    $routeName = 'entity.node.canonical';
+    $routeParameters = ['node' => 8];
+    $response = new RedirectResponse('/story-success');
+    $response->send();
   }
-}*/
+}
+
 
 function mat_story_form_alter(&$form, $form_state, $form_id) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
+  
   // for ct form display
   if ($form['#id'] == 'node-story-profile-story-submission-form') {
+    
     $form['#attached']['library'][] = 'mat_story/storyprofile';
     $form['field_terms_and_conditions']['widget']['value']['#title'] = t('I agree to the <a href="/terms-and-conditions">Terms and Conditions</a>.');
-    $form['actions']['submit']['#value'] = t('Submit Your Story');
+    //$form['actions']['submit']['#value'] = t('Submit Your Story');
     $form['body']['widget'][0]['#title'] = '';
     $form['title']['#attributes']['class'][] = 'hidden';
+    
     if ($logged_in === false) {
+
       // step 1 wrappers
       $form['field_story_markup_1']['#prefix'] = '<a href="#step1" class="step-link"><span>'.t('Step 1').'</span></a><div class="step-content step1-content">';
       $form['field_story_category']['#suffix'] = '</div>';
@@ -47,15 +56,18 @@ function mat_story_form_alter(&$form, $form_state, $form_id) {
       $form['field_story_markup_5']['#prefix'] = '<a href="#step5" class="step-link"><span>'.t('Step 5').'</span></a><div class="step-content step5-content">';
       $form['field_terms_and_conditions']['#suffix'] = '</div>';
 
-
+      // required fields
       $form['field_submissioner_first_name']['widget'][0]['value']['#required']     = true;
       $form['field_submissioner_last_name']['widget'][0]['value']['#required']      = true;
       $form['field_submissioner_phone_number']['widget'][0]['value']['#required']   = true;
       $form['field_submissioner_email']['widget'][0]['value']['#required']          = true;
       $form['field_story_category']['widget'][0]['value']['#required']              = true;
-      //$form['#submit'][] = '_mat_story_callback_submit';
 
-      $form['actions']['submit']['#submit'][] = '_mat_story_callback_submit';
+      $form['actions']['submit']['#type'] = 'inline_template';
+      // do not change this (it's a bug, must have value="save")
+      $form['actions']['submit']['#template'] = '<button data-drupal-selector="edit-submit" id="edit-submit" name="op" value="Save" class="button button--button js-form-submit form-submit" type="submit">'.t('Submit your story').'</button>';
+      
+      
       
     }
   }
@@ -86,4 +98,3 @@ function mat_story_form_alter(&$form, $form_state, $form_id) {
 
   }
 }
-

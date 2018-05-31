@@ -36,3 +36,6 @@ sites/*.dd
 
 # Workspace files are user-specific
 *.sublime-workspace
+
+# Ignore sublime project file
+mat.sublime-project
