@@ -7,8 +7,23 @@
 // Paragraph statistics
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-statistics {
-  padding-top: 30rem;
+  padding: 23rem 0 5rem 0;
   background: url($image-root + 'bg-inspired/inspired_gift_of_site--top.png') repeat-x;
+
+  @media (min-width: $screen-sm-min) {
+    padding-top: 30rem;
+    padding-bottom: 0;
+  }
+
+  .container-small > .field--name-field-title {
+    padding-top: 5.5rem;
+    border-top: 1px solid #C4C7C9;
+
+    @media (min-width: $screen-sm-min) {
+      padding-top: 0;
+      border-top: none;
+    }
+  }
 }
 
 // Grid
@@ -23,7 +38,7 @@
   > .field__item {
     @extend %col;
     flex-basis: 100%;
-    margin-bottom: 13rem;
+    margin-bottom: 10rem;
 
     @media (min-width: $screen-sm-min) {
       flex-basis: 33%;

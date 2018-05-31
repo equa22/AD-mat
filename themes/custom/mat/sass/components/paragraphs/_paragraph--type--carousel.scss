@@ -8,10 +8,15 @@
 // -----------------------------------------------------------------------------
 .paragraph--type--carousel {
   min-height: 62rem;
-  padding-top: 12rem;
+  padding-top: 8rem;
   position: relative;
   z-index: 1;
-  @include gradient-blue();
+  @include gradient-blue(0deg);
+
+  @media (min-width: $screen-sm-min) {
+    padding-top: 12rem;
+    @include gradient-blue();
+  }
 
   // Slick styles
   .slick-arrow {

@@ -143,8 +143,8 @@
   @include gradient(90deg, $blue-darkest, $blue-darker, $blue-darkest);
 }
 
-@mixin gradient-blue() {
-  @include gradient(90deg, $blue-darker, $blue-light, $blue-darker);
+@mixin gradient-blue($deg: 90deg) {
+  @include gradient($deg, $blue-darker, $blue-light, $blue-darker);
 }
 
 @mixin gradient-blue-light() {
