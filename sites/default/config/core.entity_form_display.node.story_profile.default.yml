@@ -24,6 +24,7 @@ dependencies:
     - field.field.node.story_profile.field_submissioner_last_name
     - field.field.node.story_profile.field_submissioner_phone_number
     - field.field.node.story_profile.field_terms_and_conditions
+    - field.field.node.story_profile.field_user_submitted
     - image.style.thumbnail
     - node.type.story_profile
   module:
@@ -155,6 +156,13 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_user_submitted:
+    type: boolean_checkbox
+    weight: 22
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1

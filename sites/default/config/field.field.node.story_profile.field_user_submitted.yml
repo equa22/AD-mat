@@ -1,0 +1,23 @@
+uuid: 916327c6-2f93-40cc-846f-62cd97d4f1f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_user_submitted
+    - node.type.story_profile
+id: node.story_profile.field_user_submitted
+field_name: field_user_submitted
+entity_type: node
+bundle: story_profile
+label: 'User submitted'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

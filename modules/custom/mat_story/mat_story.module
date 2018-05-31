@@ -7,6 +7,7 @@ function mat_story_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
   if ($entity->bundle() == 'story_profile' && $logged_in === false) {
     $entity->set('status', 0);
+    $entity->set('field_user_submitted', 1);
   }
 }
 
