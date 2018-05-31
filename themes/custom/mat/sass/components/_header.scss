@@ -177,6 +177,7 @@
       display: inline-block;
       background-image: url('/themes/custom/mat/logo.svg');
       background-repeat: no-repeat;
+      transition-duration: 0s;
 
       @media (min-width: $screen-sm-min) {
         width: 162px;
