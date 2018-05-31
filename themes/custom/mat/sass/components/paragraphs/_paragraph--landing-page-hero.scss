@@ -7,8 +7,7 @@
 // Paragraph hero
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-hero {
-  background-color: lime;
-  //@include gradient-blue();
+  @include gradient-blue();
   color: $white;
 
   .field--name-field-text {
