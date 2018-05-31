@@ -11,7 +11,7 @@ id: node.basic_page.field_parent_background_image
 field_name: field_parent_background_image
 entity_type: node
 bundle: basic_page
-label: 'Background image (for parent only)'
+label: 'Header background image'
 description: ''
 required: false
 translatable: false

@@ -10,7 +10,7 @@ id: node.news_article.field_hero_background_image
 field_name: field_hero_background_image
 entity_type: node
 bundle: news_article
-label: 'Hero background image'
+label: 'Header background image'
 description: ''
 required: true
 translatable: false
