@@ -7,6 +7,12 @@ dependencies:
     - node.type.news_article
   module:
     - text
+third_party_settings:
+  allowed_formats:
+    advanced: '0'
+    basic_editor: '0'
+    rich_editor: '0'
+    plain_text: '0'
 id: node.news_article.body
 field_name: body
 entity_type: node

@@ -14,7 +14,6 @@ permissions:
   - 'subscribe to newsletters'
   - 'use  The form mode default linked to  node entity( story_profile )'
   - 'use  The form mode story_submission linked to  node entity( story_profile )'
-  - 'use node.story_submission form mode'
   - 'use text format basic_editor'
   - 'use text format rich_editor'
   - 'use text format rich_title'
