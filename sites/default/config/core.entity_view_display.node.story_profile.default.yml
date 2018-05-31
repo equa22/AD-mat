@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.story_profile.field_submissioner_last_name
     - field.field.node.story_profile.field_submissioner_phone_number
     - field.field.node.story_profile.field_terms_and_conditions
+    - field.field.node.story_profile.field_user_submitted
     - node.type.story_profile
   module:
     - svg_image
@@ -115,6 +116,16 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_user_submitted:
+    weight: 9
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   links:
     weight: 4

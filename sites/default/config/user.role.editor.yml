@@ -69,6 +69,7 @@ permissions:
   - 'revert news_article revisions'
   - 'revert story_profile revisions'
   - 'update any media'
+  - 'use node.default form mode'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any unpublished content'
