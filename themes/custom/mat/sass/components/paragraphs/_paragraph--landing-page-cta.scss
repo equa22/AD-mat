@@ -25,6 +25,7 @@
     }
 
     > .field__item {
+      position: relative;
       @extend %col;
       flex-basis: 100%;
       margin-bottom: 2.5rem;

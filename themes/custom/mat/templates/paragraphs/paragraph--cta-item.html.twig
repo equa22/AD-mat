@@ -45,9 +45,10 @@
   ]
 %}
 {% block paragraph %}
+  {{ content.contextual_links }}
+
   <a {{ attributes.addClass(classes) }} href="{{ content.field_link.0['#url'] }}">
     {% block content %}
-      {{ content.contextual_links }}
       <span class="icon-circled"></span>
       <div class="cta-item--content">
       {{ content.field_title }}
