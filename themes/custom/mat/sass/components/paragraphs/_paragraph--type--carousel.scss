@@ -34,10 +34,6 @@
     outline: none;
     box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1);
 
-    @media (max-width: $screen-xs-max) {
-      
-    }
-
     &:before {
       content: '';
       display: inline-block;
@@ -90,13 +86,6 @@
     }
   }
 
-  .slick-track {
-    @media (max-width: $screen-xs-max) {
-      display: flex;
-      padding-left: 9rem;
-    }
-  }
-
   .container-small {
     text-align: center;
   }
@@ -131,8 +120,9 @@
       height: 35rem;
 
       @media (max-width: $screen-xs-max) {
-        //max-width: 1080px;
-        margin-top: 6rem;
+        position: relative;
+        margin: 6rem auto 0 auto;
+        max-width: 315px; // 1 slide (on mobile)
       }
 
       @media (min-width: $screen-sm-min) {
@@ -251,4 +241,3 @@
     }
   }
 }
-
