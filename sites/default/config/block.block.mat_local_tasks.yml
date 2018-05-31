@@ -2,6 +2,8 @@ uuid: 8da95ac5-7433-4657-aad0-ad4f23e1713b
 langcode: en
 status: true
 dependencies:
+  module:
+    - ctools
   theme:
     - mat
 _core:
@@ -19,4 +21,11 @@ settings:
   label_display: '0'
   primary: true
   secondary: true
-visibility: {  }
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      landing_page: landing_page
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
