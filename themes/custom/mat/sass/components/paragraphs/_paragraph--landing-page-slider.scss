@@ -8,11 +8,11 @@
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-slider {
   @media (min-width: $screen-sm-min) {
-    margin-top: -12.5rem;
+    margin-top: -$header-height;
   }
   
   @media (max-width: $screen-sm-max) {
-    margin-top: -8rem;
+    margin-top: -$header-height-mobile;
   }
 
   @media (max-width: $screen-xs-max) {
@@ -92,19 +92,6 @@
           padding: .85rem 5.3rem;
         }
       }
-    }
-  }
-}
-
-// For Logged in users only.
-body.adminimal-admin-toolbar {
-  .paragraph--type--landing-page-slider {
-    @media (min-width: $screen-sm-min) {
-      margin-top: -17.2rem;
-    }
-    
-    @media (max-width: $screen-sm-max) {
-      margin-top: -12.7rem;
     }
   }
 }

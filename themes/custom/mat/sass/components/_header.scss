@@ -158,12 +158,12 @@
   
   @media (min-width: $screen-sm-min) {
     padding-top: 3.5rem;
-    height: 12.5rem;
+    height: $header-height;
   }
 
   @media (max-width: $screen-sm-max) {
     padding-top: 2rem;
-    height: 8rem;
+    height: $header-height-mobile;
   }
 
   .container {

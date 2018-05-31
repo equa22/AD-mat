@@ -1,0 +1,44 @@
+// ========================================
+//
+// @file _paragraph--landing-page-hero.scss
+// Paragraph hero element on the landing page
+// ========================================
+
+// Paragraph hero
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-hero {
+  background-color: lime;
+  //@include gradient-blue();
+  color: $white;
+
+  .field--name-field-text {
+    @extend %lead;
+  }
+
+  .field--name-field-link {
+    a {
+      @include btn-primary();
+    }
+  }
+
+  // Hero with text align left
+  &.left {
+    padding-top: 34rem;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: -$header-height;
+    }
+    
+    @media (max-width: $screen-sm-max) {
+      margin-top: -$header-height-mobile;
+    }
+  }
+
+
+
+  // Hero with text align right
+  &.right {
+
+  }
+}
+

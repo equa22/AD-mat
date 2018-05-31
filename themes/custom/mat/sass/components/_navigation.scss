@@ -207,6 +207,13 @@ body.mobile-menu--opened {
       background-color: $white;
     }
 
+    // For Logged in users only.
+    &.adminimal-admin-toolbar {
+      #header {
+        top: 39px;
+      }
+    }
+
     .region-header {
       height: auto;
       background-color: $white;
