@@ -36,6 +36,7 @@
 
         > span {
           font-weight: 500;
+          white-space: nowrap;
         }
 
         > .menu {
@@ -44,10 +45,6 @@
           .menu-item {
             a {
               color: lighten(#4A4A4A, 35%);
-
-              @media (max-width: $screen-xs-max) {
-               // @include font-size(1.4);
-              }
             }
           }
         }

@@ -161,14 +161,25 @@
   outline: none;
 }
 
-@mixin btn-primary() {
+@mixin btn-primary($bg: 'light') {
   @include btn();
   padding: 1.5rem 6.2rem;
-  background-color: $brand-primary;
   border-radius: $border-radius-large;
   font-weight: 500;
   @include font-size(2);
   line-height: 1.7;
+
+  @media (max-width: $screen-xs-max) {
+    padding: 1.5rem 5.2rem;
+  }
+
+  @if $bg == 'light' {
+    background-color: $brand-primary;
+  }
+
+  @if $bg == 'dark' {
+    background-color: $blue-dark;
+  }
 }
 
 @mixin btn-secondary() {
