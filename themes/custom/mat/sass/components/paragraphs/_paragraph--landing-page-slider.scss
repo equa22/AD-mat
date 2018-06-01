@@ -75,13 +75,7 @@
     }
 
     .field--name-field-content {
-      @include font-size(1.6);
-      line-height: 1.5;
-
-      @media (min-width: $screen-sm-min) {
-        @include font-size(2.4);
-        line-height: 1.45;
-      }
+      @extend %lead-small-mobile;
     }
 
     .field--name-field-link {

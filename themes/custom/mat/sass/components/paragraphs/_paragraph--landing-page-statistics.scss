@@ -11,8 +11,7 @@
   background: url($image-root + 'bg-inspired/inspired_gift_of_site--top.png') repeat-x;
 
   @media (min-width: $screen-sm-min) {
-    padding-top: 30rem;
-    padding-bottom: 0;
+    padding: 30rem 0 2rem 0;
   }
 
   .container-small > .field--name-field-title {
@@ -24,24 +23,28 @@
       border-top: none;
     }
   }
+
+  .field--name-field-statistics-items {
+    margin-top: 7rem;
+
+    @media (min-width: $screen-sm-min) {
+      margin-top: 13rem;
+    }
+  }
 }
 
 // Grid
 .field--name-field-statistics-items {
   @include make-row;
-  margin-top: 7rem;
-
-  @media (min-width: $screen-sm-min) {
-    margin-top: 13rem;
-  }
 
   > .field__item {
     @extend %col;
     flex-basis: 100%;
-    margin-bottom: 10rem;
+    margin-bottom: 9rem;
 
     @media (min-width: $screen-sm-min) {
       flex-basis: 33%;
+      margin-bottom: 8rem;
     }
   }
 }
@@ -70,6 +73,18 @@
 
       @media (min-width: $screen-sm-min) {
         background-size: 5rem auto;
+      }
+    }
+  }
+
+  &.i-shield {
+    .icon-circled {
+      &:after {
+        background-size: 3.2rem auto;
+
+        @media (min-width: $screen-sm-min) {
+          background-size: 4rem auto;
+        }
       }
     }
   }
