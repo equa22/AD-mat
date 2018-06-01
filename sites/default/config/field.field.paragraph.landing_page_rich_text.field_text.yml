@@ -10,8 +10,9 @@ dependencies:
     - text
 third_party_settings:
   allowed_formats:
-    basic_editor: basic_editor
+    rich_text_editor: rich_text_editor
     advanced: '0'
+    basic_editor: '0'
     rich_editor: '0'
     plain_text: '0'
 _core:

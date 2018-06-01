@@ -20,6 +20,7 @@ permissions:
   - 'use  The form mode story_submission linked to  node entity( story_profile )'
   - 'use text format basic_editor'
   - 'use text format rich_editor'
+  - 'use text format rich_text_editor'
   - 'use text format rich_title'
   - 'view field_carousel_cta_button'
   - 'view field_icon_statistic'
