@@ -1,0 +1,77 @@
+// ========================================
+//
+// @file _paragraph--landing-page-hero-image.scss
+// Paragraph hero image element on the landing page
+// ========================================
+
+// Paragraph hero image
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-hero-image {
+  position: relative;
+  color: $white;
+  text-align: center;
+
+  @media (min-width: $screen-sm-min) {
+    margin-top: -$header-height;
+    height: 83.5rem;
+    padding-top: 22rem;
+  }
+  
+  @media (max-width: $screen-sm-max) {
+    margin-top: -$header-height-mobile;
+  }
+
+  .hero-image--heading {
+    position: relative;
+    min-height: 35.5rem;
+    padding-top: 11rem;
+    
+    @media (min-width: $screen-sm-min) {
+      position: static;
+      min-height: auto;
+      padding-top: 0;
+    }
+  }
+
+  .hero-image--bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+
+  .hero-image--gradient {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    @include gradient-blue();
+    opacity: .9;
+  }
+
+  .hero-image--content {
+    @media (max-width: $screen-xs-max) {
+      @include gradient-blue();
+      padding-top: 6.3rem;
+      padding-bottom: 7.3rem;
+    }
+  }
+
+  .field--name-field-text {
+    @extend %lead;
+  }
+}
+
+body.page-node-type-landing-page {
+  .paragraph--type--landing-page-hero-image {
+    .hero-image--content {
+      @media (max-width: $screen-xs-max) {
+        min-height: 41rem;
+      }
+    }
+  }
+}
+
