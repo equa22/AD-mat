@@ -1,0 +1,7 @@
+mat_story.config:
+  path: '/admin/config/mat_story/config'
+  defaults:
+    _form: '\Drupal\mat_story\Form\StoryConfigForm'
+    _title: 'Story Sumbissions Settings'
+  requirements:
+    _permission: 'administer site configuration'

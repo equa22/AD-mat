@@ -17,3 +17,7 @@ modules:
     none:
       formatter: swiftmailer
       sender: swiftmailer
+  mat_story:
+    none:
+      formatter: swiftmailer
+      sender: swiftmailer

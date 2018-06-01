@@ -24,7 +24,8 @@
         "drupal/menu_block": "^1.5",
         "drupal/video_embed_field": "^2.0",
         "drupal/markup": "^1.0@beta",
-        "drupal/form_mode_manager": "2.0.0-rc1"
+        "drupal/form_mode_manager": "2.0.0-rc1",
+        "drupal/swiftmailer": "^1.0@beta"
     },
     "require-dev": {
         "behat/mink": "~1.7",
