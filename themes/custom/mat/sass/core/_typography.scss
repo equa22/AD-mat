@@ -29,8 +29,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
 
   @media (min-width: $screen-sm-min) {
-    @include font-size(8.5);
+    @include font-size(6.5);
     line-height: 1;
+  }
+
+  @media (min-width: $screen-lg-min) {
+    @include font-size(8.5);
   }
 }
 

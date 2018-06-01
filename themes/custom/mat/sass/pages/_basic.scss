@@ -1,0 +1,114 @@
+// ========================================
+//
+// @file _basic.scss
+// Basic page specific styling
+//
+// ========================================
+
+
+// Basic page header
+// -----------------------------------------------------------------------------
+.basic-header {
+  position: relative;
+  color: $white;
+  text-align: center;
+  
+  @media (min-width: $screen-sm-min) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 60rem;
+    padding: 12rem 0 12rem 0;
+  }
+
+  .basic-header--heading {
+    position: relative;
+    min-height: 32rem;
+    padding: 6.5rem 0 6rem 0;
+
+    @media (max-width: $screen-xs-max) {
+      display: flex;
+      align-items: center;
+    }
+    
+    @media (min-width: $screen-sm-min) {
+      position: static;
+      min-height: auto;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 88rem;
+    }
+  }
+
+  .basic-header--bg {
+    @extend %hero-image--bg;
+  }
+
+  .basic-header--gradient {
+    @extend %hero-image--gradient;
+  }
+
+  .basic-header--content {
+    @extend %lead;
+
+    @media (min-width: $screen-sm-min) {
+      max-width: 74rem;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding-top: 6.3rem;
+      padding-bottom: 7.3rem;
+    }
+  }
+
+  // Gradient colors
+  &.color-blue {
+    .basic-header--gradient {
+      @include gradient-blue();
+    }
+
+    .basic-header--content {
+      @media (max-width: $screen-xs-max) {
+        @include gradient-blue();
+      }
+    }
+  }
+
+  &.color-green {
+    .basic-header--gradient {
+      @include gradient-green();
+    }
+
+    .basic-header--content {
+      @media (max-width: $screen-xs-max) {
+        @include gradient-green();
+      }
+    }
+  }
+
+  &.color-orange {
+    .basic-header--gradient {
+      @include gradient-orange();
+    }
+
+    .basic-header--content {
+      @media (max-width: $screen-xs-max) {
+        @include gradient-orange();
+      }
+    }
+  }
+
+  &.color-purple {
+    .basic-header--gradient {
+      @include gradient-purple();
+    }
+
+    .basic-header--content {
+      @media (max-width: $screen-xs-max) {
+        @include gradient-purple();
+      }
+    }
+  }
+}

@@ -6,9 +6,9 @@
 // ========================================
 @import 'nodes';
 @import 'landing';
+@import 'basic';
 
 body {
-  &.page-node-type-basic-page,
   &.page-node-type-blog-post,
   &.path-webform,
   &.path-user,
