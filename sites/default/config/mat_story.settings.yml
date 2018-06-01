@@ -1,5 +1,5 @@
 mat_story:
-  email: 'Darjan Pezer <darjan.pezer@agiledrop.com>, Mitja Krope <mitja.krope@agiledrop.com>'
+  email: 'Demo User <demo.user@mat.com>, John Doe <john.doe@gmail.com>'
   user_title: 'Email title for user (edit in admin)'
   user_content:
     value: "<p>This is email content, edited in administration.</p>\r\n"
