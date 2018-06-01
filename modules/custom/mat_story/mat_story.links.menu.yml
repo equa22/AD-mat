@@ -1,0 +1,4 @@
+mat_story.config:
+  title: 'Story Submission Settings'
+  parent: system.admin_config
+  route_name: 'mat_story.config'

@@ -14,11 +14,89 @@ function mat_story_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
 function mat_story_node_insert(Drupal\Core\Entity\EntityInterface $entity) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
   if ($entity->bundle() == 'story_profile' && $logged_in === false) {
+
+    $nid = $entity->id();
+    $host = \Drupal::request()->getSchemeAndHttpHost();
+    $admin_edit_link = $host.'/node/'.$nid.'/edit';
+    
+    // get config values from admin/config/mat_story/config
+    $config = \Drupal::config('mat_story.settings');
+    $settings = array(
+      'email'           => $config->get('mat_story')['email'],
+      'user_title'      => $config->get('mat_story')['user_title'],
+      'user_content'    => $config->get('mat_story')['user_content']
+    );
+
+    $user_email         = $entity->get('field_submissioner_email')->getString();
+    $user_first_name    = $entity->get('field_submissioner_first_name')->getString();
+    $user_last_name     = $entity->get('field_submissioner_last_name')->getString();
+    $to_admin           = $settings['email'];
+
+    // send mail to user
+    $params['subject']        = $settings['user_title'];
+    $params['user_content']   = $settings['user_content']['value'];
+    
+    Drupal::service('plugin.manager.mail')->mail(
+      'mat_story',
+      'mail_user',
+      $user_email,
+      \Drupal::languageManager()->getDefaultLanguage(),
+      $params,
+      $currentuserMail,
+      TRUE
+    );
+
+    // send mail to admin
+    $params['admin_subject'] = 'New story submission from: '.$user_first_name.' '.$user_last_name;
+    $params['admin_content'] = 'Click this url for review: ';
+    $params['admin_edit_link'] = $admin_edit_link;
+    Drupal::service('plugin.manager.mail')->mail(
+      'mat_story',
+      'mail_admin',
+      $to_admin,
+      \Drupal::languageManager()->getDefaultLanguage(),
+      $params,
+      $currentuserMail,
+      TRUE
+    );
+
     // redirect
     $routeName = 'entity.node.canonical';
-    $routeParameters = ['node' => 8];
     $response = new RedirectResponse('/story-success');
     $response->send();
+    
+  }
+}
+
+// send email to user
+function mat_story_mail($key, &$message, $params) {
+  switch($key) {
+    // send email to user
+    case 'mail_user':
+      $message['subject']       = $params['subject'];
+      $message['user_content']  = $params['user_content'];
+      
+      $body_data = array (
+        '#theme' => 'mail_user',
+        '#submitted_data' => $params['message']
+      );
+      //$message['body'][] = check_markup(nl2br($params['body']), 'full_html');
+      $message['body'][] = \Drupal::service('renderer')->render($body_data);
+    break;
+
+    // send email to admin
+    
+    case 'mail_admin':
+      $message['subject']           = $params['admin_subject'];
+      $message['admin_content']     = $params['admin_content'];
+      $message['admin_edit_link']   = $params['admin_edit_link'];
+      
+      $body_data = array (
+        '#theme' => 'mail_admin',
+        '#submitted_data' => $params['message']
+      );
+      $message['body'][] = \Drupal::service('renderer')->render($body_data);
+    break;
   }
 }
 

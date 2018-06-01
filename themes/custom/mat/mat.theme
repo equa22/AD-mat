@@ -1,1 +1,19 @@
 <?php
+
+function get_mail_user_theme() {
+  return [
+    'mail_user' => array (
+      'template' => 'mail_user',
+      'variables' => array('submitted_data'=>[]),
+    ),
+  ];
+}
+
+function get_mail_admin_theme() {
+  return [
+    'mail_admin' => array (
+      'template' => 'mail_admin',
+      'variables' => array('submitted_data'=>[]),
+    ),
+  ];
+}

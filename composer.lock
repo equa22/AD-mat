@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df09d70d3a0d398ce612e64c1408be0a",
+    "content-hash": "ac46ed9c228c55ef3c031344ba103564",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
@@ -1890,7 +1890,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
             },
-            "time": "2017-07-08T17:49:05+00:00"
+            "time": "2017-07-08 17:49:05"
         },
         {
             "name": "drupal/allowed_formats",
@@ -4275,7 +4275,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
             },
-            "time": "2018-05-16T13:30:41+00:00"
+            "time": "2018-05-16 13:30:41"
         },
         {
             "name": "drupal/paragraphs_edit",
@@ -10237,6 +10237,7 @@
         "drupal/focal_point": 10,
         "drupal/field_permissions": 5,
         "drupal/markup": 10,
+        "drupal/swiftmailer": 10,
         "behat/mink": 20,
         "behat/mink-selenium2-driver": 20
     },
