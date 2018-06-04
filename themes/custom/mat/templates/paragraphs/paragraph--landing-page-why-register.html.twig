@@ -44,10 +44,21 @@
     'paragraph--type--' ~ paragraph.bundle|clean_class,
   ]
 %}
+
+{% set paragraph_bg = content.field_media.0 %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      {{ content }}
+      {{ content.contextual_links }}
+      <div class="container-large">
+        <div class="why-register--image" style="background-image: url('{{ paragraph_bg }}')"></div>
+        <div class="why-register--content">
+          <h3>{{ content.field_title[0]['#context'].value }}</h3>
+          <h2>{{ content.field_subtext[0]['#context'].value }}</h2>
+          {{ content.field_text }}
+        </div>
+      </div>
     {% endblock %}
   </div>
 {% endblock paragraph %}

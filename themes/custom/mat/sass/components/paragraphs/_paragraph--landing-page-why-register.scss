@@ -1,0 +1,67 @@
+// ========================================
+//
+// @file _paragraph--landing-page-why-register.scss
+// Paragraph Why-register element on the landing page
+// ========================================
+
+// Paragraph Why-register
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-why-register {
+  padding: 0;
+  color: $white;
+
+  @media (min-width: $screen-md-min) {
+     padding: 10rem 0 22rem 0;
+  }
+  
+  @media (max-width: $screen-sm-max) {
+    @include gradient-purple();
+  }
+
+  .field--name-field-text {
+    @extend %lead-small-mobile;
+  }
+
+  .container-large {
+    max-width: 1490px;
+    position: relative;
+    overflow: hidden;
+
+    @media (min-width: $screen-md-min) {
+      min-height: 52rem;
+    }
+  }
+
+  .why-register--content {
+    padding: 37.5rem 0 8rem 0;
+
+     @media (min-width: $screen-md-min) {
+      width: 61%;
+      float: right;
+      padding: 6.5rem 10rem 11rem 19%;
+      @include gradient-purple();
+    }
+  }
+
+  .why-register--image {
+    @media (max-width: $screen-sm-max) {
+      width: 100%;
+      height: 32.5rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: 49%;
+      height: 42.5rem;
+      position: absolute;
+      top: 9.5rem;
+      background-size: cover;
+      background-position: center center;
+    }
+
+  }
+}

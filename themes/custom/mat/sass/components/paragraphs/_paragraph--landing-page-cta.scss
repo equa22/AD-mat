@@ -15,6 +15,10 @@
     padding-bottom: 0;
   }
 
+  .container-large {
+    max-width: 1430px;
+  }
+
   // Grid
   .field--name-field-cta-items {
     @include make-row;
