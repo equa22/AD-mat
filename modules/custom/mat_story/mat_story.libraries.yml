@@ -4,3 +4,6 @@ storyprofile:
   css:
     layout:
       css/storyprofile.css: {}
+api:
+  js:
+    js/stories-api.js: {}
