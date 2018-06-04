@@ -201,3 +201,16 @@
   &::-webkit-input-placeholder { color: $color; } // Safari and Chrome
 }
 
+
+
+// transitions
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+
+  #{$property}: $value;
+}
+@mixin transition($time: 1s, $timing-function: ease-in-out) {
+  @include prefix(transition, all $time $timing-function, 'webkit');
+}

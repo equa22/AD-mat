@@ -99,11 +99,15 @@
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
-      $('.paragraph--type--carousel .field--name-field-slide-items', context).once('carousel').slick({
+      
+
+      $('.paragraph--type--carousel > .field--name-field-slide-items', context).once('carousel').slick({
         infinite: true,
         arrows: true,
         slidesToScroll: 1,
-        slidesToShow: 5,
+        slidesToShow: 4,
+        centerMode: false,
+        variableWidth: true,
         responsive: [
           {
             breakpoint: 2220,
