@@ -11,7 +11,7 @@
   color: $white;
 
   @media (min-width: $screen-md-min) {
-     padding: 10rem 0 22rem 0;
+     padding-bottom: 22rem;
   }
   
   @media (max-width: $screen-sm-max) {

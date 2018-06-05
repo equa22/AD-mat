@@ -22,17 +22,18 @@
       position: relative;
       display: flex;
       align-items: center;
-      height: 8rem;
-      font-family: $font-flama;
+      height: 10.8rem;
+      margin-top: 9rem;
+      font-family: $font-flama-bold;
+      z-index: 1;
 
       @media (min-width: $screen-sm-min) {
-        height: 10.8rem;
+         margin-top: 4rem;
       }
 
       .headline-myth,
       .headline-fact {
         flex-basis: 50%;
-        //padding-top: 2rem;
         @extend %h2;
         color: $blue-dark;
         text-transform: uppercase;
@@ -44,31 +45,28 @@
       }
 
       .headline-fact {
-        padding-left: 16rem;
-        text-align: left;
+        text-align: right;
+
+        @media (min-width: $screen-sm-min) {
+          padding-left: 16rem;
+          text-align: left;
+        }
       }
 
       &:before {
         content: 'VS';
         display: inline-block;
-        width: 8rem;
-        height: 8rem;
         position: absolute;
         top: 0;
         left: 50%;
-        margin-left: -4rem;
+        width: 10.8rem;
+        height: 10.8rem;
+        margin-left: -5.4rem;
+        line-height: 10.8rem;
         border-radius: 50%;
         @include gradient-blue();
         color: $white;
         @include font-size(2.4);
-        line-height: 8rem;
-
-        @media (min-width: $screen-sm-min) {
-          width: 10.8rem;
-          height: 10.8rem;
-          margin-left: -5.4rem;
-          line-height: 10.8rem;
-        }
       }
     }
   }
@@ -77,18 +75,45 @@
   .field--name-field-myths-vs-facts {
     position: relative;
     padding-top: 7.5rem;
+    margin-bottom: 10rem;
+    overflow: hidden;
+
+    @media (min-width: $screen-sm-min) {
+      padding-bottom: 7.5rem;
+    }
 
     &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 1px;
-      height: 100%;
-      border-left: 2px solid #ccc;
-      margin-left: -1px;
+      @media (min-width: $screen-sm-min) {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1px;
+        height: 100%;
+        border-left: 2px solid #ccc;
+        margin-left: -1px;
+      }
+    }
+
+    &:after {
+      @media (min-width: $screen-sm-min) {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 1rem;
+        height: 15rem;
+        margin-left: -.5rem;
+        background: $white;
+        background: -webkit-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+        background: -o-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+        background: -moz-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+        background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+      }
     }
   }
+
+
 
   // Myth-vs-fact item
   .paragraph--type--myth-vs-fact {
@@ -97,20 +122,34 @@
 
     .myth-vs-fact--myth,
     .myth-vs-fact--fact {
+      position: relative;
       flex-basis: 50%;
+      padding-top: 4.5rem;
+
+      @media (min-width: $screen-sm-min) {
+        padding-top: 0;
+      }
 
       &:before {
         content: '';
         position: absolute;
-        width: 6.5rem;
+        top: 0;
+        width: 100%;
         border-top: 2px solid #d2d2d2;
+
+        @media (min-width: $screen-sm-min) {
+          top: 1.6rem;
+          width: 6.5rem;
+        }
       }
 
-      &:after {
-      //  content: '';
-       // position: absolute;
-      //  top: 3px;
-        //@extend %dot;
+      .dot {
+        position: absolute;
+        top: -1.3rem;
+
+        @media (min-width: $screen-sm-min) {
+          top: .3rem;
+        }
       }
 
     }
@@ -120,30 +159,53 @@
       padding-right: 16rem;
       @extend %lead;
 
+      @media (max-width: $screen-xs-max) {
+        padding-right: 0;
+        color: $gray-base;
+      }
+
       &:before {
-        top: 16px;
         right: 0;
       }
       
-      &:after {
-      //  right: 64px;
+      .dot {
+        left: 0;
+
+        @media (min-width: $screen-sm-min) {
+          left: auto;
+          right: 6.4rem;
+        }
+
+        &:before {
+          background-color: transparent;
+          @include icons('i-inactive');
+        }
       }
     }
 
     .myth-vs-fact--fact {
       position: relative;
-      padding-left: 16rem;
+      padding-left: 6rem;
+
+      @media (min-width: $screen-sm-min) {
+        padding-left: 16rem;
+      }
 
       &:before {
         left: 0;
-        top: 16px;
       }
 
-      &:after {
-      //  left: 64px;
+      .dot {
+        right: 0;
+
+        @media (min-width: $screen-sm-min) {
+          right: auto;
+          left: 6.4rem;
+        }
       }
 
       .fact--description {
+        @include font-size(2);
         font-weight: 500;
         line-height: 1.5;
       }

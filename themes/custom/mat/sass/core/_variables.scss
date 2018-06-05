@@ -41,9 +41,6 @@ $blue-lighteset: #C1E9F8;
 
 $brand-primary:  #0BAADB !default; // MAT: blue buttons, blue titles
 
-
-
-
 $color-white: white;
 $color-black: black;
 
@@ -93,11 +90,19 @@ $date:                  lighten($brand-primary, 20%) !default;
          url('../fonts/flama/Flama-Medium.woff') format('woff');
 }
 
+@font-face {
+    font-family: 'Flama Bold';
+    src: url('../fonts/flama/Flama-Bold.eot');
+    src: url('../fonts/flama/Flama-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/flama/Flama-Bold.woff') format('woff');
+}
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-$font-flama: Flama, Helvetica, sans-serif;
-$font-roboto: 'Roboto', sans-serif;
-$font-awesome: 'Font Awesome 5 Free';
+$font-flama: 	  Flama, Helvetica, sans-serif;
+$font-flama-bold: Flama Bold, Helvetica, sans-serif;
+$font-roboto: 	  'Roboto', sans-serif;
+$font-awesome: 	  'Font Awesome 5 Free';
 
 $font-text: $font-roboto;
 $font-heading: $font-flama;
