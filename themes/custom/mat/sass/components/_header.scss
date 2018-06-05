@@ -291,7 +291,7 @@
 }
 
 // Transparent navigation
-body.page-node-type-landing-page:not(.mobile-menu--opened) {
+body.page-node-type-landing-page {
   .region-header {
      // Logotype
     .block.branding {
@@ -314,6 +314,16 @@ body.adminimal-admin-toolbar {
 
 // Main menu navigation is opened on mobile
 body.mobile-menu--opened {
+  .region-header {
+    .block.branding {
+      a {
+        @media (max-width: $screen-xs-max) {
+          display: inline-block;
+          background-image: url('/themes/custom/mat/logo.svg');
+        }
+      }
+    }
+  }
   @media (max-width: $screen-xs-max) { 
     #block-header-search-block {
       display: block;
