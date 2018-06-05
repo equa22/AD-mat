@@ -337,4 +337,28 @@ body.mobile-menu--opened {
   }
 }
 
+// accordion logic
+.device-mobile {
+  .menu-item--expanded {
+    
+    > ul {
+      display: none;
+    }
+    &.active {
 
+      > a,
+      > span {
+        color: #173F7C !important;
+        opacity: 1;
+
+        &:before {
+          color: #173F7C !important;
+          transform: rotate(0) !important;
+        }
+      }
+      > ul {
+        display: block;
+      }
+    }
+  }
+}
