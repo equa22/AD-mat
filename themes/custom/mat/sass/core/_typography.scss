@@ -63,6 +63,25 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+%lead {
+  @include font-size(2);
+
+  @media (min-width: $screen-sm-min) {
+    @include font-size(2.4);
+    line-height: 1.45;
+  }
+}
+
+%lead-small-mobile {
+  @include font-size(1.6);
+  line-height: 1.5;
+
+  @media (min-width: $screen-sm-min) {
+    @include font-size(2.4);
+    line-height: 1.45;
+  }
+}
+
 h1 {
   @extend %h1;
   font-family: $font-flama;
@@ -82,23 +101,11 @@ h3 {
   @extend %h3;
 }
 
-%lead {
-  @include font-size(2);
-
-  @media (min-width: $screen-sm-min) {
-    @include font-size(2.4);
-    line-height: 1.45;
-  }
-}
-
-%lead-small-mobile {
-  @include font-size(1.6);
-  line-height: 1.5;
-
-  @media (min-width: $screen-sm-min) {
-    @include font-size(2.4);
-    line-height: 1.45;
-  }
+h4 {
+  @extend %lead;
+  font-weight: 400;
+  color: $brand-primary;
+  padding-bottom: .5rem;
 }
 
 p {

@@ -7,12 +7,147 @@
 // Paragraph timeline-facts
 // -----------------------------------------------------------------------------
 .paragraph--type--timeline-facts {
-  h3 {
-    color: $brand-primary;
+  .timeline-facts--header {
+    text-align: center;
+
+    h3 {
+      color: $brand-primary;
+    }
+
+    h2 {
+      color: $blue-dark;
+    }
+
+    .timeline-facts--headline {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 8rem;
+      font-family: $font-flama;
+
+      @media (min-width: $screen-sm-min) {
+        height: 10.8rem;
+      }
+
+      .headline-myth,
+      .headline-fact {
+        flex-basis: 50%;
+        //padding-top: 2rem;
+        @extend %h2;
+        color: $blue-dark;
+        text-transform: uppercase;
+      }
+
+      .headline-myth {
+        padding-right: 16rem;
+        text-align: right;
+      }
+
+      .headline-fact {
+        padding-left: 16rem;
+        text-align: left;
+      }
+
+      &:before {
+        content: 'VS';
+        display: inline-block;
+        width: 8rem;
+        height: 8rem;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -4rem;
+        border-radius: 50%;
+        @include gradient-blue();
+        color: $white;
+        @include font-size(2.4);
+        line-height: 8rem;
+
+        @media (min-width: $screen-sm-min) {
+          width: 10.8rem;
+          height: 10.8rem;
+          margin-left: -5.4rem;
+          line-height: 10.8rem;
+        }
+      }
+    }
   }
 
-  h2 {
-    color: $blue-dark;
+  // Myth-vs-fact container
+  .field--name-field-myths-vs-facts {
+    position: relative;
+    padding-top: 7.5rem;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 100%;
+      border-left: 2px solid #ccc;
+      margin-left: -1px;
+    }
+  }
+
+  // Myth-vs-fact item
+  .paragraph--type--myth-vs-fact {
+    display: flex;
+    padding-bottom: 13.5rem;
+
+    .myth-vs-fact--myth,
+    .myth-vs-fact--fact {
+      flex-basis: 50%;
+
+      &:before {
+        content: '';
+        position: absolute;
+        width: 6.5rem;
+        border-top: 2px solid #d2d2d2;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        //@extend %dot;
+      }
+
+    }
+
+    .myth-vs-fact--myth {
+      position: relative;
+      padding-right: 16rem;
+      @extend %lead;
+
+      &:before {
+        top: 16px;
+        right: 0;
+      }
+      
+      &:after {
+        right: 64px;
+      }
+    }
+
+    .myth-vs-fact--fact {
+      position: relative;
+      padding-left: 16rem;
+
+      &:before {
+        left: 0;
+        top: 16px;
+      }
+
+      &:after {
+        left: 64px;
+      }
+
+      .fact--description {
+        font-weight: 500;
+        line-height: 1.5;
+      }
+    }
   }
 }
 

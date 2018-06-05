@@ -48,11 +48,13 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
       <div class="myth-vs-fact--myth">
+        <span class="dot"></span>
         {{ content.field_myth[0]['#context'].value }}
        </div>
       <div class="myth-vs-fact--fact">
-        {{ content.field_fact_headline[0]['#context'].value }}
-        {{ content.field_fact_description[0]['#context'].value }}
+        <span class="dot"></span>
+        <h4>{{ content.field_fact_headline[0]['#context'].value }}</h4>
+        <div class="fact--description">{{ content.field_fact_description[0]['#context'].value }}</div>
       </div>
     {% endblock %}
   </div>
