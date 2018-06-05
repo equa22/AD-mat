@@ -105,7 +105,7 @@
         infinite: true,
         arrows: true,
         slidesToScroll: 1,
-        slidesToShow: 4,
+        slidesToShow: 5,
         centerMode: false,
         variableWidth: true,
         responsive: [

@@ -47,7 +47,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1700px;
     // 50px space
     margin-top: -200px;
     bottom: -250px;
@@ -55,11 +55,13 @@
     > .field__item,
     > .slick-list .slick-track > .field__item {
       position: relative;
-      width: 30rem;
+      width: 34rem;
       height: 44.5rem;
       padding-top: 2.5rem;
-      margin-left: 2rem;
-      margin-right: 2rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      //margin-left: 2rem;
+      //margin-right: 2rem;
       a {
         position: relative;
         display: block;
