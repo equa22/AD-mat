@@ -7,6 +7,11 @@
 @import 'nodes';
 @import 'landing';
 @import 'basic';
+@import 'newsroom';
+
+html, body {
+  overflow-x: hidden;
+}
 
 body {
   &.page-node-type-blog-post,

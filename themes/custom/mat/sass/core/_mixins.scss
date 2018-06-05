@@ -214,3 +214,29 @@
 @mixin transition($time: 1s, $timing-function: ease-in-out) {
   @include prefix(transition, all $time $timing-function, 'webkit');
 }
+
+// full section bg
+// full section background
+@mixin fullSectionBackground($color1, $color2) {
+  & {
+    position: relative;
+  }
+
+  &:before,
+  &:after {
+    content: ' ';
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+  }
+  &:before {
+    background: $color1;
+  }
+  &:after {
+    background: $color2;
+  }
+  &:before { left: -100%; }
+  &:after { right: -100%; }
+}
