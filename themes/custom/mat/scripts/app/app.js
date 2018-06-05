@@ -26,7 +26,6 @@
               element.addClass('active');
               element.siblings('li').removeClass('active');
               element.siblings('li').find('li').removeClass('active');
-              $('#header', context).animate({ scrollTop: $(document).height() }, 1000);
             }
           });
         }
