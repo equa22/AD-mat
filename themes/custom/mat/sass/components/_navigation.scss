@@ -337,4 +337,32 @@ body.mobile-menu--opened {
   }
 }
 
+// accordion logic
+@media screen and (max-width: $screen-sm-max) {
+  .menu-item--expanded {
+    -webkit-overflow-scrolling: touch;
+    > ul {
+      max-height: 0;
+      transition: max-height 0.45s ease-out;
+      overflow: hidden;
+    }
+    &.active {
 
+      > a,
+      > span {
+        color: #173F7C !important;
+        opacity: 1;
+
+        &:before {
+          color: #173F7C !important;
+          transform: rotate(0) !important;
+        }
+      }
+      > ul {
+        display: block;
+        max-height: 500px;
+        transition: max-height 0.45s ease-in;
+      }
+    }
+  }
+}

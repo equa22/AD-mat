@@ -4,3 +4,8 @@
 // Landing page specific styling
 //
 // ========================================
+.page-node-type-landing-page {
+  .precontent #block-mat-local-tasks {
+    display: none !important;  // do not change
+  }
+}

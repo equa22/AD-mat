@@ -4,7 +4,9 @@
 // Base styles
 //
 // ========================================
-
+html,body {
+  -webkit-overflow-scrolling: touch;
+}
 body {
   color: $brand-primary;
   -webkit-font-smoothing: antialiased;
