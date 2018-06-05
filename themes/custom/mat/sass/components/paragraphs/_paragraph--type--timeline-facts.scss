@@ -7,6 +7,11 @@
 // Paragraph timeline-facts
 // -----------------------------------------------------------------------------
 .paragraph--type--timeline-facts {
+  padding-top: 13.5rem;
+  @media (min-width: $screen-sm-min) {
+    padding-top: 19rem;
+  }
+  
   .timeline-facts--header {
     text-align: center;
 
@@ -76,7 +81,10 @@
     position: relative;
     padding-top: 7.5rem;
     margin-bottom: 10rem;
-    overflow: hidden;
+
+    @media (max-width: $screen-xs-max) {
+      overflow: hidden;
+    }
 
     @media (min-width: $screen-sm-min) {
       padding-bottom: 7.5rem;

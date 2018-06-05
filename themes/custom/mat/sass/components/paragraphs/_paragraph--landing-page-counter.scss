@@ -1,0 +1,58 @@
+// ========================================
+//
+// @file _paragraph--landing-page-counter.scss
+// Paragraph Counter element on the landing page
+// ========================================
+
+// Paragraph Counter
+// -----------------------------------------------------------------------------
+.paragraph--type--landing-page-counter {
+  @include gradient-blue();
+  color: $white;
+
+  @media (max-width: $screen-xs-max) {
+    padding-bottom: 9rem;
+  }
+  
+  .container {
+    @media (min-width: $screen-sm-min) {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      min-height: 60rem;
+    }
+  }
+
+  .counter--content {
+    position: relative;
+    z-index: 2;
+
+    @media (min-width: $screen-sm-min) {
+      width: 41%;
+    }
+  }
+
+  .field--name-field-text {
+    @extend %lead-small-mobile;
+  }
+
+  .field--name-field-number {
+    @include font-size(15);
+    font-family: $font-flama;
+    //@include gradient-blue();
+
+  background: -webkit-linear-gradient($blue-darker, $blue-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+    @media (min-width: $screen-sm-min) {
+      position: absolute;
+      font-size: 25vw;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      @include font-size(35);
+    }
+
+  }
+}
