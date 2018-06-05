@@ -107,9 +107,9 @@
       }
 
       &:after {
-        content: '';
-        position: absolute;
-        top: 3px;
+      //  content: '';
+       // position: absolute;
+      //  top: 3px;
         //@extend %dot;
       }
 
@@ -126,7 +126,7 @@
       }
       
       &:after {
-        right: 64px;
+      //  right: 64px;
       }
     }
 
@@ -140,7 +140,7 @@
       }
 
       &:after {
-        left: 64px;
+      //  left: 64px;
       }
 
       .fact--description {
