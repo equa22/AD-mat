@@ -13,20 +13,28 @@
   // Accordion for the main navigation (on mobile)
   Drupal.behaviors.accordionNavigation = {
     attach: function (context, settings) {
-      if (isMobile == true) {
-        $('.menu--main li.menu-item--expanded > a, .menu--main li.menu-item--expanded > span', context).on('click', function(e){
-          e.preventDefault();
-          var element = $(this).parent('li');
-          if (element.hasClass('active')) {
-            element.removeClass('active');
-            element.find('li').removeClass('active');
-          } else {
-            element.addClass('active');
-            element.siblings('li').removeClass('active');
-            element.siblings('li').find('li').removeClass('active');
-          }
-        });
+      
+      function accordionMenu() {
+        var w_w = $(window).width();
+        if (w_w < 768) {
+          $('.menu--main li.menu-item--expanded > a, .menu--main li.menu-item--expanded > span', context).on('click', function(e){
+            e.preventDefault();
+            var element = $(this).parent('li');
+            if (element.hasClass('active')) {
+              element.removeClass('active');
+              element.find('li').removeClass('active');
+            } else {
+              element.addClass('active');
+              element.siblings('li').removeClass('active');
+              element.siblings('li').find('li').removeClass('active');
+            }
+          });
+        }
       }
+      accordionMenu();
+      $(window).resize(function() {
+        accordionMenu();
+      });
     }
   };
 

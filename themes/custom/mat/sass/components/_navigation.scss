@@ -338,7 +338,7 @@ body.mobile-menu--opened {
 }
 
 // accordion logic
-.device-mobile {
+@media screen and (max-width: $screen-sm-max) {
   .menu-item--expanded {
     
     > ul {
