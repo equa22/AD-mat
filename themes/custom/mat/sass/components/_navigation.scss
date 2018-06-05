@@ -340,9 +340,11 @@ body.mobile-menu--opened {
 // accordion logic
 @media screen and (max-width: $screen-sm-max) {
   .menu-item--expanded {
-    
+    -webkit-overflow-scrolling: touch;
     > ul {
-      display: none;
+      max-height: 0;
+      transition: max-height 0.45s ease-out;
+      overflow: hidden;
     }
     &.active {
 
@@ -358,6 +360,8 @@ body.mobile-menu--opened {
       }
       > ul {
         display: block;
+        max-height: 500px;
+        transition: max-height 0.45s ease-in;
       }
     }
   }

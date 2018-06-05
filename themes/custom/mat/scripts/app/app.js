@@ -13,7 +13,6 @@
   // Accordion for the main navigation (on mobile)
   Drupal.behaviors.accordionNavigation = {
     attach: function (context, settings) {
-      
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
@@ -27,6 +26,7 @@
               element.addClass('active');
               element.siblings('li').removeClass('active');
               element.siblings('li').find('li').removeClass('active');
+              $('#header', context).animate({ scrollTop: $(document).height() }, 1000);
             }
           });
         }
