@@ -45,6 +45,7 @@
       $(document).ready(function() {
         window.sr = ScrollReveal();
         sr.reveal('.view-news-landing .view-content > .views-row');
+        sr.reveal('.view-news-landing .news-filters');
       });
     }
   };
