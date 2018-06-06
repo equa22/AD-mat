@@ -26,10 +26,15 @@
   // Masonry init for newsroom view
   Drupal.behaviors.masonryNewsroom = {
     attach: function (context, settings) {
-      var w_w = $(window).width();
-      if (w_w >= 768) {
-        var $grid = $('.view-news-landing .view-content', context).masonry();
-      }
+      $(document).ready(function() {
+        var w_w = $(window).width();
+
+        if (w_w >= 768) {
+          var $grid = $('.view-news-landing .view-content', context).masonry({
+            itemSelector : '.views-row'
+          });
+        }
+      });
     }
   };
 

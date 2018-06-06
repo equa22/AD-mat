@@ -53,6 +53,9 @@
         font-size: 1.4rem;
         color: rgba(74,74,74,0.50);
         letter-spacing: 0;
+        &:hover {
+          color: $blue-dark;
+        }
       }
       &.is-active {
         a {
