@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b74f4e8b46ffaf358e770ec2dbc548d",
+    "content-hash": "e3e6a7ea897d99e77bc1d68776125bf2",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
-            "version": "dev-master",
+            "version": "0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AGILEDROP/tdx-distribution.git",
@@ -9940,7 +9940,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "agiledrop/tdx-distribution": 20,
         "org/cotailored_base_drush_commands": 20,
         "drupal/contribute": 10,
         "drupal/better_exposed_filters": 15,
