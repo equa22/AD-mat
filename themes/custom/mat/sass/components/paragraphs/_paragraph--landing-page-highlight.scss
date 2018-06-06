@@ -31,7 +31,7 @@
 
       @media (max-width: $screen-xs-max) {
         border-color: #212529;
-        color: #4A4A4A;
+        color: $gray-dark;
       }
     }
   }
@@ -52,7 +52,7 @@
     @media (min-width: $screen-sm-min) {
       width: 46rem;
       border-top: none;
-      color: $white;
+      color: $color-white;
     }
 
     h2 {

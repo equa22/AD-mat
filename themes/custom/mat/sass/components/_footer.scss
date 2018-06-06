@@ -11,7 +11,7 @@
 
   .region-footer-menu {
     padding: 7rem 0 3rem 0;
-    background-color: $white;
+    background-color: $color-white;
 
     @media (min-width: $screen-sm-min) {
       padding: 9.5rem 0 7rem 0;
@@ -28,7 +28,7 @@
         @extend %col;
         flex-direction: column;
         margin-bottom: 5rem;
-        color: #4A4A4A;
+        color: $gray-dark;
 
         @media (max-width: $screen-xs-max) {
           flex-basis: 50%;
@@ -44,7 +44,7 @@
 
           .menu-item {
             a {
-              color: lighten(#4A4A4A, 35%);
+              color: $gray-base;
             }
           }
         }

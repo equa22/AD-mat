@@ -11,7 +11,7 @@
 
 .region-topbar {
   @include font-size(1.4);
-  color: $white;
+  color: $color-white;
   @include gradient-blue();
 
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
@@ -60,7 +60,7 @@
       }
 
       a {
-        color: $white;
+        color: $color-white;
         opacity: .5;
       }
     }
@@ -227,7 +227,7 @@
           font-weight: 500;
           letter-spacing: .13em;
           text-transform: uppercase;
-          color: $white;
+          color: $color-white;
         }
 
         input.form-text {
@@ -237,10 +237,10 @@
           @include font-size(8.5);
           line-height: 1;
           text-align: center;
-          color: $white;
+          color: $color-white;
           @include placeholder($blue-dark); // should be 50% from $blue-dark
           border: none;
-          border-bottom: 2px solid $white;
+          border-bottom: 2px solid $color-white;
           background-color: transparent;
         }
 
@@ -273,7 +273,7 @@
           letter-spacing: .17em;
           text-transform: uppercase;
           text-align: right;
-          color: $white;
+          color: $color-white;
         }
 
         .i-close {

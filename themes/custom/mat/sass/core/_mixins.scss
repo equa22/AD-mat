@@ -151,11 +151,11 @@
   @include gradient(90deg, $blue-light, $blue-lighteset, $blue-light);
 }
 
-// - - Buttons
+// - - MAT Buttons
 @mixin btn() {
   display: inline-block;
   font-weight: normal;
-  color: $white;
+  color: $color-white;
   text-decoration: none;
   text-align: center;
   outline: none;
@@ -174,7 +174,7 @@
   }
 
   @if $bg == 'light' {
-    background-color: $brand-primary;
+    background-color: $mat-brand-primary;
   }
 
   @if $bg == 'dark' {
@@ -186,7 +186,7 @@
   @include btn();
   padding: .4rem 2.2rem;
   @include font-size(1.4);
-  border: 2px solid $white;
+  border: 2px solid $color-white;
   border-radius: 30px;
 }
 
@@ -201,7 +201,7 @@
     color: $blue;
     border: 2px solid $blue;
     &:hover {
-      color: $white;
+      color: $color-white;
       background-color: $blue;
     }
   }
