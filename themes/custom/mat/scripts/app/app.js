@@ -6,6 +6,7 @@
     attach: function (context, settings) {
       $('#header .bars', context).once('mobile-navigation').on('click', function() {
         $('body').toggleClass('mobile-menu--opened');
+        $('html').toggleClass('no-overflow');
       });
     }
   };
