@@ -27,9 +27,8 @@
   // Masonry init for newsroom view
   Drupal.behaviors.masonryNewsroom = {
     attach: function (context, settings) {
-      $(document).ready(function() {
+      $(window).on('load', function() {
         var w_w = $(window).width();
-
         if (w_w >= 768) {
           var $grid = $('.view-news-landing .view-content', context).masonry({
             itemSelector : '.views-row'
@@ -42,7 +41,7 @@
   // Scroll review newsroom
   Drupal.behaviors.newsroomScrollReview = {
     attach: function (context, settings) {
-      $(document).ready(function() {
+      $(window).on('load', function() {
         window.sr = ScrollReveal();
         sr.reveal('.view-news-landing .view-content > .views-row');
         sr.reveal('.view-news-landing .news-filters');
