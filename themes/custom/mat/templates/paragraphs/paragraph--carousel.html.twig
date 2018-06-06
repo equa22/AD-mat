@@ -53,7 +53,9 @@
         <h2>{{ content.field_main_title }}</h2>
         {{ content.field_carousel_cta_button }}
       </div>
-      {{ content.field_slide_items }}
+      <div class="carousel--wrapper">
+        {{ content.field_slide_items }}
+      </div>
     {% endblock %}
   </div>
 {% endblock paragraph %}

@@ -350,11 +350,11 @@ body.mobile-menu--opened {
 
       > a,
       > span {
-        color: #173F7C !important;
+        color: $blue-dark !important;
         opacity: 1;
 
         &:before {
-          color: #173F7C !important;
+          color: $blue-dark !important;
           transform: rotate(0) !important;
         }
       }

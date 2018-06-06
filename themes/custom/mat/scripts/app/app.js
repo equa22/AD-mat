@@ -83,9 +83,7 @@
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
-      
-
-      $('.paragraph--type--carousel > .field--name-field-slide-items', context).once('carousel').slick({
+      $('.paragraph--type--carousel .carousel--wrapper > .field--name-field-slide-items', context).once('carousel').slick({
         infinite: true,
         arrows: true,
         slidesToScroll: 1,
@@ -94,33 +92,22 @@
         variableWidth: true,
         responsive: [
           {
-            breakpoint: 2220,
+            breakpoint: 2130,
             settings: {
               slidesToShow: 4
             }
           },
           {
-            breakpoint: 1774,
+            breakpoint: 1770,
             settings: {
               slidesToShow: 3
             }
           },
           {
-            breakpoint: 1420,
-            settings: {
-              slidesToShow: 2
-            }
-          },
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 1
-            }
-          },
-          {
             breakpoint: 768,
             settings: {
-              slidesToShow: 1
+              slidesToShow: 3,
+              centerMode: true
             }
           }
         ]
