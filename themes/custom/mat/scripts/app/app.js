@@ -14,7 +14,8 @@
   // Accordion for newsroom
   Drupal.behaviors.newsroomAccordion = {
     attach: function (context, settings) {
-      $('.news-filters > h2:first-of-type, .news-filters > ul:first-of-type', context).slideDown();
+      $('.news-filters > h2:first-of-type', context).addClass('active');
+      $('.news-filters > ul:first-of-type', context).slideDown();
       $('.news-filters > h2', context).on('click', function() {
         $('.news-filters > h2').removeClass('active');
         $('.news-filters > ul').slideUp();
@@ -27,10 +28,25 @@
   // Masonry init for newsroom view
   Drupal.behaviors.masonryNewsroom = {
     attach: function (context, settings) {
-      var w_w = $(window).width();
-      if (w_w >= 768) {
-        var $grid = $('.view-news-landing .view-content', context).masonry();
-      }
+      $(window).on('load', function() {
+        var w_w = $(window).width();
+        if (w_w >= 768) {
+          var $grid = $('.view-news-landing .view-content', context).masonry({
+            itemSelector : '.views-row'
+          });
+        }
+      });
+    }
+  };
+
+  // Scroll review newsroom
+  Drupal.behaviors.newsroomScrollReview = {
+    attach: function (context, settings) {
+      $(window).on('load', function() {
+        window.sr = ScrollReveal();
+        sr.reveal('.view-news-landing .view-content > .views-row');
+        sr.reveal('.view-news-landing .news-filters');
+      });
     }
   };
 

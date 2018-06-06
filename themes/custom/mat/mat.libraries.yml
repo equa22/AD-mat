@@ -19,6 +19,9 @@ global-js:
   version: 1.x
   js:
     scripts/checkmobile.js:
+      minified: true
+    scripts/scrollreveal.min.js:
+      minified: true
     scripts/masonry.js:
       minified: true
     assets/scripts/application.js:
