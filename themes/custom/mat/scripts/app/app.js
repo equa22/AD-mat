@@ -13,7 +13,8 @@
   // Accordion for newsroom
   Drupal.behaviors.newsroomAccordion = {
     attach: function (context, settings) {
-      $('.news-filters > h2:first-of-type, .news-filters > ul:first-of-type', context).slideDown();
+      $('.news-filters > h2:first-of-type', context).addClass('active');
+      $('.news-filters > ul:first-of-type', context).slideDown();
       $('.news-filters > h2', context).on('click', function() {
         $('.news-filters > h2').removeClass('active');
         $('.news-filters > ul').slideUp();
@@ -34,6 +35,16 @@
             itemSelector : '.views-row'
           });
         }
+      });
+    }
+  };
+
+  // Scroll review newsroom
+  Drupal.behaviors.newsroomScrollReview = {
+    attach: function (context, settings) {
+      $(document).ready(function() {
+        window.sr = ScrollReveal();
+        sr.reveal('.view-news-landing .view-content > .views-row');
       });
     }
   };
