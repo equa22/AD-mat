@@ -5,7 +5,8 @@
 //
 // ========================================
 .container,
-.field--name-field-landing-page-description {
+.field--name-field-landing-page-description,
+.view-news-landing {
   @include container;
   position: relative;
   margin: 0 auto;
