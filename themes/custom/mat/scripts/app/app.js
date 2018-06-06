@@ -13,13 +13,23 @@
   // Accordion for newsroom
   Drupal.behaviors.newsroomAccordion = {
     attach: function (context, settings) {
-      $('.news-filters > h2:first-of-type, .news-filters > ul:first-of-type', context).addClass('active');
+      $('.news-filters > h2:first-of-type, .news-filters > ul:first-of-type', context).slideDown();
       $('.news-filters > h2', context).on('click', function() {
         $('.news-filters > h2').removeClass('active');
-        $('.news-filters > ul').removeClass('active');
+        $('.news-filters > ul').slideUp();
         $(this).addClass('active');
-        $(this).next().addClass('active');
+        $(this).next().slideDown();
       });
+    }
+  };
+
+  // Masonry init for newsroom view
+  Drupal.behaviors.masonryNewsroom = {
+    attach: function (context, settings) {
+      var w_w = $(window).width();
+      if (w_w >= 768) {
+        var $grid = $('.view-news-landing .view-content', context).masonry();
+      }
     }
   };
 

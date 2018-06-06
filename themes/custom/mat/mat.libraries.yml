@@ -19,6 +19,8 @@ global-js:
   version: 1.x
   js:
     assets/scripts/vendor/checkmobile.js:
+    assets/scripts/vendor/masonry/masonry.js:
+      minified: true
     assets/scripts/application.js:
       minified: false
     assets/scripts/vendor/slick/slick.min.js:
