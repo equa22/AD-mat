@@ -10,45 +10,57 @@
     }
   };
 
+  // Accordion for newsroom
+  Drupal.behaviors.newsroomAccordion = {
+    attach: function (context, settings) {
+      $('.news-filters > h2:first-of-type, .news-filters > ul:first-of-type', context).slideDown();
+      $('.news-filters > h2', context).on('click', function() {
+        $('.news-filters > h2').removeClass('active');
+        $('.news-filters > ul').slideUp();
+        $(this).addClass('active');
+        $(this).next().slideDown();
+      });
+    }
+  };
+
+  // Masonry init for newsroom view
+  Drupal.behaviors.masonryNewsroom = {
+    attach: function (context, settings) {
+      $(document).ready(function() {
+        var w_w = $(window).width();
+
+        if (w_w >= 768) {
+          var $grid = $('.view-news-landing .view-content', context).masonry({
+            itemSelector : '.views-row'
+          });
+        }
+      });
+    }
+  };
+
   // Accordion for the main navigation (on mobile)
   Drupal.behaviors.accordionNavigation = {
     attach: function (context, settings) {
-      function setAccordion() {
-        var windowWidth = $(window).width();
-
-        if (windowWidth < 768) {
-          $('#block-mat-main-menu .menu-item--expanded > span, #block-mat-main-menu .menu-item--expanded > a')
-                        .attr('aria-expanded', 'false')
-                        .attr('role', 'button')
-                        .attr('data-toggle', 'collapse')
-                        .addClass('collapsed');
-
-          $('#block-mat-main-menu .menu-item--expanded > ul').addClass('collapse')
-                                 .attr('data-parent', '#block-mat-main-menu');                
-
-          $('#block-mat-main-menu .menu-item--expanded').each(function(n) {
-            $(this).attr('id', 'heading' + n);
-
-            $(this).find('.menu-item--expanded > ul').attr('data-parent', '#heading' + n);
-
-            $(this).find('> span, > a').attr('data-target', '#collapse' + n)
-                                       .attr('aria-controls', 'collapse' + n);
-
-            $(this).find('> ul').attr('id', 'collapse' + n)
-                                .attr('aria-labelledby', 'heading' + n);
+      function accordionMenu() {
+        var w_w = $(window).width();
+        if (w_w < 768) {
+          $('.menu--main li.menu-item--expanded > a, .menu--main li.menu-item--expanded > span', context).on('click', function(e){
+            e.preventDefault();
+            var element = $(this).parent('li');
+            if (element.hasClass('active')) {
+              element.removeClass('active');
+              element.find('li').removeClass('active');
+            } else {
+              element.addClass('active');
+              element.siblings('li').removeClass('active');
+              element.siblings('li').find('li').removeClass('active');
+            }
           });
-        } else {
-          $('#block-mat-main-menu .menu-item--expanded > span, .menu-item--expanded > a').attr('data-toggle', '');
         }
       }
-
-      setAccordion();
-      $(window).on('resize', setAccordion);
-
-      // Styling for opened item of the main navigation (on mobile)
-      $('#block-mat-main-menu .menu-item--expanded', context).once('opened-item').on('click', function() {
-        $(this).siblings().removeClass('menu-item--opened');
-        $(this).addClass('menu-item--opened');
+      accordionMenu();
+      $(window).resize(function() {
+        accordionMenu();
       });
     }
   };
@@ -99,40 +111,31 @@
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
-      $('.paragraph--type--carousel .field--name-field-slide-items', context).once('carousel').slick({
+      $('.paragraph--type--carousel .carousel--wrapper > .field--name-field-slide-items', context).once('carousel').slick({
         infinite: true,
         arrows: true,
         slidesToScroll: 1,
         slidesToShow: 5,
+        centerMode: false,
+        variableWidth: true,
         responsive: [
           {
-            breakpoint: 2220,
+            breakpoint: 2130,
             settings: {
               slidesToShow: 4
             }
           },
           {
-            breakpoint: 1774,
+            breakpoint: 1770,
             settings: {
               slidesToShow: 3
             }
           },
           {
-            breakpoint: 1420,
-            settings: {
-              slidesToShow: 2
-            }
-          },
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 1
-            }
-          },
-          {
             breakpoint: 768,
             settings: {
-              slidesToShow: 1
+              slidesToShow: 3,
+              centerMode: true
             }
           }
         ]

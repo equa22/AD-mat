@@ -6,19 +6,10 @@
 // ========================================
 
 // - - - - - - - - - - - - - - - - - - - -
-// Base font size
+// MAT Colors
 // - - - - - - - - - - - - - - - - - - - -
-//$font-size-large: 2;   // @include font-size($font-size-large);
-//$font-size-base: 1.6; //  16px = 1.6rem = @include font-size($font-size-base);
-//$font-size-small: 1.4;
-
-// - - - - - - - - - - - - - - - - - - - -
-// Colors
-// - - - - - - - - - - - - - - - - - - - -
-$white:          #fff;
-$black:          #000;
-
-$gray-base:      #9B9B9B; //lighten(#4A4A4A, 50%);
+$gray-dark: 	 #4A4A4A;
+$gray-base:      #9B9B9B; //lighten($gray-dark, 50%);
 $gray-light:     #EDEDED; //lighten($gray-base, 25%);
 $gray-lighter:   #F5F5F5; //lighten($gray-base, 10%);
 
@@ -35,32 +26,25 @@ $blue-darkest:   #05052E;
 $blue-darker:    #2F2D83;
 $blue-dark:      #173F7C; // h2
 $blue:           #1B78BA;
-$blue-light: 	   #2DB0DF; 
+$blue-light: 	 #2DB0DF; 
 $blue-lighter: 	 #22BEE4;
 $blue-lighteset: #C1E9F8;
 
-$brand-primary:  #0BAADB !default; // MAT: blue buttons, blue titles
+$color-white: 	 #fff;
+$color-black: 	 #000;
+
+$mat-brand-primary:  #0BAADB !default; // MAT: blue buttons, blue titles
 
 
-
-
-$color-white: white;
-$color-black: black;
-
-// Grays
+// Links
 // -----------------------------------------------------------------------------
+$link-color:            $gray-dark !default;
+$link-hover-color:      $gray-dark !default;
 
-$gray-darker:            lighten(#000, 13.5%) !default; // #222
-$gray-dark:              lighten(#000, 20%) !default;   // #333
-$gray:                   lighten(#000, 33.5%) !default; // #555
-//$gray-light:             lighten(#000, 60%) !default;   // #999
-$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
 
-// Brand colors
+// CoTailored Brand colors
 // -----------------------------------------------------------------------------
-
-
-
+$brand-primary:			#484dbd !default;
 $brand-primary-alt:     #7e7cce !default;
 $brand-secondary:       #333 !default;
 $brand-success:         #5cb85c !default;
@@ -68,10 +52,6 @@ $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
 $brand-info:            #11a03b !default;
 
-// Links
-// -----------------------------------------------------------------------------
-$link-color:            #4A4A4A !default;
-$link-hover-color:      #4A4A4A !default;//darken($link-color, 15%) !default;
 
 // Forms
 // -----------------------------------------------------------------------------
@@ -80,7 +60,6 @@ $input-border:          lighten($brand-primary-alt, 20%) !default;
 // Other
 // -----------------------------------------------------------------------------
 $date:                  lighten($brand-primary, 20%) !default;
-
 
 // - - - - - - - - - - - - - - - - - - - -
 // Fonts
@@ -93,11 +72,19 @@ $date:                  lighten($brand-primary, 20%) !default;
          url('../fonts/flama/Flama-Medium.woff') format('woff');
 }
 
+@font-face {
+    font-family: 'Flama Bold';
+    src: url('../fonts/flama/Flama-Bold.eot');
+    src: url('../fonts/flama/Flama-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/flama/Flama-Bold.woff') format('woff');
+}
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-$font-flama: Flama, Helvetica, sans-serif;
-$font-roboto: 'Roboto', sans-serif;
-$font-awesome: 'Font Awesome 5 Free';
+$font-flama: 	  Flama, Helvetica, sans-serif;
+$font-flama-bold: Flama Bold, Helvetica, sans-serif;
+$font-roboto: 	  'Roboto', sans-serif;
+$font-awesome: 	  'Font Awesome 5 Free';
 
 $font-text: $font-roboto;
 $font-heading: $font-flama;
@@ -128,7 +115,6 @@ $screen-md-max: ($screen-lg - 1);
 $screen-lg-max: ($screen-lg);
 
 // Tablet example:
-// @media (min-width: 768px) and (max-width: 991px)
 // @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
 
 $grid-columns: 12;
@@ -155,10 +141,10 @@ $z-index-search-overlay: 120;
 // - - - - - - - - - - - - - - - - - - - -
 // Helpers
 // - - - - - - - - - - - - - - - - - - - -
-$border-radius-base: 3px;
-$border-color-base: $gray-light;
+$border-radius-base:   3px;
+$border-color-base:    $gray-light;
 
-$border-radius-large: 33px;
+$border-radius-large:  33px;
 
 // Header
 $header-height:        12.5rem;

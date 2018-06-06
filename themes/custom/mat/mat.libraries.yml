@@ -18,11 +18,12 @@ global-css:
 global-js:
   version: 1.x
   js:
+    scripts/checkmobile.js:
+    scripts/masonry.js:
+      minified: true
     assets/scripts/application.js:
       minified: false
     assets/scripts/vendor/slick/slick.min.js:
-      minified: false
-    assets/scripts/vendor/bootstrap/bootstrap.min.js:
       minified: false
   dependencies:
     - core/jquery

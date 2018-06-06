@@ -44,10 +44,22 @@
     'paragraph--type--' ~ paragraph.bundle|clean_class,
   ]
 %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      {{ content }}
+      {{ content.contextual_links }}
+      <div class="container">
+        <header class="timeline-facts--header">
+          <h3>{{ content.field_headline[0]['#context'].value }}</h3>
+          <h2>{{ content.field_short_description[0]['#context'].value }}</h2>
+          <div class="timeline-facts--headline">
+            <div class="headline-myth">{{ 'Myth'| t }}</div>
+            <div class="headline-fact">{{ 'Fact'| t }}</div>
+          </div>
+        </header>
+        {{ content.field_myths_vs_facts }}
+      </div>
     {% endblock %}
   </div>
 {% endblock paragraph %}

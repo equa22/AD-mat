@@ -9,7 +9,7 @@
 .paragraph--type--landing-page-hero {
   position: relative;
   @include gradient-blue();
-  color: $white;
+  color: $color-white;
   overflow: hidden;
 
   .field--name-field-text {

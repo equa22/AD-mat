@@ -151,11 +151,11 @@
   @include gradient(90deg, $blue-light, $blue-lighteset, $blue-light);
 }
 
-// - - Buttons
+// - - MAT Buttons
 @mixin btn() {
   display: inline-block;
   font-weight: normal;
-  color: $white;
+  color: $color-white;
   text-decoration: none;
   text-align: center;
   outline: none;
@@ -174,7 +174,7 @@
   }
 
   @if $bg == 'light' {
-    background-color: $brand-primary;
+    background-color: $mat-brand-primary;
   }
 
   @if $bg == 'dark' {
@@ -186,8 +186,25 @@
   @include btn();
   padding: .4rem 2.2rem;
   @include font-size(1.4);
-  border: 2px solid $white;
+  border: 2px solid $color-white;
   border-radius: 30px;
+}
+
+@mixin btn-small($bg: 'default') {
+  display: inline-block;
+  border-radius: $border-radius-large;
+  font-size: 14px;
+  letter-spacing: -0.25px;
+  font-weight: 600;
+  padding: 5px 30px;
+  @if ($bg == 'default') {
+    color: $blue;
+    border: 2px solid $blue;
+    &:hover {
+      color: $color-white;
+      background-color: $blue;
+    }
+  }
 }
 
 // - - Placeholder
@@ -201,3 +218,42 @@
   &::-webkit-input-placeholder { color: $color; } // Safari and Chrome
 }
 
+
+
+// transitions
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+
+  #{$property}: $value;
+}
+@mixin transition($time: 1s, $timing-function: ease-in-out) {
+  @include prefix(transition, all $time $timing-function, 'webkit');
+}
+
+// full section bg
+// full section background
+@mixin fullSectionBackground($color1, $color2) {
+  & {
+    position: relative;
+  }
+
+  &:before,
+  &:after {
+    content: ' ';
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+  }
+  &:before {
+    background: $color1;
+  }
+  &:after {
+    background: $color2;
+  }
+  &:before { left: -100%; }
+  &:after { right: -100%; }
+}
