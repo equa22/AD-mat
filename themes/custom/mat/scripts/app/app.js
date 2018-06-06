@@ -10,6 +10,19 @@
     }
   };
 
+  // Accordion for newsroom
+  Drupal.behaviors.newsroomAccordion = {
+    attach: function (context, settings) {
+      $('.news-filters > h2:first-of-type, .news-filters > ul:first-of-type', context).addClass('active');
+      $('.news-filters > h2', context).on('click', function() {
+        $('.news-filters > h2').removeClass('active');
+        $('.news-filters > ul').removeClass('active');
+        $(this).addClass('active');
+        $(this).next().addClass('active');
+      });
+    }
+  };
+
   // Accordion for the main navigation (on mobile)
   Drupal.behaviors.accordionNavigation = {
     attach: function (context, settings) {
