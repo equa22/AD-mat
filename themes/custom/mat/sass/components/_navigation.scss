@@ -15,7 +15,7 @@ body.page-node-type-landing-page {
           color: $color-white;
 
           &:before {
-            color: $color-white;
+            @include icons('i-chevron-white');
           }
         }
       }
@@ -108,23 +108,19 @@ body.page-node-type-landing-page {
         padding-right: 2.5rem;
 
         &:before {
+          content: '';
           display: inline-block;
-          font-style: normal;
-          font-variant: normal;
-          text-rendering: auto;
-          -webkit-font-smoothing: antialiased;
-          font-size: .9em;
-          vertical-align: middle;
-          font-family: $font-awesome;
-          font-weight: 900;
-          content: "\f078";
+          width: 16px;
+          height: 8px;
           position: absolute;
-          top: 1.3rem;
+          top: 45%;
           right: 0;
-          color: $gray-dark;
+          @include icons('i-chevron-gray');
+          background-size: 100% 100%;
 
           @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-            top: .5rem;
+            width: 14px;
+            top: 33%;
           }
         }
       }
@@ -167,7 +163,7 @@ body.page-node-type-landing-page {
           }
 
           &:before {
-            content: "";
+            content: '';
             position: absolute;
             z-index: 1;
             width: 22px;
@@ -192,6 +188,12 @@ body.page-node-type-landing-page {
 }
 
 // Mobile navigation
+html.no-overflow {
+  @media (max-width: $screen-xs-max) { 
+    overflow-y: hidden;
+  }
+}
+
 body.mobile-menu--opened {
   @media (max-width: $screen-xs-max) { 
     overflow: hidden;
@@ -203,7 +205,7 @@ body.mobile-menu--opened {
       top: 0;
       bottom: 0;
       z-index: $z-index-header-mobile;
-      overflow-y: hidden;
+      overflow-y: auto;
       background-color: $color-white;
     }
 
@@ -247,11 +249,12 @@ body.mobile-menu--opened {
           cursor: pointer;
 
           &:before {
-            top: 2.5rem;
+            width: 23px;
+            height: 20px;
+            top: 3rem;
             right: $grid-gutter-width;
-            font-size: 1.2em;
             transform: rotate(-90deg);
-            transition: .4s;
+            transition: transform .3s ease-in;
           }
         }
 
@@ -263,7 +266,6 @@ body.mobile-menu--opened {
             padding: 1.8rem 5rem;
           }
         }
-        
 
         > .menu {
           margin: 0 ($grid-gutter-width / 2);
@@ -275,7 +277,7 @@ body.mobile-menu--opened {
               > a,
               > span { 
                 &:before {
-                  top: 1.5rem;
+                  top: 2.3rem;
                   right: ($grid-gutter-width / 2);
                 }
               }
@@ -302,7 +304,7 @@ body.mobile-menu--opened {
 }
 
 // Accordion logic
-@media screen and (max-width: $screen-sm-max) {
+@media screen and (max-width: $screen-xs-max) {
   #block-mat-main-menu {
     li.menu-item--expanded {
       -webkit-overflow-scrolling: touch;
@@ -320,7 +322,7 @@ body.mobile-menu--opened {
           opacity: 1;
 
           &:before {
-            color: $blue-dark !important;
+            @include icons('i-chevron-blue');
             transform: rotate(0) !important;
           }
         }

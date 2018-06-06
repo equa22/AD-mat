@@ -6,10 +6,12 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_news_category
     - field.storage.node.field_news_image
+    - image.style.news_image_cropped
     - node.type.news_article
     - taxonomy.vocabulary.news_category
   module:
     - datetime
+    - media
     - node
     - taxonomy
     - text
@@ -134,9 +136,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: entity_reference_entity_view
+          type: media_thumbnail
           settings:
-            view_mode: default
+            image_style: news_image_cropped
+            image_link: ''
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -199,7 +202,7 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
           group_columns: {  }
           group_rows: true

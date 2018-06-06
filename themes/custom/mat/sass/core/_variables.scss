@@ -33,7 +33,7 @@ $blue-lighteset: #C1E9F8;
 $color-white: 	 #fff;
 $color-black: 	 #000;
 
-$mat-brand-primary:  #0BAADB !default; // MAT: blue buttons, blue titles
+$mat-brand-primary: #0BAADB !default; // MAT: blue buttons, blue titles
 
 
 // Links
@@ -60,6 +60,7 @@ $input-border:          lighten($brand-primary-alt, 20%) !default;
 // Other
 // -----------------------------------------------------------------------------
 $date:                  lighten($brand-primary, 20%) !default;
+
 
 // - - - - - - - - - - - - - - - - - - - -
 // Fonts
@@ -88,6 +89,7 @@ $font-awesome: 	  'Font Awesome 5 Free';
 
 $font-text: $font-roboto;
 $font-heading: $font-flama;
+
 
 // - - - - - - - - - - - - - - - - - - - -
 // Images

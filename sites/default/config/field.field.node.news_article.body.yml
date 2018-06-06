@@ -6,9 +6,11 @@ dependencies:
     - field.storage.node.body
     - node.type.news_article
   module:
+    - allowed_formats
     - text
 third_party_settings:
   allowed_formats:
+    rich_text_editor: rich_text_editor
     advanced: '0'
     basic_editor: '0'
     rich_editor: '0'
