@@ -1,0 +1,44 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+{{ attach_library('classy/node') }}
+
+<section class="basic-header {{ node.field_header_style.value }}">
+  <div class="basic-header--heading">
+    <div class="basic-header--bg" style="background-image: url('{{ file_url(node.field_parent_background_image.entity.uri.value) }}');"></div>
+    <div class="basic-header--gradient"></div>
+    <div class="container">
+      <h1>{{ node.label }}</h1>
+    </div>
+  </div>
+  {% if node.field_main_description %}
+    <div class="basic-header--content container">{{ node.field_main_description.value }}</div>
+  {% endif %}
+</section>
+
+<section class="basic-page-wrapper{% if page.sidebar %} basic-page-with-sidebar{% endif %}">
+  <div class="basic-page-container">
+    {% if page.sidebar %}
+      <div class="basic-page-sidebar">
+        {{ page.sidebar }}
+      </div>
+    {% endif %}
+    <div class="basic-page-content">
+      {{ node.body.value|raw }}
+
+      {% if node.field_basic_page_components %}
+        {% for parag_id in node.field_basic_page_components.value %}
+          {{ bamboo_render_entity('paragraph', parag_id['target_id']) }}
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>
+</div>

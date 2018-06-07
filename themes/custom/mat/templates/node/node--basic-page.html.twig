@@ -38,21 +38,30 @@
   {% endif %}
 </section>
 {% endif %}
-<article{{ attributes.addClass(classes) }}>
-
-  {% if display_submitted %}
-    <footer class="node__meta">
-      {{ author_picture }}
-      <div{{ author_attributes.addClass('node__submitted') }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
+<div class="basic-page-wrapper{% if page.sidebar %} basic-page-with-sidebar{% endif %}">
+  {% if page.sidebar %}
+    <div class="basic-page-sidebar">
+      {{ page.sidebar }}
+    </div>
   {% endif %}
+  <div class="basic-page-content">
+    <article{{ attributes.addClass(classes) }}>
 
-  <div{{ content_attributes.addClass('node__content') }}>
+      {% if display_submitted %}
+        <footer class="node__meta">
+          {{ author_picture }}
+          <div{{ author_attributes.addClass('node__submitted') }}>
+            {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+            {{ metadata }}
+          </div>
+        </footer>
+      {% endif %}
 
-    {{ content|without('field_cover_image') }}
+      <div{{ content_attributes.addClass('node__content') }}>
+
+        {{ content|without('field_cover_image') }}
+      </div>
+
+    </article>
   </div>
-
-</article>
+</div>
