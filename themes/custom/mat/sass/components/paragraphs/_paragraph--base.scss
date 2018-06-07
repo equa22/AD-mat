@@ -10,18 +10,260 @@
 .paragraph-components {
   margin: 0;
 
-  .paragraph {
-    .field--name-field-link {
-      //margin-top: 20px;
-      a {
-        //@include cta(light);
+  // MAT paragraphs (common styles, elements)
+  .paragraph--type--landing-page-cta,
+  .paragraph--type--landing-page-statistics,
+  .paragraph--type--landing-page-statement {
+
+    .container-small {
+      .field--name-field-title {
+        @extend %h3;
+        color: $mat-brand-primary;
+        text-align: center;
+      }
+
+      h2 {
+        color: $blue-dark;
+        text-align: center;
       }
     }
   }
 
-  > .paragraph {
-    //margin-top: 20px;
+  // Colored circles with icons - BASE
+  %circle--base {
+    position: relative;
 
+    &:before,
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+
+      @media (min-width: $screen-sm-min) {
+        width: 10.8rem;
+        height: 10.8rem;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-position: center center;
+    }
+  }
+
+  // Colored circles with icons - COLORS
+  .paragraph--type--statistics-item,
+  .paragraph--type--cta-item {
+    &.blue-dark {
+      .field--name-field-title {
+        color: $blue-dark;
+      }
+      
+      .icon-circled {
+        &:before {
+          @include gradient-blue-dark();
+        }
+      }
+    }
+
+    &.blue {
+      .field--name-field-title {
+        color: $blue;
+      }
+      
+      .icon-circled {
+        &:before {
+          @include gradient-blue();
+        }
+      }
+    }
+
+    &.blue-light {
+      .field--name-field-title {
+        color: $blue-light;
+      }
+      
+      .icon-circled {
+        &:before {
+          @include gradient-blue-light();
+        }
+      }
+    }
+
+    &.green {
+      .field--name-field-title {
+        color: $green;
+      }
+
+      .icon-circled {
+        &:before {
+          @include gradient-green();
+        }
+      }
+    }
+
+    &.orange {
+      .field--name-field-title {
+        color: $orange;
+      }
+
+      .icon-circled {
+        &:before {
+          @include gradient-orange();
+        }
+      }
+    }
+
+    &.purple {
+      .field--name-field-title {
+        color: $purple;
+      }
+
+      .icon-circled {
+        &:before {
+          @include gradient-purple();
+        }
+      }
+    }
+  }
+
+  // Colored circles with icons - ICONS
+  .paragraph--type--statistics-item,
+  .paragraph--type--cta-item {
+    &.i-comment-alt-lines {
+      .icon-circled {
+        &:after {
+          @include icons('i-comment-alt-lines');
+        }
+      }
+    }
+
+    &.i-exchange {
+      .icon-circled {
+        &:after {
+          @include icons('i-exchange');
+        }
+      }
+    }
+
+    &.i-eye {
+      .icon-circled {
+        &:after {
+          @include icons('i-eye');
+        }
+      }
+    }
+
+    &.i-give-life {
+      .icon-circled {
+        &:after {
+          @include icons('i-give-life');
+        }
+      }
+    }
+
+    &.i-hand-holding-heart {
+      .icon-circled {
+        &:after {
+          @include icons('i-hand-holding-heart');
+        }
+      }
+    }
+
+    &.i-hands-heart {
+      .icon-circled {
+        &:after {
+          @include icons('i-hands-heart');
+        }
+      }
+    }
+
+    &.i-heart {
+      .icon-circled {
+        &:after {
+          @include icons('i-heart');
+        }
+      }
+    }
+
+    &.i-home {
+      .icon-circled {
+        &:after {
+          @include icons('i-home');
+        }
+      }
+    }
+
+    &.i-search {
+      .icon-circled {
+        &:after {
+          @include icons('i-search');
+        }
+      }
+    }
+
+    &.i-shield {
+      .icon-circled {
+        &:after {
+          @include icons('i-shield');
+        }
+      }
+    }
+
+    &.i-together {
+      .icon-circled {
+        &:after {
+          @include icons('i-together');
+        }
+      }
+    }
+
+    &.i-users {
+      .icon-circled {
+        &:after {
+          @include icons('i-users');
+        }
+      }
+    }
+
+    &.i-walking {
+      .icon-circled {
+        &:after {
+          @include icons('i-walking');
+        }
+      }
+    }
+  }
+
+  // Dots (used on PT Timeline, Pillars)
+  .dot {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    border-radius: 50%;
+    border: 2px solid #d2d2d2;
+    background-color: $color-white;
+
+    &:before {
+      content: '';
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: 3px auto 0 auto;
+      position: relative;
+      border-radius: 50%;
+      background-color: $mat-brand-primary;
+    }
+  }
+
+
+  // CoTailored paragraphs
+  > .paragraph {
     &.coloured-light,
     &.coloured-dark {
       padding: 40px 0;
@@ -48,12 +290,6 @@
     .field--name-field-landing-page-elements {
       @include make-row;
     }
-
-    @media (min-width: $screen-md-min) {
-     // margin-top: 40px;
-    }
-
-    
 
     &.paragraph--type--landing-page-columns {
 
@@ -124,11 +360,6 @@
         }
       }
     }
-
-    
-
-
-    
   }
 }
 
@@ -192,275 +423,3 @@
     .text { padding: 0; }
   }
 }
-
-
-
-// MAT paragraphs
-.container-small {
-  @extend .container;
-  max-width: 100rem;
-}
-
-.container-large {
-  @extend .container;
-  //max-width: 1430px;
-  max-width: 1530px;
-}
-
-.paragraph--type--landing-page-cta,
-.paragraph--type--landing-page-statistics,
-.paragraph--type--landing-page-year-review {
-  //@extend .container;
-}
-
-.paragraph--type--landing-page-cta,
-.paragraph--type--landing-page-statistics,
-.paragraph--type--landing-page-statement {
-
-  .container-small {
-    .field--name-field-title {
-      @extend %h3;
-      color: $mat-brand-primary;
-      text-align: center;
-    }
-
-    h2 {
-      color: $blue-dark;
-      text-align: center;
-    }
-  }
-}
-
-// Colored circles with icons - BASE
-%circle--base {
-  position: relative;
-
-  &:before,
-  &:after {
-    content: '';
-    display: inline-block;
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-
-    @media (min-width: $screen-sm-min) {
-      width: 10.8rem;
-      height: 10.8rem;
-    }
-  }
-
-  &:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-position: center center;
-  }
-}
-
-// Colored circles with icons - COLORS
-.paragraph--type--statistics-item,
-.paragraph--type--cta-item {
-  &.blue-dark {
-    .field--name-field-title {
-      color: $blue-dark;
-    }
-    
-    .icon-circled {
-      &:before {
-        @include gradient-blue-dark();
-      }
-    }
-  }
-
-  &.blue {
-    .field--name-field-title {
-      color: $blue;
-    }
-    
-    .icon-circled {
-      &:before {
-        @include gradient-blue();
-      }
-    }
-  }
-
-  &.blue-light {
-    .field--name-field-title {
-      color: $blue-light;
-    }
-    
-    .icon-circled {
-      &:before {
-        @include gradient-blue-light();
-      }
-    }
-  }
-
-  &.green {
-    .field--name-field-title {
-      color: $green;
-    }
-
-    .icon-circled {
-      &:before {
-        @include gradient-green();
-      }
-    }
-  }
-
-  &.orange {
-    .field--name-field-title {
-      color: $orange;
-    }
-
-    .icon-circled {
-      &:before {
-        @include gradient-orange();
-      }
-    }
-  }
-
-  &.purple {
-    .field--name-field-title {
-      color: $purple;
-    }
-
-    .icon-circled {
-      &:before {
-        @include gradient-purple();
-      }
-    }
-  }
-}
-
-// Colored circles with icons - ICONS
-.paragraph--type--statistics-item,
-.paragraph--type--cta-item {
-  &.i-comment-alt-lines {
-    .icon-circled {
-      &:after {
-        @include icons('i-comment-alt-lines');
-      }
-    }
-  }
-
-  &.i-exchange {
-    .icon-circled {
-      &:after {
-        @include icons('i-exchange');
-      }
-    }
-  }
-
-  &.i-eye {
-    .icon-circled {
-      &:after {
-        @include icons('i-eye');
-      }
-    }
-  }
-
-  &.i-give-life {
-    .icon-circled {
-      &:after {
-        @include icons('i-give-life');
-      }
-    }
-  }
-
-  &.i-hand-holding-heart {
-    .icon-circled {
-      &:after {
-        @include icons('i-hand-holding-heart');
-      }
-    }
-  }
-
-  &.i-hands-heart {
-    .icon-circled {
-      &:after {
-        @include icons('i-hands-heart');
-      }
-    }
-  }
-
-  &.i-heart {
-    .icon-circled {
-      &:after {
-        @include icons('i-heart');
-      }
-    }
-  }
-
-  &.i-home {
-    .icon-circled {
-      &:after {
-        @include icons('i-home');
-      }
-    }
-  }
-
-  &.i-search {
-    .icon-circled {
-      &:after {
-        @include icons('i-search');
-      }
-    }
-  }
-
-  &.i-shield {
-    .icon-circled {
-      &:after {
-        @include icons('i-shield');
-      }
-    }
-  }
-
-  &.i-together {
-    .icon-circled {
-      &:after {
-        @include icons('i-together');
-      }
-    }
-  }
-
-  &.i-users {
-    .icon-circled {
-      &:after {
-        @include icons('i-users');
-      }
-    }
-  }
-
-  &.i-walking {
-    .icon-circled {
-      &:after {
-        @include icons('i-walking');
-      }
-    }
-  }
-}
-
-
-// Dots on Timeline, Pillars
-.dot {
-  display: block;
-  width: 2.5rem;
-  height: 2.5rem;
-  position: relative;
-  border-radius: 50%;
-  border: 2px solid #d2d2d2;
-  background-color: $color-white;
-
-  &:before {
-    content: '';
-    display: block;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin: 3px auto 0 auto;
-    position: relative;
-    border-radius: 50%;
-    background-color: $mat-brand-primary;
-  }
-}
-
