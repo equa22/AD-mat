@@ -8,7 +8,9 @@ use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
 
 function mat_global_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'mat_global/adminlibrary';
+  if (\Drupal\user\Entity\User::load(\Drupal::currentUser()->id())->hasRole('administrator')) {
+    $attachments['#attached']['library'][] = 'mat_global/adminlibrary';
+  }
 }
 
 function mat_global_preprocess_node(&$variables) {
