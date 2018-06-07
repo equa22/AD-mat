@@ -1,0 +1,46 @@
+uuid: 426f47a2-f8b7-46c0-9c6a-ea8bb0355223
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.basic_page_categories.field_header_background_image
+    - field.field.taxonomy_term.basic_page_categories.field_header_style
+    - taxonomy.vocabulary.basic_page_categories
+  module:
+    - options
+    - svg_image
+    - text
+id: taxonomy_term.basic_page_categories.default
+targetEntityType: taxonomy_term
+bundle: basic_page_categories
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_header_background_image:
+    weight: 2
+    label: above
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_header_style:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden:
+  langcode: true
