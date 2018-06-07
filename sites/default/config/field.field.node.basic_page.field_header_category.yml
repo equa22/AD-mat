@@ -1,0 +1,29 @@
+uuid: ee6d86f4-864a-4b9f-8522-688502b025c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_header_category
+    - node.type.basic_page
+    - taxonomy.vocabulary.basic_page_categories
+id: node.basic_page.field_header_category
+field_name: field_header_category
+entity_type: node
+bundle: basic_page
+label: 'Header category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      basic_page_categories: basic_page_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

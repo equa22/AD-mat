@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_basic_page_components
+    - field.field.node.basic_page.field_header_category
     - field.field.node.basic_page.field_header_style
     - field.field.node.basic_page.field_main_description
     - field.field.node.basic_page.field_parent_background_image
@@ -36,6 +37,14 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: content
+  field_header_category:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   links:
     weight: 0
