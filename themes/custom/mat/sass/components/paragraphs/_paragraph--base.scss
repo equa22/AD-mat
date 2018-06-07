@@ -29,32 +29,6 @@
     }
   }
 
-  // Colored circles with icons - BASE
-  %circle--base {
-    position: relative;
-
-    &:before,
-    &:after {
-      content: '';
-      display: inline-block;
-      width: 8rem;
-      height: 8rem;
-      border-radius: 50%;
-
-      @media (min-width: $screen-sm-min) {
-        width: 10.8rem;
-        height: 10.8rem;
-      }
-    }
-
-    &:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-position: center center;
-    }
-  }
-
   // Colored circles with icons - COLORS
   .paragraph--type--statistics-item,
   .paragraph--type--cta-item {
@@ -241,28 +215,11 @@
 
   // Dots (used on PT Timeline, Pillars)
   .dot {
-    display: block;
-    width: 2.5rem;
-    height: 2.5rem;
-    position: relative;
-    border-radius: 50%;
-    border: 2px solid #d2d2d2;
-    background-color: $color-white;
-
-    &:before {
-      content: '';
-      display: block;
-      width: 1.5rem;
-      height: 1.5rem;
-      margin: 3px auto 0 auto;
-      position: relative;
-      border-radius: 50%;
-      background-color: $mat-brand-primary;
-    }
+    @extend %dot;
   }
 
 
-  // CoTailored paragraphs
+  // CoTailored (only) paragraphs
   > .paragraph {
     &.coloured-light,
     &.coloured-dark {

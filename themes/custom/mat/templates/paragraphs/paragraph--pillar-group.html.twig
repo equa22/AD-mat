@@ -46,8 +46,14 @@
 %}
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-      {{ content }}
-    {% endblock %}
+    <div class="container">
+        {% block content %}
+        <div class="pillar-group--heading">
+            <div class="pillar-group--title">{{ content.field_title[0]['#context'].value }}</div>
+            <span class="dot"></span>
+        </div>
+        {{ content.field_pillar_group_items }}
+        {% endblock %}
+    </div>
   </div>
 {% endblock paragraph %}

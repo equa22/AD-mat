@@ -44,10 +44,22 @@
     'paragraph--type--' ~ paragraph.bundle|clean_class,
   ]
 %}
+
+{% set paragraph_bg = content.field_media.0 %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      {{ content }}
+    <span class="dot"></span>  
+    <div class="pillar-group-item--heading">
+        <div class="pillar-group-item--image" style="background-image: url('{{ paragraph_bg }}')"></div>
+        <div>
+            <h5>{{ content.field_small_title[0]['#context'].value }}</h5>
+            <h4>{{ content.field_title[0]['#context'].value }}</h4>
+        </div>
+    </div>
+    {{ content.field_content }}
+    {{ content.field_link }}
     {% endblock %}
   </div>
 {% endblock paragraph %}

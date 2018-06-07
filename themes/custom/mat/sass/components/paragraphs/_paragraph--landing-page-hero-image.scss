@@ -40,9 +40,8 @@
 
     @media (max-width: $screen-xs-max) {
       @include gradient-blue();
-      min-height: 41rem;
       padding-top: 6.3rem;
-      padding-bottom: 7.3rem;
+      padding-bottom: 14rem;
     }
   }
 
