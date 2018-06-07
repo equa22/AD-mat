@@ -76,10 +76,14 @@
 {% endif %}
 
 <main id="main" role="main">
-  {% if page.sidebar %}
-    {{ page.sidebar }}
+  {% if node.type.entity.id == 'basic_page' %}
+  {% include directory ~ '/templates/parts/basic-page.custom.html.twig' %}
+  {% else %}
+    {% if page.sidebar %}
+      {{ page.sidebar }}
+    {% endif %}
+    {{ page.content }}
   {% endif %}
-  {{ page.content }}
 </main>
 
 {% if page.highlight_slider %}
