@@ -1,46 +1,38 @@
 .view-news-landing {
   @include fullSectionBackground($gray-lighter, $gray-lighter);
+  border-top: 2px solid rgba(74,74,74,.10);
   background-color: $gray-lighter;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
+  padding: 9rem 0;
 
-  padding-top: 80px;
-  padding-bottom: 80px;
+  &:before,
+  &:after {
+    border-top: 2px solid rgba(74,74,74,.10);
+    height: calc(100% + 2px);
+    top: -2px;
+  }
+
   .view-header {
     text-align: center;
     width: 100%;
-    p {
-      margin: 0 0 15px;
-      font-family: $font-roboto;
-      font-weight: 600;
-      font-size: 2rem;
-      color: $blue;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      @media (max-width: $screen-sm-max) {
-        font-size:2rem;
-      }
+
+    h3 {
+      color: $mat-brand-primary;
     }
+
     h1 {
-      margin: 0 0 70px;
-      padding: 0;
+      margin-bottom: 3rem;
       color: $blue-dark;
-      @media (max-width: $screen-sm-max) {
-        font-size: 4rem;
-      }
     }
   }
+
   .view-filters {
     position: relative;
     margin-top: 30px;
     width: 25%;
     margin-right: 100px;
+
     @media (max-width: $screen-sm-max) {
       width: 100%;
       margin-right: auto;
@@ -49,6 +41,7 @@
       margin-bottom: 95px;
     }
   }
+
   .view-content {
     width: calc(75% - 40px);
     display: flex;
@@ -60,6 +53,7 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     // single news item
     > .views-row {
       visibility: hidden; // for scroll review
@@ -83,26 +77,22 @@
         }
       }
       .views-field-field-news-category {
-        font-family: $font-roboto;
-        font-size: 14px;
+        @extend %small;
         color: $mat-brand-primary;
         letter-spacing: 3px;
-        line-height: 30px;
         text-transform: uppercase;
         font-weight: 600;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding: 2.5rem 0 2rem 0;
         a {
           color: $mat-brand-primary;
         }
       }
 
       .views-field-title {
-        font-size: 24px;
+        @include font-size(2.4);
+        line-height: 1.45;
         color: $blue-dark;
-        letter-spacing: 0;
-        line-height: 35px;
-        margin-bottom: 20px;
+        margin-bottom: 1.5rem;
         a {
           color: $blue-dark;
           font-weight: 600;
@@ -110,18 +100,15 @@
       }
 
       .views-field-body {
-        font-family: $font-roboto;
-        font-size: 16px;
         color: $link-color;
-        letter-spacing: 0;
-        line-height: 24px;
+        @extend %small;
       }
 
       .views-field-view-node {
         margin-top: 20px;
         margin-bottom: 45px;
         a {
-          @include btn-small();
+         @include btn-secondary('white');
         }
       }
 
@@ -150,30 +137,28 @@
   h2 {
     position: relative;
     display: block;
+    @extend %lead;
     cursor: pointer;
-    font-family: $font-roboto;
-    font-size: 24px;
-    color: rgba(74,74,74,0.65);
-    letter-spacing: -0.35px;
-    line-height: 22px;
-    margin: 0;
-    padding: 25px 20px 25px 20px;
+    color: $gray-dark;
+    padding: 2.5rem 2rem;
+
     &:after {
+      content: '';
       display: inline-block;
-      font-style: normal;
-      font-variant: normal;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      font-family: $font-awesome;
-      font-weight: 900;
-      content: "\f078";
+      width: 23px;
+      height: 20px;
       position: absolute;
-      right: 20px;
+      top: 3.1rem;
+      right: 2.5rem;
+      @include icons('i-chevron-gray');
+      background-size: 100% 100%;
       transform: rotate(-90deg);
+      transition: transform .3s ease-in;
     }
     &.active {
       color: $blue-dark;
       &:after {
+        @include icons('i-chevron-blue');
         transform: rotate(0);
       }
     }
@@ -193,19 +178,16 @@
       display: block;
       margin: 0;
       padding: 0;
-      border-bottom: 1px solid rgba(155,155,155,0.20);
+      border-bottom: 1px solid #F5F5F5;
       &:last-of-type {
         border-bottom: 0;
       }
       a {
         display: block;
         padding: 10px 20px;
-        font-family: $font-roboto;
-        font-weight: 600;
-        font-size: 16px;
-        color: rgba(74,74,74,0.65);
-        letter-spacing: 0;
-        line-height: 31px;
+        font-weight: 500;
+        color: $gray-dark;
+        @extend %small;
         &:hover {
           color: $blue-dark;
         }

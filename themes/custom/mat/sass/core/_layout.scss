@@ -5,7 +5,8 @@
 //
 // ========================================
 .container,
-.field--name-field-landing-page-description {
+.field--name-field-landing-page-description,
+.view-news-landing {
   @include container;
   position: relative;
   margin: 0 auto;
@@ -13,25 +14,18 @@
   max-width: $container-lg;
 }
 
+// Additional containers (used on Landing pages)
+.container-small {
+  @extend .container;
+  max-width: 100rem;
+}
 
+.container-large {
+  @extend .container;
+  max-width: 1530px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// CoTailored
 .row,
 .layout-wrapper {
   @include make-row;

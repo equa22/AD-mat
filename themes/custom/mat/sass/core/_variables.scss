@@ -8,8 +8,9 @@
 // - - - - - - - - - - - - - - - - - - - -
 // MAT Colors
 // - - - - - - - - - - - - - - - - - - - -
-$gray-dark: 	 #4A4A4A;
-$gray-base:      #9B9B9B; //lighten($gray-dark, 50%);
+$gray-darker: 	 #4A4A4A;
+$gray-dark: 	 #898989; //rgba(74,74,74,0.65);
+$gray-base:      #9B9B9B; //lighten($gray-darker, 50%);
 $gray-light:     #EDEDED; //lighten($gray-base, 25%);
 $gray-lighter:   #F5F5F5; //lighten($gray-base, 10%);
 
@@ -38,8 +39,8 @@ $mat-brand-primary: #0BAADB !default; // MAT: blue buttons, blue titles
 
 // Links
 // -----------------------------------------------------------------------------
-$link-color:            $gray-dark !default;
-$link-hover-color:      $gray-dark !default;
+$link-color:            $gray-darker !default;
+$link-hover-color:      $gray-darker !default;
 
 
 // CoTailored Brand colors
@@ -85,7 +86,6 @@ $date:                  lighten($brand-primary, 20%) !default;
 $font-flama: 	  Flama, Helvetica, sans-serif;
 $font-flama-bold: Flama Bold, Helvetica, sans-serif;
 $font-roboto: 	  'Roboto', sans-serif;
-$font-awesome: 	  'Font Awesome 5 Free';
 
 $font-text: $font-roboto;
 $font-heading: $font-flama;

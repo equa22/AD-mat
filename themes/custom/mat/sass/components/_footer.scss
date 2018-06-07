@@ -28,7 +28,7 @@
         @extend %col;
         flex-direction: column;
         margin-bottom: 5rem;
-        color: $gray-dark;
+        color: $gray-darker;
 
         @media (max-width: $screen-xs-max) {
           flex-basis: 50%;

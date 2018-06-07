@@ -28,7 +28,9 @@
         "drupal/swiftmailer": "^1.0@beta",
         "drupal/config_ignore": "^2.1",
         "guzzlehttp/guzzle": "^6.3",
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^5.0",
+        "twig/extensions": "^1.5",
+        "drupal/bamboo_twig": "^3.3"
     },
     "require-dev": {
         "behat/mink": "~1.7",
