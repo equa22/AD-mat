@@ -7,6 +7,10 @@ use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
 
+function mat_global_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'mat_global/adminlibrary';
+}
+
 function mat_global_preprocess_node(&$variables) {
   if ($variables['node']->getType() == 'basic_page') { 
     $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
