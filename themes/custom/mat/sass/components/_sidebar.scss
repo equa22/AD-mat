@@ -1,0 +1,86 @@
+// ========================================
+//
+// @file _sidebar.scss
+// The sidebar navigation on the basic page
+//
+// ========================================
+
+
+// Sidebar navigation
+.region-sidebar {
+  #block-mainnavigation-2 {
+    max-width: 300px;
+    padding: 1.5rem 0 3rem 0;
+    background-color: $color-white;
+    box-shadow: 0 2px 3px 0 rgba(90,97,105,0.11), 0 4px 8px 0 rgba(90,97,105,0.12), 0 15px 22px 0 rgba(90,97,105,0.10), 0 7px 35px 0 rgba(90,97,105,0.10);
+    border-radius: 10px;
+
+    @media (min-width: 1285px) {
+      margin-left: -2rem;
+    }
+
+    //All items
+    > ul.menu > li.menu-item a {
+      display: block;
+      padding: 1rem 7rem 1rem 2rem;
+    }
+
+    // First level items
+    > ul.menu > li.menu-item > a {
+      position: relative;
+      @extend %lead;
+      font-weight: 500;
+      color: $gray-dark;
+
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 23px;
+        height: 20px;
+        position: absolute;
+        top: 1.8rem;
+        right: 2.5rem;
+        @include icons('i-chevron-gray-large');
+        background-size: auto auto;
+        background-position: center center;
+        transform: rotate(-90deg);
+        transition: transform .3s ease-in;
+      }
+
+      // Active item
+      &.active {
+        color: $blue-dark;
+
+        &:after {
+          @include icons('i-chevron-blue-large');
+          transform: rotate(0);
+        }
+      }
+    }
+
+    > ul.menu > li.menu-item > ul {
+      display: none;
+    }
+
+    // Other level items
+    > ul.menu > li.menu-item > ul.menu a {
+      color: $gray-base;
+      @extend %small-extra;
+
+      // Active item
+      &.is-active {
+        @extend %small;
+        font-weight: 500;
+        color: $gray-dark;
+      }
+    }
+
+    > ul.menu > li.menu-item li.menu-item {
+      border-bottom: 1px solid #EAEAEA;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

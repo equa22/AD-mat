@@ -11,29 +11,29 @@
 {{ attach_library('classy/node') }}
 
 {% if node.field_header_category.entity.name.value is not empty %}
-<section class="basic-header {{ node.field_header_category.entity.field_header_style.value }}">
-  <div class="basic-header--heading">
-    <div class="basic-header--bg" style="background-image: url('{{ file_url(node.field_header_category.entity.field_header_background_image.0.entity.uri.value) }}');"></div>
-    <div class="basic-header--gradient"></div>
+<section class="basic-page-header {{ node.field_header_category.entity.field_header_style.value }}">
+  <div class="basic-page-header--heading">
+    <div class="basic-page-header--bg" style="background-image: url('{{ file_url(node.field_header_category.entity.field_header_background_image.0.entity.uri.value) }}');"></div>
+    <div class="basic-page-header--gradient"></div>
     <div class="container">
       <h1>{{ node.field_header_category.entity.name.value }}</h1>
     </div>
   </div>
   {% if node.field_header_category.entity.description.value %}
-    <div class="basic-header--content container">{{ node.field_header_category.entity.description.value }}</div>
+    <div class="basic-page-header--content container">{{ node.field_header_category.entity.description.value }}</div>
   {% endif %}
 </section>
 {% else %}
-<section class="basic-header {{ node.field_header_style.value }}">
-  <div class="basic-header--heading">
-    <div class="basic-header--bg" style="background-image: url('{{ file_url(node.field_parent_background_image.entity.uri.value) }}');"></div>
-    <div class="basic-header--gradient"></div>
+<section class="basic-page-header {{ node.field_header_style.value }}">
+  <div class="basic-page-header--heading">
+    <div class="basic-page-header--bg" style="background-image: url('{{ file_url(node.field_parent_background_image.entity.uri.value) }}');"></div>
+    <div class="basic-page-header--gradient"></div>
     <div class="container">
       <h1>{{ node.label }}</h1>
     </div>
   </div>
   {% if node.field_main_description %}
-    <div class="basic-header--content container">{{ node.field_main_description.value }}</div>
+    <div class="basic-page-header--content container">{{ node.field_main_description.value }}</div>
   {% endif %}
 </section>
 {% endif %}

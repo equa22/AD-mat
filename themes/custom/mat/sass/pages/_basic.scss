@@ -8,7 +8,7 @@
 
 // Basic page header
 // -----------------------------------------------------------------------------
-.basic-header {
+.basic-page-header {
   position: relative;
   color: $color-white;
   text-align: center;
@@ -21,7 +21,7 @@
     padding: 12rem 0 12rem 0;
   }
 
-  .basic-header--heading {
+  .basic-page-header--heading {
     position: relative;
     min-height: 32rem;
     padding: 6.5rem 0 6rem 0;
@@ -42,15 +42,15 @@
     }
   }
 
-  .basic-header--bg {
+  .basic-page-header--bg {
     @extend %hero-image--bg;
   }
 
-  .basic-header--gradient {
+  .basic-page-header--gradient {
     @extend %hero-image--gradient;
   }
 
-  .basic-header--content {
+  .basic-page-header--content {
     @extend %lead;
 
     @media (min-width: $screen-sm-min) {
@@ -65,11 +65,11 @@
 
   // Gradient colors
   &.color-blue {
-    .basic-header--gradient {
+    .basic-page-header--gradient {
       @include gradient-blue();
     }
 
-    .basic-header--content {
+    .basic-page-header--content {
       @media (max-width: $screen-xs-max) {
         @include gradient-blue();
       }
@@ -77,11 +77,11 @@
   }
 
   &.color-green {
-    .basic-header--gradient {
+    .basic-page-header--gradient {
       @include gradient-green();
     }
 
-    .basic-header--content {
+    .basic-page-header--content {
       @media (max-width: $screen-xs-max) {
         @include gradient-green();
       }
@@ -89,11 +89,11 @@
   }
 
   &.color-orange {
-    .basic-header--gradient {
+    .basic-page-header--gradient {
       @include gradient-orange();
     }
 
-    .basic-header--content {
+    .basic-page-header--content {
       @media (max-width: $screen-xs-max) {
         @include gradient-orange();
       }
@@ -101,14 +101,37 @@
   }
 
   &.color-purple {
-    .basic-header--gradient {
+    .basic-page-header--gradient {
       @include gradient-purple();
     }
 
-    .basic-header--content {
+    .basic-page-header--content {
       @media (max-width: $screen-xs-max) {
         @include gradient-purple();
       }
+    }
+  }
+}
+
+// Basic page container
+// -----------------------------------------------------------------------------
+.basic-page-container {
+  display: flex;
+  padding-top: 10.5rem;
+  padding-bottom: 3rem;
+
+  .basic-page-sidebar {
+    width: 30%;
+    min-width: 330px;
+
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+
+  .basic-page-content {
+    @media (min-width: $screen-sm-min) {
+      width: 70%;
     }
   }
 }

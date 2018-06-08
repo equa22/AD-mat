@@ -116,10 +116,10 @@ body.page-node-type-landing-page {
           top: 45%;
           right: 0;
           @include icons('i-chevron-gray');
-          background-size: 100% 100%;
+          background-size: auto auto;
+          background-position: center center;
 
           @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-            width: 14px;
             top: 33%;
           }
         }
@@ -253,6 +253,7 @@ body.mobile-menu--opened {
             height: 20px;
             top: 3rem;
             right: $grid-gutter-width;
+            @include icons('i-chevron-gray-large');
             transform: rotate(-90deg);
             transition: transform .3s ease-in;
           }
@@ -322,7 +323,7 @@ body.mobile-menu--opened {
           opacity: 1;
 
           &:before {
-            @include icons('i-chevron-blue');
+            background-image: url($icon-root + 'i-chevron-blue-large.svg') !important;
             transform: rotate(0) !important;
           }
         }

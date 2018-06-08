@@ -11,14 +11,15 @@
     }
   };
 
-  // Accordion for newsroom
+  // Accordions for newsroom, sidebar
   Drupal.behaviors.newsroomAccordion = {
     attach: function (context, settings) {
-      $('.news-filters > h2:first-of-type', context).addClass('active');
-      $('.news-filters > ul:first-of-type', context).slideDown();
-      $('.news-filters > h2', context).on('click', function() {
-        $('.news-filters > h2').removeClass('active');
-        $('.news-filters > ul').slideUp();
+      $('.news-filters > h2:first-of-type, #block-mainnavigation-2 > ul.menu > li:first-of-type > a', context).addClass('active');
+      $('.news-filters > ul:first-of-type, #block-mainnavigation-2 > ul.menu > li:first-of-type > ul', context).slideDown();
+      $('.news-filters > h2, #block-mainnavigation-2 > ul.menu > li > a', context).on('click', function(e) {
+        e.preventDefault();
+        $('.news-filters > h2, #block-mainnavigation-2 > ul.menu > li > a').removeClass('active');
+        $('.news-filters > ul, #block-mainnavigation-2 > ul.menu > li > ul').slideUp();
         $(this).addClass('active');
         $(this).next().slideDown();
       });

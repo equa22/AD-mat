@@ -6,7 +6,8 @@
 // ========================================
 .container,
 .field--name-field-landing-page-description,
-.view-news-landing {
+.view-news-landing,
+.basic-page-container {
   @include container;
   position: relative;
   margin: 0 auto;
@@ -23,6 +24,11 @@
 .container-large {
   @extend .container;
   max-width: 1530px;
+}
+
+.precontent {
+  position: relative;
+  z-index: 1;
 }
 
 // CoTailored
