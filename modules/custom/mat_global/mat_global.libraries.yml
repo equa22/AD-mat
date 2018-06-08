@@ -1,0 +1,5 @@
+adminlibrary:
+  version: 1.x
+  css:
+    layout:
+      css/admin-custom.css: {}
