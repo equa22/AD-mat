@@ -30,6 +30,10 @@
     @media (min-width: $screen-sm-min) {
       width: 41%;
     }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      width: 52%;
+    }
   }
 
   .field--name-field-text {
