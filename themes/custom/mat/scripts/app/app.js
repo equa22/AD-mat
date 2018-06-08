@@ -155,6 +155,22 @@
       });
     }
   };
-  
 
+  // Masonry and ScrollReveal init for pillars
+  Drupal.behaviors.pillars = {
+    attach: function (context, settings) {
+      $(window).on('load', function() {
+        var w_w = $(window).width();
+        window.sr = ScrollReveal();
+
+        if (w_w >= 768) {
+          var $grid = $('.field--name-field-pillar-group-items', context).once('pillars').masonry({
+            itemSelector : '.field--name-field-pillar-group-items > .field__item'
+          });
+
+          sr.reveal('.paragraph--type--pillar-group-item');
+        }
+      });
+    }
+  };
 })(jQuery);
