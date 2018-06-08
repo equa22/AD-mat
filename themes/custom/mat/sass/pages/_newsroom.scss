@@ -1,11 +1,25 @@
+// Newsroom page
+.path-newsroom {
+  .region-content {
+    background-color: $gray-lighter;
+    border-top: 2px solid #ECECEC;
+  }
+}
+
 .view-news-landing {
-  @include fullSectionBackground($gray-lighter, $gray-lighter);
-  border-top: 2px solid rgba(74,74,74,.10);
-  background-color: $gray-lighter;
   display: flex;
   flex-wrap: wrap;
   padding-top: 9rem;
   padding-bottom: 9rem;
+
+  @media (max-width: $screen-xs) {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  @media (min-width: $screen-md-min) {
+    padding-right: 0;
+  }
 
   &:before,
   &:after {
@@ -17,6 +31,7 @@
   .view-header {
     text-align: center;
     width: 100%;
+    flex-basis: 100%;
 
     h3 {
       color: $mat-brand-primary;
@@ -26,33 +41,33 @@
       margin-bottom: 3rem;
       color: $blue-dark;
     }
+
+     @media (max-width: $screen-xs) {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
   }
 
   .view-filters {
     position: relative;
-    margin-top: 30px;
-    width: 25%;
-    margin-right: 100px;
+    min-width: 310px;
+    margin: 5.5rem auto 9.5rem auto;
 
-    @media (max-width: $screen-sm-max) {
-      width: 100%;
-      margin-right: auto;
-      max-width: 310px;
-      margin-left: auto;
-      margin-bottom: 95px;
+    @media (min-width: $screen-md-min) {
+      width: 30%;
+      min-width: 270px;
+      margin: 0;
+      padding-top: 30px;
     }
   }
 
   .view-content {
-    width: calc(75% - 40px);
     display: flex;
     flex-wrap: wrap;
-    margin-left: -30px;
-    margin-right: -30px;
-    @media (max-width: $screen-sm-max) {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
+    width: 100%;
+
+    @media (min-width: $screen-md-min) {
+      width: 70%;
     }
 
     // single news item
@@ -78,25 +93,21 @@
         }
       }
       .views-field-field-news-category {
-        @extend %small;
-        color: $mat-brand-primary;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        font-weight: 600;
+        @extend %h5;
         padding: 2.5rem 0 2rem 0;
+
+        &,
         a {
           color: $mat-brand-primary;
         }
       }
 
       .views-field-title {
-        @include font-size(2.4);
-        line-height: 1.45;
-        color: $blue-dark;
         margin-bottom: 1.5rem;
+        @extend %h4;
+        font-weight: 600;
         a {
           color: $blue-dark;
-          font-weight: 600;
         }
       }
 
@@ -122,78 +133,13 @@
       }
     }
   }
-
 }
 
+// Sidebar navigation
 .news-filters {
   visibility: hidden; // for scroll review
-  background-color: $color-white;
-  border-radius: 10px;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
-  padding: 0;
-  .news-categories, 
-  .news-archive {
-    display: none;
-  }
-  h2 {
-    position: relative;
-    display: block;
-    @extend %lead;
-    cursor: pointer;
-    color: $gray-dark;
-    padding: 2.5rem 2rem;
 
-    &:after {
-      content: '';
-      display: inline-block;
-      width: 23px;
-      height: 20px;
-      position: absolute;
-      top: 3.1rem;
-      right: 2.5rem;
-      @include icons('i-chevron-gray-large');
-      background-size: auto auto;
-      background-position: center center;
-      transform: rotate(-90deg);
-      transition: transform .3s ease-in;
-    }
-    &.active {
-      color: $blue-dark;
-      &:after {
-        @include icons('i-chevron-blue-large');
-        transform: rotate(0);
-      }
-    }
-    
-  }
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    &.active {
-      display: block;
-    }
-    &:last-of-type {
-      padding-bottom: 15px;
-    }
-    li {
-      display: block;
-      margin: 0;
-      padding: 0;
-      border-bottom: 1px solid #F5F5F5;
-      &:last-of-type {
-        border-bottom: 0;
-      }
-      a {
-        display: block;
-        padding: 10px 20px;
-        font-weight: 500;
-        color: $gray-dark;
-        @extend %small;
-        &:hover {
-          color: $blue-dark;
-        }
-      }
-    }
+  @media (max-width: $screen-sm-max) {
+    max-width: 310px;
   }
 }

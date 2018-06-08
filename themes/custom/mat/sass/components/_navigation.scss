@@ -120,7 +120,9 @@ body.page-node-type-landing-page {
           background-position: center center;
 
           @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-            top: 33%;
+            width: 14px;
+            top: 32%;
+            background-size: 14px auto;
           }
         }
       }

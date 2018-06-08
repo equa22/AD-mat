@@ -229,6 +229,8 @@
   @include prefix(transition, all $time $timing-function, 'webkit');
 }
 
+
+// To be used only in a case of real emergency (for now it's not used)
 // full section bg
 // full section background
 @mixin fullSectionBackground($color1, $color2) {
