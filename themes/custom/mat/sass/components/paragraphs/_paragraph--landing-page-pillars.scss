@@ -113,7 +113,7 @@
 
     > .field__item {
       padding-bottom: 8rem;
-
+      visibility: hidden;
 
       @media (min-width: $screen-sm-min) {
         width: 50%;

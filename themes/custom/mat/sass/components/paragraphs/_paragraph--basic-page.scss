@@ -1,0 +1,89 @@
+// ========================================
+//
+// @file _paragraph--basic-page.scss
+// All Basic page paragraphs
+// ========================================
+
+.paragraph--type--landing-page-rich-text,
+.paragraph--type--basic-page-image-and-text {
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+
+// Paragraph Rich text
+.paragraph--type--landing-page-rich-text {
+  // Lists
+  ul,
+  ol {
+    margin: 0 0 1em 0;
+    padding: 0;
+    list-style: none;
+    line-height: 1.4;
+
+    li {
+      padding-bottom: 1.4rem;
+    }
+  }
+
+  ul {
+    li {
+      position: relative;
+      padding-left: 3.8rem;
+
+      &:before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: $mat-brand-primary;
+      }
+    }
+  }
+
+  ol {
+    li {
+      counter-increment: item;
+
+      &:before {
+        margin-right: 1rem;
+        content: counter(item);
+        color: $mat-brand-primary;
+      }
+    }
+  }
+}
+
+// Paragraph Image
+.paragraph--type--landing-page-image {
+  img {
+    margin: 0 auto;
+  }
+}
+
+// Paragraph Image with Text
+.paragraph--type--basic-page-image-and-text {
+  display: flex;
+  margin: 4rem 0;
+  padding: 4rem 0;
+  border-top: 2px solid #D2D2D2;
+  border-bottom: 2px solid #D2D2D2;
+
+  .field--name-field-media {
+    flex-shrink: 0;
+    max-width: 200px;
+    margin: 0 3rem 0 1rem;
+  }
+
+  &.right {
+    .field--name-field-media {
+      margin: 0 1rem 0 3rem;
+      order: 2;
+    }
+  }
+}
