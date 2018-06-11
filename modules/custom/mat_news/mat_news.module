@@ -1,5 +1,5 @@
 <?php
-
+/*
 function mat_news_form_alter(&$form, $form_state, $form_id) {
   $nids = \Drupal::entityQuery('node')->condition('type','news_article')->execute();
   $nodes =  \Drupal\node\Entity\Node::loadMultiple($nids);
@@ -29,5 +29,17 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
     $form['#attributes']['class'] = 'hide';
     //$form['#attached']['library'] = 'mat_news/newsajax';
     $form['#prefix'] = $output;
+  }
+}*/
+
+
+function mat_news_form_alter(&$form, $form_state, $form_id) {
+  if(isset($form['#id']) && $form['#id'] == 'views-exposed-form-news-landing-page-1') {
+    //$form['field_news_category_target_id']['#type'] = 'radios';
+    foreach ($form['field_news_category_target_id']['#options'] as $key => &$option) {
+      if ($key == 'All') {
+        $option = t('Show all');
+      }
+    }
   }
 }
