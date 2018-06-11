@@ -29,22 +29,70 @@ input {
 
 table {
   width: 100%;
-  margin: 20px 0;
+  margin-top: 4.5rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  
   caption {
-    @include font-size(2.4);
-  }
-
-  th,td {
-    padding: 10px;
+    margin-top: -2rem;
+    text-align: left;
   }
 
   th {
-    text-align: left;
-    border-bottom: 2px solid $brand-primary-alt;
+    padding: 1.4rem 1.8rem;
+    @include font-size(1);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: $blue-dark;
+    background-color: #ECECEC;
+    border: 1px solid $table-border-color;
+    border-left: none;
+
+    &:first-child {
+      border-top-left-radius: $table-border-radius;
+    }
+
+    &:last-child {
+      border-top-right-radius: $table-border-radius;
+    }
   }
 
   td {
-    border-bottom: 1px solid $brand-primary-alt;
+    padding: 1.2rem 2rem;
+    @include font-size(1.2);
+    border-right: 1px solid $table-border-color;
+    border-bottom: 1px solid $table-border-color;
+
+    &:first-child {
+      font-weight: 500;
+    }
+  }
+
+  th, td {
+    vertical-align: top;
+    text-align: left;
+
+    &:first-child {
+      border-left: 1px solid $table-border-color;
+    }
+  }
+
+  tr {
+    &:nth-of-type(even) {
+      td {
+        background-color: #FBFBFB;
+      }
+    }
+
+    &:last-child {
+      td:first-child {
+        border-bottom-left-radius: $table-border-radius;
+      }
+
+      td:last-child {
+        border-bottom-right-radius: $table-border-radius;
+      }
+    }
   }
 }
 
@@ -62,23 +110,6 @@ table {
 
   &.aling-right {
     margin-left: 20px;
-  }
-}
-
-blockquote {
-  position: relative;
-  margin: 20px 0;
-  padding: 20px 0 0 60px;
-  &:before {
-    content: "";
-    position: absolute;
-    display: block;
-    left: 0;
-    top: 0;
-    width: 40px;
-    height: 40px;
-    @include image('quote.svg');
-    background-size: contain;
   }
 }
 

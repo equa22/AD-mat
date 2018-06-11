@@ -124,14 +124,105 @@
     width: 30%;
     min-width: 330px;
 
-    @media (max-width: $screen-xs-max) {
+    @media (max-width: $screen-sm-max) {
       display: none;
     }
   }
 
   .basic-page-content {
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $screen-md-min) {
       width: 70%;
     }
   }
 }
+
+// Basic page general styles
+// -----------------------------------------------------------------------------
+.basic-page-container {
+  .basic-page-content {
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    h3,
+    h4,
+    table caption {
+      color: $mat-brand-primary;
+    }
+
+    h3 {
+      @extend %small-extra;
+
+      @media (min-width: $screen-sm-min) {
+        @include font-size(1.6);
+        line-height: 1.5;
+      }
+    }
+
+    h4,
+    table caption {
+      padding: .4em 0 .7em 0;
+      @extend %lead;
+      font-weight: 500;
+    }
+
+    blockquote {
+      position: relative;
+      padding: 4.8rem 0 0 4rem;
+      margin: 2.35em 0 0 0;
+      @extend %lead;
+      font-family: $font-flama-light;
+
+      @media (min-width: $screen-sm-min) {
+        padding: 0 8rem 0 4rem;
+        line-height: 1.5 !important;
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 25px;
+        position: absolute;
+        top: 1rem;
+        left: 4rem;
+        @include icons('i-quote');
+        background-size: 20px auto;
+
+        @media (min-width: $screen-sm-min) {
+           width: 15px;
+           left: 0;
+           background-size: 15px auto;
+        }
+      }
+    }
+
+    hr {
+      margin-bottom: 3.2rem;
+      border: 0;
+      border-top: 2px solid $base-page-border-color;
+    }
+
+    .basic-page-content--summary {
+      margin-bottom: 2.5rem;
+
+      p {
+        @extend %h4;
+        font-weight: 500;
+        color: $blue-dark;
+
+        @media (min-width: $screen-md-min) {
+          @include font-size(3);
+          line-height: 1.35;
+        }
+      }
+    }
+
+
+  }
+}
+

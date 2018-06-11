@@ -79,14 +79,21 @@ $date:                  lighten($brand-primary, 20%) !default;
     src: url('../fonts/flama/Flama-Bold.eot?#iefix') format('embedded-opentype'),
          url('../fonts/flama/Flama-Bold.woff') format('woff');
 }
+@font-face {
+    font-family: 'Flama Light';
+    src: url('../fonts/flama/Flama-Light.eot');
+    src: url('../fonts/flama/Flama-Light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/flama/Flama-Light.woff') format('woff');
+}
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700');
 
-$font-flama: 	  Flama, Helvetica, sans-serif;
-$font-flama-bold: Flama Bold, Helvetica, sans-serif;
-$font-roboto: 	  'Roboto', sans-serif;
-$font-poppins:	  'Poppins', sans-serif;
+$font-flama:        Flama, Helvetica, sans-serif;
+$font-flama-bold:   Flama Bold, Helvetica, sans-serif;
+$font-flama-light:  Flama Light, Helvetica, sans-serif;
+$font-roboto:       'Roboto', sans-serif;
+$font-poppins:      'Poppins', sans-serif;
 
 $font-text:    $font-roboto;
 $font-heading: $font-flama;
@@ -151,5 +158,12 @@ $border-radius-large:  33px;
 // Header
 $header-height:        12.5rem;
 $header-height-mobile: 8rem;
+
+// Tables
+$table-border-color: #E3E3E3;
+$table-border-radius: 5px;
+
+// Base page
+$base-page-border-color: #D2D2D2;
 
 

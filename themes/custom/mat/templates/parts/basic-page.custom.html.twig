@@ -46,7 +46,7 @@
       </div>
     {% endif %}
     <div class="basic-page-content">
-      {{ node.body.value|raw }}
+      <div class="basic-page-content--summary">{{ node.body.value|raw }}</div>
 
       {% if node.field_basic_page_components %}
         {% for parag_id in node.field_basic_page_components.value %}
