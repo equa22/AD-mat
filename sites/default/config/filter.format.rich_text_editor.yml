@@ -12,6 +12,6 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <blockquote cite> <code> <ul type> <ol start type> <li> <h3 id> <u> <p>'
+      allowed_html: '<a href hreflang> <em> <strong> <blockquote cite> <code> <ul type> <ol start type> <li> <h3 id> <h4 id> <u> <p> <hr> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr>'
       filter_html_help: true
       filter_html_nofollow: false

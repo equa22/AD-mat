@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.media.video.field_media_video_embed_field
-    - image.style.thumbnail
     - media.type.video
   module:
     - video_embed_field
@@ -19,7 +18,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: thumbnail
+      image_style: ''
       link_image_to: ''
       autoplay: true
       responsive: true
