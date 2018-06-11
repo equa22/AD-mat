@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bd3400020f4881a39c78bd9370160d0",
+    "content-hash": "d71e659f73be3ab17278d41caaf24914",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
-            "version": "0.2.4",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AGILEDROP/tdx-distribution.git",
-                "reference": "3bad0b054e38b9c9f6b68be98026dcaec97bbbcf"
+                "reference": "db11b5ec9b2c46fe95d3a3cce197e0747feb84b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AGILEDROP/tdx-distribution/zipball/3bad0b054e38b9c9f6b68be98026dcaec97bbbcf",
-                "reference": "3bad0b054e38b9c9f6b68be98026dcaec97bbbcf",
+                "url": "https://api.github.com/repos/AGILEDROP/tdx-distribution/zipball/db11b5ec9b2c46fe95d3a3cce197e0747feb84b3",
+                "reference": "db11b5ec9b2c46fe95d3a3cce197e0747feb84b3",
                 "shasum": ""
             },
             "require": {
@@ -113,7 +113,7 @@
                 }
             ],
             "description": "TDX Drupal distribution",
-            "time": "2018-05-23T10:49:13+00:00"
+            "time": "2018-06-11T13:17:19+00:00"
         },
         {
             "name": "alchemy/zippy",
@@ -1378,16 +1378,16 @@
         },
         {
             "name": "drupal-composer/drupal-scaffold",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-scaffold.git",
-                "reference": "76342f9cd22a673b0b87b5e8774613f8ee287fbc"
+                "reference": "2d6b25538ab4d7245cb8a5f01895b24bbd4d69c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-scaffold/zipball/76342f9cd22a673b0b87b5e8774613f8ee287fbc",
-                "reference": "76342f9cd22a673b0b87b5e8774613f8ee287fbc",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-scaffold/zipball/2d6b25538ab4d7245cb8a5f01895b24bbd4d69c0",
+                "reference": "2d6b25538ab4d7245cb8a5f01895b24bbd4d69c0",
                 "shasum": ""
             },
             "require": {
@@ -1416,7 +1416,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
-            "time": "2018-04-18T16:14:55+00:00"
+            "time": "2018-06-06T20:36:41+00:00"
         },
         {
             "name": "drupal/addtoany",
@@ -1647,7 +1647,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/adminimal_theme"
             },
-            "time": "2017-07-08 17:49:05"
+            "time": "2017-07-08T17:49:05+00:00"
         },
         {
             "name": "drupal/allowed_formats",
@@ -4093,7 +4093,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/paragraphs"
             },
-            "time": "2018-05-28 13:34:32"
+            "time": "2018-05-28T13:34:32+00:00"
         },
         {
             "name": "drupal/paragraphs_edit",
@@ -6002,16 +6002,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.5",
+            "version": "v0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106"
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/0951e91ac04ca28cf317f3997a0adfc319e80106",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4a2ce86f199d51b6e2524214dc06835e872f4fce",
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce",
                 "shasum": ""
             },
             "require": {
@@ -6070,7 +6070,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2018-06-02T16:39:22+00:00"
+            "time": "2018-06-10T17:57:20+00:00"
         },
         {
             "name": "stack/builder",
