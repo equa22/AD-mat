@@ -207,6 +207,7 @@ $option-width: 70px;
     transform: translate(calc(100vw + 40px), 50vh);
     background-color: white;
     cursor: pointer;
+    background-position: center;
     background-size: cover;
     border: solid 3px rgba(255,255,255,0.8);
     z-index: 5;

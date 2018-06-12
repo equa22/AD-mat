@@ -16,7 +16,7 @@
 	var stories = [];                   // list of all stories
 	var initialised = false;
 	var config = {
-	  _num: 1,                      // number of elements displayed in wrapper
+	  _num: 3,                      // number of elements displayed in wrapper
 	  overlap: true,
 	  interval: 10000,
 	  radius: 50,                  // [%] - (depends on board width and height)
@@ -59,7 +59,29 @@
 	      	config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
 
 	        
-	        JSON = data;
+	        JSON = [{
+				    "story_id":"96",
+				    "first_name":"Kristin",
+				    "last_name":"Michelle Dennis",
+				    "category":"Patients Waiting",
+				    "category_id":"4",
+				    "featured_image":"\/sites\/default\/files\/2018-05\/sight-bg-b.png",
+				    "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+				    "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+				    "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+				    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+				  }, {
+				    "story_id":"86",
+				    "first_name":"Kristin",
+				    "last_name":"Michelle Dennis",
+				    "category":"Patients Waiting",
+				    "category_id":"4",
+				    "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+				    "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+				    "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+				    "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+				    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+				  },...data];
 
 	        createStories();
 	        getFilters();
