@@ -30,7 +30,6 @@
   Drupal.behaviors.masonryNewsroom = {
     attach: function (context, settings) {
       $(window).on('load', function() {
-        console.log("HERE");
         var w_w = $(window).width();
         if (w_w >= 768) {
           var $grid = $('.view-news-landing .view-content', context).masonry({

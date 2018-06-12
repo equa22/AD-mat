@@ -8,101 +8,9 @@
 	var active_index = 0;
 	var $active_group;
 	var animation_interval;             // prepared for interval function
-	var baseUrl = 'http://dev-midamericatransplant.pantheonsite.io';
+	var baseUrl = '';
 	var sentItemsToBoard;               // prepared for timeout function for items to entry
-	var JSON = [
-	  {
-	    "story_id":"1",
-	     "first_name":"First",
-	     "last_name":"Last",
-	     "category":"Travelling",
-	     "category_id":"2",
-	     "featured_image":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-	     "featured_image":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-	    "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-	    "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-	    "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
-	    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
-	  },{
-	    "story_id":"7",
-	    "first_name":"Jamall",
-	    "last_name":"Augustine",
-	    "category":"Donors",
-	    "category_id":"1",
-	    "featured_image":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-	    "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-	    "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-	    "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
-	    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
-	  },{
-	    "story_id":"6",
-	    "first_name":"Kristin",
-	    "last_name":"Michelle Dennis",
-	    "category":"Patients Waiting",
-	    "category_id":"4",
-	    "featured_image":"\/sites\/default\/files\/2018-05\/kid4.jpg",
-	    "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-	    "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-	    "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
-	    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
-	  }, {
-	    "story_id":"16",
-	    "first_name":"First",
-	    "last_name":"Last",
-	    "category":"Patients Waiting",
-	    "category_id":"4",
-	    "featured_image":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-	    "image_1":"",
-	    "image_2":"",
-	    "image_3":"",
-	    "content":"search test"
-	  },
-	   {
-	    "story_id":"81",
-	     "first_name":"First",
-	     "last_name":"Last",
-	     "category":"Travelling",
-	     "category_id":"2",
-	     "featured_image":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-	     "image_1":"",
-	     "image_2":"",
-	     "image_3":"",
-	     "content":"search test"
-	  },{
-	    "story_id":"82",
-	    "first_name":"Jamall",
-	    "last_name":"Augustine",
-	    "category":"Donors",
-	    "category_id":"1",
-	    "featured_image":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-	    "image_1":"",
-	    "image_2":"",
-	    "image_3":"",
-	    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
-	  },{
-	    "story_id":"83",
-	    "first_name":"Kristin",
-	    "last_name":"Michelle Dennis",
-	    "category":"Patients Waiting",
-	    "category_id":"4",
-	    "featured_image":"\/sites\/default\/files\/2018-05\/kid4.jpg",
-	    "image_1":"",
-	    "image_2":"",
-	    "image_3":"",
-	    "content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis.\u00a0\u003C\/p\u003E\n\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E"
-	  }, {
-	    "story_id":"84",
-	    "first_name":"First",
-	    "last_name":"Last",
-	    "category":"Patients Waiting",
-	    "category_id":"4",
-	    "featured_image":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-	    "image_1":"",
-	    "image_2":"",
-	    "image_3":"",
-	    "content":"search test"
-	  },{"story_id":"17","first_name":"Jamall","last_name":"Augustine","category":"Donors","category_id":"1","featured_image":"\/sites\/default\/files\/2018-05\/kid1.jpg","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"},{"story_id":"18","first_name":"Kristin","last_name":"Michelle Dennis","category":"Patients Waiting","category_id":"4","featured_image":"\/sites\/default\/files\/2018-05\/kid4.jpg","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis.\u00a0\u003C\/p\u003E\n\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E"}, {"story_id":"99","first_name":"Sara","last_name":"Verhnjak","category":"Patients Waiting","category_id":"4","featured_image":"\/sites\/default\/files\/2018-05\/kid4.jpg","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis.\u00a0\u003C\/p\u003E\n\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E"}];
-
+	var JSON;
 	var categories = [];                // array of all categories (get them from stories)
 	var letters = [];                   // array of stories initials 
 	var stories = [];                   // list of all stories
@@ -130,9 +38,10 @@
 	    image_bubbles: {
 	      _images: [
 	        baseUrl + "/sites/default/files/2018-05/nature2.jpg", 
-	        baseUrl + "/sites/default/files/2018-05/kid1.jpg", 
-	        baseUrl + "/sites/default/files/2018-05/kid4.jpg", 
-	        baseUrl + "/sites/default/files/2018-05/kid4.jpg"
+	        baseUrl + "/sites/default/files/2018-05/slider1.jpg", 
+	        baseUrl + "/sites/default/files/2018-05/sight-bg-b.png", 
+	        baseUrl + "/sites/default/files/2018-05/kid4.jpg",
+	        baseUrl + "/sites/default/files/2018-05/girl-slide.jpg"
 	      ],
 	      _speed: 30000,
 	      _interval: 13000
@@ -145,7 +54,20 @@
     attach: function (context, settings) {
       
       $.getJSON('/stories-api?_format=json', function(data) {
-        console.log("data");
+        config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
+
+
+        JSON = data;
+        createStories();
+        getFilters();
+        makeAnimatedBackground();
+
+
+        /* Check, if id in parameter and open story in modal, if is*/
+				var check_params = window.location.href.split('#')
+				if(check_params.length > 1) {
+				  openModal(check_params[check_params.length - 1]);
+				}
       });
     }
   };
@@ -205,7 +127,7 @@ var animations = {
     clearInterval(el.animate);
     el.position = {x: $(el.target).offset().left, y: $(el.target).offset().top};
 
-    $(el.target).css('transform', "translate(" + $(el.target).offset().left + "px, " + $(el.target).offset().top + "px)");
+    $(el.target).css('transform', "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px)");
   },
   start: function(el) {
     $(el.target).data('animated', true);
@@ -278,7 +200,9 @@ var createStories = function() {
                  speed: (randomBetween(config.speed._max, config.speed._min))/1000,
                  target: '#story' + item.story_id});
   })
-}()
+
+  createDomElements();
+};
 
 // get all categories and create filters
 function getFilters() {
@@ -347,20 +271,16 @@ function getFilters() {
   })
 }
 
-getFilters();
 
 
-/* Check, if id in parameter and open story in modal, if is*/
-var check_params = window.location.href.split('#')
-if(check_params.length > 1) {
-  openModal(check_params[check_params.length - 1]);
-}
+
+
 
 
 var $displayedStories = [];
 function createDomElements(category, letter) {
   active_index = 0;
-  config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
+  
 
   $displayedStories = [];   // empty current arrat of stories
   $board.html('');          // empty board
@@ -396,6 +316,7 @@ function createDomElements(category, letter) {
         $displayedStories[active_index].forEach(function(el) {    // find dom element in array and stop animation
           if($(e.target).data('id') == el.story_id) {
             animations.stop(el);
+            console.log("STOP!!!!")
             $(e.target).find('.label').css('display', 'block');
             setTimeout(function(){ $(e.target).addClass('hovered');}, 50);
           }
@@ -471,7 +392,7 @@ function createDomElements(category, letter) {
       'class': "next"
     }));
 }
-createDomElements();
+
 
 function randomBetween(max, min) {
   return Math.floor(Math.random() * (max - min) ) + min;
@@ -483,7 +404,6 @@ function randomBetween(max, min) {
  * @return x and y values in pixels [string]
  */ 
 function getCoordinates(el) {
-
   if(el.position) {
     var x = Math.floor(Math.random() * (el.position.x + config.limit.x) + (el.position.x - config.limit.x));
     var y = Math.floor(Math.random() * (el.position.y + config.limit.y) + (el.position.y - config.limit.y));
@@ -525,6 +445,15 @@ function sliderTo(num) {
 
 function openModal(id) {
   var $overlay = $('.overlay'), selectedStory;
+  stories.forEach(function(story) {
+    if(story.story_id == id) {
+      selectedStory = story;
+    }
+  })
+
+  if(!selectedStory) return;
+
+
   $overlay.addClass('open');
   setTimeout(function() {
     $overlay.addClass('fade-in');
@@ -534,11 +463,7 @@ function openModal(id) {
     $('#modal').addClass('drop');
   }, 350);
   
-  stories.forEach(function(story) {
-    if(story.story_id == id) {
-      selectedStory = story;
-    }
-  })
+  
   
   selectedStory.featured_image ? $('#image').attr('src', baseUrl + selectedStory.featured_image) : $('#image').attr('src', '');
   $('#name').text(selectedStory.first_name + ' ' + selectedStory.last_name);
@@ -608,9 +533,7 @@ $('.animation-wrapper').bind('mousewheel', function(e){
   }
 });
 
-console.log("HERE!!!");
 var makeAnimatedBackground = function() {
-	console.log("HERE!!!");
 	
   var $body = $('.stories-api');
   var smallItems = [];  // helper arr
@@ -667,7 +590,7 @@ var makeAnimatedBackground = function() {
       height: size
     });
   }
-}();
+};
 
 
 

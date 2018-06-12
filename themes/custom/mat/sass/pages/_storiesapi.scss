@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,500,500i,400,400i,700,700i');
 
-body, html {
+.stories-api {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 220px);
   position: relative;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
+.adminimal-admin-toolbar {
+  .stories-api {
+    height: calc(100vh - 260px);
+  }
+  &.toolbar-tray-open {
+    .stories-api {
+      height: calc(100vh - 300px);
+    }
+  }
+}
 
-body {
+.stories-api {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0f84d2+0,0b145e+100 */
   background: #0f84d2; /* Old browsers */
   background: -moz-linear-gradient(left, #0f84d2 0%, #0b145e 100%); /* FF3.6-15 */
@@ -111,6 +121,7 @@ $option-width: 70px;
     top: 0;
     left: 0;
     background-size: cover;
+    background-position: center;
     border: solid 1px rgba(255,255,255,0.8);
     filter: blur(2.4px) brightness(1);
     transform: translate(100vw, 50vh);
@@ -248,34 +259,36 @@ $option-width: 70px;
 
   .animation-wrapper {
     width: 100vw;
-    height: 100vh;
+    height: calc(100% - #{$menu-height});
     overflow: hidden;
     position: relative;
     z-index: 1;
   }
   .animated-background {
     width: 100vw;
-    height: 100vh;
+    height: calc(100% - #{$menu-height});
     position: absolute;
-    top: 0;
+    top: $menu-height;
     left: 0;
     z-index: 0;
     overflow: hidden;
   }
 
   .controls {
-    position: fixed;
+    position: relative;
     top: 0;
-    width: calc(100% - 600px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     z-index: 10;
-    flex-wrap: wrap;
     background-color: $light-grey;
-    height: $menu-height;
-    padding: 0 300px;
-    
+    height: $menu-height;   
+    display: flex;
+
+    .container {
+      flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    } 
     
     .filter-wrapper {
       div {
@@ -367,15 +380,9 @@ $option-width: 70px;
     }
   }
 
-  span.ui-slider-handle.ui-corner-all.ui-state-default {
-      height: 50px;
-      width: 50px;
-      background-color: red;
-      position: absolute;
-  }
 
   #slider {
-    position: fixed;
+    position: absolute;
     width: 1140px;
     left: calc(50% - 1140px/2);
     height: 10px;
@@ -384,6 +391,8 @@ $option-width: 70px;
     background-size: contain;
     background-image: url(../images/icons/stories/dot.png);
     z-index: 10;
+    background-color: transparent;
+    border: none;
     
     &.ui-state-disabled {
       opacity: 0.5;
@@ -433,6 +442,7 @@ $option-width: 70px;
       outline: none;
       left: 0;
       transition: all ease-in-out 0.3s;
+      border: none;
     }
   }
 
@@ -594,6 +604,7 @@ $option-width: 70px;
   
   h1 {
     font-weight: normal;
+    font-size: 50px;
   }
   
 /*    a {
