@@ -38,32 +38,29 @@
  * @ingroup themeable
  */
 #}
-
-{% set paragraph_bg = content.field_media.0 %}
-
 {%
   set classes = [
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
   ]
 %}
-
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      <div class="slide--image" style="background-image: url('{{ paragraph_bg }}')"></div>
-
-      <div class="container">
-        <div class="slide--content">
-          {{ content.contextual_links }}
-          <h1>
-            <div class="slide--title-prefix">{{ 'Inspired by'| t }}</div>
-            {{ content.field_title[0]['#context'].value }}
-          </h1>
-          {{ content.field_content }}
-          {{ content.field_link }}
+        {{ content.contextual_links }}
+        <blockquote>{{ content.field_quote[0]['#context'].value }}</blockquote>
+        {% if content.field_quote_author|render is not empty %}
+        <div class="quote--footer">
+          <div class="quote--author">
+            {% if content.field_quote_author_about|render is not empty %}
+              {{ content.field_quote_author[0]['#context'].value }},
+            {% else %}
+              {{ content.field_quote_author[0]['#context'].value }}
+            {% endif %}
+          </div>
+          <div class="quote--author-about">{{ content.field_quote_author_about[0]['#context'].value }}</div>
         </div>
-      </div>
+        {% endif %}
     {% endblock %}
   </div>
 {% endblock paragraph %}

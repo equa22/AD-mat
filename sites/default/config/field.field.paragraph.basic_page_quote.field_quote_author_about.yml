@@ -1,0 +1,19 @@
+uuid: f46f6c9d-d9e8-47c2-a616-5037703e16df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quote_author_about
+    - paragraphs.paragraphs_type.basic_page_quote
+id: paragraph.basic_page_quote.field_quote_author_about
+field_name: field_quote_author_about
+entity_type: paragraph
+bundle: basic_page_quote
+label: 'About author'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

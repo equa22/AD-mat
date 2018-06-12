@@ -6,14 +6,22 @@ dependencies:
     - field.storage.node.body
     - node.type.basic_page
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    rich_text_editor: rich_text_editor
+    advanced: '0'
+    basic_editor: '0'
+    rich_editor: '0'
+    plain_text: '0'
 _core:
   default_config_hash: dS6SfCXJ7b_9IIkUZ-dNHLi-CzePhgPMVO1jMoTaDyQ
 id: node.basic_page.body
 field_name: body
 entity_type: node
 bundle: basic_page
-label: Body
+label: Summary
 description: ''
 required: false
 translatable: true

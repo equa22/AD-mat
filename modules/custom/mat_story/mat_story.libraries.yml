@@ -7,3 +7,6 @@ storyprofile:
 api:
   js:
     js/stories-api.js: {}
+  dependencies: 
+    - core/jquery
+    - core/jquery.ui

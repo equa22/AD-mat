@@ -5,17 +5,18 @@
 // ========================================
 
 .paragraph--type--landing-page-rich-text,
-.paragraph--type--basic-page-image-and-text {
-  a {
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
+.paragraph--type--landing-page-image,
+.paragraph--type--basic-page-image-and-text,
+.paragraph--type--basic-page-video,
+.paragraph--type--basic-page-quote {
+  margin-bottom: 4rem;
 }
 
-
+.paragraph--type--basic-page-image-and-text,
+.paragraph--type--basic-page-video {
+  padding-top: 4rem;
+  border-top: 2px solid $base-page-border-color;
+}
 
 // Paragraph Rich text
 .paragraph--type--landing-page-rich-text {
@@ -29,6 +30,11 @@
 
     li {
       padding-bottom: 1.4rem;
+    }
+
+    ul,
+    ol {
+      margin: 1em 0 0 0;
     }
   }
 
@@ -47,12 +53,19 @@
   }
 
   ol {
+    counter-reset: step-counter;
+
     li {
-      counter-increment: item;
+      counter-increment: step-counter;
+      padding-left: 3.8rem;
+      position: relative;
 
       &:before {
-        margin-right: 1rem;
-        content: counter(item);
+        content: counter(step-counter)'.';
+        display: block-inline;
+        position: absolute;
+        left: 0;
+        font-weight: 700;
         color: $mat-brand-primary;
       }
     }
@@ -68,22 +81,68 @@
 
 // Paragraph Image with Text
 .paragraph--type--basic-page-image-and-text {
-  display: flex;
-  margin: 4rem 0;
-  padding: 4rem 0;
-  border-top: 2px solid #D2D2D2;
-  border-bottom: 2px solid #D2D2D2;
-
-  .field--name-field-media {
-    flex-shrink: 0;
-    max-width: 200px;
-    margin: 0 3rem 0 1rem;
+  @media (min-width: $screen-sm-min) {
+    display: flex;
   }
 
-  &.right {
+  h4 {
+    padding-top: .2rem !important;
+  }
+
+  .field--name-field-media {
+    margin-bottom: 4.7rem;
+
+    @media (min-width: $screen-sm-min) {
+      flex-shrink: 0;
+      max-width: 200px;
+      margin: 0 3rem 0 1rem;
+    }
+
+    img {
+      margin: 0 auto;
+    }
+  }
+
+  &.left {
     .field--name-field-media {
-      margin: 0 1rem 0 3rem;
-      order: 2;
+      @media (min-width: $screen-sm-min) {
+        margin: 0 1rem 0 3rem;
+        order: 2;
+      }
+    }
+  }
+}
+
+// Paragraph Quote
+.paragraph--type--basic-page-quote {
+  .quote--footer {
+    padding: 3.8rem 0 .5rem 4rem;
+    @include font-size(1.4);
+    line-height: 2.2;
+    font-weight: 500;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: $blue-dark;
+
+    @media (min-width: $screen-sm-min) {
+      display: flex;
+      padding: 5rem 8rem .5rem 4rem;
+    }
+
+    @media (min-width: $screen-xs-min) {
+      
+    }
+
+    .quote--author {
+      @media (min-width: $screen-sm-min) {
+        min-width: 18rem;
+      }
+    }
+
+    .quote--author-about {
+      @media (min-width: $screen-sm-min) {
+        padding-left: 7rem;
+      }
     }
   }
 }
