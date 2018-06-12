@@ -37,22 +37,70 @@
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
-<div{{ attributes.addClass(classes) }}>
+<div class="slider-wrapper">
   {{ title_prefix }}
   {{ title }}
   {{ title_suffix }}
 
   {% if header %}
-    <header>
+    
       {{ header }}
-    </header>
+    
   {% endif %}
 
     <!-- Custom Stories Api -->
     <section class="stories-api">
-      <div style="background-color: #ff0000; color: #fff; padding: 15px; font-size: 2rem;">@dev Implement stories api logic here callback <b>/stories-api</b> json --> check console log</div>
       <div id="stories-api"></div>
+
+      <div class="controls">
+        <div class="container">
+          <div class="filter-wrapper"></div>
+          <div class="alphabet-wrapper">
+            <label>Find a Story by Last Name</label>
+            <div class="dropdown-wrapper">
+              <div class="dropdown"></div>
+              <div class="selected">A-Z</div>
+            </div>
+          </div>
+       </div>
+      </div>
+
+      <div class="animation-wrapper"></div>
+      <div id="slider"></div>
+      
+      
+
+
     </section>
+
+    <div class="story-overlay">
+      <div class="backdrop" data-role="closemodal"></div>
+      <div class="modal" id="modal">
+        <img id="image"/>
+        <div class="modal-header">
+          <div class="sec">
+            <label>Share story</label>
+            <a href=""><img src="themes/custom/mat/assets/images/icons/stories/facebook.svg"/></a>
+            <a href=""><img src="themes/custom/mat/assets/images/icons/stories/twitter.svg"/></a>
+            <a href=""><img src="themes/custom/mat/assets/images/icons/stories/mail.svg"/></a>
+          </div>
+          <div class="sec">
+            <label>Copy quicklink</label>
+            <a href=""><img src="themes/custom/mat/assets/images/icons/stories/link.svg"/></a>
+          </div>
+          <span data-role="closemodal">x</span>
+        </div>
+        <div class="modal-body">
+          <div class="modal-content">
+            <label>Inspired by</label>
+            <h2 id="name"></h2>
+            <h5 id="role"></h5>
+            <div id="gallery"></div>
+            <div id="content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   
   {% if footer %}
     <footer>
