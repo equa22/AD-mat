@@ -444,7 +444,7 @@ function sliderTo(num) {
 }
 
 function openModal(id) {
-  var $overlay = $('.overlay'), selectedStory;
+  var $overlay = $('.story-overlay'), selectedStory;
   stories.forEach(function(story) {
     if(story.story_id == id) {
       selectedStory = story;
@@ -477,7 +477,7 @@ function openModal(id) {
 }
 
 function closeModal() {
-  var $overlay = $('.overlay'), selectedStory;
+  var $overlay = $('.story-overlay'), selectedStory;
   $('#modal').removeClass('drop');
   
   setTimeout(function() {
