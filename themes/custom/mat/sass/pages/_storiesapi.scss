@@ -11,6 +11,8 @@
   align-items: center;
   flex-direction: column;
   align-content: center;
+  min-height: 800px;
+  max-height: 90vh;
 
   h1, p {
     position: relative;
