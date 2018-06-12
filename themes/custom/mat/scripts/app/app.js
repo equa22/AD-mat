@@ -133,6 +133,18 @@
     }
   };
 
+  // Highlight slide block
+  Drupal.behaviors.highlightSlide = {
+    attach: function (context, settings) {
+      $('.region-highlight-slider .field--name-field-highlight-slides', context).once('highlight-slide').slick({
+        dots: true,
+        infinite: true,
+        arrows: true,
+        slidesToShow: 1
+      });
+    }
+  };
+
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {

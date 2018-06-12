@@ -38,6 +38,7 @@
  * @ingroup themeable
  */
 #}
+{% set paragraph_bg = content.field_media.0 %}
 {%
   set classes = [
     'paragraph',
@@ -47,7 +48,16 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      {{ content }}
+      <div class="highlight-slide--content">
+        <div class="highlight-slide--image">
+          <div style="background-image: url('{{ paragraph_bg }}')"></div>
+        </div>
+        <div class="highlight-slide--description">
+          <h2>{{ content.field_title[0]['#context'].value }}</h2>
+          {{ content.field_short_description }}
+          {{ content.field_link }}
+        </div>
+      </div>
     {% endblock %}
   </div>
 {% endblock paragraph %}
