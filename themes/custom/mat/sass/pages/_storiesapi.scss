@@ -204,7 +204,7 @@ $option-width: 70px;
     justify-content: center;
     align-items: center;
     position: absolute;
-    transform: translate(100vw, 50vh);
+    transform: translate(calc(100vw + 40px), 50vh);
     background-color: white;
     cursor: pointer;
     background-size: cover;
