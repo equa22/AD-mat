@@ -974,7 +974,7 @@ class InlineParagraphsWidget extends WidgetBase {
     $dragdrop_settings = $this->getSelectionHandlerSetting('target_bundles_drag_drop');
 
     foreach ($bundles as $machine_name => $bundle) {
-      if ($dragdrop_settings || (!count($this->getSelectionHandlerSetting('target_bundles'))
+      if ($dragdrop_settings || (empty($this->getSelectionHandlerSetting('target_bundles'))
           || in_array($machine_name, $this->getSelectionHandlerSetting('target_bundles')))) {
         if ($access_control_handler->createAccess($machine_name)) {
           $this->accessOptions[$machine_name] = $bundle['label'];
