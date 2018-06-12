@@ -1,0 +1,209 @@
+// ========================================
+//
+// @file _paragraph--highlight-slide.scss
+// Paragraph highlight slide element
+// ========================================
+
+// Paragraph highlight slide
+// -----------------------------------------------------------------------------
+.region-highlight-slider {
+  background: $blue url($image-root + 'bg-highlight_slide.png') center center no-repeat;
+  background-size: cover;
+
+  .field--name-field-highlight-slides {
+    @extend .container-large;
+    position: relative;
+
+    // Slick styles
+    .slick-list {
+      top: -7rem;
+
+      @media (min-width: $screen-sm-min) {
+        top: -3.5rem;
+      }
+
+      @media (min-width: 1280px) {
+        top: -7.5rem;
+      }
+    }
+
+    .slick-dots {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+
+      @media (max-width: $screen-xs-max) {
+        padding-bottom: 6rem;
+        margin-top: -2rem;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        position: absolute;
+        left: 50%;
+        bottom: 11.5rem;
+      }
+
+      li {
+        width: 21px;
+        height: 21px;
+        margin-right: 1.5rem;
+        border: 3px solid $color-white;
+        border-radius: 50%;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &.slick-active {
+          background-color: $color-white;
+        }
+
+        button {
+          font-size: 0;
+          line-height: 0;
+          display: block;
+          width: 20px;
+          height: 20px;
+          padding: 5px;
+          cursor: pointer;
+          color: transparent;
+          border: 0;
+          outline: none;
+          background: transparent;
+        }
+      }
+    }
+
+    .slick-arrow {
+      width: 4.5rem;
+      height: 6.5rem;
+      position: absolute;
+      bottom: 4rem;
+      right: 20px;
+      z-index: 10;
+      line-height: 0;
+      font-size: 0;
+      cursor: pointer;
+      background: transparent;
+      color: transparent;
+      border: none;
+      outline: none;
+      @include icons('i-chevron-large');
+      background-position: center center;
+
+      @media (min-width: $screen-sm-min) {
+        bottom: 9.2rem;
+      }
+
+      @media (min-width: 1580px) {
+        right: 0;
+      }
+
+      @media (min-width: 1680px) {
+        right: -50px;
+      }
+    }
+
+    .slick-prev {
+      transform: rotate(180deg);
+      left: 20px;
+      right: auto;
+
+      @media (min-width: 1580px) {
+        left: 0;
+      }
+
+      @media (min-width: 1680px) {
+        left: -50px;
+      }
+    }
+  }
+}
+
+.paragraph--type--highlight-slide {
+  .highlight-slide--content {
+    @include make-row;
+
+    @media (min-width: $screen-sm-min) {
+      flex-wrap: nowrap;
+      min-height: 55rem;
+    }
+  }
+
+  .highlight-slide--image {
+    @extend %col;
+
+    @media (min-width: $screen-sm-min) {
+      flex-basis: 50%;
+    }
+
+    div {
+      width: 22rem;
+      height: 22rem;
+      margin: 0 auto 0 auto;
+      background-size: cover;
+      background-position: center center;
+      border: 10px solid $color-white;
+      border-radius: 50%;
+
+      @media (min-width: $screen-sm-min) {
+        width: 45rem;
+        height: 45rem;
+        border: 20px solid $color-white;
+      }
+
+      @media (min-width: $screen-lg-min) {
+        width: 53rem;
+        height: 53rem;
+      }
+
+      @media (min-width: 1280px) {
+        width: 57rem;
+        height: 57rem;
+        border: none;
+      }
+
+      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        width: 32rem;
+        height: 32rem;
+        border-width: 15px;
+      }
+    }
+  }
+
+  .highlight-slide--description {
+    @extend %col;
+    align-content: flex-start;
+    padding-top: 4.5rem;
+    text-align: center;
+    color: $color-white;
+
+    @media (min-width: $screen-sm-min) {
+      flex-basis: 50%;
+      padding-top: 11.5rem;
+      padding-bottom: 22rem;
+      text-align: left;
+    }
+
+    @media (min-width: 1280px) {
+      padding-top: 15.5rem;
+    }
+
+    .field--name-field-link {
+      margin-top: 4rem;
+      a {
+        @include btn-primary();
+
+        @media (max-width: $screen-xs-max) {
+          padding: .5rem 3rem;
+        }
+      }
+    }
+
+    .field--name-field-short-description {
+      @extend %lead-small-mobile;
+    }
+  }
+
+}
