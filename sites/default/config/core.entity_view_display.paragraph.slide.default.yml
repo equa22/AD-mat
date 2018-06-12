@@ -7,7 +7,6 @@ dependencies:
     - field.field.paragraph.slide.field_link
     - field.field.paragraph.slide.field_media
     - field.field.paragraph.slide.field_title
-    - field.field.paragraph.slide.field_title_prefix
     - paragraphs.paragraphs_type.slide
   module:
     - link
@@ -48,14 +47,6 @@ content:
     third_party_settings: {  }
   field_title:
     weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_title_prefix:
-    weight: 0
     label: hidden
     settings:
       link_to_entity: false
