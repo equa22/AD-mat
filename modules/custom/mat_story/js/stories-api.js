@@ -109,7 +109,7 @@ var animations = {
       
       $(el.target).css({
         'opacity': 1,
-        'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+        //'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
         'transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms'
       })
                                       
@@ -125,9 +125,9 @@ var animations = {
     $(el.target).data('animated', false);
     
     clearInterval(el.animate);
-    el.position = {x: $(el.target).offset().left, y: $(el.target).offset().top};
+    el.position = {x: $(el.target).offset().left, y: ($(el.target).offset().top - $board.offset().top)};
 
-    $(el.target).css('transform', "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px)");
+    $(el.target).css('transform', "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)");
   },
   start: function(el) {
     $(el.target).data('animated', true);
