@@ -10,3 +10,4 @@ api:
   dependencies: 
     - core/jquery
     - core/jquery.ui
+    - core/jquery.ui.slider
