@@ -4,14 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.node.news_article.body
-    - field.field.node.news_article.field_date
     - field.field.node.news_article.field_hero_background_image
     - field.field.node.news_article.field_news_category
     - field.field.node.news_article.field_news_image
     - field.field.node.news_article.field_search_image_media
     - node.type.news_article
   module:
-    - datetime
     - field_group
     - text
     - user
@@ -85,15 +83,6 @@ content:
     weight: 14
     settings: {  }
     third_party_settings: {  }
-    region: content
-  field_date:
-    weight: 7
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: news_date_format
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_hero_background_image:
     type: entity_reference_entity_view
