@@ -36,6 +36,7 @@ pipelines:
             - cd $PANTHEON_CODE_PATH
             - rm -Rf vendor
             - rm -Rf modules/contrib
+            - rm -Rf profiles/contrib
             - rm -Rf sites/default/config/*
             - /bin/cp -rf $BITBUCKET_CLONE_DIR/. .
             - git config --global user.name "$GIT_USER"
