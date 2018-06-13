@@ -43,7 +43,8 @@
 	        baseUrl + "/sites/default/files/2018-05/girl-slide.jpg"
 	      ],
 	      _speed: 30000,
-	      _interval: 13000
+	      _interval: 13000,
+	      _size: 60
 	    }
 	  }
 	};
@@ -151,6 +152,8 @@ var animations = {
     $(el.target).data('animated', false);
     
     clearInterval(el.animate);
+    clearTimeout(el.timeout);
+
     el.position = {x: $(el.target).offset().left, y: ($(el.target).offset().top - $board.offset().top)};
 
     $(el.target).css('transform', "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)");
@@ -506,7 +509,26 @@ let openModal = (id) => {
     (selectedStory.image_3 ? '<img src="' + (baseUrl + selectedStory.image_3) + '">' : '')
   )
   $('#content').html(selectedStory.content);
+
+  // set link for copy function
+  $('#link').attr('href', window.location.href.split('#')[0] + '#' + id);
 }
+
+$('#link').click((e) => {
+	e.preventDefault();
+
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($('#link').attr('href')).select();
+  document.execCommand("copy");
+  $temp.remove();
+
+  $('#link-copied').addClass('show');
+
+  setTimeout(() => {
+  	$('#link-copied').removeClass('show');
+  }, 3000);
+});
 
 let closeModal = () => {
   var $overlay = $('.story-overlay'), selectedStory;
@@ -520,7 +542,6 @@ let closeModal = () => {
     $overlay.removeClass('open');
   }, 350);
 }
-
 
 $('.dropdown-wrapper').click(() => {
   if($('.dropdown').hasClass('open')) {
@@ -577,7 +598,8 @@ let makeAnimatedBackground = () => {
     $('<div/>', {
       class: 'small-item',
       id: 'smallItem' + i
-    }).css({'backgroundImage': 'url(' + item + ')', 'transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear'}).appendTo('.animated-background');
+    }).css(
+    {'backgroundImage': 'url(' + item + ')', 'transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear,  opacity 1s linear ' + (i*0.1) + 's'}).appendTo('.animated-background');
     smallItems.push({target: '#smallItem' + i, speed: config.background.image_bubbles._speed});
   });
   
@@ -587,6 +609,12 @@ let makeAnimatedBackground = () => {
     
     // get new position to animate them
     setTimeout(() => {
+    	$(el.target).css({
+    		'width': config.background.image_bubbles._size + 'px',
+    		'height': config.background.image_bubbles._size + 'px',
+    		'opacity': 1
+    	})
+    	
       getCoordinates(el);
     }, 100);
     // and start interval animation
@@ -620,12 +648,6 @@ let makeAnimatedBackground = () => {
     });
   }
 };
-
-
-
-
-
-
 
 
 
