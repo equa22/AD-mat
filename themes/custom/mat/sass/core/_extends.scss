@@ -10,7 +10,8 @@
   position: relative;
 
   &:before,
-  &:after {
+  &:after,
+  i {
     content: '';
     display: inline-block;
     width: 8rem;
@@ -23,7 +24,8 @@
     }
   }
 
-  &:after {
+  &:after,
+  i {
     position: absolute;
     top: 0;
     left: 0;

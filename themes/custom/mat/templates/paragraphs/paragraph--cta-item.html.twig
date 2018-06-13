@@ -38,16 +38,22 @@
  * @ingroup themeable
  */
 #}
+
+{% set icon_bg = content.field_media_cta[0].entity.title.value %}
+
 {%
   set classes = [
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
   ]
 %}
+
 {% block paragraph %}
   <a {{ attributes.addClass(classes) }} href="{{ content.field_link.0['#url'] }}">
     {% block content %}
-      <span class="icon-circled"></span>
+      <span class="icon-circled">
+        <i style="background-image: url('{{ icon_bg }}')"></i>
+      </span>
       <div class="cta-item--content">
       {{ content.field_title }}
       {{ content.field_content }}
