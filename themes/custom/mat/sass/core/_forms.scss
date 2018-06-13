@@ -11,5 +11,6 @@
 }
 
 input.form-submit {
-  @include cta('dark');
+  //@include cta('dark');
+  @include btn-primary();
 }

@@ -55,56 +55,6 @@
   #{$property}: calc(#{$expression});
 }
 
-@mixin cta($bg: 'light') {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 20px;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 3px;
-  transition: .2s all;
-  font-weight: 700;
-  color: $brand-primary;
-
-  &:hover {
-    color: $color-white;
-    text-decoration: none;
-    transition: .2s all;
-  }
-
-  @if $bg == 'light' {
-    border: 1px solid $brand-primary;
-    background: $color-white;
-
-    &:after {
-      content: "";
-      display: block;
-      margin-left: 5px;
-      width: 5px;
-      height: 10px;
-      @include image('chevron.svg');
-      background-position: right center;
-      background-size: contain;
-    }
-
-    &:hover {
-      border: 1px solid $brand-primary-alt;
-      color: $brand-primary;
-    }
-  }
-
-  @if $bg == 'dark' {
-    color: $color-white;
-    background: $brand-primary;
-
-    &:hover {
-      background: $brand-secondary;
-    }
-  }
-}
-
 @mixin overlay($color, $opacity: 0.9) {
   content: "";
   position: absolute;
@@ -158,12 +108,20 @@
   color: $color-white;
   text-decoration: none;
   text-align: center;
+  border: none;
   outline: none;
+  
+  &:hover {
+    color: $color-white;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+  }
 }
 
+// Large buttons (blue, dark blue)
 @mixin btn-primary($bg: 'light') {
   @include btn();
-  padding: 1.5rem 6.2rem;
+  padding: 1.4rem 6.2rem;
   border-radius: $border-radius-large;
   font-weight: 500;
   @include font-size(2);
@@ -175,13 +133,22 @@
 
   @if $bg == 'light' {
     background-color: $mat-brand-primary;
+
+    &:hover {
+      background-color: $blue-dark;
+    }
   }
 
   @if $bg == 'dark' {
     background-color: $blue-dark;
+
+    &:hover {
+      background-color: darken($blue-dark, 10%);
+    }
   }
 }
 
+// Small buttons (transparent, white)
 @mixin btn-secondary($bg: 'transparent') {
   @include btn();
   padding: .4rem 2.2rem;
