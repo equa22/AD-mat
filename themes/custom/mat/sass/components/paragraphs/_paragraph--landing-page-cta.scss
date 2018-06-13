@@ -32,12 +32,15 @@
       position: relative;
       @extend %col;
       flex-basis: 100%;
-      flex-grow: 0;
       margin-bottom: 2.5rem;
 
       @media (min-width: $screen-sm-min) {
         flex-basis: 50%;
         padding-left: 70px;
+      }
+
+      @media (min-width: $screen-md-min) {
+        flex-grow: 0;
       }
     }
   }
