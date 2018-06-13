@@ -82,6 +82,9 @@
 }
 #views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item {
   margin-bottom: 0;
+  label {
+    @include font-size(1.6);
+  }
 }
 #block-mainnavigation-2 > ul.menu > li.menu-item li.menu-item,
 #views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item {
