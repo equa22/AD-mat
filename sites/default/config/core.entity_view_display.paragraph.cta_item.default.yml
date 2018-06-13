@@ -5,8 +5,10 @@ dependencies:
   config:
     - field.field.paragraph.cta_item.field_color
     - field.field.paragraph.cta_item.field_content
+    - field.field.paragraph.cta_item.field_cta_icon
     - field.field.paragraph.cta_item.field_icon_cta
     - field.field.paragraph.cta_item.field_link
+    - field.field.paragraph.cta_item.field_media_cta
     - field.field.paragraph.cta_item.field_title
     - paragraphs.paragraphs_type.cta_item
   module:
@@ -35,6 +37,15 @@ content:
     third_party_settings: {  }
     type: link_separate
     region: content
+  field_media_cta:
+    type: entity_reference_entity_view
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: background
+      link: false
+    third_party_settings: {  }
+    region: content
   field_title:
     weight: 0
     label: hidden
@@ -45,4 +56,5 @@ content:
     region: content
 hidden:
   field_color: true
+  field_cta_icon: true
   field_icon_cta: true

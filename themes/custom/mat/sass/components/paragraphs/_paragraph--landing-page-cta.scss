@@ -32,6 +32,7 @@
       position: relative;
       @extend %col;
       flex-basis: 100%;
+      flex-grow: 0;
       margin-bottom: 2.5rem;
 
       @media (min-width: $screen-sm-min) {
@@ -69,8 +70,9 @@
         margin-left: -5rem;
       }
 
-      &:after {
+      i {
         background-size: 3.5rem auto;
+        background-repeat: no-repeat;
       }
     }
 

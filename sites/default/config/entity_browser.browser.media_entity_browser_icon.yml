@@ -1,0 +1,53 @@
+uuid: 00686228-d952-4e73-bfb6-aa2601174714
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.icon
+    - views.view.icon_browser
+  module:
+    - dropzonejs_eb_widget
+    - media
+    - views
+name: media_entity_browser_icon
+label: 'Media Entity Browser (Icon)'
+display: modal
+display_configuration:
+  width: '1070'
+  height: '500'
+  link_text: 'Select icon'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  ec17f010-ce9e-4240-97ab-b47041647aca:
+    settings:
+      form_mode: default
+      media_type: icon
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop files here to upload them'
+      max_filesize: 32M
+      extensions: 'svg png'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: !!float 1
+      resize_method: contain
+      thumbnail_method: contain
+      submit_text: 'Select entities'
+    uuid: ec17f010-ce9e-4240-97ab-b47041647aca
+    weight: 1
+    label: 'Import Icons'
+    id: dropzonejs_media_entity_inline_entity_form
+  c11c3868-51e2-478e-8c6d-6902ae58ea60:
+    settings:
+      view: icon_browser
+      view_display: entity_browser_2
+      submit_text: 'Select entities'
+      auto_select: false
+    uuid: c11c3868-51e2-478e-8c6d-6902ae58ea60
+    weight: 2
+    label: 'Select Icon'
+    id: view
