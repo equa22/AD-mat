@@ -28,10 +28,6 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
       '#default_value' => $cur_year,
     ];
 
-    foreach ($form['field_news_category_target_id']['#options'] as $key => &$option) {
-      if ($key == 'All') {
-        $option = t('Show all');
-      }
-    }
+    $form['field_news_category_target_id']['#options']['All'] = t('Show all');
   }
 }

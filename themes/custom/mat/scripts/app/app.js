@@ -14,13 +14,16 @@
   // Accordions for newsroom, sidebar
   Drupal.behaviors.newsroomAccordion = {
     attach: function (context, settings) {
-      $('.news-filters > h2:first-of-type, #block-mainnavigation-2 > ul.menu > li:first-of-type > a', context).addClass('active');
-      $('.news-filters > ul:first-of-type, #block-mainnavigation-2 > ul.menu > li:first-of-type > ul', context).slideDown();
-      $('.news-filters > h2, #block-mainnavigation-2 > ul.menu > li > a', context).on('click', function(e) {
+      $('#views-exposed-form-news-landing-page-1 > fieldset', context).first().addClass('active');
+      $('#views-exposed-form-news-landing-page-1 fieldset legend', context).first().addClass('active');
+      $('#views-exposed-form-news-landing-page-1 > fieldset .fieldset-wrapper', context).first().slideDown();
+      $('#views-exposed-form-news-landing-page-1 fieldset legend', context).on('click', function(e) {
         e.preventDefault();
-        $('.news-filters > h2, #block-mainnavigation-2 > ul.menu > li > a').removeClass('active');
-        $('.news-filters > ul, #block-mainnavigation-2 > ul.menu > li > ul').slideUp();
-        $(this).addClass('active');
+        $('#views-exposed-form-news-landing-page-1 fieldset', context).removeClass('active');
+        $('#views-exposed-form-news-landing-page-1 fieldset .fieldset-wrapper', context).slideUp();
+        $('#views-exposed-form-news-landing-page-1 fieldset legend', context).removeClass('active');
+        $(this).toggleClass('active');
+        $(this).parent().toggleClass('active');
         $(this).next().slideDown();
       });
     }
@@ -54,11 +57,11 @@
       $(window).on('load', function() {
         window.sr = ScrollReveal();
         sr.reveal('.view-news-landing .view-content > .views-row');
-        sr.reveal('.view-news-landing .news-filters');
+        sr.reveal('.view-news-landing #views-exposed-form-news-landing-page-1');
       });
       $(document).ajaxStop(function() {
         sr.reveal('.view-news-landing .view-content > .views-row');
-        sr.reveal('.view-news-landing .news-filters');
+        sr.reveal('.view-news-landing #views-exposed-form-news-landing-page-1');
       });
     }
   };
