@@ -1,0 +1,28 @@
+uuid: 91795f13-be75-44ac-81af-bf05d9b071cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media_cta
+    - media.type.icon
+    - paragraphs.paragraphs_type.cta_item
+id: paragraph.cta_item.field_media_cta
+field_name: field_media_cta
+entity_type: paragraph
+bundle: cta_item
+label: 'Icon Media'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      icon: icon
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

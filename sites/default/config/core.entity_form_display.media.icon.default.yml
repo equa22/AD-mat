@@ -1,0 +1,62 @@
+uuid: fd70ad9d-9d95-4729-820e-f244311a8d44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.icon.field_media_image_1
+    - image.style.thumbnail
+    - media.type.icon
+  module:
+    - content_moderation
+    - path
+    - svg_image
+id: media.icon.default
+targetEntityType: media
+bundle: icon
+mode: default
+content:
+  field_media_image_1:
+    weight: 2
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 5
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

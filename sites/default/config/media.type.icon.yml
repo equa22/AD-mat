@@ -1,0 +1,18 @@
+uuid: 7a664bb7-951c-4203-88a9-8d58878dd2f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+third_party_settings:
+  crop:
+    image_field: _none
+id: icon
+label: Icon
+description: 'Use local icons for reusable media.'
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image_1
+field_map: {  }
