@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_teaser
     - field.field.node.story_profile.body
+    - field.field.node.story_profile.field_intro_markup
     - field.field.node.story_profile.field_search_image_media
     - field.field.node.story_profile.field_story_category
     - field.field.node.story_profile.field_story_featured_image
@@ -13,14 +14,19 @@ dependencies:
     - field.field.node.story_profile.field_story_image_2
     - field.field.node.story_profile.field_story_image_3
     - field.field.node.story_profile.field_story_last_name
+    - field.field.node.story_profile.field_story_markup_1
+    - field.field.node.story_profile.field_story_markup_2
+    - field.field.node.story_profile.field_story_markup_23
+    - field.field.node.story_profile.field_story_markup_4
+    - field.field.node.story_profile.field_story_markup_5
     - field.field.node.story_profile.field_submissioner_email
     - field.field.node.story_profile.field_submissioner_first_name
     - field.field.node.story_profile.field_submissioner_last_name
     - field.field.node.story_profile.field_submissioner_phone_number
-    - image.style.medium
+    - field.field.node.story_profile.field_terms_and_conditions
+    - field.field.node.story_profile.field_user_submitted
     - node.type.story_profile
   module:
-    - media
     - text
     - user
 id: node.story_profile.search_teaser
@@ -36,16 +42,17 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_search_image_media:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     weight: 0
     region: content
     label: hidden
     settings:
-      image_style: medium
-      image_link: content
+      view_mode: background
+      link: false
     third_party_settings: {  }
 hidden:
   addtoany: true
+  field_intro_markup: true
   field_story_category: true
   field_story_featured_image: true
   field_story_first_name: true
@@ -53,9 +60,16 @@ hidden:
   field_story_image_2: true
   field_story_image_3: true
   field_story_last_name: true
+  field_story_markup_1: true
+  field_story_markup_2: true
+  field_story_markup_23: true
+  field_story_markup_4: true
+  field_story_markup_5: true
   field_submissioner_email: true
   field_submissioner_first_name: true
   field_submissioner_last_name: true
   field_submissioner_phone_number: true
+  field_terms_and_conditions: true
+  field_user_submitted: true
   langcode: true
   links: true

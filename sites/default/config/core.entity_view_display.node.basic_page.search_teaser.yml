@@ -5,14 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_teaser
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_basic_page_components
+    - field.field.node.basic_page.field_header_category
     - field.field.node.basic_page.field_header_style
     - field.field.node.basic_page.field_main_description
     - field.field.node.basic_page.field_parent_background_image
     - field.field.node.basic_page.field_search_image_media
-    - image.style.medium
     - node.type.basic_page
   module:
-    - media
     - text
     - user
 _core:
@@ -30,13 +30,13 @@ content:
     third_party_settings: {  }
     region: content
   field_search_image_media:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     weight: 1
     region: content
     label: hidden
     settings:
-      image_style: medium
-      image_link: content
+      view_mode: background
+      link: false
     third_party_settings: {  }
   links:
     weight: 0
@@ -45,6 +45,8 @@ content:
     third_party_settings: {  }
 hidden:
   addtoany: true
+  field_basic_page_components: true
+  field_header_category: true
   field_header_style: true
   field_main_description: true
   field_parent_background_image: true
