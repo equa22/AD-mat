@@ -90,9 +90,11 @@
   }
 
   .stories--img3 {
+    z-index: 2;
+
     @media (max-width: $screen-xs-max) {
       position: relative !important;
-      max-width: 78%;
+      max-width: 60%;
       margin: 4rem auto 6rem auto;
     }
 
@@ -143,7 +145,7 @@
 
   .stories--img6 {
     width: 12%;
-    top: 0;
+    top: -3rem;
     left: 15%;
 
     @media (min-width: $screen-sm-min) {
@@ -155,6 +157,25 @@
 
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
       left: 75%;
+    }
+  }
+
+  .stories--img7 {
+    width: 9rem;
+    top: .5rem;
+    left: 62%;
+    z-index: 1;
+
+    @media (min-width: $screen-sm-min) {
+      width: auto;
+      top: auto;
+      left: auto;
+      right: -20%;
+      bottom: 32rem;
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      left: -40%;
     }
   }
 }
