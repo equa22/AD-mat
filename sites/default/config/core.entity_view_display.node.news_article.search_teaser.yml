@@ -9,10 +9,8 @@ dependencies:
     - field.field.node.news_article.field_news_category
     - field.field.node.news_article.field_news_image
     - field.field.node.news_article.field_search_image_media
-    - image.style.medium
     - node.type.news_article
   module:
-    - media
     - text
     - user
 id: node.news_article.search_teaser
@@ -28,13 +26,13 @@ content:
     third_party_settings: {  }
     region: content
   field_search_image_media:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     weight: 1
     region: content
     label: hidden
     settings:
-      image_style: medium
-      image_link: content
+      view_mode: background
+      link: false
     third_party_settings: {  }
 hidden:
   addtoany: true

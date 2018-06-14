@@ -6,7 +6,6 @@ dependencies:
     - entity_browser.browser.media_entity_browser_icon
     - field.field.paragraph.cta_item.field_color
     - field.field.paragraph.cta_item.field_content
-    - field.field.paragraph.cta_item.field_cta_icon
     - field.field.paragraph.cta_item.field_icon_cta
     - field.field.paragraph.cta_item.field_link
     - field.field.paragraph.cta_item.field_media_cta
@@ -93,7 +92,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_cta_icon: true
   field_icon_cta: true
   status: true
   uid: true

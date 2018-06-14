@@ -1,6 +1,14 @@
 <div class="search-result result-landing-page {% if node.field_search_image_media is not empty %} result-with-image{% endif %}">
   {% if node.field_search_image_media is not empty %}
-  <div class="search-img">{{ content.field_search_image_media }}</div>
+  <div class="search-result--img" style="background-image: url('{{ content.field_search_image_media.0 }}')"></div>
   {% endif %}
-  <div class="search-text"><a href="{{ path('entity.node.canonical', {'node': node.id}) }}" class="result-url">{{ path('entity.node.canonical', {'node': node.id}) }}</a> {{ content.body }}</div>
+  <div class="search-result--heading">
+    <div class="search-result--title">{{ label }}</div>
+  	<a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ 'Link URL'| t }} {{ url('entity.node.canonical', {'node': node.id}) }}</a>
+  </div>
+  <div class="search-result--text">
+    {% set text = content.body|render|striptags %}
+    {{ text|length > 270 ? text|slice(0, 270) ~ '...' : text }}
+    <hr>
+  </div>
 </div>

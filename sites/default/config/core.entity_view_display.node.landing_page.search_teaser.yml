@@ -7,11 +7,9 @@ dependencies:
     - field.field.node.landing_page.field_landing_page_components
     - field.field.node.landing_page.field_landing_page_description
     - field.field.node.landing_page.field_search_image_media
-    - image.style.medium
     - node.type.landing_page
   module:
     - entity_reference_revisions
-    - media
     - user
 _core:
   default_config_hash: vOR3oE0pnb_59t6IqQaRhxz-3t3r42vxeJF_C2sOPyI
@@ -30,13 +28,13 @@ content:
     third_party_settings: {  }
     region: content
   field_search_image_media:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     weight: 0
     region: content
     label: hidden
     settings:
-      image_style: medium
-      image_link: content
+      view_mode: background
+      link: false
     third_party_settings: {  }
 hidden:
   addtoany: true

@@ -86,6 +86,13 @@
   }
 }
 
+// Pages with gray background (like Newsroom, Search results etc.)
+%page-gray {
+  padding: 9rem 0;
+  background-color: $gray-lighter;
+  border-top: 2px solid #ECECEC;
+}
+
 // Adaptable columns - 100 % on mobile
 %col {
   padding-left: $grid-gutter-width;

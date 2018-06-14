@@ -8,13 +8,13 @@
 // - - - - - - - - - - - - - - - - - - - -
 // MAT Colors
 // - - - - - - - - - - - - - - - - - - - -
-$gray-darker: 	 #4A4A4A;
-$gray-dark: 	 #898989; //rgba(74,74,74,0.65);
+$gray-darker:    #4A4A4A;
+$gray-dark:      #898989; //rgba(74,74,74,0.65);
 $gray-base:      #9B9B9B; //lighten($gray-darker, 50%);
 $gray-light:     #EDEDED; //lighten($gray-base, 25%);
 $gray-lighter:   #F5F5F5; //lighten($gray-base, 10%);
 
-$green: 	     #78AB52;
+$green:          #78AB52;
 $green-light:    #D5D45C;
 
 $purple:         #6E3375;
@@ -27,8 +27,8 @@ $blue-darkest:   #05052E;
 $blue-darker:    #2F2D83;
 $blue-dark:      #173F7C; // h2
 $blue:           #1B78BA;
-$blue-light: 	 #2DB0DF; 
-$blue-lighter: 	 #22BEE4;
+$blue-light:     #2DB0DF; 
+$blue-lighter:   #22BEE4;
 $blue-lighteset: #C1E9F8;
 
 $color-white: 	 #fff;
@@ -132,9 +132,12 @@ $grid-gutter-width: ($grid-gutter / 2);
 
 
 // - - - - - - - - - - - - - - - - - - - -
-// Container
+// Containers
 // - - - - - - - - - - - - - - - - - - - -
-$container-lg: 1170px + $grid-gutter; // 1230px;
+$container-lg: 1470px + $grid-gutter; // 1530px
+$container-md: 1170px + $grid-gutter; // 1230px - Main container
+$container-sm: 940px + $grid-gutter; // 1000px
+$container-xs: 815px + $grid-gutter; // 875px
 
 
 // - - - - - - - - - - - - - - - - - - - -
@@ -163,7 +166,7 @@ $header-height-mobile: 8rem;
 $table-border-color: #E3E3E3;
 $table-border-radius: 5px;
 
-// Base page
-$base-page-border-color: #D2D2D2;
+// Hr line (on Basic page)
+$hr-border-color: #D2D2D2;
 
 

@@ -8,7 +8,7 @@
 // Sidebar navigation (on Basic page, Newsroom)
 // Container
 #block-mainnavigation-2,
-.news-filters {
+#views-exposed-form-news-landing-page-1 {
   max-width: 300px;
   padding: 1.5rem 0 3rem 0;
   background-color: $color-white;
@@ -20,23 +20,17 @@
   }
 }
 
-.news-filters ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
 //All items
 #block-mainnavigation-2 > ul.menu > li.menu-item a,
-.news-filters h2,
-.news-filters a {
+#views-exposed-form-news-landing-page-1 fieldset legend,
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item label {
   display: block;
   padding: 1rem 7rem 1rem 2rem;
 }
 
 // First level items
 #block-mainnavigation-2 > ul.menu > li.menu-item > a,
-.news-filters h2 {
+#views-exposed-form-news-landing-page-1 fieldset legend {
   position: relative;
   @extend %lead;
   font-weight: 500;
@@ -69,15 +63,13 @@
   }
 }
 
-#block-mainnavigation-2 > ul.menu > li.menu-item > ul,
-.news-filters .news-categories, 
-.news-filters .news-archive {
+#block-mainnavigation-2 > ul.menu > li.menu-item > ul {
   display: none;
 }
 
 // Other level items
 #block-mainnavigation-2 > ul.menu > li.menu-item > ul.menu a,
-.news-filters ul li a {
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item label {
   color: $gray-base;
   @extend %small-extra;
 
@@ -88,9 +80,14 @@
     color: $gray-dark;
   }
 }
-
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item {
+  margin-bottom: 0;
+  label {
+    @include font-size(1.6);
+  }
+}
 #block-mainnavigation-2 > ul.menu > li.menu-item li.menu-item,
-.news-filters ul li {
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item {
   border-bottom: 1px solid #EAEAEA;
 
   &:last-child {

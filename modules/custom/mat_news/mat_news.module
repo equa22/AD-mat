@@ -10,28 +10,39 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
     $years = array();
     foreach ($nodes as $k => $v) {
       $get_year = date('Y', $v->getCreatedTime());
-      $years[] = $get_year;
+      $years[$get_year] = $get_year;
     }
     $years_clean = array_unique($years);
-
-    $years_options = array();
-    foreach ($years_clean as $k => $v) {
-      $years_options[$v] = $v;
+    // sort by year desc
+    krsort($years_clean);
+    $sorted_array = array();
+    foreach ($years_clean as $key => $val) {
+      $sorted_array[$key] = $val;
     }
-    $options = $years_options;
+    // return values
     $cur_year = date('Y');
     $form['year'] = [
       '#title' => t('Archive'),
       '#type' => 'radios',
-      '#options' => $options,
+      '#options' => $sorted_array,
       '#size' => NULL,
       '#default_value' => $cur_year,
     ];
+    // all to show all text
+    $form['field_news_category_target_id']['#options']['All'] = t('Show all');
+  }
+}
 
-    foreach ($form['field_news_category_target_id']['#options'] as $key => &$option) {
-      if ($key == 'All') {
-        $option = t('Show all');
-      }
-    }
+function mat_news_views_query_alter(\Drupal\views\ViewExecutable $view, Drupal\views\Plugin\views\query\QueryPluginBase $query) {
+  if ($view->id() == 'news_landing') {
+    // Prepare a placeholder from exposed form.
+    $placeholders = [':input_year' => $view->exposed_raw_input["year"]];
+
+    // Add a tableAlias (which is not added automatically) and prepare a formula for condition.
+    $view->argument["created_year"]->tableAlias = 'node_field_data';
+    $formula_year = $view->argument["created_year"]->getDateFormat('Y') . ' = :input_year';
+
+    // Add condition to query.
+    $query->addWhere(0, $formula_year, $placeholders, 'formula');
   }
 }

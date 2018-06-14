@@ -478,7 +478,7 @@ display:
           group_type: group
           admin_label: ''
           empty: true
-          content: '<span class="total">@total search results for</span>'
+          content: '<h3 class="total">@total search results for</h3>'
           plugin_id: result
       footer: {  }
       empty:

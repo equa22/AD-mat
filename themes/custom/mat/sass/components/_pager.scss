@@ -1,12 +1,8 @@
+// Pager on Search results, Newsroom
 .pager {
   position: relative;
-  display: block;
-  clear: both;
   width: 100%;
-  max-width: 814px;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
   
   .pager__items {
     list-style: none;
@@ -21,9 +17,10 @@
       &.pager__item--previous,
       &.pager__item--next {
         position: absolute;
-        width: 11px;
-        height: 20px;
         a {
+          @include icons('i-chevron-pager');
+          background-position: center center;
+          background-repeat: no-repeat;
           &:hover {
             opacity: .7;
           }
@@ -33,12 +30,14 @@
         }
       }
       &.pager__item--previous {
-        left: 0;
-        a { background: url("../images/pager_prev.svg") no-repeat center center; }
+        left: -17px;
+
+        a {
+          transform: rotate(180deg);
+        }
       }
       &.pager__item--next {
-        right: 0;
-        a { background: url("../images/pager_next.svg") no-repeat center center; }
+        right: -17px;
       }
       a {
         display: block;
@@ -47,12 +46,9 @@
         line-height: 50px;
         border-radius: 50px;
         background-color: transparent;
-        
-        font-family: $font-roboto;
+        @extend %small-extra;
         font-weight: 600;
-        font-size: 1.4rem;
-        color: rgba(74,74,74,0.50);
-        letter-spacing: 0;
+        color: $gray-base;
         &:hover {
           color: $blue-dark;
         }
@@ -67,8 +63,14 @@
   }
 }
 
+// Newsroom page
 .path-newsroom {
   .pager {
-    margin-top: 200px;
+    max-width: ($container-xs - $grid-gutter);
+    margin: 20rem auto 0 auto;
+
+    @media (max-width: $screen-xs-min) {
+      margin: 20rem 25px 0 25px;
+    }
   }
 }

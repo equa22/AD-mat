@@ -27,6 +27,12 @@ input {
   outline: none;
 }
 
+hr {
+  margin: 0;
+  border: 0;
+  border-top: 2px solid $hr-border-color;
+}
+
 table {
   width: 100%;
   margin-top: 4.5rem;
@@ -114,5 +120,5 @@ table {
 }
 
 .cta {
-  @include cta();
+  @include btn-primary();
 }

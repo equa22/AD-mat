@@ -4,6 +4,7 @@
 // File containing layout styles
 //
 // ========================================
+// Main container
 .container,
 .field--name-field-landing-page-description,
 .view-news-landing,
@@ -12,18 +13,24 @@
   position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: $container-lg;
+  max-width: $container-md;
 }
 
 // Additional containers (used on Landing pages)
-.container-small {
-  @extend .container;
-  max-width: 100rem;
-}
-
 .container-large {
   @extend .container;
-  max-width: 1530px;
+  max-width: $container-lg;
+}
+
+.container-small {
+  @extend .container;
+  max-width: $container-sm;
+}
+
+// Used on pages like Search results
+.container-small-extra {
+  @extend .container;
+  max-width: $container-xs;
 }
 
 .precontent {

@@ -1,0 +1,150 @@
+// ========================================
+//
+// @file _search-results.scss
+// Search results page
+//
+// ========================================
+
+.path-search {
+  .region-content {
+    @extend %page-gray;
+  }
+
+  .view-search {
+    @extend .container-small-extra;
+
+    .view-empty {
+      text-align: center;
+    }
+
+    .view-header {
+      margin-bottom: 7rem;
+      text-align: center;
+
+      h1 {
+        margin-bottom: 3rem;
+        color: $blue-dark;
+      }
+
+      h3 {
+        color: $mat-brand-primary;
+      }
+    }
+
+    .view-content {
+      @media (max-width: $screen-xs-min) {
+        margin: 0 -($grid-gutter-width - 7px);
+      }
+
+      .views-row {
+        margin-bottom: 9rem;
+
+        &:last-child {
+          margin-bottom: 7.5rem;
+        }
+      }
+
+      .search-result {
+        position: relative;
+
+        &--img {
+          width: 100%;
+          height: 20rem;
+          background-size: cover;
+          background-position: center center;
+          border-radius: 10px;
+
+          @media (min-width: $screen-sm-min) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15rem;
+            height: 15rem;
+          }
+        }
+        
+        &--heading {
+          a {
+            text-decoration: underline;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+
+        &--title {
+          padding: 2.3rem 0 .6rem 0;
+          @include font-size(2.4);
+          line-height: 1.45;
+          font-weight: 500;
+          color: $blue-dark;
+
+          @media (min-width: $screen-sm-min) {
+            padding: 0 0 2.5rem 0;
+            @include font-size(3);
+            line-height: 1.35;
+          }
+        }
+
+        &--text {
+          padding-top: 1.3rem;
+
+          @media (min-width: $screen-sm-min) {
+            padding-top: 3.5rem;
+          }
+
+          hr {
+            border-top-color: #CACACA;
+            margin-top: 6.5rem;
+
+            @media (min-width: $screen-sm-min) {
+              margin-top: 9rem;
+            }
+          }
+        }
+
+        &--heading,
+        &--text {
+          @media (max-width: $screen-xs-min) {
+            padding-left: ($grid-gutter-width - 7px);
+            padding-right: ($grid-gutter-width - 7px);
+          }
+        }
+
+        &.result-with-image {
+          .search-result--heading {
+            @media (min-width: $screen-sm-min) {
+              min-height: 15rem;
+              padding-left: 20rem;
+            }
+          }
+        }
+
+        &.result-basic-page {
+          h3,
+          h4,
+          table caption {
+            color: $mat-brand-primary;
+          }
+
+          h3 {
+            @extend %small-extra;
+
+            @media (min-width: $screen-sm-min) {
+              @include font-size(1.6);
+              line-height: 1.5;
+            }
+          }
+
+          h4,
+          table caption {
+            padding: .4em 0 .7em 0;
+            @extend %lead;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
