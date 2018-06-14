@@ -27,13 +27,15 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
 }
 
 function mat_news_views_query_alter(\Drupal\views\ViewExecutable $view, Drupal\views\Plugin\views\query\Sql $query) {
-  // Prepare a placeholder from exposed form.
-  $placeholders = [':input_year' => $view->exposed_raw_input["year"]];
+  if ($view->id() == 'news_landing') {
+    // Prepare a placeholder from exposed form.
+    $placeholders = [':input_year' => $view->exposed_raw_input["year"]];
 
-  // Add a tableAlias (which is not added automatically) and prepare a formula for condition.
-  $view->argument["created_year"]->tableAlias = 'node_field_data';
-  $formula_year = $view->argument["created_year"]->getDateFormat('Y') . ' = :input_year';
+    // Add a tableAlias (which is not added automatically) and prepare a formula for condition.
+    $view->argument["created_year"]->tableAlias = 'node_field_data';
+    $formula_year = $view->argument["created_year"]->getDateFormat('Y') . ' = :input_year';
 
-  // Add condition to query.
-  $query->addWhere(0, $formula_year, $placeholders, 'formula');
+    // Add condition to query.
+    $query->addWhere(0, $formula_year, $placeholders, 'formula');
+  }
 }
