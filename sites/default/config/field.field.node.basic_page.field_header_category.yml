@@ -10,7 +10,7 @@ id: node.basic_page.field_header_category
 field_name: field_header_category
 entity_type: node
 bundle: basic_page
-label: 'Header category'
+label: Section
 description: ''
 required: false
 translatable: false
