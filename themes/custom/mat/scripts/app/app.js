@@ -153,6 +153,11 @@
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
+      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a', context);
+      $ca_elem.each(function(){
+        var $ca_get_id = $(this).attr('href').split('/');
+        $(this).attr('href', '/stories#'+$ca_get_id[$ca_get_id.length-1]);
+      });
       $('.paragraph--type--carousel .carousel--wrapper > .field--name-field-slide-items', context).once('carousel').slick({
         infinite: true,
         arrows: true,
