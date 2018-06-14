@@ -258,7 +258,7 @@
 
       $(window).scroll(function(e) {
         $numbers.toArray().forEach(function(el) {
-          if($(el).offset().top - ($(window).height() + $(window).scrollTop()) <= 0 && !$(el).data('animated')) {
+          if($(el).offset().top - ($(window).height() + $(window).scrollTop() - $(el).height()/4*3) <= 0 && !$(el).data('animated')) {
             animateNumber(el);
           }
         });
