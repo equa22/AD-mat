@@ -46,12 +46,6 @@
 
       .search-result {
         position: relative;
-        padding-bottom: 6.5rem;
-        border-bottom: 2px solid #CACACA;
-
-        @media (min-width: $screen-sm-min) {
-          padding-bottom: 9rem;
-        }
 
         &--img {
           width: 100%;
@@ -98,6 +92,15 @@
 
           @media (min-width: $screen-sm-min) {
             padding-top: 3.5rem;
+          }
+
+          hr {
+            border-top-color: #CACACA;
+            margin-top: 6.5rem;
+
+            @media (min-width: $screen-sm-min) {
+              margin-top: 9rem;
+            }
           }
         }
 
