@@ -104,6 +104,16 @@ function mat_story_mail($key, &$message, $params) {
 
 function mat_story_form_alter(&$form, $form_state, $form_id) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
+
+  $current_user = \Drupal::currentUser();
+  $roles = $current_user->getRoles();
+  
+  if (in_array('authenticated', $roles) && in_array('editor', $roles)) {
+    $form['field_submissioner_first_name']['#attributes']['class'][] = 'hidden';
+    $form['field_submissioner_last_name']['#attributes']['class'][] = 'hidden';
+    $form['field_submissioner_email']['#attributes']['class'][] = 'hidden';
+    $form['field_submissioner_phone_number']['#attributes']['class'][] = 'hidden';
+  }  
   
   // for ct form display
   if ($form['#id'] == 'node-story-profile-story-submission-form') {
