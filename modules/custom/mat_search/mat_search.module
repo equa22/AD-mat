@@ -13,11 +13,12 @@ function mat_search_form_alter(&$form, &$form_state, $form_id) {
 function mat_search_views_pre_render(ViewExecutable $view) {
   if ($view->id() == 'search' && $view->current_display == 'page_1') {
     $params = \Drupal::request()->query->all();
-    if (isset($params['search_api_fulltext'])) {
+    if (!empty($params['search_api_fulltext'])) {
       $query = '<h1 class="search-query-text">"'.$params['search_api_fulltext'].'"</h1>';
+      $view->header['result']->options['content'] = $view->header['result']->options['content'].' '.$query;
     } else {
       $query = '';
+      $view->header['result']->options['content'] = '';
     }
-    $view->header['result']->options['content'] = $view->header['result']->options['content'].' '.$query;
   }
 }
