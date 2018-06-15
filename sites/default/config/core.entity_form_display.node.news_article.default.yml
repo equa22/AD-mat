@@ -7,12 +7,14 @@ dependencies:
     - field.field.node.news_article.body
     - field.field.node.news_article.field_hero_background_image
     - field.field.node.news_article.field_news_category
+    - field.field.node.news_article.field_news_components
     - field.field.node.news_article.field_news_image
     - field.field.node.news_article.field_search_image_media
     - node.type.news_article
   module:
     - content_moderation
     - entity_browser
+    - paragraphs
     - path
     - text
 id: node.news_article.default
@@ -51,12 +53,27 @@ content:
     region: content
   field_news_category:
     weight: 13
-    settings:
-      match_operator: CONTAINS
-      size: 255
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_buttons
+    region: content
+  field_news_components:
+    type: paragraphs
+    weight: 26
+    settings:
+      title: Components
+      title_plural: Components
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings: {  }
     region: content
   field_news_image:
     weight: 10

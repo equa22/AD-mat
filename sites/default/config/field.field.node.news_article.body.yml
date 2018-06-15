@@ -19,7 +19,7 @@ id: node.news_article.body
 field_name: body
 entity_type: node
 bundle: news_article
-label: Body
+label: Summary
 description: ''
 required: false
 translatable: true
