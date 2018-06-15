@@ -1,0 +1,7 @@
+uuid: 57911415-8c98-4dea-bcd6-3b69e0f9e3ef
+langcode: en
+status: true
+dependencies: {  }
+id: news_header_bg
+label: Background
+classes: news-article--bg

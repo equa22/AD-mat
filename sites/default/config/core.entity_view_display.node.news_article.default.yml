@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.news_article.body
     - field.field.node.news_article.field_hero_background_image
+    - field.field.node.news_article.field_image_style
     - field.field.node.news_article.field_news_category
     - field.field.node.news_article.field_news_components
     - field.field.node.news_article.field_news_image
@@ -19,7 +20,6 @@ third_party_settings:
   field_group:
     group_header_section:
       children:
-        - field_hero_background_image
         - field_news_category
       parent_name: ''
       weight: 1
@@ -86,15 +86,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_hero_background_image:
-    type: entity_reference_entity_view
-    weight: 5
-    label: hidden
-    settings:
-      view_mode: background
-      link: false
-    third_party_settings: {  }
-    region: content
   field_news_category:
     weight: 8
     label: hidden
@@ -117,7 +108,7 @@ content:
     weight: 13
     label: hidden
     settings:
-      view_mode: default
+      view_mode: background
       link: false
     third_party_settings: {  }
     region: content
@@ -127,6 +118,8 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_hero_background_image: true
   field_hero_headline: true
+  field_image_style: true
   field_search_image_media: true
   langcode: true

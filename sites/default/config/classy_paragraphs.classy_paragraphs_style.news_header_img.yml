@@ -1,0 +1,7 @@
+uuid: b98871c4-7f8b-41ff-90b3-c9576ace177a
+langcode: en
+status: true
+dependencies: {  }
+id: news_header_img
+label: Image
+classes: news-article--img
