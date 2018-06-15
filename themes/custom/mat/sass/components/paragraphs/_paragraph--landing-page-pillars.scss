@@ -151,54 +151,6 @@
         }
       }
 
-      &:nth-of-type(odd) {
-        .paragraph--type--pillar-group-item {
-          @media (min-width: $screen-sm-min) {
-            padding-right: 16rem;
-
-            &:before {
-              right: 0;
-            }
-
-            .dot {
-              right: 6.4rem;
-            }
-          }
-
-          @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-            padding-right: 7rem;
-
-            .dot {
-              right: 3rem;
-            }
-          }
-        }
-      }
-
-      &:nth-of-type(even) {
-        .paragraph--type--pillar-group-item {
-          @media (min-width: $screen-sm-min) {
-            padding-left: 16rem;
-
-            &:before {
-              left: 0;
-            }
-
-            .dot {
-              left: 6.4rem;
-            }
-          }
-
-          @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-            padding-left: 7rem;
-
-            .dot {
-              left: 3rem;
-            }
-          }
-        }
-      }
-
       &:nth-child(2) {
         .paragraph--type--pillar-group-item {
           @media (min-width: $screen-sm-min) {
@@ -249,23 +201,119 @@
 }
 
 
-/*
-.field--name-field-pillar-groups > .field__item:nth-of-type(even) {
-  .field--name-field-pillar-group-items {
-    > .field__item:nth-child(1) {
+// First Item alignmetn -- left
+.paragraph--type--pillar-group {
+  .field--name-field-pillar-group-items > .field__item {
+    &:nth-of-type(odd) {
       .paragraph--type--pillar-group-item {
         @media (min-width: $screen-sm-min) {
-          //margin-top: 14rem;
+          padding-right: 16rem;
+
+          &:before {
+            right: 0;
+          }
+
+          .dot {
+            right: 6.4rem;
+          }
+        }
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          padding-right: 7rem;
+
+          .dot {
+            right: 3rem;
+          }
         }
       }
     }
-    > .field__item:nth-child(2) {
+
+    &:nth-of-type(even) {
       .paragraph--type--pillar-group-item {
         @media (min-width: $screen-sm-min) {
-          //margin-top: 14rem;
+          padding-left: 16rem;
+
+          &:before {
+            left: 0;
+          }
+
+          .dot {
+            left: 6.4rem;
+          }
+        }
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          padding-left: 7rem;
+
+          .dot {
+            left: 3rem;
+          }
         }
       }
     }
   }
 }
-*/
+
+
+// First Item alignmetn -- right
+.paragraph--type--pillar-group.right {
+  .field--name-field-pillar-group-items > .field__item {
+    &:nth-of-type(even) {
+      .paragraph--type--pillar-group-item {
+        @media (min-width: $screen-sm-min) {
+          padding-right: 16rem;
+          padding-left: 0;
+
+          &:before {
+            right: 0;
+            left: auto;
+          }
+
+          .dot {
+            right: 6.4rem;
+            left: auto;
+          }
+        }
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          padding-right: 7rem;
+          padding-left: 0;
+
+          .dot {
+            right: 3rem;
+            left: auto;
+          }
+        }
+      }
+    }
+
+    &:nth-of-type(odd) {
+      .paragraph--type--pillar-group-item {
+        @media (min-width: $screen-sm-min) {
+          padding-left: 16rem;
+          padding-right: 0;
+
+          &:before {
+            left: 0;
+            right: auto;
+          }
+
+          .dot {
+            left: 6.4rem;
+            right: auto;
+          }
+        }
+
+        @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+          padding-left: 7rem;
+          padding-right: 0;
+
+          .dot {
+            left: 3rem;
+            right: auto;
+          }
+        }
+      }
+    }
+  }
+}
