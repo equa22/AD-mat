@@ -80,6 +80,7 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
+
 {{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
 
@@ -100,8 +101,22 @@
   {% endif %}
 
   <div{{ content_attributes.addClass('node__content') }}>
-    <h1>{{ label }}</h1>
-    {{ content }}
+    <section class="news-article-header">
+      <div class="news-article-header--heading">
+        <div class="news-article-header--bg" style="background-image: url('/sites/default/files/2018-05/Welcome%20-%20Section%20Copy%204.png');"></div>
+        <div class="news-article-header--gradient"></div>
+        <div class="container">
+          <h3>{{ 'Newsroom'| t }}</h3>
+          <h1>{{ label }}</h1>
+        </div>
+      </div>
+      <div class="news-article-header--content container">{{ 'Published'| t }} December 00, 0000 {{ 'in'| t }} {{ node.field_news_category.entity.label }}</div>
+    </section>
+    <div class="news-article-content">
+       <div class="news-article-content--summary">{{ node.body.value|raw }}</div>
+    </div>
+
+  
   </div>
 
 </article>

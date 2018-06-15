@@ -1,14 +1,37 @@
 // ========================================
 //
 // @file _basic.scss
-// Basic page specific styling
+// Basic page, News Article specific styling
 //
 // ========================================
 
-
-// Basic page header
+// Basic page layout
 // -----------------------------------------------------------------------------
-.basic-page-header {
+.basic-page-container {
+  display: flex;
+  padding-top: 10.5rem;
+  padding-bottom: 3rem;
+
+  .basic-page-sidebar {
+    width: 30%;
+    min-width: 330px;
+
+    @media (max-width: $screen-sm-max) {
+      display: none;
+    }
+  }
+
+  .basic-page-content {
+    @media (min-width: $screen-md-min) {
+      width: 70%;
+    }
+  }
+}
+
+// Basic page, News Article -- Header
+// -----------------------------------------------------------------------------
+.basic-page-header,
+.news-article-header {
   position: relative;
   color: $color-white;
   text-align: center;
@@ -21,7 +44,7 @@
     padding: 12rem 0 12rem 0;
   }
 
-  .basic-page-header--heading {
+  &--heading {
     position: relative;
     min-height: 32rem;
     padding: 6.5rem 0 6rem 0;
@@ -36,46 +59,51 @@
       min-height: auto;
       padding: 0;
     }
-
-    .container {
-      max-width: 88rem;
-    }
   }
 
-  .basic-page-header--bg {
+  &--bg {
     @extend %hero-image--bg;
   }
 
-  .basic-page-header--gradient {
+  &--gradient {
     @extend %hero-image--gradient;
   }
 
-  .basic-page-header--content {
+  &--content {
     @extend %lead;
-
-    @media (min-width: $screen-sm-min) {
-      max-width: 74rem;
-    }
+    font-weight: 500;
 
     @media (max-width: $screen-xs-max) {
-      padding-top: 6.3rem;
-      padding-bottom: 7.3rem;
-    }
-  }
-
-  // Gradient colors
-  &.color-blue {
-    .basic-page-header--gradient {
-      @include gradient-blue();
+      padding-top: 5rem;
+      padding-bottom: 7rem;
     }
 
-    .basic-page-header--content {
-      @media (max-width: $screen-xs-max) {
-        @include gradient-blue();
+    @media (min-width: $screen-sm-min) {
+      max-width: 740px;
+    }
+
+    a {
+      color: $color-white;
+      opacity: .65;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
       }
     }
   }
+}
 
+// Basic page only
+.basic-page-header {
+  // Heading
+  &--heading {
+    .container {
+      max-width: $container-xs;
+    }
+  }
+
+  // Gradients
   &.color-green {
     .basic-page-header--gradient {
       @include gradient-green();
@@ -113,114 +141,131 @@
   }
 }
 
-// Basic page layout
-// -----------------------------------------------------------------------------
-.basic-page-container {
-  display: flex;
-  padding-top: 10.5rem;
-  padding-bottom: 3rem;
-
-  .basic-page-sidebar {
-    width: 30%;
-    min-width: 330px;
-
-    @media (max-width: $screen-sm-max) {
-      display: none;
-    }
+// Blue Gradient for Basic page, News Article
+.basic-page-header.color-blue,
+.news-article-header {
+  &--gradient {
+    @include gradient-blue();
   }
 
-  .basic-page-content {
-    @media (min-width: $screen-md-min) {
-      width: 70%;
+  &--content {
+    @media (max-width: $screen-xs-max) {
+      @include gradient-blue();
     }
   }
 }
 
-// Basic page general styles
+// Basic page, News Article -- Content
 // -----------------------------------------------------------------------------
-.basic-page-container {
-  .basic-page-content {
-    a {
-      text-decoration: underline;
+.basic-page-content,
+.news-article-content {
+  // General styles
+  a {
+    text-decoration: underline;
 
-      &:hover {
-        text-decoration: none;
-      }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  h3,
+  h4,
+  table caption {
+    color: $mat-brand-primary;
+  }
+
+  h3 {
+    @extend %small-extra;
+
+    @media (min-width: $screen-sm-min) {
+      @include font-size(1.6);
+      line-height: 1.5;
+    }
+  }
+
+  h4,
+  table caption {
+    padding: .4em 0 .7em 0;
+    @extend %lead;
+    font-weight: 500;
+  }
+
+  blockquote {
+    position: relative;
+    padding: 4.8rem 0 0 4rem;
+    margin: 2.35em 0 0 0;
+    @extend %lead;
+    font-family: $font-flama-light;
+
+    @media (min-width: $screen-sm-min) {
+      padding: 0 8rem 0 4rem;
+      line-height: 1.5 !important;
     }
 
-    h3,
-    h4,
-    table caption {
-      color: $mat-brand-primary;
-    }
-
-    h3 {
-      @extend %small-extra;
+    &:before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 25px;
+      position: absolute;
+      top: 1rem;
+      left: 4rem;
+      @include icons('i-quote');
+      background-size: 20px auto;
 
       @media (min-width: $screen-sm-min) {
-        @include font-size(1.6);
-        line-height: 1.5;
+         width: 15px;
+         left: 0;
+         background-size: 15px auto;
       }
     }
+  }
 
-    h4,
-    table caption {
-      padding: .4em 0 .7em 0;
-      @extend %lead;
+  hr {
+    margin-bottom: 3.2rem;
+  }
+
+  // Summary
+  &--summary {
+    margin-bottom: 2.5rem;
+
+    p {
+      @extend %h4;
       font-weight: 500;
-    }
+      color: $blue-dark;
 
-    blockquote {
-      position: relative;
-      padding: 4.8rem 0 0 4rem;
-      margin: 2.35em 0 0 0;
-      @extend %lead;
-      font-family: $font-flama-light;
-
-      @media (min-width: $screen-sm-min) {
-        padding: 0 8rem 0 4rem;
-        line-height: 1.5 !important;
-      }
-
-      &:before {
-        content: '';
-        display: block;
-        width: 20px;
-        height: 25px;
-        position: absolute;
-        top: 1rem;
-        left: 4rem;
-        @include icons('i-quote');
-        background-size: 20px auto;
-
-        @media (min-width: $screen-sm-min) {
-           width: 15px;
-           left: 0;
-           background-size: 15px auto;
-        }
+      @media (min-width: $screen-md-min) {
+        @include font-size(3);
+        line-height: 1.35;
       }
     }
+  }
+}
 
-    hr {
-      margin-bottom: 3.2rem;
+
+// News Article only
+// -----------------------------------------------------------------------------
+// Header
+.news-article-header {
+  @media (min-width: $screen-sm-min) {
+    padding: 15rem 0 11rem 0;
+  }
+
+  &--content {
+    @media (min-width: $screen-sm-min) {
+      padding-top: 4rem;
     }
+  }
+}
 
-    .basic-page-content--summary {
-      margin-bottom: 2.5rem;
+// Content
+.news-article-content {
+  @extend .container-small-extra;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
 
-      p {
-        @extend %h4;
-        font-weight: 500;
-        color: $blue-dark;
-
-        @media (min-width: $screen-md-min) {
-          @include font-size(3);
-          line-height: 1.35;
-        }
-      }
-    }
-
-
+  &--summary {
+    margin-bottom: 4rem;
   }
 }
 

@@ -27,7 +27,7 @@
   max-width: $container-sm;
 }
 
-// Used on pages like Search results
+// Used on pages like Search results, News Article
 .container-small-extra {
   @extend .container;
   max-width: $container-xs;
