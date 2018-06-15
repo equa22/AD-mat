@@ -153,7 +153,7 @@
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
-      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a', context);
+      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a, .search-result.result-story-profile .search-result--heading > a', context);
       $ca_elem.each(function(){
         var $ca_get_id = $(this).attr('href').split('/');
         $(this).attr('href', '/stories#'+$ca_get_id[$ca_get_id.length-1]);
@@ -267,6 +267,37 @@
             animateNumber(el);
           }
         });
+      });
+    }
+  };
+
+  // Focus labels
+  Drupal.behaviors.labelFocus = {
+    attach: function (context, settings) {
+      $('form input', context).keyup(function() {
+        if(!$.trim(this.value).length) {
+          $(this).parent().find('label').removeClass('labelfocus');
+        } else { 
+          $(this).parent().find('label').addClass('labelfocus');
+        }
+      });
+    }
+  };
+
+  // Focus labels
+  Drupal.behaviors.limitCharacters = {
+    attach: function (context, settings) {
+      $('#node-story-profile-story-submission-form .step2-content', context).append('<p id="charNum">0/500 Words</p>');
+      function countChar(val) {
+        var len = val.value.length;
+        if (len >= 501) {
+          val.value = val.value.substring(0, 501);
+        } else {
+          $('#charNum').text(len+'/500 Words');
+        }
+      }
+      $('#node-story-profile-story-submission-form textarea', context).on('keyup', function() {
+        countChar(this);
       });
     }
   };
