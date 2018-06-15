@@ -1,7 +1,16 @@
 (function($) {
   'use strict';
 
-
+$.fn.isInViewport = function(props) {
+  var elementTop = $(this).offset().top + props;
+  var elementBottom = elementTop + $(this).outerHeight();
+  var viewportTop = $(window).scrollTop();
+  var viewportBottom = viewportTop + $(window).height();
+  return elementBottom > viewportTop && elementTop < viewportBottom;
+ };
+ 
+  
+ 
 
   // Toggling visibility of the main navigation (on mobile)
   Drupal.behaviors.mobileNavigation = {
@@ -225,23 +234,69 @@
   }
 
 
+  var animateCounting;
+
+  function setCountInterval(field, interval, limit, counter) {
+    animateCounting = setInterval(function() {
+      counter ++;
+      $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+      
+      if(counter >= limit) {
+        clearInterval(animateCounting);
+
+
+      }
+
+    }, interval);
+  }
+
   function animateNumber(field) {
     $(field).data('animated', true);
     $(field).css({'transition': $(field).data('count-repeat')*$(field).data('count-interval') + 'ms opacity linear', 'opacity': 1});
-    
+    $(field).attr('data-delay', 0);
     var counter = 0;                                // count iterations
+
     var animateCounting = setInterval(function() {
       counter ++;
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-      if(counter == $(field).data('count-repeat')) {
+      
+      if(counter >= $(field).data('count-repeat')/2) {
         clearInterval(animateCounting);
+        animateCounting = setInterval(function() {
+          counter ++;
+          $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+          
+          if(counter >= $(field).data('count-repeat')/4*3) {
+            clearInterval(animateCounting);
+            animateCounting = setInterval(function() {
+              counter ++;
+              $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+              
+              if(counter >= $(field).data('count-repeat')/10*9) {
+                clearInterval(animateCounting);
+                
+                animateCounting = setInterval(function() {
+                  counter ++;
+                  $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+                  
+                  if(counter == $(field).data('count-repeat')) {
+                    clearInterval(animateCounting);
+                    
+                  }
+
+                }, $(field).data('count-interval')+100);
+              }
+
+            }, $(field).data('count-interval')+60);
+          }
+        }, $(field).data('count-interval')+30);
       }
     }, $(field).data('count-interval'));
   }
 
 
   // "Why give life" page animations
-  Drupal.behaviors.highlightSlide = {
+  Drupal.behaviors.countingNumbersAnimation = {
     attach: function (context, settings) {
       var $numbers = $('.field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
       
@@ -268,6 +323,62 @@
           }
         });
       });
+    }
+  };
+
+
+  Drupal.behaviors.scrollAnimations = {
+    attach: function(context, settings) {
+      var lastScrollTop = 0, direction;
+      var $paralaxWrapper = $('.paragraph--type--landing-page-stories');
+
+
+
+      var parallaxElementsParent = ['.hearts-container', '.paragraph--type--landing-page-stories'];
+
+      parallaxElementsParent.forEach(function(parent) {
+        $(parent + ' .parallax').each(function() {
+          $(this).css({'top': ($(this).offset().top - $(parent).offset().top) + 'px', 'bottom': 'auto'});
+        });
+      });
+      
+
+     $(window).scroll(function(event){
+       var st = $(this).scrollTop();
+       if (st > lastScrollTop){
+         direction = 'down';
+       } else {
+        direction = 'up';
+       }
+       lastScrollTop = st;
+     });
+
+     $(window).on('scroll', function() {
+      var mobile_device = $('html').hasClass('device-mobile');  // check if device is mobile
+
+
+      $('.parallax').each(function() {
+       if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
+        var currentPosition = Number($(this).css('top').replace('px', ''));
+        if(direction == 'down') {
+         $(this).css('top', currentPosition - Number($(this).data('parallax-depth')) + 'px');
+        } else {
+         $(this).css('top', currentPosition + Number($(this).data('parallax-depth')) + 'px');
+        }
+       }
+      });
+      
+      // get breaking point for animation
+      var myth_fact_breakpoint =  mobile_device ? $(window).height()/4*3 : 100;
+
+      $('.paragraph--type--myth-vs-fact').each(function() {
+       if($(this).isInViewport(myth_fact_breakpoint)) {
+        $(this).addClass('animate');
+       } else if(mobile_device) {
+          $(this).removeClass('animate');
+       }
+      });
+     });
     }
   };
 })(jQuery);
