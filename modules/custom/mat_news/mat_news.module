@@ -13,15 +13,22 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
       $years[$get_year] = $get_year;
     }
     $years_clean = array_unique($years);
+    // sort by year desc
+    krsort($years_clean);
+    $sorted_array = array();
+    foreach ($years_clean as $key => $val) {
+      $sorted_array[$key] = $val;
+    }
+    // return values
     $cur_year = date('Y');
     $form['year'] = [
       '#title' => t('Archive'),
       '#type' => 'radios',
-      '#options' => $years_clean,
+      '#options' => $sorted_array,
       '#size' => NULL,
       '#default_value' => $cur_year,
     ];
-
+    // all to show all text
     $form['field_news_category_target_id']['#options']['All'] = t('Show all');
   }
 }

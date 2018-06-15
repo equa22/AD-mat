@@ -3,11 +3,12 @@
   <div class="search-result--img" style="background-image: url('{{ content.field_search_image_media.0 }}')"></div>
   {% endif %}
  <div class="search-result--heading">
-    <div class="search-result--title">Title goes here</div>
-    <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ 'Link URL'| t }} {{ path('entity.node.canonical', {'node': node.id}) }}</a>
+    <div class="search-result--title">{{ label }}</div>
+    <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ 'Link URL'| t }} {{ url('entity.node.canonical', {'node': node.id}) }}</a>
   </div>
   <div class="search-result--text">
-    {{ content.body }}
+    {% set text = content.body|render|striptags %}
+    {{ text|length > 270 ? text|slice(0, 270) ~ '...' : text }}
     <hr>
   </div>
 </div>

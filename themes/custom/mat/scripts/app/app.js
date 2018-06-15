@@ -1,6 +1,8 @@
 (function($) {
   'use strict';
 
+
+
   // Toggling visibility of the main navigation (on mobile)
   Drupal.behaviors.mobileNavigation = {
     attach: function (context, settings) {
@@ -151,6 +153,11 @@
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
+      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a', context);
+      $ca_elem.each(function(){
+        var $ca_get_id = $(this).attr('href').split('/');
+        $(this).attr('href', '/stories#'+$ca_get_id[$ca_get_id.length-1]);
+      });
       $('.paragraph--type--carousel .carousel--wrapper > .field--name-field-slide-items', context).once('carousel').slick({
         infinite: true,
         arrows: true,
@@ -196,6 +203,70 @@
 
           sr.reveal('.paragraph--type--pillar-group-item');
         }
+      });
+    }
+  };
+
+
+  function convertInString(num, length, char, surfix, holder) {
+    var string = String(num);
+    while(string.length != length) {
+      string = holder + string;
+    }
+
+    for(var i = string.length - 1, chars = 0; i >= 0; i--) {
+      chars++;
+      if(chars == 3 && i > 0) {
+        string = string.slice(0, i) + char + string.slice(i);
+        chars = 0;
+      }
+    } 
+    return string + surfix;
+  }
+
+
+  function animateNumber(field) {
+    $(field).data('animated', true);
+    $(field).css({'transition': $(field).data('count-repeat')*$(field).data('count-interval') + 'ms opacity linear', 'opacity': 1});
+    
+    var counter = 0;                                // count iterations
+    var animateCounting = setInterval(function() {
+      counter ++;
+      $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+      if(counter == $(field).data('count-repeat')) {
+        clearInterval(animateCounting);
+      }
+    }, $(field).data('count-interval'));
+  }
+
+
+  // "Why give life" page animations
+  Drupal.behaviors.highlightSlide = {
+    attach: function (context, settings) {
+      var $numbers = $('.field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
+      
+      $numbers.toArray().forEach(function(el) {
+        var text = $(el).text();
+        
+        $(el).attr({
+          'data-number': text.replace(/\D/g,''),
+          'data-count-char': text.search(',') < 0 ? '' : ',',
+          'data-count-repeat': Number(text) > 5000 ? 100 : (Number(text.replace(/\D/g,'')) < 100 ? Number(text.replace(/\D/g,'')) : 50),
+          'data-count-interval': Number(text.replace(/\D/g,'')) > 5000 ? 10 : 20,
+          'data-count-surfix': text.search('X') < 0 ? '' : 'X',
+          'data-count-holder': text.search(',') < 0 ? ' ' : '0'
+        });
+
+        $(el).css('opacity', 0.6);                                     // low opacity for transition effect
+        $(el).text(convertInString(0, $(el).text().replace(',', '').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
+      });
+
+      $(window).scroll(function(e) {
+        $numbers.toArray().forEach(function(el) {
+          if($(el).offset().top - ($(window).height() + $(window).scrollTop() - $(el).height()/4*3) <= 0 && !$(el).data('animated')) {
+            animateNumber(el);
+          }
+        });
       });
     }
   };
