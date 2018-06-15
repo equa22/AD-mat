@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.pillar_group.field_pillar_group_items
     - field.field.paragraph.pillar_group.field_style
+    - field.field.paragraph.pillar_group.field_style_align
     - field.field.paragraph.pillar_group.field_title
     - paragraphs.paragraphs_type.pillar_group
   module:
@@ -16,6 +17,7 @@ third_party_settings:
     group_settings:
       children:
         - field_style
+        - field_style_align
       parent_name: ''
       weight: 20
       format_type: html_element
@@ -49,6 +51,12 @@ content:
     region: content
   field_style:
     weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_style_align:
+    weight: 2
     settings: {  }
     third_party_settings: {  }
     type: options_select

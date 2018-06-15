@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.pillar_group.field_pillar_group_items
     - field.field.paragraph.pillar_group.field_style
+    - field.field.paragraph.pillar_group.field_style_align
     - field.field.paragraph.pillar_group.field_title
     - paragraphs.paragraphs_type.pillar_group
   module:
@@ -33,3 +34,4 @@ content:
     region: content
 hidden:
   field_style: true
+  field_style_align: true
