@@ -59,14 +59,121 @@
     }
 
    .hero--give-life__image {
-      width: 51.5rem;
-      margin: 0 auto;
+      position: relative;
+      width: 100%;
+      margin: 2rem 0 4.5rem 0;
 
       @media (min-width: $screen-sm-min) {
-        width: 80%;
         position: absolute;
-        top: 0;
-        left: 52%;
+        width: calc(100% - 60px);
+        height: 66.5rem;
+        margin: 0;
+      }
+
+      // Heart images
+      span {
+        display: inline-block;
+      }
+
+      .hearts-container {
+        position: relative;
+
+        @media (max-width: $screen-xs-max) {
+          width: 512px;
+          left: calc(50% - 157px);
+        }
+
+        @media (max-width: 320px) { // iPhone5
+          left: calc(50% - 130px);
+        }
+
+        @media (min-width: $screen-sm-min) {
+          left: 55%;
+        }
+      }
+
+      .heart-6 {
+        position: relative;
+        z-index: 10;
+
+        @media (max-width: $screen-xs-max) {
+          max-width: 314px;
+        }
+
+        @media (max-width: 320px) { // iPhone5
+          max-width: 260px;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          width: 52%;
+        }
+      }
+
+      .heart-5 {
+        position: absolute;
+        bottom: 0;
+        left: 19%;
+        z-index: 5;
+
+        @media (max-width: $screen-xs-max) {
+          max-width: 260px;
+        }
+
+         @media (max-width: 320px) { // iPhone5
+          max-width: 240px;
+          left: 14%;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          width: 42%;
+        }
+      }
+
+      .heart-4 {
+        position: absolute;
+        bottom: 0;
+        left: 48%;
+        z-index: 4;
+
+        @media (max-width: $screen-xs-max) {
+          max-width: 250px;
+        }
+      }
+
+      .heart-3 {
+        position: absolute;
+        top: 5rem;
+        left: 57%;
+        z-index: 7;
+
+        @media (max-width: $screen-xs-max) {
+          max-width: 165px;
+          top: 3rem;
+          left: 67%;
+        }
+      }
+
+      .heart-2 {
+        position: absolute;
+        bottom: -10rem;
+        left: 48%;
+
+        @media (max-width: $screen-xs-max) {
+          max-width: 120px;
+          bottom: -5rem;
+          left: 54%;
+        }
+      }
+
+      .heart-1 {
+        position: absolute;
+        top: -3rem;
+        left: 50%;
+
+        @media (max-width: $screen-xs-max) {
+          max-width: 80px;
+          left: 59%;
+        }
       }
     }
 

@@ -51,15 +51,21 @@
       
       <div class="container">
       {{ content.contextual_links }}
-
       <div class="hero--give-life__image">
         {% if paragraph.field_text_align.value.0.target_id == 'align_left' %}
-          <img src="/themes/custom/mat/assets/images/hero-give-life.png">
+          <div class="hearts-container">
+            <span class="heart-1"><img src="/themes/custom/mat/assets/images/hero-give-life-hearts/heart-1.png"></span>
+            <span class="heart-2"><img src="/themes/custom/mat/assets/images/hero-give-life-hearts/heart-2.png"></span>
+            <span class="heart-3"><img src="/themes/custom/mat/assets/images/hero-give-life-hearts/heart-3.png"></span>
+            <span class="heart-4"><img src="/themes/custom/mat/assets/images/hero-give-life-hearts/heart-4.png"></span>
+            <span class="heart-5"><img src="/themes/custom/mat/assets/images/hero-give-life-hearts/heart-5.png"></span>
+            <span class="heart-6"><img src="/themes/custom/mat/assets/images/hero-give-life-hearts/heart-6.png"></span>
+          </div>
         {% else %}
-          <img src="/themes/custom/mat/assets/images/hero-give-life_2.png">
+            <img src="/themes/custom/mat/assets/images/hero-give-life.png">
         {% endif %}
-      </div>
-
+        </div>
+      
         <div class="hero--give-life__content">
           <h1>{{ content.field_title_formatted }}</h1>
           {{ content.field_text }}

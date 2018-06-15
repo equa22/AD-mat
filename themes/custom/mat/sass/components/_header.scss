@@ -7,6 +7,10 @@
 
 #header {
   position: relative;
+  
+  @media (min-width: $screen-sm-min) {
+    z-index: $z-index-header-screen;
+  }
 }
 
 .region-topbar {
