@@ -197,15 +197,6 @@
         var w_w = $(window).width();
 
         if (w_w >= 768) {
-          var $grid = $('.paragraph--type--pillar-group:not(.right) .field--name-field-pillar-group-items', context).once('pillars').masonry({
-            itemSelector: '.field--name-field-pillar-group-items > .field__item'
-          });
-
-          var $gridAlignRight = $('.paragraph--type--pillar-group.right .field--name-field-pillar-group-items', context).once('pillars-right').masonry({
-            itemSelector: '.field--name-field-pillar-group-items > .field__item',
-            originLeft: false
-          });
-
           sr.reveal('.paragraph--type--pillar-group-item');
         }
       });

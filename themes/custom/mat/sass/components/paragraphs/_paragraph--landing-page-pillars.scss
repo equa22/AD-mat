@@ -116,7 +116,7 @@
     
       @media (min-width: $screen-sm-min) {
         width: 50%;
-        padding-bottom: 12rem;
+        padding-bottom: 0;//12rem;
         visibility: hidden;
 
         &:last-child {
@@ -154,7 +154,7 @@
       &:nth-child(2) {
         .paragraph--type--pillar-group-item {
           @media (min-width: $screen-sm-min) {
-            margin-top: 24rem;
+            //margin-top: 24rem;
           }
         }
       }
@@ -203,7 +203,21 @@
 
 // First Item alignmetn -- left
 .paragraph--type--pillar-group {
+  .field--name-field-pillar-group-items {
+    @media (min-width: $screen-sm-min) {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+  }
+
   .field--name-field-pillar-group-items > .field__item {
+    & + .field__item {
+      @media (min-width: $screen-sm-min) {
+        margin-top: -20rem;
+      }
+    }
+
     &:nth-of-type(odd) {
       .paragraph--type--pillar-group-item {
         @media (min-width: $screen-sm-min) {
@@ -229,6 +243,10 @@
     }
 
     &:nth-of-type(even) {
+      @media (min-width: $screen-sm-min) {
+        align-self: flex-end;
+      }
+
       .paragraph--type--pillar-group-item {
         @media (min-width: $screen-sm-min) {
           padding-left: 16rem;
@@ -259,6 +277,10 @@
 .paragraph--type--pillar-group.right {
   .field--name-field-pillar-group-items > .field__item {
     &:nth-of-type(even) {
+      @media (min-width: $screen-sm-min) {
+        align-self: flex-start;
+      }
+
       .paragraph--type--pillar-group-item {
         @media (min-width: $screen-sm-min) {
           padding-right: 16rem;
@@ -288,6 +310,8 @@
     }
 
     &:nth-of-type(odd) {
+      align-self: flex-end;
+
       .paragraph--type--pillar-group-item {
         @media (min-width: $screen-sm-min) {
           padding-left: 16rem;
