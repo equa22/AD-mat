@@ -113,16 +113,10 @@
 
     > .field__item {
       min-height: 46rem;
-      padding-bottom: 8rem;
     
       @media (min-width: $screen-sm-min) {
         width: 50%;
-        padding-bottom: 0;//12rem;
         visibility: hidden;
-
-        &:last-child {
-          padding-bottom: 0;
-        }
       }
 
       .paragraph--type--pillar-group-item {
