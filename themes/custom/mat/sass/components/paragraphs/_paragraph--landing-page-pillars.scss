@@ -112,6 +112,7 @@
     @extend %line-vertical;
 
     > .field__item {
+      min-height: 46rem;
       padding-bottom: 8rem;
     
       @media (min-width: $screen-sm-min) {
