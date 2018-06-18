@@ -9,6 +9,17 @@ $.fn.isInViewport = function(props) {
   return elementBottom > viewportTop && elementTop < viewportBottom;
  };
  
+ function getShadow(angle, distance, spread, size) {
+    angle = (180 - angle) * (Math.PI)/180;  // convert to radians
+    var h_shadow = Math.round(Math.cos(angle)*distance);
+    var v_shadow = Math.round(Math.sin(angle)*distance);
+    spread = size*spread / 100;
+    var blur = size - spread;
+
+    return (h_shadow + 'px ' +  (v_shadow) + 'px ' +  size + 'px rgba(0,0,0,' + size/100 + ')');
+  }
+
+  
   
  
 
@@ -243,45 +254,60 @@ $.fn.isInViewport = function(props) {
       
       if(counter >= limit) {
         clearInterval(animateCounting);
-
-
       }
 
     }, interval);
   }
 
+
+  var shine;
+
+
   function animateNumber(field) {
     $(field).data('animated', true);
     $(field).css({'transition': $(field).data('count-repeat')*$(field).data('count-interval') + 'ms opacity linear', 'opacity': 1});
     $(field).attr('data-delay', 0);
+    var $shine = $(field).next('.shine').length > 0 ? $($(field).next('.shine')[0]) : null;
+
     var counter = 0;                                // count iterations
 
     var animateCounting = setInterval(function() {
       counter ++;
+
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-      
+      if($shine) {$shine.text($(field).text());}
+
+
       if(counter >= $(field).data('count-repeat')/2) {
         clearInterval(animateCounting);
         animateCounting = setInterval(function() {
           counter ++;
-          $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
           
+          $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+          if($shine) {$shine.text($(field).text());}
+
+
           if(counter >= $(field).data('count-repeat')/4*3) {
             clearInterval(animateCounting);
             animateCounting = setInterval(function() {
               counter ++;
-              $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
               
+              $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+              if($shine) {$shine.text($(field).text());}
+
+
               if(counter >= $(field).data('count-repeat')/10*9) {
                 clearInterval(animateCounting);
                 
                 animateCounting = setInterval(function() {
                   counter ++;
-                  $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
                   
+                  $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+                  if($shine) {$shine.text($(field).text());}
+
+
                   if(counter == $(field).data('count-repeat')) {
                     clearInterval(animateCounting);
-                    
                   }
 
                 }, $(field).data('count-interval')+100);
@@ -299,8 +325,12 @@ $.fn.isInViewport = function(props) {
   Drupal.behaviors.countingNumbersAnimation = {
     attach: function (context, settings) {
       var $numbers = $('.field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
-      
-      $numbers.toArray().forEach(function(el) {
+      var $shine = $('.paragraph--type--landing-page-counter .field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
+      $shine.each(function() {
+        $(this).after($('<div/>', {'class': 'shine field--name-field-number'}));
+      });
+
+      $numbers.toArray().forEach(function(el, i) {
         var text = $(el).text();
         
         $(el).attr({
@@ -314,6 +344,10 @@ $.fn.isInViewport = function(props) {
 
         $(el).css('opacity', 0.6);                                     // low opacity for transition effect
         $(el).text(convertInString(0, $(el).text().replace(',', '').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
+        
+        if($(el).next('.shine')) {
+          $(el).next('.shine').attr('id', 'shine' + (i+1));
+        }
       });
 
       $(window).scroll(function(e) {
@@ -333,7 +367,6 @@ $.fn.isInViewport = function(props) {
       var $paralaxWrapper = $('.paragraph--type--landing-page-stories');
 
 
-
       var parallaxElementsParent = ['.hearts-container', '.paragraph--type--landing-page-stories'];
 
       parallaxElementsParent.forEach(function(parent) {
@@ -343,6 +376,22 @@ $.fn.isInViewport = function(props) {
       });
       
 
+    // drop shine on element
+    $(window).on( "mousemove scroll", function( event ) {
+      $('.shine').each(function(i, el) {
+        if($(this).isInViewport(0)) {
+
+          var elPosition = {
+            x: $(window).width()/2,
+            y: $(el).offset().top + $(el).height()/2
+          };
+
+          var angleRadians = Math.atan2( elPosition.x - event.pageX,  elPosition.y - event.pageY)* 180 / Math.PI;
+          var size = Math.sqrt(Math.pow((elPosition.x - event.pageX), 2) + Math.pow((elPosition.y - event.pageY), 2));
+          $(this).css('text-shadow', getShadow(angleRadians + 90, (size/10 < 30 ? size/10 : 30), (size/10 < 60 ? size/10 : 60), (size/10 < 60 ? size/10 : 60)));
+        }
+      });
+    });
      $(window).scroll(function(event){
        var st = $(this).scrollTop();
        if (st > lastScrollTop){
@@ -378,7 +427,66 @@ $.fn.isInViewport = function(props) {
           $(this).removeClass('animate');
        }
       });
+
+
+            
      });
     }
   };
+
+
+
+
+
+
 })(jQuery);
+
+
+
+
+
+/*
+
+@mixin photoshop-drop-shadow ($angle: 0, $distance: 0, $spread: 0, $size: 0, $color: #000, $inner: false) {
+  $angle: (180 - $angle) * pi() / 180; // convert to radians
+  $h-shadow: round(cos($angle) * $distance);
+  $v-shadow: round(sin($angle) * $distance);
+  $css-spread: $size * $spread/100;
+  $blur: ($size - $css-spread);
+  $inset: if($inner != false, 'inset', '');
+ 
+  @include box-shadow($h-shadow $v-shadow $blur $css-spread $color unquote($inset));
+}
+ 
+ 
+//--------------------------------
+// Photoshop Inner Shadow
+//--------------------------------
+@mixin photoshop-inner-shadow ($angle: 0, $distance: 0, $spread: 0, $size: 0, $color: #000) {
+  @include photoshop-drop-shadow ($angle, $distance, $spread, $size, $color, true);
+}
+ 
+//--------------------------------
+// Photoshop Text Shadow
+//--------------------------------
+@mixin photoshop-text-shadow ($angle: 0, $distance: 0, $spread: 0, $size: 0, $color: #000) {
+  // NOTE: $spread has no effect for text shadows
+  $angle: (180 - $angle) * pi() / 180;
+  $h-shadow: round(cos($angle) * $distance);
+  $v-shadow: round(sin($angle) * $distance);
+  $css-spread: $size * $spread/100;
+  $blur: ($size - $css-spread);
+ 
+  @include text-shadow($h-shadow $v-shadow $blur $color);
+}*/
+
+
+
+
+
+
+
+
+
+
+

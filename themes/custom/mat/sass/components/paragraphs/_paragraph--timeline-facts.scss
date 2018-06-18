@@ -248,3 +248,11 @@
   }
 }
 
+
+.shine-letter {
+  position: relative;
+  display: inline-block;
+  background: -webkit-linear-gradient(#2F2D83, #2DB0DF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

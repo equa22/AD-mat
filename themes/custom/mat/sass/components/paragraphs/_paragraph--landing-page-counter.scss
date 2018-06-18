@@ -48,6 +48,7 @@
   background: -webkit-linear-gradient($blue-darker, $blue-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  z-index: 1;
 
     @media (min-width: $screen-sm-min) {
       position: absolute;
@@ -57,6 +58,15 @@
     @media (min-width: $screen-lg-min) {
       @include font-size(35);
     }
+    &.shine {
+      background: transparent;
+      -webkit-background-clip: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 20px 15px 30px rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
 
   }
+
+
 }
