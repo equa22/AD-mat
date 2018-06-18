@@ -16,7 +16,7 @@ $.fn.isInViewport = function(props) {
     spread = size*spread / 100;
     var blur = size - spread;
 
-    return (h_shadow + 'px ' +  (v_shadow) + 'px ' +  size + 'px rgba(0,0,0,' + size/100 + ')');
+    return (h_shadow + 'px ' +  (v_shadow) + 'px ' +  size + 'px rgba(0,0,0,' + (size/100 < 0.4 ? size/100 : 0.4) + ')');
   }
 
   
@@ -260,9 +260,6 @@ $.fn.isInViewport = function(props) {
   }
 
 
-  var shine;
-
-
   function animateNumber(field) {
     $(field).data('animated', true);
     $(field).css({'transition': $(field).data('count-repeat')*$(field).data('count-interval') + 'ms opacity linear', 'opacity': 1});
@@ -388,7 +385,7 @@ $.fn.isInViewport = function(props) {
 
           var angleRadians = Math.atan2( elPosition.x - event.pageX,  elPosition.y - event.pageY)* 180 / Math.PI;
           var size = Math.sqrt(Math.pow((elPosition.x - event.pageX), 2) + Math.pow((elPosition.y - event.pageY), 2));
-          $(this).css('text-shadow', getShadow(angleRadians + 90, (size/10 < 30 ? size/10 : 30), (size/10 < 60 ? size/10 : 60), (size/10 < 60 ? size/10 : 60)));
+          $(this).css('text-shadow', getShadow(angleRadians + 90, (size/10 < 30 ? size/10 : 30), (size/10 < 80 ? size/10 : 80), (size/10 < 80 ? size/10 : 80)));
         }
       });
     });
