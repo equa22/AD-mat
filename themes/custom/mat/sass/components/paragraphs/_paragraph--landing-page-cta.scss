@@ -83,7 +83,7 @@
       width: 100%;
       margin-right: 2rem;
       padding: 0 5rem 0 2.5rem;
-      @include icons('i-chevron-circle-right');
+      @include icons('i-chevron-circle');
       background-position: right center;
 
       @media (min-width: $screen-sm-min) {

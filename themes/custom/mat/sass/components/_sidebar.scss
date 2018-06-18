@@ -45,7 +45,7 @@
     position: absolute;
     top: 1.8rem;
     right: 2.5rem;
-    @include icons('i-chevron-gray-large');
+    @include icons('i-chevron-sidebar-gray');
     background-size: auto auto;
     background-position: center center;
     transform: rotate(-90deg);
@@ -57,7 +57,7 @@
     color: $blue-dark;
 
     &:after {
-      @include icons('i-chevron-blue-large');
+      @include icons('i-chevron-sidebar-blue');
       transform: rotate(0);
     }
   }

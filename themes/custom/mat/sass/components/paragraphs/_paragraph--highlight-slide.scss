@@ -89,7 +89,7 @@
       color: transparent;
       border: none;
       outline: none;
-      @include icons('i-chevron-large');
+      @include icons('i-chevron-slide');
       background-position: center center;
 
       @media (min-width: $screen-sm-min) {
