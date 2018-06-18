@@ -259,7 +259,14 @@ $.fn.isInViewport = function(props) {
     }, interval);
   }
 
+  function splitTextInSpan(text) {
+    var html = "";
+    for(var i = 0; i < text.length; i++) {
+      html += '<span class="shine-letter">' + text[i] +'</span>';
+    }
 
+    return html;
+  }
   function animateNumber(field) {
     $(field).data('animated', true);
     $(field).css({'transition': $(field).data('count-repeat')*$(field).data('count-interval') + 'ms opacity linear', 'opacity': 1});
@@ -272,7 +279,7 @@ $.fn.isInViewport = function(props) {
       counter ++;
 
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-      if($shine) {$shine.text($(field).text());}
+      if($shine) {$shine.html($(field).text());}
 
 
       if(counter >= $(field).data('count-repeat')/2) {
@@ -281,7 +288,7 @@ $.fn.isInViewport = function(props) {
           counter ++;
           
           $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-          if($shine) {$shine.text($(field).text());}
+          if($shine) {$shine.html($(field).text());}
 
 
           if(counter >= $(field).data('count-repeat')/4*3) {
@@ -290,7 +297,7 @@ $.fn.isInViewport = function(props) {
               counter ++;
               
               $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-              if($shine) {$shine.text($(field).text());}
+              if($shine) {$shine.html($(field).text());}
 
 
               if(counter >= $(field).data('count-repeat')/10*9) {
@@ -300,7 +307,7 @@ $.fn.isInViewport = function(props) {
                   counter ++;
                   
                   $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-                  if($shine) {$shine.text($(field).text());}
+                  if($shine) {$shine.html(splitTextInSpan($(field).text()));}
 
 
                   if(counter == $(field).data('count-repeat')) {
@@ -343,7 +350,7 @@ $.fn.isInViewport = function(props) {
         $(el).text(convertInString(0, $(el).text().replace(',', '').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
         
         if($(el).next('.shine')) {
-          $(el).next('.shine').text($(el).text());
+          $(el).next('.shine').html($(el).text());
         } else {
           $(el).css('opacity', 0.6);  // low opacity for transition effect
         }
@@ -377,11 +384,11 @@ $.fn.isInViewport = function(props) {
 
     // drop shine on element
     $(window).on( "mousemove scroll", function( event ) {
-      $('.shine').each(function(i, el) {
+      $('.shine-letter').each(function(i, el) {
         if($(this).isInViewport(0)) {
 
           var elPosition = {
-            x: $(window).width()/2,
+            x: $(el).offset().left,
             y: $(el).offset().top + $(el).height()/2
           };
 
