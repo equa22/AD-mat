@@ -34,6 +34,9 @@
         e.preventDefault();
       });
 
+      // move button to step 5
+      $('.node-story-profile-story-submission-form #edit-actions', context).appendTo('.step5-content');
+
     }
   };
 })(jQuery, Drupal);
