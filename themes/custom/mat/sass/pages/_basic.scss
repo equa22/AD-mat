@@ -8,9 +8,12 @@
 // Basic page layout
 // -----------------------------------------------------------------------------
 .basic-page-container {
-  display: flex;
   padding-top: 10.5rem;
   padding-bottom: 3rem;
+
+  @media (min-width: $screen-md-min) {
+    display: flex;
+  }
 
   .basic-page-sidebar {
     width: 30%;
