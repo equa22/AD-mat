@@ -94,7 +94,7 @@ $.fn.isInViewport = function(props) {
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
-          $('.menu--main li.menu-item--expanded > a, .menu--main li.menu-item--expanded > span', context).on('click', function(e){
+          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).on('click', function(e){
             e.preventDefault();
             var element = $(this).parent('li');
             if (element.hasClass('active')) {
@@ -111,6 +111,21 @@ $.fn.isInViewport = function(props) {
       accordionMenu();
       $(window).resize(function() {
         accordionMenu();
+      });
+    }
+  };
+
+  // Accordion for the sidebar
+  Drupal.behaviors.accordionNavigationSidebar = {
+    attach: function (context, settings) {
+      $('.region-sidebar li.menu-item--expanded', context).first().find('a').addClass('active');
+      $('.region-sidebar li.menu-item--expanded', context).first().find('ul').slideDown();
+      $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
+        e.preventDefault();
+        $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
+        $('.region-sidebar li.menu-item--expanded > ul', context).slideUp();
+        $(this).toggleClass('active');
+        $(this).parent().find('ul').slideToggle();
       });
     }
   };
