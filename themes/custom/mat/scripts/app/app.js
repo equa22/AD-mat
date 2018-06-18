@@ -339,11 +339,13 @@ $.fn.isInViewport = function(props) {
           'data-count-holder': text.search(',') < 0 ? ' ' : '0'
         });
 
-        $(el).css('opacity', 0.6);                                     // low opacity for transition effect
+                                        
         $(el).text(convertInString(0, $(el).text().replace(',', '').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
         
         if($(el).next('.shine')) {
-          $(el).next('.shine').attr('id', 'shine' + (i+1));
+          $(el).next('.shine').text($(el).text());
+        } else {
+          $(el).css('opacity', 0.6);  // low opacity for transition effect
         }
       });
 
