@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,500,500i,400,400i,700,700i');
+//@import url('https://fonts.googleapis.com/css?family=Roboto:300,500,500i,400,400i,700,700i'); ///Aaaaaaaaaaaaaaaa
 
 
 .slider-wrapper {
@@ -14,19 +14,43 @@
   min-height: 800px;
   max-height: 90vh;
 
-  h1, p {
-    position: relative;
+  .container-small {
     z-index: 2;
-    color: white;
+    color: $color-white;
     text-align: center;
-  }
-  h1 {
-    padding-bottom: 0;
-    margin-bottom: 4.2rem;
-    max-width: 800px;
-    font-size: 40px;
+
+    h1 {
+      @media (max-width: $screen-xs-max) {
+        padding-bottom: 3.3rem;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        @include font-size(5);
+        line-height: 1.1;
+      }
+    }
+
+    .lead {
+      max-width: 630px;
+      margin: 0 auto 2.8rem auto;
+      @extend %lead;
+    }
+
+    .btn-add-story {
+      @include btn-primary();
+      padding-left: 7.7rem !important;
+      padding-right: 3.5rem;
+      @include icons('i-comment-heart');
+      background-size: 24px auto;
+      background-position: 3.4rem center;
+
+      @media (max-width: $screen-xs-max) {
+        padding-right: 3rem;
+      }
+    }
   }
 }
+
 .adminimal-admin-toolbar {
   .slider-wrapper {
     height: calc(100vh - 260px);
@@ -45,12 +69,8 @@
   height: 100%;
   width: 100%;
   z-index: 1;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0f84d2+0,0b145e+100 */
-  background: #0f84d2; /* Old browsers */
-  background: -moz-linear-gradient(left, #0f84d2 0%, #0b145e 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #0f84d2 0%,#0b145e 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #0f84d2 0%,#0b145e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f84d2', endColorstr='#0b145e',GradientType=1 ); /* IE6-9 */
+  @include gradient(90deg, #0f84d2, #0f84d2, #0b145e);
+
 }
 
 
@@ -67,6 +87,8 @@ $option-width: 70px;
 .bold {
   font-weight: bold;
 }
+
+
 @-webkit-keyframes Pulse {
   from {  -webkit-box-shadow: 0 0 10px rgba(255,255,255,0.5) }
   50% {  -webkit-box-shadow: 0 0 50px rgba(255,255,255,1) }
@@ -96,15 +118,11 @@ $option-width: 70px;
   to {  -webkit-box-shadow: 0 0 0 rgba(255,255,255,0.1) }
 }
 
+
 .pulse-2 {
   -webkit-animation-name: Pulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-}
-.pulse-3 {
-  /*-webkit-animation-name: Pulse;
-  -webkit-animation-duration: 3s;
-  -webkit-animation-iteration-count: infinite;*/
 }
 
 .pulse-star-1 {
@@ -206,68 +224,44 @@ $option-width: 70px;
     align-items: center;
     position: absolute;
     transform: translate(calc(100vw + 40px), 50vh);
-    background-color: white;
+    background-color: $color-white;
     cursor: pointer;
     background-position: center;
     background-size: cover;
     border: solid 3px rgba(255,255,255,0.8);
     z-index: 5;
-    -webkit-box-shadow: 0 0 50px rgba(255,255,255, 1);
+    box-shadow: 0 0 50px rgba(255,255,255, 1);
     
     .label {
-      position: relative;
-      top: 120px;
-      text-align: center;
-      transform: translate(0, 100%);
-      opacity: 0;
-      transition: 0.2s all ease-in-out;
-      width: 300px;
       display: none;
-      margin-bottom: 40px;
-      
-      &:before {
-          display: block;
-          content: "";
-          width: 0;
-          height: 0;
-          border-style: solid;
-          position: relative;
-          left: 130px;
-          border-width: 0 $option-width/4 $option-width/4 $option-width/4;
-          border-color: transparent transparent white transparent;
-        }
+      opacity: 0;
+      transform: translate(0, 100%);
+      transition: 0.2s all ease-in-out;
+      top: 10rem;
+      @extend %story-popup;
+
       label {
-        color: $blue;
-        font-weight: bold;
-        font-style: italic;
-        font-size: 18px;
-        background-color: white;
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding-top: 10px;
+        @extend %story-popup--title;
+        margin-bottom: -1rem;
       }
+
       small {
-        display: block;
-        width: 100%;
-        text-align: center;
-        color: $grey;
-        background-color: white;
-        padding: 5px 0 20px 0;
+         @extend %story-popup--category;
       }
+
       button {
-        height: 40px;
-        width: 40px;
-        position: relative;
-        bottom: 15px;
-        background-color: $blue;
+        width: 4.2rem;
+        height: 4.2rem;
+        position: absolute;
+        left: 50%;
+        bottom: -2.1rem;
+        z-index: 10;
+        margin-left: -2.1rem;
         border-radius: 50%;
-        background-image: url(../images/icons/stories/plus.svg);
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: 50%;
         border: none;
+        background: transparent;
         cursor: pointer;
+        outline: none;
       }
     }
 
