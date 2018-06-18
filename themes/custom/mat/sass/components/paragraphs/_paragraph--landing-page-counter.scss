@@ -43,6 +43,7 @@
   .field--name-field-number {
     @include font-size(15);
     font-family: $font-flama;
+    cursor: default;
     //@include gradient-blue();
 
   background: -webkit-linear-gradient($blue-darker, $blue-light);
@@ -65,8 +66,5 @@
       text-shadow: rgba(0, 0, 0, 0.4) -27px 13px 80px;
       z-index: 0;
     }
-
   }
-
-
 }

@@ -388,7 +388,7 @@ $.fn.isInViewport = function(props) {
         if($(this).isInViewport(0)) {
 
           var elPosition = {
-            x: $(el).offset().left,
+            x: $(el).offset().left + $(el).width()/2,
             y: $(el).offset().top + $(el).height()/2
           };
 
