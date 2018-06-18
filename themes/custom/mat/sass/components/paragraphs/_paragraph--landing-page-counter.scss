@@ -44,12 +44,15 @@
     @include font-size(15);
     font-family: $font-flama;
     cursor: default;
+    font-size: 8rem;
     //@include gradient-blue();
 
-  background: -webkit-linear-gradient($blue-darker, $blue-light);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  z-index: 1;
+    background: -webkit-linear-gradient($blue-darker, $blue-light);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 1;
+    position: relative;
+    top: 0;
 
     @media (min-width: $screen-sm-min) {
       position: absolute;
@@ -61,10 +64,13 @@
     }
     &.shine {
       background: transparent;
+      display: flex;
       -webkit-background-clip: transparent;
       -webkit-text-fill-color: transparent;
       text-shadow: rgba(0, 0, 0, 0.4) -27px 13px 80px;
       z-index: 0;
+      position: absolute;
+      top: 0;
     }
   }
 }
