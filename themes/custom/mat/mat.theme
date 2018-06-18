@@ -1,5 +1,6 @@
 <?php
-
+use Drupal\media\Entity\Media;
+use Drupal\image\Entity\ImageStyle;
 function get_mail_user_theme() {
   return [
     'mail_user' => array (
@@ -16,4 +17,20 @@ function get_mail_admin_theme() {
       'variables' => array('submitted_data'=>[]),
     ),
   ];
+}
+
+/**
+ * Implements hook_preprocess_node().
+ * @param $variables
+ */
+function mat_preprocess_node(&$variables) {
+  $node = $variables['elements']['#node'];
+  $bundle = $node->bundle();
+  if ($bundle == 'news_article' && $variables['elements']['#view_mode'] == 'full') {
+    $header_image = $node->get('field_news_image')->getValue();
+    if (!empty($header_image)) {
+      $entity = Media::load($header_image[0]['target_id']);
+      $variables['header_image'] = ImageStyle::load('news_image_cropped')->buildUrl($entity->field_media_image->entity->getFileUri());
+    }
+  }
 }
