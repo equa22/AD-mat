@@ -103,10 +103,8 @@
       position: relative;
       flex-basis: 50%;
       padding-top: 4.5rem;
-
-      @media (min-width: $screen-sm-min) {
-        padding-top: 0;
-      }
+      opacity: 0;
+      transition: transform .9s ease-in-out, opacity 1.3s linear;
 
       h4 {
         color: $mat-brand-primary;
@@ -131,18 +129,19 @@
 
         &:before {
           background-color: $mat-brand-primary;
+          transition: 0.3s all ease-in-out 0.5s;
         }
 
         @media (min-width: $screen-sm-min) {
           top: .3rem;
         }
       }
-
     }
 
     .myth-vs-fact--myth {
       position: relative;
       padding-right: 16rem;
+      transform: translate(-100%, 0);
       @extend %lead;
 
       @media (max-width: $screen-xs-max) {
@@ -167,11 +166,17 @@
           @include icons('i-inactive');
         }
       }
+
+      @media (max-width: $screen-xs-max) {
+        opacity: 1;
+        transform: translate(0);
+      }
     }
 
     .myth-vs-fact--fact {
       position: relative;
       padding-left: 6rem;
+      transform: translate(100%, 0);
 
       @media (min-width: $screen-sm-min) {
         padding-left: 16rem;
@@ -184,6 +189,10 @@
       .dot {
         right: 0;
 
+        &:before {
+          transform: scale(0);
+        }
+
         @media (min-width: $screen-sm-min) {
           right: auto;
           left: 6.4rem;
@@ -195,7 +204,55 @@
         font-weight: 500;
         line-height: 1.5;
       }
+
+      
+    }
+
+
+    &.animate {
+      .myth-vs-fact--myth,
+      .myth-vs-fact--fact {
+        transform: translate(0);
+        opacity: 1;
+
+
+        
+      }
+      .myth-vs-fact--fact .dot {
+        &:before {
+          transform: scale(1);
+        }
+      }
+    }
+
+
+    @media (max-width: $screen-xs-max) {
+      width: 200%;
+      transform: translate(0);
+      transition: 0.5s transform ease-in-out;
+
+      .myth-vs-fact--myth,
+      .myth-vs-fact--fact {
+        opacity: 1;
+        transform: translate(0);
+
+        &.dot:before {
+          transform: scale(1);
+        }
+      }
+      
+      &.animate {
+        transform: translate(-50%, 0);
+      }
     }
   }
 }
 
+
+.shine-letter {
+  position: relative;
+  display: inline-block;
+  background: -webkit-linear-gradient(#2F2D83, #2DB0DF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

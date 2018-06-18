@@ -12,6 +12,8 @@ global-css:
 global-js:
   version: 1.x
   js:
+    assets/scripts/vendor/shine.min.js:
+      minified: true
     scripts/checkmobile.js:
       minified: true
     scripts/scrollreveal.min.js:
@@ -22,6 +24,7 @@ global-js:
       minified: false
     assets/scripts/vendor/slick/slick.min.js:
       minified: false
+
   dependencies:
     - core/jquery
     - core/drupal.ajax
