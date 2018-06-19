@@ -46,6 +46,9 @@
         @media (max-width: $screen-sm-max) {
           @include font-size(2);
         }
+        + .step-title {
+          display: none;
+        }
       }
     }
     &.active {
@@ -123,18 +126,111 @@
     }
     &.step3-content {
       .field--type-image {
+        position: relative;
         width: calc(25% - 1.5rem);
         float: left;
         overflow: hidden;
         height: 200px;
         
         margin-right: 2rem;
-        border: 5px solid $gray-darker;
+        border: 5px dashed #979797;
         border-radius: 10px;
+        div {
+          height: 100%;
+        }
+        label {
+          display: none;
+        }
+        input[type="file"] {
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: 0;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          cursor: pointer;
+        }
+        .image-widget {
+          &:before {
+            position: absolute;
+            display: block;
+            width: 44px;
+            height: 44px;
+            content: '';
+            background: url("/themes/custom/mat/assets/images/upload_photo.svg") no-repeat;
+            top: 50%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: -44px auto 0;
+          }
+          &:after {
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            bottom: 0;
+            text-align: center;
+            //content: 'Upload a  Featured Photo ';
+            content: 'Additional Photo (Optional)';
+            /* Additional Photo ( O: */
+            font-family: $font-flama;
+            text-transform: uppercase;
+            font-weight: 600;
+            @include font-size(1.2);
+            color: rgba(74,74,74,0.65);
+            letter-spacing: 1px;
+            line-height: 1.4;
+            margin: 10px auto 0;
+          }
+          img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+          }
+          span {
+            display: none;
+          }
+        }
+        &.field--name-field-story-featured-image {
+          .image-widget {
+            &:before {
+              background: url("/themes/custom/mat/assets/images/upload_fphoto.svg") no-repeat;
+            }
+            &:after {
+              content: 'Upload a  Featured Photo ';
+            }
+          }
+        }
+        input.form-submit {
+          position: absolute;
+          z-index: 1;
+          top: 5px;
+          right: 0;
+          width: 24px;
+          height: 24px;
+          background: url('/themes/custom/mat/assets/images/icon_remove.svg') no-repeat;
+          text-indent: -9999px;    
+          white-space: nowrap; 
+          overflow: hidden;   
+          margin: 0;
+          padding: 0;
+          cursor: pointer;
+          &:hover {
+            opacity: .8;
+          }
+        }
         &:last-of-type {
           margin-right: 0;
         }
-        @media (max-width: $screen-sm-max) {
+        @media (max-width: $screen-xs-max) {
           width: 100%;
           float: none;
           margin-bottom: 2.5rem;
@@ -143,7 +239,9 @@
             margin-bottom: 0;
           }
         }
+
       }
+
     }
     &.step4-content {
       .field--name-field-submissioner-first-name,
