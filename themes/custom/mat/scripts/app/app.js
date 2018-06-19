@@ -146,6 +146,30 @@ $.fn.isInViewport = function(props) {
     }
   };
 
+  var write;      // preapred for interval
+  /*
+   * Helper animation function for animating text - type it lika a mashine:)
+   * @param $el_ DOM element which has to be animated [dom]
+   * @param parent_ parent selector [string]
+   * @param delay_ timeout delay in ms [int]
+   */
+  function typeText($el, parent, delay) {
+    console.log($el);
+    clearInterval(write);                   // clear interval if not done yet
+    var text = $.trim($el.text()), title = '', counter = 0;
+    $el.text('');                        // set text to empty
+
+    setTimeout(function() {                 // with optional timeout set interval
+        write = setInterval(function() {
+          $el.text( title += text[counter]); // add letter to string
+          counter++;                            // increase counter 
+          if(counter == text.length) {          // stop interval, if all letters've been processed
+            clearInterval(write);
+            $(parent).addClass('animated');     // add class to parent to let DOM know animation is done
+          }
+        }, 50);  
+      }, delay);
+  }
 
   // Hero slider on home page
   Drupal.behaviors.heroSlider = {
@@ -154,7 +178,19 @@ $.fn.isInViewport = function(props) {
         infinite: true,
         arrows: false,
         slidesToShow: 1
+      }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
+        // if slide changed, animate next slide
+        if(currentSlide != nextSlide) {
+          typeText($($('.slick-slide h1')[nextSlide + 1]), '.slick-active', 500);
+          $('.slick-slide').removeClass('animated');
+        }
       });
+
+      // remove all prefix labels with 'inspired by' text and replace them with one fixed label
+      $('h1 .slide--title-prefix').remove();
+      $('.slick-list.draggable').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
+      // animate first slide
+      typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
     }
   };
 
@@ -213,23 +249,34 @@ $.fn.isInViewport = function(props) {
   // Masonry and ScrollReveal init for pillars
   Drupal.behaviors.pillars = {
     attach: function (context, settings) {
-      $(window).on('load', function() {
-        var w_w = $(window).width();
 
-        if (w_w >= 768) {
-          sr.reveal('.paragraph--type--pillar-group-item');
-        }
+
+      $(window).scroll(function(e) {
+        $('.paragraph--type--pillar-group-item').each(function() {
+         if($(this).isInViewport($(this).height()/2) && !$(this).hasClass('animate')) {
+          $(this).addClass('animate');
+         } 
+        }); 
       });
     }
   };
 
 
+  /*
+   * Helper function for converting num in string
+   * @param num_ number to convert [int]
+   * @param length_ length of final number - used with holders (5:00003) - [int] 
+   * @param char_ splitter in string [string]
+   * @param surfix_ added character [string]
+   * @param holder_ placeholder for empty spaces
+   *        --> (1200, 5, '.', 'x', 0) => 01.200x
+   */
   function convertInString(num, length, char, surfix, holder) {
+    console.log(num, length, char, surfix, holder);
     var string = String(num);
     while(string.length != length) {
       string = holder + string;
     }
-
     for(var i = string.length - 1, chars = 0; i >= 0; i--) {
       chars++;
       if(chars == 3 && i > 0) {
@@ -241,78 +288,66 @@ $.fn.isInViewport = function(props) {
   }
 
 
-  var animateCounting;
-
-  function setCountInterval(field, interval, limit, counter) {
-    animateCounting = setInterval(function() {
-      counter ++;
-      $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-      
-      if(counter >= limit) {
-        clearInterval(animateCounting);
-      }
-
-    }, interval);
-  }
-
+  /*
+   * Function for wrapping text in spans
+   * (helper function for shine effect)
+   * @param text_ text to wrap [span]
+   * @return dom as string
+   */
   function splitTextInSpan(text) {
     var html = "";
-    for(var i = 0; i < text.length; i++) {
+    for(var i = 0; i < text.length; i++) {    // wrap each char in span
       html += '<span class="shine-letter">' + text[i] +'</span>';
     }
-
     return html;
   }
+
+  /*
+   * Odometer animation
+   * @param field_ element for animate [dom]
+   *
+   * That function could use some finish touches :) Odometer has to count slowly at the end
+   * and couldn't find better sollution than reseting interval...
+   * Function'll handle all from element attributes.
+   */
   function animateNumber(field) {
     $(field).data('animated', true);
     $(field).css({'transition': $(field).data('count-repeat')*$(field).data('count-interval') + 'ms opacity linear', 'opacity': 1});
     $(field).attr('data-delay', 0);
+    // increase counter in every iteration
+    // in every iteration add part of number
+    // on half way stop interval and start slower one
+    // ...
+    // when counter comes to end, stop all intervals
     var $shine = $(field).next('.shine').length > 0 ? $($(field).next('.shine')[0]) : null;
-
-    var counter = 0;                                // count iterations
-
+    var counter = 0; // count iterations                               
     var animateCounting = setInterval(function() {
       counter ++;
-
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-      if($shine) {$shine.html($(field).text());}
-
-
-      if(counter >= $(field).data('count-repeat')/2) {
-        clearInterval(animateCounting);
+      if($shine) { $shine.html($(field).text()); }     // apply value on shine
+      if(counter >= $(field).data('count-repeat')/2) { // on half way, slow down
+        clearInterval(animateCounting);                
         animateCounting = setInterval(function() {
           counter ++;
-          
           $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
           if($shine) {$shine.html($(field).text());}
-
-
           if(counter >= $(field).data('count-repeat')/4*3) {
             clearInterval(animateCounting);
             animateCounting = setInterval(function() {
               counter ++;
-              
               $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
               if($shine) {$shine.html($(field).text());}
-
-
               if(counter >= $(field).data('count-repeat')/10*9) {
                 clearInterval(animateCounting);
-                
                 animateCounting = setInterval(function() {
                   counter ++;
-                  
                   $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
                   if($shine) {$shine.html(splitTextInSpan($(field).text()));}
-
-
                   if(counter == $(field).data('count-repeat')) {
                     clearInterval(animateCounting);
                   }
-
                 }, $(field).data('count-interval')+100);
               }
-
             }, $(field).data('count-interval')+60);
           }
         }, $(field).data('count-interval')+30);
@@ -321,18 +356,20 @@ $.fn.isInViewport = function(props) {
   }
 
 
-  // "Why give life" page animations
+  // Make odometer from selected fields
   Drupal.behaviors.countingNumbersAnimation = {
     attach: function (context, settings) {
+      // collect dom elements in variable ([...el1, ...el2])
       var $numbers = $('.field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
+      // mark elements to apply shine effect
       var $shine = $('.paragraph--type--landing-page-counter .field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
+      // create dom elements for shine duplicats
       $shine.each(function() {
         $(this).after($('<div/>', {'class': 'shine field--name-field-number'}));
       });
-
+      // set all needed attributes
       $numbers.toArray().forEach(function(el, i) {
         var text = $(el).text();
-        
         $(el).attr({
           'data-number': text.replace(/\D/g,''),
           'data-count-char': text.search(',') < 0 ? '' : ',',
@@ -340,21 +377,19 @@ $.fn.isInViewport = function(props) {
           'data-count-interval': Number(text.replace(/\D/g,'')) > 5000 ? 10 : 20,
           'data-count-surfix': text.search('X') < 0 ? '' : 'X',
           'data-count-holder': text.search(',') < 0 ? ' ' : '0'
-        });
-
-                                        
-        $(el).text(convertInString(0, $(el).text().replace(',', '').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
-        
-        if($(el).next('.shine')) {
-          $(el).next('.shine').html($(el).text());
-        } else {
-          $(el).css('opacity', 0.6);  // low opacity for transition effect
-        }
+        });              
+        if($(el).data('number') > 10)
+        // set elements text to 0              
+        $(el).text(convertInString(0, $(el).text().replace(/\D/g,'').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
+        // apply same text in shine element
+        if($(el).next('.shine')) { $(el).next('.shine').html($(el).text()); } 
+        else { $(el).css('opacity', 0.6); }
       });
 
+      // add scroll watcher -- strart animation when user scrolls to position
       $(window).scroll(function(e) {
-        $numbers.toArray().forEach(function(el) {
-          if($(el).offset().top - ($(window).height() + $(window).scrollTop() - $(el).height()/4*3) <= 0 && !$(el).data('animated')) {
+        $numbers.toArray().forEach(function(el, i) {
+          if($(el).data('number') > 10 && $(el).offset().top - ($(window).height() + $(window).scrollTop() - $(el).height()/4*3) <= 0 && !$(el).data('animated')) {
             animateNumber(el);
           }
         });
@@ -367,8 +402,6 @@ $.fn.isInViewport = function(props) {
     attach: function(context, settings) {
       var lastScrollTop = 0, direction;
       var $paralaxWrapper = $('.paragraph--type--landing-page-stories');
-
-
       var parallaxElementsParent = ['.hearts-container', '.paragraph--type--landing-page-stories'];
 
       parallaxElementsParent.forEach(function(parent) {
