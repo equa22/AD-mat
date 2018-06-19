@@ -94,7 +94,7 @@ $.fn.isInViewport = function(props) {
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
-          $('.menu--main li.menu-item--expanded > a, .menu--main li.menu-item--expanded > span', context).on('click', function(e){
+          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).on('click', function(e){
             e.preventDefault();
             var element = $(this).parent('li');
             if (element.hasClass('active')) {
@@ -111,6 +111,21 @@ $.fn.isInViewport = function(props) {
       accordionMenu();
       $(window).resize(function() {
         accordionMenu();
+      });
+    }
+  };
+
+  // Accordion for the sidebar
+  Drupal.behaviors.accordionNavigationSidebar = {
+    attach: function (context, settings) {
+      $('.region-sidebar li.menu-item--expanded', context).first().find('a').addClass('active');
+      $('.region-sidebar li.menu-item--expanded', context).first().find('ul').slideDown();
+      $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
+        e.preventDefault();
+        $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
+        $('.region-sidebar li.menu-item--expanded > ul', context).slideUp();
+        $(this).toggleClass('active');
+        $(this).parent().find('ul').slideToggle();
       });
     }
   };
@@ -209,7 +224,7 @@ $.fn.isInViewport = function(props) {
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
-      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a', context);
+      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a, .search-result.result-story-profile .search-result--heading > a', context);
       $ca_elem.each(function(){
         var $ca_get_id = $(this).attr('href').split('/');
         $(this).attr('href', '/stories#'+$ca_get_id[$ca_get_id.length-1]);
@@ -397,7 +412,6 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-
   Drupal.behaviors.scrollAnimations = {
     attach: function(context, settings) {
       var lastScrollTop = 0, direction;
@@ -466,6 +480,35 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-})(jQuery);
+  // Focus labels
+  Drupal.behaviors.labelFocus = {
+    attach: function (context, settings) {
+      $('form input', context).keyup(function() {
+        if(!$.trim(this.value).length) {
+          $(this).parent().find('label').removeClass('labelfocus');
+        } else { 
+          $(this).parent().find('label').addClass('labelfocus');
+        }
+      });
+    }
+  };
 
+  // Focus labels
+  Drupal.behaviors.limitCharacters = {
+    attach: function (context, settings) {
+      $('#node-story-profile-story-submission-form .step2-content', context).append('<p id="charNum">0/500 Words</p>');
+      function countChar(val) {
+        var len = val.value.length;
+        if (len >= 501) {
+          val.value = val.value.substring(0, 501);
+        } else {
+          $('#charNum').text(len+'/500 Words');
+        }
+      }
+      $('#node-story-profile-story-submission-form textarea', context).on('keyup', function() {
+        countChar(this);
+      });
+    }
+  };
+})(jQuery);
 

@@ -179,6 +179,8 @@
 
     .hero--give-life__content {
       padding-top: 4.4rem;
+      position: relative;
+      z-index: 2;
 
       @media (min-width: $screen-sm-min) {
         max-width: 48%;

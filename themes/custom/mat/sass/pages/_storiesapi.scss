@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,500,500i,400,400i,700,700i');
-
+// ========================================
+//
+// @file _storiesapi.scss
+// Stories landing page, modal window styling
+//
+// ========================================
+// Aditional variables
+$option-width: 70px;
 
 .slider-wrapper {
   width: 100%;
@@ -14,19 +20,50 @@
   min-height: 800px;
   max-height: 90vh;
 
-  h1, p {
-    position: relative;
-    z-index: 2;
-    color: white;
+  .container-small {
+    color: $color-white;
     text-align: center;
-  }
-  h1 {
-    padding-bottom: 0;
-    margin-bottom: 4.2rem;
-    max-width: 800px;
-    font-size: 40px;
+
+    > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      margin-bottom: 4.2rem;
+      padding-bottom: 0;
+
+      @media (max-width: $screen-xs-max) {
+        margin-bottom: 4.2rem;
+      }
+
+      @media (min-width: $screen-sm-min) {
+        @include font-size(5);
+        line-height: 1.1;
+      }
+    }
+
+    .lead {
+      max-width: 630px;
+      margin: 0 auto 2.8rem auto;
+      @extend %lead;
+    }
+
+    .btn-add-story {
+      @include btn-primary();
+      padding-left: 7.7rem !important;
+      padding-right: 3.5rem;
+      @include icons('i-comment-heart');
+      background-size: 24px auto;
+      background-position: 3.4rem center;
+
+      @media (max-width: $screen-xs-max) {
+        padding-right: 3rem;
+      }
+    }
   }
 }
+
 .adminimal-admin-toolbar {
   .slider-wrapper {
     height: calc(100vh - 260px);
@@ -45,28 +82,9 @@
   height: 100%;
   width: 100%;
   z-index: 1;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0f84d2+0,0b145e+100 */
-  background: #0f84d2; /* Old browsers */
-  background: -moz-linear-gradient(left, #0f84d2 0%, #0b145e 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #0f84d2 0%,#0b145e 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #0f84d2 0%,#0b145e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f84d2', endColorstr='#0b145e',GradientType=1 ); /* IE6-9 */
+  @include gradient(90deg, #0f84d2, #0f84d2, #0b145e);
 }
 
-
-$grey: #b8b8b8;
-$dark-grey: #636363;
-$light-grey: #ebebeb;
-$dark-blue: #0a135d;
-$light-blue: #0f84d2;
-$blue: #03add8;
-
-$menu-height: 80px;
-$option-width: 70px;
-
-.bold {
-  font-weight: bold;
-}
 @-webkit-keyframes Pulse {
   from {  -webkit-box-shadow: 0 0 10px rgba(255,255,255,0.5) }
   50% {  -webkit-box-shadow: 0 0 50px rgba(255,255,255,1) }
@@ -96,15 +114,11 @@ $option-width: 70px;
   to {  -webkit-box-shadow: 0 0 0 rgba(255,255,255,0.1) }
 }
 
+
 .pulse-2 {
   -webkit-animation-name: Pulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
-}
-.pulse-3 {
-  /*-webkit-animation-name: Pulse;
-  -webkit-animation-duration: 3s;
-  -webkit-animation-iteration-count: infinite;*/
 }
 
 .pulse-star-1 {
@@ -153,9 +167,11 @@ $option-width: 70px;
     transform: translate(100vw, 50vh) scale(0);
     transition: all linear 36s;
   }
+
   .bubble:first-child {
     display: none;
   }
+
   .bubble {
     width: 300px;
     height: 300px;
@@ -177,7 +193,6 @@ $option-width: 70px;
       }
     }
   }
-
 
   .star {
     height: 15px;
@@ -206,75 +221,53 @@ $option-width: 70px;
     align-items: center;
     position: absolute;
     transform: translate(calc(100vw + 40px), 50vh);
-    background-color: white;
+    background-color: $color-white;
     cursor: pointer;
     background-position: center;
     background-size: cover;
     border: solid 3px rgba(255,255,255,0.8);
     z-index: 5;
-    -webkit-box-shadow: 0 0 50px rgba(255,255,255, 1);
+    box-shadow: 0 0 50px rgba(255,255,255, 1);
     
     .label {
-      position: relative;
-      top: 120px;
-      text-align: center;
-      transform: translate(0, 100%);
-      opacity: 0;
-      transition: 0.2s all ease-in-out;
-      width: 300px;
       display: none;
-      margin-bottom: 40px;
-      
-      &:before {
-          display: block;
-          content: "";
-          width: 0;
-          height: 0;
-          border-style: solid;
-          position: relative;
-          left: 130px;
-          border-width: 0 $option-width/4 $option-width/4 $option-width/4;
-          border-color: transparent transparent white transparent;
-        }
+      opacity: 0;
+      transform: translate(0, 100%);
+      transition: 0.2s all ease-in-out;
+      top: 10rem;
+      @extend %story-popup;
+
       label {
-        color: $blue;
-        font-weight: bold;
-        font-style: italic;
-        font-size: 18px;
-        background-color: white;
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding-top: 10px;
+        @extend %story-popup--title;
+        margin-bottom: -1rem;
       }
+
       small {
-        display: block;
-        width: 100%;
-        text-align: center;
-        color: $grey;
-        background-color: white;
-        padding: 5px 0 20px 0;
+         @extend %story-popup--category;
       }
+
       button {
-        height: 40px;
-        width: 40px;
-        position: relative;
-        bottom: 15px;
-        background-color: $blue;
+        width: 4.2rem;
+        height: 4.2rem;
+        position: absolute;
+        left: 50%;
+        bottom: -2.1rem;
+        z-index: 10;
+        margin-left: -2.1rem;
         border-radius: 50%;
-        background-image: url(../images/icons/stories/plus.svg);
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: 50%;
         border: none;
+        background: transparent;
         cursor: pointer;
+        outline: none;
       }
     }
 
     &.hovered {
       .label {
-        opacity: 1;
-        transform: translate(0);
+        @media (min-width: $screen-sm-min) {
+          opacity: 1;
+          transform: translate(0);
+        }
       }
     }
     &:hover {
@@ -286,16 +279,16 @@ $option-width: 70px;
 
   .animation-wrapper {
     width: 100vw;
-    height: calc(100% - #{$menu-height});
+    height: calc(100% - #{$nav-inner-height});
     overflow: hidden;
     position: relative;
     z-index: 1;
   }
   .animated-background {
     width: 100vw;
-    height: calc(100% - #{$menu-height});
+    height: calc(100% - #{$nav-inner-height});
     position: absolute;
-    top: $menu-height;
+    top: $nav-inner-height;
     left: 0;
     z-index: 0;
     overflow: hidden;
@@ -306,8 +299,8 @@ $option-width: 70px;
     top: 0;
     width: 100%;
     z-index: 10;
-    background-color: $light-grey;
-    height: $menu-height;   
+    background-color: $gray-light;
+    height: $nav-inner-height;   
     display: flex;
 
     .container {
@@ -318,6 +311,10 @@ $option-width: 70px;
     } 
     
     .filter-wrapper {
+      .bold {
+        font-weight: 500;
+      }
+
       div {
         flex-grow: 1;
         cursor: pointer;
@@ -349,11 +346,16 @@ $option-width: 70px;
         height: 0;
         transition: height ease-in-out .35s;
         overflow: hidden;
+
+        .dropdown-inner {
+          overflow-y: auto;
+        }
         
         &.open {
           height: 400px;
-          overflow: scroll;
+          overflow-y: auto;
         }
+
         &:before {
           display: block;
           content: "";
@@ -375,14 +377,14 @@ $option-width: 70px;
           justify-content: center;
           align-items: center;
           cursor: pointer;
-          border-bottom: solid 1px $light-grey;
+          border-bottom: solid 1px $gray-light;
           
           &:last-child {
             border-bottom: none;
           }
           
           &:hover {
-            color: $light-grey;
+            color: $gray-light;
           }
         }
       }
@@ -407,12 +409,14 @@ $option-width: 70px;
     }
   }
 
-
+  // Slider
   #slider {
-    position: absolute;
-    width: 1140px;
-    left: calc(50% - 1140px/2);
+    width: 100%;
+    max-width: 640px;
     height: 10px;
+    margin-left: -320px;
+    position: absolute;
+    left: 50%;
     bottom: 50px;
     cursor: pointer;
     background-size: contain;
@@ -420,6 +424,21 @@ $option-width: 70px;
     z-index: 10;
     background-color: transparent;
     border: none;
+
+    @media (min-width: $screen-md-min) {
+      max-width: 840px;
+      margin-left: -420px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      width: $container-md - $grid-gutter;
+      max-width: 100%;
+      margin-left: -($container-md - $grid-gutter) / 2;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
     
     &.ui-state-disabled {
       opacity: 0.5;
@@ -472,12 +491,6 @@ $option-width: 70px;
       border: none;
     }
   }
-
-  
-
-
-
-  
 }
 
 .story-overlay {
@@ -486,14 +499,12 @@ $option-width: 70px;
   width: 100%;
   left: 0;
   top: 0;
-  
-  z-index: 20;
+  z-index: $z-index-story-overlay;
   display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   align-content: center;
-  
   
   .backdrop {
     opacity: 0;
@@ -512,128 +523,215 @@ $option-width: 70px;
   &.fade-in .backdrop {
     opacity: 1;
   }
+
+  // Modal window
   .modal {
-    background-color: white;
-    padding: 30px 50px 30px 150px;
+    max-width: 67rem;
+    margin: 0 $grid-gutter-width;
+    padding: 3rem 2.4rem 4rem 2.4rem;
     position: relative;
-    width: 1000px;
-    color: $dark-grey;
-    transform: translate(0,-100%);
+    border-radius: 10px;
+    background-color: $color-white;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
     opacity: 0;
+    transform: translate(0, -100%);
     transition: all 0.5s ease-in-out;
+
+    @media (min-width: $screen-sm-min) {
+      margin: 0;
+      padding: 3rem 4rem 5rem 4rem;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 4rem;
+      width: calc(100% - 8rem);
+      height: 14rem;
+      background: $color-white;
+      background: -webkit-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+      background: -o-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+      background: -moz-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    }
     
     &.drop {
       transform: translate(0);
       opacity: 1;
     }
-    #image {
+
+    .modal-inner {
+      max-height: 50rem;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        background-color: #EBEBEB;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $mat-brand-primary;
+        outline: none;
+      }
+
+      > label {
+        @extend %small;
+        font-weight: 500;
+        color: $mat-brand-primary;
+      }
+
+      h2 {
+        padding-bottom: .5rem;
+        color: $blue-dark;
+        font-weight: 300;
+      }
+    }
+
+    // Close modal window button
+    .i-close {
+      display: block;
+      width: 4.3rem;
+      height: 4.3rem;
       position: absolute;
+      top: -2rem;
+      right: -2rem;
       border-radius: 50%;
-      height: 200px;
-      width: 200px;
-      padding: 10px;
-      background: #03add8;
-      background: linear-gradient(to right, #3c398d 0%, #41afd3 100%);
-      background: linear-gradient(to right, #3c398d 0%, #41afd3 100%);
-      background: linear-gradient(to right, #3c398d 0%, #41afd3 100%);
-      object-fit: cover;
-      left: -100px;
-      top: 60px;
+      background-color: $mat-brand-primary;
+      @include icons('i-close');
+      background-size: 15px auto;
+      background-position: center center;
+      cursor: pointer;
     }
-    .modal-header {
-      display: flex;
-      
-      label {
-        font-weight: 300;
-        text-transform: uppercase;
-        font-size: 13px;
-      }
-      span {
-        position: absolute;
-        background-color: $blue;
-        color: white;
-        font-weight: 300;
-        width: 40px;
-        height: 40px;
-        right: -15px;
-        top: -15px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        line-height: 1;
-        font-size: 20px;
-      }
-    }
-    .modal-body {
-      margin-top: 50px;
-      
-      label {
-        color: $blue;
-        font-size: 17px;
-      }
-      #name {
-        color: #21468b;
-        font-style: italic;
-        font-size: 30px;
-      }
-    }
-    .sec {
-      display: flex;
-      margin-right: 50px;
-      img {
-        height: 20px;
-        margin: 0 10px;
-      }
-    }
-    #gallery {
+
+    // Modal gallery
+    .modal-gallery {
       display: flex;
       max-height: 100px;
+      margin-top: 4rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+     -webkit-overflow-scrolling: touch;
       
       img {
         height: 100px;
-        margin-right: 20px;
+        margin-right: 2rem;
         
         &:last-child {
           margin-right: 0;
         }
       }
+
+      #gallery {
+        display: flex;
+        flex-shrink: 0;
+      }
     }
-    #role {
-      font-weight: 400;
-      font-size: 18px;
-      letter-spacing: 1px;
-    }
+
+    // Modal text content
     #content {
-      max-height: 200px;
-      overflow-y: scroll;
-      &::-webkit-scrollbar {
-        width: 5px;
-        background-color: #efefef;
+      padding: 4rem 4rem 0 0;
+      @extend %small-extra;
+    }
+
+    // Modal action section
+    .modal-action {
+      display: flex;
+      margin-top: 2.2rem;
+
+      label {
+         @extend %h5;
+         padding-bottom: 0;
+         @include font-size(1.2);
+
+         span {
+          @media (max-width: $screen-xs-max) {
+            display: none;
+          }
+        }
       }
 
-      &::-webkit-scrollbar-thumb {
-        background-color: $blue;
-        outline: 1px solid $grey;
-      } 
-    }
-  }
-  #link, #link label {
-    cursor: pointer;
-    display: flex;
-  }
-  #link-copied {
-    font-size: 15px;
-    border: solid 1px #bfbfbf;
-    padding: 0 10px;
-    color: #808080;
-    font-weight: 300;
-    opacity: 0;
-    transition: 0.3s all ease-in-out;
+      &--social a,
+      .i-link {
+        display: inline-block;
+        width: 1.8rem;
+        height: 1.8rem;
+        position: relative;
+        background-size: auto auto;
+        background-position: center center;
+      }
 
-    &.show {
-      opacity: 1;
+      &--social {
+        padding-right: 2rem;
+        font-size: 0;
+
+        a {
+          margin: 0 6px;
+          top: 3px;
+        }
+
+        .i-facebook {
+          @include icons('stories/facebook');
+        }
+
+        .i-twitter {
+          @include icons('stories/twitter');
+        }
+
+        .i-mail {
+          @include icons('stories/mail');
+        }
+      }
+
+      &--quicklink {
+        display: flex;
+        position: relative;
+
+        #link {
+          display: inline-block;
+          font-size: 0;
+          color: $gray-darker;
+        }
+
+        label {
+          cursor: pointer;
+        }
+
+        .i-link {
+          @include icons('stories/link');
+          margin-left: .5rem;
+          top: 4px;
+
+          @media (min-width: $screen-sm-min) {
+            margin-left: 1.5rem;
+          }
+        }
+
+        #link-copied {
+          padding: 0 1rem;
+          margin-left: 1rem;
+          position: relative;
+          top: 2px;
+          @extend %small-extra;
+          color: $gray-base;
+          border: solid 1px #bfbfbf;
+          opacity: 0;
+          transition: 0.3s all ease-in-out;
+
+          @media (max-width: $screen-xs-max) {
+            position: absolute;
+            top: 2.5rem;
+            left: -1rem;
+            white-space: nowrap;
+          }
+
+          &.show {
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 }
