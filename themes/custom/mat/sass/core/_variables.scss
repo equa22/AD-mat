@@ -149,6 +149,7 @@ $z-index-header-mobile:  100;
 $z-index-carousel:       105;
 $z-index-mobile-menu:    110;
 $z-index-search-overlay: 120;
+$z-index-story-overlay:  220;
 
 
 // - - - - - - - - - - - - - - - - - - - -
@@ -162,6 +163,9 @@ $border-radius-large:  33px;
 // Header
 $header-height:        12.5rem;
 $header-height-mobile: 8rem;
+
+// Inner navigation (on gray bg)
+$nav-inner-height:     80px;
 
 // Tables
 $table-border-color: #E3E3E3;
