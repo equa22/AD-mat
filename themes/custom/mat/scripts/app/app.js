@@ -261,17 +261,18 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-  // Masonry and ScrollReveal init for pillars
+  // Pillars scrollReveal
   Drupal.behaviors.pillars = {
     attach: function (context, settings) {
-
-
       $(window).scroll(function(e) {
-        $('.paragraph--type--pillar-group-item').each(function() {
-         if($(this).isInViewport($(this).height()/2) && !$(this).hasClass('animate')) {
-          $(this).addClass('animate');
-         } 
-        }); 
+        var w_w = $(window).width();
+        if (w_w >= 768) {
+          $('.paragraph--type--pillar-group-item').each(function() {
+            if($(this).isInViewport($(this).height()/2) && !$(this).hasClass('animate')) {
+              $(this).addClass('animate');
+            } 
+          });
+        }
       });
     }
   };
