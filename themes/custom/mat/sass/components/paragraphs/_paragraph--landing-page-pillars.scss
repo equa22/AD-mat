@@ -116,7 +116,7 @@
     
       @media (min-width: $screen-sm-min) {
         width: 50%;
-        visibility: hidden;
+        //visibility: hidden;
       }
 
       .paragraph--type--pillar-group-item {
@@ -139,6 +139,7 @@
         .dot {
           position: absolute;
           top: 5.3rem;
+
 
           @media (max-width: $screen-xs-max) {
             display: none;
@@ -284,6 +285,8 @@
           &:before {
             right: 0;
             left: auto;
+            
+        
           }
 
           .dot {
@@ -334,5 +337,38 @@
         }
       }
     }
+  }
+}
+
+.field--name-field-pillar-group-items .field__item:nth-of-type(2n) .paragraph--type--pillar-group-item {
+  transform: translate(100%, 0);
+  &.animate {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+.paragraph.paragraph--type--pillar-group-item {
+  transition: transform .9s ease-in-out, opacity 1.3s linear;
+  transform: translate(-100%, 0);
+  opacity: 0;
+
+  &.animate {
+    opacity: 1;
+    transform: translate(0);
+
+    .dot {
+      transform: scale(1)!important;
+    }
+  }
+}
+.dot {
+  &:before {
+    transition: 0.5s transform ease-in-out .7s;
+    transform: scale(0);
+  }
+}
+.animate {
+  .dot:before {
+    transform: scale(1);
   }
 }
