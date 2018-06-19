@@ -1,7 +1,27 @@
 (function($) {
   'use strict';
 
+$.fn.isInViewport = function(props) {
+  var elementTop = $(this).offset().top + props;
+  var elementBottom = elementTop + $(this).outerHeight();
+  var viewportTop = $(window).scrollTop();
+  var viewportBottom = viewportTop + $(window).height();
+  return elementBottom > viewportTop && elementTop < viewportBottom;
+ };
+ 
+ function getShadow(angle, distance, spread, size) {
+    angle = (180 - angle) * (Math.PI)/180;  // convert to radians
+    var h_shadow = Math.round(Math.cos(angle)*distance);
+    var v_shadow = Math.round(Math.sin(angle)*distance);
+    spread = size*spread / 100;
+    var blur = size - spread;
 
+    return (h_shadow + 'px ' +  (v_shadow) + 'px ' +  size + 'px rgba(0,0,0,' + (size/100 < 0.4 ? size/100 : 0.4) + ')');
+  }
+
+  
+  
+ 
 
   // Toggling visibility of the main navigation (on mobile)
   Drupal.behaviors.mobileNavigation = {
@@ -74,7 +94,7 @@
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
-          $('.menu--main li.menu-item--expanded > a, .menu--main li.menu-item--expanded > span', context).on('click', function(e){
+          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).on('click', function(e){
             e.preventDefault();
             var element = $(this).parent('li');
             if (element.hasClass('active')) {
@@ -91,6 +111,21 @@
       accordionMenu();
       $(window).resize(function() {
         accordionMenu();
+      });
+    }
+  };
+
+  // Accordion for the sidebar
+  Drupal.behaviors.accordionNavigationSidebar = {
+    attach: function (context, settings) {
+      $('.region-sidebar li.menu-item--expanded', context).first().find('a').addClass('active');
+      $('.region-sidebar li.menu-item--expanded', context).first().find('ul').slideDown();
+      $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
+        e.preventDefault();
+        $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
+        $('.region-sidebar li.menu-item--expanded > ul', context).slideUp();
+        $(this).toggleClass('active');
+        $(this).parent().find('ul').slideToggle();
       });
     }
   };
@@ -153,7 +188,7 @@
   // Carousel
   Drupal.behaviors.carousel = {
     attach: function (context, settings) {
-      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a', context);
+      var $ca_elem = $('.paragraph--type--carousel .field--name-field-slide-items > .field__item a, .search-result.result-story-profile .search-result--heading > a', context);
       $ca_elem.each(function(){
         var $ca_get_id = $(this).attr('href').split('/');
         $(this).attr('href', '/stories#'+$ca_get_id[$ca_get_id.length-1]);
@@ -221,27 +256,96 @@
   }
 
 
+  var animateCounting;
+
+  function setCountInterval(field, interval, limit, counter) {
+    animateCounting = setInterval(function() {
+      counter ++;
+      $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+      
+      if(counter >= limit) {
+        clearInterval(animateCounting);
+      }
+
+    }, interval);
+  }
+
+  function splitTextInSpan(text) {
+    var html = "";
+    for(var i = 0; i < text.length; i++) {
+      html += '<span class="shine-letter">' + text[i] +'</span>';
+    }
+
+    return html;
+  }
   function animateNumber(field) {
     $(field).data('animated', true);
     $(field).css({'transition': $(field).data('count-repeat')*$(field).data('count-interval') + 'ms opacity linear', 'opacity': 1});
-    
+    $(field).attr('data-delay', 0);
+    var $shine = $(field).next('.shine').length > 0 ? $($(field).next('.shine')[0]) : null;
+
     var counter = 0;                                // count iterations
+
     var animateCounting = setInterval(function() {
       counter ++;
+
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-      if(counter == $(field).data('count-repeat')) {
+      if($shine) {$shine.html($(field).text());}
+
+
+      if(counter >= $(field).data('count-repeat')/2) {
         clearInterval(animateCounting);
+        animateCounting = setInterval(function() {
+          counter ++;
+          
+          $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+          if($shine) {$shine.html($(field).text());}
+
+
+          if(counter >= $(field).data('count-repeat')/4*3) {
+            clearInterval(animateCounting);
+            animateCounting = setInterval(function() {
+              counter ++;
+              
+              $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+              if($shine) {$shine.html($(field).text());}
+
+
+              if(counter >= $(field).data('count-repeat')/10*9) {
+                clearInterval(animateCounting);
+                
+                animateCounting = setInterval(function() {
+                  counter ++;
+                  
+                  $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
+                  if($shine) {$shine.html(splitTextInSpan($(field).text()));}
+
+
+                  if(counter == $(field).data('count-repeat')) {
+                    clearInterval(animateCounting);
+                  }
+
+                }, $(field).data('count-interval')+100);
+              }
+
+            }, $(field).data('count-interval')+60);
+          }
+        }, $(field).data('count-interval')+30);
       }
     }, $(field).data('count-interval'));
   }
 
 
   // "Why give life" page animations
-  Drupal.behaviors.highlightSlide = {
+  Drupal.behaviors.countingNumbersAnimation = {
     attach: function (context, settings) {
       var $numbers = $('.field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
-      
-      $numbers.toArray().forEach(function(el) {
+      var $shine = $('.paragraph--type--landing-page-counter .field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
+      $shine.each(function() {
+        $(this).after($('<div/>', {'class': 'shine field--name-field-number'}));
+      });
+
+      $numbers.toArray().forEach(function(el, i) {
         var text = $(el).text();
         
         $(el).attr({
@@ -253,8 +357,14 @@
           'data-count-holder': text.search(',') < 0 ? ' ' : '0'
         });
 
-        $(el).css('opacity', 0.6);                                     // low opacity for transition effect
+                                        
         $(el).text(convertInString(0, $(el).text().replace(',', '').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
+        
+        if($(el).next('.shine')) {
+          $(el).next('.shine').html($(el).text());
+        } else {
+          $(el).css('opacity', 0.6);  // low opacity for transition effect
+        }
       });
 
       $(window).scroll(function(e) {
@@ -266,4 +376,106 @@
       });
     }
   };
+
+  Drupal.behaviors.scrollAnimations = {
+    attach: function(context, settings) {
+      var lastScrollTop = 0, direction;
+      var $paralaxWrapper = $('.paragraph--type--landing-page-stories');
+
+
+      var parallaxElementsParent = ['.hearts-container', '.paragraph--type--landing-page-stories'];
+
+      parallaxElementsParent.forEach(function(parent) {
+        $(parent + ' .parallax').each(function() {
+          $(this).css({'top': ($(this).offset().top - $(parent).offset().top) + 'px', 'bottom': 'auto'});
+        });
+      });
+      
+
+    // drop shine on element
+    $(window).on( "mousemove scroll", function( event ) {
+      $('.shine-letter').each(function(i, el) {
+        if($(this).isInViewport(0)) {
+
+          var elPosition = {
+            x: $(el).offset().left + $(el).width()/2,
+            y: $(el).offset().top + $(el).height()/2
+          };
+
+          var angleRadians = Math.atan2( elPosition.x - event.pageX,  elPosition.y - event.pageY)* 180 / Math.PI;
+          var size = Math.sqrt(Math.pow((elPosition.x - event.pageX), 2) + Math.pow((elPosition.y - event.pageY), 2));
+          $(this).css('text-shadow', getShadow(angleRadians + 90, (size/10 < 30 ? size/10 : 30), (size/10 < 80 ? size/10 : 80), (size/10 < 80 ? size/10 : 80)));
+        }
+      });
+    });
+     $(window).scroll(function(event){
+       var st = $(this).scrollTop();
+       if (st > lastScrollTop){
+         direction = 'down';
+       } else {
+        direction = 'up';
+       }
+       lastScrollTop = st;
+     });
+
+     $(window).on('scroll', function() {
+      var mobile_device = $('html').hasClass('device-mobile');  // check if device is mobile
+
+
+      $('.parallax').each(function() {
+       if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
+        var currentPosition = Number($(this).css('top').replace('px', ''));
+        if(direction == 'down') {
+         $(this).css('top', currentPosition - Number($(this).data('parallax-depth')) + 'px');
+        } else {
+         $(this).css('top', currentPosition + Number($(this).data('parallax-depth')) + 'px');
+        }
+       }
+      });
+      
+      // get breaking point for animation
+      var myth_fact_breakpoint =  mobile_device ? $(window).height()/4*3 : 100;
+
+      $('.paragraph--type--myth-vs-fact').each(function() {
+       if($(this).isInViewport(myth_fact_breakpoint)) {
+        $(this).addClass('animate');
+       } else if(mobile_device) {
+          $(this).removeClass('animate');
+       }
+      });  
+     });
+    }
+  };
+
+  // Focus labels
+  Drupal.behaviors.labelFocus = {
+    attach: function (context, settings) {
+      $('form input', context).keyup(function() {
+        if(!$.trim(this.value).length) {
+          $(this).parent().find('label').removeClass('labelfocus');
+        } else { 
+          $(this).parent().find('label').addClass('labelfocus');
+        }
+      });
+    }
+  };
+
+  // Focus labels
+  Drupal.behaviors.limitCharacters = {
+    attach: function (context, settings) {
+      $('#node-story-profile-story-submission-form .step2-content', context).append('<p id="charNum">0/500 Words</p>');
+      function countChar(val) {
+        var len = val.value.length;
+        if (len >= 501) {
+          val.value = val.value.substring(0, 501);
+        } else {
+          $('#charNum').text(len+'/500 Words');
+        }
+      }
+      $('#node-story-profile-story-submission-form textarea', context).on('keyup', function() {
+        countChar(this);
+      });
+    }
+  };
 })(jQuery);
+
