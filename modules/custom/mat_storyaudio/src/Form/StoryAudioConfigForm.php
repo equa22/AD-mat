@@ -110,12 +110,15 @@ class StoryAudioConfigForm extends ConfigFormBase {
     $get_mp3 = File::load($fid_mp3);
     $get_ogg = File::load($fid_ogg);
   
-
-    $config->set('mat_storyaudio.audio_file_mp3', $get_mp3->id());
-    $config->set('mat_storyaudio.audio_file_ogg', $get_ogg->id());
+    if (isset($get_mp3)) {
+      $config->set('mat_storyaudio.audio_file_mp3', $get_mp3->id());
+    }
+    if (isset($get_ogg)) {
+      $config->set('mat_storyaudio.audio_file_ogg', $get_ogg->id());
+    }
     
     $config->save();
- 
+    drupal_flush_all_caches();
     return parent::submitForm($form, $form_state);
  
   }
