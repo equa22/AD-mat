@@ -44,15 +44,15 @@
     @include font-size(15);
     font-family: $font-flama;
     cursor: default;
-    font-size: 8rem;
-    //@include gradient-blue();
 
-    background: -webkit-linear-gradient($blue-darker, $blue-light);
+    @include gradient(90deg, #2F4493, #2BAEDE, #2F4493);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    z-index: 1;
+
+    z-index: 2;
     position: relative;
     top: 0;
+
 
     @media (min-width: $screen-sm-min) {
       position: absolute;
@@ -71,6 +71,11 @@
       z-index: 0;
       position: absolute;
       top: 0;
+    }
+
+    &.number-shadow {
+      text-shadow: 0 -2px 0 #0BAADB;
+      z-index: 1;
     }
   }
 }

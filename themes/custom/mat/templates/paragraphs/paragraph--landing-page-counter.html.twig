@@ -50,6 +50,9 @@
       {{ content.contextual_links }}
       <div class="container">
           {{ content.field_number }}
+          <div class="field field--name-field-number field--type-string field--label-hidden entity_type-paragraph field__item number-shadow">
+            {{ content.field_number[0]['#context'].value }}
+          </div>
 
           <div class="counter--content">
               <h2>{{ content.field_title_formatted }}</h2>
