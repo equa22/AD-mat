@@ -33,11 +33,11 @@ function mat_storyaudio_preprocess_views_view(&$variables) {
     }
 
     if ($enable_audio == true && isset($config_mp3) && isset($config_ogg)) {
-      $variables['audio_field'] = '<div class="audio-player"><audio controls autoplay loop>
+      $variables['audio_field'] = '<div class="audio-player"><audio controls autoplay loop muted>
                                       <source src="'.$get_ogg.'" type="audio/ogg">
                                       <source src="'.$get_mp3.'" type="audio/mpeg">
                                     </audio></div>';
-      $variables['audio_mute_button'] = '<a href="#" class="audio-mute"><span class="audio-icon"></span><span class="audio-text">'.t('Stop audio').'</span></a>';
+      $variables['audio_mute_button'] = '<a href="#" class="audio-mute muted"><span class="audio-icon"></span><span class="audio-text">'.t('Play audio').'</span></a>';
     }
     
   }
