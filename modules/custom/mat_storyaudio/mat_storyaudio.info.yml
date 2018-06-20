@@ -1,0 +1,6 @@
+name: MAT Story Audio
+description: Story landing page - audio file module
+package: Custom
+type: module
+version: 1.0
+core: 8.x

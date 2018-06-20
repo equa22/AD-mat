@@ -1,0 +1,51 @@
+.audio-player {
+  display: none;
+}
+
+.audio-mute {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto 10px;
+  z-index: 1;
+  display: block;
+  width: 125px;
+  height: 25px;
+  line-height: 20px;
+  
+
+  /* Disable CSS transitions*/
+  -o-transition-property: none !important;
+  -moz-transition-property: none !important;
+  -ms-transition-property: none !important;
+  -webkit-transition-property: none !important;
+  transition-property: none !important;
+}
+
+.audio-mute .audio-icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-image: url("../img/audio_sprite.png");
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  background-position: -25px 0;
+}
+
+.audio-mute .audio-icon,
+.audio-mute .audio-text {
+  float: left;
+}
+
+.audio-mute.muted .audio-icon {
+  background-position: 0 0;
+}
+
+.audio-mute .audio-text {
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 10px;
+  margin-top: 2px;
+}

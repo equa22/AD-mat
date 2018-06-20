@@ -1,0 +1,8 @@
+audio:
+  js:
+    js/story-audio.js: {}
+  css:
+    layout:
+      css/storyaudio.css: {}
+  dependencies: 
+    - core/jquery

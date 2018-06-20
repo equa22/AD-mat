@@ -1,0 +1,4 @@
+mat_storyaudio.config:
+  title: 'Story Landing Audio Settings'
+  parent: system.admin_config
+  route_name: 'mat_storyaudio.config'
