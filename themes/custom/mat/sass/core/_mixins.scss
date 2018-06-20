@@ -135,7 +135,7 @@
     background-color: $mat-brand-primary;
 
     &:hover {
-      background-color: $blue-dark;
+      background-color: $blue;
     }
   }
 
@@ -143,7 +143,7 @@
     background-color: $blue-dark;
 
     &:hover {
-      background-color: darken($blue-dark, 10%);
+      background-color: $blue;
     }
   }
 }

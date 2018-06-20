@@ -30,8 +30,12 @@
       @include btn-secondary();
 
       @media (max-width: $screen-xs-max) {
-        border-color: #212529;
+        border-color: $gray-darker;
         color: $gray-darker;
+
+        &:hover {
+          background-color: $gray-darker;
+        }
       }
     }
   }

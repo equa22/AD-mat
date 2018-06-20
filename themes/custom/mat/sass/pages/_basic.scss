@@ -107,6 +107,18 @@
   }
 
   // Gradients
+  &.color-blue {
+    .basic-page-header--gradient {
+      @include gradient-blue();
+    }
+
+    .basic-page-header--content {
+      @media (max-width: $screen-xs-max) {
+        @include gradient-blue();
+      }
+    }
+  }
+
   &.color-green {
     .basic-page-header--gradient {
       @include gradient-green();
@@ -145,7 +157,6 @@
 }
 
 // Blue Gradient for Basic page, News Article
-.basic-page-header.color-blue,
 .news-article--bg .news-article-header {
   &--gradient {
     @include gradient-blue();

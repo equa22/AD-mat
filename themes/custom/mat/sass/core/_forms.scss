@@ -1,16 +1,78 @@
 .form-item {
   margin-bottom: 15px;
 
-  input.form-text,
-  input.form-email,
-  textarea{
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],  
+  textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid $input-border;
+    border: 3px solid $input-border-color;
+    border-radius: $input-border-radius;
+    background-color: $input-bg-color;
+    
+    &.has-error {
+      border-color: $color-red;
+    }
+  }
+
+  textarea {
+    padding: 3rem;
+    @extend %small;
+    color: $gray-darker;
   }
 }
 
+// Buttons
 input.form-submit {
-  //@include cta('dark');
   @include btn-primary();
+}
+
+// Animated labels
+%labelfocus {
+  position: relative;
+  padding-top: 3rem;
+
+  label {
+    position: absolute;
+    cursor: text;
+    color: $gray-dark;
+    left: 2.5rem;
+    top: 3.7rem;
+    transition: all .2s;
+
+    &.labelfocus {
+      top: 0;
+      left: 0;
+      @include font-size(1.2);
+    }
+
+    @media (max-width: $screen-sm-max) {
+      top: 4rem;
+    }
+  }
+}
+
+// Forms
+//
+// Webform Contact, Login form
+.webform-submission-contact-form,
+.user-login-form {
+  .form-item.js-form-type-textfield,
+  .js-form-type-email,
+  .js-form-type-textarea,
+  .js-form-type-password {
+    @extend %labelfocus;
+  }
+
+  .form-actions {
+    margin-top: 3.5rem;
+  }
+}
+
+.user-login-form {
+  @media (min-width: $screen-sm-min) {
+    width: 55rem;
+    margin: 0 auto;
+  }
 }

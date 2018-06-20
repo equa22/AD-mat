@@ -347,39 +347,14 @@
 form.node-story-profile-story-submission-form {
   .form-item.js-form-type-textfield,
   .js-form-type-email {
-    position: relative;
-    padding-top: 3rem;
-    label {
-      position: absolute;
-      cursor: text;
-      color: $gray-dark;
-      left: 2.5rem;
-      top: 3.7rem;
-      transition: all .2s;
-      &.labelfocus {
-        top: 0;
-        left: 0;
-        @include font-size(1.2);
-      }
-      @media (max-width: $screen-sm-max) {
-        top: 4rem;
-      }
-    }
+    @extend %labelfocus;
   }
   
   input[type="text"],
   input[type="email"],
   textarea {
-    border: 3px solid $color-white;
-    border-radius: 10px;
-    &.has-error {
-      border-color: $color-red;
-    }
-  }
-  textarea {
-    padding: 3rem;
-    @extend %small;
-    color: $gray-darker;
+    border-color: $color-white;
+    background-color: $color-white;
   }
 
   .js-webform-radios {
