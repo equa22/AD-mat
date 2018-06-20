@@ -9,8 +9,16 @@
 .paragraph--type--landing-page-pillars {
   position: relative;
   top: -3.8rem;
+
+  .field--name-field-pillar-groups {
+    > .field__item + .field__item {
+      @media (max-width: $screen-xs-max) {
+        padding-top: 7.5rem;
+      }
+    }
+  }
 }
-    
+
 .paragraph--type--pillar-group {
   position: relative;
 
@@ -112,10 +120,9 @@
     @extend %line-vertical;
 
     > .field__item {
-      min-height: 46rem;
-    
       @media (min-width: $screen-sm-min) {
         width: 50%;
+        min-height: 46rem;
       }
 
       .paragraph--type--pillar-group-item {
