@@ -1,0 +1,7 @@
+mat_storyaudio.config:
+  path: '/admin/config/mat_storyaudio/config'
+  defaults:
+    _form: '\Drupal\mat_storyaudio\Form\StoryAudioConfigForm'
+    _title: 'Story Landing Audio Settings'
+  requirements:
+    _permission: 'administer site configuration'

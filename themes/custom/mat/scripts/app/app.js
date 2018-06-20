@@ -36,10 +36,10 @@ $.fn.isInViewport = function(props) {
   // Accordions for newsroom, sidebar
   Drupal.behaviors.newsroomAccordion = {
     attach: function (context, settings) {
-      $('#views-exposed-form-news-landing-page-1 > fieldset', context).first().addClass('active');
-      $('#views-exposed-form-news-landing-page-1 fieldset legend', context).first().addClass('active');
-      $('#views-exposed-form-news-landing-page-1 > fieldset .fieldset-wrapper', context).first().slideDown();
-      $('#views-exposed-form-news-landing-page-1 fieldset legend', context).on('click', function(e) {
+      $('#views-exposed-form-news-landing-page-1 > fieldset', context).addClass('active');
+      $('#views-exposed-form-news-landing-page-1 fieldset legend', context).addClass('active');
+      $('#views-exposed-form-news-landing-page-1 > fieldset .fieldset-wrapper', context).slideDown();
+      /*$('#views-exposed-form-news-landing-page-1 fieldset legend', context).on('click', function(e) {
         e.preventDefault();
         $('#views-exposed-form-news-landing-page-1 fieldset', context).removeClass('active');
         $('#views-exposed-form-news-landing-page-1 fieldset .fieldset-wrapper', context).slideUp();
@@ -47,7 +47,7 @@ $.fn.isInViewport = function(props) {
         $(this).toggleClass('active');
         $(this).parent().toggleClass('active');
         $(this).next().slideDown();
-      });
+      });*/
     }
   };
 
@@ -118,8 +118,8 @@ $.fn.isInViewport = function(props) {
   // Accordion for the sidebar
   Drupal.behaviors.accordionNavigationSidebar = {
     attach: function (context, settings) {
-      $('.region-sidebar li.menu-item--expanded', context).first().find('a').addClass('active');
-      $('.region-sidebar li.menu-item--expanded', context).first().find('ul').slideDown();
+      $('.region-sidebar li.menu-item--active-trail', context).first().find('a').addClass('active');
+      $('.region-sidebar li.menu-item--active-trail', context).first().find('ul').slideDown();
       $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
         e.preventDefault();
         $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
@@ -169,7 +169,7 @@ $.fn.isInViewport = function(props) {
    * @param delay_ timeout delay in ms [int]
    */
   function typeText($el, parent, delay) {
-    console.log($el);
+    //console.log($el);
     clearInterval(write);                   // clear interval if not done yet
     var text = $.trim($el.text()), title = '', counter = 0;
     $el.text('');                        // set text to empty

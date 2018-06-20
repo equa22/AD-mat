@@ -1,0 +1,44 @@
+<?php
+
+use Drupal\views\ViewExecutable;
+use Drupal\file\Entity\File;
+
+/**
+* Implements hook_views_pre_render().
+*/
+function mat_storyaudio_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'stories_landing')) {
+    $view->element['#attached']['library'][] = 'mat_storyaudio/audio';
+  }
+}
+
+function mat_storyaudio_preprocess_views_view(&$variables) {
+  $view = $variables['view'];
+  $id = $view->storage->id();
+  if ($id == 'stories_landing') {
+    
+    //$variables['audio_field'] = 'audio field';
+
+    // get config values from admin/config/mat_storyaudio/config
+    $config = \Drupal::config('mat_storyaudio.settings');
+    $enable_audio = $config->get('mat_storyaudio.enable_audio');
+    $config_mp3 = $config->get('mat_storyaudio.audio_file_mp3');
+    $config_ogg = $config->get('mat_storyaudio.audio_file_ogg');
+
+    if (isset($config_mp3)) { 
+      $get_mp3 = file_create_url(File::load($config->get('mat_storyaudio.audio_file_mp3'))->getFileUri());
+    }
+    if (isset($config_ogg)) { 
+      $get_ogg = file_create_url(File::load($config->get('mat_storyaudio.audio_file_ogg'))->getFileUri());
+    }
+
+    if ($enable_audio == true && isset($config_mp3) && isset($config_ogg)) {
+      $variables['audio_field'] = '<div class="audio-player"><audio controls autoplay loop muted>
+                                      <source src="'.$get_ogg.'" type="audio/ogg">
+                                      <source src="'.$get_mp3.'" type="audio/mpeg">
+                                    </audio></div>';
+      $variables['audio_mute_button'] = '<a href="#" class="audio-mute muted"><span class="audio-icon"></span><span class="audio-text">'.t('Play audio').'</span></a>';
+    }
+    
+  }
+}

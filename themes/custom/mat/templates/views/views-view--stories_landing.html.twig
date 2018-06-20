@@ -37,6 +37,9 @@
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
+{% autoescape false %}
+{{ audio_field }}
+{% endautoescape %}
 <div class="slider-wrapper">
   {{ title_prefix }}
   {{ title }}
@@ -67,6 +70,7 @@
 
       <div class="animation-wrapper"></div>
       <div id="slider"></div>
+      {% autoescape false %}{{ audio_mute_button }}{% endautoescape %}
     </section>
 
     <div class="story-overlay">
