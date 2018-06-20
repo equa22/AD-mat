@@ -13,6 +13,7 @@ function mat_global_page_attachments(array &$attachments) {
   }
 }
 
+/* DO NOT DELETE - WE DON'T NEED THIS FOR NOW, BUT IN CASE WE WILL
 function mat_global_preprocess_node(&$variables) {
   if ($variables['node']->getType() == 'basic_page') { 
     $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
@@ -47,3 +48,4 @@ function mat_global_preprocess_node(&$variables) {
     }
   }
 }
+*/
