@@ -105,14 +105,13 @@
 
   &.left {
     @media (min-width: $screen-sm-min) {
-      flex-direction: column;
+      justify-content: space-between;
     }
     
     .field--name-field-media {
       @media (min-width: $screen-sm-min) {
         margin: 0 1rem 0 3rem;
         order: 2;
-        align-self: flex-end;
       }
     }
   }
