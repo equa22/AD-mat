@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="14px" viewBox="0 0 21 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Email</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MAT_SubPage_NewsDetail_opt1" transform="translate(-1456.000000, -218.000000)" fill="#0BAADB" fill-rule="nonzero" stroke="#0BAADB" stroke-width="0.605">
+            <g id="Article-UI" transform="translate(0.000000, 186.000000)">
+                <g id="Share" transform="translate(969.000000, 24.000000)">
+                    <path d="M506.525,9 L488.475,9 C488.21375,9 488,9.2 488,9.44444444 L488,20.5555556 C488,20.8 488.21375,21 488.475,21 L506.525,21 C506.78625,21 507,20.8 507,20.5555556 L507,9.44444444 C507,9.2 506.78625,9 506.525,9 Z M505.385,9.88888889 L497.5,17.2666667 L489.615,9.88888889 L505.385,9.88888889 Z M488.95,10.5111111 L493.7475,15 L488.95,19.4888889 L488.95,10.5111111 Z M489.63875,20.1111111 L494.4125,15.6444444 L497.1675,18.2222222 C497.3575,18.4 497.6425,18.4 497.8325,18.2222222 L500.5875,15.6444444 L505.36125,20.1111111 L489.63875,20.1111111 Z M506.05,19.4888889 L501.2525,15 L506.05,10.5111111 L506.05,19.4888889 Z" id="Email"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
