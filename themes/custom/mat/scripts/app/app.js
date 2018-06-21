@@ -523,18 +523,5 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-  // Facebook article share
-  Drupal.behaviors.fbArticleShare = {
-    attach: function (context, settings) {
-      $('.article-share .fb a').on('click', function(e) {
-        e.preventDefault();
-        FB.ui({
-          method: 'feed'
-        });
-      });
-      
-    }
-  };
-
 })(jQuery);
 
