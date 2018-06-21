@@ -12,7 +12,7 @@ dependencies:
 id: newsroomtitle
 theme: mat
 region: content
-weight: -5
+weight: -6
 provider: null
 plugin: 'block_content:8f0f2506-ccb9-4e7f-b199-4bb4c65d91b2'
 settings:

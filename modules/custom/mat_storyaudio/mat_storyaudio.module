@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\ViewExecutable;
 use Drupal\file\Entity\File;
 
@@ -24,15 +25,19 @@ function mat_storyaudio_preprocess_views_view(&$variables) {
     $enable_audio = $config->get('mat_storyaudio.enable_audio');
     $config_mp3 = $config->get('mat_storyaudio.audio_file_mp3');
     $config_ogg = $config->get('mat_storyaudio.audio_file_ogg');
-
-    if (isset($config_mp3)) { 
+    
+    if ($config_mp3 != '' && $enable_audio == true) { 
       $get_mp3 = file_create_url(File::load($config->get('mat_storyaudio.audio_file_mp3'))->getFileUri());
+    } else {
+      $get_mp3 = null;
     }
-    if (isset($config_ogg)) { 
+    if ($config_ogg != '' && $enable_audio == true) { 
       $get_ogg = file_create_url(File::load($config->get('mat_storyaudio.audio_file_ogg'))->getFileUri());
+    } else {
+      $get_ogg = null;
     }
 
-    if ($enable_audio == true && isset($config_mp3) && isset($config_ogg)) {
+    if ($enable_audio == true && isset($get_mp3) && isset($get_ogg)) {
       $variables['audio_field'] = '<div class="audio-player"><audio controls autoplay loop muted>
                                       <source src="'.$get_ogg.'" type="audio/ogg">
                                       <source src="'.$get_mp3.'" type="audio/mpeg">

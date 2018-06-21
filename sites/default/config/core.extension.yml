@@ -62,6 +62,7 @@ module:
   mat_global: 0
   mat_news: 0
   mat_search: 0
+  mat_social: 0
   mat_story: 0
   mat_storyaudio: 0
   mat_webform: 0
