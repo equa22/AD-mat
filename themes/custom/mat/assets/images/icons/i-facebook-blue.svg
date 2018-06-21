@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="10px" height="19px" viewBox="0 0 10 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="MAT_SubPage_NewsDetail_opt1" transform="translate(-1385.000000, -217.000000)" fill="#0BAADB" fill-rule="nonzero">
-            <g id="Article-UI" transform="translate(0.000000, 186.000000)">
-                <g id="Share" transform="translate(969.000000, 24.000000)">
-                    <path d="M425.998021,10.3031669 L423.142292,10.3031669 C422.803879,10.3031669 422.427865,10.7732571 422.427865,11.3979547 L422.427865,13.5749945 L426,13.5749945 L425.459727,16.6796789 L422.427865,16.6796789 L422.427865,26 L419.05759,26 L419.05759,16.6796789 L416,16.6796789 L416,13.5749945 L419.05759,13.5749945 L419.05759,11.7489554 C419.05759,9.12898614 420.779339,7 423.142292,7 L425.998021,7 L425.998021,10.3031669 Z" id="Shape"></path>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="10" height="19" viewBox="0 0 10 19" xmlns="http://www.w3.org/2000/svg"><title>Shape</title><path d="M9.998 3.303H7.142c-.338 0-.714.47-.714 1.095v2.177H10L9.46 9.68H6.428V19h-3.37V9.68H0V6.575h3.058V4.749C3.058 2.129 4.779 0 7.142 0h2.856v3.303z" fill="#0BAADB"/></svg>
