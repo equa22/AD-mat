@@ -67,6 +67,10 @@ body.page-node-type-landing-page {
           padding-right: 0;
         }
       }
+
+      @media (min-width: $screen-lg-min) {
+        padding: 0 2.5rem;
+      }
     }
   }
 }
@@ -186,6 +190,10 @@ body.page-node-type-landing-page {
             z-index: 2;
             background-color: $color-white;
             border-bottom: 1px solid $border-color-base;
+
+            &:last-child {
+              border-bottom: none;
+            }
 
             a {
               padding: 2rem 2rem;

@@ -303,6 +303,8 @@ $option-width: 70px;
     background-color: $gray-light;
     height: $nav-inner-height;   
     display: flex;
+    @extend %small;
+    font-weight: 500;
 
     .container {
       flex-wrap: wrap;
@@ -312,49 +314,118 @@ $option-width: 70px;
     } 
     
     .filter-wrapper {
+      color: $gray-base;
+
       .bold {
-        font-weight: 500;
+        color: $color-black;
       }
 
       div {
-        flex-grow: 1;
         cursor: pointer;
+
+        @media (min-width: $screen-sm-min) {
+           padding: 0 1vw;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          &:last-child {
+            padding-right: 0;
+          }
+        }
+
+        @media (min-width: $screen-md-min) {
+          padding: 0 1.5vw;
+        }
+
+        @media (min-width: $screen-lg-min) {
+          padding: 0 2rem;
+        }
       }
     }
+
     .alphabet-wrapper {
-      justify-content: flex-end;
+      justify-content: space-between;
+
+      @media (min-width: $screen-sm-min) {
+        justify-content: flex-end;
+      }
     }
-    .filter-wrapper, .alphabet-wrapper {
+
+    .filter-wrapper,
+    .alphabet-wrapper {
       display: flex;
       flex-grow: 1;
       
-      label {
-        color: #0f5fad;
-        font-weight: bold;
+      > label {
+        color: $blue-dark;
+
+        span {
+          @media (max-width: $screen-sm-max) {
+            display: none;
+          }
+        }
+
+        i {
+          @media (min-width: $screen-sm-min) {
+            display: none;
+          }
+        }
       }
       
       .dropdown-wrapper {
         position: relative;
+        padding-right: 10px;
+        width: ($option-width + 35px);
         cursor: pointer;
-        width: $option-width;
         text-align: center;
-        
+
+        &:before {
+          display: inline-block;
+          width: 16px;
+          height: 8px;
+          position: absolute;
+          top: 7px;
+          right: 0;
+          content: '';
+          @include icons('i-chevron-nav-blue');
+          background-position: center center;
+
+          @media (min-width: $screen-sm-min) {
+            top: 34%;
+          }
+        }
       }
       .dropdown {
         position: absolute;
-        top: 50px;
-        left: 0;
+        top: 0;
+        left: 50%;
         height: 0;
+        margin-left: -42px;
         transition: height ease-in-out .35s;
         overflow: hidden;
+        border-bottom-left-radius: $border-radius-base;
+        border-bottom-right-radius: $border-radius-base;
 
         .dropdown-inner {
-          overflow-y: auto;
+          height: 0;
+          margin-top: 50px;
+          padding-bottom: 50px;
+          border-top-left-radius: $border-radius-base;
+          border-top-right-radius: $border-radius-base;
+          box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
         }
         
         &.open {
-          height: 400px;
-          overflow-y: auto;
+          &,
+          .dropdown-inner {
+            height: 400px;
+          }
+
+          .dropdown-inner {
+            overflow-y: auto;
+          }
         }
 
         &:before {
@@ -363,15 +434,16 @@ $option-width: 70px;
           width: 0;
           height: 0;
           border-style: solid;
-          position: relative;
+          position: absolute;
+          top: 32px;
           left: $option-width/4;
           border-width: 0 $option-width/4 $option-width/4 $option-width/4;
           border-color: transparent transparent white transparent;
         }
         
         .option {
-          background-color: white;
-          color: grey;
+          background-color: $color-white;
+          color: $gray-base;
           width: $option-width;
           height: $option-width;
           display: flex;
@@ -382,12 +454,25 @@ $option-width: 70px;
           
           &:last-child {
             border-bottom: none;
+            border-bottom-left-radius: $border-radius-base;
+            border-bottom-right-radius: $border-radius-base;
           }
           
           &:hover {
             color: $gray-light;
           }
         }
+      }
+
+      .selected {
+        @include font-size(2);
+        line-height: 1;
+      }
+    }
+
+    .filter-wrapper {
+      @media (max-width: $screen-xs-max) {
+        display: none;
       }
     }
   }

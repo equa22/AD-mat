@@ -292,7 +292,7 @@ let getFilters = () => {
       'text': letter,
       'data-letter': letter,
       'class': 'option'
-    }).appendTo('.dropdown').click((e) => {
+    }).appendTo('.dropdown .dropdown-inner').click((e) => {
       $('.selected').text($(e.target).data('letter'));
       animations.fade_out();
       setTimeout(() => {
