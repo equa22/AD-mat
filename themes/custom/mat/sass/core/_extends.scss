@@ -153,6 +153,27 @@
   text-transform: uppercase;
 }
 
+// MAT Blue Social share icons
+%social-share--blue {
+  font-size: 0;
+  
+  a {
+    display: inline-block;
+  }
+
+  .i-facebook {
+    @include icons('i-facebook-blue');
+  }
+
+  .i-twitter {
+    @include icons('i-twitter-blue');
+  }
+
+  .i-mail {
+    @include icons('i-mail-blue');
+  }
+} 
+
 // Adaptable columns - 100 % on mobile
 %col {
   padding-left: $grid-gutter-width;

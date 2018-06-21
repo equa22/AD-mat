@@ -26,17 +26,17 @@ class SocialButtonsBlock extends BlockBase {
       $full_url = $host.$alias;
       $node_title = $node->get('title')->getValue()[0]['value'];
     }
-    $markup = '<div class="social-share"><div class="container">
-      <div class="left"><a href="/newsroom" class="btn-news-back">'.t('Back to all news articles').'</a></div>
-      <div class="right">
-      <p>'.t('Share article').'</p>
-        <ul class="article-share">
-          <li class="fb"><a href="https://www.facebook.com/sharer/sharer.php?u='.$full_url.'" target="_blank">Facebook</a></li>
-          <li class="tw"><a href="http://twitter.com/share?text='.$node_title.'&url='.$full_url.'" target="_blank">Twitter</a></li>
-          <li class="em"><a href="mailto:?subject=I wanted you to see this site&amp;body='.$node_title.' '.$full_url.'">Email</a></li>
-        </ul>
-      </div></div>
-    </div>';
+    $markup = '<div class="nav-pre-content nav-pre-content--news"><div class="container">
+      <div class="nav-pre-content--news__back"><a href="/newsroom">'.t('Back to all news articles').'</a></div>
+      <div class="nav-pre-content--news__social-share">
+        <span>'.t('Share article').'</span>
+        <div class="news__social-share">
+          <a href="https://www.facebook.com/sharer/sharer.php?u='.$full_url.'" target="_blank" class="share-window i-facebook"></a>
+          <a href="http://twitter.com/share?text='.$node_title.'&url='.$full_url.'" target="_blank" class="share-window i-twitter"></a>
+          <a href="mailto:?subject=I wanted you to see this site&amp;body='.$node_title.' '.$full_url.'" class="i-mail"></a>
+        </div>
+      </div>
+    </div></div>';
     return [
       '#markup' => $markup,
       '#cache' => [

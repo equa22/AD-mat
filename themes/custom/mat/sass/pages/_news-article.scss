@@ -1,0 +1,176 @@
+// ========================================
+//
+// @file _news-article.scss
+// News Article specific styling
+//
+// ========================================
+
+// Precontent navigation
+// -----------------------------------------------------------------------------
+.nav-pre-content {
+  display: flex;
+  height: $nav-pre-content-height;
+  background-color: $nav-pre-content-bg;
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // Link back and Social share buttons
+  .nav-pre-content--news {
+    &__back a,
+    &__social-share span {
+      @extend %small-label;
+      color: $gray-darker;
+
+      @media (max-width: $screen-xs-max) {
+        @include font-size(1.4);
+      }
+    }
+
+    &__back {
+      a {
+        display: inline-block;
+        position:relative;
+        padding-left: 5.7rem;
+
+        @media (min-width: $screen-sm-min) {
+          padding-left: 4.2rem;
+        }
+        
+        
+        &:before {
+          content: '';
+          display: block;
+          width: 2.5rem;
+          height: 2.5rem;
+          position: absolute;
+          top: calc(50% - 12.5px);
+          left: 0;
+          @include icons('i-arrow-back');
+          background-position: center center;
+
+          @media (min-width: $screen-sm-min) {
+            width: 2rem;
+            height: 2rem;
+            top: calc(50% - 10px);
+            background-size: auto 20px;
+          }
+        }
+        
+      }
+    }
+
+    &__social-share {
+      display: none;
+
+      @media (min-width: $screen-sm-min) {
+        display: block;
+      }
+
+      .news__social-share {
+        display: inline-block;
+        position: relative;
+        top: 2px;
+        @extend %social-share--blue;
+
+        a {
+          width: 2rem;
+          height: 2rem;
+          margin: 0 8px;
+          position: relative;
+          top: 3px;
+          background-size: auto auto;
+          background-position: center center;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
+// News Article content
+// -----------------------------------------------------------------------------
+
+// Header with background image
+.news-article--bg .news-article-header {
+  @media (min-width: $screen-sm-min) {
+    padding: 15rem 0 11rem 0;
+  }
+
+  &--content {
+    @media (min-width: $screen-sm-min) {
+      padding-top: 4rem;
+    }
+  }
+}
+
+// Header plain (no background image)
+.news-article-header--plain {
+  text-align: center;
+  padding-top: 6.5rem;
+
+  @media (min-width: $screen-sm-min) {
+    padding-top: 8rem;
+    padding-bottom: .8rem;
+  }
+
+  h1 {
+    color: $blue-dark;
+  }
+
+  h3 {
+    color: $mat-brand-primary;
+  }
+
+  .news-article-header--content {
+    @extend %lead;
+    font-weight: 500;
+
+    padding-top: 2.5rem;
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// Content
+.news-article-content {
+  @extend .container-small-extra;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+
+  &--img {
+    padding: 1.5rem 0 7.5rem 0;
+
+    @media (max-width: $screen-xs-max) {
+      margin-left: -$grid-gutter-width;
+      margin-right: -$grid-gutter-width;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      padding-bottom: 4rem;
+    }
+
+    img {
+      margin: 0 auto;
+    }
+  }
+
+  &--summary {
+    margin-bottom: 4rem;
+  }
+}

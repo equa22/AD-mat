@@ -46,7 +46,7 @@ $link-hover-color:      $gray-dark !default;
 
 // CoTailored Brand colors
 // -----------------------------------------------------------------------------
-$brand-primary:			#484dbd !default;
+$brand-primary:			    #484dbd !default;
 $brand-primary-alt:     #7e7cce !default;
 $brand-secondary:       #333 !default;
 $brand-success:         #5cb85c !default;
@@ -88,13 +88,11 @@ $date:                  lighten($brand-primary, 20%) !default;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700');
 
 $font-flama:        Flama, Helvetica, sans-serif;
 $font-flama-bold:   Flama Bold, Helvetica, sans-serif;
 $font-flama-light:  Flama Light, Helvetica, sans-serif;
 $font-roboto:       'Roboto', sans-serif;
-$font-poppins:      'Poppins', sans-serif;
 
 $font-text:    $font-roboto;
 $font-heading: $font-flama;
@@ -110,20 +108,22 @@ $icon-root: "../images/icons/";
 // - - - - - - - - - - - - - - - - - - - -
 // Grid
 // - - - - - - - - - - - - - - - - - - - -
-$screen-xs: 414px;
-$screen-sm: 768px;
-$screen-md: 992px;
-$screen-lg: 1200px;
+$screen-iphone5: 320px;
+$screen-xs:      414px;
+$screen-sm:      768px;
+$screen-md:      992px;
+$screen-lg:      1200px;
 
 $screen-xs-min: $screen-xs;
 $screen-sm-min: $screen-sm;
 $screen-md-min: $screen-md;
 $screen-lg-min: $screen-lg;
 
-$screen-xs-max: ($screen-sm - 1);
-$screen-sm-max: ($screen-md - 1);
-$screen-md-max: ($screen-lg - 1);
-$screen-lg-max: ($screen-lg);
+$screen-iphone5-max: ($screen-iphone5);
+$screen-xs-max:      ($screen-sm - 1);
+$screen-sm-max:      ($screen-md - 1);
+$screen-md-max:      ($screen-lg - 1);
+$screen-lg-max:      ($screen-lg);
 
 // Tablet example: @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) { }
 
@@ -165,8 +165,9 @@ $border-radius-large:  33px;
 $header-height:        12.5rem;
 $header-height-mobile: 8rem;
 
-// Inner navigation (on gray bg)
-$nav-inner-height:     80px;
+// Pre content navigation (on gray bg)
+$nav-pre-content-height: 80px;
+$nav-pre-content-bg:     $gray-light;
 
 // Tables
 $table-border-color:  #E3E3E3;

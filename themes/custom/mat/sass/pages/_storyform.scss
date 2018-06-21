@@ -335,7 +335,7 @@
       padding-right: 3rem;
     }
 
-    @media (max-width: 320px) { // iPhone5
+    @media (max-width: $screen-iphone5-max) { // iPhone5
       padding-left: 7rem !important;
       padding-right: 3rem;
       background-position: 3rem center;

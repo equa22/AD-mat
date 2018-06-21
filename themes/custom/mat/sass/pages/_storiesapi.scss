@@ -71,7 +71,7 @@ $option-width: 70px;
   &.toolbar-tray-open {
     .stories-api {
       height: calc(100vh - 300px);
-      min-height: 630px;
+      min-height: 700px;
     }
   }
 }
@@ -280,16 +280,16 @@ $option-width: 70px;
 
   .animation-wrapper {
     width: 100vw;
-    height: calc(100% - #{$nav-inner-height});
+    height: calc(100% - #{$nav-pre-content-height});
     overflow: hidden;
     position: relative;
     z-index: 1;
   }
   .animated-background {
     width: 100vw;
-    height: calc(100% - #{$nav-inner-height});
+    height: calc(100% - #{$nav-pre-content-height});
     position: absolute;
-    top: $nav-inner-height;
+    top: $nav-pre-content-height;
     left: 0;
     z-index: 0;
     overflow: hidden;
@@ -300,8 +300,8 @@ $option-width: 70px;
     top: 0;
     width: 100%;
     z-index: 10;
-    background-color: $gray-light;
-    height: $nav-inner-height;   
+    background-color: $nav-pre-content-bg;
+    height: $nav-pre-content-height;   
     display: flex;
     @extend %small;
     font-weight: 500;
@@ -728,11 +728,9 @@ $option-width: 70px;
       margin-top: 2.2rem;
 
       label {
-         @extend %h5;
-         padding-bottom: 0;
-         @include font-size(1.2);
+        @extend %small-label;
 
-         span {
+        span {
           @media (max-width: $screen-xs-max) {
             display: none;
           }
@@ -741,33 +739,36 @@ $option-width: 70px;
 
       &--social a,
       .i-link {
-        display: inline-block;
         width: 1.8rem;
         height: 1.8rem;
         position: relative;
-        background-size: auto auto;
         background-position: center center;
       }
 
       &--social {
         padding-right: 2rem;
         font-size: 0;
+        @extend %social-share--blue;
 
         a {
           margin: 0 6px;
           top: 3px;
+
+          @media (max-width: $screen-iphone5-max) { // iPhone5
+            margin: 0 2px;
+          }
         }
 
         .i-facebook {
-          @include icons('stories/facebook');
+          background-size: auto 17px;
         }
 
         .i-twitter {
-          @include icons('stories/twitter');
+          background-size: 15px auto;
         }
 
         .i-mail {
-          @include icons('stories/mail');
+          background-size: 17px auto;
         }
       }
 
@@ -786,7 +787,8 @@ $option-width: 70px;
         }
 
         .i-link {
-          @include icons('stories/link');
+          display: inline-block;
+          @include icons('i-link-blue');
           margin-left: .5rem;
           top: 4px;
 
@@ -811,6 +813,10 @@ $option-width: 70px;
             top: 2.5rem;
             left: -1rem;
             white-space: nowrap;
+          }
+
+          @media (max-width: $screen-iphone5-max) { // iPhone5
+            left: -4rem;
           }
 
           &.show {

@@ -83,7 +83,7 @@
           left: calc(50% - 157px);
         }
 
-        @media (max-width: 320px) { // iPhone5
+        @media (max-width: $screen-iphone5-max) { // iPhone5
           left: calc(50% - 130px);
         }
 
@@ -100,7 +100,7 @@
           max-width: 314px;
         }
 
-        @media (max-width: 320px) { // iPhone5
+        @media (max-width: $screen-iphone5-max) { // iPhone5
           max-width: 260px;
         }
 
@@ -119,7 +119,7 @@
           max-width: 260px;
         }
 
-         @media (max-width: 320px) { // iPhone5
+         @media (max-width: $screen-iphone5-max) { // iPhone5
           max-width: 240px;
           left: 14%;
         }
