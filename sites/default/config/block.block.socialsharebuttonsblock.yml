@@ -1,31 +1,28 @@
-uuid: 41a6f156-ec18-4104-8050-2b5b9ec5dbf1
+uuid: af6f2e23-7553-4d83-8772-707d27a3a73f
 langcode: en
 status: true
 dependencies:
   module:
     - ctools
+    - mat_social
   theme:
     - mat
-_core:
-  default_config_hash: 2pfTwr9wsn1N5k06-0kdetb_lOGDWZ_tXFOcTwUgj3s
-id: mat_page_title
+id: socialsharebuttonsblock
 theme: mat
 region: content
-weight: -5
+weight: -7
 provider: null
-plugin: page_title_block
+plugin: social_buttons_block
 settings:
-  id: page_title_block
-  label: 'Page title'
-  provider: core
+  id: social_buttons_block
+  label: 'Social share buttons block'
+  provider: mat_social
   label_display: '0'
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
-      basic_page: basic_page
-      landing_page: landing_page
       news_article: news_article
-    negate: true
+    negate: false
     context_mapping:
       node: '@node.node_route_context:node'
