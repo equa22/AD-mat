@@ -192,7 +192,10 @@ $.fn.isInViewport = function(props) {
       $('.paragraph--type--landing-page-slider .field--name-field-slides', context).once('hero-slider').slick({
         infinite: true,
         arrows: false,
-        slidesToShow: 1
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 6000,
+        draggable: false
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // if slide changed, animate next slide
         if(currentSlide != nextSlide) {
@@ -203,7 +206,7 @@ $.fn.isInViewport = function(props) {
 
       // remove all prefix labels with 'inspired by' text and replace them with one fixed label
       $('h1 .slide--title-prefix').remove();
-      $('.slick-list.draggable').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
+      $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
       // animate first slide
       typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
     }
