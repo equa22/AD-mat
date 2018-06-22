@@ -69,8 +69,8 @@
     max-width: ($container-xs - $grid-gutter);
     margin: 20rem auto 0 auto;
 
-    @media (max-width: $screen-xs-min) {
-      margin: 20rem 25px 0 25px;
+    @media (max-width: $screen-xs-max) {
+      margin: 9rem 25px 0 25px;
     }
   }
 }

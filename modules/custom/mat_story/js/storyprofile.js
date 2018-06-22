@@ -21,6 +21,8 @@
 
       // accordion
       $('.node-story-profile-story-submission-form > .field-group-accordion-wrapper:eq(0) a.step-link', context).addClass('active').next().slideDown();
+      /*
+      DO NOT DELETE - MAYBE WE'LL NEED THIS AGAIN
       $('.node-story-profile-story-submission-form a.step-link', context).on('click', function(e) {
         var dropDown = $(this).closest('.field-group-accordion-wrapper').find('.step-content');
         $(this).closest('.node-story-profile-story-submission-form').find('.step-content').not(dropDown).slideUp();
@@ -32,6 +34,11 @@
         }
         dropDown.stop(false, true).slideToggle();
         e.preventDefault();
+      });*/
+
+      $('.node-story-profile-story-submission-form a.step-link', context).on('click', function(e) {
+        $(this).addClass('active');
+        $(this).next('.step-content').slideDown();
       });
 
       // move button to step 5
