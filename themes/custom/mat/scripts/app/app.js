@@ -380,7 +380,7 @@ $.fn.isInViewport = function(props) {
                 animateCounting = setInterval(function() {
                   counter ++;
                   $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-                  if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
+                  if($shine) { $shine.html(splitTextInSpan($(field).text())); $shadow.html($(field).text()); }
 
                   if(counter == $(field).data('count-repeat')) {
                     clearInterval(animateCounting); 
@@ -485,7 +485,11 @@ $.fn.isInViewport = function(props) {
        lastScrollTop = st;
      });
 
+     var prevPx = 0;
      $(window).on('scroll', function() {
+      var newPx = $(window).scrollTop() - prevPx;
+      console.log(newPx);
+      prevPx = newPx;
       $('.parallax').each(function() {
        if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
         var currentPosition = Number($(this).css('top').replace('px', ''));
