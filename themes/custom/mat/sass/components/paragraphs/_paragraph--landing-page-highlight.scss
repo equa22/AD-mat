@@ -9,18 +9,18 @@
 .paragraph--type--landing-page-highlight {
   display: flex;
   position: relative;
-  height: 1100px;
-  padding-bottom: 7.5rem;
+  //height: 1100px;
+  
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #FEFEFE;
-  background-position-y: bottom;
+//  background-color: #FEFEFE;
 
   overflow-x: hidden;
 
   @media (min-width: $screen-sm-min) {
     align-items: flex-end;
-    height: 880px;
+    padding-bottom: 7.5rem;
+    //height: 880px;
   }
 
   .field--name-field-link {
@@ -68,6 +68,20 @@
   }
 
   &.story--gavin {
+    min-height: 1020px;
+    margin-top: -8.5rem;
+    background-position: center 80px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 890px;
+      margin-top: 0;
+      background-position: center top;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 60vh;
+    }
+
     .highlight--image {
       left: 50%;
       margin-left: -290px;
@@ -91,6 +105,20 @@
   }
 
   &.story--meegale {
+    min-height: 900px;
+    position: relative;
+    z-index: 1;
+    background-position: center 150px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 1200px;
+      background-position: center top;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 60vh;
+    }
+
     .highlight--image {
       right: 50%;
       margin-right: -175px;
@@ -112,11 +140,20 @@
   }
 
   &.story--sisters {
-    height: 1700px;
-    background-position-y: bottom;
+    min-height: 850px;
+    //padding-top: 800px;
+    background-position: 15% bottom;
+    margin-top: -415px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 1770px;
+      margin-top: -230px;
+      //padding-top: 0;
+      background-position: center top;
+    }
 
     .highlight--image {
-      @media (max-width: $screen-xs) {
+      @media (max-width: $screen-xs-max) {
         left: -190px;
         max-width: 500px;
       }
@@ -128,6 +165,10 @@
     }
 
     .highlight--content {
+      @media (max-width: $screen-xs-max) {
+        position: relative;
+        z-index: 2;
+      }
       @media (min-width: $screen-sm-min) {
         float: right;
       }

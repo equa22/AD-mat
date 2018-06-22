@@ -7,8 +7,28 @@
 // Paragraph CTA
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-cta {
-  background-color: #CBD9E2;
   padding: 9rem 0 7rem 0;
+  position: relative;
+  z-index: 2;
+  background-image: url($image-root + 'bg-inspired/inspired_sisters--top-mobile.png');
+  background-position: left bottom;
+  background-repeat: repeat-x;
+
+  @media (max-width: $screen-xs-max) {
+    padding-bottom: 480px;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    max-height: 463px;
+    background-image: url($image-root + 'bg-inspired/inspired_sisters--top.png');
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    background-image: url($image-root + 'bg-inspired/inspired_sisters--top.png');
+  }
 
   @media (min-width: $screen-sm-min) {
     padding-top: 14rem;

@@ -7,8 +7,18 @@
 // Paragraph statement
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-statement {
-  padding: 5rem 0 5.5rem 0;
-  background: #FEFEFE url($image-root + 'bg-inspired/inspired_big_dreams--top.png') repeat-x;
+  padding: 5rem 0 14rem 0;
+  background-color: #BDDAEC;
+  background-image: url($image-root + 'bg-inspired/inspired_big_dreams--top.png');
+  background-position: left bottom;
+  background-repeat: repeat-x;
+
+  @media (min-width: $screen-sm-min) {
+    padding-bottom: 5.5rem;
+    background-color: #FEFEFE;
+    background-position: left top;
+    
+  }
 
   @media (min-width: $screen-sm-min) {
     padding: 11rem 0 7rem 0;
