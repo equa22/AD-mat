@@ -1,3 +1,10 @@
+// ========================================
+//
+// @file _forms.scss
+// Forms styles
+//
+// ========================================
+
 .form-item {
   margin-bottom: 15px;
 
@@ -6,7 +13,7 @@
   input[type="password"],  
   textarea {
     width: 100%;
-    padding: 10px;
+    padding: 14px 2.3rem;
     border: 3px solid $input-border-color;
     border-radius: $input-border-radius;
     background-color: $input-bg-color;
@@ -17,13 +24,13 @@
   }
 
   textarea {
-    padding: 3rem;
+    padding: 3rem 2.8rem;
     @extend %small;
     color: $gray-darker;
   }
 }
 
-// Buttons
+// Buttons (submit)
 input.form-submit {
   @include btn-primary();
 }
@@ -37,8 +44,8 @@ input.form-submit {
     position: absolute;
     cursor: text;
     color: $gray-dark;
-    left: 2.5rem;
-    top: 3.7rem;
+    left: 2.3rem;
+    top: 4.2rem;
     transition: all .2s;
 
     &.labelfocus {
@@ -48,13 +55,185 @@ input.form-submit {
     }
 
     @media (max-width: $screen-sm-max) {
-      top: 4rem;
+      top: 4.5rem;
     }
   }
 }
 
-// Forms
-//
+// Textarea label
+.js-form-type-textarea {
+  label {
+    top: 5rem !important;
+    left: 3rem !important;
+  }
+}
+
+// Radio, Checkbox
+.js-webform-radios,
+.js-webform-checkboxes {
+  > div {
+    display: inline;
+  }
+}
+
+/* Custom radios */
+input[type="checkbox"],
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.webform-type-radios label,
+.js-form-type-checkbox label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding-left: 6rem;
+  min-height: 4rem;
+  margin-top: 1.35rem;
+  margin-bottom: 1.35rem;
+  margin-right: 8rem;
+  color: $gray-darker;
+  @extend %lead;
+  font-weight: 500;
+  padding-top: 4px;
+
+  @media (min-width: $screen-sm-min) {
+    padding-top: 2px;
+  }
+}
+.webform-type-radios label::before,
+.webform-type-radios label::after,
+.js-form-type-checkbox label::before,
+.js-form-type-checkbox label::after,
+.field--type-boolean label::before,
+.field--type-boolean label::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  margin-top: -2rem;
+}
+.field--type-boolean label::before,
+.webform-type-radios label::before,
+.js-form-type-checkbox label::before {
+  content: " ";
+  border:0;
+  background-color: $radio-bg-color;
+  border-radius: 20%;
+}
+/* Radio */
+input[type="radio"] + label::before {
+  border-radius: 50%;
+}
+input[type=radio] + label::after {
+  content: " ";
+  top: calc(50% + 1.2rem);
+  left: 1.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: $mat-brand-primary;
+  border-radius: 50%;
+}
+/* checkbox */
+input[type="checkbox"] + label::before {
+  border-radius: 1rem;
+}
+input[type=checkbox] + label::after {
+  content: " ";
+  top: calc(50% + 1.2rem);
+  left: 1.2rem;
+  width: 1.9rem;
+  height: 1.5rem;
+  @include icons('i-checked');
+  background-position: center center;
+  border-radius: 50%;
+}
+/* :checked */
+
+input[type="checkbox"]:checked + label::before,
+input[type="radio"]:checked + label::before {
+  background: $radio-bg-color;
+  border-color: $radio-border-color;
+}
+
+input[type="checkbox"] + label::after,
+input[type=radio] + label::after {
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+
+input[type=checkbox]:checked + label::after,
+input[type=radio]:checked + label::after {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+/* Transition */
+.webform-type-radios label::before,
+.webform-type-radios label::after,
+.js-form-type-checkbox label::before,
+.js-form-type-checkbox label::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+// Select
+.js-form-type-select {
+  position: relative;
+  padding-top: 3rem;
+
+  // Select caret
+  &:after {
+    content: '';
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 5rem;
+    right: 2.3rem;
+    z-index: 1;
+    pointer-events: none;
+    @include icons('i-chevron-nav-blue-light');
+    background-position: center center;
+  }
+
+  > label {
+    display: none;
+  }
+
+  .form-select {
+    background-color: $input-bg-color;
+    border: none;
+    border-radius: $input-border-radius;
+    max-height: 60px;
+    padding: 12px 5.8rem 12px 2.3rem;
+
+    > option:first-child {
+      color: red;
+    }
+  }
+
+  .form-select  {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none; // remove default caret
+  }
+
+  // Remove default caret (IE)
+  .form-select::-ms-expand {
+     display:none;
+  }
+}
+
+// Specific Webforms
+// -----------------------------------------------------------------------------
 // Webform Contact, Login form
 .webform-submission-contact-form,
 .user-login-form {
@@ -68,6 +247,23 @@ input.form-submit {
   .form-actions {
     margin-top: 3.5rem;
   }
+
+  > label {
+    @extend %lead;
+    font-weight: 500;
+    color: $mat-brand-primary;
+  }
+
+  .js-webform-radios,
+  .js-webform-checkboxes {
+    margin-top: 1rem;
+  }
+
+  .fieldset-legend {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
 }
 
 .user-login-form {
