@@ -288,7 +288,6 @@ $.fn.isInViewport = function(props) {
    *        --> (1200, 5, '.', 'x', 0) => 01.200x
    */
   function convertInString(num, length, char, surfix, holder) {
-    console.log(num, length, char, surfix, holder);
     var string = String(num);
     while(string.length != length) {
       string = holder + string;
@@ -336,29 +335,54 @@ $.fn.isInViewport = function(props) {
     // ...
     // when counter comes to end, stop all intervals
     var $shine = $(field).next('.shine').length > 0 ? $($(field).next('.shine')[0]) : null;
+    var $shadow = $($(field).parent()).find('.number-shadow ');
     var counter = 0; // count iterations                               
     var animateCounting = setInterval(function() {
       counter ++;
+  
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-      if($shine) { $shine.html($(field).text()); }     // apply value on shine
+      if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }     // apply value on shine
+
+      if(counter == $(field).data('count-repeat')) {
+        clearInterval(animateCounting); 
+        return;
+      }
       if(counter >= $(field).data('count-repeat')/2) { // on half way, slow down
-        clearInterval(animateCounting);                
+        clearInterval(animateCounting);       
+
         animateCounting = setInterval(function() {
           counter ++;
           $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-          if($shine) {$shine.html($(field).text());}
+          if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
+
+          if(counter == $(field).data('count-repeat')) {
+            clearInterval(animateCounting); 
+            return;
+          }
           if(counter >= $(field).data('count-repeat')/4*3) {
             clearInterval(animateCounting);
+
             animateCounting = setInterval(function() {
               counter ++;
               $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-              if($shine) {$shine.html($(field).text());}
+              if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
+
+              if(counter == $(field).data('count-repeat')) {
+                clearInterval(animateCounting); 
+                return;
+              }
               if(counter >= $(field).data('count-repeat')/10*9) {
                 clearInterval(animateCounting);
+
                 animateCounting = setInterval(function() {
                   counter ++;
                   $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
-                  if($shine) {$shine.html(splitTextInSpan($(field).text()));}
+                  if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
+
+                  if(counter == $(field).data('count-repeat')) {
+                    clearInterval(animateCounting); 
+                    return;
+                  }
                   if(counter == $(field).data('count-repeat')) {
                     clearInterval(animateCounting);
                   }
@@ -381,31 +405,36 @@ $.fn.isInViewport = function(props) {
       var $shine = $('.paragraph--type--landing-page-counter .field.field--name-field-number.field--type-string.field--label-hidden.entity_type-paragraph.field__item');
       // create dom elements for shine duplicats
       $shine.each(function() {
+        $(this).after($('<div/>', {'class': 'number-shadow field--name-field-number'}));
         $(this).after($('<div/>', {'class': 'shine field--name-field-number'}));
+
       });
       // set all needed attributes
       $numbers.toArray().forEach(function(el, i) {
+        if($('html').hasClass('device-mobile') && $(el).text().replace(/\D/g,'') > 10000) {
+          $(el).text($(el).text().replace(/\D/g,'')/1000 + 'K');
+        }
         var text = $(el).text();
         $(el).attr({
           'data-number': text.replace(/\D/g,''),
           'data-count-char': text.search(',') < 0 ? '' : ',',
           'data-count-repeat': Number(text) > 5000 ? 100 : (Number(text.replace(/\D/g,'')) < 100 ? Number(text.replace(/\D/g,'')) : 50),
           'data-count-interval': Number(text.replace(/\D/g,'')) > 5000 ? 10 : 20,
-          'data-count-surfix': text.search('X') < 0 ? '' : 'X',
+          'data-count-surfix': text.search('X') < 0 ? (text.search('K') < 0 ? '' : 'K') : 'X',
           'data-count-holder': text.search(',') < 0 ? ' ' : '0'
         });              
-        if($(el).data('number') > 10)
+        //if($(el).data('number') > 10)
         // set elements text to 0              
         $(el).text(convertInString(0, $(el).text().replace(/\D/g,'').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
         // apply same text in shine element
-        if($(el).next('.shine')) { $(el).next('.shine').html($(el).text()); } 
+        if($(el).next('.shine')) { $(el).next('.shine').html($(el).text()); $($(el).parent()).find('.number-shadow ').html($(el).text()); } 
         else { $(el).css('opacity', 0.6); }
       });
 
       // add scroll watcher -- strart animation when user scrolls to position
       $(window).scroll(function(e) {
         $numbers.toArray().forEach(function(el, i) {
-          if($(el).data('number') > 10 && $(el).offset().top - ($(window).height() + $(window).scrollTop() - $(el).height()/4*3) <= 0 && !$(el).data('animated')) {
+          if($(el).offset().top - ($(window).height() + $(window).scrollTop() - $(el).height()/4*3) <= 0 && !$(el).data('animated')) {
             animateNumber(el);
           }
         });
@@ -416,6 +445,7 @@ $.fn.isInViewport = function(props) {
   Drupal.behaviors.scrollAnimations = {
     attach: function(context, settings) {
       var lastScrollTop = 0, direction;
+      var mobile_device = $('html').hasClass('device-mobile');  // check if device is mobile
       var $paralaxWrapper = $('.paragraph--type--landing-page-stories');
       var parallaxElementsParent = ['.hearts-container', '.paragraph--type--landing-page-stories'];
 
@@ -453,9 +483,6 @@ $.fn.isInViewport = function(props) {
      });
 
      $(window).on('scroll', function() {
-      var mobile_device = $('html').hasClass('device-mobile');  // check if device is mobile
-
-
       $('.parallax').each(function() {
        if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
         var currentPosition = Number($(this).css('top').replace('px', ''));
