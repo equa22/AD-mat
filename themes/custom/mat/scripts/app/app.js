@@ -576,17 +576,12 @@ $.fn.isInViewport = function(props) {
 
         // step 3
         var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
-        if (step3_field1.length == 0) {
-          step3_progress = true;
-        } else {
-          step3_progress = false;
-        }
-
-        if (step3_progress == true) {
+        step3_field1.on('click', function() {
           $('.step4 .step-link', context).addClass('active');
           $('.step4 .step-content', context).slideDown();
           goToByScroll('step4');
-        }
+        });
+
 
         // step 4
         var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
