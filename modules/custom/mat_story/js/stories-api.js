@@ -49,6 +49,8 @@
 	  }
 	};
 
+  var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  console.log(mobile);
 
   Drupal.behaviors.mat_stories_api = {
     attach: function (context, settings) {
@@ -61,28 +63,28 @@
 
 	        
 	        JSON = [{
-				    "story_id":"96",
-				    "first_name":"Kristin",
-				    "last_name":"Michelle Dennis",
-				    "category":"Patients Waiting",
-				    "category_id":"4",
-				    "featured_image":"\/sites\/default\/files\/2018-05\/sight-bg-b.png",
-				    "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-				    "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-				    "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
-				    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
-				  }, {
-				    "story_id":"86",
-				    "first_name":"Kristin",
-				    "last_name":"Michelle Dennis",
-				    "category":"Patients Waiting",
-				    "category_id":"4",
-				    "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
-				    "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
-				    "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
-				    "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
-				    "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
-				  },...data];
+            "story_id":"96",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/sight-bg-b.png",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"86",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          },...data];
 
 	        createStories();
 	        getFilters();
@@ -232,13 +234,16 @@ let createStories = () => {
                  speed: (randomBetween(config.movement._smooth.max, config.movement._smooth.min))/1000,
                  target: '#story' + item.story_id});
   })
-  console.log(stories);
+  
   createDomElements();
 };
 
 // get all categories and create filters
 let getFilters = () => {
   var $filters = $('.filter-wrapper');
+  if(mobile) {
+    $('.controls').insertBefore('.views-element-container');
+  }
   categories.push({category: stories[0].category, category_id: stories[0].category_id});
   letters.push(stories[0].last_name[0].toUpperCase());
   
@@ -264,22 +269,35 @@ let getFilters = () => {
   // create "show all" filter
   $(('<div/>'), {
     'text': 'All stories',
-    'class': 'bold'
+    'class': 'bold cat-item'
   }).appendTo('.filter-wrapper').click((e) => {
     animations.fade_out();
       setTimeout(() => {
         createDomElements();
       }, config.movement._leave.delay * $displayedStories[active_index].length-1)
-    $('.selected').text("A-Z")
+    $('.selected').text("A-Z");
   })
   // append all categories to filter wrapper
-  categories.forEach((category) => {
+  categories.forEach((category, i) => {
     $(('<div/>'), {
+      'class': 'cat-item',
       'data-category-id': category.category_id,
       'data-category': category.category,
+      'data-index': i,
       'text': category.category
     }).appendTo('.filter-wrapper').click((e) => {
       animations.fade_out();
+      if(mobile) {
+        //$('.filter-wrapper').slickGoTo(1);
+        var slider = $( '.filter-wrapper' );
+        slider[0].slick.slickGoTo(parseInt($(e.target).data('slick-index')));
+
+        if($(e.target).data('slick-index') == 0) {
+          $('.selected').text("A-Z");
+        }
+      }
+
+
       setTimeout(() => {
         createDomElements($(e.target).data('category-id'));
       }, config.movement._leave.delay * $displayedStories[active_index].length-1)
@@ -290,6 +308,7 @@ let getFilters = () => {
   letters.forEach((letter) => {
     $(('<div/>'), {
       'text': letter,
+      'class': 'cat-item',
       'data-letter': letter,
       'class': 'option'
     }).appendTo('.dropdown .dropdown-inner').click((e) => {
@@ -301,23 +320,25 @@ let getFilters = () => {
       //
     })
   })
+
+
+  if(mobile) {
+    $('.filter-wrapper').slick({
+        arrows: false,
+        infinite: false,
+        variableWidth: true
+    }).on("afterChange", function (event, slick, currentSlide, nextSlide){
+      createDomElements($('.slick-active').data('category-id'));
+
+      $('.selected').text("A-Z");
+    });
+  }
 }
 
 
 
 
-
-
-
-let $displayedStories = [];
-let createDomElements = (category, letter) => {
-  active_index = 0;
-  
-
-  $displayedStories = [];   // empty current arrat of stories
-  $board.html('');          // empty board
-  sliderTo(0);              // send draggable slider back to 0   
-  
+function prepareDesktopElements(category, letter) {
   var tmp_array = [], filtered = [];    // helper arrays   
   
   // push proper items in tmp_array
@@ -375,7 +396,7 @@ let createDomElements = (category, letter) => {
     
     // add same leave event on items label
     $('.label').mouseleave((e) => {  
-    	if(!$($(e.target).closest('.item')).hasClass('hovered')) return;
+      if(!$($(e.target).closest('.item')).hasClass('hovered')) return;
 
       $displayedStories[active_index].forEach((el) => {
         if($($(e.target).closest('.item')).data('id') == el.story_id) {
@@ -385,8 +406,8 @@ let createDomElements = (category, letter) => {
           setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
         }
       })
-    }).mouseenter((e) => {                                   // __mouse hover event    	
-    	if($($(e.target).closest('.item')).hasClass('hovered')) return;
+    }).mouseenter((e) => {                                   // __mouse hover event     
+      if($($(e.target).closest('.item')).hasClass('hovered')) return;
 
       $displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
         if($($(e.target).closest('.item')).data('id') == el.story_id) {
@@ -429,6 +450,54 @@ let createDomElements = (category, letter) => {
 }
 
 
+function prepareMobileElements(category, letter) {
+  var filtered = [];    // helper arrays   
+  
+  // push proper items in tmp_array
+  for(var i = 0, counter = 0; i < stories.length; i++) {
+
+    if((!category && !letter) || category == stories[i].category_id || letter == stories[i].last_name[0].toUpperCase()) {
+      filtered.push(stories[i]);  // add element in matrix
+      counter++;
+    }
+  }
+  $displayedStories.push(filtered);
+
+  filtered.forEach((item, i) => {            
+    $('<div />', {
+      'data-id': item.story_id,                           // set category id attribut
+      'data-animated': false,
+      'data-category': item.category_id,                  // set category attribut
+      'class': 'item pulse-' + randomBetween(2,4) + ' ' + (i%2==0 ? 'left' : 'right') ,        // select between two classes available for item
+      'id': 'story' + item.story_id                       // item id --> connected with item.target in object
+    })
+    .css({
+      'backgroundImage': 'url(' + baseUrl + item.featured_image + ')', 
+      'transition': 'none'}) 
+    .click((e) => {                                        // __click event
+      openModal($(e.target).data('id'));
+    })
+    .appendTo($board);
+  })
+}
+
+let $displayedStories = [];
+let createDomElements = (category, letter) => {
+  active_index = 0;
+  
+
+  $displayedStories = [];   // empty current arrat of stories
+  $board.html('');          // empty board
+  sliderTo(0);              // send draggable slider back to 0   
+  
+  if(!mobile) {
+    prepareDesktopElements(category, letter);
+  } else {
+    prepareMobileElements(category, letter);
+  }
+}
+
+
 let randomBetween = (max, min) => {
   return Math.floor(Math.random() * (max - min) ) + min;
 }
@@ -439,28 +508,12 @@ let randomBetween = (max, min) => {
  * @return x and y values in pixels [string]
  */ 
 let getCoordinates = (el) => {
-  if(el.position) {
-    var x = Math.floor(Math.random() * (el.position.x + config.limit.x) + (el.position.x - config.limit.x));
-    var y = Math.floor(Math.random() * (el.position.y + config.limit.y) + (el.position.y - config.limit.y));
-    
-    if(x < config._el_width) {x = config._el_width}
-    else if(x > (config._width - config._el_width)) {x = config._width - config._el_width};
-    
-    if(y < config._el_height) {y = config._el_height}
-    else if(y > (config._height - config._el_height)) {x = config._height - config._el_height};
-  } else {
-    var x = Math.floor(Math.random() * (config._width - config._el_width));
-    var y = Math.floor(Math.random() * (config._height - config._el_height));
-  }
-  
-  
   var x = Math.floor(Math.random() * (config._width - config._el_width));
   var y = Math.floor(Math.random() * (config._height - config._el_height));
   
 
   el.position = {x: x, y: y};
   $(el.target).css('transform', "translate(" + x + "px, " + y + "px) scale(1)");
-  
 }
 
 /*
@@ -568,45 +621,61 @@ $('[data-role="closemodal"]').click(() => {
 
 var MOUSE_OVER = false;
 
-$('body').bind('mousewheel', (e) => {
-  if(MOUSE_OVER){
-    if(e.preventDefault) { e.preventDefault(); } 
-    e.returnValue = false; 
-    return false; 
-  }
-});
+if(mobile) {
+  $('body').bind('mousewheel', (e) => {
+    if(MOUSE_OVER){
+      if(e.preventDefault) { e.preventDefault(); } 
+      e.returnValue = false; 
+      return false; 
+    }
+  });
 
-$('.animation-wrapper').mouseenter(() => { MOUSE_OVER=true; });
-$('.animation-wrapper').mouseleave(() => { MOUSE_OVER=false; });
+  $('.animation-wrapper').mouseenter(() => { MOUSE_OVER=true; });
+  $('.animation-wrapper').mouseleave(() => { MOUSE_OVER=false; });
 
-$('.animation-wrapper').bind('mousewheel', (e) => {
-  var delta = e.originalEvent.deltaY;
-  e.preventDefault();
-  if(active_index > 0 && delta > 0 && animations.done){
-    animations.goTo(active_index - 1);
-  }
-  else if(active_index < $displayedStories.length - 1 && delta < 0 && animations.done) {
-    animations.goTo(active_index + 1);
-  }
-});
+  $('.animation-wrapper').bind('mousewheel', (e) => {
+    var delta = e.originalEvent.deltaY;
+    e.preventDefault();
+    if(active_index > 0 && delta > 0 && animations.done){
+      animations.goTo(active_index - 1);
+    }
+    else if(active_index < $displayedStories.length - 1 && delta < 0 && animations.done) {
+      animations.goTo(active_index + 1);
+    }
+  });
+}
+
 
 let makeAnimatedBackground = () => {
   var $body = $('.stories-api');
   var smallItems = [];  // helper arr
+  
   $('<div/>', {         // create background animation base in html
     class: 'animated-background'
   }).appendTo($body);
   
   // create bubbles with background image
   config.background.image_bubbles._images.forEach((item, i) => {
+    var x = Math.floor(Math.random() * (config._width - config._el_width));
+    var y = Math.floor(Math.random() * (containerHeight - config._el_height));
+
+
     $('<div/>', {
       class: 'small-item',
       id: 'smallItem' + i
-    }).css(
-    {'backgroundImage': 'url(' + item + ')', 'transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear,  opacity 1s linear ' + (i*0.1) + 's'}).appendTo('.animated-background');
+    })
+    .css({
+      'backgroundImage': 'url(' + item + ')', 
+      'transform': "translate(" + x + "px, " + y + "px) scale(1)",
+      'transition': 'transform 0ms linear,  opacity 1s linear ' + (i*0.1) + 's'
+    })
+    .appendTo('.animated-background');
     smallItems.push({target: '#smallItem' + i, speed: config.background.image_bubbles._speed});
   });
   
+
+  var containerHeight = $('.animated-background').height();
+
   smallItems.forEach((el) => {
     // spread elements on board
     getCoordinates(el);
@@ -616,15 +685,29 @@ let makeAnimatedBackground = () => {
     	$(el.target).css({
     		'width': config.background.image_bubbles._size + 'px',
     		'height': config.background.image_bubbles._size + 'px',
+        'transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
     		'opacity': 1
     	})
     	
-      getCoordinates(el);
+      var x = Math.floor(Math.random() * (config._width - config._el_width));
+      var y = Math.floor(Math.random() * (containerHeight - config._el_height));
+      
+
+      $(el.target).css({
+        'transform': "translate(" + x + "px, " + y + "px) scale(1)"
+      });
     }, 100);
     // and start interval animation
     el.animate = setInterval(() => {
       // get new coordinates for element
-      getCoordinates(el);
+      //getCoordinates(el);
+      var x = Math.floor(Math.random() * (config._width - config._el_width));
+      var y = Math.floor(Math.random() * (containerHeight - config._el_height));
+      
+
+      $(el.target).css({
+        'transform': "translate(" + x + "px, " + y + "px) scale(1)"
+      });
     }, config.background.image_bubbles._interval);
   })
   
@@ -635,7 +718,7 @@ let makeAnimatedBackground = () => {
       class: 'star pulse-star-' + randomBetween(1,3)
     }).appendTo('.animated-background').css({
       left: randomBetween(config._width - 30, 30) + 'px',
-      top: randomBetween(config._height - 30, 30) + 'px'
+      top: randomBetween(containerHeight - 30, 30) + 'px'
     });
   }
   
@@ -646,7 +729,7 @@ let makeAnimatedBackground = () => {
       class: 'bubble pulse-bubble'
     }).appendTo('.animated-background').css({
       left: randomBetween(config._width - 30, 30) + 'px',
-      top: randomBetween(config._height - 30, 30) + 'px',
+      top: randomBetween(containerHeight - 30, 30) + 'px',
       width:  size,
       height: size
     });

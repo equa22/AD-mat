@@ -69,120 +69,122 @@ input.form-submit {
 }
 
 // Radio, Checkbox
-.js-webform-radios,
-.js-webform-checkboxes {
-  > div {
-    display: inline;
+form:not(#views-exposed-form-news-landing-page-1) {
+  .js-webform-radios,
+  .js-webform-checkboxes {
+    > div {
+      display: inline;
+    }
   }
-}
 
-/* Custom radios */
-input[type="checkbox"],
-input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  z-index: -1;
-}
-.webform-type-radios label,
-.js-form-type-checkbox label {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  padding-left: 6rem;
-  min-height: 4rem;
-  margin-top: 1.35rem;
-  margin-bottom: 1.35rem;
-  margin-right: 8rem;
-  color: $gray-darker;
-  @extend %lead;
-  font-weight: 500;
-  padding-top: 4px;
-
-  @media (min-width: $screen-sm-min) {
-    padding-top: 2px;
+  /* Custom radios */
+  input[type="checkbox"],
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
   }
-}
-.webform-type-radios label::before,
-.webform-type-radios label::after,
-.js-form-type-checkbox label::before,
-.js-form-type-checkbox label::after,
-.field--type-boolean label::before,
-.field--type-boolean label::after {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  display: block;
-  width: 4rem;
-  height: 4rem;
-  cursor: pointer;
-  margin-top: -2rem;
-}
-.field--type-boolean label::before,
-.webform-type-radios label::before,
-.js-form-type-checkbox label::before {
-  content: " ";
-  border:0;
-  background-color: $radio-bg-color;
-  border-radius: 20%;
-}
-/* Radio */
-input[type="radio"] + label::before {
-  border-radius: 50%;
-}
-input[type=radio] + label::after {
-  content: " ";
-  top: calc(50% + 1.2rem);
-  left: 1.2rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  background: $mat-brand-primary;
-  border-radius: 50%;
-}
-/* checkbox */
-input[type="checkbox"] + label::before {
-  border-radius: 1rem;
-}
-input[type=checkbox] + label::after {
-  content: " ";
-  top: calc(50% + 1.2rem);
-  left: 1.2rem;
-  width: 1.9rem;
-  height: 1.5rem;
-  @include icons('i-checked');
-  background-position: center center;
-  border-radius: 50%;
-}
-/* :checked */
+  .webform-type-radios label,
+  .js-form-type-checkbox label {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    padding-left: 6rem;
+    min-height: 4rem;
+    margin-top: 1.35rem;
+    margin-bottom: 1.35rem;
+    margin-right: 8rem;
+    color: $gray-darker;
+    @extend %lead;
+    font-weight: 500;
+    padding-top: 4px;
 
-input[type="checkbox"]:checked + label::before,
-input[type="radio"]:checked + label::before {
-  background: $radio-bg-color;
-  border-color: $radio-border-color;
-}
+    @media (min-width: $screen-sm-min) {
+      padding-top: 2px;
+    }
+  }
+  .webform-type-radios label::before,
+  .webform-type-radios label::after,
+  .js-form-type-checkbox label::before,
+  .js-form-type-checkbox label::after,
+  .field--type-boolean label::before,
+  .field--type-boolean label::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    margin-top: -2rem;
+  }
+  .field--type-boolean label::before,
+  .webform-type-radios label::before,
+  .js-form-type-checkbox label::before {
+    content: " ";
+    border:0;
+    background-color: $radio-bg-color;
+    border-radius: 20%;
+  }
+  /* Radio */
+  input[type="radio"] + label::before {
+    border-radius: 50%;
+  }
+  input[type=radio] + label::after {
+    content: " ";
+    top: calc(50% + 1.2rem);
+    left: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: $mat-brand-primary;
+    border-radius: 50%;
+  }
+  /* checkbox */
+  input[type="checkbox"] + label::before {
+    border-radius: 1rem;
+  }
+  input[type=checkbox] + label::after {
+    content: " ";
+    top: calc(50% + 1.2rem);
+    left: 1.2rem;
+    width: 1.9rem;
+    height: 1.5rem;
+    @include icons('i-checked');
+    background-position: center center;
+    border-radius: 50%;
+  }
+  /* :checked */
 
-input[type="checkbox"] + label::after,
-input[type=radio] + label::after {
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  -o-transform: scale(0);
-  transform: scale(0);
-}
+  input[type="checkbox"]:checked + label::before,
+  input[type="radio"]:checked + label::before {
+    background: $radio-bg-color;
+    border-color: $radio-border-color;
+  }
 
-input[type=checkbox]:checked + label::after,
-input[type=radio]:checked + label::after {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
-}
-/* Transition */
-.webform-type-radios label::before,
-.webform-type-radios label::after,
-.js-form-type-checkbox label::before,
-.js-form-type-checkbox label::after {
-  -webkit-transition: .25s all ease;
-  -o-transition: .25s all ease;
-  transition: .25s all ease;
+  input[type="checkbox"] + label::after,
+  input[type=radio] + label::after {
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+
+  input[type=checkbox]:checked + label::after,
+  input[type=radio]:checked + label::after {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+  /* Transition */
+  .webform-type-radios label::before,
+  .webform-type-radios label::after,
+  .js-form-type-checkbox label::before,
+  .js-form-type-checkbox label::after {
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
 }
 
 // Select
