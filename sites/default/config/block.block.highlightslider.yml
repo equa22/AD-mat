@@ -1,0 +1,33 @@
+uuid: 33f28f41-80c6-4591-9424-c8e4b267b5a1
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:highlight_slider:982fb028-18e6-4cd3-ad11-7bda970caba6'
+  module:
+    - block_content
+    - node
+  theme:
+    - mat
+id: highlightslider
+theme: mat
+region: highlight_slider
+weight: 0
+provider: null
+plugin: 'block_content:982fb028-18e6-4cd3-ad11-7bda970caba6'
+settings:
+  id: 'block_content:982fb028-18e6-4cd3-ad11-7bda970caba6'
+  label: 'Highlight slider'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      basic_page: basic_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
