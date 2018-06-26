@@ -1,0 +1,11 @@
+
+mat_global.mat_global_settings:
+  path: '/admin/config/mat_global/matglobalsettings'
+  defaults:
+    _form: '\Drupal\mat_global\Form\MATGlobalSettings'
+    _title: 'MATGlobalSettings'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
