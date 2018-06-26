@@ -488,7 +488,6 @@ $.fn.isInViewport = function(props) {
      var prevPx = 0;
      $(window).on('scroll', function() {
       var newPx = $(window).scrollTop() - prevPx;
-      console.log(newPx);
       prevPx = newPx;
       $('.parallax').each(function() {
        if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
