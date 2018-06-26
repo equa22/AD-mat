@@ -7,27 +7,44 @@
 // Paragraph CTA
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-cta {
-  padding: 9rem 0 7rem 0;
+  padding-top: 9rem;
   position: relative;
-  z-index: 2;
-  background-image: url($image-root + 'bg-inspired/inspired_sisters--top-mobile.png');
-  background-position: left bottom;
-  background-repeat: repeat-x;
-
+  background-color: #CBD9E2;
+  
   @media (max-width: $screen-xs-max) {
-    padding-bottom: 480px;
+    z-index: 2;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: calc(100% + 400px);
+      background-image: url($image-root + 'bg-inspired/inspired_sisters--top-mobile.png');
+      background-position: left bottom;
+      background-repeat: repeat-x;
+    }
   }
 
   @media (min-width: $screen-sm-min) {
-    max-height: 463px;
-    background-image: url($image-root + 'bg-inspired/inspired_sisters--top.png');
+    min-height: 830px;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 463px;
+      z-index: 2;
+      background-image: url($image-root + 'bg-inspired/inspired_sisters--top.png');
+      background-position: left top;
+      background-repeat: repeat-x;
+    }
   }
 
-  &:before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    background-image: url($image-root + 'bg-inspired/inspired_sisters--top.png');
+  @media (min-width: $screen-md-min) {
+    &:before {
+      height: 70%;
+    }
   }
 
   @media (min-width: $screen-sm-min) {
@@ -35,8 +52,18 @@
     padding-bottom: 0;
   }
 
+  .container-small {
+    @media (min-width: $screen-sm-min) {
+      z-index: 2;
+    }
+  }
+
   .container-large {
     max-width: 1430px;
+
+    @media (min-width: $screen-sm-min) {
+      z-index: 2;
+    }
   }
 
   // Grid
