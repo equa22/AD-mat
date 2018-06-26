@@ -201,9 +201,8 @@ $.fn.isInViewport = function(props) {
         }
       });
 
-      // remove all prefix labels with 'inspired by' text and replace them with one fixed label
-      $('h1 .slide--title-prefix').remove();
-      $('.slick-list.draggable').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
+      // add 'inspired by' fixed label
+      $('.slick-list.draggable').append($('<div class="fixed-slider-header"><div class="container">Inspired by</div></div>'));
       // animate first slide
       typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
     }
