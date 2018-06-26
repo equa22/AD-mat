@@ -207,3 +207,11 @@
   }
 
 }
+
+// exception for basic page
+.page-node-type-basic-page .region-highlight-slider {
+  margin-top: 18rem;
+  @media (max-width: $screen-xs-max) {
+    margin-top: 10rem;
+  }
+}

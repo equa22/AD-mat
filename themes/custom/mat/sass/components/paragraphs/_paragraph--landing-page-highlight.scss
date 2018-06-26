@@ -9,18 +9,13 @@
 .paragraph--type--landing-page-highlight {
   display: flex;
   position: relative;
-  height: 1100px;
-  padding-bottom: 7.5rem;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #FEFEFE;
-  background-position-y: bottom;
-
   overflow-x: hidden;
 
   @media (min-width: $screen-sm-min) {
     align-items: flex-end;
-    height: 880px;
+    padding-bottom: 7.5rem;
   }
 
   .field--name-field-link {
@@ -68,6 +63,20 @@
   }
 
   &.story--gavin {
+    min-height: 1020px;
+    margin-top: -8.5rem;
+    background-position: center 80px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 890px;
+      margin-top: 0;
+      background-position: center top;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 60vh;
+    }
+
     .highlight--image {
       left: 50%;
       margin-left: -290px;
@@ -91,6 +100,20 @@
   }
 
   &.story--meegale {
+    min-height: 900px;
+    position: relative;
+    z-index: 1;
+    background-position: center 150px;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 1200px;
+      background-position: center top;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      padding-bottom: 60vh;
+    }
+
     .highlight--image {
       right: 50%;
       margin-right: -175px;
@@ -112,78 +135,43 @@
   }
 
   &.story--sisters {
-    height: 1700px;
-    background-position-y: bottom;
+    min-height: 750px;
+    padding-bottom: 50rem;
+    background-position: 15% top;
+
+    @media (min-width: $screen-sm-min) {
+      min-height: 1720px;
+      margin-top: -710px;
+      padding-bottom: 7.5rem;
+      background-position: center top;
+    }
 
     .highlight--image {
-      @media (max-width: $screen-xs) {
+      @media (max-width: $screen-xs-max) {
         left: -190px;
         max-width: 500px;
       }
 
       @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
         left: -300px;
+        max-width: 800px;
+      }
+
+      @media (min-width: $screen-md-min) and (max-width: 1610px) {
+        left: -9%;
         max-width: 900px;
       }
     }
 
     .highlight--content {
+      @media (max-width: $screen-xs-max) {
+        position: relative;
+        z-index: 2;
+        margin-top: 6.5rem;
+      }
       @media (min-width: $screen-sm-min) {
         float: right;
       }
     }
   }
-
 }
-
-/*
-.paragraph--type--landing-page-highlight {
-  &:nth-child(1) {
-    margin-top: 0;
-  }
-
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  &:after {
-    @include overlay($color-white);
-  }
-
-  .inner {
-    @include container;
-    @extend %flex-center-vertical;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    position: relative;
-    z-index: 2;
-    margin: 0 auto;
-    max-width: 1200px;
-
-    h2 {
-      @include font-size(3.8);
-      margin: 0 0 20px;
-    }
-
-    .field--name-field-text {
-      @include font-size(2);
-    }
-
-    .text {
-      flex: 1 1 0;
-      order: 2;
-      @media (min-width: $screen-sm-min) {
-        order: 1;
-      }
-    }
-
-    .field--name-field-media {
-      order: 1;
-      flex: auto;
-      @media (min-width: $screen-sm-min) {
-        order: 2;
-        flex: 0 0 50%;
-      }
-    }
-  }
-}
-*/

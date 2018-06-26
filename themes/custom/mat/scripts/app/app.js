@@ -204,9 +204,15 @@ $.fn.isInViewport = function(props) {
         }
       });
 
+
       // remove all prefix labels with 'inspired by' text and replace them with one fixed label
-      $('h1 .slide--title-prefix').remove();
-      $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
+    /*  $('h1 .slide--title-prefix').remove();
+      $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));*/
+
+
+      // add 'inspired by' fixed label
+      $('.slick-list.draggable').append($('<div class="fixed-slider-header"><div class="container">Inspired by</div></div>'));
+
       // animate first slide
       typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
     }
@@ -517,12 +523,22 @@ $.fn.isInViewport = function(props) {
   // Focus labels
   Drupal.behaviors.labelFocus = {
     attach: function (context, settings) {
-      $('form input', context).keyup(function() {
-        if(!$.trim(this.value).length) {
-          $(this).parent().find('label').removeClass('labelfocus');
-        } else { 
-          $(this).parent().find('label').addClass('labelfocus');
+      function checkInputValue(getThis) {
+        var inputValue = getThis.value;
+        if (inputValue) {
+          $('label[for="' + getThis.id + '"]').addClass('labelfocus');
+        } else {
+          $('label[for="' + getThis.id + '"]').removeClass('labelfocus');
         }
+      }
+      var $input_selector = $('form :input', context);
+      $input_selector.each(function() {
+        checkInputValue(this);
+      });
+      $input_selector.on('focus keyup', function() {
+          $('label[for="' + this.id + '"]').addClass('labelfocus');
+      }).blur(function() {
+        checkInputValue(this);
       });
     }
   };
@@ -552,6 +568,80 @@ $.fn.isInViewport = function(props) {
         e.preventDefault();
         window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
         return false;
+      });
+    }
+  };
+
+  // Story form auto open steps
+  Drupal.behaviors.storyFormSteps = {
+    attach: function (context, settings) {
+      function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
+      $(document).bind('mouseup touchend click keyup', function(e) {
+
+        var step1_progress = false;
+        var step2_progress = false;
+        var step3_progress = false;
+        var step4_progress = false;
+
+        // Step 1
+        var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
+        var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
+        var step1_field3 = $('input[name="field_story_category"]:checked', context);
+        
+        if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
+          step1_progress = true;
+        } else {
+          step1_progress = false;
+        }
+        
+        if (step1_progress == true) {
+          $('.step2 .step-link', context).addClass('active');
+          $('.step2 .step-content', context).slideDown();
+          goToByScroll('step2');
+        }
+        
+        // Step 2
+        var step2_field1 = $('textarea#edit-body-0-value', context);
+        if (step2_field1.val()) {
+          step2_progress = true;
+        } else {
+          step2_progress = false;
+        }
+
+        if (step2_progress == true) {
+          $('.step3 .step-link', context).addClass('active');
+          $('.step3 .step-content', context).slideDown();
+          goToByScroll('step3');
+        }
+
+        // step 3
+        var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
+        step3_field1.on('click', function() {
+          $('.step4 .step-link', context).addClass('active');
+          $('.step4 .step-content', context).slideDown();
+          goToByScroll('step4');
+        });
+
+
+        // step 4
+        var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
+        var step4_field2 = $('input#edit-field-submissioner-last-name-0-value', context);
+        var step4_field3 = $('input#edit-field-submissioner-email-0-value', context);
+        var step4_field4 = $('input#edit-field-submissioner-phone-number-0-value', context);
+
+        if (step4_field1.val() && step4_field2.val() && step4_field3.val() && step4_field4.val()) {
+          step4_progress = true;
+        } else {
+          step4_progress = false;
+        }
+
+        if (step4_progress == true) {
+          $('.step5 .step-link', context).addClass('active');
+          $('.step5 .step-content', context).slideDown();
+          goToByScroll('step5');
+        }
+        
+
       });
     }
   };

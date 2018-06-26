@@ -6,6 +6,7 @@
 // ========================================
 
 body {
+  background-color: $color-white;
   color: $gray-darker;
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -24,7 +25,8 @@ a {
 
 a,
 input,
-textarea {
+textarea,
+select {
   outline: none;
 }
 

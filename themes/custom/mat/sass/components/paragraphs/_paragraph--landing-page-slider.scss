@@ -56,8 +56,6 @@
       padding-bottom: 5rem;
       overflow: hidden;
       
-
-
       .field--name-field-content {
         opacity: 0;
         transform: translate(-200px);
@@ -72,7 +70,7 @@
 
       @media (min-width: $screen-sm-min) {
         display: flex;
-        height: 955px;
+        height: 95.5rem;
         padding-top: 21rem;
         padding-bottom: 0;
       }
@@ -82,6 +80,10 @@
       max-width: 61rem;
       position: relative;
       color: $color-white;
+
+      @media (max-width: $screen-xs-max) {
+        padding-top: 3.5rem;
+      }
     }
 
     h1 {
@@ -90,14 +92,11 @@
       flex-wrap: wrap;
       justify-content: flex-end;
       font-weight: 700;
+      font-style: italic;
 
       @media (min-width: $screen-sm-min) {
-        height: 300px;
+        height: 30rem;
       }
-    }
-
-    .slide--title-prefix {
-      white-space: nowrap;
     }
 
     .field--name-field-content {
@@ -122,45 +121,28 @@
   }
 }
 
-.slide--title-prefix {
-    display: none;
-}
 .paragraph--type--landing-page-slider .paragraph--type--slide h1 {
   height: auto;
-  padding-top: 100px;
+  
+  @media (min-width: $screen-sm-min) {
+    padding-top: 4.5rem;
+  }
+
+  @media (min-width: $screen-lg-min) {
+    padding-top: 6.4rem;
+  }
 }
+
 .fixed-slider-header {
-  font-weight: 700;
-  color: white;
-  padding-left: 30px;
-  padding-right: 30px;
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1230px;
-  
-  position: absolute;
-  
-
-  @media (min-width: 768px)
-  {
-    font-size: 6.5rem;
-    line-height: 1;
-    left: 0;
-    top: 234px;
-  }
-  @media (min-width: 1200px)
-  {
-    font-size: 8.5rem;
-    left: calc((100% - 1230px)/2);
-    top: 215px;
-  }
-
   @media (max-width: $screen-xs-max) {
-    font-size: 4rem;
-    line-height: 1.1;
-    top: 397px;
-    left: 0;
+    top: 33.5rem;
   }
-      
+  
+  width: 100%;
+  position: absolute;
+  top: 19rem;
+  color: $color-white;
+  @extend %h1;
+  font-family: $font-flama;
+  white-space: nowrap;
 }
