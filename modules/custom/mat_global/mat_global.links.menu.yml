@@ -1,0 +1,7 @@
+mat_global.mat_global_settings_form:
+  title: 'Mat Global Settings'
+  route_name: mat_global.mat_global_settings_form
+  description: 'A description for the menu entry'
+  parent: system.admin_config_system
+  weight: 99
+
