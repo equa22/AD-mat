@@ -1,0 +1,22 @@
+name: MAT Admin
+type: theme
+description: 'MAT administration theme'
+core: 8.x
+base theme: tdx_adminal
+
+libraries:
+  - mat_admin/global-styling
+  - mat_admin/global-js
+
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+regions_hidden:
+  - sidebar_first
