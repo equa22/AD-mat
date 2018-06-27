@@ -361,13 +361,12 @@ form.node-story-profile-story-submission-form {
 
   .field--type-boolean label::before,
   .webform-type-radios label::before {
-    background-color: $color-white;
+    background-color: $color-white !important;
   }
 
   input[type="checkbox"]:checked + label::before,
   input[type="radio"]:checked + label::before {
-    background: $color-white;
-    border-color: $color-white;
+    background: $color-white !important;
+    border-color: $color-white !important;
   }
-
 }
