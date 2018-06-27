@@ -15,6 +15,10 @@
     position: relative;
 
     // Slick styles
+    .slick-slide {
+      outline: none;
+    }
+
     .slick-list {
       top: -7rem;
 

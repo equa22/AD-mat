@@ -1,5 +1,5 @@
 transport: smtp
-smtp_host: mail.yourserver.com
+smtp_host: mail.skynet.si
 smtp_port: 25
 smtp_encryption: '0'
 sendmail_path: /usr/sbin/sendmail
@@ -10,5 +10,5 @@ _core:
 smtp_credential_provider: swiftmailer
 smtp_credentials:
   swiftmailer:
-    username: username@email.com
-    password: password
+    username: terminator@skynet.si
+    password: 5zthNJI=zpSC

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.basic_page_image_and_text.field_border
     - field.field.paragraph.basic_page_image_and_text.field_media
     - field.field.paragraph.basic_page_image_and_text.field_text
     - field.field.paragraph.basic_page_image_and_text.field_text_align
@@ -31,4 +32,5 @@ content:
     type: text_default
     region: content
 hidden:
+  field_border: true
   field_text_align: true

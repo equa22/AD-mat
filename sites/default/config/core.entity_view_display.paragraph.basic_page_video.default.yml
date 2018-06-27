@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.basic_page_video.field_border
     - field.field.paragraph.basic_page_video.field_video
     - paragraphs.paragraphs_type.basic_page_video
 id: paragraph.basic_page_video.default
@@ -19,4 +20,5 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_border: true

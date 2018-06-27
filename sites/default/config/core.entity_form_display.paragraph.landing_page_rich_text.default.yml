@@ -3,30 +3,32 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.landing_page_rich_text.field_border
     - field.field.paragraph.landing_page_rich_text.field_text
     - paragraphs.paragraphs_type.landing_page_rich_text
   module:
     - content_moderation
+    - field_group
     - text
 third_party_settings:
   field_group:
     group_settings:
       children:
-        - field_paragraph_column
-        - field_style
+        - field_border
       parent_name: ''
       weight: 2
       format_type: html_element
       format_settings:
-        id: ''
-        classes: settings
+        label: Settings
         element: div
-        show_label: false
+        show_label: true
         label_element: h3
         required_fields: true
         attributes: ''
         effect: none
         speed: fast
+        id: ''
+        classes: settings
       label: Settings
 _core:
   default_config_hash: AsL6ua9sp4ugjcNMHq0Qu4XR9mRbGjZA3rWG4WmKc6Y
@@ -35,6 +37,12 @@ targetEntityType: paragraph
 bundle: landing_page_rich_text
 mode: default
 content:
+  field_border:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_text:
     weight: 0
     settings:

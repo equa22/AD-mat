@@ -16,10 +16,30 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - field_group
     - paragraphs
     - path
     - svg_image
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_header_style
+      parent_name: ''
+      weight: 4
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 _core:
   default_config_hash: GrlPUkRt_bl_-mumIi-_SlAFpI2SVSj2UDSrVRxUbl8
 id: node.basic_page.default
@@ -29,7 +49,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 13
+    weight: 14
     settings:
       rows: 9
       summary_rows: 3
@@ -38,13 +58,13 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   field_basic_page_components:
     type: paragraphs
-    weight: 14
+    weight: 15
     settings:
       title: Components
       title_plural: Components
@@ -64,10 +84,10 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_header_style:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -89,7 +109,7 @@ content:
     type: image_image
     region: content
   field_search_image_media:
-    weight: 15
+    weight: 16
     settings:
       entity_browser: media_entity_browser_modal
       field_widget_display: rendered_entity
@@ -104,20 +124,20 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 5
+    weight: 6
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
-    weight: 11
+    weight: 12
     settings: {  }
     region: content
     third_party_settings: {  }
   path:
     type: path
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -125,21 +145,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 8
+    weight: 9
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 12
+    weight: 13
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 9
+    weight: 10
     region: content
     third_party_settings: {  }
   title:
@@ -152,7 +172,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60

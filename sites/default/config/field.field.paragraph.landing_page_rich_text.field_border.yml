@@ -1,22 +1,19 @@
-uuid: 38415613-23ae-4c1a-b491-a47dcde6836b
+uuid: 2c82fc1f-05d1-45e7-bfbc-db5a34026184
 langcode: en
 status: true
 dependencies:
   config:
-    - classy_paragraphs.classy_paragraphs_style.align_right
-    - field.storage.paragraph.field_text_align
-    - paragraphs.paragraphs_type.basic_page_image_and_text
-id: paragraph.basic_page_image_and_text.field_text_align
-field_name: field_text_align
+    - field.storage.paragraph.field_border
+    - paragraphs.paragraphs_type.landing_page_rich_text
+id: paragraph.landing_page_rich_text.field_border
+field_name: field_border
 entity_type: paragraph
-bundle: basic_page_image_and_text
-label: 'Text align'
+bundle: landing_page_rich_text
+label: 'Border on the bottom'
 description: ''
-required: true
-translatable: true
-default_value:
-  -
-    target_uuid: 487e4124-7ea3-457f-835a-6a79b318a74f
+required: false
+translatable: false
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: classy_paragraphs
@@ -24,10 +21,10 @@ settings:
     filter:
       type: target_bundles
       target_bundles:
-        align_left: align_left
-        align_right: align_right
+        border: border
+        align_left: 0
+        align_right: 0
         news_header_bg: 0
-        border: 0
         boxed: 0
         color_blue: 0
         color_dark_blue: 0

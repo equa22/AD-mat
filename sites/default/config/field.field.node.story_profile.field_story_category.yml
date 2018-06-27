@@ -10,7 +10,7 @@ id: node.story_profile.field_story_category
 field_name: field_story_category
 entity_type: node
 bundle: story_profile
-label: 'Please select one'
+label: Section
 description: ''
 required: true
 translatable: false

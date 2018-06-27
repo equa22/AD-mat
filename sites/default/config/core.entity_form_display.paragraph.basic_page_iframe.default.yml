@@ -3,18 +3,45 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.basic_page_iframe.field_border
     - field.field.paragraph.basic_page_iframe.field_iframe
     - paragraphs.paragraphs_type.basic_page_iframe
   module:
     - content_moderation
+    - field_group
     - text
+third_party_settings:
+  field_group:
+    group_settings:
+      children:
+        - field_border
+      parent_name: ''
+      weight: 2
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: settings
+        element: div
+        show_label: true
+        label_element: h3
+        required_fields: true
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Settings
 id: paragraph.basic_page_iframe.default
 targetEntityType: paragraph
 bundle: basic_page_iframe
 mode: default
 content:
+  field_border:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_iframe:
-    weight: 101
+    weight: 1
     settings:
       rows: 5
       placeholder: ''
@@ -23,7 +50,7 @@ content:
     region: content
   moderation_state:
     type: moderation_state_default
-    weight: 100
+    weight: 0
     settings: {  }
     region: content
     third_party_settings: {  }

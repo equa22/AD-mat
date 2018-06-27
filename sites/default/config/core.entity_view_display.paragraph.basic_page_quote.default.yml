@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.basic_page_quote.field_border
     - field.field.paragraph.basic_page_quote.field_quote
     - field.field.paragraph.basic_page_quote.field_quote_author
     - field.field.paragraph.basic_page_quote.field_quote_author_about
@@ -35,4 +36,5 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-hidden: {  }
+hidden:
+  field_border: true
