@@ -96,12 +96,10 @@
   // Items basic styles
   .paragraph--type--cta-item {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     min-height: 12rem;
     margin-left: 4rem;
-    padding: 1.5rem 0 2.2rem 0;
     position: relative;
-    cursor: pointer;
     background-color: $color-white;
     border-radius: 13px;
     box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
@@ -109,7 +107,17 @@
     @media (min-width: $screen-sm-min) {
       min-height: 17.5rem;
       margin-left: 0;
-      padding: 3rem 0;
+    }
+
+    > a {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 1.5rem 0 2.2rem 0;
+
+      @media (min-width: $screen-sm-min) {
+        padding: 3rem 0;
+      }
     }
 
     .icon-circled {

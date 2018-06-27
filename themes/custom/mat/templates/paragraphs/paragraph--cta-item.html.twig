@@ -49,15 +49,18 @@
 %}
 
 {% block paragraph %}
-  <a {{ attributes.addClass(classes) }} href="{{ content.field_link.0['#url'] }}">
-    {% block content %}
-      <span class="icon-circled">
-        <i style="background-image: url('{{ icon_bg }}')"></i>
-      </span>
-      <div class="cta-item--content">
-      {{ content.field_title }}
-      {{ content.field_content }}
-      </div>
-    {% endblock %}
-  </a>
+  <div {{ attributes.addClass(classes) }} >
+    {{ content.contextual_links }}
+    <a href="{{ content.field_link.0['#url'] }}">
+      {% block content %}
+        <span class="icon-circled">
+          <i style="background-image: url('{{ icon_bg }}')"></i>
+        </span>
+        <div class="cta-item--content">
+        {{ content.field_title }}
+        {{ content.field_content }}
+        </div>
+      {% endblock %}
+    </a>
+  </div>
 {% endblock paragraph %}

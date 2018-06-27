@@ -46,6 +46,7 @@
 %}
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
+    {{ content.contextual_links }}
     <div class="container">
         {% block content %}
         <div class="pillar-group--heading">

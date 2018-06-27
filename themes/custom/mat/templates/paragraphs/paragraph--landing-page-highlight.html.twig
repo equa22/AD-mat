@@ -50,9 +50,9 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }} style="background-image: url('{{ paragraph_bg }}')">
     {% block content %}
-      {{ content.contextual_links }}
       <div class="highlight--image">{{ content.field_media_foreground }}</div>
       <div class="container">
+        {{ content.contextual_links }}
         <div class="highlight--content">
           <h2>{{ content.field_title_formatted }}</h2>
           {{ content.field_text }}
