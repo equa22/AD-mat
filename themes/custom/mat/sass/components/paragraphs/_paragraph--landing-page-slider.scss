@@ -82,7 +82,7 @@
       color: $color-white;
 
       @media (max-width: $screen-xs-max) {
-        padding-top: 3.5rem;
+       // padding-top: 3.5rem;
       }
     }
 
@@ -123,13 +123,14 @@
 
 .paragraph--type--landing-page-slider .paragraph--type--slide h1 {
   height: auto;
-  
+  padding-top: 100px;
+
   @media (min-width: $screen-sm-min) {
-    padding-top: 4.5rem;
+    //padding-top: 4.5rem;
   }
 
   @media (min-width: $screen-lg-min) {
-    padding-top: 6.4rem;
+    //padding-top: 6.4rem;
   }
 }
 
