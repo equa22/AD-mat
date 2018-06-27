@@ -71,7 +71,11 @@ function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, arra
       if ($context["element"]["#paragraph_type"] != 'pillar_group_item') {
         $widget_actions['dropdown_actions'] = [];
       }
-    } else {
+    }
+    elseif ($landingPageType == 'new_node') {
+
+    }
+    else {
       $widget_actions['dropdown_actions'] = [];
     }
   }
@@ -101,6 +105,8 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
         unset($variables['table']['#tabledrag']);
         unset($variables['table']['#header'][1]);
       }
+    } elseif ($landingPageType == 'new_node') {
+
     } else {
       unset($variables['table']['#tabledrag']);
       unset($variables['table']['#header'][1]);
@@ -149,6 +155,8 @@ function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$for
         '#theme', '#attached', '#weight', 'add_more_button_pillar_group_item', 'add_more_button_pillar_group',
       ];
       _mat_global_remove_add_more_items($elements, $exceptions);
+    } elseif ($landingPageType == 'new_node') {
+
     } else {
       foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
         unset($elements[$index]['_weight']);
@@ -191,6 +199,6 @@ function _mat_global_get_landing_page_from_node() {
     return $landingPageType;
   }
   else {
-    return FALSE;
+    return 'new_node';
   }
 }
