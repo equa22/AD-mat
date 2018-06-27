@@ -182,9 +182,15 @@ function _mat_global_remove_add_more_items(&$elements, array $exception = []) {
 function _mat_global_get_landing_page_from_node() {
   /* @var Node $node */
   $node = \Drupal::routeMatch()->getParameter('node');
-  $config = \Drupal::config('mat_global.matglobalsettings');
-  $data = $config->getRawData();
-  $landingPageType = array_keys($data, $node->id());
-  $landingPageType = reset($landingPageType);
-  return $landingPageType;
+  if ($node instanceof Node) {
+    $config = \Drupal::config('mat_global.matglobalsettings');
+    $data = $config->getRawData();
+    $landingPageType = array_keys($data, $node->id());
+    $landingPageType = reset($landingPageType);
+
+    return $landingPageType;
+  }
+  else {
+    return FALSE;
+  }
 }
