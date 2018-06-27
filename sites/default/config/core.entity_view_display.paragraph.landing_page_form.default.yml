@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.landing_page_form.field_border
     - field.field.paragraph.landing_page_form.field_webform
     - paragraphs.paragraphs_type.landing_page_form
   module:
@@ -22,4 +23,5 @@ content:
     third_party_settings: {  }
     type: webform_entity_reference_entity_view
     region: content
-hidden: {  }
+hidden:
+  field_border: true

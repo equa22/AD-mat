@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.media_entity_browser_modal
+    - field.field.paragraph.basic_page_image_and_text.field_border
     - field.field.paragraph.basic_page_image_and_text.field_media
     - field.field.paragraph.basic_page_image_and_text.field_text
     - field.field.paragraph.basic_page_image_and_text.field_text_align
@@ -18,6 +19,7 @@ third_party_settings:
     group_settings:
       children:
         - field_text_align
+        - field_border
       parent_name: ''
       weight: 3
       format_type: html_element
@@ -37,6 +39,12 @@ targetEntityType: paragraph
 bundle: basic_page_image_and_text
 mode: default
 content:
+  field_border:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_media:
     weight: 1
     settings:

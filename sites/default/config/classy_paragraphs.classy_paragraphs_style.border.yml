@@ -1,0 +1,7 @@
+uuid: 3779d971-f7c6-4e98-9575-f0713c3c66b2
+langcode: en
+status: true
+dependencies: {  }
+id: border
+label: Border
+classes: border-line

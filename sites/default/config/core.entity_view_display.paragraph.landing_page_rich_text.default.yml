@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.landing_page_rich_text.field_border
     - field.field.paragraph.landing_page_rich_text.field_text
     - paragraphs.paragraphs_type.landing_page_rich_text
   module:
@@ -21,4 +22,5 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-hidden: {  }
+hidden:
+  field_border: true

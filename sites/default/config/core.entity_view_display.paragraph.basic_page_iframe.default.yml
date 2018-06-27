@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.basic_page_iframe.field_border
     - field.field.paragraph.basic_page_iframe.field_iframe
     - paragraphs.paragraphs_type.basic_page_iframe
   module:
@@ -19,4 +20,5 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-hidden: {  }
+hidden:
+  field_border: true
