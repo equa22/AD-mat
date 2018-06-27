@@ -49,3 +49,41 @@ function mat_global_preprocess_node(&$variables) {
   }
 }
 */
+
+function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, array &$context) {
+  /* @var Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $config = \Drupal::config('mat_global.matglobalsettings');
+  $data = $config->getRawData();
+  $landingPageType = array_keys($data, $node->id());
+  $landingPageType = reset($landingPageType);
+
+  $widget_actions['dropdown_actions'] = [];
+  unset($context["element"]["top"]["#weight"]);
+
+
+  switch ($landingPageType) {
+    case 'homepage_landing_page':
+
+      break;
+
+    case 'why_we_give_live_landing_page':
+      break;
+
+    case 'what_we_do_landing_page':
+      break;
+
+    default:
+      continue;
+  }
+  $test = 1;
+}
+
+function mat_global_preprocess_field_multiple_value_form(&$variables) {
+  unset($variables['table']['#tabledrag']);
+  unset($variables['table']['#header'][1]);
+}
+
+function mat_global_field_widget_multivalue_form_alter(array &$elements, \Drupal\Core\Form\FormStateInterface $form_state, array $context) {
+  $test = 1;
+}
