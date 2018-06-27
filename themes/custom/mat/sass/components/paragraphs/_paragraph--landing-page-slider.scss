@@ -134,15 +134,37 @@
 }
 
 .fixed-slider-header {
-  @media (max-width: $screen-xs-max) {
-    top: 33.5rem;
-  }
-  
+  font-weight: 700;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: relative;
+  margin: 0 auto;
   width: 100%;
+  max-width: 1230px;
+  
   position: absolute;
-  top: 19rem;
-  color: $color-white;
-  @extend %h1;
-  font-family: $font-flama;
-  white-space: nowrap;
+  
+
+  @media (min-width: 768px)
+  {
+    font-size: 6.5rem;
+    line-height: 1;
+    left: 0;
+    top: 234px;
+  }
+  @media (min-width: 1200px)
+  {
+    font-size: 8.5rem;
+    left: calc((100% - 1230px)/2);
+    top: 215px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    font-size: 4rem;
+    line-height: 1.1;
+    top: 397px;
+    left: 0;
+  }
+      
 }
