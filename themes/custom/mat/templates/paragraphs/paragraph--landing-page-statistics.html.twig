@@ -44,13 +44,14 @@
     'paragraph--type--' ~ paragraph.bundle|clean_class,
   ]
 %}
+
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
       <div class="container-small">
         {{ content.contextual_links }}
-        {{ content.field_title }}
-        <h2>{{ content.field_text }}</h2>
+        <h3>{{ content.field_title.0 }}</h3>
+        <h2>{{ content.field_text.0 }}</h2>
       </div>
       <div class="container-large">
         {{ content.field_statistics_items }}

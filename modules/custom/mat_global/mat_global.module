@@ -49,3 +49,150 @@ function mat_global_preprocess_node(&$variables) {
   }
 }
 */
+
+/**
+ * Implements hook_paragraphs_widget_actions_alter().
+ */
+function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, array &$context) {
+  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+
+    // Remove drop-down actions for inline form under certain condition.
+    $landingPageType = _mat_global_get_landing_page_from_node();
+
+    // Check condition for paragraphs type because
+    // we don't want to remove for all drop-downs.
+    if ($landingPageType == 'homepage_landing_page') {
+      if ($context["element"]["#paragraph_type"] != 'cta_item') {
+        $widget_actions['dropdown_actions'] = [];
+      }
+    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
+      if ($context["element"]["#paragraph_type"] != 'myth_vs_fact') {
+        $widget_actions['dropdown_actions'] = [];
+      }
+    } elseif ($landingPageType == 'what_we_do_landing_page') {
+      if ($context["element"]["#paragraph_type"] != 'pillar_group_item') {
+        $widget_actions['dropdown_actions'] = [];
+      }
+    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
+      $widget_actions['dropdown_actions'] = [];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function mat_global_preprocess_field_multiple_value_form(&$variables) {
+  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+
+    // Remove option to drag paragraphs.
+    $landingPageType = _mat_global_get_landing_page_from_node();
+
+    if ($landingPageType == 'homepage_landing_page') {
+      if ($variables["element"]["#field_name"] != 'field_cta_items') {
+        unset($variables['table']['#tabledrag']);
+        unset($variables['table']['#header'][1]);
+      }
+    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
+      if ($variables["element"]["#field_name"] != 'field_myths_vs_facts') {
+        unset($variables['table']['#tabledrag']);
+        unset($variables['table']['#header'][1]);
+      }
+    } elseif ($landingPageType == 'what_we_do_landing_page') {
+      if ($variables["element"]["#field_name"] != 'field_pillar_group_items') {
+        unset($variables['table']['#tabledrag']);
+        unset($variables['table']['#header'][1]);
+      }
+    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
+      unset($variables['table']['#tabledrag']);
+      unset($variables['table']['#header'][1]);
+    }
+  }
+}
+
+/**
+ * Implements hook_paragraphs_multiple_elements_alter().
+ */
+function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$form_state) {
+  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+    // Remove order column.
+    $landingPageType = _mat_global_get_landing_page_from_node();
+    $exceptions = [
+      '#theme', '#attached', '#weight',
+    ];
+
+    if ($landingPageType == 'homepage_landing_page') {
+      if ($elements["#field_name"] != 'field_cta_items') {
+        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
+          unset($elements[$index]['_weight']);
+        }
+      }
+      $exceptions = [
+        '#theme', '#attached', '#weight', 'add_more_button_landing_page_cta', 'add_more_button_cta_item',
+      ];
+      _mat_global_remove_add_more_items($elements, $exceptions);
+    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
+      if ($elements["#field_name"] != 'field_myths_vs_facts') {
+        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
+          unset($elements[$index]['_weight']);
+        }
+      }
+      $exceptions = [
+        '#theme', '#attached', '#weight', 'add_more_button_timeline_facts', 'add_more_button_myth_vs_fact',
+      ];
+      _mat_global_remove_add_more_items($elements, $exceptions);
+    } elseif ($landingPageType == 'what_we_do_landing_page') {
+      if ($elements["#field_name"] != 'field_pillar_group_items') {
+        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
+          unset($elements[$index]['_weight']);
+        }
+      }
+      $exceptions = [
+        '#theme', '#attached', '#weight', 'add_more_button_pillar_group_item', 'add_more_button_pillar_group',
+      ];
+      _mat_global_remove_add_more_items($elements, $exceptions);
+    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
+      foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
+        unset($elements[$index]['_weight']);
+      }
+      _mat_global_remove_add_more_items($elements, $exceptions);
+    }
+  }
+}
+
+/**
+ * Remove defined add more buttons from elements.
+ *
+ * @param       $elements
+ * @param array $exception
+ */
+function _mat_global_remove_add_more_items(&$elements, array $exception = []) {
+  foreach ($elements['add_more'] as $index => $button) {
+    if (array_search($index, $exception) === FALSE) {
+      unset($elements['add_more'][$index]);
+    }
+  }
+}
+
+
+/**
+ * Function will check current node and form settings and then return landing page.
+ *
+ * @return array|mixed
+ *    Return landing page.
+ */
+function _mat_global_get_landing_page_from_node() {
+  /* @var Node $node */
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof Node) {
+    $config = \Drupal::config('mat_global.matglobalsettings');
+    $data = $config->getRawData();
+    $landingPageType = array_keys($data, $node->id());
+    $landingPageType = reset($landingPageType);
+
+    return $landingPageType;
+  } else {
+    // Return something so we know this is new node.
+    return 'new_node';
+  }
+}
