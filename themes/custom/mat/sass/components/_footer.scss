@@ -45,6 +45,10 @@
           .menu-item {
             a {
               color: $gray-base;
+
+              &:hover {
+                color: $gray-darker;
+              }
             }
           }
         }

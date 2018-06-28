@@ -157,6 +157,11 @@
 
   @if ($bg == 'transparent') {
     border: 2px solid $color-white;
+
+    &:hover {
+      color: $gray-darker;
+      background-color: $color-white;
+    }
   }
 
   @if $bg == 'white' {
