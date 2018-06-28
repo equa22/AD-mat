@@ -20,6 +20,6 @@ default_value:
 default_value_callback: ''
 settings:
   markup:
-    value: "<h2>Who is your story about ?</h2>\r\n\r\n<p>Tell us about the person your story is about. This may be you, a friend, or a family member.</p>\r\n"
+    value: "<h2>Who is Your Story About?</h2>\r\n<p>Tell us about the person your story is about. This may be you, a friend, or a family member.</p>\r\n<span class=\"field-required\">All Fields Required</span>"
     format: advanced
 field_type: markup
