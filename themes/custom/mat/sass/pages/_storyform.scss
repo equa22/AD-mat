@@ -1,45 +1,73 @@
+// ========================================
+//
+// @file _storyform.scss
+// Story submission form
+//
+// ========================================
+.story-submission--main {
+  .region-content {
+    @extend %page-gray;
+    border-top: 0;
+  }
+}
+
 .node-story-profile-story-submission-form {
-  @extend %page-gray;
-  @include container;
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 900px;
-  border-top: 0;
-  @include fullSectionBackground($gray-lighter,$gray-lighter);
+  max-width: 930px;
+
   .field--name-field-intro-markup {
     text-align: center;
-    margin-bottom: 6rem;
+    margin-bottom: 1.8rem;
+
+    @media (min-width: $screen-sm-min) {
+      margin-bottom: 6rem;
+    }
+
     h1 {
       color: $blue-dark;
     }
     p {
       font-weight: normal !important;
     }
-
   }
+
+  .field-group-accordion-wrapper {
+    border-bottom: 2px solid $gray-dark;
+
+    &.step5 {
+      border-bottom: none;
+
+      .step-link:not(.active) {
+        border-bottom: 2px solid $gray-dark;
+      }
+
+      .step-title {
+        @media (max-width: $screen-iphone5-max) {
+          display: block;
+        }
+      }
+    }
+  }
+
   .step-link {
     display: block;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    &:not(.active) {
-      border-bottom: 2px solid $gray-darker;
-    }
+    padding: 3rem 0;
+
     span {
       display: inline-block;
+
       &:first-of-type {
         font-weight: 500;
         text-transform: uppercase;
-        color: $gray-darker;
+        color: $gray-dark;
         letter-spacing: 5px;
-        margin-right: 60px;
-        @media (max-width: $screen-sm-max) {
+        margin-right: 55px;
+        @media (max-width: $screen-xs-max) {
           margin-right: 30px;
         }
       }
       &.step-title {
         font-weight: 500;
-        color: $gray-darker;
+        color: $gray-dark;
         @extend %lead;
 
         + .step-title {
@@ -48,14 +76,24 @@
       }
     }
     &.active {
+      padding: 2.8rem 0 1.3rem 0;
+      margin-top: 4.5rem;
+
+      @media (max-width: $screen-xs-max) {
+         margin-top: 2.2rem;
+      }
+
       span {
         display: block;
+
         &:first-of-type {
           color: $mat-brand-primary;
           margin-right: 0;
         }
+
         &.step-title {
           color: $blue-dark;
+          padding-top: .3rem;
         }
       }
     }
@@ -68,7 +106,7 @@
 
       span {
         display: inline-block;
-        margin: 2.5rem 0 .8rem 0;
+        margin: 3.8rem 0 1rem 0;
         @extend %lead;
         font-weight: 500;
         color: $blue-dark;
@@ -90,10 +128,17 @@
   .step-content {
     position: relative;
     @include clearfix;
-    &.step1-content,
+    &.step1-content {
+      padding-bottom: 5rem;
+    }
+
     &.step2-content,
     &.step3-content {
-      padding-bottom: 7rem;
+      padding-bottom: 8.5rem;
+
+      @media (max-width: $screen-xs-max) {
+        padding-bottom: 6rem;
+      }
     }
 
     &.step1-content {
@@ -101,25 +146,65 @@
       .field--name-field-story-last-name {
         float: left;
         width: calc(50% - 30px);
-        @media (max-width: $screen-sm-max) {
+        @media (max-width: $screen-xs-max) {
           float: none;
           width: 100%;
         }
       }
       .field--name-field-story-first-name {
         margin-right: 60px;
-        @media (max-width: $screen-sm-max) {
+        @media (max-width: $screen-xs-max) {
           margin-right: 0;
         }
       }
     }
     &.step2-content {
-      padding-top: 4.5rem;
+      padding-top: 3.5rem;
+
+      .field--name-field-story-markup-2 {
+        position: relative;
+
+        .field-required {
+          top: -10.1rem;
+
+          @media (min-width: $screen-sm-min) {
+            top: -7.2rem;
+          }
+        }
+      }
+
+      .textarea-placeholder {
+        display: block;
+        @extend %small;
+        color: $gray-dark;
+        position: absolute;
+        z-index: 1;
+        cursor: text;       
+        top: 3rem;
+        left: 2.8rem;
+        padding-right: 2.8rem;
+        transition: all .2s;
+
+        &.labelfocus {
+          z-index: 0;
+          visibility: hidden;
+        }
+      }
+
       textarea {
-        max-height: 350px;
+        height: 400px;
+        @extend %small;
+        
+        @media (min-width: $screen-sm-min) {
+          height: 350px;
+        }
       }
     }
     &.step3-content {
+      .field--name-field-story-markup-23 {
+        padding-bottom: 4rem;
+      }
+
       .field--type-image {
         position: relative;
         width: calc(25% - 1.5rem);
@@ -157,31 +242,30 @@
             height: 44px;
             content: '';
             @include icons('i-upload_photo');
-            top: 50%;
+            top: 8.4rem;
             left: 0;
             right: 0;
             bottom: 0;
             margin: -44px auto 0;
           }
           &:after {
+            content: 'Additional Photo (Optional)';
             display: block;
+            padding: 1.2rem 2rem 0 2rem;
             position: absolute;
             left: 0;
             right: 0;
             top: 50%;
             bottom: 0;
-            text-align: center;
-            //content: 'Upload a  Featured Photo ';
-            content: 'Additional Photo (Optional)';
-            /* Additional Photo ( O: */
+            @extend %small-label;
             font-family: $font-flama;
-            text-transform: uppercase;
-            font-weight: 600;
-            @include font-size(1.2);
-            color: rgba(74,74,74,0.65);
-            letter-spacing: 1px;
-            line-height: 1.4;
-            margin: 10px auto 0;
+            color: $gray-dark;
+            text-align: center;
+
+            @media (max-width: $screen-xs-max) {
+              max-width: 20rem;
+              margin: 0 auto;
+            }
           }
           img {
             object-fit: cover;
@@ -239,13 +323,26 @@
 
     }
     &.step4-content {
+      padding-bottom: 7rem;
+
+      .field--name-field-story-markup-4 {
+        p {
+          padding-bottom: 1.6rem;
+
+          @media (min-width: $screen-sm-min) {
+            padding: 2.5rem 0 3.6rem 0;
+          }
+        }
+      }
+
       .field--name-field-submissioner-first-name,
       .field--name-field-submissioner-last-name,
       .field--name-field-submissioner-email,
       .field--name-field-submissioner-phone-number {
         width: calc(50% - 3rem);
         float: left;
-        @media (max-width: $screen-sm-max) {
+
+        @media (max-width: $screen-xs-max) {
           width: 100%;
           float: none;
         }
@@ -253,34 +350,66 @@
       .field--name-field-submissioner-first-name,
       .field--name-field-submissioner-email {
         margin-right: 6rem;
-        @media (max-width: $screen-sm-max) {
+        @media (max-width: $screen-xs-max) {
           margin-right: 0;
         }
       }
-      .field--name-field-submissioner-email,
-      .field--name-field-submissioner-phone-number {
-        margin-bottom: 4rem;
-        @media (max-width: $screen-sm-max) {
-          margin-bottom: 0;
+    }
+
+    &.step5-content {
+      .field--name-field-story-markup-5 {
+        margin-top: 3rem;
+        color: $gray-dark;
+
+        .field-required {
+          top: -9.6rem;
+
+          @media (min-width: $screen-sm-min) {
+            top: -6.7rem;
+          }
+        }
+
+        p {
+          margin-bottom: 3.3rem;
+
+          @media (min-width: $screen-sm-min) {
+            margin-bottom: 3.8rem;
+          }
         }
       }
-
     }
+
     .field--name-field-terms-and-conditions {
-      margin-top: 4rem;
       position: relative;
-      color: $color-black;
-      font-weight: 600;
-      @media (max-width: $screen-sm-max) {
-        margin-right: 30px;
-      }
-      label {
+      font-weight: 500;
+
+      .js-form-type-checkbox label {
+        display: block;
         padding-left: 6rem;
-        display: block
+        color: $color-black !important;
+        font-size: 1.6rem !important;
+        line-height: 1.7 !important;
+        white-space: nowrap;
+
+        @media (max-width: $screen-iphone5-max) {
+           white-space: normal;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          font-size: 2rem !important;
+        }
       }
       a {
-        color: $color-black;
         text-decoration: underline;
+
+        @media (max-width: $screen-iphone5-max) {
+          white-space: nowrap;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          color: $color-black;
+        }
+
         &:hover {
           text-decoration: none;
         }
@@ -288,10 +417,9 @@
     }
   }
   #charNum {
-    text-transform: uppercase;
     font-weight: 500;
     @include font-size(1.2);
-    color: $gray-darker;
+    color: $gray-dark;
     text-align: right;
   }
 
@@ -299,31 +427,38 @@
     p {
       font-weight: 500;
 
-      &.file-desc {
-        @include font-size(1.2);
-        color: $gray-darker;
-        font-weight: normal;
+    }
 
-        position: absolute;
-        top: -50px;
-        right: 0;
-        @media (max-width: $screen-sm-max) {
-          position: relative;
-          top: auto;
-          right: auto;
-          margin-bottom: 2.5rem;
-        }
+    .file-desc,
+    .field-required {
+      @include font-size(1.2);
+      color: $gray-dark;
+      font-weight: 500;
+
+      position: absolute;
+      top: -3.7rem;
+      right: 0;
+    }
+
+    .field-required {
+      @media (max-width: $screen-xs-max) {
+        top: -6.6rem;
       }
     }
-    &.field--name-field-story-markup-1 {
-      p {
-        margin-bottom: 2rem;
+
+    .file-desc {
+      @media (max-width: $screen-xs-max) {
+        display: block;
+        margin-bottom: 1.2rem;
+        position: relative;
+        top: auto;
+        right: auto;
       }
     }
   }
   .form-actions {
+    margin-top: 7rem;
     text-align: center;
-    margin-top: 8rem;
   }
   button[type="submit"] {
     @include btn-primary();
@@ -337,9 +472,9 @@
       padding-right: 3rem;
     }
 
-    @media (max-width: $screen-iphone5-max) { // iPhone5
+    @media (max-width: $screen-iphone5-max) {
       padding-left: 7rem !important;
-      padding-right: 3rem;
+      padding-right: 2.8rem;
       background-position: 3rem center;
     }
   }

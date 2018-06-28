@@ -155,7 +155,7 @@ function mat_story_form_alter(&$form, $form_state, $form_id) {
 
       $form['actions']['submit']['#type'] = 'inline_template';
       // do not change this (it's a bug, must have value="save")
-      $form['actions']['submit']['#template'] = '<button data-drupal-selector="edit-submit" id="edit-submit" name="op" value="Save" class="button button--button js-form-submit form-submit" type="submit">'.t('Submit your story').'</button>';
+      $form['actions']['submit']['#template'] = '<button data-drupal-selector="edit-submit" id="edit-submit" name="op" value="Save" class="button button--button js-form-submit form-submit" type="submit">'.t('Submit Your Story').'</button>';
       
       
       
