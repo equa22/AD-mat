@@ -465,8 +465,49 @@ $.fn.isInViewport = function(props) {
       });
       
 
+      $(window).scroll(function(event){
+       var st = $(this).scrollTop();
+       if (st > lastScrollTop){
+         direction = 'down';
+       } else {
+        direction = 'up';
+       }
+       lastScrollTop = st;
+     });
+
+    $(window).on("mousewheel", function(event) {
+      console.log($(this).scrollTop());
+      console.log(event.deltaMode === 1, event.originalEvent.deltaY);
+
+      var deltaY = event.originalEvent.deltaY;
+
+
+
+      $('.parallax').each(function() {
+      if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
+        var currentPosition = Number($(this).css('top').replace('px', ''));
+
+
+      console.log("ORIGINAL: " + deltaY + ", new: " + Number($(this).data('parallax-depth'))*deltaY);
+
+        if(direction == 'down') {
+         $(this).css('top', currentPosition - Number($(this).data('parallax-depth')) + 'px');
+        } else {
+         $(this).css('top', currentPosition + Number($(this).data('parallax-depth')) + 'px');
+        }
+       }
+      });
+    });
+
     // drop shine on element
     $(window).on( "mousemove scroll", function( event ) {
+    /*const deltaY = event.deltaMode === 1
+   ? -event.deltaY * 18
+    : -event.deltaY*/
+      
+
+
+
       $('.shine-letter').each(function(i, el) {
         if($(this).isInViewport(0)) {
 
@@ -481,30 +522,11 @@ $.fn.isInViewport = function(props) {
         }
       });
     });
-     $(window).scroll(function(event){
-       var st = $(this).scrollTop();
-       if (st > lastScrollTop){
-         direction = 'down';
-       } else {
-        direction = 'up';
-       }
-       lastScrollTop = st;
-     });
+     
 
      var prevPx = 0;
      $(window).on('scroll', function() {
-      var newPx = $(window).scrollTop() - prevPx;
-      prevPx = newPx;
-      $('.parallax').each(function() {
-       if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
-        var currentPosition = Number($(this).css('top').replace('px', ''));
-        if(direction == 'down') {
-         $(this).css('top', currentPosition - Number($(this).data('parallax-depth')) + 'px');
-        } else {
-         $(this).css('top', currentPosition + Number($(this).data('parallax-depth')) + 'px');
-        }
-       }
-      });
+      
       
       // get breaking point for animation
       var myth_fact_breakpoint =  mobile_device ? $(window).height()/4*3 : 100;
