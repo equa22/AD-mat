@@ -673,7 +673,7 @@ $mobile-item-size: 100px;
     .cat-item {
       display: inline-block;
       padding-right: 50px;
-      &.bold {
+      &.active {
         color: #9B9B9B;
       }
       &.slick-active {
@@ -733,7 +733,7 @@ $mobile-item-size: 100px;
     .filter-wrapper {
       color: $gray-base;
 
-      .bold {
+      .active {
         color: $color-black;
       }
 
