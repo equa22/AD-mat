@@ -56,9 +56,11 @@ function mat_global_preprocess_node(&$variables) {
 function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, array &$context) {
   if (in_array('editor', \Drupal::currentUser()->getRoles())) {
 
-    // Remove dropdown actions for inline form under certain condition.
+    // Remove drop-down actions for inline form under certain condition.
     $landingPageType = _mat_global_get_landing_page_from_node();
 
+    // Check condition for paragraphs type because
+    // we don't want to remove for all drop-downs.
     if ($landingPageType == 'homepage_landing_page') {
       if ($context["element"]["#paragraph_type"] != 'cta_item') {
         $widget_actions['dropdown_actions'] = [];
@@ -71,11 +73,7 @@ function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, arra
       if ($context["element"]["#paragraph_type"] != 'pillar_group_item') {
         $widget_actions['dropdown_actions'] = [];
       }
-    }
-    elseif ($landingPageType == 'new_node') {
-
-    }
-    else {
+    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
       $widget_actions['dropdown_actions'] = [];
     }
   }
@@ -105,9 +103,7 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
         unset($variables['table']['#tabledrag']);
         unset($variables['table']['#header'][1]);
       }
-    } elseif ($landingPageType == 'new_node') {
-
-    } else {
+    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
       unset($variables['table']['#tabledrag']);
       unset($variables['table']['#header'][1]);
     }
@@ -155,9 +151,7 @@ function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$for
         '#theme', '#attached', '#weight', 'add_more_button_pillar_group_item', 'add_more_button_pillar_group',
       ];
       _mat_global_remove_add_more_items($elements, $exceptions);
-    } elseif ($landingPageType == 'new_node') {
-
-    } else {
+    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
       foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
         unset($elements[$index]['_weight']);
       }
@@ -197,8 +191,8 @@ function _mat_global_get_landing_page_from_node() {
     $landingPageType = reset($landingPageType);
 
     return $landingPageType;
-  }
-  else {
+  } else {
+    // Return something so we know this is new node.
     return 'new_node';
   }
 }
