@@ -484,10 +484,9 @@ $.fn.isInViewport = function(props) {
       var deltaY = event.originalEvent.deltaY;
 
       var scrolled = $(window).scrollTop() - lastScrollTopPx;
-      console.log(scrolled);
 
       $('.parallax').each(function() {
-      if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
+      if($(this).isInViewport(0) && (!mobile_device || mobile_device && $(this).data('mobile-parallax'))) { //-Number($(this).css('top').replace('px', '')))
         var currentPosition = Number($(this).css('top').replace('px', ''));
 
 
