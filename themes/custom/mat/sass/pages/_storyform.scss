@@ -361,14 +361,6 @@
         margin-top: 3rem;
         color: $gray-dark;
 
-        .field-required {
-          top: -9.6rem;
-
-          @media (min-width: $screen-sm-min) {
-            top: -6.7rem;
-          }
-        }
-
         p {
           margin-bottom: 3.3rem;
 
