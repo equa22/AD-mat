@@ -49,7 +49,8 @@
 	  }
 	};
 
-  var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  //var mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  var mobile = $(window).width() < 768;
   console.log(mobile);
 
   Drupal.behaviors.mat_stories_api = {
@@ -88,7 +89,7 @@
 
 	        createStories();
 	        getFilters();
-	        makeAnimatedBackground();
+	        
 
 
 	        /* Check, if id in parameter and open story in modal, if is*/
@@ -269,8 +270,11 @@ let getFilters = () => {
   // create "show all" filter
   $(('<div/>'), {
     'text': 'All stories',
-    'class': 'bold cat-item'
+    'class': 'active cat-item'
   }).appendTo('.filter-wrapper').click((e) => {
+    $('.cat-item').removeClass('active');
+    $(e.target).addClass('active');
+
     animations.fade_out();
       setTimeout(() => {
         createDomElements();
@@ -286,6 +290,9 @@ let getFilters = () => {
       'data-index': i,
       'text': category.category
     }).appendTo('.filter-wrapper').click((e) => {
+      $('.cat-item').removeClass('active');
+      $(e.target).addClass('active');
+
       animations.fade_out();
       if(mobile) {
         //$('.filter-wrapper').slickGoTo(1);
@@ -479,6 +486,8 @@ function prepareMobileElements(category, letter) {
     })
     .appendTo($board);
   })
+
+  makeAnimatedBackground();
 }
 
 let $displayedStories = [];
@@ -491,7 +500,9 @@ let createDomElements = (category, letter) => {
   sliderTo(0);              // send draggable slider back to 0   
   
   if(!mobile) {
+
     prepareDesktopElements(category, letter);
+    makeAnimatedBackground();
   } else {
     prepareMobileElements(category, letter);
   }
@@ -609,10 +620,19 @@ $('.dropdown-wrapper').click(() => {
 })
 
 $('.dropdown').mouseleave(() => { $('.dropdown').removeClass('open') });
+
+
+
+
 // on window resize, update config
 $(window).resize(() => {
   config._width = $board.width();
   config._height = $board.height();
+
+
+  if(mobile != $(window).width() < 768) {
+    mobile = $(window).width() < 768;
+  }
 });
 
 $('[data-role="closemodal"]').click(() => {
@@ -621,7 +641,7 @@ $('[data-role="closemodal"]').click(() => {
 
 var MOUSE_OVER = false;
 
-if(mobile) {
+if(!mobile) {
   $('body').bind('mousewheel', (e) => {
     if(MOUSE_OVER){
       if(e.preventDefault) { e.preventDefault(); } 
@@ -649,13 +669,19 @@ if(mobile) {
 let makeAnimatedBackground = () => {
   var $body = $('.stories-api');
   var smallItems = [];  // helper arr
+
   
   $('<div/>', {         // create background animation base in html
     class: 'animated-background'
   }).appendTo($body);
   
+
+  var containerHeight = $('.animated-background').height();
+
+
   // create bubbles with background image
   config.background.image_bubbles._images.forEach((item, i) => {
+
     var x = Math.floor(Math.random() * (config._width - config._el_width));
     var y = Math.floor(Math.random() * (containerHeight - config._el_height));
 
@@ -667,6 +693,9 @@ let makeAnimatedBackground = () => {
     .css({
       'backgroundImage': 'url(' + item + ')', 
       'transform': "translate(" + x + "px, " + y + "px) scale(1)",
+      /*'width': config.background.image_bubbles._size + 'px',
+      'height': config.background.image_bubbles._size + 'px',
+      'opacity': 1, */
       'transition': 'transform 0ms linear,  opacity 1s linear ' + (i*0.1) + 's'
     })
     .appendTo('.animated-background');
@@ -674,11 +703,11 @@ let makeAnimatedBackground = () => {
   });
   
 
-  var containerHeight = $('.animated-background').height();
+  
 
   smallItems.forEach((el) => {
     // spread elements on board
-    getCoordinates(el);
+    //getCoordinates(el);
     
     // get new position to animate them
     setTimeout(() => {
@@ -699,8 +728,6 @@ let makeAnimatedBackground = () => {
     }, 100);
     // and start interval animation
     el.animate = setInterval(() => {
-      // get new coordinates for element
-      //getCoordinates(el);
       var x = Math.floor(Math.random() * (config._width - config._el_width));
       var y = Math.floor(Math.random() * (containerHeight - config._el_height));
       
@@ -711,6 +738,9 @@ let makeAnimatedBackground = () => {
     }, config.background.image_bubbles._interval);
   })
   
+
+
+
   
   while(config.background._small_bubbles > 0 ){
     config.background._small_bubbles--;
@@ -734,6 +764,11 @@ let makeAnimatedBackground = () => {
       height: size
     });
   }
+
+
+
+
+
 };
 
 
