@@ -115,13 +115,25 @@ var animations = {
 
       $(el.target).css({
         'opacity': 0.3,
+        '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
+        '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
+        '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
+        '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
         'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)'
       });
 
       setTimeout(() => {
         $(el.target).css({
           'opacity': 1,
+          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+          '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
           'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+          '-webkit-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+          '-moz-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+          '-ms-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+          '-o-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
           'transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms'
         });
       }, (i+1)* config.movement._entry.delay )
@@ -139,12 +151,19 @@ var animations = {
       $(el.target).css({
         'opacity': 1,
         //'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+        '-webkit-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+        '-moz-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+        '-ms-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+        '-o-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
         'transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms'
       })
                                       
       setTimeout(() => {
         $(el.target).css({
           'opacity': 0,
+          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
+          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
+          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
           'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)'
         });
       }, i*config.movement._leave.delay);
@@ -158,14 +177,26 @@ var animations = {
 
     el.position = {x: $(el.target).offset().left, y: ($(el.target).offset().top - $board.offset().top)};
 
-    $(el.target).css('transform', "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)");
+    $(el.target).css({
+      '-webkit-transform': "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)",
+      '-moz-transform': "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)",
+      '-ms-transform': "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)",
+      '-o-transform': "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)",
+      'transform': "translate(" + $(el.target).offset().left + "px, " + ($(el.target).offset().top - $board.offset().top) + "px) scale(1)"
+    });
   },
   start: (el) => {
     $(el.target).data('animated', true);
 
 
     // set smooth movement
-    $(el.target).css('transition', el.speed + 's transform ' + config.movement._smooth.type);	//config.movement._smooth.css()
+    $(el.target).css({
+      '-webkit-transition': el.speed + 's transform ' + config.movement._smooth.type,
+      '-moz-transition': el.speed + 's transform ' + config.movement._smooth.type,
+      '-ms-transition': el.speed + 's transform ' + config.movement._smooth.type,
+      '-o-transition': el.speed + 's transform ' + config.movement._smooth.type,
+      'transition': el.speed + 's transform ' + config.movement._smooth.type
+    });	//config.movement._smooth.css()
 
     getCoordinates(el);
     el.animate = setInterval(() => {
@@ -176,7 +207,6 @@ var animations = {
   goTo: function(index) {
     var timer = 0;
     this.done = false;
-    console.log(this)
     clearTimeout(sentItemsToBoard);
     
     
@@ -189,15 +219,31 @@ var animations = {
         if(i < index) {
           timer += (delay*50);
           $(el.target).css({
-            transition: config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
-            transform: "translate(-" + (config._el_width + 40) + "px, " + randomBetween(config._height, 0) + "px)"
+            '-webkit-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-moz-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-ms-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-o-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            'transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-webkit-transform': "translate(-" + (config._el_width + 40) + "px, " + randomBetween(config._height, 0) + "px)",
+            '-moz-transform': "translate(-" + (config._el_width + 40) + "px, " + randomBetween(config._height, 0) + "px)",
+            '-ms-transform': "translate(-" + (config._el_width + 40) + "px, " + randomBetween(config._height, 0) + "px)",
+            '-o-transform': "translate(-" + (config._el_width + 40) + "px, " + randomBetween(config._height, 0) + "px)",
+            'transform': "translate(-" + (config._el_width + 40) + "px, " + randomBetween(config._height, 0) + "px)"
           })
         // send all next items to the riright
         } else if(i > index) {
           timer += (delay*50);
           $(el.target).css({
-            transition: config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
-            transform: "translate(calc(100vw + " + (config._el_width + 40) + "px), " + randomBetween(config._height, 0) + "px)"
+            '-webkit-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-moz-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-ms-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-o-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            'transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*50 + "ms",
+            '-webkit-transform': "translate(calc(100vw + " + (config._el_width + 40) + "px), " + randomBetween(config._height, 0) + "px)",
+            '-moz-transform': "translate(calc(100vw + " + (config._el_width + 40) + "px), " + randomBetween(config._height, 0) + "px)",
+            '-ms-transform': "translate(calc(100vw + " + (config._el_width + 40) + "px), " + randomBetween(config._height, 0) + "px)",
+            '-o-transform': "translate(calc(100vw + " + (config._el_width + 40) + "px), " + randomBetween(config._height, 0) + "px)",
+            'transform': "translate(calc(100vw + " + (config._el_width + 40) + "px), " + randomBetween(config._height, 0) + "px)"
           })
         } 
       })
@@ -208,7 +254,13 @@ var animations = {
       sliderTo(index);
       
       $displayedStories[active_index].forEach((el, delay) => {
-        $(el.target).css('transition', config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*150 + "ms");
+        $(el.target).css({
+          '-webkit-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*150 + "ms",
+          '-moz-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*150 + "ms",
+          '-ms-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*150 + "ms",
+          '-o-transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*150 + "ms",
+          'transition': config.movement._fast.speed + "ms transform " + config.movement._fast.type + " " + delay*150 + "ms"
+        });
         getCoordinates(el);
         el.timeout = setTimeout(() => {
           animations.start(el);
@@ -473,7 +525,11 @@ function prepareMobileElements(category, letter) {
     })
     .css({
       'backgroundImage': 'url(' + baseUrl + item.featured_image + ')', 
-      'transition': 'none'}) 
+      '-webkit-transition': 'none',
+      '-moz-transition': 'none',
+      '-ms-transition': 'none',
+      '-o-transition': 'none',
+      'transition': 'none' }) 
     .click((e) => {                                        // __click event
       openModal($(e.target).data('id'));
     })
@@ -513,7 +569,13 @@ let getCoordinates = (el) => {
   
 
   el.position = {x: x, y: y};
-  $(el.target).css('transform', "translate(" + x + "px, " + y + "px) scale(1)");
+  $(el.target).css({
+    '-webkit-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+    '-moz-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+    '-ms-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+    '-o-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+    'transform': "translate(" + x + "px, " + y + "px) scale(1)"
+  });
 }
 
 /*
@@ -666,7 +728,14 @@ let makeAnimatedBackground = () => {
     })
     .css({
       'backgroundImage': 'url(' + item + ')', 
+      '-webkit-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+      '-moz-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+      '-ms-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+      '-o-transform': "translate(" + x + "px, " + y + "px) scale(1)",
       'transform': "translate(" + x + "px, " + y + "px) scale(1)",
+      '-webkit-transition': 'transform 0ms linear,  opacity 1s linear ' + (i*0.1) + 's',
+      '-moz-transition': 'transform 0ms linear,  opacity 1s linear ' + (i*0.1) + 's',
+      '-o-transition': 'transform 0ms linear,  opacity 1s linear ' + (i*0.1) + 's',
       'transition': 'transform 0ms linear,  opacity 1s linear ' + (i*0.1) + 's'
     })
     .appendTo('.animated-background');
@@ -685,6 +754,9 @@ let makeAnimatedBackground = () => {
     	$(el.target).css({
     		'width': config.background.image_bubbles._size + 'px',
     		'height': config.background.image_bubbles._size + 'px',
+        '-webkit-transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
+        '-moz-transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
+        '-o-transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
         'transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
     		'opacity': 1
     	})
@@ -694,6 +766,10 @@ let makeAnimatedBackground = () => {
       
 
       $(el.target).css({
+        '-webkit-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+        '-moz-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+        '-ms-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+        '-o-transform': "translate(" + x + "px, " + y + "px) scale(1)",
         'transform': "translate(" + x + "px, " + y + "px) scale(1)"
       });
     }, 100);
@@ -706,6 +782,10 @@ let makeAnimatedBackground = () => {
       
 
       $(el.target).css({
+        '-webkit-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+        '-moz-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+        '-ms-transform': "translate(" + x + "px, " + y + "px) scale(1)",
+        '-o-transform': "translate(" + x + "px, " + y + "px) scale(1)",
         'transform': "translate(" + x + "px, " + y + "px) scale(1)"
       });
     }, config.background.image_bubbles._interval);
