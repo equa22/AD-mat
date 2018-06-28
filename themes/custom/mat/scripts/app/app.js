@@ -475,21 +475,24 @@ $.fn.isInViewport = function(props) {
        lastScrollTop = st;
      });
 
-    $(window).on("mousewheel", function(event) {
-      console.log(direction, $(this).scrollTop());
+    var lastScrollTopPx = $(window).scrollTop();
+
+
+    $(window).on("scroll", function(event) {
       if(direction == "up" && $(this).scrollTop() == 0) return;
 
       var deltaY = event.originalEvent.deltaY;
 
-
+      var scrolled = $(window).scrollTop() - lastScrollTopPx;
+      console.log(scrolled);
 
       $('.parallax').each(function() {
       if($(this).isInViewport(0)) { //-Number($(this).css('top').replace('px', '')))
         var currentPosition = Number($(this).css('top').replace('px', ''));
 
 
-      console.log("ORIGINAL: " + deltaY + ", new: " + Number($(this).data('parallax-depth'))*deltaY);
-      $(this).css('top', currentPosition - Number($(this).data('parallax-depth')*deltaY) + 'px');
+      //console.log("ORIGINAL: " + deltaY + ", new: " + Number($(this).data('parallax-depth'))*deltaY);
+      $(this).css('top', currentPosition - Number($(this).data('parallax-depth')*scrolled) + 'px');
        /* if(direction == 'down') {
          
         } else {
@@ -497,6 +500,9 @@ $.fn.isInViewport = function(props) {
         }*/
        }
       });
+
+
+      lastScrollTopPx = $(window).scrollTop();
     });
 
     // drop shine on element
