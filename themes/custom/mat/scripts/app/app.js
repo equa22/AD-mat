@@ -458,11 +458,11 @@ $.fn.isInViewport = function(props) {
       var $paralaxWrapper = $('.paragraph--type--landing-page-stories');
       var parallaxElementsParent = ['.hearts-container', '.paragraph--type--landing-page-stories'];
 
-      parallaxElementsParent.forEach(function(parent) {
+      /*parallaxElementsParent.forEach(function(parent) {
         $(parent + ' .parallax').each(function() {
           $(this).css({'top': ($(this).offset().top - $(parent).offset().top) + 'px', 'bottom': 'auto'});
         });
-      });
+      });*/
       
 
       $(window).scroll(function(event){
@@ -489,12 +489,12 @@ $.fn.isInViewport = function(props) {
 
 
       console.log("ORIGINAL: " + deltaY + ", new: " + Number($(this).data('parallax-depth'))*deltaY);
-
-        if(direction == 'down') {
-         $(this).css('top', currentPosition - Number($(this).data('parallax-depth')) + 'px');
+      $(this).css('top', currentPosition - Number($(this).data('parallax-depth')*deltaY) + 'px');
+       /* if(direction == 'down') {
+         
         } else {
-         $(this).css('top', currentPosition + Number($(this).data('parallax-depth')) + 'px');
-        }
+         $(this).css('top', currentPosition + Number($(this).data('parallax-depth')*deltaY) + 'px');
+        }*/
        }
       });
     });
