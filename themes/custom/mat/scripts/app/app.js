@@ -476,8 +476,8 @@ $.fn.isInViewport = function(props) {
      });
 
     $(window).on("mousewheel", function(event) {
-      console.log($(this).scrollTop());
-      console.log(event.deltaMode === 1, event.originalEvent.deltaY);
+      console.log(direction, $(this).scrollTop());
+      if(direction == "up" && $(this).scrollTop() == 0) return;
 
       var deltaY = event.originalEvent.deltaY;
 

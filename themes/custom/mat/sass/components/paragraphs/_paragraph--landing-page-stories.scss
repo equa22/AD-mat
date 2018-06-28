@@ -62,14 +62,18 @@
   }
 
   .stories--img1 {
+   
+  }
+  .stories--img1 {
     width: 12%;
     top: 36%;
     right: -1rem;
 
     @media (min-width: $screen-sm-min) {
-      width: auto;
-      top: 0;
+       width: auto;
+      top: 41rem;
       right: auto;
+      left: -44rem;
     }
 
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
@@ -178,4 +182,8 @@
       left: -40%;
     }
   }
+}
+
+.parallax {
+  transition: top 0.1s linear;
 }
