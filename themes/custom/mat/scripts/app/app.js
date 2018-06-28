@@ -454,6 +454,7 @@ $.fn.isInViewport = function(props) {
   Drupal.behaviors.scrollAnimations = {
     attach: function(context, settings) {
       var lastScrollTop = 0, direction;
+      var scrolled, deltaY, currentPosition;
       var mobile_device = $('html').hasClass('device-mobile');  // check if device is mobile
       var $paralaxWrapper = $('.paragraph--type--landing-page-stories');
       var parallaxElementsParent = ['.hearts-container', '.paragraph--type--landing-page-stories'];
@@ -465,54 +466,30 @@ $.fn.isInViewport = function(props) {
       });*/
       
 
-      $(window).scroll(function(event){
-       var st = $(this).scrollTop();
+
+    
+    $(window).on("mousewheel", function(event) {
+      var st = $(this).scrollTop();
        if (st > lastScrollTop){
          direction = 'down';
        } else {
         direction = 'up';
        }
        lastScrollTop = st;
-     });
 
-    var lastScrollTopPx = $(window).scrollTop();
-
-
-    $(window).on("scroll", function(event) {
       if(direction == "up" && $(this).scrollTop() == 0) return;
-
-      var deltaY = event.originalEvent.deltaY;
-
-      var scrolled = $(window).scrollTop() - lastScrollTopPx;
-
+      
+      deltaY = Math.abs(event.originalEvent.deltaY)>=40 ? event.originalEvent.deltaY/40 : event.originalEvent.deltaY;
       $('.parallax').each(function() {
-      if($(this).isInViewport(0) && (!mobile_device || mobile_device && $(this).data('mobile-parallax'))) { //-Number($(this).css('top').replace('px', '')))
-        var currentPosition = Number($(this).css('top').replace('px', ''));
-
-
-      //console.log("ORIGINAL: " + deltaY + ", new: " + Number($(this).data('parallax-depth'))*deltaY);
-      $(this).css('top', currentPosition - Number($(this).data('parallax-depth')*scrolled) + 'px');
-       /* if(direction == 'down') {
-         
-        } else {
-         $(this).css('top', currentPosition + Number($(this).data('parallax-depth')*deltaY) + 'px');
-        }*/
+        if($(this).isInViewport(0) && (!mobile_device || mobile_device && $(this).data('mobile-parallax'))) { //-Number($(this).css('top').replace('px', '')))
+          currentPosition = Number($(this).css('top').replace('px', ''));   
+          $(this).css('top', currentPosition - Number($(this).data('parallax-depth')*deltaY) + 'px');
        }
       });
-
-
-      lastScrollTopPx = $(window).scrollTop();
     });
 
     // drop shine on element
     $(window).on( "mousemove scroll", function( event ) {
-    /*const deltaY = event.deltaMode === 1
-   ? -event.deltaY * 18
-    : -event.deltaY*/
-      
-
-
-
       $('.shine-letter').each(function(i, el) {
         if($(this).isInViewport(0)) {
 
