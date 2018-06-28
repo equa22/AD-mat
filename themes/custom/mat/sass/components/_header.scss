@@ -109,6 +109,12 @@
           background-color: $color-white;
         }
 
+        @media (max-width: $screen-iphone5-max) {
+          padding-right: .8rem;
+          padding-left: .8rem;
+          @include font-size(1.2);
+        }
+
         @media (min-width: $screen-sm-min) {
           padding-left: 3.8rem;
           padding-right: 2.2rem;
@@ -257,7 +263,7 @@
           line-height: 1;
           text-align: center;
           color: $color-white;
-          @include placeholder(#285A98); // should be 50% from $blue-dark
+          @include placeholder(#285A98);
           border: none;
           border-bottom: 2px solid $color-white;
           background-color: transparent;
@@ -370,7 +376,7 @@ body.mobile-menu--opened {
           width: 100%;
           padding: 1rem 4rem 1rem 0;
           @include font-size(2);
-          @include placeholder(#9B9B9B);
+          @include placeholder($gray-base);
           border: none;
           background-color: transparent;
         }
