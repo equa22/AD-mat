@@ -131,6 +131,10 @@
     padding: 1.5rem 5.2rem;
   }
 
+  @media (max-width: $screen-iphone5-max) {
+    padding: 1.5rem 3.4rem;
+  }
+
   @if $bg == 'light' {
     background-color: $mat-brand-primary;
 

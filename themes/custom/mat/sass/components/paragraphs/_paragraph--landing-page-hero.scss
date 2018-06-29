@@ -206,6 +206,10 @@
       width: 29.5rem;
       margin: 0 auto;
 
+      @media (max-width: $screen-iphone5-max) {
+        width: 25rem;
+      }
+
       @media (min-width: $screen-sm-min) {
         width: 50%;
         position: absolute;
