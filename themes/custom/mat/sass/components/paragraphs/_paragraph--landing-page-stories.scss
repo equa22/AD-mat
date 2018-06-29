@@ -68,8 +68,9 @@
 
     @media (min-width: $screen-sm-min) {
       width: auto;
-      top: 0;
+      top: 41rem;
       right: auto;
+      left: -40.5rem;
     }
 
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
@@ -178,4 +179,8 @@
       left: -40%;
     }
   }
+}
+
+.parallax {
+  transition: top 0.1s linear;
 }
