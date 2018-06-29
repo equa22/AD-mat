@@ -6,7 +6,7 @@
 // ========================================
 
 .form-item {
-  margin-bottom: 15px;
+  margin-bottom: .8rem;
 
   input[type="text"],
   input[type="email"],
@@ -46,11 +46,13 @@ input.form-submit {
     color: $gray-dark;
     left: 2.3rem;
     top: 4.2rem;
+    z-index: 1;
     transition: all .2s;
 
     &.labelfocus {
-      top: 0 !important;
+      top: 5px !important;
       left: 0 !important;
+      z-index: 0;
       @include font-size(1.2);
     }
 

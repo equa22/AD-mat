@@ -20,6 +20,6 @@ default_value:
 default_value_callback: ''
 settings:
   markup:
-    value: '<h2>Tell us the story</h2>'
+    value: "<h2>Tell Us The Story</h2>\r\n<span class=\"field-required\">Required</span>\r\n<label class=\"textarea-placeholder\" for=\"edit-body-0-value\">\r\n<p>Enter a short description or story here. </p>\r\n<p>If your story is about a loved one who passed away, share a favorite memory or reflection on that individual’s life. Think of this as a digital tribute.</p>\r\n<p>If your story is about transplantation, talk about what a second chance at life means to you and your family.</p>\r\n</label>"
     format: advanced
 field_type: markup

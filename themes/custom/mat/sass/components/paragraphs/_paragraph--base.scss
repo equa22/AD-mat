@@ -16,14 +16,13 @@
   .paragraph--type--landing-page-statement {
 
     .container-small {
-      .field--name-field-title {
-        @extend %h3;
-        color: $mat-brand-primary;
+      h2 {
+        color: $blue-dark;
         text-align: center;
       }
 
-      h2 {
-        color: $blue-dark;
+      h3 {
+        color: $mat-brand-primary;
         text-align: center;
       }
     }

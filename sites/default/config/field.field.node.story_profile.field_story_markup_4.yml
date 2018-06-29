@@ -20,6 +20,6 @@ default_value:
 default_value_callback: ''
 settings:
   markup:
-    value: "<h2>Tell us about yourself</h2>\r\n<p>In case we need to contact you about your story, please provide a few details about yourself.</p>"
+    value: "<h2>Tell Us About Yourself</h2>\r\n<p>In case we need to contact you about your story, please provide a few details about yourself.</p>\r\n<span class=\"field-required\">All Fields Required</span>"
     format: advanced
 field_type: markup
