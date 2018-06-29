@@ -43,7 +43,7 @@
   // Hero with text align left
   &.left {
     padding: 11rem 0;
-
+    z-index: 2;
 
     @media (min-width: $screen-sm-min) {
       margin-top: -$header-height;

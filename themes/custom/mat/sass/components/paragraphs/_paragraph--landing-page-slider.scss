@@ -19,11 +19,10 @@
     @include gradient-blue();
   }
 
-  // Slick styles.
+  // Slick styles
   .slick__slide {
     outline: none;
   }
-
 
   .animated {
     .container .slide--content .field--name-field-content {
@@ -35,6 +34,7 @@
       opacity: 1;
     }
   }
+
   .paragraph--type--slide {
     position: relative;
     
@@ -66,7 +66,6 @@
         transform: translate(-200px);
         transition: transform 0.8s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.2s;
       }
-      
 
       @media (min-width: $screen-sm-min) {
         display: flex;
@@ -80,10 +79,6 @@
       max-width: 61rem;
       position: relative;
       color: $color-white;
-
-      @media (max-width: $screen-xs-max) {
-       // padding-top: 3.5rem;
-      }
     }
 
     h1 {
@@ -123,49 +118,31 @@
 
 .paragraph--type--landing-page-slider .paragraph--type--slide h1 {
   height: auto;
-  padding-top: 100px;
+  padding-top: 5rem;
 
   @media (min-width: $screen-sm-min) {
-    //padding-top: 4.5rem;
-  }
-
-  @media (min-width: $screen-lg-min) {
-    //padding-top: 6.4rem;
+    padding-top: 10rem;
   }
 }
 
 .fixed-slider-header {
-  font-weight: 700;
-  color: white;
-  padding-left: 30px;
-  padding-right: 30px;
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1230px;
-  
   position: absolute;
-  
+  @extend %h1;
+  font-weight: 700;
+  color: $color-white;
 
-  @media (min-width: 768px)
-  {
-    font-size: 6.5rem;
-    line-height: 1;
+  @media (min-width: $screen-sm-min) {
     left: 0;
-    top: 234px;
+    top: 24.8rem;
   }
-  @media (min-width: 1200px)
-  {
-    font-size: 8.5rem;
+  
+  @media (min-width: $screen-lg-min) {
     left: calc((100% - 1230px)/2);
-    top: 215px;
+    top: 23rem;
   }
 
   @media (max-width: $screen-xs-max) {
-    font-size: 4rem;
-    line-height: 1.1;
-    top: 397px;
+    top: 35.3rem;
     left: 0;
   }
-      
 }
