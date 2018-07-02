@@ -7,16 +7,11 @@
 // Paragraph highlight
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-highlight {
-  display: flex;
+//  display: flex;
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
-
-  @media (min-width: $screen-sm-min) {
-    align-items: flex-end;
-    padding-bottom: 7.5rem;
-  }
 
   .field--name-field-link {
     margin-top: 3rem;
@@ -35,8 +30,18 @@
     }
   }
 
+  .highlight--wrapper {
+    @media (min-width: $screen-sm-min) {
+      width: 100%;
+      position: absolute;
+      bottom: 7.5rem;
+    }
+  }
+
   .container {
-    position: relative;
+    @media (min-width: $screen-sm-min) {
+      overflow: hidden;
+    }
   }
 
   .highlight--image {
