@@ -106,7 +106,7 @@
         padding-left: 1.3rem;
         font-weight: 700;
         background-position: 1.2rem 1rem;
-        background-size: 14px auto;
+        background-size: auto auto;
         transition: background-color 0.4s, color 0.4s !important;
 
         @media (max-width: $screen-iphone5-max) {
@@ -135,20 +135,20 @@
     .field--name-field-link-foundation a {
 
       @media (min-width: $screen-sm-min) {
-        @include icons('i-together');
+        @include icons('i-together-nav');
 
         &:hover {
-          background-image: url($icon-root + 'i-together-dark.svg');
+          background-image: url($icon-root + 'i-together-nav-dark.svg');
         }
       }
     }
 
     .field--name-field-link-donation a {
       @media (min-width: $screen-sm-min) {
-        @include icons('i-give-life');
+        @include icons('i-give-life-nav');
 
         &:hover {
-          background-image: url($icon-root + 'i-give-life-dark.svg');
+          background-image: url($icon-root + 'i-give-life-nav-dark.svg');
         }
       }
     }
