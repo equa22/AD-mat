@@ -9,6 +9,7 @@
 .paragraph--type--landing-page-counter {
   @include gradient-blue();
   color: $color-white;
+  border: 1px solid lime;
 
   @media (max-width: $screen-xs-max) {
     padding-bottom: 9rem;
@@ -19,7 +20,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      min-height: 60rem;
+      height: 60rem;
     }
   }
 
@@ -44,15 +45,14 @@
     @include font-size(13);
     font-family: $font-flama;
     cursor: default;
-
     @include gradient(90deg, #2F4493, #2BAEDE, #2F4493);
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     z-index: 2;
     position: relative;
     top: 0;
-
     
     @media (max-width: $screen-iphone5-max) {
       @include font-size(10.5);
@@ -67,6 +67,13 @@
     @media (min-width: $screen-lg-min) {
       @include font-size(35);
     }
+
+    // IE10, IE11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      background: transparent;
+      color: $blue;
+    }
+
     &.shine {
       background: transparent;
       display: flex;

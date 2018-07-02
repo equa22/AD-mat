@@ -13,11 +13,11 @@
   color: $color-white;
 
   @media (min-width: $screen-sm-min) {
-    min-height: 91rem;
+    height: 91rem;
   }
 
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-    min-height: 90rem;
+    height: 90rem;
   }
 
   .container {
