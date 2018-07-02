@@ -35,6 +35,14 @@
     }
   }
 
+  > .contextual {
+    top: 8rem;
+
+    @media (min-width: $screen-sm-min) {
+      top: 12rem;
+    }
+  }
+
   .paragraph--type--slide {
     position: relative;
     
@@ -79,6 +87,14 @@
       max-width: 61rem;
       position: relative;
       color: $color-white;
+
+      .contextual {
+        top: 4rem;
+
+        @media (min-width: $screen-sm-min) {
+          top: 10rem;
+        }
+      }
     }
 
     h1 {
