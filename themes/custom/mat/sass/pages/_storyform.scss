@@ -151,11 +151,16 @@
           width: 100%;
         }
       }
+
       .field--name-field-story-first-name {
         margin-right: 60px;
         @media (max-width: $screen-xs-max) {
           margin-right: 0;
         }
+      }
+
+      .field--name-field-story-category {
+        clear: both;
       }
     }
     &.step2-content {
