@@ -1,0 +1,15 @@
+uuid: 4b39dd5a-71b4-4458-9abc-a8c676a21e46
+langcode: en
+status: true
+dependencies: {  }
+name: media_background
+label: 'Media Background'
+effects:
+  7eb79598-bfe4-4e5b-9d8e-6ed42fc6efff:
+    uuid: 7eb79598-bfe4-4e5b-9d8e-6ed42fc6efff
+    id: image_scale
+    weight: 1
+    data:
+      width: 2000
+      height: null
+      upscale: false

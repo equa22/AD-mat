@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.media.background
     - field.field.media.image.field_media_image
+    - image.style.media_background
     - media.type.image
   module:
     - image
@@ -18,7 +19,7 @@ content:
   field_media_image:
     label: hidden
     settings:
-      image_style: ''
+      image_style: media_background
     third_party_settings: {  }
     type: image_url
     weight: 0
