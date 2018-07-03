@@ -281,9 +281,9 @@ div[id^="edit-field-media-image"] input.button {
     font-weight: 600; }
   .adminimal-admin-toolbar .toolbar .toolbar-bar .toolbar-tab > .toolbar-item:hover,
   .adminimal-admin-toolbar .toolbar .toolbar-bar .toolbar-tab > .toolbar-item:focus {
-    background-color: #200044; }
+    background-color: blue; }
   .adminimal-admin-toolbar .toolbar .toolbar-bar .toolbar-tab > .toolbar-item.is-active {
-    background-color: #200044; }
+    background-color: blue; }
   .adminimal-admin-toolbar .toolbar .toolbar-item {
     cursor: pointer;
     padding: 1em 1.3333em;
@@ -293,9 +293,9 @@ div[id^="edit-field-media-image"] input.button {
   .adminimal-admin-toolbar .toolbar .toolbar-item:focus {
     text-decoration: none; }
   .adminimal-admin-toolbar .toolbar .toolbar-tray {
-    background-color: #200044; }
+    background-color: blue; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray .toolbar-menu a {
-      background-color: #200044;
+      background-color: blue;
       color: #e5d6f6; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray .menu-item--expanded:hover > a,
     .adminimal-admin-toolbar .toolbar .toolbar-tray .menu-item--expanded:hover > .toolbar-box {
@@ -412,7 +412,7 @@ div[id^="edit-field-media-image"] input.button {
 .adminimal-admin-toolbar .toolbar-menu-administration ul {
   margin: 0; }
   .adminimal-admin-toolbar .toolbar-menu-administration ul li a {
-    background-color: #200044;
+    background-color: blue;
     color: #e5d6f6; }
     .adminimal-admin-toolbar .toolbar-menu-administration ul li a:hover {
       background-color: #150725; }

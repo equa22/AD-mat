@@ -66,6 +66,10 @@
       a {
         color: $color-white;
         opacity: .5;
+
+        &:hover {
+          opacity: 1;
+        }
       }
     }
 
@@ -102,11 +106,16 @@
         padding-left: 1.3rem;
         font-weight: 700;
         background-position: 1.2rem 1rem;
-        background-size: 14px auto;
+        background-size: auto auto;
+        transition: background-color 0.4s, color 0.4s !important;
 
-        &:hover {
-          color: $gray-darker;
-          background-color: $color-white;
+        @media (max-width: $screen-iphone5-max) {
+          @include font-size(1.2);
+        }
+
+        @media (max-width: 360px) {
+          padding-right: .8rem;
+          padding-left: .8rem;
         }
 
         @media (min-width: $screen-sm-min) {
@@ -124,21 +133,22 @@
     }
 
     .field--name-field-link-foundation a {
+
       @media (min-width: $screen-sm-min) {
-        @include icons('i-together');
+        @include icons('i-together-nav');
 
         &:hover {
-          background-image: url($icon-root + 'i-together-dark.svg');
+          background-image: url($icon-root + 'i-together-nav-dark.svg');
         }
       }
     }
 
     .field--name-field-link-donation a {
       @media (min-width: $screen-sm-min) {
-        @include icons('i-give-life');
+        @include icons('i-give-life-nav');
 
         &:hover {
-          background-image: url($icon-root + 'i-give-life-dark.svg');
+          background-image: url($icon-root + 'i-give-life-nav-dark.svg');
         }
       }
     }
@@ -257,7 +267,7 @@
           line-height: 1;
           text-align: center;
           color: $color-white;
-          @include placeholder(#285A98); // should be 50% from $blue-dark
+          @include placeholder(#285A98);
           border: none;
           border-bottom: 2px solid $color-white;
           background-color: transparent;
@@ -370,7 +380,7 @@ body.mobile-menu--opened {
           width: 100%;
           padding: 1rem 4rem 1rem 0;
           @include font-size(2);
-          @include placeholder(#9B9B9B);
+          @include placeholder($gray-base);
           border: none;
           background-color: transparent;
         }

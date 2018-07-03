@@ -111,6 +111,10 @@
     min-width: 310px;
     margin: 5.5rem auto 9.5rem auto;
 
+    @media (max-width: $screen-iphone5-max) {
+      min-width: 260px;
+    }
+
     @media (min-width: $screen-md-min) {
       width: 30%;
       min-width: 270px;

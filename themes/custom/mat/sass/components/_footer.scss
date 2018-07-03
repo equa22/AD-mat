@@ -34,6 +34,16 @@
           flex-basis: 50%;
         }
 
+        @media (max-width: $screen-iphone5-max) {
+          &:nth-child(odd) {
+            padding-right: 1rem;
+          }
+
+          &:nth-child(even) {
+            padding-left: 1rem;
+          }
+        }
+
         > span {
           font-weight: 500;
           white-space: nowrap;
@@ -45,6 +55,10 @@
           .menu-item {
             a {
               color: $gray-base;
+
+              &:hover {
+                color: $gray-darker;
+              }
             }
           }
         }

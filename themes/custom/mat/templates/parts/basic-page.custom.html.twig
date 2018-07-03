@@ -9,6 +9,7 @@
   ]
 %}
 {{ attach_library('classy/node') }}
+{% set has_sidebar = page.sidebar|render|striptags|trim is not empty %}
 
 {% if node.field_header_category.entity.name.value is not empty %}
 <section class="basic-page-header {{ node.field_header_category.entity.field_header_style.value }}">
@@ -20,7 +21,7 @@
       <h1>{{ node.label }}
     </div>
   </div>
-  {% if node.field_header_category.entity.description.value %}
+  {% if node.field_header_category.entity.description.value|render|trim %}
     <div class="basic-page-header--content container">{{ node.field_header_category.entity.description.value }}</div>
   {% endif %}
 </section>
@@ -39,9 +40,9 @@
 </section>
 {% endif %}
 
-<section class="basic-page-wrapper{% if page.sidebar %} basic-page-with-sidebar{% endif %}">
+<section class="basic-page-wrapper{% if has_sidebar %} basic-page-with-sidebar{% endif %}">
   <div class="basic-page-container">
-    {% if page.sidebar %}
+    {% if has_sidebar %}
       <div class="basic-page-sidebar">
         {{ page.sidebar }}
       </div>

@@ -27,6 +27,15 @@
   .basic-page-content {
     @media (min-width: $screen-md-min) {
       width: 70%;
+      margin: 0 auto;
+    }
+  }
+
+  .basic-page-wrapper.basic-page-with-sidebar {
+    .basic-page-content {
+      @media (min-width: $screen-md-min) {
+        margin: 0;
+      }
     }
   }
 }

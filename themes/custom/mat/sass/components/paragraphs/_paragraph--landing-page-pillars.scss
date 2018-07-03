@@ -45,13 +45,17 @@
 
     .pillar-group--title {
       display: inline-block;
-      padding: 2rem 7.5rem;
+      padding: 2rem 2.5rem;
       position: relative;
       z-index: 2;
       @extend %h4;
       font-weight: 500;
       color: $color-white;
       border-radius: $border-radius-base;
+
+      @media (min-width: $screen-sm-min) {
+        padding: 2rem 7.5rem;
+      }
     }
 
     .dot {

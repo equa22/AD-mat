@@ -47,6 +47,10 @@
       .headline-myth {
         padding-right: 16rem;
         text-align: right;
+
+        @media (max-width: $screen-iphone5-max) {
+          max-width: 9.5rem;
+        }
       }
 
       .headline-fact {
