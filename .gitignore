@@ -2,7 +2,7 @@
 drush/contrib
 vendor
 bin
-core
+/core
 libraries
 modules/contrib
 themes/contrib
