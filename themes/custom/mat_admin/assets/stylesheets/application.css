@@ -301,7 +301,7 @@ div[id^="edit-field-media-image"] input.button {
     .adminimal-admin-toolbar .toolbar .toolbar-tray .menu-item--expanded:hover > .toolbar-box {
       background-color: #150725; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-horizontal ul ul li.menu-item:first-child {
-      border-top-color: #7e7cce; }
+      border-top-color: blue; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-vertical .toolbar-menu a:hover, .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-vertical .toolbar-menu a:focus {
       background-color: #150725; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-vertical .menu-item--active-trail .toolbar-box a {

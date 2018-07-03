@@ -1,0 +1,22 @@
+uuid: fa62f40b-1d7d-4ce1-8f53-5e34560f78c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mat_admin
+_core:
+  default_config_hash: qN3FO3A1yONYX8HZ9eNe8ee9_xlPIPXEmuz88FcwI-8
+id: mat_admin_content
+theme: mat_admin
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

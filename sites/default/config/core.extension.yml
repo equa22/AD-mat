@@ -118,6 +118,7 @@ theme:
   tdx_base: 0
   tdx_wireframe: 0
   mat: 0
+  mat_admin: 0
 profile: tdx
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

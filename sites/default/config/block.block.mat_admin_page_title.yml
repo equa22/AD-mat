@@ -1,0 +1,20 @@
+uuid: 03ad6ee5-ce1c-4dcc-be58-79fce4c628b3
+langcode: en
+status: true
+dependencies:
+  theme:
+    - mat_admin
+_core:
+  default_config_hash: erziTTqxgYP_y86jre6hRXOGX1HdcR9Z7QFf7wWfgdU
+id: mat_admin_page_title
+theme: mat_admin
+region: header
+weight: -30
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }
