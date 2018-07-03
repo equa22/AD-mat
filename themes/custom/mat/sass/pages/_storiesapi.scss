@@ -82,11 +82,8 @@ $option-width: 70px;
   top: 0;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  //z-index: 1;
   @include gradient(90deg, #0f84d2, #0f84d2, #0b145e);
-
-
-  
 }
 
 
@@ -673,6 +670,9 @@ $mobile-item-size: 100px;
     .cat-item {
       display: inline-block;
       padding-right: 50px;
+      &.slick-slide {
+        outline: none;
+      }
       &.active {
         color: #9B9B9B;
       }
