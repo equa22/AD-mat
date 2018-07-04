@@ -491,6 +491,7 @@ form.node-story-profile-story-submission-form {
     background-color: $color-white;
   }
 
+  .js-form-type-checkbox label::before,
   .field--type-boolean label::before,
   .webform-type-radios label::before {
     background-color: $color-white !important;
