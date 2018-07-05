@@ -22,54 +22,17 @@
 // Paragraph Rich text
 .paragraph--type--landing-page-rich-text {
   // Lists
-  ul,
+  ul:not(.contextual-links),
   ol {
-    margin: 0 0 1em 0;
-    padding: 0;
-    list-style: none;
-    line-height: 1.4;
-
-    li {
-      padding-bottom: 1.4rem;
-    }
-
-    ul,
-    ol {
-      margin: 1em 0 0 0;
-    }
+    @extend %list-base;
   }
 
-  ul {
-    li {
-      position: relative;
-      padding-left: 3.8rem;
-
-      &:before {
-        content: '•';
-        position: absolute;
-        left: 0;
-        color: $mat-brand-primary;
-      }
-    }
+  ul:not(.contextual-links) {
+    @extend %list-ul;
   }
 
   ol {
-    counter-reset: step-counter;
-
-    li {
-      counter-increment: step-counter;
-      padding-left: 3.8rem;
-      position: relative;
-
-      &:before {
-        content: counter(step-counter)'.';
-        display: block-inline;
-        position: absolute;
-        left: 0;
-        font-weight: 700;
-        color: $mat-brand-primary;
-      }
-    }
+    @extend %list-ol;
   }
 }
 
@@ -120,6 +83,10 @@
 
 // Paragraph Quote
 .paragraph--type--basic-page-quote {
+  blockquote {
+    margin-bottom: 0!important;
+  }
+
   .quote--footer {
     padding: 3.8rem 0 0 4rem;
     @include font-size(1.4);

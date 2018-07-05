@@ -48,7 +48,6 @@ table {
   }
 
   th {
-    padding: 1.4rem 1.8rem;
     @include font-size(1);
     letter-spacing: .15em;
     text-transform: uppercase;
@@ -56,18 +55,9 @@ table {
     background-color: #ECECEC;
     border: 1px solid $table-border-color;
     border-left: none;
-
-    &:first-child {
-      border-top-left-radius: $table-border-radius;
-    }
-
-    &:last-child {
-      border-top-right-radius: $table-border-radius;
-    }
   }
 
   td {
-    padding: 1.2rem 2rem;
     @include font-size(1.2);
     border-right: 1px solid $table-border-color;
     border-bottom: 1px solid $table-border-color;
@@ -78,6 +68,7 @@ table {
   }
 
   th, td {
+    padding: 1.2rem 2rem;
     vertical-align: top;
     text-align: left;
 
@@ -100,6 +91,66 @@ table {
 
       td:last-child {
         border-bottom-right-radius: $table-border-radius;
+      }
+    }
+  }
+
+  // No header
+  tbody tr:first-child td {
+    border-top: 1px solid $table-border-color;
+
+    &:first-child {
+      border-top-left-radius: $table-border-radius;
+    }
+
+    &:last-child {
+      border-top-right-radius: $table-border-radius;
+    }
+  }
+
+  // Header as a first row
+  thead {
+    th {
+      &:first-child {
+        border-top-left-radius: $table-border-radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $table-border-radius;
+      }
+    }
+
+    & + tbody tr:first-child td {
+      border-top: none;
+
+      &:first-child {
+        border-top-left-radius: 0;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0;
+      }
+    }
+  }
+
+  // Header as a first column
+  tbody tr {
+    th {
+      min-width: 16rem;
+      width: 25%;
+      padding: 1.5rem 2rem;
+      border-top: none;
+    }
+
+    &:first-child {
+      th {
+         border-top-left-radius: $table-border-radius;
+      }
+    }
+
+    &:last-child {
+      th {
+         border-bottom-left-radius: $table-border-radius;
       }
     }
   }

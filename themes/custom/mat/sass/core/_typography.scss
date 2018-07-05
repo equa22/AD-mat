@@ -113,6 +113,55 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: .15em;
 }
 
+%list-base {
+  margin: 0 0 1em 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.4;
+
+  li {
+    padding-bottom: 1.4rem;
+  }
+
+  ul,
+  ol {
+    margin: 1em 0 0 0;
+  }
+}
+
+%list-ul {
+  li {
+    position: relative;
+    padding-left: 3.8rem;
+
+    &:before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: $mat-brand-primary;
+    }
+  }
+}
+
+%list-ol {
+  counter-reset: step-counter;
+
+  li {
+    counter-increment: step-counter;
+    padding-left: 3.8rem;
+    position: relative;
+
+    &:before {
+      content: counter(step-counter)'.';
+      display: block-inline;
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+      color: $mat-brand-primary;
+    }
+  }
+}
+
 h1 {
   @extend %h1;
   font-family: $font-flama;

@@ -181,7 +181,9 @@
 // Basic page, News Article -- Content
 // -----------------------------------------------------------------------------
 .basic-page-content,
-.news-article-content {
+.news-article-content,
+.path-stories #content,
+.path-stories #components {
   // General styles
   a {
     text-decoration: underline;
@@ -216,7 +218,7 @@
   blockquote {
     position: relative;
     padding: 4.8rem 0 0 4rem;
-    margin: 2.35em 0 0 0;
+    margin: 2.35em 0 1.2em 0;
     @extend %lead;
     font-family: $font-flama-light;
 
@@ -255,12 +257,39 @@
     p {
       @extend %h4;
       font-weight: 500;
-      color: $blue-dark;
 
       @media (min-width: $screen-md-min) {
         @include font-size(3);
         line-height: 1.35;
       }
+
+      &,
+      a {
+        color: $blue-dark;
+      }
+    }
+
+    blockquote {
+      p {
+        &,
+        a {
+          color: $gray-darker;
+        }
+      }
+    }
+
+    // Lists
+    ul,
+    ol {
+      @extend %list-base;
+    }
+
+    ul:not(.contextual-links) {
+      @extend %list-ul;
+    }
+
+    ol {
+      @extend %list-ol;
     }
   }
 }
