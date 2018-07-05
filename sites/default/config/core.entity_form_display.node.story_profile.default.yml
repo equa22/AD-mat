@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.story_profile.field_story_markup_23
     - field.field.node.story_profile.field_story_markup_4
     - field.field.node.story_profile.field_story_markup_5
+    - field.field.node.story_profile.field_story_profile_components
     - field.field.node.story_profile.field_submissioner_email
     - field.field.node.story_profile.field_submissioner_first_name
     - field.field.node.story_profile.field_submissioner_last_name
@@ -30,6 +31,7 @@ dependencies:
   module:
     - content_moderation
     - entity_browser
+    - paragraphs
     - path
     - svg_image
     - text
@@ -54,7 +56,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_search_image_media:
-    weight: 21
+    weight: 22
     settings:
       entity_browser: media_entity_browser_modal
       field_widget_display: rendered_entity
@@ -68,28 +70,12 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_story_category:
-    weight: 12
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_story_featured_image:
-    weight: 13
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
-  field_story_first_name:
-    weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_story_image_1:
     weight: 14
     settings:
       progress_indicator: throbber
@@ -97,23 +83,7 @@ content:
     third_party_settings: {  }
     type: image_image
     region: content
-  field_story_image_2:
-    weight: 15
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
-  field_story_image_3:
-    weight: 16
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-    region: content
-  field_story_last_name:
+  field_story_first_name:
     weight: 11
     settings:
       size: 60
@@ -121,8 +91,58 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_story_image_1:
+    weight: 15
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_image_2:
+    weight: 16
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_image_3:
+    weight: 17
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_story_last_name:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_story_profile_components:
+    type: paragraphs
+    weight: 10
+    settings:
+      title: Components
+      title_plural: Components
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings: {  }
+    region: content
   field_submissioner_email:
-    weight: 19
+    weight: 20
     settings:
       size: 60
       placeholder: ''
@@ -130,14 +150,6 @@ content:
     type: email_default
     region: content
   field_submissioner_first_name:
-    weight: 17
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_submissioner_last_name:
     weight: 18
     settings:
       size: 60
@@ -145,8 +157,16 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_submissioner_last_name:
+    weight: 19
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_submissioner_phone_number:
-    weight: 20
+    weight: 21
     settings:
       size: 60
       placeholder: ''
@@ -155,7 +175,7 @@ content:
     region: content
   field_user_submitted:
     type: boolean_checkbox
-    weight: 22
+    weight: 23
     region: content
     settings:
       display_label: true
