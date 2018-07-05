@@ -142,6 +142,14 @@
     }
 
     &.step1-content {
+      #edit-field-story-category--wrapper .fieldset-legend {
+        display: block;
+        margin: 3.5rem 0 1rem 0;
+        font-weight: 500;
+        color: $blue-dark;
+        @extend %lead;
+      }
+
       .field--name-field-story-first-name,
       .field--name-field-story-last-name {
         float: left;
