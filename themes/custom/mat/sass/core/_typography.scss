@@ -125,12 +125,12 @@ h1, h2, h3, h4, h5, h6 {
 
   ul,
   ol {
-    margin: 1em 0 0 0;
+    margin: 1em 0 0 0 !important;
   }
 }
 
 %list-ul {
-  li {
+  > li {
     position: relative;
     padding-left: 3.8rem;
 
@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 %list-ol {
   counter-reset: step-counter;
 
-  li {
+  > li {
     counter-increment: step-counter;
     padding-left: 3.8rem;
     position: relative;
