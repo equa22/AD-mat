@@ -11,7 +11,7 @@
   position: relative;
   z-index: 2;
   background: url($image-root + 'highlights/highlight-bg-meegale--top.png') repeat-x;
-
+  background-position-y: -1px;
   @media (min-width: $screen-sm-min) {
     padding: 30rem 0 2rem 0;
     margin-bottom: -300px;
@@ -52,7 +52,7 @@
     }
   }
 }
-  
+
 // Items basic styles
 .paragraph--type--statistics-item {
   text-align: center;
