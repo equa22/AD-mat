@@ -195,6 +195,8 @@ $.fn.isInViewport = function(props) {
         slidesToShow: 1,
         autoplay: true,
         autoplaySpeed: 6000,
+        fade: true,
+        cssEase: 'linear',
         draggable: false
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // if slide changed, animate next slide
@@ -507,6 +509,14 @@ $.fn.isInViewport = function(props) {
      
 
      var prevPx = 0;
+     $('.myth-vs-fact--myth').wrapInner('<div class="fact--description"></div>');
+
+     $('.myth-vs-fact--myth .fact--description').each(function(i) {
+      $(this).parent().attr('id', 'myth-' + i);
+      $($(this)[0]).find('.dot').prependTo('#myth-' + i);
+     });
+
+
      $(window).on('scroll', function() {
       
       

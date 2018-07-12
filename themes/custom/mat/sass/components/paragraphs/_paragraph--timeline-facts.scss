@@ -106,9 +106,15 @@
     .myth-vs-fact--fact {
       position: relative;
       flex-basis: 50%;
+      overflow: hidden;
       padding-top: 4.5rem;
-      opacity: 0;
-      transition: transform .9s ease-in-out, opacity 1.3s linear;
+      
+
+      h4, .fact--description {
+        opacity: 0;
+        
+      }
+      
 
       h4 {
         color: $mat-brand-primary;
@@ -123,7 +129,7 @@
 
         @media (min-width: $screen-sm-min) {
           top: 1.6rem;
-          width: 6.5rem;
+          width: 0;
         }
       }
 
@@ -145,8 +151,17 @@
     .myth-vs-fact--myth {
       position: relative;
       padding-right: 16rem;
-      transform: translate(-100%, 0);
       @extend %lead;
+
+      h4, .fact--description {
+        opacity: 0;
+        transition: transform .9s ease-in-out 0.5s, opacity 1.3s linear 0.5s;
+        transform: translate(100%, 0);
+      }
+      &:before {
+        transition: 0.5s width linear;
+      }
+      
 
       @media (max-width: $screen-xs-max) {
         padding-right: 0;
@@ -180,7 +195,17 @@
     .myth-vs-fact--fact {
       position: relative;
       padding-left: 6rem;
-      transform: translate(100%, 0);
+     
+
+      h4, .fact--description {
+         opacity: 0;
+         transition: transform .9s ease-in-out 0.8s, opacity 1.3s linear 0.8s;
+         transform: translate(-100%, 0);
+      }
+
+      &:before {
+        transition: 0.5s width linear 0.3s;
+      }
 
       @media (min-width: $screen-sm-min) {
         padding-left: 16rem;
@@ -209,6 +234,8 @@
         line-height: 1.5;
       }
 
+
+
       
     }
 
@@ -216,11 +243,310 @@
     &.animate {
       .myth-vs-fact--myth,
       .myth-vs-fact--fact {
-        transform: translate(0);
+
+        h4, .fact--description {
+          transform: translate(0);
+          opacity: 1;
+        }
+
+        &:before {
+          width: 6.5rem;
+        }
+      }
+      .myth-vs-fact--fact .dot {
+        &:before {
+          transform: scale(1);
+        }
+      }
+    }
+
+
+    @media (max-width: $screen-xs-max) {
+      width: 200%;
+      transform: translate(0);
+      
+      transition: 0.5s transform ease-in-out;
+
+      .myth-vs-fact--myth,
+      .myth-vs-fact--fact {
         opacity: 1;
+        overflow: unset !important;
+        transform: translate(0);
+
+        &:before {
+          width: 100% !important;
+        }
+
+        h4, .fact--description {
+          opacity: 1 !important;
+          transform: translate(0) !important;
+        }
+
+        &.dot:before {
+          transform: scale(1);
+        }
+      }
+      
+      &.animate {
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+}
 
 
-        
+.shine-letter {
+  position: relative;
+  display: inline-block;
+  background: -webkit-linear-gradient(#2F2D83, #2DB0DF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+// ========================================
+//
+// @file _paragraph--timeline-facts.scss
+// Paragraph timeline-facts element on the landing page
+// ========================================
+
+// Paragraph timeline-facts
+// -----------------------------------------------------------------------------
+.paragraph--type--timeline-facts {
+  padding-top: 13.5rem;
+  @media (min-width: $screen-sm-min) {
+    padding-top: 19rem;
+  }
+  
+  .timeline-facts--header {
+    text-align: center;
+
+    h3 {
+      color: $mat-brand-primary;
+    }
+
+    h2 {
+      color: $blue-dark;
+    }
+
+    .timeline-facts--headline {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 10.8rem;
+      margin-top: 9rem;
+      font-family: $font-flama-bold;
+      z-index: 1;
+
+      @media (min-width: $screen-sm-min) {
+         margin-top: 4rem;
+      }
+
+      .headline-myth,
+      .headline-fact {
+        flex-basis: 50%;
+        @extend %h2;
+        color: $blue-dark;
+        text-transform: uppercase;
+      }
+
+      .headline-myth {
+        padding-right: 16rem;
+        text-align: right;
+
+        @media (max-width: $screen-iphone5-max) {
+          max-width: 9.5rem;
+        }
+      }
+
+      .headline-fact {
+        text-align: right;
+
+        @media (min-width: $screen-sm-min) {
+          padding-left: 16rem;
+          text-align: left;
+        }
+      }
+
+      &:before {
+        content: 'VS';
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 10.8rem;
+        height: 10.8rem;
+        margin-left: -5.4rem;
+        line-height: 10.8rem;
+        border-radius: 50%;
+        @include gradient-blue();
+        color: $color-white;
+        @include font-size(2.4);
+      }
+    }
+  }
+
+  // Myth-vs-fact container
+  .field--name-field-myths-vs-facts {
+    position: relative;
+    padding-top: 7.5rem;
+    margin-bottom: 10rem;
+
+    @media (max-width: $screen-xs-max) {
+      overflow: hidden;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      padding-bottom: 7.5rem;
+    }
+
+    @extend %line-vertical;
+  }
+
+  // Myth-vs-fact item
+  .paragraph--type--myth-vs-fact {
+    display: flex;
+    padding-bottom: 13.5rem;
+
+    .myth-vs-fact--myth,
+    .myth-vs-fact--fact {
+      position: relative;
+      flex-basis: 50%;
+      overflow: hidden;
+      padding-top: 4.5rem;
+      
+
+      h4, .fact--description {
+        opacity: 0;
+      }
+      
+
+      h4 {
+        color: $mat-brand-primary;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 100%;
+        border-top: 2px solid #d2d2d2;
+
+        @media (min-width: $screen-sm-min) {
+          top: 1.6rem;
+          width: 0;
+        }
+      }
+
+      .dot {
+        position: absolute;
+        top: -1.3rem;
+
+        &:before {
+          background-color: $mat-brand-primary;
+          transition: 0.3s all ease-in-out 0.5s;
+        }
+
+        @media (min-width: $screen-sm-min) {
+          top: .3rem;
+        }
+      }
+    }
+
+    .myth-vs-fact--myth {
+      position: relative;
+      padding-right: 16rem;
+      @extend %lead;
+
+      h4, .fact--description {
+        opacity: 0;
+        transform: translate(100%, 0);
+      }
+      
+
+      @media (max-width: $screen-xs-max) {
+        padding-right: 0;
+        color: $gray-base;
+      }
+
+      &:before {
+        right: 0;
+        transition: 0.5s width linear;
+      }
+      
+      .dot {
+        left: 0;
+
+        @media (min-width: $screen-sm-min) {
+          left: auto;
+          right: 6.4rem;
+        }
+
+        &:before {
+          background-color: transparent;
+          @include icons('i-inactive');
+        }
+      }
+
+      @media (max-width: $screen-xs-max) {
+        opacity: 1;
+        transform: translate(0);
+      }
+    }
+
+    .myth-vs-fact--fact {
+      position: relative;
+      padding-left: 6rem;
+     
+
+      h4, .fact--description {
+         opacity: 0;
+        transform: translate(-100%, 0);
+      }
+      
+
+      @media (min-width: $screen-sm-min) {
+        padding-left: 16rem;
+      }
+
+      &:before {
+        left: 0;
+        transition: 0.5s width linear 0.3s;
+      }
+
+      .dot {
+        right: 0;
+
+        &:before {
+          transform: scale(0);
+        }
+
+        @media (min-width: $screen-sm-min) {
+          right: auto;
+          left: 6.4rem;
+        }
+      }
+
+      .fact--description {
+        @include font-size(2);
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      
+    }
+
+
+    &.animate {
+      .myth-vs-fact--myth,
+      .myth-vs-fact--fact {
+
+        h4, .fact--description {
+          transform: translate(0);
+          opacity: 1;
+        }
+
+        &:before {
+          width: 6.5rem;
+        }
       }
       .myth-vs-fact--fact .dot {
         &:before {
