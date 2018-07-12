@@ -67,12 +67,12 @@
       .field--name-field-content {
         opacity: 0;
         transform: translate(-200px);
-        transition: transform 0.8s ease-in-out 0.1s, opacity 0.5s ease-in-out;
+        transition: transform 1s ease-in-out 0.1s, opacity 1.3s ease-in-out;
       }
       .field--name-field-link {
         opacity: 0;
         transform: translate(-200px);
-        transition: transform 0.8s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.2s;
+        transition: transform 1s ease-in-out 0.3s, opacity 1.3s ease-in-out 0.2s;
       }
 
       @media (min-width: $screen-sm-min) {
