@@ -11,7 +11,7 @@
   @media (min-width: $screen-sm-min) {
     padding-top: 19rem;
   }
-  
+
   .timeline-facts--header {
     text-align: center;
 
@@ -108,13 +108,13 @@
       flex-basis: 50%;
       overflow: hidden;
       padding-top: 4.5rem;
-      
+
 
       h4, .fact--description {
         opacity: 0;
-        
+
       }
-      
+
 
       h4 {
         color: $mat-brand-primary;
@@ -161,7 +161,7 @@
       &:before {
         transition: 0.5s width linear;
       }
-      
+
 
       @media (max-width: $screen-xs-max) {
         padding-right: 0;
@@ -171,7 +171,7 @@
       &:before {
         right: 0;
       }
-      
+
       .dot {
         left: 0;
 
@@ -195,7 +195,7 @@
     .myth-vs-fact--fact {
       position: relative;
       padding-left: 6rem;
-     
+
 
       h4, .fact--description {
          opacity: 0;
@@ -236,7 +236,7 @@
 
 
 
-      
+
     }
 
 
@@ -264,7 +264,7 @@
     @media (max-width: $screen-xs-max) {
       width: 200%;
       transform: translate(0);
-      
+
       transition: 0.5s transform ease-in-out;
 
       .myth-vs-fact--myth,
@@ -286,7 +286,7 @@
           transform: scale(1);
         }
       }
-      
+
       &.animate {
         transform: translate(-50%, 0);
       }
@@ -315,7 +315,7 @@
   @media (min-width: $screen-sm-min) {
     padding-top: 19rem;
   }
-  
+
   .timeline-facts--header {
     text-align: center;
 
@@ -411,13 +411,12 @@
       position: relative;
       flex-basis: 50%;
       overflow: hidden;
-      padding-top: 4.5rem;
-      
+      padding-top: 0;
 
       h4, .fact--description {
         opacity: 0;
       }
-      
+
 
       h4 {
         color: $mat-brand-primary;
@@ -460,7 +459,7 @@
         opacity: 0;
         transform: translate(100%, 0);
       }
-      
+
 
       @media (max-width: $screen-xs-max) {
         padding-right: 0;
@@ -471,7 +470,7 @@
         right: 0;
         transition: 0.5s width linear;
       }
-      
+
       .dot {
         left: 0;
 
@@ -495,13 +494,13 @@
     .myth-vs-fact--fact {
       position: relative;
       padding-left: 6rem;
-     
+
 
       h4, .fact--description {
          opacity: 0;
         transform: translate(-100%, 0);
       }
-      
+
 
       @media (min-width: $screen-sm-min) {
         padding-left: 16rem;
@@ -531,7 +530,7 @@
         line-height: 1.5;
       }
 
-      
+
     }
 
 
@@ -570,7 +569,7 @@
           transform: scale(1);
         }
       }
-      
+
       &.animate {
         transform: translate(-50%, 0);
       }
