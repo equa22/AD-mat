@@ -7,7 +7,7 @@
 
 #header {
   position: relative;
-  
+
   @media (min-width: $screen-sm-min) {
     z-index: $z-index-header-screen;
   }
@@ -21,7 +21,7 @@
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
     @include font-size(1.2);
   }
-  
+
   > .block {
     display: flex;
     flex-direction: column;
@@ -162,7 +162,7 @@
 
     #topbar--search-open {
       display: none;
-      
+
       @media (min-width: $screen-sm-min) {
         display: block;
         position: absolute;
@@ -184,7 +184,7 @@
 .region-header {
   position: relative;
   z-index: 2;
-  
+
   @media (min-width: $screen-sm-min) {
     padding-top: 3.5rem;
     height: $header-height;
@@ -271,6 +271,7 @@
           border: none;
           border-bottom: 2px solid $color-white;
           background-color: transparent;
+          border-radius: 0;
         }
 
         .form-actions {
@@ -297,7 +298,7 @@
           max-width: 122rem;
           margin: 0 auto;
           padding: 0 $grid-gutter-width;
-          @include font-size(1.6); 
+          @include font-size(1.6);
           font-weight: 500;
           letter-spacing: .17em;
           text-transform: uppercase;
@@ -353,7 +354,7 @@ body.mobile-menu--opened {
       }
     }
   }
-  @media (max-width: $screen-xs-max) { 
+  @media (max-width: $screen-xs-max) {
     #block-header-search-block {
       display: block;
       position: fixed;
