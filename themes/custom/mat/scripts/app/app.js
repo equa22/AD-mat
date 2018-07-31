@@ -211,6 +211,10 @@ $.fn.isInViewport = function(props) {
       // remove all prefix labels with 'inspired by' text and replace them with one fixed label
       $('h1 .slide--title-prefix').remove();
       $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
+      $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-description', 'text': 'Today, 115,000+ people are waiting for a lifesaving transplant. You can inspire hope for these patients and their families by signing up for the organ and tissue donor registry.'}));
+      $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-link', 'text': 'Why Give Life'}));
+      
+
 
 
       // add 'inspired by' fixed label
