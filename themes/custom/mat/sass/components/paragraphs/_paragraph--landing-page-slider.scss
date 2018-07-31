@@ -77,6 +77,9 @@
         
       }
 
+      @media (max-width: $screen-xs-max) {
+        padding-bottom: 250px;
+      }
       @media (min-width: $screen-sm-min) {
         display: flex;
         height: 95.5rem;
@@ -151,6 +154,18 @@
     position: absolute;
     left: calc((100% - 1230px)/2 + 30px);
     top: 63.5rem;
+
+    @media (max-width: $screen-sm-min) {
+      left: 30px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      bottom: 30px;
+      top: auto;
+      margin: 0;
+      margin-top: 4.5rem;
+    }
 }
 .homepage-slider-description {
     font-size: 2.4rem;
@@ -160,6 +175,19 @@
     left: calc((100% - 1230px)/2 + 30px);
     top: 43.5rem;
     width: 610px;
+
+     @media (max-width: $screen-sm-min) {
+      
+      padding: 1.7rem 30px;
+      left: 0;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      bottom: 100px;
+      width: 100%;
+      top: unset;
+    }
 }
 
 .paragraph--type--landing-page-slider .paragraph--type--slide h1 {
