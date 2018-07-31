@@ -194,6 +194,7 @@ $.fn.isInViewport = function(props) {
         arrows: false,
         slidesToShow: 1,
         autoplay: true,
+        speed: 1200,
         autoplaySpeed: 6000,
         fade: true,
         cssEase: 'linear',
