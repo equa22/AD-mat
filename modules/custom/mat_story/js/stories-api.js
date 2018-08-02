@@ -623,7 +623,7 @@ let openModal = (id) => {
 
   selectedStory.featured_image ? $('#image').attr('src', baseUrl + selectedStory.featured_image) : $('#image').attr('src', '');
   $('#name').text(selectedStory.first_name + ' ' + selectedStory.last_name);
-  $('#role').text('DONOR');
+  $('#role').text(selectedStory.category);
   $('#gallery').html(
     (selectedStory.image_1 ? '<img src="' + (baseUrl + selectedStory.image_1) + '">' : '') +
     (selectedStory.image_2 ? '<img src="' + (baseUrl + selectedStory.image_2) + '">' : '') +
