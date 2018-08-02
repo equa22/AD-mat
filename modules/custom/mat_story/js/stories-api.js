@@ -635,7 +635,7 @@ let openModal = (id) => {
   $('#link').attr('href', window.location.href.split('#')[0] + '#' + id);
 
   // set facebook, twitter share links
-  $('#fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href.split('#')[0] + '#' + id);
+  $('#fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href.split('/stories')[0] + '/node/' + id);
   $('#tw').attr('href', 'http://www.twitter.com/share?url=' + window.location.href.split('#')[0] + '#' + id);
 }
 
