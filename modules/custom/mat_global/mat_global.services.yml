@@ -1,0 +1,5 @@
+services:
+  mat_global.subscriber:
+    class: Drupal\mat_global\StoriesRedirectSubscriber
+    tags:
+      - {name: event_subscriber}
