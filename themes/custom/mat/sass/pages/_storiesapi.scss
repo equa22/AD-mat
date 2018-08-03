@@ -400,7 +400,7 @@ $option-width: 70px;
       margin: 0 17px;
       outline: none;
       left: 0;
-      transition: all ease-in-out 0.3s;
+      transition: all ease-in-out 0.8s;
       border: none;
     }
   }
@@ -973,4 +973,9 @@ $mobile-item-size: 100px;
         line-height: 1;
       }
     }
+}
+
+.controls .filter-wrapper .bold.cat-item {
+    font-weight: bold !important;
+    color: #4a4a4a;
 }

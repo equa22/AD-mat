@@ -25,10 +25,10 @@
 	  _el_width: 110,
 	  _el_height: 110,
 	  movement: {
-	    _entry: {speed: 1000, delay: 300, type: "linear"},
-	    _leave: {speed: 500, delay: 200, type: "linear"},
-	    _fast: {speed: 800, type: "linear", css: function() { return this.speed + "ms transform " + this.type}},
-	    _smooth: {max: 10000, min: 5000, type: "cubic-bezier(0.36, 0.32, 0.75, 0.72)",
+	    _entry: {speed: 3000, delay: 500, type: "linear"},
+	    _leave: {speed: 3000, delay: 200, type: "linear"},
+	    _fast: {speed: 1200, type: "linear", css: function() { return this.speed + "ms transform " + this.type}},
+	    _smooth: {max: 80000, min: 80000, type: "cubic-bezier(0.36, 0.32, 0.75, 0.72)",
 	            css: function() { return (Math.floor(Math.random() * this.max) + this.min) + 'ms all ' + this.type}}
 	  },
 	  background: {
@@ -329,6 +329,9 @@ let getFilters = () => {
     'text': 'All stories',
     'class': 'bold cat-item'
   }).appendTo('.filter-wrapper').click((e) => {
+    $('.cat-item').removeClass('bold');
+    $(e.target).addClass('bold');
+
     animations.fade_out();
       setTimeout(() => {
         createDomElements();
@@ -344,6 +347,9 @@ let getFilters = () => {
       'data-index': i,
       'text': category.category
     }).appendTo('.filter-wrapper').click((e) => {
+      $('.cat-item').removeClass('bold');
+      $(e.target).addClass('bold');
+
       animations.fade_out();
       if(mobile) {
         //$('.filter-wrapper').slickGoTo(1);
