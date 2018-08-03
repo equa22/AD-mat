@@ -469,7 +469,7 @@ $option-width: 70px;
       bottom: 0;
       left: 2rem;
       width: calc(100% - 4rem);
-      height: 14rem;
+      height: 12rem;
       background: $color-white;
       background: -webkit-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
       background: -o-linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
@@ -491,6 +491,7 @@ $option-width: 70px;
       max-height: 50rem;
       overflow-y: scroll;
       overflow-x: hidden;
+      padding-bottom: 4.5rem;
 
       &::-webkit-scrollbar {
         width: 2px;

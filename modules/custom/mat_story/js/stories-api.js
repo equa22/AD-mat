@@ -607,6 +607,7 @@ let sliderTo = (num) => {
 
 let openModal = (id) => {
   var $overlay = $('.story-overlay'), selectedStory;
+  var $body = $('body');
   stories.forEach((story) => {
     if(story.story_id == id) {
       selectedStory = story;
@@ -617,6 +618,7 @@ let openModal = (id) => {
 
 
   $overlay.addClass('open');
+  $body.addClass('modal-open'); // Prevent the body from scrolling while the modal is open.
   setTimeout(() => {
     $overlay.addClass('fade-in');
   }, 50);
@@ -663,6 +665,9 @@ $('#link').click((e) => {
 
 let closeModal = () => {
   var $overlay = $('.story-overlay'), selectedStory;
+  var $body = $('body');
+
+  $body.removeClass('modal-open'); // Re-enable body scrolling.
   $('#modal').removeClass('drop');
 
   setTimeout(() => {
