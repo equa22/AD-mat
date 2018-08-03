@@ -19,10 +19,6 @@ $.fn.isInViewport = function(props) {
     return (h_shadow + 'px ' +  (v_shadow) + 'px ' +  size + 'px rgba(0,0,0,' + (size/100 < 0.4 ? size/100 : 0.4) + ')');
   }
 
-  
-  
- 
-
   // Toggling visibility of the main navigation (on mobile)
   Drupal.behaviors.mobileNavigation = {
     attach: function (context, settings) {
