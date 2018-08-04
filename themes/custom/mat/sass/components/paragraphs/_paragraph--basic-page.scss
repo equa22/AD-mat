@@ -98,18 +98,12 @@
 
     @media (min-width: $screen-sm-min) {
       display: flex;
-      padding: 5rem 8rem 0 4rem;
+      padding: 3.5rem 8rem 0 4rem;
     }
 
     .quote--author {
       @media (min-width: $screen-sm-min) {
         min-width: 18rem;
-      }
-    }
-
-    .quote--author-about {
-      @media (min-width: $screen-sm-min) {
-        padding-left: 7rem;
       }
     }
   }
