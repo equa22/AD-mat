@@ -48,6 +48,10 @@
       </div>
     {% endif %}
     <div class="basic-page-content">
+      {% if node.field_main_description.value %}
+        <h2 class="basic-page-optional-header">{{ node.field_main_description.value }}</h2>
+      {% endif %}
+
       <div class="basic-page-content--summary">{{ node.body.value|raw }}</div>
 
       {% if node.field_basic_page_components %}
