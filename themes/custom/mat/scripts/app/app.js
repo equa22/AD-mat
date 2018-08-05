@@ -273,9 +273,25 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-  // Pillars scrollReveal
+  // Pillars scrollReveal and positioning
   Drupal.behaviors.pillars = {
     attach: function (context, settings) {
+      // Positioning. Temporary solution: look at the 'right' CSS property of
+      // the :before pseudo-element - kind of hacky but it works for now).
+      $('.paragraph--type--pillar-group-item').each(function() {
+        // Grab the child elements that need to be moved.
+        var $children =
+          $(this).children('.field--name-field-link, .field--name-field-content, .pillar-group-item--heading');
+        // If the element is on the left side of the screen
+        if(window.getComputedStyle(this,':before').right === '0px') {
+          $children.addClass('left-side-of-screen');
+        // If the element is on the right side of the screen
+        } else {
+          $children.addClass('right-side-of-screen');
+        }
+      });
+
+      // Animation
       $(window).scroll(function(e) {
         var w_w = $(window).width();
         if (w_w >= 768) {
