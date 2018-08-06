@@ -84,6 +84,12 @@ $option-width: 70px;
   width: 100%;
   //z-index: 1;
   @include gradient(90deg, #0f84d2, #0f84d2, #0b145e);
+
+  .outer-wrapper  {
+    width: 100vw;
+    height: calc(100% - 80px);
+    overflow: scroll;
+  }
 }
 
 
@@ -288,7 +294,8 @@ $option-width: 70px;
 
   .animation-wrapper {
     width: 100vw;
-    height: calc(100% - #{$nav-pre-content-height});
+    //height: calc(100% - #{$nav-pre-content-height});
+    height: 100%;
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -400,7 +407,7 @@ $option-width: 70px;
       margin: 0 17px;
       outline: none;
       left: 0;
-      transition: all ease-in-out 0.8s;
+      transition: all ease-in-out 0.4s;
       border: none;
     }
   }
@@ -772,6 +779,7 @@ $mobile-item-size: 100px;
   .stories-api {
     background: transparent;
     position: unset;
+
 
     .item {
       &.left {
