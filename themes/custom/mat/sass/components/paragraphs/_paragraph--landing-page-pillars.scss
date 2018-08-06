@@ -366,7 +366,7 @@
 }
 
 // Animation
-.field--name-field-pillar-group-items .field__item:nth-of-type(2n) .paragraph--type--pillar-group-item {
+.field--name-field-pillar-group-items .field__item:nth-of-type(even) .paragraph--type--pillar-group-item {
   @media (min-width: $screen-sm-min) {
     //transform: translate(100%, 0);
     overflow: hidden;
@@ -378,7 +378,7 @@
     .field--name-field-link, 
     .field--name-field-content,
     .pillar-group-item--heading {
-      transform: translate(-100%, 0);
+      //transform: translate(-100%, 0);
       opacity: 0;
       transition: transform .9s ease-in-out 1.1s, opacity 1.3s linear 1.1s;
     }
@@ -410,7 +410,7 @@
     .field--name-field-link, 
     .field--name-field-content,
     .pillar-group-item--heading {
-      transform: translate(100%, 0);
+      //transform: translate(100%, 0);
       opacity: 0;
       transition: transform .9s ease-in-out 0.8s, opacity 1.3s linear 0.8s;
     }
@@ -439,6 +439,22 @@
     &.animate {
       .dot:before {
         transform: scale(1);
+      }
+    }
+  }
+}
+
+// Used by Drupal.behaviors.pillars in app.js
+.paragraph--type--pillar-group-item {
+  @media (min-width: $screen-sm-min) {
+    .field--name-field-link,
+    .field--name-field-content,
+    .pillar-group-item--heading {
+      &.left-side-of-screen {
+        transform: translate(100%, 0);
+      }
+      &.right-side-of-screen {
+        transform: translate(-100%, 0);
       }
     }
   }

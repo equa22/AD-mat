@@ -196,3 +196,26 @@ function _mat_global_get_landing_page_from_node() {
     return 'new_node';
   }
 }
+
+/**
+ * Implements hook_menu_local_tasks_alter()
+ *
+ * @param array $data Local tasks render array
+ * @param string $route_name
+ */
+function mat_global_menu_local_tasks_alter(&$data, $route_name) {
+
+  if($route_name == 'block.admin_display') {
+      // Hide system themes from "editor" role when user editing block layout
+      // which are not defined inside $accessAllowedTheme
+      $accessAllowedTheme = ['block.admin_display_theme:mat'];
+      if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+        $localTabs = isset($data['tabs'][1]) ? $data['tabs'][1] : [];
+        foreach ($localTabs as $name => $options) {
+          if (!in_array($name, $accessAllowedTheme)) {
+            $data['tabs'][1][$name]['#access'] = false;
+          }
+        }
+      }
+  }
+}

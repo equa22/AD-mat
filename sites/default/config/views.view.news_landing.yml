@@ -488,7 +488,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<h3>Newsroom</h3>\n<h1>The Latest from<br> \LMid-America Transplant </h1>"
+            value: "<h3>Newsroom</h3>\n<h1>The Latest from<br> Mid-America Transplant </h1>"
             format: advanced
           plugin_id: text
       footer: {  }

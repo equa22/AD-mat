@@ -18,7 +18,7 @@
     <div class="basic-page-header--gradient"></div>
     <div class="container">
       <h3>{{ node.field_header_category.entity.name.value }}</h3>
-      <h1>{{ node.label }}
+      <h1>{{ node.label }}</h1>
     </div>
   </div>
   {% if node.field_header_category.entity.description.value|render|trim %}
@@ -48,6 +48,10 @@
       </div>
     {% endif %}
     <div class="basic-page-content">
+      {% if node.field_main_description.value %}
+        <h2 class="basic-page-optional-header">{{ node.field_main_description.value }}</h2>
+      {% endif %}
+
       <div class="basic-page-content--summary">{{ node.body.value|raw }}</div>
 
       {% if node.field_basic_page_components %}
@@ -58,4 +62,4 @@
 
     </div>
   </div>
-</div>
+</section>

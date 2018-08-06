@@ -12,6 +12,12 @@ body {
 	-moz-osx-font-smoothing: grayscale;
   font-family: $font-text;
   font-weight: 400;
+  &.modal-open {
+    // This prevents the body from scrolling but keeps the scrollbar (so that the window does not shift).
+    position: fixed;
+    overflow-y: scroll;
+    width: 100%;
+  }
 }
 
 a {

@@ -1,0 +1,4 @@
+mat_storyaudio:
+  enable_audio: 0
+  audio_file_mp3: ''
+  audio_file_ogg: ''

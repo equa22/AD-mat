@@ -66,7 +66,6 @@
       		initialised = true;
 	      	config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
 
-
 	        JSON = [{
             "story_id":"96",
             "first_name":"Kristin",
@@ -607,6 +606,7 @@ let sliderTo = (num) => {
 
 let openModal = (id) => {
   var $overlay = $('.story-overlay'), selectedStory;
+  var $body = $('body');
   stories.forEach((story) => {
     if(story.story_id == id) {
       selectedStory = story;
@@ -617,6 +617,7 @@ let openModal = (id) => {
 
 
   $overlay.addClass('open');
+  $body.addClass('modal-open'); // Prevent the body from scrolling while the modal is open.
   setTimeout(() => {
     $overlay.addClass('fade-in');
   }, 50);
@@ -636,6 +637,11 @@ let openModal = (id) => {
     (selectedStory.image_3 ? '<img src="' + (baseUrl + selectedStory.image_3) + '">' : '')
   )
   $('#content').html(selectedStory.content);
+
+  // append Paragraphs: components field
+  if (selectedStory.field_story_profile_components) {
+    $('#content').append(selectedStory.field_story_profile_components);
+  }
 
   // set link for copy function
   $('#link').attr('href', window.location.href.split('#')[0] + '#' + id);
@@ -663,6 +669,9 @@ $('#link').click((e) => {
 
 let closeModal = () => {
   var $overlay = $('.story-overlay'), selectedStory;
+  var $body = $('body');
+
+  $body.removeClass('modal-open'); // Re-enable body scrolling.
   $('#modal').removeClass('drop');
 
   setTimeout(() => {
