@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-  - field.field.media.image.field_media_image
-  - image.style.thumbnail
-  - media.type.image
+    - field.field.media.image.field_media_image
+    - image.style.thumbnail
+    - media.type.image
   module:
-  - content_moderation
-  - focal_point
-  - path
+    - content_moderation
+    - focal_point
+    - path
 _core:
   default_config_hash: 9RMvQ2MmEO6j9_kPaQ35-4q03jxLRyRtVzW7ws5514o
 id: media.image.default
