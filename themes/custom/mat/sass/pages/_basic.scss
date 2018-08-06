@@ -193,6 +193,13 @@
     }
   }
 
+  h2.basic-page-optional-header {
+    @include font-size(1.6);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  h2.basic-page-optional-header,
   h3,
   h4,
   table caption {
@@ -225,6 +232,7 @@
     @media (min-width: $screen-sm-min) {
       padding: 0 8rem 0 4rem;
       line-height: 1.5 !important;
+      margin-top: 4rem;
     }
 
     &:before {
@@ -246,6 +254,13 @@
     }
   }
 
+  table {
+    margin-top: 0;
+    caption {
+      padding-top: 4rem;
+    }
+  }
+
   hr {
     margin-bottom: 3rem;
   }
@@ -259,7 +274,7 @@
       font-weight: 500;
 
       @media (min-width: $screen-md-min) {
-        @include font-size(3);
+        @include font-size(2.4);
         line-height: 1.35;
       }
 
@@ -293,3 +308,4 @@
     }
   }
 }
+
