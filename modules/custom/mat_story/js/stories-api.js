@@ -65,7 +65,7 @@
       	if(!initialised) {
       		initialised = true;
 	      	config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
-
+console.log(data);
 
 	        JSON = [{
             "story_id":"96",
@@ -638,6 +638,11 @@ let openModal = (id) => {
     (selectedStory.image_3 ? '<img src="' + (baseUrl + selectedStory.image_3) + '">' : '')
   )
   $('#content').html(selectedStory.content);
+
+  // append Paragraphs: components field
+  if (selectedStory.field_story_profile_components) {
+    $('#content').append(selectedStory.field_story_profile_components);
+  }
 
   // set link for copy function
   $('#link').attr('href', window.location.href.split('#')[0] + '#' + id);
