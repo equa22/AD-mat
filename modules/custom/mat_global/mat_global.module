@@ -199,6 +199,9 @@ function _mat_global_get_landing_page_from_node() {
 
 /**
  * Implements hook_menu_local_tasks_alter()
+ *
+ * @param array $data Local tasks render array
+ * @param string $route_name
  */
 function mat_global_menu_local_tasks_alter(&$data, $route_name) {
 
