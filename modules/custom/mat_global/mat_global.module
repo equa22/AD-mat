@@ -205,8 +205,7 @@ function _mat_global_get_landing_page_from_node() {
  */
 function mat_global_menu_local_tasks_alter(&$data, $route_name) {
 
-  switch($route_name) {
-    case 'block.admin_display':
+  if($route_name == 'block.admin_display') {
       // Hide system themes from "editor" role when user editing block layout
       // which are not defined inside $accessAllowedTheme
       $accessAllowedTheme = ['block.admin_display_theme:mat'];
@@ -218,6 +217,5 @@ function mat_global_menu_local_tasks_alter(&$data, $route_name) {
           }
         }
       }
-      break;
   }
 }
