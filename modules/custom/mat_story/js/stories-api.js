@@ -65,7 +65,6 @@
       	if(!initialised) {
       		initialised = true;
 	      	config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
-console.log(data);
 
 	        JSON = [{
             "story_id":"96",
