@@ -9,9 +9,9 @@ id: node.basic_page.field_main_description
 field_name: field_main_description
 entity_type: node
 bundle: basic_page
-label: 'Main Description'
-description: 'Main description under the title.'
-required: true
+label: 'Optional header'
+description: 'Optional header at the top of the content block.'
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
