@@ -1,0 +1,13 @@
+uuid: 5b294915-f934-42b0-8013-130d1e6ef8fb
+langcode: en
+status: true
+dependencies: {  }
+id: focal_image
+label: 'Focal image'
+description: 'An image that allows its focal point to be changed.'
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image_2
+field_map: {  }

@@ -1,29 +1,29 @@
-uuid: d4da8c8f-d25b-4099-8eba-53c7777cc873
+uuid: b18c5533-ed71-48ce-96fd-dc46089735f9
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.media.image.field_media_image
+    - field.field.media.focal_image.field_media_image_2
     - image.style.thumbnail
-    - media.type.image
+    - media.type.focal_image
   module:
     - content_moderation
+    - focal_point
     - path
-    - svg_image
-_core:
-  default_config_hash: 9RMvQ2MmEO6j9_kPaQ35-4q03jxLRyRtVzW7ws5514o
-id: media.image.default
+id: media.focal_image.default
 targetEntityType: media
-bundle: image
+bundle: focal_image
 mode: default
 content:
-  field_media_image:
+  field_media_image_2:
+    weight: 2
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+      preview_link: true
+      offsets: '50,50'
     third_party_settings: {  }
-    type: image_image
-    weight: 2
+    type: image_focal_point
     region: content
   langcode:
     type: language_select

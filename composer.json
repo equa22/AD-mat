@@ -41,7 +41,9 @@
         "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
         "mikey179/vfsstream": "~1.2",
         "phpunit/phpunit": ">=4.8.28 <5",
-        "symfony/css-selector": "~2.8|~3.0"
+        "symfony/css-selector": "~2.8|~3.0",
+        "drupal/twig_xdebug": "^1.0",
+        "drupal/coffee": "^1.0@beta"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

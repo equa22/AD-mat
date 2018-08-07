@@ -23,6 +23,7 @@ module:
   breakpoint: 0
   ckeditor: 0
   classy_paragraphs: 0
+  coffee: 0
   config: 0
   config_filter: 0
   config_ignore: 0
@@ -96,6 +97,7 @@ module:
   text: 0
   token: 0
   toolbar: 0
+  twig_xdebug: 0
   update: 0
   user: 0
   video_embed_field: 0

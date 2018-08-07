@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_media
-    - media.type.image
+    - media.type.focal_image
     - paragraphs.paragraphs_type.slide
 _core:
   default_config_hash: oVrFdOgzv-IOF4QpmWuqiribtZ-Q9n_CXVYVBO466_I
@@ -22,9 +22,9 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      image: image
+      focal_image: focal_image
     sort:
       field: _none
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: focal_image
 field_type: entity_reference
