@@ -1,15 +1,25 @@
 uuid: 4b39dd5a-71b4-4458-9abc-a8c676a21e46
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: media_background
 label: 'Media Background'
 effects:
-  7eb79598-bfe4-4e5b-9d8e-6ed42fc6efff:
-    uuid: 7eb79598-bfe4-4e5b-9d8e-6ed42fc6efff
+  6c17a961-48c5-4906-b3bf-8120a2432bbc:
+    uuid: 6c17a961-48c5-4906-b3bf-8120a2432bbc
     id: image_scale
     weight: 1
     data:
       width: 2000
       height: null
       upscale: false
+  3a45be6b-aee8-4568-a04c-d72756868668:
+    uuid: 3a45be6b-aee8-4568-a04c-d72756868668
+    id: focal_point_crop
+    weight: 2
+    data:
+      width: 1780
+      height: 950
+      crop_type: focal_point
