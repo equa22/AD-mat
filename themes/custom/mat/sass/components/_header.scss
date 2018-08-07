@@ -80,6 +80,7 @@
         display: flex;
         align-items: center;
         padding-left: 3.5rem;
+        position: relative;
         @media (max-width: $screen-md-min) {
           padding-left: 3rem;
         }
@@ -99,7 +100,7 @@
           width: 2.5rem;
           height: 2.5rem;
           position: absolute;
-          left: 3rem;
+          left: 0;
           @include icons('i-exclamation');
           @media (max-width: $screen-md-min) {
             left: 1.5rem;

@@ -10306,10 +10306,27 @@
         "drupal/field_permissions": 5,
         "drupal/markup": 10,
         "drupal/swiftmailer": 10,
-        "drupal/devel": 20
+        "drupal/devel": 20,
+        "behat/mink": 20,
+        "behat/mink-selenium2-driver": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-date": "*",
+        "ext-dom": "*",
+        "ext-filter": "*",
+        "ext-gd": "*",
+        "ext-hash": "*",
+        "ext-json": "*",
+        "ext-pcre": "*",
+        "ext-pdo": "*",
+        "ext-session": "*",
+        "ext-simplexml": "*",
+        "ext-spl": "*",
+        "ext-tokenizer": "*",
+        "ext-xml": "*",
+        "php": "^5.5.9|>=7.0.8"
+    },
     "platform-dev": []
 }
