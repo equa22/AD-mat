@@ -48,4 +48,82 @@ settings:
       slide:
         enabled: true
         weight: 14
+      basic_page_iframe:
+        weight: 34
+        enabled: false
+      basic_page_image_and_text:
+        weight: 35
+        enabled: false
+      basic_page_quote:
+        weight: 36
+        enabled: false
+      basic_page_video:
+        weight: 37
+        enabled: false
+      carousel:
+        weight: 38
+        enabled: false
+      cta_item:
+        weight: 39
+        enabled: false
+      header_announcement:
+        weight: 40
+        enabled: false
+      highlight_slide:
+        weight: 41
+        enabled: false
+      landing_page_box:
+        weight: 42
+        enabled: false
+      landing_page_counter:
+        weight: 44
+        enabled: false
+      landing_page_cta:
+        weight: 45
+        enabled: false
+      landing_page_hero:
+        weight: 47
+        enabled: false
+      landing_page_hero_image:
+        weight: 48
+        enabled: false
+      landing_page_highlight:
+        weight: 49
+        enabled: false
+      landing_page_pillars:
+        weight: 52
+        enabled: false
+      landing_page_statement:
+        weight: 55
+        enabled: false
+      landing_page_statistics:
+        weight: 56
+        enabled: false
+      landing_page_stories:
+        weight: 57
+        enabled: false
+      landing_page_why_register:
+        weight: 58
+        enabled: false
+      landing_page_year_review:
+        weight: 59
+        enabled: false
+      myth_vs_fact:
+        weight: 60
+        enabled: false
+      pillar_group:
+        weight: 61
+        enabled: false
+      pillar_group_item:
+        weight: 62
+        enabled: false
+      social_link:
+        weight: 64
+        enabled: false
+      statistics_item:
+        weight: 65
+        enabled: false
+      timeline_facts:
+        weight: 66
+        enabled: false
 field_type: entity_reference_revisions

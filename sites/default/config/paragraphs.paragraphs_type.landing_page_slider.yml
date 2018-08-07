@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: 93akRC4XiUXMTBtPC0PE10XEBEad0XtO3SZ2GEB3mFI
 id: landing_page_slider
-label: Slider
-icon_uuid: e54e1d6e-2be2-431e-a43b-9f09cd495548
+label: 'Focal slider'
+icon_uuid: null
 description: ''
 behavior_plugins: {  }
