@@ -11,7 +11,7 @@ field_name: field_media
 entity_type: paragraph
 bundle: pillar_group_item
 label: Media
-description: ''
+description: 'The required size is 107 pixels wide by 107 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: true
 translatable: true
 default_value: {  }
