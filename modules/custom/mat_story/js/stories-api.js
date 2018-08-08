@@ -630,13 +630,18 @@ function calculateWrapperWidth(num) {
       let factor = 100*ui.value/width;
       let slide = 100*ui.value/width *$board.width()/100
       var slided = $slider.scrollLeft();
-      //console.log(slide, slided);
-      console.log(ui.value)
+    console.log(ui.value, width);
+
+      if((ui.value <= 5 || ui.value >= (width-5)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
+        $('.slider-wrapper .container-small').removeClass('fade-out');
+      } else if((ui.value > 5 && ui.value < (width-5)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
+        $('.slider-wrapper .container-small').addClass('fade-out');
+      }
 
 
       $('.stories-api .outer-wrapper').stop().animate({
-        scrollLeft: slide
-      }, Math.abs(previousSliderPoint - ui.value)*80);
+        scrollLeft: slide/3
+      }, Math.abs(previousSliderPoint - ui.value) > 1 ? Math.abs(previousSliderPoint - ui.value)*20 : 0);
       /*
       $('.stories-api .outer-wrapper').stop().animate({
         scrollLeft: slide

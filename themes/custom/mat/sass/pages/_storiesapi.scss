@@ -159,6 +159,16 @@ $option-width: 70px;
   -webkit-animation-iteration-count: infinite;
 }
 
+.slider-wrapper .container-small {
+  
+  * {
+    opacity: 1;
+    transition: opacity 1s linear;
+  }
+  &.fade-out * {
+    opacity: 0;
+  }
+}
 .stories-api {
   .small-item {
     border-radius: 50%;
@@ -407,7 +417,7 @@ $option-width: 70px;
       margin: 0 17px;
       outline: none;
       left: 0;
-      transition: all ease-in-out 0.4s;
+      transition: all ease-in-out 0.1s;
       border: none;
     }
   }
