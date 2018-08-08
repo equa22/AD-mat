@@ -185,6 +185,20 @@ $.fn.isInViewport = function(props) {
   // Hero slider on home page
   Drupal.behaviors.heroSlider = {
     attach: function (context, settings) {
+      // Test if the browser is IE.
+      var ua = window.navigator.userAgent;
+      var is_internet_explorer = /MSIE|Trident/.test(ua);
+      // CSS object-fit:cover workaround for IE. Hides the default <img> elements and reveals
+      // .slide--image divs with a background image.
+      if (('.node--type-landing-page').length > 0) {
+        var $slider_images = $('.paragraph--type--slide > img', context);
+        $slider_images.each(function(image) {
+          var $background_url = "url('" + $(this).attr('src') + "')";
+          $(this).hide();
+          $(this).siblings('.slide--image').css('background-image', $background_url).show();
+        });
+      }
+      // Slick slider config.
       $('.paragraph--type--landing-page-slider .field--name-field-slides', context).once('hero-slider').slick({
         infinite: true,
         arrows: false,

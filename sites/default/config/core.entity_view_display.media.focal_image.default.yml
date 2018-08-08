@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.focal_image.field_media_image_2
-    - image.style.medium
+    - image.style.focal_media_background
     - media.type.focal_image
   module:
     - svg_image
@@ -17,12 +17,12 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: medium
-      image_link: ''
-      svg_render_as_image: '1'
+      image_style: focal_media_background
       svg_attributes:
         width: ''
         height: ''
+      svg_render_as_image: true
+      image_link: ''
     third_party_settings: {  }
     type: image
     region: content
