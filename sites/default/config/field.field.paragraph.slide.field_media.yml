@@ -13,7 +13,7 @@ field_name: field_media
 entity_type: paragraph
 bundle: slide
 label: Media
-description: ''
+description: 'The required size is 1786 pixels wide by 954 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: true
 translatable: true
 default_value: {  }
