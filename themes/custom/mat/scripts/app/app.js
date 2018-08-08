@@ -191,7 +191,7 @@ $.fn.isInViewport = function(props) {
       // CSS object-fit:cover workaround for IE. Hides the default <img> elements and reveals
       // .slide--image divs with a background image.
       if (('.node--type-landing-page').length > 0) {
-        var $slider_images = $('.paragraph--type--slide > img', context);
+        var $slider_images = $('.paragraph--type--slide img', context);
         $slider_images.each(function(image) {
           var $background_url = "url('" + $(this).attr('src') + "')";
           $(this).hide();
