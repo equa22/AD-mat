@@ -33,6 +33,8 @@
         "drupal/bamboo_twig": "^3.3",
         "drupal/core": "^8.5",
         "drupal/devel": "1.x-dev",
+        "drupal/conditional_fields": "^1.0-alpha4"
+        "drupal/devel": "1.x-dev",
         "drupal/viewsreference": "^2.0",
         "drupal/entity_browser": "^2.0"
     },

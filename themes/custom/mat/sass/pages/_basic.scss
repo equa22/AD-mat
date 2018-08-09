@@ -29,6 +29,10 @@
       width: 70%;
       margin: 0 auto;
     }
+    // When using Ajax on secondary pages (e.g. 'Donor Support').
+    >.basic-page-content {
+      width: 100%;
+    }
   }
 
   .basic-page-wrapper.basic-page-with-sidebar {
@@ -42,6 +46,17 @@
 
 // Basic page, News Article -- Header
 // -----------------------------------------------------------------------------
+#loading-gif-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, .7) url('/themes/custom/mat/assets/images/loading.gif') 50% 50% no-repeat;
+}
+
 .basic-page-header,
 .news-article--bg .news-article-header {
   position: relative;
