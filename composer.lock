@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "119470a49e0ed38706b0e72d2f86695c",
+    "content-hash": "5829b1d549047e420fa0f2b862fd958a",
     "packages": [
         {
             "name": "agiledrop/tdx-distribution",
