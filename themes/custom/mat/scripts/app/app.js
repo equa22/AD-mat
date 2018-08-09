@@ -691,5 +691,51 @@ $.fn.isInViewport = function(props) {
     }
   };
 
+  // Use ajax for hyperlinks with the .secondary-pages class.
+  Drupal.behaviors.secondaryPageAjax = {
+    attach: function (context, settings) {
+
+      // On click of every link that's intended to be used with Ajax...
+      $('.secondary-page-link').click(function(e) {
+        var $parent_category_is_active = false;
+        var $parent_category = $(this).parents().eq(3).children('.menu-item');
+        var $sibling_links = $parent_category.find('.secondary-page-link');
+
+        // The solution I thought of: check if any of the links in the same
+        // parent category is active (has already been clicked or navigated to).
+        $($sibling_links).each(function(link) {
+          if ($(this).hasClass('is-active')) {
+            $parent_category_is_active = true;
+          }
+        });
+
+        if ($parent_category_is_active) {
+        // Check if the appropriate menu category is open (e.g. Donor Support - has a shared hero image).
+        // We don't want ajax calls when we navigate from a different menu category.
+          e.preventDefault();
+          var $this = $(this); // Capture current link element so that it works inside ajax's success function.
+          var $body = $("body", context);
+          var $content_div = $('.basic-page-content', context);
+          var $href = $(this).attr('href');
+          // Use Ajax to load a page without changing the scroll position.
+          $.ajax({
+            type: 'POST',
+            url: $href,
+            beforeSend: function() {
+              $body.addClass("loading"); // Add white overlay and loading icon.
+            },
+            success: function(data) {
+              $content_div.html($(data).find('.basic-page-content')); // Grab the content from the other page and place it inside the current page's content div.
+              $body.removeClass("loading"); // Remove overlay.
+              window.history.pushState("", "", $href); // Change the current URL in the toolbar.
+              $('.secondary-page-link').removeClass('is-active'); // Remove the active class (bold text) from all secondary page links.
+              $this.addClass('is-active'); // Make the currently selected link active (bold text).
+            }
+          });
+        }
+      });
+    }
+  };
+
 })(jQuery);
 

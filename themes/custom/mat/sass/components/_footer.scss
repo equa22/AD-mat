@@ -82,7 +82,7 @@
 
     .logo_donate-life {
       display: flex;
-
+      align-items: center;
       @media (max-width: $screen-xs-max) {
         flex-direction: column;
         margin-bottom: 6rem;

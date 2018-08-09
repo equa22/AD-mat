@@ -18,6 +18,12 @@ body {
     overflow-y: scroll;
     width: 100%;
   }
+  &.loading {
+    overflow: hidden;
+    #loading-gif-modal {
+      display: block;
+    }
+  }
 }
 
 a {

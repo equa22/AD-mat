@@ -1,0 +1,19 @@
+uuid: 3481a269-408f-4357-b88e-62d382fe4ef4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_hero_image_title
+    - taxonomy.vocabulary.basic_page_categories
+id: taxonomy_term.basic_page_categories.field_hero_image_title
+field_name: field_hero_image_title
+entity_type: taxonomy_term
+bundle: basic_page_categories
+label: 'Hero image title'
+description: 'The title (heading 1) shown over the hero image. Fill this out if you intend to use a shared hero title.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
