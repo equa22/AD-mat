@@ -146,7 +146,7 @@
           font-weight: 700;
           background-position: 1.2rem 1rem;
           background-size: auto auto;
-          transition: background-image 0.4s, background-color 0.4s, color 0.4s !important;
+          transition: all 0.4s !important;
 
           @media (max-width: $screen-iphone5-max) {
             @include font-size(1.2);

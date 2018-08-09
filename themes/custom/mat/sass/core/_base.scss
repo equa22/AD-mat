@@ -24,6 +24,11 @@ body {
       display: block;
     }
   }
+  &:after {
+    // Preload header SVG icons (black version) so that they don't flicker on hover.
+    content: url($icon-root + 'i-together-nav-dark.svg') url($icon-root + 'i-give-life-nav-dark.svg');
+    display: none;
+  }
 }
 
 a {
