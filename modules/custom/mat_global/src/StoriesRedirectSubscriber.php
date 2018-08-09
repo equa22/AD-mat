@@ -33,7 +33,7 @@ class StoriesRedirectSubscriber implements EventSubscriberInterface {
       $is_admin = \Drupal::service('router.admin_context')
         ->isAdminRoute($route);
       if (!$is_admin) {
-        $event->setResponse(new RedirectResponse('/stories#' . $node->id()));
+        //$event->setResponse(new RedirectResponse('/stories#' . $node->id()));
       }
     }
   }
