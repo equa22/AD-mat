@@ -709,9 +709,10 @@ $.fn.isInViewport = function(props) {
           }
         });
 
-        if ($parent_category_is_active) {
+        if (!$('html').hasClass('device-mobile') && $parent_category_is_active) {
         // Check if the appropriate menu category is open (e.g. Donor Support - has a shared hero image).
         // We don't want ajax calls when we navigate from a different menu category.
+        // Also restrict to mobile browsers.
           e.preventDefault();
           var $this = $(this); // Capture current link element so that it works inside ajax's success function.
           var $body = $("body", context);
