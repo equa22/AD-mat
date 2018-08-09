@@ -3,6 +3,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\views\ViewExecutable;
+use Drupal\node\Entity\Node;
 
 function mat_story_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
@@ -196,4 +197,30 @@ function mat_story_views_pre_render(ViewExecutable $view) {
   if (isset($view) && ($view->storage->id() == 'stories_landing')) {
     $view->element['#attached']['library'][] = 'mat_story/api';
   }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function mat_story_page_attachments(array &$attachments) {
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node instanceof Node) {
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($node->id());
+
+    // Redirect all 'story_profile' CT > /stories which opens node in modal
+    // We only redirect on a client side: node still has to be accessible.
+    if ($node->getType() === 'story_profile') {
+      $js = "window.location = '/stories#{$node->id()}';";
+      $attachments['#attached']['html_head'][] = [[
+        '#tag' => 'script',
+        '#value' => \Drupal\Core\Render\Markup::create($js),
+        '#weight' => -1,
+      ],
+        'story-profile-redirect'
+      ];
+    }
+  }
+
 }
