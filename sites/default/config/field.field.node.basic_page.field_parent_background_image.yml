@@ -12,7 +12,7 @@ field_name: field_parent_background_image
 entity_type: node
 bundle: basic_page
 label: 'Header background image'
-description: ''
+description: 'If this is selected and the parent category does not implement shared headers, it will change the image behind the gradient overlay in the page header.'
 required: false
 translatable: false
 default_value: {  }

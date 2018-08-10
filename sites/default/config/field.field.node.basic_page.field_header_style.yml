@@ -11,8 +11,8 @@ id: node.basic_page.field_header_style
 field_name: field_header_style
 entity_type: node
 bundle: basic_page
-label: 'Header style'
-description: ''
+label: 'Header gradient overlay color'
+description: 'If this is selected and the parent category does not implement shared headers, this will change the color of the gradient overlay for this page only.'
 required: false
 translatable: false
 default_value: {  }

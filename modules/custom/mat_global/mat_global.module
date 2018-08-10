@@ -6,6 +6,7 @@ use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 function mat_global_page_attachments(array &$attachments) {
   if (\Drupal\user\Entity\User::load(\Drupal::currentUser()->id())->hasRole('administrator')) {
@@ -55,27 +56,8 @@ function mat_global_preprocess_node(&$variables) {
  */
 function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, array &$context) {
   if (in_array('editor', \Drupal::currentUser()->getRoles())) {
-
-    // Remove drop-down actions for inline form under certain condition.
-    $landingPageType = _mat_global_get_landing_page_from_node();
-
-    // Check condition for paragraphs type because
-    // we don't want to remove for all drop-downs.
-    if ($landingPageType == 'homepage_landing_page') {
-      if ($context["element"]["#paragraph_type"] != 'cta_item') {
-        $widget_actions['dropdown_actions'] = [];
-      }
-    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
-      if ($context["element"]["#paragraph_type"] != 'myth_vs_fact') {
-        $widget_actions['dropdown_actions'] = [];
-      }
-    } elseif ($landingPageType == 'what_we_do_landing_page') {
-      if ($context["element"]["#paragraph_type"] != 'pillar_group_item') {
-        $widget_actions['dropdown_actions'] = [];
-      }
-    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
-      $widget_actions['dropdown_actions'] = [];
-    }
+    // Client requirements changed here: all drop-down actions should now be removed if editor role.
+    $widget_actions['dropdown_actions'] = [];
   }
 }
 
@@ -84,29 +66,9 @@ function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, arra
  */
 function mat_global_preprocess_field_multiple_value_form(&$variables) {
   if (in_array('editor', \Drupal::currentUser()->getRoles())) {
-
-    // Remove option to drag paragraphs.
-    $landingPageType = _mat_global_get_landing_page_from_node();
-
-    if ($landingPageType == 'homepage_landing_page') {
-      if ($variables["element"]["#field_name"] != 'field_cta_items') {
-        unset($variables['table']['#tabledrag']);
-        unset($variables['table']['#header'][1]);
-      }
-    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
-      if ($variables["element"]["#field_name"] != 'field_myths_vs_facts') {
-        unset($variables['table']['#tabledrag']);
-        unset($variables['table']['#header'][1]);
-      }
-    } elseif ($landingPageType == 'what_we_do_landing_page') {
-      if ($variables["element"]["#field_name"] != 'field_pillar_group_items') {
-        unset($variables['table']['#tabledrag']);
-        unset($variables['table']['#header'][1]);
-      }
-    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
-      unset($variables['table']['#tabledrag']);
-      unset($variables['table']['#header'][1]);
-    }
+    // Client requirements changed here: all drag actions should now be removed if editor role.
+    unset($variables['table']['#tabledrag']);
+    unset($variables['table']['#header'][1]);
   }
 }
 
@@ -116,47 +78,14 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
 function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$form_state) {
   if (in_array('editor', \Drupal::currentUser()->getRoles())) {
     // Remove order column.
-    $landingPageType = _mat_global_get_landing_page_from_node();
+    // Client requirements changed here: all order actions should now be removed if editor role.
     $exceptions = [
       '#theme', '#attached', '#weight',
     ];
-
-    if ($landingPageType == 'homepage_landing_page') {
-      if ($elements["#field_name"] != 'field_cta_items') {
-        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-          unset($elements[$index]['_weight']);
-        }
-      }
-      $exceptions = [
-        '#theme', '#attached', '#weight', 'add_more_button_landing_page_cta', 'add_more_button_cta_item',
-      ];
-      _mat_global_remove_add_more_items($elements, $exceptions);
-    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
-      if ($elements["#field_name"] != 'field_myths_vs_facts') {
-        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-          unset($elements[$index]['_weight']);
-        }
-      }
-      $exceptions = [
-        '#theme', '#attached', '#weight', 'add_more_button_timeline_facts', 'add_more_button_myth_vs_fact',
-      ];
-      _mat_global_remove_add_more_items($elements, $exceptions);
-    } elseif ($landingPageType == 'what_we_do_landing_page') {
-      if ($elements["#field_name"] != 'field_pillar_group_items') {
-        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-          unset($elements[$index]['_weight']);
-        }
-      }
-      $exceptions = [
-        '#theme', '#attached', '#weight', 'add_more_button_pillar_group_item', 'add_more_button_pillar_group',
-      ];
-      _mat_global_remove_add_more_items($elements, $exceptions);
-    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
-      foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-        unset($elements[$index]['_weight']);
-      }
-      _mat_global_remove_add_more_items($elements, $exceptions);
+    foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
+      unset($elements[$index]['_weight']);
     }
+    _mat_global_remove_add_more_items($elements, $exceptions);
   }
 }
 
@@ -204,7 +133,6 @@ function _mat_global_get_landing_page_from_node() {
  * @param string $route_name
  */
 function mat_global_menu_local_tasks_alter(&$data, $route_name) {
-
   if($route_name == 'block.admin_display') {
       // Hide system themes from "editor" role when user editing block layout
       // which are not defined inside $accessAllowedTheme
@@ -219,3 +147,43 @@ function mat_global_menu_local_tasks_alter(&$data, $route_name) {
       }
   }
 }
+
+/* DISABLED for now - might have to use it if the Find Support menu needs to be created programmatically. */
+//function mat_global_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
+//
+//  $menu_name = 'main';
+//  $current_menu_tree = \Drupal::menuTree()->load($menu_name, new \Drupal\Core\Menu\MenuTreeParameters());
+//
+//  /*
+//   * Add Basic pages to the 'main' navigation menu.
+//   */
+//  if ($entity->bundle() === 'basic_page' && !$entity->get('field_header_category')->isEmpty()) {
+//    $current_parent_menu_element = null;
+//    // Retrieve the Find Support submenu.
+//    foreach ($current_menu_tree as $element) {
+//
+//    }
+//
+//
+//    $foo = "bar";
+//  }
+//  // The name of our menu
+//
+//
+//  // Load the MenuLinkManager.
+////  $menu_handler = \Drupal::service('plugin.manager.menu.link');
+//
+//  // Delete the existing links in the menu we want to rebuild
+////  $menu_handler->deleteLinksInMenu($menu_name);
+//
+//  // Here we are creating the first level and pointing
+//  // it to /first_level
+//  $first_level = MenuLinkContent::create([
+//    'title' => 'First Level',
+//    'link' => ['uri' => 'internal:/first_level'],
+//    'menu_name' => $menu_name,
+//    'expanded' => TRUE,
+//  ]);
+//  // Save the first level
+//  $first_level->save();
+//}

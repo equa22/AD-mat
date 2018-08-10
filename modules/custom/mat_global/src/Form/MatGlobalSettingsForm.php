@@ -20,6 +20,7 @@ class MatGlobalSettingsForm extends ConfigFormBase {
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
+
   /**
    * Constructs a new MatGlobalSettingsForm object.
    */
