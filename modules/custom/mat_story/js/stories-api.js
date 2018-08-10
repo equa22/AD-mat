@@ -649,6 +649,9 @@ let openModal = (id) => {
   // set facebook, twitter share links
   $('#fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href.split('/stories')[0] + '/node/' + id);
   $('#tw').attr('href', 'http://www.twitter.com/share?url=' + window.location.href.split('/stories')[0] + '/node/' + id);
+
+  // Open email client link
+  $('#mail').attr('href', 'mailto:username@example.com' + '?Subject=' + selectedStory.first_name + ' ' + selectedStory.last_name);
 }
 
 $('#link').click((e) => {
