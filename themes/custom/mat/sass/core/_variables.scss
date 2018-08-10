@@ -32,7 +32,7 @@ $blue-darkest:   #05052E;
 $blue-darker:    #2F2D83;
 $blue-dark:      #173F7C; // h2
 $blue:           #1B78BA;
-$blue-light:     #2DB0DF; 
+$blue-light:     #2DB0DF;
 $blue-lighter:   #22BEE4;
 $blue-lighteset: #C1E9F8;
 
@@ -85,6 +85,21 @@ $date:                  lighten($brand-primary, 20%) !default;
     src: url('../fonts/flama/Flama-Bold.eot?#iefix') format('embedded-opentype'),
          url('../fonts/flama/Flama-Bold.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'Flama Semibold';
+    src: url('../fonts/flama/Flama-Semibold.eot');
+    src: url('../fonts/flama/Flama-Semibold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/flama/Flama-Semibold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Flama Semibold Italic';
+    src: url('../fonts/flama/Flama-SemiboldItalic.eot');
+    src: url('../fonts/flama/Flama-SemiboldItalic.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/flama/Flama-SemiboldItalic.woff') format('woff');
+}
+
 @font-face {
     font-family: 'Flama Light';
     src: url('../fonts/flama/Flama-Light.eot');
@@ -96,6 +111,8 @@ $date:                  lighten($brand-primary, 20%) !default;
 
 $font-flama:        Flama, Helvetica, sans-serif;
 $font-flama-bold:   Flama Bold, Helvetica, sans-serif;
+$font-flama-semibold: Flama Semibold, Helvetica, sans-serif;
+$font-flama-semibold-italic: Flama Semibold Italic, Helvetica, sans-serif;
 $font-flama-light:  Flama Light, Helvetica, sans-serif;
 $font-roboto:       'Roboto', sans-serif;
 

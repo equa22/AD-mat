@@ -112,8 +112,9 @@
     }
 
     h1 {
-      font-weight: 700;
-      font-style: italic;
+      //font-weight: 700;
+      //font-style: italic;
+      font-family: $font-flama-semibold-italic;
 
       @media (min-width: $screen-sm-min) {
         height: 30rem;
@@ -206,6 +207,9 @@
   @extend %h1;
   font-weight: 700;
   color: $color-white;
+  font-family: $font-flama-semibold;
+
+
 
   @media (min-width: $screen-sm-min) {
     left: 0;

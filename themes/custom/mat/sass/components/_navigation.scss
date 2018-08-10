@@ -13,7 +13,7 @@ body.page-node-type-landing-page {
         > a,
         > span {
           color: $color-white;
-
+          font-weight: 500;
           &:before {
             @include icons('i-chevron-nav-white');
           }
@@ -138,7 +138,6 @@ body.page-node-type-landing-page {
       > a,
       > span {
         padding-right: 2.5rem;
-
         &:before {
           content: '';
           display: inline-block;
@@ -197,6 +196,7 @@ body.page-node-type-landing-page {
 
             a {
               padding: 2rem 2rem;
+              font-weight: 500;
             }
           }
 
@@ -227,13 +227,13 @@ body.page-node-type-landing-page {
 
 // Mobile navigation
 html.no-overflow {
-  @media (max-width: $screen-xs-max) { 
+  @media (max-width: $screen-xs-max) {
     overflow-y: hidden;
   }
 }
 
 body.mobile-menu--opened {
-  @media (max-width: $screen-xs-max) { 
+  @media (max-width: $screen-xs-max) {
     overflow: hidden;
 
     #header {
@@ -280,7 +280,7 @@ body.mobile-menu--opened {
 
       // Submenu menu (accordion)
       li.menu-item--expanded {
-        
+
         > a,
         > span {
           padding-right: 6rem;
@@ -314,7 +314,7 @@ body.mobile-menu--opened {
 
             &.menu-item--expanded {
               > a,
-              > span { 
+              > span {
                 &:before {
                   top: 2.3rem;
                   right: ($grid-gutter-width / 2);

@@ -31,6 +31,10 @@
   }
 
   .highlight--wrapper {
+
+    h2 {
+      font-family: $font-flama;
+    }
     @media (min-width: $screen-sm-min) {
       width: 100%;
       position: absolute;
