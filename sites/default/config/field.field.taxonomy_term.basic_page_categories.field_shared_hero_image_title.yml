@@ -9,8 +9,8 @@ id: taxonomy_term.basic_page_categories.field_shared_hero_image_title
 field_name: field_shared_hero_image_title
 entity_type: taxonomy_term
 bundle: basic_page_categories
-label: 'Shared hero image title'
-description: 'Select this if you want all subpages of this category to have the same hero image title.'
+label: 'Shared header + instant subpage loading'
+description: 'Select this if you want all subpages of this category to have the same header image and title. This also includes loading other subpages of the same parent category through AJAX (no reloading, maintains the vertical scroll position).'
 required: false
 translatable: false
 default_value:

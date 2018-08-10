@@ -87,6 +87,38 @@ content:
             selector: ''
           entity_type: taxonomy_term
           bundle: basic_page_categories
+        08ed4621-4b70-4f88-8208-2919a189b45b:
+          dependee: field_shared_hero_image_title
+          settings:
+            state: '!required'
+            condition: '!checked'
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: taxonomy_term
+          bundle: basic_page_categories
+        8bc2acb1-cb51-40d3-af0e-07724ca48cae:
+          dependee: field_shared_hero_image_title
+          settings:
+            state: required
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: taxonomy_term
+          bundle: basic_page_categories
     type: string_textarea
     region: content
   field_shared_hero_image_title:
