@@ -651,11 +651,7 @@ let openModal = (id) => {
   $('#tw').attr('href', 'http://www.twitter.com/share?url=' + window.location.href.split('/stories')[0] + '/node/' + id);
 
   // Open email client link
-  if (selectedStory.field_submissioner_email && selectedStory.field_submissioner_email != "") {
-    $('#mail').attr('href', 'mailto:' + selectedStory.field_submissioner_email + '?Subject=' + selectedStory.first_name + ' ' + selectedStory.last_name);
-  } else {
-    $('#mail').hide();
-  }
+  $('#mail').attr('href', 'mailto:username@example.com' + '?Subject=' + selectedStory.first_name + ' ' + selectedStory.last_name);
 }
 
 $('#link').click((e) => {
