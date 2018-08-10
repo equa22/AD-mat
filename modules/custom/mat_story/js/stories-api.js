@@ -649,6 +649,13 @@ let openModal = (id) => {
   // set facebook, twitter share links
   $('#fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href.split('/stories')[0] + '/node/' + id);
   $('#tw').attr('href', 'http://www.twitter.com/share?url=' + window.location.href.split('/stories')[0] + '/node/' + id);
+
+  // Open email client link
+  if (selectedStory.field_submissioner_email && selectedStory.field_submissioner_email != "") {
+    $('#mail').attr('href', 'mailto:' + selectedStory.field_submissioner_email + '?Subject=' + selectedStory.first_name + ' ' + selectedStory.last_name);
+  } else {
+    $('#mail').hide();
+  }
 }
 
 $('#link').click((e) => {
