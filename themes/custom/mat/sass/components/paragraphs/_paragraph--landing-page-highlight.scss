@@ -18,6 +18,8 @@
 
     a {
       @include btn-secondary();
+      font-family: $font-flama-medium;
+      font-weight: 500;
 
       @media (max-width: $screen-xs-max) {
         border-color: $gray-darker;
@@ -68,6 +70,10 @@
         @include font-size(3.5);
         line-height: 1.2;
       }
+    }
+
+    .field--name-field-text {
+      font-weight: 500;
     }
   }
 

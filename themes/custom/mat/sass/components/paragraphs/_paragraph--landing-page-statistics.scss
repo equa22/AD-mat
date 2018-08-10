@@ -58,7 +58,7 @@
   text-align: center;
 
   .field--name-field-number {
-    font-family: $font-flama;
+    font-family: $font-flama-semibold;
     @include font-size(8.5);
     color: $blue-dark;
   }
@@ -66,6 +66,10 @@
   .field--name-field-title {
     padding-top: .8rem;
     @extend %h3;
+  }
+
+  .field--name-field-text {
+    font-weight: 500;
   }
 
   .icon-circled {

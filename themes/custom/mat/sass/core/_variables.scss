@@ -79,6 +79,14 @@ $date:                  lighten($brand-primary, 20%) !default;
     src: url('../fonts/flama/Flama-Medium.eot?#iefix') format('embedded-opentype'),
          url('../fonts/flama/Flama-Medium.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'Flama Medium';
+  src: url('../fonts/flama/Flama-Medium.eot');
+  src: url('../fonts/flama/Flama-Medium.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/flama/Flama-Medium.woff') format('woff');
+}
+
 @font-face {
     font-family: 'Flama Bold';
     src: url('../fonts/flama/Flama-Bold.eot');
@@ -110,6 +118,7 @@ $date:                  lighten($brand-primary, 20%) !default;
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 $font-flama:        Flama, Helvetica, sans-serif;
+$font-flama-medium: Flama Medium, Helvetica, sans-serif;
 $font-flama-bold:   Flama Bold, Helvetica, sans-serif;
 $font-flama-semibold: Flama Semibold, Helvetica, sans-serif;
 $font-flama-semibold-italic: Flama Semibold Italic, Helvetica, sans-serif;
