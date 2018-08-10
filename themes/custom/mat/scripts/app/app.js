@@ -116,6 +116,7 @@ $.fn.isInViewport = function(props) {
     attach: function (context, settings) {
       $('.region-sidebar li.menu-item--active-trail', context).first().find('a').addClass('active');
       $('.region-sidebar li.menu-item--active-trail', context).first().find('ul').slideDown();
+
       $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
         e.preventDefault();
         $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
@@ -698,22 +699,24 @@ $.fn.isInViewport = function(props) {
   // Use ajax for hyperlinks with the .secondary-pages class.
   Drupal.behaviors.secondaryPageAjax = {
     attach: function (context, settings) {
+      // Grab all ajax link categories in the sidebar.
+      var $ajax_links = $('.region-sidebar .uses-ajax', context).siblings('ul').find('a');
+      // Apply class selectors to each of their children links.
+      $ajax_links.each(function() {
+        $(this).addClass('ajax-link');
+      });
 
-      // On click of every link that's intended to be used with Ajax...
-      $('.secondary-page-link').click(function(e) {
-        var $parent_category_is_active = false;
-        var $parent_category = $(this).parents().eq(3).children('.menu-item');
-        var $sibling_links = $parent_category.find('.secondary-page-link');
+      // On click of every link whose parent category uses Ajax
+      $ajax_links.click(function(e) {
+        // Prevent page reloading on already active links.
+        if ($(this).hasClass('is-active')) {
+          e.preventDefault();
+          return false;
+        }
+        // Grab the parent category (to prevent ajax calls across different categories).
+        var $parent_category = $(this).parents().eq(1).siblings('a');
 
-        // The solution I thought of: check if any of the links in the same
-        // parent category is active (has already been clicked or navigated to).
-        $($sibling_links).each(function(link) {
-          if ($(this).hasClass('is-active')) {
-            $parent_category_is_active = true;
-          }
-        });
-
-        if (!$('html').hasClass('device-mobile') && $parent_category_is_active) {
+        if (!$('html').hasClass('device-mobile') && $parent_category.hasClass('uses-ajax') && $parent_category.hasClass('is-active')) {
         // Check if the appropriate menu category is open (e.g. Donor Support - has a shared hero image).
         // We don't want ajax calls when we navigate from a different menu category.
         // Also restrict to mobile browsers.
@@ -733,7 +736,7 @@ $.fn.isInViewport = function(props) {
               $content_div.html($(data).find('.basic-page-content')); // Grab the content from the other page and place it inside the current page's content div.
               $body.removeClass("loading"); // Remove overlay.
               window.history.pushState("", "", $href); // Change the current URL in the toolbar.
-              $('.secondary-page-link').removeClass('is-active'); // Remove the active class (bold text) from all secondary page links.
+              $ajax_links.removeClass('is-active'); // Remove the active class (bold text) from all secondary page links.
               $this.addClass('is-active'); // Make the currently selected link active (bold text).
             }
           });
