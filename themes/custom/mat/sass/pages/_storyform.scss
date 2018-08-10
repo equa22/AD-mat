@@ -98,7 +98,7 @@
       }
     }
   }
-  
+
   .js-webform-type-radios {
     legend {
       margin-top: 4rem;
@@ -192,7 +192,7 @@
         color: $gray-dark;
         position: absolute;
         z-index: 1;
-        cursor: text;       
+        cursor: text;
         top: 3rem;
         left: 2.8rem;
         padding-right: 2.8rem;
@@ -207,7 +207,7 @@
       textarea {
         height: 400px;
         @extend %small;
-        
+
         @media (min-width: $screen-sm-min) {
           height: 350px;
         }
@@ -224,7 +224,7 @@
         float: left;
         overflow: hidden;
         height: 200px;
-        
+
         margin-right: 2rem;
         border: 5px dashed #979797;
         border-radius: 10px;
@@ -309,9 +309,9 @@
           width: 24px;
           height: 24px;
           @include icons('i-remove');
-          text-indent: -9999px;    
-          white-space: nowrap; 
-          overflow: hidden;   
+          text-indent: -9999px;
+          white-space: nowrap;
+          overflow: hidden;
           margin: 0;
           padding: 0;
           cursor: pointer;
@@ -491,7 +491,7 @@ form.node-story-profile-story-submission-form {
   .js-form-type-email {
     @extend %labelfocus;
   }
-  
+
   input[type="text"],
   input[type="email"],
   textarea {
@@ -509,5 +509,14 @@ form.node-story-profile-story-submission-form {
   input[type="radio"]:checked + label::before {
     background: $color-white !important;
     border-color: $color-white !important;
+  }
+
+  .story-submission-intro {
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }

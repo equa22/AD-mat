@@ -10,7 +10,7 @@
   @media (min-width: $screen-sm-min) {
     margin-top: -$header-height;
   }
-  
+
   @media (max-width: $screen-sm-max) {
     margin-top: -$header-height-mobile;
   }
@@ -55,7 +55,7 @@
       background-size: cover;
       background-position: center;
       height: 305px;
-      
+
       @media (min-width: $screen-sm-min) {
         position: absolute;
         top: 0;
@@ -74,16 +74,16 @@
       padding-top: 4rem;
       padding-bottom: 5rem;
       overflow: hidden;
-      
+
       .field--name-field-content {
         opacity: 0;
         transform: translate(-200px);
-        
+
       }
       .field--name-field-link {
         opacity: 0;
         transform: translate(-200px);
-        
+
       }
 
       @media (max-width: $screen-xs-max) {
@@ -147,39 +147,28 @@
 }
 
 .homepage-slider-link {
-    display: inline-block;
-    font-weight: normal;
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
-    border: none;
-    outline: none;
-    padding: 1.4rem 6.2rem;
-    border-radius: 33px;
-    font-weight: 500;
-    font-size: 20px;
-    font-size: 2rem;
-    line-height: 1.7;
-    background-color: #0BAADB;
-    position: absolute;
-    left: calc((100% - 1230px)/2 + 30px);
-    top: 63.5rem;
+  display: inline-block;
+  position: absolute;
+  left: calc((100% - 1230px)/2 + 30px);
+  top: 63.5rem;
+  a {
+    @include btn-primary();
+  }
 
-    a {
-      color: white;
-    }
-    @media (max-width: $screen-sm-min) {
-      left: 30px;
-    }
-    @media (max-width: $screen-xs-max) {
-      font-size: 1.6rem;
-      line-height: 1.5;
-      bottom: 30px;
-      top: auto;
-      margin: 0;
-      margin-top: 4.5rem;
-    }
+  @media (max-width: $screen-md-max) {
+    left: 30px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    bottom: 30px;
+    top: auto;
+    margin: 0;
+    margin-top: 4.5rem;
+  }
 }
+
 .homepage-slider-description {
     font-size: 2.4rem;
     line-height: 1.45;
@@ -189,11 +178,11 @@
     top: 43.5rem;
     width: 610px;
 
-     @media (max-width: $screen-sm-min) {
-      
+    @media (max-width: $screen-sm-min) {
       padding: 1.7rem 30px;
       left: 0;
     }
+
     @media (max-width: $screen-xs-max) {
       font-size: 1.6rem;
       line-height: 1.5;
@@ -222,7 +211,7 @@
     left: 0;
     top: 24.8rem;
   }
-  
+
   @media (min-width: $screen-lg-min) {
     left: calc((100% - 1230px)/2);
     top: 23rem;
