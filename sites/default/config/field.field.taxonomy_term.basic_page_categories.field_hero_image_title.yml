@@ -9,9 +9,9 @@ id: taxonomy_term.basic_page_categories.field_hero_image_title
 field_name: field_hero_image_title
 entity_type: taxonomy_term
 bundle: basic_page_categories
-label: 'Hero image title'
-description: 'The title (heading 1) shown over the hero image. Fill this out if you intend to use a shared hero title.'
-required: false
+label: 'Header title'
+description: 'The title displayed over the hero image. Fill this out if you intend to use a shared header + instant subpage loading.'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

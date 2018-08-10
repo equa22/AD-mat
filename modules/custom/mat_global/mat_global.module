@@ -6,6 +6,7 @@ use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 function mat_global_page_attachments(array &$attachments) {
   if (\Drupal\user\Entity\User::load(\Drupal::currentUser()->id())->hasRole('administrator')) {
@@ -219,3 +220,43 @@ function mat_global_menu_local_tasks_alter(&$data, $route_name) {
       }
   }
 }
+
+/* DISABLED for now - might have to use it if the Find Support menu needs to be created programmatically. */
+//function mat_global_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
+//
+//  $menu_name = 'main';
+//  $current_menu_tree = \Drupal::menuTree()->load($menu_name, new \Drupal\Core\Menu\MenuTreeParameters());
+//
+//  /*
+//   * Add Basic pages to the 'main' navigation menu.
+//   */
+//  if ($entity->bundle() === 'basic_page' && !$entity->get('field_header_category')->isEmpty()) {
+//    $current_parent_menu_element = null;
+//    // Retrieve the Find Support submenu.
+//    foreach ($current_menu_tree as $element) {
+//
+//    }
+//
+//
+//    $foo = "bar";
+//  }
+//  // The name of our menu
+//
+//
+//  // Load the MenuLinkManager.
+////  $menu_handler = \Drupal::service('plugin.manager.menu.link');
+//
+//  // Delete the existing links in the menu we want to rebuild
+////  $menu_handler->deleteLinksInMenu($menu_name);
+//
+//  // Here we are creating the first level and pointing
+//  // it to /first_level
+//  $first_level = MenuLinkContent::create([
+//    'title' => 'First Level',
+//    'link' => ['uri' => 'internal:/first_level'],
+//    'menu_name' => $menu_name,
+//    'expanded' => TRUE,
+//  ]);
+//  // Save the first level
+//  $first_level->save();
+//}
