@@ -183,7 +183,7 @@ $.fn.isInViewport = function(props) {
 
     setTimeout(function() {
       $(parent).removeClass('animated');
-    }, 6000);
+    }, 5700);
   }
 
   // Hero slider on home page
