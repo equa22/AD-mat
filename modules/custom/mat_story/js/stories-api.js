@@ -4,7 +4,10 @@
 
 	// global variables
 	var $board = $(".animation-wrapper"); // animation wrapper
+  var $scroll = $('.outer-wrapper');    // scrollable wrapper
+
   $board.wrap('<div class="outer-wrapper"/>');
+
 	var $el = [];                       // matrix with elements
 	var active_index = 0;
 	var $active_group;
@@ -20,8 +23,8 @@
 	  //_num: 10,                      // number of elements displayed in wrapper
     _num: {
       group: 3,
-      first_and_last: 3,
-      other_pages: 5
+      first_and_last: 5,
+      other_pages: 10
     },
 	  overlap: true,
 	  interval: 10000,
@@ -62,15 +65,42 @@
   };
   var mobile = checkMobile();
 
+  var $p, $h1, $button
 
+  function isOverlapingX(value) {
+    // offset top - height --- top + height
+    if(value > $p.offset().left && value < $p.width() + $p.offset().left) return false;
+    if(value > $h1.offset().left && value < $h1.width() + $h1.offset().left) return false;
+    if(value > $button.offset().left && value < $button.width() + $button.offset().left) return false;
+    return true;
+  }
+
+  function isOverlapingY(value) {
+    // offset top - height --- top + height
+    if(value > $p.offset().top - $p.height() && value < $p.offset().top) return false;
+    if(value > $h1.offset().top - $p.height() && value < $h1.offset().top) return false;
+    if(value > $button.offset().top - $p.height() && value < $button.offset().top) return false;
+    return true;
+  }
+  
+  
   Drupal.behaviors.mat_stories_api = {
     attach: function (context, settings) {
 
       $.getJSON('/stories-api?_format=json', function(data) {
-      	// prevent Drupal from reloading script
-      	if(!initialised) {
-      		initialised = true;
+        // prevent Drupal from reloading script
+        if(!initialised) {
+          $p = $('.slider-wrapper .container-small p'), $h1 = $('.slider-wrapper .container-small h1'), $button = $('.slider-wrapper .container-small a');
+      		
 	      	config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
+          config.title = {
+            top: $('.slider-wrapper .container-small').offset().top - $('.slider-wrapper .container-small').height(),
+            left: $('.slider-wrapper .container-small').offset().left,
+            height: $('.slider-wrapper .container-small').height(),
+            width: $('.slider-wrapper .container-small').width()
+          }
+
+
 
 	        JSON = [{
             "story_id":"96",
@@ -216,8 +246,8 @@
 
 var animations = {
   done: true,
-  fade_in: (el, delay) => {
-    $displayedStories[active_index].forEach((el, i) => {
+  fade_in: () => {
+    /*$displayedStories[active_index].forEach((el, i) => {
       // set new coordinates for element
       getCoordinates(el);
 
@@ -250,6 +280,27 @@ var animations = {
       setTimeout(() => {
         animations.start(el);
       }, (i+1)*config.movement._entry.delay + config.movement._entry.speed);
+    })*/
+
+    console.log($positions);
+    $positions.forEach(function(row, i) {
+      row.items.forEach(function(el, j) {
+        setTimeout(() => {
+          $(el.target).css({
+            'opacity': 1,
+            '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+            '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+            '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+            '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+            'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+            '-webkit-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+            '-moz-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+            '-ms-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+            '-o-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+            'transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms'
+          });
+        }, (i+1)* config.movement._entry.delay )
+      })
     })
   },
   fade_out: (el, delay) => {
@@ -508,6 +559,7 @@ let getFilters = () => {
 function prepareDesktopElements(category, letter) {
   var tmp_array = [], filtered = [];    // helper arrays
 
+  getPositions(stories);
   // push proper items in tmp_array
   for(var i = 0, counter = 0; i < stories.length; i++) {
     if((!category && !letter) || category == stories[i].category_id || letter == stories[i].last_name[0].toUpperCase()) {
@@ -523,8 +575,8 @@ function prepareDesktopElements(category, letter) {
 
   // create DOM elements
   /* * * * * * * * * * * * * * * * */
-  $displayedStories.forEach((row) => {
-    row.forEach((item) => {
+  $positions.forEach((row) => {
+    row.items.forEach((item) => {
       $('<div />', {
         'data-id': item.story_id,                           // set category id attribut
         'data-animated': false,
@@ -532,7 +584,7 @@ function prepareDesktopElements(category, letter) {
         'class': 'item pulse-' + randomBetween(2,4),        // select between two classes available for item
         'id': 'story' + item.story_id                       // item id --> connected with item.target in object
       })
-      .mouseenter((e) => {                                   // __mouse hover event
+      /*.mouseenter((e) => {                                   // __mouse hover event
         $displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
           if($(e.target).data('id') == el.story_id) {
             animations.stop(el);
@@ -549,7 +601,7 @@ function prepareDesktopElements(category, letter) {
             setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
           }
         })
-      })
+      })*/
       .click((e) => {                                        // __click event
         openModal($(e.target).data('id'));
       })
@@ -601,17 +653,101 @@ function prepareDesktopElements(category, letter) {
     }));
 }
 
-calculateWrapperWidth(20);
-calculateWrapperWidth(221);
-calculateWrapperWidth(11);
+
 
 var sliderStopped = true;
 var previousSliderPoint = 0;
 function moveSlider(to) {
-  $('.stories-api .outer-wrapper').animate({
+  $scroll.animate({
     scrollLeft: to
   }, 10);
 }
+
+
+$scroll.on('scroll', function() {
+  console.log($('.outer-wrapper').scrollLeft());
+})
+
+function moveDraggableBar (value) { // value in px
+
+} 
+
+function getFirstAndLastPosition(row, last) {
+  
+  var x = {value: 0, counter: 0}, y = {value: 0, counter: 0}, titlePos = row.positions.from * config._width, left = last ? config._el_width/2 : config._el_width + 10, right = last ? config._el_width + 10 : config._el_width/2;
+
+  // /(x.value - row.positions.from * config._width/100) > config.title.left && (x.value - row.positions.from*config._width/100) < config.title.left + config.title.width)
+
+  while(x.counter < 20 && (x.value == 0 || isOverlapingX(x.value))) {
+    x.value = randomBetween((row.positions.from * $board.width()/100) + left, (row.positions.to * $board.width()/100) - right);
+    x.counter++;
+  }
+  while(y.counter < 20 && (y.value == 0 || isOverlapingY(y.value))) {
+    y.value = randomBetween(config._el_width + 20, config._height - config._el_width);
+    y.counter++;
+  }
+
+  console.log(isOverlapingY(y.value), isOverlapingX(x.value), last? console.log("last") : console.log("first"));
+  return {x: x.value, y: y.value}
+}
+
+function getPositionsBySections() {
+  $positions.forEach(function(row, i) {
+    row.items.forEach(function(item) {
+      
+      var test = randomBetween(row.positions.from, row.positions.to);
+
+      if(i == 0 || i == $positions.length - 1) {
+        item.position = getFirstAndLastPosition(row, i);
+      } else {
+        item.position = {
+          x: randomBetween(row.positions.from, row.positions.to)*$board.width()/100,
+          y: randomBetween(0, config._height - config._el_width - 40)
+        }
+      }
+    })
+  })
+}
+
+var $positions = [];
+function getPositions(arr) {
+  var tmp = [...arr], helper = [], from = 100;
+  
+  $positions.push({
+    positions: {
+      from: 0,
+      to: from
+    },
+    items: tmp.splice(0, config._num.first_and_last)
+  });
+
+  var lastItems = tmp.splice(tmp.length-config._num.first_and_last, config._num.first_and_last);
+  while(tmp.length > 0) {
+    helper.push(tmp.shift());
+    if(helper.length == config._num.other_pages || tmp.length == 0) {
+      $positions.push({
+        positions: {
+          from: from,
+          to: from + helper.length*100/config._num.other_pages
+        },
+        items: helper
+      })
+      from = from + helper.length*100/config._num.other_pages;
+      helper = [];
+    }
+  }
+
+  $positions.push({
+    positions: {
+      from: from,
+      to: from + 100
+    },
+    items: lastItems
+  });
+  console.log($positions);
+  getPositionsBySections();
+}
+
 function calculateWrapperWidth(num) {
   let width = 100;
   if(num - config._num.first_and_last*2 > 0) {
@@ -620,76 +756,35 @@ function calculateWrapperWidth(num) {
   }
   $('.animation-wrapper').css('width', width + '%');
 
-  // apply slider
 
   let $slider = $('.stories-api .outer-wrapper');
   $( "#slider" ).slider(
-    { max: width,//max: $displayedStories.length - 1,
+    { max: width - 100,//max: $displayedStories.length - 1,
      //disabled: $displayedStories.length > 1 ? false : true,
      slide: ( event, ui ) => { 
       let factor = 100*ui.value/width;
       let slide = 100*ui.value/width *$board.width()/100
-      var slided = $slider.scrollLeft();
-    console.log(ui.value, width);
+      var slided = $scroll.scrollLeft();
 
-      if((ui.value <= 5 || ui.value >= (width-5)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
+      if((ui.value <= 5 || ui.value >= (width-105)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
         $('.slider-wrapper .container-small').removeClass('fade-out');
-      } else if((ui.value > 5 && ui.value < (width-5)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
+      } else if((ui.value > 5 && ui.value < (width-105)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
         $('.slider-wrapper .container-small').addClass('fade-out');
       }
 
 
       $('.stories-api .outer-wrapper').stop().animate({
-        scrollLeft: slide/3
-      }, Math.abs(previousSliderPoint - ui.value) > 1 ? Math.abs(previousSliderPoint - ui.value)*20 : 0);
-      /*
-      $('.stories-api .outer-wrapper').stop().animate({
         scrollLeft: slide
-      }, Math.abs((slide-slided)/10));
-      */
+      }, Math.abs(previousSliderPoint - ui.value) > 1 ? Math.abs(previousSliderPoint - ui.value)*20 : 0);
+
       previousSliderPoint = ui.value;
-      //moveSlider(factor*$board.width()/100);
-
-
      },
      change: ( event, ui ) => {
       let slide = 100*ui.value/width *$board.width()/100
-      var slided = $slider.scrollLeft();
-
-      ///console.log(slide, slided);
-
-      if(Math.round(slide) != $slider.scrollLeft()) {
+      var slided = $scroll.scrollLeft();
+      if(Math.round(slide) != $scroll.scrollLeft()) {
         sliderStopped = false;
-        
-        /*var sliderInterval = setInterval(function() {
-          
-          moveSlider($slider.scrollLeft() + 10);
-          if($slider.scrollLeft() == Math.round(slide)) {
-            clearInterval(sliderInterval);
-            
-          }
-        }, 10);
-        /*$slider.stop().animate({
-          scrollLeft: slide
-        }, 1000);*/
-
       }
-/*
-      $slider.animate({
-        scrollLeft: factor*$board.width()/100
-      }, 10);*/
-     /* var selected = ui.value;
-
-      $( ".stories-api .outer-wrapper" ).animate({
-        scrollLeft: selected*10
-      }, 1000);
-      console.log(selected);*/
-      /* //Math.round(ui.value*($displayedStories.length - 1)/100)
-      if(selected < active_index) {
-        animations.goTo(selected);
-      } else if(selected > active_index) {
-        animations.goTo(selected);
-      }*/
      }
     }
   );
