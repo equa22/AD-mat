@@ -203,15 +203,15 @@ function mat_story_views_pre_render(ViewExecutable $view) {
  * Implements hook_page_attachments().
  */
 function mat_story_page_attachments(array &$attachments) {
-
   $node = \Drupal::routeMatch()->getParameter('node');
 
   if ($node instanceof Node) {
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($node->id());
+    $admin_context = \Drupal::service('router.admin_context');
 
     // Redirect all 'story_profile' CT > /stories which opens node in modal
     // We only redirect on a client side: node still has to be accessible.
-    if ($node->getType() === 'story_profile') {
+    if ($node->getType() === 'story_profile' && !$admin_context->isAdminRoute()) {
       $js = "window.location = '/stories#{$node->id()}';";
       $attachments['#attached']['html_head'][] = [[
         '#tag' => 'script',
