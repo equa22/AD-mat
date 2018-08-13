@@ -20,7 +20,8 @@
 }
 
 // Paragraph Rich text
-.paragraph--type--landing-page-rich-text {
+.paragraph--type--landing-page-rich-text,
+.paragraph--type--basic-page-image-and-text {
   // Lists
   ul:not(.contextual-links),
   ol {
