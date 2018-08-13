@@ -40,6 +40,7 @@ class StoryConfigForm extends ConfigFormBase {
  
     $config = $this->config('mat_story.settings');
     $user_content_value = $config->get('mat_story.user_content');
+    $story_submitted = $config->get('mat_story.story_submitted');
     
     $form['title_admin'] = array(
       '#type' => 'inline_template',
@@ -72,7 +73,15 @@ class StoryConfigForm extends ConfigFormBase {
       '#default_value' => $user_content_value['value'],
       '#required' => TRUE
     );
- 
+
+    $form['story_submitted'] = array(
+      '#type' => 'text_format',
+      '#title' => $this->t('Story submitted text for "Share story form"'),
+      '#description' => 'Text displayed to user when form has been successfully submitted.',
+      '#default_value' => $story_submitted['value'],
+      '#format' => 'basic_editor',
+      '#required' => TRUE
+    );
  
     return $form;
  
@@ -87,10 +96,11 @@ class StoryConfigForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
  
     $config = $this->config('mat_story.settings');
- 
+
     $config->set('mat_story.email', $form_state->getValue('email'));
     $config->set('mat_story.user_title', $form_state->getValue('user_title'));
     $config->set('mat_story.user_content', $form_state->getValue('user_content'));
+    $config->set('mat_story.story_submitted', $form_state->getValue('story_submitted'));
  
     $config->save();
  
