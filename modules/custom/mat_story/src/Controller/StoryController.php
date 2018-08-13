@@ -12,8 +12,7 @@ class StoryController extends ControllerBase  {
    */
   protected $config;
 
-  public function __construct()
-  {
+  public function __construct() {
     $this->config = $this->config('mat_story.settings');
   }
 

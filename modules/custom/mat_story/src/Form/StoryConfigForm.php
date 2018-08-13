@@ -1,41 +1,22 @@
 <?php
- 
-/**
- 
- * @file
- 
- * Contains \Drupal\mat_story\Form\StoryConfigForm.
- 
- */
- 
 namespace Drupal\mat_story\Form;
  
 use Drupal\Core\Form\ConfigFormBase;
- 
 use Drupal\Core\Form\FormStateInterface;
  
 class StoryConfigForm extends ConfigFormBase {
  
   /**
- 
    * {@inheritdoc}
- 
    */
- 
   public function getFormId() {
- 
     return 'mat_story_config_form';
- 
   }
  
   /**
- 
    * {@inheritdoc}
- 
    */
- 
   public function buildForm(array $form, FormStateInterface $form_state) {
-
     $form = parent::buildForm($form, $form_state);
  
     $config = $this->config('mat_story.settings');
@@ -77,24 +58,19 @@ class StoryConfigForm extends ConfigFormBase {
     $form['story_submitted'] = array(
       '#type' => 'text_format',
       '#title' => $this->t('Story submitted text for "Share story form"'),
-      '#description' => 'Text displayed to user when form has been successfully submitted.',
+      '#description' => $this->t('Text displayed to user when form has been successfully submitted.'),
       '#default_value' => $story_submitted['value'],
       '#format' => 'basic_editor',
       '#required' => TRUE
     );
  
     return $form;
- 
   }
  
   /**
- 
    * {@inheritdoc}
- 
    */
- 
   public function submitForm(array &$form, FormStateInterface $form_state) {
- 
     $config = $this->config('mat_story.settings');
 
     $config->set('mat_story.email', $form_state->getValue('email'));
@@ -105,23 +81,14 @@ class StoryConfigForm extends ConfigFormBase {
     $config->save();
  
     return parent::submitForm($form, $form_state);
- 
   }
  
   /**
- 
    * {@inheritdoc}
- 
    */
- 
   protected function getEditableConfigNames() {
- 
     return [
- 
       'mat_story.settings',
- 
     ];
- 
   }
- 
 }
