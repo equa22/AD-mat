@@ -103,7 +103,8 @@
 
     .quote--author {
       @media (min-width: $screen-sm-min) {
-        min-width: 18rem;
+        //min-width: 18rem;
+        padding-right: 1rem;
       }
     }
   }
