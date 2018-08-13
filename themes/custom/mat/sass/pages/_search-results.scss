@@ -81,7 +81,13 @@
           @include font-size(2.4);
           line-height: 1.45;
           font-weight: 500;
-          color: $blue-dark;
+          a {
+            color: $blue-dark;
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
 
           @media (min-width: $screen-sm-min) {
             padding: 0 0 2.5rem 0;
@@ -116,7 +122,7 @@
         }
 
         &.result-with-image {
-          .search-result--heading {
+           .search-result--heading {
             @media (min-width: $screen-sm-min) {
               min-height: 15rem;
               padding-left: 20rem;
