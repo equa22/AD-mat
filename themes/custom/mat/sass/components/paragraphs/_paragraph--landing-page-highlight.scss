@@ -35,7 +35,8 @@
   .highlight--wrapper {
 
     h2 {
-      font-family: $font-flama;
+      font-family: $font-flama-medium;
+      font-weight: 400;
     }
     @media (min-width: $screen-sm-min) {
       width: 100%;

@@ -3,27 +3,27 @@ langcode: en
 status: true
 dependencies:
   config:
-  - field.storage.node.body
-  - field.storage.node.field_story_category
-  - field.storage.node.field_story_featured_image
-  - field.storage.node.field_story_first_name
-  - field.storage.node.field_story_image_1
-  - field.storage.node.field_story_image_2
-  - field.storage.node.field_story_image_3
-  - field.storage.node.field_story_last_name
-  - field.storage.node.field_story_profile_components
-  - field.storage.node.field_submissioner_email
-  - node.type.story_profile
+    - field.storage.node.body
+    - field.storage.node.field_story_category
+    - field.storage.node.field_story_featured_image
+    - field.storage.node.field_story_first_name
+    - field.storage.node.field_story_image_1
+    - field.storage.node.field_story_image_2
+    - field.storage.node.field_story_image_3
+    - field.storage.node.field_story_last_name
+    - field.storage.node.field_story_profile_components
+    - field.storage.node.field_submissioner_email
+    - node.type.story_profile
   module:
-  - entity_reference_revisions
-  - image
-  - node
-  - paragraphs
-  - rest
-  - serialization
-  - taxonomy
-  - text
-  - user
+    - entity_reference_revisions
+    - image
+    - node
+    - paragraphs
+    - rest
+    - serialization
+    - taxonomy
+    - text
+    - user
 id: stories_api
 label: 'Stories Api'
 module: views
@@ -916,23 +916,23 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-      - 'languages:language_content'
-      - 'languages:language_interface'
-      - request_format
-      - url.query_args
-      - 'user.node_grants:view'
-      - user.permissions
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
       tags:
-      - 'config:field.storage.node.body'
-      - 'config:field.storage.node.field_story_category'
-      - 'config:field.storage.node.field_story_featured_image'
-      - 'config:field.storage.node.field_story_first_name'
-      - 'config:field.storage.node.field_story_image_1'
-      - 'config:field.storage.node.field_story_image_2'
-      - 'config:field.storage.node.field_story_image_3'
-      - 'config:field.storage.node.field_story_last_name'
-      - 'config:field.storage.node.field_story_profile_components'
-      - 'config:field.storage.node.field_submissioner_email'
+        - 'config:field.storage.node.body'
+        - 'config:field.storage.node.field_story_category'
+        - 'config:field.storage.node.field_story_featured_image'
+        - 'config:field.storage.node.field_story_first_name'
+        - 'config:field.storage.node.field_story_image_1'
+        - 'config:field.storage.node.field_story_image_2'
+        - 'config:field.storage.node.field_story_image_3'
+        - 'config:field.storage.node.field_story_last_name'
+        - 'config:field.storage.node.field_story_profile_components'
+        - 'config:field.storage.node.field_submissioner_email'
   rest_export_1:
     display_plugin: rest_export
     id: rest_export_1
@@ -988,19 +988,19 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-      - 'languages:language_content'
-      - 'languages:language_interface'
-      - request_format
-      - 'user.node_grants:view'
-      - user.permissions
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - request_format
+        - 'user.node_grants:view'
+        - user.permissions
       tags:
-      - 'config:field.storage.node.body'
-      - 'config:field.storage.node.field_story_category'
-      - 'config:field.storage.node.field_story_featured_image'
-      - 'config:field.storage.node.field_story_first_name'
-      - 'config:field.storage.node.field_story_image_1'
-      - 'config:field.storage.node.field_story_image_2'
-      - 'config:field.storage.node.field_story_image_3'
-      - 'config:field.storage.node.field_story_last_name'
-      - 'config:field.storage.node.field_story_profile_components'
-      - 'config:field.storage.node.field_submissioner_email'
+        - 'config:field.storage.node.body'
+        - 'config:field.storage.node.field_story_category'
+        - 'config:field.storage.node.field_story_featured_image'
+        - 'config:field.storage.node.field_story_first_name'
+        - 'config:field.storage.node.field_story_image_1'
+        - 'config:field.storage.node.field_story_image_2'
+        - 'config:field.storage.node.field_story_image_3'
+        - 'config:field.storage.node.field_story_last_name'
+        - 'config:field.storage.node.field_story_profile_components'
+        - 'config:field.storage.node.field_submissioner_email'

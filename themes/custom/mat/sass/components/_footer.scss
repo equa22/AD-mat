@@ -55,6 +55,7 @@
           .menu-item {
             a {
               color: $gray-base;
+              font-weight: 500;
 
               &:hover {
                 color: $gray-darker;
@@ -161,6 +162,7 @@
     @include font-size(1.4);
     text-align: center;
     text-transform: capitalize;
+    font-weight: 500;
 
     @media (min-width: $screen-sm-min) {
       padding-top: 3.7rem;

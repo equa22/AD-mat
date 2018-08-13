@@ -165,7 +165,7 @@ function mat_global_entity_base_field_info(\Drupal\Core\Entity\EntityTypeInterfa
   if ($entity_type->id() === 'menu_link_content') {
     $fields['menu_uses_ajax'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Use AJAX for sub-pages'))
-      ->setDescription(t('[Only use this if you know what you are doing!] Loads this menu item\'s children sub-pages using Ajax (maintains the vertical position and leave the hero image section intact). Intended for categories under Find Support.'))
+      ->setDescription(t('[Only use this if you know what you are doing!] Loads this menu item\'s children sub-pages using Ajax (maintains the vertical position and leaves the hero image section intact). Intended for categories under Find Support.'))
       ->setDisplayOptions('form', array('type' => 'string', 'weight' => 0));
 
     return $fields;

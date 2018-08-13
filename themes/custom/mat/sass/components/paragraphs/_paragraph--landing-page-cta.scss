@@ -147,6 +147,11 @@
       @include icons('i-chevron-circle');
       background-position: right center;
 
+      .field--name-field-title {
+        font-family: $font-flama-medium;
+        font-weight: 400;
+      }
+
       @media (min-width: $screen-sm-min) {
         margin-right: 4.5rem;
         padding-right: 10rem;
