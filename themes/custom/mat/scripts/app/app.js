@@ -700,7 +700,7 @@ $.fn.isInViewport = function(props) {
   Drupal.behaviors.secondaryPageAjax = {
     attach: function (context, settings) {
       // Grab all ajax link categories in the sidebar.
-      var $ajax_links = $('.region-sidebar .uses-ajax', context).siblings('ul').find('a');
+      var $ajax_links = $('.region-sidebar .uses-ajax > .menu > .menu-item > a' , context);
 
       // On click of every link whose parent category uses Ajax
       $ajax_links.click(function(e) {
@@ -710,11 +710,9 @@ $.fn.isInViewport = function(props) {
           return false;
         }
         // Grab the parent category (to prevent ajax calls across different categories).
-        var $parent_category = $(this).parents().eq(1).siblings('a');
-        // Grab the parent dropdown to see if it's active (not just opened).
-        var $parent_dropdown = $(this).parents().eq(2);
+        var $parent_category = $(this).parents().eq(2);
 
-        if (!$('html').hasClass('device-mobile') && $parent_category.hasClass('uses-ajax') && $parent_dropdown.hasClass('menu-item--active-trail')) {
+        if (!$('html').hasClass('device-mobile') && $parent_category.hasClass('uses-ajax') && $parent_category.hasClass('menu-item--active-trail')) {
         // Check if the appropriate menu category is open (e.g. Donor Support - has a shared hero image).
         // We don't want ajax calls when we navigate from a different menu category.
         // Also restrict to mobile browsers.
