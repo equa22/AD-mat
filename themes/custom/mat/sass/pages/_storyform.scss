@@ -24,6 +24,8 @@
 
     h1 {
       color: $blue-dark;
+      font-family: $font-flama-semibold;
+      font-weight: 500;
     }
     p {
       font-weight: normal !important;
@@ -37,7 +39,7 @@
       border-bottom: none;
 
       .step-link:not(.active) {
-        border-bottom: 2px solid $gray-dark;
+        border-bottom: 2px solid rgba(74, 74, 74, .5);
       }
 
       .step-title {

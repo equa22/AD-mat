@@ -307,6 +307,8 @@
           max-width: 90rem;
           padding: 0.5rem;
           margin-top: 3.2rem;
+          font-family: $font-flama-semibold;
+          font-weight: 400;
           @include font-size(8.5);
           line-height: 1;
           text-align: center;
@@ -327,7 +329,7 @@
 
         .form-actions {
           input {
-            padding: .6rem 2.7rem .6rem 5rem;
+            padding: .6rem 3rem .6rem 5rem;
             @include font-size(1.6);
             font-weight: 500;
             text-transform: none;

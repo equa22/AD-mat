@@ -32,6 +32,8 @@ $option-width: 70px;
     h1 {
       margin-bottom: 4.2rem;
       padding-bottom: 0;
+      font-family: $font-roboto;
+      font-weight: 500;
 
       @media (max-width: $screen-xs-max) {
         margin-bottom: 4.2rem;
@@ -47,6 +49,7 @@ $option-width: 70px;
       max-width: 630px;
       margin: 0 auto 2.8rem auto;
       @extend %lead;
+      font-weight: 500;
     }
 
     .btn-add-story {
@@ -512,7 +515,10 @@ $option-width: 70px;
       h2 {
         padding-bottom: .5rem;
         color: $blue-dark;
-        font-weight: 300;
+        font-weight: 500;
+      }
+      #content {
+        font-weight: 500;
       }
     }
 
@@ -977,6 +983,6 @@ $mobile-item-size: 100px;
 }
 
 .controls .filter-wrapper .bold.cat-item {
-    font-weight: bold !important;
+    //font-weight: bold !important;
     color: #4a4a4a;
 }
