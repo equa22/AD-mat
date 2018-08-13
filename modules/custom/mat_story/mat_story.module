@@ -5,6 +5,17 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\views\ViewExecutable;
 use Drupal\node\Entity\Node;
 
+/**
+ * Implements hook_theme().
+ */
+function mat_story_theme($existing, $type, $theme, $path) {
+  return [
+    'story_submitted' => [
+      'variables' => ['content' => NULL],
+    ],
+  ];
+}
+
 function mat_story_node_presave(Drupal\Core\Entity\EntityInterface $entity) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
   if ($entity->bundle() == 'story_profile' && $logged_in === false) {
@@ -64,7 +75,7 @@ function mat_story_node_insert(Drupal\Core\Entity\EntityInterface $entity) {
 
     // redirect
     $routeName = 'entity.node.canonical';
-    $response = new RedirectResponse('/story-success');
+    $response = new RedirectResponse('/stories/story-submitted');
     $response->send();
     
   }
@@ -103,7 +114,7 @@ function mat_story_mail($key, &$message, $params) {
 }
 
 
-function mat_story_form_alter(&$form, $form_state, $form_id) {
+function mat_story_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
 
   $current_user = \Drupal::currentUser();
@@ -158,7 +169,7 @@ function mat_story_form_alter(&$form, $form_state, $form_id) {
       // do not change this (it's a bug, must have value="save")
       $form['actions']['submit']['#template'] = '<button data-drupal-selector="edit-submit" id="edit-submit" name="op" value="Save" class="button button--button js-form-submit form-submit" type="submit">'.t('Submit Your Story').'</button>';
       
-      
+      $form_state->setRedirect('form.submitted');
       
     }
   }
@@ -224,3 +235,4 @@ function mat_story_page_attachments(array &$attachments) {
   }
 
 }
+
