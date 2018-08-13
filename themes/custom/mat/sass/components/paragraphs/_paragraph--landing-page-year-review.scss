@@ -43,6 +43,14 @@
 
     .field--name-field-text {
       @extend %lead-small-mobile;
+      font-weight: 500;
+    }
+  }
+
+  .paragraph--type--statistics-item {
+    .field--name-field-number {
+      font-family: $font-roboto;
+      font-weight: 500;
     }
   }
 }
