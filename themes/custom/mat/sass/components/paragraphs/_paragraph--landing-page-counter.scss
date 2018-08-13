@@ -27,6 +27,10 @@
     position: relative;
     z-index: 2;
 
+    .field--name-field-text {
+      font-weight: 500;
+    }
+
     @media (min-width: $screen-sm-min) {
       width: 41%;
     }

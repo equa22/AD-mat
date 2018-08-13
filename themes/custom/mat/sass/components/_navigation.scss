@@ -76,6 +76,7 @@ body.page-node-type-landing-page {
 }
 
 #block-mat-main-menu {
+  font-weight: 500;
   > ul {
     position: relative;
     flex-direction: column;
@@ -196,7 +197,6 @@ body.page-node-type-landing-page {
 
             a {
               padding: 2rem 2rem;
-              font-weight: 500;
             }
           }
 

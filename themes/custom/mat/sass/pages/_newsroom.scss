@@ -167,14 +167,14 @@
       .views-field-title {
         margin-bottom: 1.5rem;
         @extend %h4;
-        font-weight: 600;
+        font-weight: 500;
         a {
           color: $blue-dark;
         }
       }
 
       .views-field-body {
-        color: $link-color;
+        color: $gray-darker;
         @extend %small;
       }
 

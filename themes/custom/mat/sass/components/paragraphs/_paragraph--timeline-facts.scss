@@ -42,6 +42,8 @@
         @extend %h2;
         color: $blue-dark;
         text-transform: uppercase;
+        font-family: $font-roboto;
+        font-weight: 500;
       }
 
       .headline-myth {
@@ -118,6 +120,7 @@
 
       h4 {
         color: $mat-brand-primary;
+        font-weight: 500;
       }
 
       &:before {

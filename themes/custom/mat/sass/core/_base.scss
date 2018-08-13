@@ -50,7 +50,7 @@ select {
 hr {
   margin: 0;
   border: 0;
-  border-top: 2px solid $hr-border-color;
+  border-top: 2px solid $hr-border-color-transparent;
 }
 
 table {
@@ -72,6 +72,7 @@ table {
     background-color: #ECECEC;
     border: 1px solid $table-border-color;
     border-left: none;
+    font-weight: 500;
   }
 
   td {

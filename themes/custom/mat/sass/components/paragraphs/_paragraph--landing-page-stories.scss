@@ -43,6 +43,7 @@
 
   .field--name-field-text {
     @extend %lead-small-mobile;
+    font-weight: 500;
   }
 
   .field--name-field-link {

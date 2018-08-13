@@ -214,6 +214,7 @@
 
       a {
         @include btn-secondary('white');
+        font-weight: 400;
       }
     }
   }

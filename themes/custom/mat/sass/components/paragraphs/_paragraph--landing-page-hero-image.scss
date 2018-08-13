@@ -11,6 +11,10 @@
   color: $color-white;
   text-align: center;
 
+  .field--name-field-text {
+    font-weight: 500;
+  }
+
   @media (min-width: $screen-sm-min) {
     margin-top: -$header-height;
     min-height: 83.5rem;
