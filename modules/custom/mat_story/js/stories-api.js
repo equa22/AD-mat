@@ -24,20 +24,21 @@
     _num: {
       group: 3,
       first_and_last: 5,
-      other_pages: 10
+      other_pages: 5
     },
 	  overlap: true,
 	  interval: 10000,
 	  radius: 50,                  // [%] - (depends on board width and height)
 	  _width: $board.width(),
+    _total_width: 0,
 	  _height: $board.height(),
 	  _el_width: 110,
 	  _el_height: 110,
 	  movement: {
-	    _entry: {speed: 3000, delay: 500, type: "linear"},
+	    _entry: {speed: 5000, delay: 300, type: "linear"},
 	    _leave: {speed: 3000, delay: 500, type: "linear"},
 	    _fast: {speed: 1200, type: "linear", css: function() { return this.speed + "ms transform " + this.type}},
-	    _smooth: {max: 80000, min: 80000, type: "cubic-bezier(0.36, 0.32, 0.75, 0.72)",
+	    _smooth: {max: 4000, min: 80000, type: "linear", radius: 50,
 	            css: function() { return (Math.floor(Math.random() * this.max) + this.min) + 'ms all ' + this.type}}
 	  },
 	  background: {
@@ -51,9 +52,10 @@
 	        baseUrl + "/sites/default/files/2018-05/kid4.jpg",
 	        baseUrl + "/sites/default/files/2018-05/girl-slide.jpg"
 	      ],
-	      _speed: 50000,
-	      _interval: 13000,
-	      _size: 60
+	      _speed: 4000,
+	      _interval: 3000,
+	      _size: 60,
+        _radius: 30
 	    }
 	  }
 	};
@@ -69,18 +71,31 @@
 
   function isOverlapingX(value) {
     // offset top - height --- top + height
-    if(value > $p.offset().left && value < $p.width() + $p.offset().left) return false;
-    if(value > $h1.offset().left && value < $h1.width() + $h1.offset().left) return false;
-    if(value > $button.offset().left && value < $button.width() + $button.offset().left) return false;
-    return true;
+    if(value > $p.offset().left && value < $p.width() + $p.offset().left) return true;
+    if(value > $h1.offset().left && value < $h1.width() + $h1.offset().left) return true;
+    if(value > $button.offset().left && value < $button.width() + $button.offset().left) return true;
+    return false;
   }
 
   function isOverlapingY(value) {
+    var offset = ($('.controls').offset().top + $('.controls').height());
+    /*console.log("h1: " + ($h1.offset().top - offset) + " - " + ($h1.offset().top - offset + $h1.height()));
+    console.log("p: " + ($p.offset().top - offset) + " - " + ($p.offset().top - offset + $p.height()));
+    console.log("button: " + ($button.offset().top - offset) + " - " + ($button.offset().top - offset + $button.height()));
+
+    console.log(value)
+    console.log("____________________")*/
+
     // offset top - height --- top + height
-    if(value > $p.offset().top - $p.height() && value < $p.offset().top) return false;
-    if(value > $h1.offset().top - $p.height() && value < $h1.offset().top) return false;
-    if(value > $button.offset().top - $p.height() && value < $button.offset().top) return false;
-    return true;
+    if(value - config._el_height > $h1.offset().top - offset && value < $h1.offset().top - offset + $h1.height()) return true;
+    if(value - config._el_height > $p.offset().top - offset && value < $p.offset().top - offset + $p.height()) return true;
+    //if(value > $h1.offset().top - $p.height() && value < $h1.offset().top - offset + $h1.height()) return false;
+    //console.log("c offset", offset)
+   /* console.log("h1 offset" , $h1.offset().top - ($('.controls').offset().top + $('.controls').height()))
+    console.log("p offset" , $p.offset().top - ($('.controls').offset().top + $('.controls').height()))
+    console.log("a offset" , $button.offset().top - ($('.controls').offset().top + $('.controls').height()))*/
+    if(value - config._el_height > $button.offset().top - $p.height() && value < $button.offset().top - offset + $button.height()) return true;
+    return false;
   }
   
   
@@ -246,6 +261,56 @@
 
 var animations = {
   done: true,
+  animateBubble: (el) => {
+    el.animate = setInterval(() => {
+      // get new coordinates for element
+      //getCoordinates(el);
+      var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
+      var y = Math.floor(Math.random() * (containerHeight - config._el_height));
+
+
+      el.position = {
+        x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
+        y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
+      }
+
+      $(el.target).css({
+        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
+      });
+    }, config.background.image_bubbles._interval);
+  },
+  makeElMove: (el) => {
+    el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
+    el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
+    // get new coordinates for element
+    //$(el.target).css({'transform': translate(el.positions.x + 'px', el.positions.y + 'px') scale(1)})
+
+    $(el.target).css({
+      'transform': 'translate(' + el.position.x + 'px, ' + el.position.y + 'px) scale(1)',
+      '-webkit-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+      '-moz-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+      '-ms-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+      '-o-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+      'transition': el.speed + 'ms all ' + config.movement._smooth.type
+    })
+
+    el.animate = setInterval(() => {
+      el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
+      el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
+      // get new coordinates for element
+      $(el.target).css({'transform': 'translate(' + el.position.x + 'px, ' + el.position.y + 'px) scale(1)' })
+    }, (config.movement._smooth.max));
+
+    el.movement = true;
+  },
+  stopMovement: (el) => {
+    clearInterval(el.animate);
+    el.movement = false;
+  },
   fade_in: () => {
     /*$displayedStories[active_index].forEach((el, i) => {
       // set new coordinates for element
@@ -282,9 +347,28 @@ var animations = {
       }, (i+1)*config.movement._entry.delay + config.movement._entry.speed);
     })*/
 
-    console.log($positions);
+
+    var t = 1;
     $positions.forEach(function(row, i) {
       row.items.forEach(function(el, j) {
+        $(el.target).css({
+          '-webkit-transition': 'all ease-in-out 0ms',
+          '-moz-transition': 'all ease-in-out 0ms',
+          '-ms-transition': 'all ease-in-out 0ms',
+          '-o-transition': 'all ease-in-out 0ms',
+          'transition': 'all ease-in-out 0ms',
+          'opacity': 1,
+          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)'
+        })
+        t++;
+
+        el.scale = 1;
+        el.speed = config.movement._entry.speed;
+
         setTimeout(() => {
           $(el.target).css({
             'opacity': 1,
@@ -293,19 +377,27 @@ var animations = {
             '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
             '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
             'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+            '-webkit-filter': 'blur(0) brightness(1)',
+            'filter': 'blur(0) brightness(1)',
             '-webkit-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
             '-moz-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
             '-ms-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
             '-o-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
             'transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms'
           });
-        }, (i+1)* config.movement._entry.delay )
+          setTimeout(function() {
+            animations.makeElMove(el);
+          }, config.movement._entry.speed);
+          //t++;
+          //animations.makeElMove(el);
+          
+        }, t*config.movement._entry.delay )
       })
     })
   },
   fade_out: (el, delay) => {
-    $displayedStories[active_index].forEach((el, i) => {
-      animations.stop(el);
+    /*$displayedStories[active_index].forEach((el, i) => {
+      animations.stopMovement(el);
 
       $(el.target).css({
         'opacity': 1,
@@ -326,6 +418,28 @@ var animations = {
           'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)'
         });
       }, i*config.movement._leave.delay);
+    })*/
+
+    $positions.forEach(function(row) {
+      row.items.forEach(function(el) {
+        animations.stopMovement(el);
+        el.scale = 0.6;
+        el.speed = config.background.image_bubbles._speed;
+
+        $(el.target).css({
+          '-webkit-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+          '-moz-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+          '-ms-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+          '-o-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+          'transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+          'filter': 'blur(3.4px) brightness(1)',
+          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+          'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)'
+        })
+      })
     })
   },
   stop: (el) => {
@@ -517,7 +631,7 @@ let getFilters = () => {
 
 
       setTimeout(() => {
-        createDomElements($(e.target).data('category-id'));
+        //createDomElements($(e.target).data('category-id'));
       }, config.movement._leave.delay * $displayedStories[active_index].length-1)
       //
     })
@@ -575,33 +689,39 @@ function prepareDesktopElements(category, letter) {
 
   // create DOM elements
   /* * * * * * * * * * * * * * * * */
-  $positions.forEach((row) => {
-    row.items.forEach((item) => {
+  $positions.forEach((row, i) => {
+    row.items.forEach((item, j) => {
       $('<div />', {
         'data-id': item.story_id,                           // set category id attribut
         'data-animated': false,
+        'data-i': i,
+        'data-j': j,
         'data-category': item.category_id,                  // set category attribut
         'class': 'item pulse-' + randomBetween(2,4),        // select between two classes available for item
         'id': 'story' + item.story_id                       // item id --> connected with item.target in object
       })
-      /*.mouseenter((e) => {                                   // __mouse hover event
-        $displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
+      .mouseenter((e) => {                                   // __mouse hover event
+        $(e.target).find('.label').css('display', 'block');
+        setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
+        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
           if($(e.target).data('id') == el.story_id) {
-            animations.stop(el);
+            //animations.stop(el);
             $(e.target).find('.label').css('display', 'block');
             setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
           }
-        })
+        })*/
       })
       .mouseleave((e) => {                                   // __mouse leave event
-        $displayedStories[active_index].forEach((el) => {    // find dom element in array and restart animation
+        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and restart animation
           if($(e.target).data('id') == el.story_id) {
             animations.start(el);
             $(e.target).removeClass('hovered');
             setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
           }
-        })
-      })*/
+        })*/
+        $(e.target).removeClass('hovered');
+        setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
+      })
       .click((e) => {                                        // __click event
         openModal($(e.target).data('id'));
       })
@@ -614,8 +734,13 @@ function prepareDesktopElements(category, letter) {
     })
 
     // add same leave event on items label
+    
     $('.label').mouseleave((e) => {
+      $(e.target).closest('.item').removeClass('hovered');
+      setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
+      /*
       if(!$($(e.target).closest('.item')).hasClass('hovered')) return;
+
 
       $displayedStories[active_index].forEach((el) => {
         if($($(e.target).closest('.item')).data('id') == el.story_id) {
@@ -624,8 +749,8 @@ function prepareDesktopElements(category, letter) {
           $(e.target).closest('.item').removeClass('hovered');
           setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
         }
-      })
-    }).mouseenter((e) => {                                   // __mouse hover event
+      })*/
+    })/*.mouseenter((e) => {                                   // __mouse hover event
       if($($(e.target).closest('.item')).hasClass('hovered')) return;
 
       $displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
@@ -636,7 +761,7 @@ function prepareDesktopElements(category, letter) {
           setTimeout(() => { $(e.target).closest('.item').addClass('hovered');}, 50);
         }
       })
-    })
+    })*/
   });
   /* * * * * * * * * * * * * * * * */
 
@@ -664,10 +789,6 @@ function moveSlider(to) {
 }
 
 
-$scroll.on('scroll', function() {
-  console.log($('.outer-wrapper').scrollLeft());
-})
-
 function moveDraggableBar (value) { // value in px
 
 } 
@@ -678,16 +799,14 @@ function getFirstAndLastPosition(row, last) {
 
   // /(x.value - row.positions.from * config._width/100) > config.title.left && (x.value - row.positions.from*config._width/100) < config.title.left + config.title.width)
 
-  while(x.counter < 20 && (x.value == 0 || isOverlapingX(x.value))) {
+  while(x.counter < 40 && (x.value == 0 || isOverlapingX(x.value))) {
     x.value = randomBetween((row.positions.from * $board.width()/100) + left, (row.positions.to * $board.width()/100) - right);
     x.counter++;
   }
-  while(y.counter < 20 && (y.value == 0 || isOverlapingY(y.value))) {
+  while(y.counter < 40 && (y.value == 0 || isOverlapingY(y.value))) {
     y.value = randomBetween(config._el_width + 20, config._height - config._el_width);
     y.counter++;
   }
-
-  console.log(isOverlapingY(y.value), isOverlapingX(x.value), last? console.log("last") : console.log("first"));
   return {x: x.value, y: y.value}
 }
 
@@ -744,7 +863,6 @@ function getPositions(arr) {
     },
     items: lastItems
   });
-  console.log($positions);
   getPositionsBySections();
 }
 
@@ -755,9 +873,58 @@ function calculateWrapperWidth(num) {
     width = 200 + 100*Math.floor(num / config._num.other_pages) + 100*(num % config._num.other_pages)/config._num.other_pages;
   }
   $('.animation-wrapper').css('width', width + '%');
-
+  config._total_width = width;
 
   let $slider = $('.stories-api .outer-wrapper');
+  let prevSliderValue = 0;
+
+  function moveItems(value) {
+
+    $positions.forEach(function(row) {
+      row.items.forEach(function(el) {
+        el.position.x = el.position.x + (el.scale == 1 ? value :( value/2));
+
+        if(el.movement)
+          animations.stopMovement(el);
+
+        $(el.target).css({
+          '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+            '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+            '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+            '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+            'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+            '-webkit-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+            '-moz-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+            '-ms-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+            '-o-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+            'transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear"
+        })
+        console.log((el.scale != 1 ? (config.background.image_bubbles._speed) : (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) )+ "ms transform linear")
+      })
+    })
+
+    smallItems.forEach(function(el) {
+      el.position.x = el.position.x + value/2;
+
+      //if(el.movement)
+        animations.stopMovement(el);
+
+      $(el.target).css({
+        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+        '-webkit-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+        '-moz-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+        '-ms-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+        '-o-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+        'transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear"
+      })
+    })
+  }
+
+  var prevSlided = 0;
   $( "#slider" ).slider(
     { max: width - 100,//max: $displayedStories.length - 1,
      //disabled: $displayedStories.length > 1 ? false : true,
@@ -766,25 +933,64 @@ function calculateWrapperWidth(num) {
       let slide = 100*ui.value/width *$board.width()/100
       var slided = $scroll.scrollLeft();
 
+
       if((ui.value <= 5 || ui.value >= (width-105)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
         $('.slider-wrapper .container-small').removeClass('fade-out');
       } else if((ui.value > 5 && ui.value < (width-105)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
         $('.slider-wrapper .container-small').addClass('fade-out');
       }
-
+/*
 
       $('.stories-api .outer-wrapper').stop().animate({
         scrollLeft: slide
       }, Math.abs(previousSliderPoint - ui.value) > 1 ? Math.abs(previousSliderPoint - ui.value)*20 : 0);
+*/
+      let sliderChange = prevSliderValue - $('.ui-slider-handle').css('left').replace('px', '');
+      prevSliderValue = $('.ui-slider-handle').css('left').replace('px', '');
+ 
+      moveItems(Number(prevSlided - slide));
+
+      prevSlided = slide;
 
       previousSliderPoint = ui.value;
      },
      change: ( event, ui ) => {
+      /*console.log($('.ui-slider-handle').css('left'))
       let slide = 100*ui.value/width *$board.width()/100
       var slided = $scroll.scrollLeft();
       if(Math.round(slide) != $scroll.scrollLeft()) {
         sliderStopped = false;
-      }
+      }*/
+      
+      $positions.forEach(function(row) {
+        row.items.forEach(function(el) {
+          if(el.scale == 1) {
+            $(el.target).css({
+              'transform': 'translate(' + el.position.x + 'px, ' + el.position.y + 'px) scale(' + el.scale + ')',
+              '-webkit-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+              '-moz-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+              '-ms-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+              '-o-transition': el.speed + 'ms all ' + config.movement._smooth.type,
+              'transition': el.speed + 'ms all ' + config.movement._smooth.type
+            })
+
+
+            animations.makeElMove(el);
+          }
+        })
+      })
+      
+
+      smallItems.forEach(function(el) {
+        $(el.target).css({
+          '-webkit-transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
+          '-moz-transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
+          '-o-transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
+          'transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
+          'opacity': 1
+        })
+        animations.animateBubble(el);
+      })
      }
     }
   );
@@ -1005,10 +1211,12 @@ if(mobile) {
   });
 }
 */
+var smallItems = [];  // helper arr
+
 
 let makeAnimatedBackground = () => {
   var $body = $('.stories-api');
-  var smallItems = [];  // helper arr
+  
 
   $('<div/>', {         // create background animation base in html
     class: 'animated-background'
@@ -1018,7 +1226,7 @@ let makeAnimatedBackground = () => {
   config.background.image_bubbles._images.forEach((item, i) => {
     var x = Math.floor(Math.random() * (config._width - config._el_width));
     var y = Math.floor(Math.random() * (containerHeight - config._el_height));
-
+    item.position = {x: x, y: y}
 
     $('<div/>', {
       class: 'small-item',
@@ -1040,7 +1248,28 @@ let makeAnimatedBackground = () => {
     smallItems.push({target: '#smallItem' + i, speed: config.background.image_bubbles._speed});
   });
 
+  function animateBubble(el) {
+    el.animate = setInterval(() => {
+      // get new coordinates for element
+      //getCoordinates(el);
+      var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
+      var y = Math.floor(Math.random() * (containerHeight - config._el_height));
 
+
+      el.position = {
+        x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
+        y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
+      }
+
+      $(el.target).css({
+        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
+      });
+    }, config.background.image_bubbles._interval);
+  }
   var containerHeight = $('.animated-background').height();
 
   smallItems.forEach((el) => {
@@ -1059,34 +1288,26 @@ let makeAnimatedBackground = () => {
     		'opacity': 1
     	})
 
-      var x = Math.floor(Math.random() * (config._width - config._el_width));
+      var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
       var y = Math.floor(Math.random() * (containerHeight - config._el_height));
 
+      el.position = {
+        x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
+        y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
+      }
 
       $(el.target).css({
-        '-webkit-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        '-moz-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        '-ms-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        '-o-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        'transform': "translate(" + x + "px, " + y + "px) scale(1)"
+        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
       });
+
+      animateBubble(el);
     }, 100);
     // and start interval animation
-    el.animate = setInterval(() => {
-      // get new coordinates for element
-      //getCoordinates(el);
-      var x = Math.floor(Math.random() * (config._width - config._el_width));
-      var y = Math.floor(Math.random() * (containerHeight - config._el_height));
-
-
-      $(el.target).css({
-        '-webkit-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        '-moz-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        '-ms-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        '-o-transform': "translate(" + x + "px, " + y + "px) scale(1)",
-        'transform': "translate(" + x + "px, " + y + "px) scale(1)"
-      });
-    }, config.background.image_bubbles._interval);
+    
   })
 
 
