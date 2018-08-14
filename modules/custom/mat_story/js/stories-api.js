@@ -1,12 +1,12 @@
 (function ($, Drupal) {
 
 	// Script for animating elements
-
+  $('.animation-wrapper').wrap('<div class="outer-wrapper"/>');
 	// global variables
-	var $board = $(".animation-wrapper"); // animation wrapper
+	var $board = $(".outer-wrapper"); // animation wrapper
   var $scroll = $('.outer-wrapper');    // scrollable wrapper
 
-  $board.wrap('<div class="outer-wrapper"/>');
+ 
 
 	var $el = [];                       // matrix with elements
 	var active_index = 0;
@@ -19,6 +19,7 @@
 	var letters = [];                   // array of stories initials
 	var stories = [];                   // list of all stories
 	var initialised = false;
+  var containerHeight;
 	var config = {
 	  //_num: 10,                      // number of elements displayed in wrapper
     _num: {
@@ -98,9 +99,78 @@
     return false;
   }
   
+
+  function createDOMStories () {
+    // create DOM elements
+  /* * * * * * * * * * * * * * * * */
+  //$positions.forEach((row, i) => {
+    stories.forEach((item, j) => {
+      $('<div />', {
+        'data-id': item.story_id,                           // set category id attribut
+        'data-animated': false,
+        'data-i':j,
+        'data-j': j,
+        'data-category': item.category_id,                  // set category attribut
+        'class': 'item pulse-' + randomBetween(2,4),        // select between two classes available for item
+        'id': 'story' + item.story_id                       // item id --> connected with item.target in object
+      })
+      .mouseenter((e) => {                                   // __mouse hover event
+        $(e.target).find('.label').css('display', 'block');
+        setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
+        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
+          if($(e.target).data('id') == el.story_id) {
+            //animations.stop(el);
+            $(e.target).find('.label').css('display', 'block');
+            setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
+          }
+        })*/
+      })
+      .mouseleave((e) => {                                   // __mouse leave event
+        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and restart animation
+          if($(e.target).data('id') == el.story_id) {
+            animations.start(el);
+            $(e.target).removeClass('hovered');
+            setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
+          }
+        })*/
+        $(e.target).removeClass('hovered');
+        setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
+      })
+      .click((e) => {                                        // __click event
+        openModal($(e.target).data('id'));
+      })
+      .css({'backgroundImage': 'url(' + baseUrl + item.featured_image + ')', transition: 'none'})     // set some style
+      .append($('<div/>', {                       // add label to elemen
+        'class': 'label',
+        'html': '<label>'+item.first_name+' '+item.last_name+'</label><small>'+item.category+'</small><button class="pop-story" data-id="'+item.story_id +'"/>'
+      }))
+      .appendTo($board);    // append element to board
+    })
+
+    // add same leave event on items label
+    
+    $('.label').mouseleave((e) => {
+      $(e.target).closest('.item').removeClass('hovered');
+      setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
+    })
+  //});
+
+
+    //createStories();
+    //createDomElements();
+    /*** TO-DO !!!! ****/
+    // for mobile
+    //prepareDesktopElements();
+
+    getPositions(stories);
+
+    getFilters();
+    
+  }
   
   Drupal.behaviors.mat_stories_api = {
     attach: function (context, settings) {
+      config._width = $board.width();
 
       $.getJSON('/stories-api?_format=json', function(data) {
         // prevent Drupal from reloading script
@@ -239,16 +309,29 @@
             "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
           },...data];
 
-	        createStories();
-	        getFilters();
-	        makeAnimatedBackground();
-          calculateWrapperWidth(JSON.length);
+
+          JSON.forEach((item) => {
+            let newItem = item;
+            newItem.speed = (randomBetween(config.movement._smooth.max, config.movement._smooth.min))/1000;
+            newItem.target = '#story' + item.story_id
+            stories.push(newItem);
+          })
+
+          
+          
 
 	        /* Check, if id in parameter and open story in modal, if is*/
 					var check_params = window.location.href.split('#')
 					if(check_params.length > 1) {
 					  openModal(check_params[check_params.length - 1]);
 					}
+
+
+
+          createDOMStories();
+
+
+          makeAnimatedBackground();
       	}
       });
     }
@@ -284,6 +367,8 @@ var animations = {
     }, config.background.image_bubbles._interval);
   },
   makeElMove: (el) => {
+    if(el.animated) return;
+
     el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
     el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
     // get new coordinates for element
@@ -309,136 +394,98 @@ var animations = {
   },
   stopMovement: (el) => {
     clearInterval(el.animate);
+
     el.movement = false;
   },
-  fade_in: () => {
-    /*$displayedStories[active_index].forEach((el, i) => {
-      // set new coordinates for element
-      getCoordinates(el);
-
-      $(el.target).css({
-        'opacity': 0.3,
-        '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
-        '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
-        '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
-        '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
-        'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)'
-      });
-
-      setTimeout(() => {
-        $(el.target).css({
-          'opacity': 1,
-          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-          '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-          'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-          '-webkit-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-          '-moz-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-          '-ms-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-          '-o-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-          'transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms'
-        });
-      }, (i+1)* config.movement._entry.delay )
-
-      // start animation
-      setTimeout(() => {
-        animations.start(el);
-      }, (i+1)*config.movement._entry.delay + config.movement._entry.speed);
-    })*/
-
-
+  fade_in: (elements, category, letter) => {
+    
     var t = 1;
-    $positions.forEach(function(row, i) {
+    elements.forEach(function(row, i) {
       row.items.forEach(function(el, j) {
-        $(el.target).css({
-          '-webkit-transition': 'all ease-in-out 0ms',
-          '-moz-transition': 'all ease-in-out 0ms',
-          '-ms-transition': 'all ease-in-out 0ms',
-          '-o-transition': 'all ease-in-out 0ms',
-          'transition': 'all ease-in-out 0ms',
-          'opacity': 1,
-          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)'
-        })
-        t++;
 
-        el.scale = 1;
-        el.speed = config.movement._entry.speed;
-
-        setTimeout(() => {
+        if(category && category != $(el.target).data('category')) {
+          //console.log($(el.target).data('category'));
+          return;
+        } else {
+          //if(category && category != $(el.target))
           $(el.target).css({
+            '-webkit-transition': 'all ease-in-out 0ms',
+            '-moz-transition': 'all ease-in-out 0ms',
+            '-ms-transition': 'all ease-in-out 0ms',
+            '-o-transition': 'all ease-in-out 0ms',
+            'transition': 'all ease-in-out 0ms',
             'opacity': 1,
-            '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-            '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-            '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-            '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-            'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-            '-webkit-filter': 'blur(0) brightness(1)',
-            'filter': 'blur(0) brightness(1)',
-            '-webkit-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-            '-moz-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-            '-ms-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-            '-o-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
-            'transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms'
-          });
-          setTimeout(function() {
-            animations.makeElMove(el);
-          }, config.movement._entry.speed);
-          //t++;
-          //animations.makeElMove(el);
-          
-        }, t*config.movement._entry.delay )
+            '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)'
+          })
+          t++;
+
+          el.scale = 1;
+          el.speed = config.movement._entry.speed;
+
+          setTimeout(() => {
+            $(el.target).css({
+              'opacity': 1,
+              '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+              '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+              '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+              '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+              'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
+              '-webkit-filter': 'blur(0) brightness(1)',
+              'filter': 'blur(0) brightness(1)',
+              '-webkit-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+              '-moz-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+              '-ms-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+              '-o-transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms',
+              'transition': 'all ease-in-out ' + config.movement._entry.speed + 'ms'
+            });
+            setTimeout(function() {
+              animations.makeElMove(el);
+            }, config.movement._entry.speed);
+            //t++;
+            //animations.makeElMove(el);
+            
+          }, t*config.movement._entry.delay )
+        }
+
+        
       })
     })
   },
-  fade_out: (el, delay) => {
-    /*$displayedStories[active_index].forEach((el, i) => {
-      animations.stopMovement(el);
-
-      $(el.target).css({
-        'opacity': 1,
-        //'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(1)',
-        '-webkit-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-        '-moz-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-        '-ms-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-        '-o-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-        'transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms'
-      })
-
-      setTimeout(() => {
-        $(el.target).css({
-          'opacity': 0,
-          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
-          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
-          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)',
-          'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0)'
-        });
-      }, i*config.movement._leave.delay);
-    })*/
-
+  fade_out: (category, letter) => {
     $positions.forEach(function(row) {
       row.items.forEach(function(el) {
         animations.stopMovement(el);
-        el.scale = 0.6;
-        el.speed = config.background.image_bubbles._speed;
 
-        $(el.target).css({
-          '-webkit-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-          '-moz-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-          '-ms-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-          '-o-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-          'transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
-          'filter': 'blur(3.4px) brightness(1)',
-          '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
-          'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)'
-        })
+
+        if(category && category == $(el.target).data('category')) {
+          console.log($(el.target).data('category'));
+          return;
+        } else {
+
+          
+          console.log(el)
+          el.scale = 0.6;
+          el.speed = config.background.image_bubbles._speed;
+
+          $(el.target).css({
+            '-webkit-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+            '-moz-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+            '-ms-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+            '-o-transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+            'transition': 'all ease-in-out ' + config.movement._leave.speed + 'ms',
+            'filter': 'blur(3.4px) brightness(1)',
+            '-webkit-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            '-moz-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            '-ms-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            '-o-transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)',
+            'transform': 'translate(' + el.position.x + 'px,'+ el.position.y + 'px) scale(0.6)'
+          })
+          animations.makeElMove(el);
+        }
       })
     })
   },
@@ -554,13 +601,13 @@ var animations = {
 
 // get all items from JSON and save them in array
 let createStories = () => {
-  JSON.forEach((item) => {
+  /*JSON.forEach((item) => {
     let test = item;
     test.speed = (randomBetween(config.movement._smooth.max, config.movement._smooth.min))/1000;
     test.target = '#story' + item.story_id
     stories.push(test);
   })
-
+*/
   createDomElements();
 };
 
@@ -600,11 +647,9 @@ let getFilters = () => {
     $('.cat-item').removeClass('bold');
     $(e.target).addClass('bold');
 
-    animations.fade_out();
-      setTimeout(() => {
-        createDomElements();
-      }, config.movement._leave.delay * $displayedStories[active_index].length-1)
     $('.selected').text("A-Z");
+
+    getPositions(stories);
   })
   // append all categories to filter wrapper
   categories.forEach((category, i) => {
@@ -618,7 +663,18 @@ let getFilters = () => {
       $('.cat-item').removeClass('bold');
       $(e.target).addClass('bold');
 
-      animations.fade_out();
+      // animations.fade_out($(e.target).data('category-id'));
+
+      var filtered = [];
+      stories.forEach(function(item) {
+        if(item.category_id == $(e.target).data('category-id')) {
+          filtered.push(item);
+        }
+      })
+
+      
+
+
       if(mobile) {
         //$('.filter-wrapper').slickGoTo(1);
         var slider = $( '.filter-wrapper' );
@@ -627,12 +683,16 @@ let getFilters = () => {
         if($(e.target).data('slick-index') == 0) {
           $('.selected').text("A-Z");
         }
+      } else {
+        animations.fade_out($(e.target).data('category-id'));
+        getPositions(filtered);
       }
 
 
-      setTimeout(() => {
+      /*setTimeout(() => {
+        // animations.fade_in($(e.target).data('category-id'));
         //createDomElements($(e.target).data('category-id'));
-      }, config.movement._leave.delay * $displayedStories[active_index].length-1)
+      }, config.movement._leave.delay * $displayedStories[active_index].length-1)*/
       //
     })
   });
@@ -671,111 +731,13 @@ let getFilters = () => {
 
 
 function prepareDesktopElements(category, letter) {
-  var tmp_array = [], filtered = [];    // helper arrays
-
   getPositions(stories);
-  // push proper items in tmp_array
-  for(var i = 0, counter = 0; i < stories.length; i++) {
-    if((!category && !letter) || category == stories[i].category_id || letter == stories[i].last_name[0].toUpperCase()) {
-      tmp_array.push(stories[i]);  // add element in matrix
-      counter++;
-    }
-    // if last item, or tmp_array reached max number, push items in matrix and eempty array
-    if(counter % config._num.group == 0 && tmp_array.length > 0 || i == stories.length - 1 && tmp_array.length > 0) { // end of column or last entry
-      $displayedStories.push(tmp_array);                      // add column in matrix and start in new column
-      tmp_array = [];
-    }
-  }
 
-  // create DOM elements
+  
   /* * * * * * * * * * * * * * * * */
-  $positions.forEach((row, i) => {
-    row.items.forEach((item, j) => {
-      $('<div />', {
-        'data-id': item.story_id,                           // set category id attribut
-        'data-animated': false,
-        'data-i': i,
-        'data-j': j,
-        'data-category': item.category_id,                  // set category attribut
-        'class': 'item pulse-' + randomBetween(2,4),        // select between two classes available for item
-        'id': 'story' + item.story_id                       // item id --> connected with item.target in object
-      })
-      .mouseenter((e) => {                                   // __mouse hover event
-        $(e.target).find('.label').css('display', 'block');
-        setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
-        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
-          if($(e.target).data('id') == el.story_id) {
-            //animations.stop(el);
-            $(e.target).find('.label').css('display', 'block');
-            setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
-          }
-        })*/
-      })
-      .mouseleave((e) => {                                   // __mouse leave event
-        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and restart animation
-          if($(e.target).data('id') == el.story_id) {
-            animations.start(el);
-            $(e.target).removeClass('hovered');
-            setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
-          }
-        })*/
-        $(e.target).removeClass('hovered');
-        setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
-      })
-      .click((e) => {                                        // __click event
-        openModal($(e.target).data('id'));
-      })
-      .css({'backgroundImage': 'url(' + baseUrl + item.featured_image + ')', transition: 'none'})     // set some style
-      .append($('<div/>', {                       // add label to elemen
-        'class': 'label',
-        'html': '<label>'+item.first_name+' '+item.last_name+'</label><small>'+item.category+'</small><button class="pop-story" data-id="'+item.story_id +'"/>'
-      }))
-      .appendTo($board);    // append element to board
-    })
-
-    // add same leave event on items label
-    
-    $('.label').mouseleave((e) => {
-      $(e.target).closest('.item').removeClass('hovered');
-      setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
-      /*
-      if(!$($(e.target).closest('.item')).hasClass('hovered')) return;
-
-
-      $displayedStories[active_index].forEach((el) => {
-        if($($(e.target).closest('.item')).data('id') == el.story_id) {
-          animations.start(el);
-
-          $(e.target).closest('.item').removeClass('hovered');
-          setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
-        }
-      })*/
-    })/*.mouseenter((e) => {                                   // __mouse hover event
-      if($($(e.target).closest('.item')).hasClass('hovered')) return;
-
-      $displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
-        if($($(e.target).closest('.item')).data('id') == el.story_id) {
-          animations.stop(el);
-
-          $(e.target).closest('.label').css('display', 'block');
-          setTimeout(() => { $(e.target).closest('.item').addClass('hovered');}, 50);
-        }
-      })
-    })*/
-  });
-  /* * * * * * * * * * * * * * * * */
-
-  animations.fade_in();
 
   
 
-  $('#slider span')
-    .prepend($('<div/>', {
-      'class': "prev"
-    }))
-    .append($('<div/>', {
-      'class': "next"
-    }));
 }
 
 
@@ -794,23 +756,27 @@ function moveDraggableBar (value) { // value in px
 } 
 
 function getFirstAndLastPosition(row, last) {
-  
-  var x = {value: 0, counter: 0}, y = {value: 0, counter: 0}, titlePos = row.positions.from * config._width, left = last ? config._el_width/2 : config._el_width + 10, right = last ? config._el_width + 10 : config._el_width/2;
-
+  var x = {value: 0, counter: 0}, 
+      y = {value: 0, counter: 0}, 
+      titlePos = row.positions.from * config._width, 
+      left = last ? config._el_width/2 : config._el_width + 10, 
+      right = last ? config._el_width + 10 : config._el_width/2;
   // /(x.value - row.positions.from * config._width/100) > config.title.left && (x.value - row.positions.from*config._width/100) < config.title.left + config.title.width)
 
   while(x.counter < 40 && (x.value == 0 || isOverlapingX(x.value))) {
-    x.value = randomBetween((row.positions.from * $board.width()/100) + left, (row.positions.to * $board.width()/100) - right);
+    x.value = randomBetween((row.positions.from - config._el_width) + left, (row.positions.to + config._el_width) - right);
     x.counter++;
   }
   while(y.counter < 40 && (y.value == 0 || isOverlapingY(y.value))) {
-    y.value = randomBetween(config._el_width + 20, config._height - config._el_width);
+    y.value = randomBetween(config._height - config._el_width,  config._el_width);
     y.counter++;
   }
   return {x: x.value, y: y.value}
 }
 
-function getPositionsBySections() {
+function getPositionsBySections(arr) {
+  calculateWrapperWidth(arr.length);
+
   $positions.forEach(function(row, i) {
     row.items.forEach(function(item) {
       
@@ -820,148 +786,141 @@ function getPositionsBySections() {
         item.position = getFirstAndLastPosition(row, i);
       } else {
         item.position = {
-          x: randomBetween(row.positions.from, row.positions.to)*$board.width()/100,
-          y: randomBetween(0, config._height - config._el_width - 40)
+          x: randomBetween(row.positions.from, row.positions.to),
+          y: randomBetween(config._height - config._el_width - 40, config._el_width)
         }
       }
     })
   })
+
+  animations.fade_in($positions);
 }
 
 var $positions = [];
 function getPositions(arr) {
-  var tmp = [...arr], helper = [], from = 100;
-  
+  var tmp = [...arr], helper = [], from = 0;
+  $positions = [];
+
+
   $positions.push({
     positions: {
-      from: 0,
-      to: from
+      from: 100*$board.width()/100,
+      to: 0
     },
     items: tmp.splice(0, config._num.first_and_last)
   });
 
   var lastItems = tmp.splice(tmp.length-config._num.first_and_last, config._num.first_and_last);
+
+
   while(tmp.length > 0) {
     helper.push(tmp.shift());
     if(helper.length == config._num.other_pages || tmp.length == 0) {
       $positions.push({
         positions: {
-          from: from,
-          to: from + helper.length*100/config._num.other_pages
+          from: from*$board.width()/100,
+          to: (from - helper.length*100/config._num.other_pages)*$board.width()/100
         },
         items: helper
       })
-      from = from + helper.length*100/config._num.other_pages;
+      from = from - helper.length*100/config._num.other_pages;
       helper = [];
     }
   }
 
-  $positions.push({
-    positions: {
-      from: from,
-      to: from + 100
-    },
-    items: lastItems
-  });
-  getPositionsBySections();
+
+  if(lastItems.length > 0) {
+    $positions.push({
+      positions: {
+        from: from*$board.width()/100,
+        to: (from - 100)*$board.width()/100
+      },
+      items: lastItems
+    });
+  }
+
+  console.log("POSITIONS", $positions);
+  getPositionsBySections(arr);
 }
 
-function calculateWrapperWidth(num) {
-  let width = 100;
-  if(num - config._num.first_and_last*2 > 0) {
-    num = num - config._num.first_and_last*2
-    width = 200 + 100*Math.floor(num / config._num.other_pages) + 100*(num % config._num.other_pages)/config._num.other_pages;
-  }
-  $('.animation-wrapper').css('width', width + '%');
-  config._total_width = width;
+function moveItems(value) {
 
-  let $slider = $('.stories-api .outer-wrapper');
-  let prevSliderValue = 0;
+  $positions.forEach(function(row) {
+    row.items.forEach(function(el) {
+      el.position.x = el.position.x + (el.scale == 1 ? value :( value/2));
 
-  function moveItems(value) {
-
-    $positions.forEach(function(row) {
-      row.items.forEach(function(el) {
-        el.position.x = el.position.x + (el.scale == 1 ? value :( value/2));
-
-        if(el.movement)
-          animations.stopMovement(el);
-
-        $(el.target).css({
-          '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
-            '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
-            '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
-            '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
-            'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
-            '-webkit-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
-            '-moz-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
-            '-ms-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
-            '-o-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
-            'transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear"
-        })
-        console.log((el.scale != 1 ? (config.background.image_bubbles._speed) : (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) )+ "ms transform linear")
-      })
-    })
-
-    smallItems.forEach(function(el) {
-      el.position.x = el.position.x + value/2;
-
-      //if(el.movement)
+      if(el.movement)
         animations.stopMovement(el);
 
       $(el.target).css({
-        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
-        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
-        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
-        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
-        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
-        '-webkit-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
-        '-moz-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
-        '-ms-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
-        '-o-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
-        'transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear"
+        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+          '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+          '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+          '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+          'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+          '-webkit-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+          '-moz-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+          '-ms-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+          '-o-transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear",
+          'transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear"
       })
     })
-  }
+  })
+
+  smallItems.forEach(function(el) {
+    el.position.x = el.position.x + value/2;
+
+    //if(el.movement)
+      animations.stopMovement(el);
+
+    $(el.target).css({
+      '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+      '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+      '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+      '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+      'transform': "translate(" + el.position.x + "px, " + el.position.y + "px)",
+      '-webkit-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+      '-moz-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+      '-ms-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+      '-o-transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear",
+      'transition': Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 + "ms transform linear"
+    })
+  })
+}
+
+
+function setSlider(width) {
+  console.log("WIDTH" ,width);
 
   var prevSlided = 0;
+  let $slider = $('.stories-api .outer-wrapper');
+  let prevSliderValue = 0;
+
   $( "#slider" ).slider(
-    { max: width - 100,//max: $displayedStories.length - 1,
-     //disabled: $displayedStories.length > 1 ? false : true,
+    { max: width + 100,
+     disabled: width > 100 ? false : true,
      slide: ( event, ui ) => { 
       let factor = 100*ui.value/width;
       let slide = 100*ui.value/width *$board.width()/100
       var slided = $scroll.scrollLeft();
 
-
-      if((ui.value <= 5 || ui.value >= (width-105)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
+      if((ui.value <= 5 || ui.value >= (width + 95)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
         $('.slider-wrapper .container-small').removeClass('fade-out');
-      } else if((ui.value > 5 && ui.value < (width-105)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
+      } else if((ui.value > 5 && ui.value < (width + 95)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
         $('.slider-wrapper .container-small').addClass('fade-out');
       }
-/*
 
-      $('.stories-api .outer-wrapper').stop().animate({
-        scrollLeft: slide
-      }, Math.abs(previousSliderPoint - ui.value) > 1 ? Math.abs(previousSliderPoint - ui.value)*20 : 0);
-*/
       let sliderChange = prevSliderValue - $('.ui-slider-handle').css('left').replace('px', '');
       prevSliderValue = $('.ui-slider-handle').css('left').replace('px', '');
- 
-      moveItems(Number(prevSlided - slide));
+
+      moveItems(Number(prevSlided - slide)*-1);
 
       prevSlided = slide;
 
       previousSliderPoint = ui.value;
      },
      change: ( event, ui ) => {
-      /*console.log($('.ui-slider-handle').css('left'))
-      let slide = 100*ui.value/width *$board.width()/100
-      var slided = $scroll.scrollLeft();
-      if(Math.round(slide) != $scroll.scrollLeft()) {
-        sliderStopped = false;
-      }*/
-      
+
       $positions.forEach(function(row) {
         row.items.forEach(function(el) {
           if(el.scale == 1) {
@@ -994,6 +953,28 @@ function calculateWrapperWidth(num) {
      }
     }
   );
+
+
+  
+
+  $('#slider span')
+  .prepend($('<div/>', {
+    'class': "prev"
+  }))
+  .append($('<div/>', {
+    'class': "next"
+  }));
+}
+
+function calculateWrapperWidth(num, arr) {
+  let width = 100;
+
+  if(num - config._num.first_and_last*2 > 0) {
+    num = num - config._num.first_and_last*2
+    width = 200 + 100*Math.floor(num / config._num.other_pages) + 100*(num % config._num.other_pages)/config._num.other_pages;
+  }
+  $('.animation-wrapper').css('width', width + '%');
+  setSlider(width); 
 }
 
 function prepareMobileElements(category, letter) {
@@ -1033,13 +1014,13 @@ function prepareMobileElements(category, letter) {
 
 let $displayedStories = [];
 let createDomElements = (category, letter) => {
-  active_index = 0;
+  /*active_index = 0;
 
 
   $displayedStories = [];   // empty current arrat of stories
   $board.html('');          // empty board
   sliderTo(0);              // send draggable slider back to 0
-
+*/
   if(!mobile) {
     prepareDesktopElements(category, letter);
   } else {
@@ -1212,22 +1193,49 @@ if(mobile) {
 }
 */
 var smallItems = [];  // helper arr
+/*
+function animateBubble(el) {
+  if(el.animated) return;
+  else el.animated = true;
+
+  el.animate = setInterval(() => {
+    // get new coordinates for element
+    //getCoordinates(el);
+    
+
+    var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
+    var y = Math.floor(Math.random() * (containerHeight - config._el_height));
 
 
-let makeAnimatedBackground = () => {
+    el.position = {
+      x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
+      y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
+    }
+
+    $(el.target).css({
+      '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+      '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+      '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+      '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
+      'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
+    });
+  }, config.background.image_bubbles._interval);
+}
+*/
+let makeAnimatedBackground = (w) => {
   var $body = $('.stories-api');
   
-
   $('<div/>', {         // create background animation base in html
     class: 'animated-background'
   }).appendTo($body);
 
+  containerHeight = $('.animated-background').height();
   // create bubbles with background image
   config.background.image_bubbles._images.forEach((item, i) => {
-    var x = Math.floor(Math.random() * (config._width - config._el_width));
+    var x = Math.floor(Math.random() * (w - config._el_width));
     var y = Math.floor(Math.random() * (containerHeight - config._el_height));
     item.position = {x: x, y: y}
-
+    
     $('<div/>', {
       class: 'small-item',
       id: 'smallItem' + i
@@ -1248,33 +1256,10 @@ let makeAnimatedBackground = () => {
     smallItems.push({target: '#smallItem' + i, speed: config.background.image_bubbles._speed});
   });
 
-  function animateBubble(el) {
-    el.animate = setInterval(() => {
-      // get new coordinates for element
-      //getCoordinates(el);
-      var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
-      var y = Math.floor(Math.random() * (containerHeight - config._el_height));
-
-
-      el.position = {
-        x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
-        y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
-      }
-
-      $(el.target).css({
-        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
-      });
-    }, config.background.image_bubbles._interval);
-  }
-  var containerHeight = $('.animated-background').height();
-
   smallItems.forEach((el) => {
     // spread elements on board
     getCoordinates(el);
+    el.animated = false;
 
     // get new position to animate them
     setTimeout(() => {
@@ -1287,24 +1272,24 @@ let makeAnimatedBackground = () => {
         'transition': 'transform ' + config.background.image_bubbles._speed + 'ms linear',
     		'opacity': 1
     	})
-
-      var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
-      var y = Math.floor(Math.random() * (containerHeight - config._el_height));
+/*
+      var x = randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2);
+      var y = randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2);
 
       el.position = {
-        x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
-        y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
-      }
-
-      $(el.target).css({
+        x: x, 
+        y: y
+      }*/
+//console.log(el.position)
+      /*$(el.target).css({
         '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
         '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
         '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
         '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
         'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
-      });
+      });*/
 
-      animateBubble(el);
+      animations.animateBubble(el);
     }, 100);
     // and start interval animation
     
