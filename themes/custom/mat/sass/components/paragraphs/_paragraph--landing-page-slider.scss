@@ -25,11 +25,13 @@
   }
 
   .container .slide--content .field--name-field-content {
-    transition: transform 1.3s ease-in-out 0.1s, opacity 1.8s ease-in-out;
+    transition: transform 1.3s ease-in-out 0.1s, opacity 0.8s ease-in-out;
+    transition-delay: 2s;
     font-weight: 500;
   }
   .animated {
     .container .slide--content .field--name-field-content {
+      transition-delay: 0s;
       transform: translate(0);
       opacity: 1;
     }
@@ -125,6 +127,10 @@
     .field--name-field-content {
      //display: none;
      width: 610px;
+
+      @media (max-width: $screen-md) {
+        width: 100%;
+      }
 
       @extend %lead-small-mobile;
     }
