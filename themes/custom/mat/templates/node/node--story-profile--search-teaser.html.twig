@@ -2,7 +2,7 @@
   {% if node.field_search_image_media is not empty %}
   <div class="search-result--img" style="background-image: url('{{ content.field_search_image_media.0 }}')"></div>
   {% endif %}
- <div class="search-result--heading">
+  <div class="search-result--heading">
     <div class="search-result--title">
       <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ label }}</a>
     </div>

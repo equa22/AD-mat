@@ -84,8 +84,9 @@
           a {
             color: $blue-dark;
             text-decoration: none;
+            transition: color .2s ease-in-out;
             &:hover {
-              text-decoration: underline;
+              color: $blue;
             }
           }
 
