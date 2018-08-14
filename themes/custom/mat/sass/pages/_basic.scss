@@ -33,6 +33,12 @@
     >.basic-page-content {
       width: 100%;
     }
+
+    .basic-page-content--summary {
+      p {
+        font-family: $font-flama;
+      }
+    }
   }
 
   .basic-page-wrapper.basic-page-with-sidebar {
@@ -62,13 +68,17 @@
   position: relative;
   color: $color-white;
   text-align: center;
-  
+
   @media (min-width: $screen-sm-min) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 60rem;
     padding: 12rem 0 12rem 0;
+  }
+
+  h1 {
+    font-family: $font-flama-semibold;
   }
 
   &--heading {
@@ -80,7 +90,7 @@
       display: flex;
       align-items: center;
     }
-    
+
     @media (min-width: $screen-sm-min) {
       position: static;
       min-height: auto;
@@ -242,7 +252,7 @@
     padding: 4.8rem 0 0 4rem;
     margin: 2.35em 0 1.2em 0;
     @extend %lead;
-    font-weight: 500;
+    font-family: $font-flama-light;
 
     @media (min-width: $screen-sm-min) {
       padding: 0 8rem 0 4rem;

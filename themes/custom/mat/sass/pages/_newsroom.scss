@@ -98,6 +98,7 @@
     h1 {
       margin-bottom: 3rem;
       color: $blue-dark;
+      font-family: $font-flama-semibold;
     }
 
      @media (max-width: $screen-xs) {
@@ -168,6 +169,7 @@
         margin-bottom: 1.5rem;
         @extend %h4;
         font-weight: 500;
+        font-family: $font-flama;
         a {
           color: $blue-dark;
         }
