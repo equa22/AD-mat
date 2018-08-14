@@ -90,7 +90,7 @@ $.fn.isInViewport = function(props) {
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
-          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).on('click', function(e){
+          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).off('click').on('click', function(e){
             e.preventDefault();
             var element = $(this).parent('li');
             if (element.hasClass('active')) {
