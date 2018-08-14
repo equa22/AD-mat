@@ -214,7 +214,8 @@ $.fn.isInViewport = function(props) {
         autoplaySpeed: 15000,
         fade: true,
         cssEase: 'linear',
-        draggable: false
+        draggable: false,
+        pauseOnHover: false
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // if slide changed, animate next slide
         if(currentSlide != nextSlide) {
