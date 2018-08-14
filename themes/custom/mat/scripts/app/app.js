@@ -174,12 +174,12 @@ $.fn.isInViewport = function(props) {
     setTimeout(function() {                 // with optional timeout set interval
         write = setInterval(function() {
           $el.text( title += text[counter]); // add letter to string
-          counter++;                            // increase counter 
+          counter++;                            // increase counter
           if(counter == text.length) {          // stop interval, if all letters've been processed
             clearInterval(write);
             $(parent).addClass('animated');     // add class to parent to let DOM know animation is done
           }
-        }, 50);  
+        }, 50);
       }, delay);
 
     setTimeout(function() {
@@ -190,6 +190,7 @@ $.fn.isInViewport = function(props) {
   // Hero slider on home page
   Drupal.behaviors.heroSlider = {
     attach: function (context, settings) {
+
       // Test if the browser is IE.
       var ua = window.navigator.userAgent;
       var is_internet_explorer = /MSIE|Trident/.test(ua);
@@ -203,6 +204,7 @@ $.fn.isInViewport = function(props) {
           $(this).siblings('.slide--image').css('background-image', $background_url).show();
         });
       }
+
       // Slick slider config.
       $('.paragraph--type--landing-page-slider .field--name-field-slides', context).once('hero-slider').slick({
         infinite: true,
@@ -210,15 +212,24 @@ $.fn.isInViewport = function(props) {
         slidesToShow: 1,
         autoplay: true,
         speed: 1200,
-        autoplaySpeed: 6000,
+        autoplaySpeed: 15000,
         fade: true,
         cssEase: 'linear',
         draggable: false
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // if slide changed, animate next slide
         if(currentSlide != nextSlide) {
-          typeText($($('.slick-slide h1')[nextSlide + 1]), '.slick-active', 500);
-          $('.slick-slide').removeClass('animated');
+
+          //Todo: remove lines that are commented if the typeText function is not used.
+          // typeText($($('.slick-slide h1')[nextSlide + 1]), '.slick-active', 500);
+          // $('.slick-slide').removeClass('animated');
+
+          // Grab the nth .slick-slide element.
+          var $current_slide = $('.slick-slide:eq(' + currentSlide + ')');
+          var $next_slide = $('.slick-slide:eq(' + nextSlide + ')');
+
+          $current_slide.removeClass('animated');
+          $next_slide.addClass('animated');
         }
       });
 
@@ -228,15 +239,14 @@ $.fn.isInViewport = function(props) {
       $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
       //$('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-description', 'text': 'Today, 115,000+ people are waiting for a lifesaving transplant. You can inspire hope for these patients and their families by signing up for the organ and tissue donor registry.'}));
       $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-link', 'html': '<a href="/why-give-life">Why Give Life</a>'}));
-      
-
-
 
       // add 'inspired by' fixed label
       //$('.slick-list.draggable').append($('<div class="fixed-slider-header"><div class="container">Inspired by</div></div>'));
 
       // animate first slide
-      typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
+      //Todo: remove lines that are commented if the typeText function is not used.
+      // typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
+      $('.slick-slide:eq(0)').addClass('animated');
     }
   };
 
