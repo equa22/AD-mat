@@ -10,14 +10,14 @@
 
   input[type="text"],
   input[type="email"],
-  input[type="password"],  
+  input[type="password"],
   textarea {
     width: 100%;
     padding: 14px 2.3rem;
     border: 3px solid $input-border-color;
     border-radius: $input-border-radius;
     background-color: $input-bg-color;
-    
+
     &.has-error {
       border-color: $color-red;
     }

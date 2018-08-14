@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-stories {
   display: flex;
-  
+
   @include gradient-blue();
   color: $color-white;
 
@@ -32,6 +32,12 @@
   }
 
   .stories--content {
+
+    h2 {
+      font-family: $font-flama-semibold;
+      font-weight: 400;
+    }
+
     @media (min-width: $screen-sm-min) {
       width: 42%;
     }

@@ -42,8 +42,8 @@
         @extend %h2;
         color: $blue-dark;
         text-transform: uppercase;
-        font-family: $font-roboto;
-        font-weight: 500;
+        font-weight: 700;
+        font-family: $font-flama-bold;
       }
 
       .headline-myth {
@@ -114,7 +114,6 @@
 
       h4, .fact--description {
         opacity: 0;
-
       }
 
 
@@ -465,7 +464,6 @@
         transform: translate(100%, 0);
       }
 
-
       @media (max-width: $screen-xs-max) {
         padding-right: 0;
         color: $gray-base;
@@ -504,6 +502,11 @@
       h4, .fact--description {
          opacity: 0;
         transform: translate(-100%, 0);
+      }
+
+      h4 {
+        font-family: $font-flama-semibold;
+        font-family: 500;
       }
 
 

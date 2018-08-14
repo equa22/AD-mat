@@ -30,7 +30,7 @@
 
   .field--name-field-link {
     margin-top: 3.4rem;
-    
+
     @media (min-width: $screen-sm-min) {
       margin-top: 4.5rem;
     }
@@ -182,13 +182,24 @@
       position: relative;
       z-index: 2;
 
-      h1 p {
-        font-family: $font-roboto;
+      h1 {
+        font-family: $font-flama-semibold-italic;
         font-weight: 400;
+        p {
+          font-family: $font-flama-semibold-italic;
+          font-weight: 400;
+        }
       }
 
-      .field--name-field-text p {
-        font-weight: 500;
+      .field--name-field-text {
+        p {
+          font-weight: 500;
+        }
+
+        strong {
+          font-family: $font-flama-semibold-italic;
+          font-weight: 400;
+        }
       }
 
       @media (min-width: $screen-sm-min) {
@@ -233,7 +244,7 @@
         max-width: 47%;
         min-height: 57rem;
         float: right;
-        
+
       }
 
       h1 {
@@ -255,5 +266,13 @@
       }
     }
   }
-}
 
+  &.right {
+    .hero--give-life__content h1 {
+      font-family: $font-flama-semibold-italic;
+      p {
+        font-family: $font-flama-semibold-italic;
+      }
+    }
+  }
+}

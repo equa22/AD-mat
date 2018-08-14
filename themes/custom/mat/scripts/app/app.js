@@ -8,7 +8,7 @@ $.fn.isInViewport = function(props) {
   var viewportBottom = viewportTop + $(window).height();
   return elementBottom > viewportTop && elementTop < viewportBottom;
  };
- 
+
  function getShadow(angle, distance, spread, size) {
     angle = (180 - angle) * (Math.PI)/180;  // convert to radians
     var h_shadow = Math.round(Math.cos(angle)*distance);
@@ -145,7 +145,7 @@ $.fn.isInViewport = function(props) {
 
       function setMobilePlaceholder() {
         var windowWidth = $(window).width();
-        
+
         if (windowWidth < 768) {
          $('#block-header-search-block .form-text').attr('placeholder', Drupal.t('Search'));
         } else {
@@ -174,12 +174,12 @@ $.fn.isInViewport = function(props) {
     setTimeout(function() {                 // with optional timeout set interval
         write = setInterval(function() {
           $el.text( title += text[counter]); // add letter to string
-          counter++;                            // increase counter 
+          counter++;                            // increase counter
           if(counter == text.length) {          // stop interval, if all letters've been processed
             clearInterval(write);
             $(parent).addClass('animated');     // add class to parent to let DOM know animation is done
           }
-        }, 50);  
+        }, 50);
       }, delay);
 
     setTimeout(function() {
@@ -228,7 +228,7 @@ $.fn.isInViewport = function(props) {
       $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
       //$('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-description', 'text': 'Today, 115,000+ people are waiting for a lifesaving transplant. You can inspire hope for these patients and their families by signing up for the organ and tissue donor registry.'}));
       $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-link', 'html': '<a href="/why-give-life">Why Give Life</a>'}));
-      
+
 
 
 
@@ -317,7 +317,7 @@ $.fn.isInViewport = function(props) {
           $('.paragraph--type--pillar-group-item').each(function() {
             if($(this).isInViewport($(this).height()/2) && !$(this).hasClass('animate')) {
               $(this).addClass('animate');
-            } 
+            }
           });
         }
       });
@@ -328,7 +328,7 @@ $.fn.isInViewport = function(props) {
   /*
    * Helper function for converting num in string
    * @param num_ number to convert [int]
-   * @param length_ length of final number - used with holders (5:00003) - [int] 
+   * @param length_ length of final number - used with holders (5:00003) - [int]
    * @param char_ splitter in string [string]
    * @param surfix_ added character [string]
    * @param holder_ placeholder for empty spaces
@@ -345,7 +345,7 @@ $.fn.isInViewport = function(props) {
         string = string.slice(0, i) + char + string.slice(i);
         chars = 0;
       }
-    } 
+    }
     return string + surfix;
   }
 
@@ -383,19 +383,19 @@ $.fn.isInViewport = function(props) {
     // when counter comes to end, stop all intervals
     var $shine = $(field).next('.shine').length > 0 ? $($(field).next('.shine')[0]) : null;
     var $shadow = $($(field).parent()).find('.number-shadow ');
-    var counter = 0; // count iterations                               
+    var counter = 0; // count iterations
     var animateCounting = setInterval(function() {
       counter ++;
-  
+
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
       if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }     // apply value on shine
 
       if(counter == $(field).data('count-repeat')) {
-        clearInterval(animateCounting); 
+        clearInterval(animateCounting);
         return;
       }
       if(counter >= $(field).data('count-repeat')/2) { // on half way, slow down
-        clearInterval(animateCounting);       
+        clearInterval(animateCounting);
 
         animateCounting = setInterval(function() {
           counter ++;
@@ -403,7 +403,7 @@ $.fn.isInViewport = function(props) {
           if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
 
           if(counter == $(field).data('count-repeat')) {
-            clearInterval(animateCounting); 
+            clearInterval(animateCounting);
             return;
           }
           if(counter >= $(field).data('count-repeat')/4*3) {
@@ -415,7 +415,7 @@ $.fn.isInViewport = function(props) {
               if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
 
               if(counter == $(field).data('count-repeat')) {
-                clearInterval(animateCounting); 
+                clearInterval(animateCounting);
                 return;
               }
               if(counter >= $(field).data('count-repeat')/10*9) {
@@ -427,7 +427,7 @@ $.fn.isInViewport = function(props) {
                   if($shine) { $shine.html(splitTextInSpan($(field).text())); $shadow.html($(field).text()); }
 
                   if(counter == $(field).data('count-repeat')) {
-                    clearInterval(animateCounting); 
+                    clearInterval(animateCounting);
                     return;
                   }
                   if(counter == $(field).data('count-repeat')) {
@@ -469,12 +469,12 @@ $.fn.isInViewport = function(props) {
           'data-count-interval': Number(text.replace(/\D/g,'')) > 5000 ? 10 : 20,
           'data-count-surfix': text.search('X') < 0 ? (text.search('K') < 0 ? '' : 'K') : 'X',
           'data-count-holder': text.search(',') < 0 ? ' ' : '0'
-        });              
+        });
         //if($(el).data('number') > 10)
-        // set elements text to 0              
+        // set elements text to 0
         $(el).text(convertInString(0, $(el).text().replace(/\D/g,'').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
         // apply same text in shine element
-        if($(el).next('.shine')) { $(el).next('.shine').html($(el).text()); $($(el).parent()).find('.number-shadow ').html($(el).text()); } 
+        if($(el).next('.shine')) { $(el).next('.shine').html($(el).text()); $($(el).parent()).find('.number-shadow ').html($(el).text()); }
         else { $(el).css('opacity', 0.6); }
       });
 
@@ -502,10 +502,10 @@ $.fn.isInViewport = function(props) {
           $(this).css({'top': ($(this).offset().top - $(parent).offset().top) + 'px', 'bottom': 'auto'});
         });
       });*/
-      
 
 
-    
+
+
     $(window).on("mousewheel", function(event) {
       var st = $(this).scrollTop();
        if (st > lastScrollTop){
@@ -516,11 +516,11 @@ $.fn.isInViewport = function(props) {
        lastScrollTop = st;
 
       if(direction == "up" && $(this).scrollTop() == 0) return;
-      
+
       deltaY = Math.abs(event.originalEvent.deltaY)>=40 ? event.originalEvent.deltaY/40 : event.originalEvent.deltaY;
       $('.parallax').each(function() {
         if($(this).isInViewport(0) && (!mobile_device || mobile_device && $(this).data('mobile-parallax'))) { //-Number($(this).css('top').replace('px', '')))
-          currentPosition = Number($(this).css('top').replace('px', ''));   
+          currentPosition = Number($(this).css('top').replace('px', ''));
           $(this).css('top', currentPosition - Number($(this).data('parallax-depth')*deltaY) + 'px');
        }
       });
@@ -542,7 +542,7 @@ $.fn.isInViewport = function(props) {
         }
       });
     });
-     
+
 
      var prevPx = 0;
      $('.myth-vs-fact--myth').wrapInner('<div class="fact--description"></div>');
@@ -554,8 +554,8 @@ $.fn.isInViewport = function(props) {
 
 
      $(window).on('scroll', function() {
-      
-      
+
+
       // get breaking point for animation
       var myth_fact_breakpoint =  mobile_device ? $(window).height()/4*3 : 100;
 
@@ -565,7 +565,7 @@ $.fn.isInViewport = function(props) {
        } else if(mobile_device) {
           $(this).removeClass('animate');
        }
-      });  
+      });
      });
     }
   };
@@ -637,19 +637,19 @@ $.fn.isInViewport = function(props) {
         var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
         var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
         var step1_field3 = $('input[name="field_story_category"]:checked', context);
-        
+
         if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
           step1_progress = true;
         } else {
           step1_progress = false;
         }
-        
+
         if (step1_progress == true) {
           $('.step2 .step-link', context).addClass('active');
           $('.step2 .step-content', context).slideDown();
           goToByScroll('step2');
         }
-        
+
         // Step 2
         var step2_field1 = $('textarea#edit-body-0-value', context);
         if (step2_field1.val()) {
@@ -690,7 +690,7 @@ $.fn.isInViewport = function(props) {
           $('.step5 .step-content', context).slideDown();
           goToByScroll('step5');
         }
-        
+
 
       });
     }
