@@ -114,7 +114,7 @@
       }
     }
 
-    h1 {
+    .slide--heading {
       //font-weight: 700;
       //font-style: italic;
       font-family: $font-flama-semibold-italic;
@@ -200,13 +200,19 @@
     }
 }
 
-.paragraph--type--landing-page-slider .paragraph--type--slide h1 {
+.paragraph--type--landing-page-slider .paragraph--type--slide .slide--heading {
   height: auto;
   padding-top: 5rem;
-
+  padding-bottom: 4.2rem;
   @media (min-width: $screen-sm-min) {
     padding-top: 10rem;
+
   }
+  @media (max-width: $screen-sm-min) {
+    padding-bottom: 1.7rem;
+
+  }
+  @extend %h1;
 }
 
 .fixed-slider-header {
