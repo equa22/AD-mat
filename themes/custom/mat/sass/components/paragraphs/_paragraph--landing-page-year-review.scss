@@ -4,7 +4,7 @@
 // Paragraph Year-review element on the landing page
 // ========================================
 
-// Paragraph Year-review 
+// Paragraph Year-review
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-year-review {
   padding: 11rem 0 9.5rem 0;
@@ -16,7 +16,7 @@
 
   .field--name-field-statistics-items {
     margin-top: 12.5rem;
-    
+
     @media (min-width: $screen-sm-min) {
       margin-top: 9rem;
     }
@@ -34,6 +34,7 @@
 
     h1 {
       @include font-size(4);
+      font-family: $font-flama-semibold;
 
       @media (min-width: $screen-sm-min) {
         @include font-size(5);
@@ -49,7 +50,7 @@
 
   .paragraph--type--statistics-item {
     .field--name-field-number {
-      font-family: $font-roboto;
+      font-family: $font-flama-semibold;
       font-weight: 500;
     }
   }

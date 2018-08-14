@@ -20,7 +20,7 @@
     min-height: 83.5rem;
     padding: 22rem 0 9rem 0;
   }
-  
+
   @media (max-width: $screen-sm-max) {
     margin-top: -$header-height-mobile;
   }
@@ -29,6 +29,10 @@
     position: relative;
     min-height: 35.5rem;
     padding: 11rem 0 4rem 0;
+
+    h1 {
+      font-family: $font-flama-semibold;
+    }
 
      @media (min-width: $screen-sm-min) {
       position: static;
