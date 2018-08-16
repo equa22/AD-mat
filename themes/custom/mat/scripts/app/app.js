@@ -193,6 +193,7 @@ $.fn.isInViewport = function(props) {
       // Test if the browser is IE.
       var ua = window.navigator.userAgent;
       var is_internet_explorer = /MSIE|Trident/.test(ua);
+
       // CSS object-fit:cover workaround for IE. Hides the default <img> elements and reveals
       // .slide--image divs with a background image.
       if (('.node--type-landing-page').length > 0) {
@@ -214,13 +215,12 @@ $.fn.isInViewport = function(props) {
         autoplaySpeed: 15000,
         fade: true,
         cssEase: 'linear',
-        draggable: false,
+        draggable: true,
         pauseOnHover: false
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // if slide changed, animate next slide
         if(currentSlide != nextSlide) {
-
-          //Todo: remove lines that are commented if the typeText function is not used.
+          //Todo: remove lines that are commented out if the typeText function is not used.
           // typeText($($('.slick-slide h1')[nextSlide + 1]), '.slick-active', 500);
           // $('.slick-slide').removeClass('animated');
 
@@ -244,7 +244,7 @@ $.fn.isInViewport = function(props) {
       //$('.slick-list.draggable').append($('<div class="fixed-slider-header"><div class="container">Inspired by</div></div>'));
 
       // animate first slide
-      //Todo: remove lines that are commented if the typeText function is not used.
+      //Todo: remove lines that are commented out if the typeText function is not used.
       // typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
       $('.slick-slide:eq(0)').addClass('animated');
     }

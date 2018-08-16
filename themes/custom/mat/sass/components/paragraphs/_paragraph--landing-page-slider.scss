@@ -26,7 +26,7 @@
 
   .container .slide--content .field--name-field-content {
     transition: transform 1.3s ease-in-out 0.1s, opacity 0.8s ease-in-out;
-    transition-delay: 2s;
+    transition-delay: 1.5s;
     font-weight: 500;
   }
   .animated {
@@ -89,8 +89,8 @@
 
       }
 
-      @media (max-width: $screen-xs-max) {
-        padding-bottom: 250px;
+      @media (max-width: $screen-md) {
+        padding-bottom: 115px;
       }
       @media (min-width: $screen-sm-min) {
         display: flex;
@@ -104,7 +104,6 @@
       max-width: 100%; //61rem
       position: relative;
       color: $color-white;
-
       .contextual {
         top: 4rem;
 
