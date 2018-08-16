@@ -1,0 +1,4 @@
+endpoint_uri_stage: 'https://dla.lifelogics.org/api'
+endpoint_uri_production: 'https://www.registerme.org/api'
+environment: 0
+debug_mode: 1
