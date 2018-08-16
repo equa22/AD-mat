@@ -174,12 +174,12 @@ $.fn.isInViewport = function(props) {
     setTimeout(function() {                 // with optional timeout set interval
         write = setInterval(function() {
           $el.text( title += text[counter]); // add letter to string
-          counter++;                            // increase counter 
+          counter++;                            // increase counter
           if(counter == text.length) {          // stop interval, if all letters've been processed
             clearInterval(write);
             $(parent).addClass('animated');     // add class to parent to let DOM know animation is done
           }
-        }, 50);  
+        }, 50);
       }, delay);
 
     setTimeout(function() {
