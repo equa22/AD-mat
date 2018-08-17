@@ -25,7 +25,7 @@
     _num: {
       group: 3,
       first_and_last: 5,
-      other_pages: 5
+      other_pages: 10
     },
 	  overlap: true,
 	  interval: 10000,
@@ -36,10 +36,10 @@
 	  _el_width: 110,
 	  _el_height: 110,
 	  movement: {
-	    _entry: {speed: 5000, delay: 300, type: "linear"},
-	    _leave: {speed: 3000, delay: 500, type: "linear"},
+	    _entry: {speed: 500, delay: 100, type: "linear"},
+	    _leave: {speed: 500, delay: 100, type: "linear"},
 	    _fast: {speed: 1200, type: "linear", css: function() { return this.speed + "ms transform " + this.type}},
-	    _smooth: {max: 4000, min: 80000, type: "linear", radius: 50,
+	    _smooth: {max: 4000, min: 80000, type: "linear", radius: 50, leave: 80000,
 	            css: function() { return (Math.floor(Math.random() * this.max) + this.min) + 'ms all ' + this.type}}
 	  },
 	  background: {
@@ -60,6 +60,29 @@
 	    }
 	  }
 	};
+
+
+  var sliderSections = {
+    active: 0, 
+    sections: [], 
+    add: function(from, to) {
+      sliderSections.sections.push({from: from*$board.width()/100, to: to*$board.width()/100})
+    },
+    check: function(value) {
+      for(var i = 0; i < sliderSections.sections.length; i++) {
+        if(sliderSections.sections[i].from > value && sliderSections.sections[i].to <= value) {
+          sliderSections.active = i;
+          return sliderSections.active;
+        }
+      }
+    },
+    slider_width: 0,
+    getSliderWidth() {
+      return sliderSections.sections[0].from - sliderSections.sections[sliderSections.sections.length - 1].from;
+    }
+  };                    // prepared for sections of slider (to track in which)
+
+
 
   function checkMobile() {
     var check = false;
@@ -99,6 +122,81 @@
     return false;
   }
   
+  function findStory(target) {
+    for(var i = 0; i < stories.length; i++) {
+      if(stories[i].target == target) {
+        return stories[i];
+      }
+    }
+  }
+
+  function getStoriesReady(category, letter, init) {
+    let fadeElementsOut = [];
+    let fadeElementsIn = [];
+
+
+    
+
+
+    stories.forEach(function(story) {
+      if(category && story.category_id != category) {
+        if(story.display) fadeElementsOut.push(story);
+        story.display = false;
+      } else if(letter) {
+        if(story.display) fadeElementsOut.push(story);
+        story.display = false;
+      } else {
+        if(!story.display) fadeElementsIn.push(story);
+        story.display = true;
+      }
+    })
+    
+
+    stories = sortForSlider(stories);
+
+    
+    if(init) {
+      stories.forEach(function(item) {
+        item.getStartingPosition();
+
+        setTimeout(function() {
+          item.fadeIn();
+        }, 100);
+      })
+    }
+
+    console.log("fadeElementsIn", fadeElementsIn)
+    console.log("fadeElementsOut", fadeElementsOut)
+
+
+    fadeElementsOut.forEach(function(story, i) {
+      setTimeout(function() {
+        story.fadeOut();
+      }, config.movement._leave.delay*i)
+    })
+
+    setTimeout(function() {
+      fadeElementsIn.forEach(function(story, i) {
+        setTimeout(function() {
+          story.speed = config.movement._entry.speed;
+          //story.getStartingPosition();
+          console.log(story.slideChanged);
+
+
+          let newSlide = sliderSections.check(story.position.x);
+          //if(story.slide != newSlide) {
+          if(story.slideChanged){
+            story.getStartingPosition();
+          }
+
+          story.fadeIn();
+        }, config.movement._entry.delay*i)
+      })
+    }, config.movement._leave.delay*0); //fadeElementsOut.length
+
+
+    setSlider();
+  }
 
   function createDOMStories () {
     // create DOM elements
@@ -117,24 +215,16 @@
       .mouseenter((e) => {                                   // __mouse hover event
         $(e.target).find('.label').css('display', 'block');
         setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
-        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and stop animation
-          if($(e.target).data('id') == el.story_id) {
-            //animations.stop(el);
-            $(e.target).find('.label').css('display', 'block');
-            setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
-          }
-        })*/
+
+        // to-do
+        // stop enimation
       })
       .mouseleave((e) => {                                   // __mouse leave event
-        /*$displayedStories[active_index].forEach((el) => {    // find dom element in array and restart animation
-          if($(e.target).data('id') == el.story_id) {
-            animations.start(el);
-            $(e.target).removeClass('hovered');
-            setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
-          }
-        })*/
         $(e.target).removeClass('hovered');
         setTimeout(() => {$(e.target).find('.label').css('display', 'none'); }, 50);
+
+        // to-do
+        // animate element
       })
       .click((e) => {                                        // __click event
         openModal($(e.target).data('id'));
@@ -162,12 +252,169 @@
     // for mobile
     //prepareDesktopElements();
 
-    getPositions(stories);
+    //getPositions(stories);
+
+    getStoriesReady(null, null, true);
 
     getFilters();
     
   }
   
+
+function getFirstAndLastPosition(row, last) {
+  var x = {value: 0, counter: 0}, 
+      y = {value: 0, counter: 0}, 
+      titlePos = row.positions.from * config._width, 
+      left = last ? config._el_width/2 : config._el_width + 10, 
+      right = last ? config._el_width + 10 : config._el_width/2;
+  // /(x.value - row.positions.from * config._width/100) > config.title.left && (x.value - row.positions.from*config._width/100) < config.title.left + config.title.width)
+
+  while(x.counter < 40 && (x.value == 0 || isOverlapingX(x.value))) {
+    x.value = randomBetween((row.positions.from - config._el_width) + left, (row.positions.to + config._el_width) - right);
+    x.counter++;
+  }
+  while(y.counter < 40 && (y.value == 0 || isOverlapingY(y.value))) {
+    y.value = randomBetween(config._height - config._el_width,  config._el_width);
+    y.counter++;
+  }
+  return {x: x.value, y: y.value}
+}
+
+function getPositionsBySections(arr) {
+  calculateWrapperWidth(arr.length);
+
+  $positions.forEach(function(row, i) {
+    row.items.forEach(function(item) {
+      
+      var test = randomBetween(row.positions.from, row.positions.to);
+
+      if(i == 0 || i == $positions.length - 1) {
+        item.position = getFirstAndLastPosition(row, i);
+      } else {
+        item.position = {
+          x: randomBetween(row.positions.from, row.positions.to),
+          y: randomBetween(config._height - config._el_width - 40, config._el_width)
+        }
+      }
+    })
+  })
+
+  animations.fade_in($positions);
+}
+
+var $positions = [];
+function getPositions(arr) {
+  var tmp = [...arr], helper = [], from = 0;
+  $positions = [];
+
+  
+  $positions.push({
+    positions: {
+      from: 100*$board.width()/100,
+      to: 0
+    },
+    items: tmp.splice(0, config._num.first_and_last),
+    slider: sliderSections.sections.length
+  });
+ // sliderSections.add(100, 0);
+
+  var lastItems = tmp.splice(tmp.length-config._num.first_and_last, config._num.first_and_last);
+
+
+  while(tmp.length > 0) {
+    helper.push(tmp.shift());
+    if(helper.length == config._num.other_pages || tmp.length == 0) {
+      $positions.push({
+        positions: {
+          from: from*$board.width()/100,
+          to: (from - helper.length*100/config._num.other_pages)*$board.width()/100
+        },
+        items: helper,
+        slider: sliderSections.sections.length
+      })
+      //sliderSections.add(from, from - helper.length*100/config._num.other_pages);
+
+      from = from - helper.length*100/config._num.other_pages;
+      helper = [];
+    }
+  }
+
+
+  if(lastItems.length > 0) {
+    $positions.push({
+      positions: {
+        from: from*$board.width()/100,
+        to: (from - 100)*$board.width()/100
+      },
+      items: lastItems,
+      slider: sliderSections.sections.length
+    });
+    //sliderSections.add(from, from-100);
+
+  }
+
+  console.log("POSITIONS", $positions, sliderSections);
+  
+  sliderSections.check(100);
+
+  getPositionsBySections(arr);
+}
+
+
+  function sortForSlider(arr) {
+    let counter = 0;    // counter of elements which are already set
+    let slide = 0;      // current slider
+    let totalDisplayed = 0;  // total number of displayed items
+    let displayedInMiddleSlide = 0;
+    let from = 0;
+    sliderSections.sections = [];
+
+    arr.forEach(function(item) {
+      if(item.display) totalDisplayed++;
+    })
+    
+    arr.forEach(function(item) {
+      if(item.display) {
+        if(item.slide == slide) item.slideChanged = false;
+        else item.slideChanged = true;
+        item.prevSlide = item.slide;
+
+        item.slide = slide;
+
+        if(counter < config._num.first_and_last) {
+          if(counter == config._num.first_and_last - 1) {
+            slide++;                      // move to next slide
+            sliderSections.add(100, 0);   // add slide to slider
+          }
+        } else if(counter < totalDisplayed - config._num.first_and_last) {  // if item is between first and last
+          displayedInMiddleSlide++;       // count middle items
+          
+          if(displayedInMiddleSlide == config._num.other_pages) {
+            displayedInMiddleSlide = 0;   // reset counter
+            sliderSections.add(from, from - 100);  // add slide to slider
+            from = from - 100;                      
+            slide++;                               // move to next slide
+          } else if(counter == totalDisplayed - config._num.first_and_last - 1) {
+            sliderSections.add(from, from - displayedInMiddleSlide*100/config._num.first_and_last);   // add slide to slider
+            from = from - displayedInMiddleSlide*100/config._num.first_and_last;
+            slide++;
+
+            sliderSections.add(from, from - 100);         // add last slide
+          } 
+        } 
+        counter++;
+      }
+    })
+    if(totalDisplayed < config._num.first_and_last) {
+      sliderSections.add(100, 0);
+    }
+    else if(totalDisplayed > config._num.first_and_last && totalDisplayed < config._num.first_and_last*2) {   // if not enough elements
+      sliderSections.add(from, from - 100);
+    }
+
+    return arr;
+  }
+
   Drupal.behaviors.mat_stories_api = {
     attach: function (context, settings) {
       config._width = $board.width();
@@ -219,7 +466,51 @@
             "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
             "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
             "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          },{
+            "story_id":"1011",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
           }, {
+            "story_id":"1012",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"1013",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          },{
+            "story_id":"1014",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          },{
             "story_id":"102",
             "first_name":"Kristin",
             "last_name":"Michelle Dennis",
@@ -310,15 +601,74 @@
           },...data];
 
 
-          JSON.forEach((item) => {
-            let newItem = item;
-            newItem.speed = (randomBetween(config.movement._smooth.max, config.movement._smooth.min))/1000;
-            newItem.target = '#story' + item.story_id
+          JSON.forEach((item, i) => {
+            //let newItem = item;
+            let newItem = {
+              ...item,
+              target: '#story' + item.story_id,
+              getCss: function() {
+                $(this.target).css({
+                  'transform': 'translate(' + this.position.x + 'px, ' + this.position.y + 'px) scale(' + this.scale + ')',
+                  '-webkit-transition': this.speed + 'ms all ' + config.movement._smooth.type,
+                  '-moz-transition': item.speed + 'ms all ' + config.movement._smooth.type,
+                  '-ms-transition': item.speed + 'ms all ' + config.movement._smooth.type,
+                  '-o-transition': item.speed + 'ms all ' + config.movement._smooth.type,
+                  'transition': item.speed + 'ms all ' + config.movement._smooth.type,
+                  'filter': 'blur(' + this.blur + ')'
+                })
+              },
+              position: {x: 0, y: 0},
+              getXPosition: function(from, to) {
+                this.prevPosition = this.position.x;
+                this.position.x = randomBetween(from, to);
+              },
+              getYPosition: function(from, to) {
+                this.position.y = randomBetween(from, to);
+              },
+              scale: '0.7',
+              blur: '3.4px',
+              speed: '0s',
+              display: true,
+              fadeOut: function() {
+                let time = 0;
+                this.scale = '0.7';
+                this.blur = '3.4px';
+                this.speed = config.movement._leave.speed;
+
+                animations.stopMovement(this);
+                this.getCss();
+
+                setTimeout(() => {
+                  this.speed = config.background.image_bubbles._speed;
+                  this.getCss();
+                  animations.animateBubble(this);
+                }, config.movement._leave.speed + time);
+              },
+              fadeIn: function() {
+                this.scale = '1';
+                this.blur = '0';
+                this.speed = config.movement._entry.speed;
+
+                animations.stopMovement(this);
+
+                this.getCss();
+                animations.makeElMove(this);
+              },
+              slide: 0,
+              getStartingPosition: function() {
+                this.getXPosition(sliderSections.sections[this.slide].from, sliderSections.sections[this.slide].to);
+                this.getYPosition(config._el_height, config._height - config._el_height);
+                this.getCss();
+              }
+            };
             stories.push(newItem);
           })
 
+
           
-          
+
+
+          //console.log("stories", stories);
 
 	        /* Check, if id in parameter and open story in modal, if is*/
 					var check_params = window.location.href.split('#')
@@ -326,10 +676,7 @@
 					  openModal(check_params[check_params.length - 1]);
 					}
 
-
-
           createDOMStories();
-
 
           makeAnimatedBackground();
       	}
@@ -345,12 +692,15 @@
 var animations = {
   done: true,
   animateBubble: (el) => {
+    
+    if(el.animate) return;
+
+    animations.stopMovement(el);
     el.animate = setInterval(() => {
       // get new coordinates for element
       //getCoordinates(el);
       var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
       var y = Math.floor(Math.random() * (containerHeight - config._el_height));
-
 
       el.position = {
         x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
@@ -358,22 +708,23 @@ var animations = {
       }
 
       $(el.target).css({
-        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
+        '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+        '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+        '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+        '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
+        'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")"
       });
     }, config.background.image_bubbles._interval);
   },
   makeElMove: (el) => {
-    if(el.animated) return;
+    if(el.movement) return;
 
+    el.speed = config.movement._smooth.max;
     el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
     el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
     // get new coordinates for element
     //$(el.target).css({'transform': translate(el.positions.x + 'px', el.positions.y + 'px') scale(1)})
-
+/*
     $(el.target).css({
       'transform': 'translate(' + el.position.x + 'px, ' + el.position.y + 'px) scale(1)',
       '-webkit-transition': el.speed + 'ms all ' + config.movement._smooth.type,
@@ -381,14 +732,15 @@ var animations = {
       '-ms-transition': el.speed + 'ms all ' + config.movement._smooth.type,
       '-o-transition': el.speed + 'ms all ' + config.movement._smooth.type,
       'transition': el.speed + 'ms all ' + config.movement._smooth.type
-    })
+    })*/
+    el.getCss();
 
     el.animate = setInterval(() => {
       el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
       el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
       // get new coordinates for element
-      $(el.target).css({'transform': 'translate(' + el.position.x + 'px, ' + el.position.y + 'px) scale(1)' })
-    }, (config.movement._smooth.max));
+      el.getCss();
+    }, el.speed);
 
     el.movement = true;
   },
@@ -684,8 +1036,9 @@ let getFilters = () => {
           $('.selected').text("A-Z");
         }
       } else {
-        animations.fade_out($(e.target).data('category-id'));
-        getPositions(filtered);
+        //animations.fade_out($(e.target).data('category-id'));
+        //getPositions(filtered);
+        getStoriesReady($(e.target).data('category-id'));
       }
 
 
@@ -751,106 +1104,24 @@ function moveSlider(to) {
 }
 
 
-function moveDraggableBar (value) { // value in px
-
-} 
-
-function getFirstAndLastPosition(row, last) {
-  var x = {value: 0, counter: 0}, 
-      y = {value: 0, counter: 0}, 
-      titlePos = row.positions.from * config._width, 
-      left = last ? config._el_width/2 : config._el_width + 10, 
-      right = last ? config._el_width + 10 : config._el_width/2;
-  // /(x.value - row.positions.from * config._width/100) > config.title.left && (x.value - row.positions.from*config._width/100) < config.title.left + config.title.width)
-
-  while(x.counter < 40 && (x.value == 0 || isOverlapingX(x.value))) {
-    x.value = randomBetween((row.positions.from - config._el_width) + left, (row.positions.to + config._el_width) - right);
-    x.counter++;
-  }
-  while(y.counter < 40 && (y.value == 0 || isOverlapingY(y.value))) {
-    y.value = randomBetween(config._height - config._el_width,  config._el_width);
-    y.counter++;
-  }
-  return {x: x.value, y: y.value}
-}
-
-function getPositionsBySections(arr) {
-  calculateWrapperWidth(arr.length);
-
-  $positions.forEach(function(row, i) {
-    row.items.forEach(function(item) {
-      
-      var test = randomBetween(row.positions.from, row.positions.to);
-
-      if(i == 0 || i == $positions.length - 1) {
-        item.position = getFirstAndLastPosition(row, i);
-      } else {
-        item.position = {
-          x: randomBetween(row.positions.from, row.positions.to),
-          y: randomBetween(config._height - config._el_width - 40, config._el_width)
-        }
-      }
-    })
-  })
-
-  animations.fade_in($positions);
-}
-
-var $positions = [];
-function getPositions(arr) {
-  var tmp = [...arr], helper = [], from = 0;
-  $positions = [];
-
-
-  $positions.push({
-    positions: {
-      from: 100*$board.width()/100,
-      to: 0
-    },
-    items: tmp.splice(0, config._num.first_and_last)
-  });
-
-  var lastItems = tmp.splice(tmp.length-config._num.first_and_last, config._num.first_and_last);
-
-
-  while(tmp.length > 0) {
-    helper.push(tmp.shift());
-    if(helper.length == config._num.other_pages || tmp.length == 0) {
-      $positions.push({
-        positions: {
-          from: from*$board.width()/100,
-          to: (from - helper.length*100/config._num.other_pages)*$board.width()/100
-        },
-        items: helper
-      })
-      from = from - helper.length*100/config._num.other_pages;
-      helper = [];
-    }
-  }
-
-
-  if(lastItems.length > 0) {
-    $positions.push({
-      positions: {
-        from: from*$board.width()/100,
-        to: (from - 100)*$board.width()/100
-      },
-      items: lastItems
-    });
-  }
-
-  console.log("POSITIONS", $positions);
-  getPositionsBySections(arr);
-}
 
 function moveItems(value) {
-
+  stories.forEach(function(el) {
+    el.position.x = el.position.x + (el.scale == 1 ? value :( value/2));
+    el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100;
+    if(el.movement)
+        animations.stopMovement(el);
+      el.getCss();
+  })
+  /*
   $positions.forEach(function(row) {
     row.items.forEach(function(el) {
       el.position.x = el.position.x + (el.scale == 1 ? value :( value/2));
 
       if(el.movement)
         animations.stopMovement(el);
+
+      el.getCss();
 
       $(el.target).css({
         '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(" + el.scale + ")",
@@ -865,7 +1136,7 @@ function moveItems(value) {
           'transition': (Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ) + "ms transform linear"
       })
     })
-  })
+  })*/
 
   smallItems.forEach(function(el) {
     el.position.x = el.position.x + value/2;
@@ -890,37 +1161,25 @@ function moveItems(value) {
 
 
 function setSlider(width) {
-  console.log("WIDTH" ,width);
-
-  var prevSlided = 0;
   let $slider = $('.stories-api .outer-wrapper');
   let prevSliderValue = 0;
+  let max = sliderSections.getSliderWidth()
 
   $( "#slider" ).slider(
-    { max: width + 100,
-     disabled: width > 100 ? false : true,
-     slide: ( event, ui ) => { 
-      let factor = 100*ui.value/width;
-      let slide = 100*ui.value/width *$board.width()/100
-      var slided = $scroll.scrollLeft();
+    { max: max,
+      disabled: !max,
+      slide: ( event, ui ) => { 
+        moveItems(Number(ui.value - prevSliderValue));
+        prevSliderValue = ui.value;
 
-      if((ui.value <= 5 || ui.value >= (width + 95)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
-        $('.slider-wrapper .container-small').removeClass('fade-out');
-      } else if((ui.value > 5 && ui.value < (width + 95)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
-        $('.slider-wrapper .container-small').addClass('fade-out');
-      }
-
-      let sliderChange = prevSliderValue - $('.ui-slider-handle').css('left').replace('px', '');
-      prevSliderValue = $('.ui-slider-handle').css('left').replace('px', '');
-
-      moveItems(Number(prevSlided - slide)*-1);
-
-      prevSlided = slide;
-
-      previousSliderPoint = ui.value;
+        if((ui.value <= 10 || ui.value >= (max - 10)) && $('.slider-wrapper .container-small').hasClass('fade-out')) {
+          $('.slider-wrapper .container-small').removeClass('fade-out');
+        } else if((ui.value > 10 && ui.value < (max - 10)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
+          $('.slider-wrapper .container-small').addClass('fade-out');
+        }
      },
      change: ( event, ui ) => {
-
+/*
       $positions.forEach(function(row) {
         row.items.forEach(function(el) {
           if(el.scale == 1) {
@@ -937,6 +1196,9 @@ function setSlider(width) {
             animations.makeElMove(el);
           }
         })
+      })*/
+      stories.forEach(function(story) {
+        animations.makeElMove(story);
       })
       
 
@@ -1167,61 +1429,9 @@ $('[data-role="closemodal"]').click(() => {
 })
 
 var MOUSE_OVER = false;
-/*
-if(mobile) {
-  $('body').bind('mousewheel', (e) => {
-    if(MOUSE_OVER){
-      if(e.preventDefault) { e.preventDefault(); }
-      e.returnValue = false;
-      return false;
-    }
-  });
 
-  $('.animation-wrapper').mouseenter(() => { MOUSE_OVER=true; });
-  $('.animation-wrapper').mouseleave(() => { MOUSE_OVER=false; });
-
-  $('.animation-wrapper').bind('mousewheel', (e) => {
-    var delta = e.originalEvent.deltaY;
-    e.preventDefault();
-    if(active_index > 0 && delta > 0 && animations.done){
-      animations.goTo(active_index - 1);
-    }
-    else if(active_index < $displayedStories.length - 1 && delta < 0 && animations.done) {
-      animations.goTo(active_index + 1);
-    }
-  });
-}
-*/
 var smallItems = [];  // helper arr
-/*
-function animateBubble(el) {
-  if(el.animated) return;
-  else el.animated = true;
 
-  el.animate = setInterval(() => {
-    // get new coordinates for element
-    //getCoordinates(el);
-    
-
-    var x = Math.floor(Math.random() * (config._width*100/config._total_width/2 - config._el_width));
-    var y = Math.floor(Math.random() * (containerHeight - config._el_height));
-
-
-    el.position = {
-      x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
-      y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
-    }
-
-    $(el.target).css({
-      '-webkit-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-      '-moz-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-      '-ms-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-      '-o-transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)",
-      'transform': "translate(" + el.position.x + "px, " + el.position.y + "px) scale(1)"
-    });
-  }, config.background.image_bubbles._interval);
-}
-*/
 let makeAnimatedBackground = (w) => {
   var $body = $('.stories-api');
   
@@ -1253,7 +1463,7 @@ let makeAnimatedBackground = (w) => {
       'transition': 'transform 0ms linear,  opacity 1s linear ' + (i*0.1) + 's'
     })
     .appendTo('.animated-background');
-    smallItems.push({target: '#smallItem' + i, speed: config.background.image_bubbles._speed});
+    smallItems.push({target: '#smallItem' + i, speed: config.background.image_bubbles._speed, scale: 1});
   });
 
   smallItems.forEach((el) => {
