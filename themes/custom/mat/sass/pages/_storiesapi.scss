@@ -91,7 +91,7 @@ $option-width: 70px;
   .outer-wrapper  {
     width: 100vw;
     height: calc(100% - 80px);
-    overflow: scroll;
+    overflow: hidden;
   }
 }
 
