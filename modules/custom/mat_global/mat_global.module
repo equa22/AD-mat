@@ -58,7 +58,7 @@ function mat_global_preprocess_node(&$variables) {
  * Implements hook_paragraphs_widget_actions_alter().
  */
 function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, array &$context) {
-  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
     // Client requirements changed here: all drop-down actions should now be removed if editor role.
     $widget_actions['dropdown_actions'] = [];
   }
@@ -68,7 +68,7 @@ function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, arra
  * Implements hook_preprocess_hook().
  */
 function mat_global_preprocess_field_multiple_value_form(&$variables) {
-  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
     // Client requirements changed here: all drag actions should now be removed if editor role.
     unset($variables['table']['#tabledrag']);
     unset($variables['table']['#header'][1]);
@@ -79,7 +79,7 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
  * Implements hook_paragraphs_multiple_elements_alter().
  */
 function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$form_state) {
-  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
     // Remove order column.
     // Client requirements changed here: all order actions should now be removed if editor role.
     $exceptions = [
@@ -170,4 +170,20 @@ function mat_global_entity_base_field_info(\Drupal\Core\Entity\EntityTypeInterfa
 
     return $fields;
   }
+}
+
+
+/**
+ * Helper function: get entity type from bundle route.
+ *
+ * @param string $bundle Bundle name. Default: node.
+ * @return string Entity type or 'undefined'.
+ */
+function _mat_global_get_bundle_entity_type($bundle = 'node') {
+  $entity = \Drupal::routeMatch()->getParameter($bundle);
+  $type = 'undefined';
+  if ($entity !== null && $entity instanceof Drupal\Core\Entity\ContentEntityBase) {
+    $type = $entity->getType();
+  }
+  return $type;
 }
