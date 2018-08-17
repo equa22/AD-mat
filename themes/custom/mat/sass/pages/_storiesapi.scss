@@ -87,6 +87,12 @@ $option-width: 70px;
   width: 100%;
   //z-index: 1;
   @include gradient(90deg, #0f84d2, #0f84d2, #0b145e);
+
+  .outer-wrapper  {
+    width: 100vw;
+    height: calc(100% - 80px);
+    overflow: scroll;
+  }
 }
 
 
@@ -156,6 +162,16 @@ $option-width: 70px;
   -webkit-animation-iteration-count: infinite;
 }
 
+.slider-wrapper .container-small {
+
+  * {
+    opacity: 1;
+    transition: opacity 1s linear;
+  }
+  &.fade-out * {
+    opacity: 0;
+  }
+}
 .stories-api {
   .small-item {
     border-radius: 50%;
@@ -226,7 +242,11 @@ $option-width: 70px;
     justify-content: center;
     align-items: center;
     position: absolute;
-    transform: translate(calc(100vw + 40px), 50vh);
+    //transform: scale(0);
+    opacity: 1;
+    top: 0;
+    left: 0;
+    transition: none;
     background-color: $color-white;
     cursor: pointer;
     background-position: center;
@@ -234,6 +254,7 @@ $option-width: 70px;
     border: solid 3px rgba(255,255,255,0.8);
     z-index: 5;
     box-shadow: 0 0 50px rgba(255,255,255, 1);
+    filter: blur(3.4px) brightness(1);
 
     .label {
       display: none;
@@ -291,7 +312,8 @@ $option-width: 70px;
 
   .animation-wrapper {
     width: 100vw;
-    height: calc(100% - #{$nav-pre-content-height});
+    //height: calc(100% - #{$nav-pre-content-height});
+    height: 100%;
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -403,7 +425,6 @@ $option-width: 70px;
       margin: 0 17px;
       outline: none;
       left: 0;
-      transition: all ease-in-out 0.8s;
       border: none;
     }
   }
@@ -778,6 +799,7 @@ $mobile-item-size: 100px;
   .stories-api {
     background: transparent;
     position: unset;
+
 
     .item {
       &.left {
