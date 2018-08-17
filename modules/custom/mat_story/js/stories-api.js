@@ -36,8 +36,8 @@
 	  _el_width: 110,
 	  _el_height: 110,
 	  movement: {
-	    _entry: {speed: 500, delay: 100, type: "linear"},
-	    _leave: {speed: 500, delay: 100, type: "linear"},
+	    _entry: {speed: 3000, delay: 100, type: "linear"},
+	    _leave: {speed: 3000, delay: 100, type: "linear"},
 	    _fast: {speed: 1200, type: "linear", css: function() { return this.speed + "ms transform " + this.type}},
 	    _smooth: {max: 4000, min: 80000, type: "linear", radius: 50, leave: 80000,
 	            css: function() { return (Math.floor(Math.random() * this.max) + this.min) + 'ms all ' + this.type}}
@@ -133,40 +133,30 @@
   function getStoriesReady(category, letter, init) {
     let fadeElementsOut = [];
     let fadeElementsIn = [];
-
-
-    
+    let elementsToMove = [];
 
 
     stories.forEach(function(story) {
       if(category && story.category_id != category) {
         if(story.display) fadeElementsOut.push(story);
         story.display = false;
-      } else if(letter) {
+      } else if(letter && letter.toLowerCase() != story.last_name[0].toLowerCase() && letter.toLowerCase() != story.first_name[0].toLowerCase()) {
         if(story.display) fadeElementsOut.push(story);
         story.display = false;
       } else {
         if(!story.display) fadeElementsIn.push(story);
+        else if(story.prevSlide != story.slide) elementsToMove.push(story);
+        
         story.display = true;
       }
     })
     
-
-    stories = sortForSlider(stories);
-
     
-    if(init) {
-      stories.forEach(function(item) {
-        item.getStartingPosition();
-
-        setTimeout(function() {
-          item.fadeIn();
-        }, 100);
-      })
-    }
+    stories = sortForSlider(stories);
 
     console.log("fadeElementsIn", fadeElementsIn)
     console.log("fadeElementsOut", fadeElementsOut)
+    console.log("elementsToMove", elementsToMove)
 
 
     fadeElementsOut.forEach(function(story, i) {
@@ -175,25 +165,17 @@
       }, config.movement._leave.delay*i)
     })
 
-    setTimeout(function() {
-      fadeElementsIn.forEach(function(story, i) {
-        setTimeout(function() {
-          story.speed = config.movement._entry.speed;
-          //story.getStartingPosition();
-          console.log(story.slideChanged);
+    fadeElementsIn.forEach(function(story, i) {
+      setTimeout(function() {
+        story.fadeIn();
+      }, config.movement._entry.delay*i)
+    })
 
-
-          let newSlide = sliderSections.check(story.position.x);
-          //if(story.slide != newSlide) {
-          if(story.slideChanged){
-            story.getStartingPosition();
-          }
-
-          story.fadeIn();
-        }, config.movement._entry.delay*i)
-      })
-    }, config.movement._leave.delay*0); //fadeElementsOut.length
-
+    elementsToMove.forEach(function(story, i) {
+      setTimeout(function() {
+        story.move();
+      }, config.movement._entry.delay*i)
+    })
 
     setSlider();
   }
@@ -412,6 +394,7 @@ function getPositions(arr) {
       sliderSections.add(from, from - 100);
     }
 
+    console.log("sliderSections", sliderSections);
     return arr;
   }
 
@@ -625,13 +608,12 @@ function getPositions(arr) {
               getYPosition: function(from, to) {
                 this.position.y = randomBetween(from, to);
               },
-              scale: '0.7',
+              scale: '0',
               blur: '3.4px',
               speed: '0s',
-              display: true,
+              display: false,
               fadeOut: function() {
-                let time = 0;
-                this.scale = '0.7';
+                this.scale = '0';
                 this.blur = '3.4px';
                 this.speed = config.movement._leave.speed;
 
@@ -642,20 +624,34 @@ function getPositions(arr) {
                   this.speed = config.background.image_bubbles._speed;
                   this.getCss();
                   animations.animateBubble(this);
-                }, config.movement._leave.speed + time);
+                }, config.movement._leave.speed);
               },
               fadeIn: function() {
-                this.scale = '1';
-                this.blur = '0';
-                this.speed = config.movement._entry.speed;
+                this.getStartingPosition();
 
-                animations.stopMovement(this);
+                setTimeout(() => {
+                  this.scale = '1';
+                  this.blur = '0';
+                  this.speed = config.movement._entry.speed;
+                  this.getCss();
+                }, 100);
+                
 
-                this.getCss();
-                animations.makeElMove(this);
+                setTimeout(() => {
+                  animations.makeElMove(this);
+                }, 1000)
+                
               },
-              slide: 0,
+              move: function() {
+                this.fadeOut();
+                this.fadeIn();
+                setTimeout(() => {
+                  
+                }, config.movement._leave.speed)
+              },
+              slide: "undefined",
               getStartingPosition: function() {
+                this.speed = 0;
                 this.getXPosition(sliderSections.sections[this.slide].from, sliderSections.sections[this.slide].to);
                 this.getYPosition(config._el_height, config._height - config._el_height);
                 this.getCss();
@@ -1001,7 +997,7 @@ let getFilters = () => {
 
     $('.selected').text("A-Z");
 
-    getPositions(stories);
+    getStoriesReady(null, null);
   })
   // append all categories to filter wrapper
   categories.forEach((category, i) => {
@@ -1038,7 +1034,7 @@ let getFilters = () => {
       } else {
         //animations.fade_out($(e.target).data('category-id'));
         //getPositions(filtered);
-        getStoriesReady($(e.target).data('category-id'));
+        getStoriesReady($(e.target).data('category-id'), null);
       }
 
 
@@ -1058,10 +1054,8 @@ let getFilters = () => {
       'class': 'option'
     }).appendTo('.dropdown .dropdown-inner').click((e) => {
       $('.selected').text($(e.target).data('letter'));
-      animations.fade_out();
-      setTimeout(() => {
-        createDomElements(null, $(e.target).data('letter'));
-      }, config.movement._leave.delay * $displayedStories[active_index].length-1)
+      $('.cat-item').removeClass('bold');
+      getStoriesReady(null, $(e.target).data('letter'));
       //
     })
   })
@@ -1168,6 +1162,7 @@ function setSlider(width) {
   $( "#slider" ).slider(
     { max: max,
       disabled: !max,
+      value: 0,
       slide: ( event, ui ) => { 
         moveItems(Number(ui.value - prevSliderValue));
         prevSliderValue = ui.value;
@@ -1177,6 +1172,8 @@ function setSlider(width) {
         } else if((ui.value > 10 && ui.value < (max - 10)) && !$('.slider-wrapper .container-small').hasClass('fade-out')){
           $('.slider-wrapper .container-small').addClass('fade-out');
         }
+
+        console.log(sliderSections.check(config._width - ui.value ));
      },
      change: ( event, ui ) => {
 /*
