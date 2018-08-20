@@ -6,7 +6,7 @@
 	var $board = $(".outer-wrapper"); // animation wrapper
   var $scroll = $('.outer-wrapper');    // scrollable wrapper
 
- 
+
 
 	var $el = [];                       // matrix with elements
 	var active_index = 0;
@@ -63,8 +63,8 @@
 
 
   var sliderSections = {
-    active: 0, 
-    sections: [], 
+    active: 0,
+    sections: [],
     add: function(from, to) {
       sliderSections.sections.push({from: from*$board.width()/100, to: to*$board.width()/100})
     },
@@ -90,6 +90,7 @@
     return check;
   };
   var mobile = checkMobile();
+  // console.log(mobile);
 
   var $p, $h1, $button
 
@@ -121,7 +122,7 @@
     if(value - config._el_height > $button.offset().top - $p.height() && value < $button.offset().top - offset + $button.height()) return true;
     return false;
   }
-  
+
   function findStory(target) {
     for(var i = 0; i < stories.length; i++) {
       if(stories[i].target == target) {
@@ -146,12 +147,12 @@
       } else {
         if(!story.display) fadeElementsIn.push(story);
         else if(story.prevSlide != story.slide) elementsToMove.push(story);
-        
+
         story.display = true;
       }
     })
-    
-    
+
+
     stories = sortForSlider(stories);
 
     console.log("fadeElementsIn", fadeElementsIn)
@@ -220,7 +221,7 @@
     })
 
     // add same leave event on items label
-    
+
     $('.label').mouseleave((e) => {
       $(e.target).closest('.item').removeClass('hovered');
       setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
@@ -239,15 +240,15 @@
     getStoriesReady(null, null, true);
 
     getFilters();
-    
+
   }
-  
+
 
 function getFirstAndLastPosition(row, last) {
-  var x = {value: 0, counter: 0}, 
-      y = {value: 0, counter: 0}, 
-      titlePos = row.positions.from * config._width, 
-      left = last ? config._el_width/2 : config._el_width + 10, 
+  var x = {value: 0, counter: 0},
+      y = {value: 0, counter: 0},
+      titlePos = row.positions.from * config._width,
+      left = last ? config._el_width/2 : config._el_width + 10,
       right = last ? config._el_width + 10 : config._el_width/2;
   // /(x.value - row.positions.from * config._width/100) > config.title.left && (x.value - row.positions.from*config._width/100) < config.title.left + config.title.width)
 
@@ -267,7 +268,7 @@ function getPositionsBySections(arr) {
 
   $positions.forEach(function(row, i) {
     row.items.forEach(function(item) {
-      
+
       var test = randomBetween(row.positions.from, row.positions.to);
 
       if(i == 0 || i == $positions.length - 1) {
@@ -289,7 +290,7 @@ function getPositions(arr) {
   var tmp = [...arr], helper = [], from = 0;
   $positions = [];
 
-  
+
   $positions.push({
     positions: {
       from: 100*$board.width()/100,
@@ -336,7 +337,7 @@ function getPositions(arr) {
   }
 
   console.log("POSITIONS", $positions, sliderSections);
-  
+
   sliderSections.check(100);
 
   getPositionsBySections(arr);
@@ -354,7 +355,7 @@ function getPositions(arr) {
     arr.forEach(function(item) {
       if(item.display) totalDisplayed++;
     })
-    
+
     arr.forEach(function(item) {
       if(item.display) {
         if(item.slide == slide) item.slideChanged = false;
@@ -370,11 +371,11 @@ function getPositions(arr) {
           }
         } else if(counter < totalDisplayed - config._num.first_and_last) {  // if item is between first and last
           displayedInMiddleSlide++;       // count middle items
-          
+
           if(displayedInMiddleSlide == config._num.other_pages) {
             displayedInMiddleSlide = 0;   // reset counter
             sliderSections.add(from, from - 100);  // add slide to slider
-            from = from - 100;                      
+            from = from - 100;
             slide++;                               // move to next slide
           } else if(counter == totalDisplayed - config._num.first_and_last - 1) {
             sliderSections.add(from, from - displayedInMiddleSlide*100/config._num.first_and_last);   // add slide to slider
@@ -382,8 +383,8 @@ function getPositions(arr) {
             slide++;
 
             sliderSections.add(from, from - 100);         // add last slide
-          } 
-        } 
+          }
+        }
         counter++;
       }
     })
@@ -406,7 +407,7 @@ function getPositions(arr) {
         // prevent Drupal from reloading script
         if(!initialised) {
           $p = $('.slider-wrapper .container-small p'), $h1 = $('.slider-wrapper .container-small h1'), $button = $('.slider-wrapper .container-small a');
-      		
+
 	      	config.limit = {x: config._width/100*config.radius, y: config._height/100*config.radius};
           config.title = {
             top: $('.slider-wrapper .container-small').offset().top - $('.slider-wrapper .container-small').height(),
@@ -635,18 +636,18 @@ function getPositions(arr) {
                   this.speed = config.movement._entry.speed;
                   this.getCss();
                 }, 100);
-                
+
 
                 setTimeout(() => {
                   animations.makeElMove(this);
                 }, 1000)
-                
+
               },
               move: function() {
                 this.fadeOut();
                 this.fadeIn();
                 setTimeout(() => {
-                  
+
                 }, config.movement._leave.speed)
               },
               slide: "undefined",
@@ -661,7 +662,7 @@ function getPositions(arr) {
           })
 
 
-          
+
 
 
           //console.log("stories", stories);
@@ -688,7 +689,7 @@ function getPositions(arr) {
 var animations = {
   done: true,
   animateBubble: (el) => {
-    
+
     if(el.animate) return;
 
     animations.stopMovement(el);
@@ -699,7 +700,7 @@ var animations = {
       var y = Math.floor(Math.random() * (containerHeight - config._el_height));
 
       el.position = {
-        x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2), 
+        x: randomBetween(el.position.x - config.background.image_bubbles._radius/2, el.position.x + config.background.image_bubbles._radius/2),
         y: randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2)
       }
 
@@ -746,7 +747,7 @@ var animations = {
     el.movement = false;
   },
   fade_in: (elements, category, letter) => {
-    
+
     var t = 1;
     elements.forEach(function(row, i) {
       row.items.forEach(function(el, j) {
@@ -795,11 +796,11 @@ var animations = {
             }, config.movement._entry.speed);
             //t++;
             //animations.makeElMove(el);
-            
+
           }, t*config.movement._entry.delay )
         }
 
-        
+
       })
     })
   },
@@ -814,7 +815,7 @@ var animations = {
           return;
         } else {
 
-          
+
           console.log(el)
           el.scale = 0.6;
           el.speed = config.background.image_bubbles._speed;
@@ -1020,7 +1021,7 @@ let getFilters = () => {
         }
       })
 
-      
+
 
 
       if(mobile) {
@@ -1065,11 +1066,19 @@ let getFilters = () => {
     $('.filter-wrapper').slick({
         arrows: false,
         infinite: false,
-        variableWidth: true
+        variableWidth: true,
+        centerMode: false
     }).on("afterChange", function (event, slick, currentSlide, nextSlide){
       createDomElements($('.slick-active').data('category-id'));
-
       $('.selected').text("A-Z");
+    }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
+      // If the user is navigating from the first slide to the right (show the left-side gradient bg).
+      if (currentSlide == 0) {
+        $('.filter-wrapper.slick-slider').addClass('away-from-left-edge');
+      }
+      if (nextSlide === 0) {
+        $('.filter-wrapper.slick-slider').removeClass('away-from-left-edge');
+      }
     });
   }
 }
@@ -1080,10 +1089,10 @@ let getFilters = () => {
 function prepareDesktopElements(category, letter) {
   getPositions(stories);
 
-  
+
   /* * * * * * * * * * * * * * * * */
 
-  
+
 
 }
 
@@ -1163,7 +1172,7 @@ function setSlider(width) {
     { max: max,
       disabled: !max,
       value: 0,
-      slide: ( event, ui ) => { 
+      slide: ( event, ui ) => {
         moveItems(Number(ui.value - prevSliderValue));
         prevSliderValue = ui.value;
 
@@ -1197,7 +1206,7 @@ function setSlider(width) {
       stories.forEach(function(story) {
         animations.makeElMove(story);
       })
-      
+
 
       smallItems.forEach(function(el) {
         $(el.target).css({
@@ -1214,7 +1223,7 @@ function setSlider(width) {
   );
 
 
-  
+
 
   $('#slider span')
   .prepend($('<div/>', {
@@ -1233,7 +1242,7 @@ function calculateWrapperWidth(num, arr) {
     width = 200 + 100*Math.floor(num / config._num.other_pages) + 100*(num % config._num.other_pages)/config._num.other_pages;
   }
   $('.animation-wrapper').css('width', width + '%');
-  setSlider(width); 
+  setSlider(width);
 }
 
 function prepareMobileElements(category, letter) {
@@ -1434,7 +1443,7 @@ var smallItems = [];  // helper arr
 
 let makeAnimatedBackground = (w) => {
   var $body = $('.stories-api');
-  
+
   $('<div/>', {         // create background animation base in html
     class: 'animated-background'
   }).appendTo($body);
@@ -1445,7 +1454,7 @@ let makeAnimatedBackground = (w) => {
     var x = Math.floor(Math.random() * (w - config._el_width));
     var y = Math.floor(Math.random() * (containerHeight - config._el_height));
     item.position = {x: x, y: y}
-    
+
     $('<div/>', {
       class: 'small-item',
       id: 'smallItem' + i
@@ -1487,7 +1496,7 @@ let makeAnimatedBackground = (w) => {
       var y = randomBetween(el.position.y - config.background.image_bubbles._radius/2, el.position.y + config.background.image_bubbles._radius/2);
 
       el.position = {
-        x: x, 
+        x: x,
         y: y
       }*/
 //console.log(el.position)
@@ -1502,7 +1511,7 @@ let makeAnimatedBackground = (w) => {
       animations.animateBubble(el);
     }, 100);
     // and start interval animation
-    
+
   })
 
 
