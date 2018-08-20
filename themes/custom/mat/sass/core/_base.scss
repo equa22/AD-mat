@@ -10,6 +10,7 @@ body {
   color: $gray-darker;
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
   font-family: $font-text;
   font-weight: 400;
   &.modal-open {
