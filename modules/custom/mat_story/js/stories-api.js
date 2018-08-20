@@ -59,7 +59,7 @@
       el.animate = setInterval(() => {
         let x = randomBetween(el.position.x + config.background.image_bubbles._radius/2, el.position.x - config.background.image_bubbles._radius/2);
         let y = randomBetween(el.position.y + config.background.image_bubbles._radius/2, el.position.y - config.background.image_bubbles._radius/2);
-        
+
         el.position.x = x;
         el.position.y = y;
 
@@ -93,15 +93,15 @@
     stopMovement: (el) => {
       clearInterval(el.animate);
       clearTimeout(el.timeout);
-      
+
       el.getCss();
       el.movement = false;
     }
   }
 
-	
+
   var sliderSections = {
-    sections: [], 
+    sections: [],
     add: function(from, to) {
       sliderSections.sections.push({from: from*$board.width()/100, to: to*$board.width()/100})
     },
@@ -137,7 +137,7 @@
     if(value - config._el_height > $button.offset().top - $p.height() && value < $button.offset().top - offset + $button.height()) return true;
     return false;
   }
-  
+
   function findStory(id) {
     for(var i = 0; i < stories.length; i++) {
       if(stories[i].story_id == id) {
@@ -161,11 +161,11 @@
       } else {
         if(!story.display) fadeElementsIn.push(story);
         else if(story.prevSlide != story.slide) elementsToMove.push(story);
-        
+
         story.display = true;
       }
     })
-    
+
     if(!mobile) {
       stories = sortForSlider(stories);
 
@@ -187,7 +187,7 @@
         }, config.movement._entry.delay*i)
       })
 
-      setSlider();  
+      setSlider();
     } else {
       let classCounter = 0;
 
@@ -221,7 +221,7 @@
     arr.forEach(function(item) {
       if(item.display) totalDisplayed++;
     })
-    
+
     arr.forEach(function(item) {
       if(item.display) {
         if(item.slide == slide) item.slideChanged = false;
@@ -237,11 +237,11 @@
           }
         } else if(counter < totalDisplayed - config._num.first_and_last) {  // if item is between first and last
           displayedInMiddleSlide++;       // count middle items
-          
+
           if(displayedInMiddleSlide == config._num.other_pages) {
             displayedInMiddleSlide = 0;   // reset counter
             sliderSections.add(from, from - 100);  // add slide to slider
-            from = from - 100;                      
+            from = from - 100;
             slide++;                               // move to next slide
           } else if(counter == totalDisplayed - config._num.first_and_last - 1) {
             sliderSections.add(from, from - displayedInMiddleSlide*100/config._num.first_and_last);   // add slide to slider
@@ -249,8 +249,8 @@
             slide++;
 
             sliderSections.add(from, from - 100);         // add last slide
-          } 
-        } 
+          }
+        }
         counter++;
       }
     })
@@ -440,8 +440,13 @@
           }]
           data.forEach((item, i) => {
             let newItem = {
-              ...item,
+              first_name: item.first_name,
+              last_name: item.last_name,
+              category: item.category,
+              featured_image: item.featured_image,
+              category_id: item.category_id,
               target: '#story' + item.story_id,
+              story_id: item.story_id,
               getCss: function() {
                 $(this.target).css({
                   'transform': 'translate(' + this.position.x + 'px, ' + this.position.y + 'px) scale(' + this.scale + ')',
@@ -475,7 +480,7 @@
                     while(counter < 40 && (y == 0 || isOverlapingY(y))) {
                     y = randomBetween(config._height - config._el_width,  config._el_width);
                     counter++;
-                  } 
+                  }
                 }
                 this.position.y = y;
               },
@@ -510,7 +515,7 @@
                 setTimeout(() => {
                   animations.makeElMove(this);
                 }, 1000)
-                
+
               },
               move: function() {
                 this.fadeOut();
@@ -519,7 +524,7 @@
               slide: "undefined",
               getStartingPosition: function() {
                 this.speed = 0;
- 
+
                 if(this.slide == 0 || this.slide == sliderSections.sections.length - 1) {
 
                 }
@@ -529,7 +534,7 @@
               }
             };
             stories.push(newItem);
-            console.log(mobile);
+            console.log(newItem);
           })
 
 	        /* Check, if id in parameter and open story in modal, if is*/
@@ -539,7 +544,7 @@
 					}
 
           createDOMStories();
-          
+
       	}
       });
     }
@@ -569,7 +574,7 @@
         if(mobile) return;
         let $item = $(e.target).closest('.item');
         let item = findStory($item.data('id'));
-       
+
         animations.makeElMove(item);
       })
       .click((e) => {                                        // __click event
@@ -659,7 +664,7 @@
           if($(e.target).data('slick-index') == 0) {
             $('.selected').text("A-Z");
           }
-        } 
+        }
         getStoriesReady($(e.target).data('category-id'), null);
       })
     });
@@ -729,7 +734,7 @@
       { max: max,
         disabled: !max,
         value: 0,
-        slide: ( event, ui ) => { 
+        slide: ( event, ui ) => {
           moveItems(Number(ui.value - prevSliderValue));
           prevSliderValue = ui.value;
 
@@ -872,7 +877,7 @@
 
   let makeAnimatedBackground = (w) => {
     var $body = $('.stories-api');
-    
+
     $('<div/>', {         // create background animation base in html
       class: 'animated-background'
     }).appendTo($body);
@@ -890,8 +895,8 @@
       .appendTo('.animated-background');
       smallItems.push(
         {
-          target: '#smallItem' + i, 
-          speed: config.background.image_bubbles._speed, 
+          target: '#smallItem' + i,
+          speed: config.background.image_bubbles._speed,
           scale: 1,
           position: {x: 0, y: 0},
           animated: false,
