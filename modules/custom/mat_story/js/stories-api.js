@@ -273,7 +273,6 @@
         if(!initialised) {
           $p = $('.slider-wrapper .container-small p'), $h1 = $('.slider-wrapper .container-small h1'), $button = $('.slider-wrapper .container-small a');
 
-
           data = [...data, {
             "story_id":"96",
             "first_name":"Kristin",
@@ -530,6 +529,7 @@
               }
             };
             stories.push(newItem);
+            console.log(mobile);
           })
 
 	        /* Check, if id in parameter and open story in modal, if is*/
@@ -539,7 +539,7 @@
 					}
 
           createDOMStories();
-          makeAnimatedBackground();
+          
       	}
       });
     }
@@ -558,6 +558,7 @@
         $(e.target).find('.label').css('display', 'block');
         setTimeout(() =>{ $(e.target).addClass('hovered');}, 50);
 
+        if(mobile) return;
         let item = findStory($(e.target).data('id'));
         animations.stopMovement(item);
       })
@@ -565,13 +566,15 @@
         $(e.target).removeClass('hovered');
         setTimeout(() => {$(e.target).closest('.label').css('display', 'none'); }, 50);
 
+        if(mobile) return;
         let $item = $(e.target).closest('.item');
         let item = findStory($item.data('id'));
-        console.log(item)
+       
         animations.makeElMove(item);
       })
       .click((e) => {                                        // __click event
-        openModal("$(e.target).data('id')", $(e.target).data('id'));
+        console.log("OKOK")
+        openModal($(e.target).data('id'));
       })
       .css({'backgroundImage': 'url(' + baseUrl + item.featured_image + ')', transition: 'none'})     // set some style
       .append($('<div/>', {                       // add label to elemen
@@ -581,6 +584,9 @@
       .appendTo($board);    // append element to board
     })
 
+    config._height = $board.height();
+
+    makeAnimatedBackground();
     getStoriesReady(null, null, true);
     getFilters();
   }
@@ -765,11 +771,17 @@
   let openModal = (id) => {
     var $overlay = $('.story-overlay'), selectedStory;
     var $body = $('body');
+
+    console.log(id);
+
+
     stories.forEach((story) => {
+      console.log(story.story_id, id)
       if(story.story_id == id) {
         selectedStory = story;
       }
     })
+
 
     if(!selectedStory) return;
 

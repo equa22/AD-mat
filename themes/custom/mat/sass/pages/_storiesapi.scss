@@ -805,10 +805,12 @@ $mobile-item-size: 100px;
   }
   .stories-api {
     background: transparent;
-    position: absolute;
+    position: unset;
 
 
     .item {
+      -webkit-filter: blur(0) brightness(1);
+      filter: blur(0) brightness(1);
       &.left {
         transform: translate($mobile-item-margin, 0);
       }
