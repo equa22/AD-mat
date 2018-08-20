@@ -635,7 +635,8 @@ $.fn.isInViewport = function(props) {
   // Story form auto open steps
   Drupal.behaviors.storyFormSteps = {
     attach: function (context, settings) {
-      function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
+
+      // function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
       $(document).bind('mouseup touchend click keyup', function(e) {
 
         var step1_progress = false;
@@ -657,7 +658,7 @@ $.fn.isInViewport = function(props) {
         if (step1_progress == true) {
           $('.step2 .step-link', context).addClass('active');
           $('.step2 .step-content', context).slideDown();
-          goToByScroll('step2');
+          // goToByScroll('step2');
         }
 
         // Step 2
@@ -671,7 +672,7 @@ $.fn.isInViewport = function(props) {
         if (step2_progress == true) {
           $('.step3 .step-link', context).addClass('active');
           $('.step3 .step-content', context).slideDown();
-          goToByScroll('step3');
+          // goToByScroll('step3');
         }
 
         // step 3
@@ -679,7 +680,7 @@ $.fn.isInViewport = function(props) {
         step3_field1.on('click', function() {
           $('.step4 .step-link', context).addClass('active');
           $('.step4 .step-content', context).slideDown();
-          goToByScroll('step4');
+          // goToByScroll('step4');
         });
 
 
@@ -698,11 +699,11 @@ $.fn.isInViewport = function(props) {
         if (step4_progress == true) {
           $('.step5 .step-link', context).addClass('active');
           $('.step5 .step-content', context).slideDown();
-          goToByScroll('step5');
+          // goToByScroll('step5');
         }
 
-
       });
+
     }
   };
 
