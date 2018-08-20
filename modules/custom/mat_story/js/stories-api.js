@@ -70,8 +70,17 @@
       if(el.movement) return;
 
       el.speed = config.movement._smooth.speed;
-      el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
-      el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
+
+      el.getXPosition(
+        el.position.x - (config.movement._smooth.radius/2), 
+        el.position.x + (config.movement._smooth.radius/2), 
+        el.slide == 0 || el.slide == sliderSections.sections.length - 1);
+      //el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
+      //el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
+      el.getYPosition(
+        el.position.y - (config.movement._smooth.radius/2), 
+        el.position.y + (config.movement._smooth.radius/2), 
+        el.slide == 0 || el.slide == sliderSections.sections.length - 1);
 
       el.getCss();
 
@@ -80,11 +89,11 @@
         el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
 
         if(el.position.y < config._el_height) {
-          el.position.y = config._el_height;
-        } else if(el.position > config._height - config._el_height) {
-          el.position.y = config._height - config._el_height
-        }
 
+          el.position.y = config._el_height;
+        } else if(el.position.y > config._height - config._el_height) {
+          el.position.y = config._height - config._el_height;
+        }
         el.getCss();
       }, el.speed);
 
@@ -122,20 +131,19 @@
   }
 
   function isOverlapingX(value) {
-    // offset top - height --- top + height
-    if(value > $p.offset().left && value < $p.width() + $p.offset().left) return true;
-    if(value > $h1.offset().left && value < $h1.width() + $h1.offset().left) return true;
-    if(value > $button.offset().left && value < $button.width() + $button.offset().left) return true;
+    if(value > $('.container-small').offset().left &&
+       value < $('.container-small').offset().left + $('.container-small').width())
+    return true;
+  else 
     return false;
   }
 
   function isOverlapingY(value) {
-    var offset = ($('.controls').offset().top + $('.controls').height());
-
-    if(value - config._el_height > $h1.offset().top - offset && value < $h1.offset().top - offset + $h1.height()) return true;
-    if(value - config._el_height > $p.offset().top - offset && value < $p.offset().top - offset + $p.height()) return true;
-    if(value - config._el_height > $button.offset().top - $p.height() && value < $button.offset().top - offset + $button.height()) return true;
-    return false;
+    if(value > $('.container-small').offset().top - $('.animation-wrapper').offset().top  - config._el_height &&
+       value < $('.container-small').offset().top - $('.animation-wrapper').offset().top + $('.container-small').height())
+      return true;
+    else
+      return false;
   }
   
   function findStory(id) {
@@ -150,6 +158,7 @@
     let fadeElementsOut = [];
     let fadeElementsIn = [];
     let elementsToMove = [];
+
 
     stories.forEach(function(story) {
       if(category && story.category_id != category) {
@@ -464,6 +473,7 @@
                     x = randomBetween(from, to);
                     counter++;
                   }
+                  console.log(counter)
                 }
                 this.position.x = x;
               },
@@ -476,6 +486,7 @@
                     y = randomBetween(config._height - config._el_width,  config._el_width);
                     counter++;
                   } 
+                  console.log(counter)
                 }
                 this.position.y = y;
               },
@@ -521,15 +532,15 @@
                 this.speed = 0;
  
                 if(this.slide == 0 || this.slide == sliderSections.sections.length - 1) {
-
+                  console.log("FIRST OR LAST")
                 }
                 this.getXPosition((sliderSections.sections[this.slide].from - config._el_width), sliderSections.sections[this.slide].to + config._el_width, this.slide == 0 || this.slide == sliderSections.sections.length - 1);
                 this.getYPosition(config._el_height - config._el_width, config._height - config._el_height, this.slide == 0 || this.slide == sliderSections.sections.length - 1);
                 this.getCss();
               }
             };
+
             stories.push(newItem);
-            console.log(mobile);
           })
 
 	        /* Check, if id in parameter and open story in modal, if is*/
@@ -573,7 +584,6 @@
         animations.makeElMove(item);
       })
       .click((e) => {                                        // __click event
-        console.log("OKOK")
         openModal($(e.target).data('id'));
       })
       .css({'backgroundImage': 'url(' + baseUrl + item.featured_image + ')', transition: 'none'})     // set some style
@@ -771,9 +781,6 @@
   let openModal = (id) => {
     var $overlay = $('.story-overlay'), selectedStory;
     var $body = $('body');
-
-    console.log(id);
-
 
     stories.forEach((story) => {
       console.log(story.story_id, id)
