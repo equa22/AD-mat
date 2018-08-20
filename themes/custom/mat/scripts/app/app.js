@@ -706,7 +706,7 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-  // Use ajax for hyperlinks with the .secondary-pages class.
+  // Use ajax for menu items with the .uses-ajax class (assigned via the Admin Navigation interface).
   Drupal.behaviors.secondaryPageAjax = {
     attach: function (context, settings) {
       // Grab all ajax link categories in the sidebar.

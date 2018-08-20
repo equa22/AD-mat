@@ -854,6 +854,35 @@ $mobile-item-size: 100px;
           padding: 0 2rem;
         }
       }
+      // Mobile view - transparent gradient at the beginning and at the end of the controls slider.
+      &.slick-slider {
+        &:after {
+          content: '';
+          position: absolute;
+          right: -0.1rem;
+          height: 100%;
+          width: 2.5rem;
+          background: #fff;
+          background: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(237, 237, 237));
+          z-index: 1;
+        }
+        &:before {
+          display: none;
+          content: '';
+          position: absolute;
+          left: -0.1rem;
+          height: 100%;
+          width: 2.5rem;
+          background: #fff;
+          background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(237, 237, 237));
+          z-index: 1;
+        }
+        &.away-from-left-edge {
+          &:before {
+            display: block;
+          }
+        }
+      }
     }
 
     .alphabet-wrapper {

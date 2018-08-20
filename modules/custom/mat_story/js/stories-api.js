@@ -55,7 +55,7 @@
     return check;
   };
   var mobile = checkMobile();
-  console.log(mobile);
+  // console.log(mobile);
 
   Drupal.behaviors.mat_stories_api = {
     attach: function (context, settings) {
@@ -389,11 +389,19 @@ let getFilters = () => {
     $('.filter-wrapper').slick({
         arrows: false,
         infinite: false,
-        variableWidth: true
+        variableWidth: true,
+        centerMode: false
     }).on("afterChange", function (event, slick, currentSlide, nextSlide){
       createDomElements($('.slick-active').data('category-id'));
-
       $('.selected').text("A-Z");
+    }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
+      // If the user is navigating from the first slide to the right (show the left-side gradient bg).
+      if (currentSlide == 0) {
+        $('.filter-wrapper.slick-slider').addClass('away-from-left-edge');
+      }
+      if (nextSlide === 0) {
+        $('.filter-wrapper.slick-slider').removeClass('away-from-left-edge');
+      }
     });
   }
 }
