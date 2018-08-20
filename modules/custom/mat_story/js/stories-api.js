@@ -10,11 +10,43 @@
   var smallItems = [];  // helper arr
 	var initialised = false;
   var containerHeight;
-  var $p, $h1, $button
+  var $p, $h1, $button;
+  var config = {
+    _num: {
+      first_and_last: 5,
+      other_pages: 10
+    },
+    _width: $board.width(),
+    _height: $board.height(),
+    _el_width: 110,
+    _el_height: 110,
+    movement: {
+      _entry: {speed: 3000, delay: 100 },
+      _leave: {speed: 3000, delay: 100 },
+      _smooth: {speed: 4000, radius: 50 }
+    },
+    background: {
+      _big_bubbles: 5,
+      _small_bubbles: 10,
+      image_bubbles: {
+        _images: [
+          baseUrl + "/sites/default/files/2018-05/nature2.jpg",
+          baseUrl + "/sites/default/files/2018-05/slider1.jpg",
+          baseUrl + "/sites/default/files/2018-05/sight-bg-b.png",
+          baseUrl + "/sites/default/files/2018-05/kid4.jpg",
+          baseUrl + "/sites/default/files/2018-05/girl-slide.jpg"
+        ],
+        _speed: 4000,
+        _size: 60,
+        _radius: 30
+      }
+    }
+  };
+
+
   function checkMobile() {
     var check = false;
     (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
-    
     return check;
   };
   var mobile = checkMobile();
@@ -32,12 +64,12 @@
         el.position.y = y;
 
         el.getCss();
-      }, config.background.image_bubbles._interval);
+      }, config.background.image_bubbles._speed);
     },
     makeElMove: (el) => {
       if(el.movement) return;
 
-      el.speed = config.movement._smooth.max;
+      el.speed = config.movement._smooth.speed;
       el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
       el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
 
@@ -67,48 +99,8 @@
     }
   }
 
-	var config = {
-	  //_num: 10,                      // number of elements displayed in wrapper
-    _num: {
-      group: 3,
-      first_and_last: 5,
-      other_pages: 10
-    },
-	  overlap: true,
-	  interval: 10000,
-	  radius: 50,                  // [%] - (depends on board width and height)
-	  _width: $board.width(),
-    _total_width: 0,
-	  _height: $board.height(),
-	  _el_width: 110,
-	  _el_height: 110,
-	  movement: {
-	    _entry: {speed: 3000, delay: 100, type: "linear"},
-	    _leave: {speed: 3000, delay: 100, type: "linear"},
-	    _fast: {speed: 1200, type: "linear", css: function() { return this.speed + "ms transform " + this.type}},
-	    _smooth: {max: 4000, min: 80000, type: "linear", radius: 50, leave: 80000,
-	            css: function() { return (Math.floor(Math.random() * this.max) + this.min) + 'ms all ' + this.type}}
-	  },
-	  background: {
-	    _big_bubbles: 5,
-	    _small_bubbles: 10,
-	    image_bubbles: {
-	      _images: [
-	        baseUrl + "/sites/default/files/2018-05/nature2.jpg",
-	        baseUrl + "/sites/default/files/2018-05/slider1.jpg",
-	        baseUrl + "/sites/default/files/2018-05/sight-bg-b.png",
-	        baseUrl + "/sites/default/files/2018-05/kid4.jpg",
-	        baseUrl + "/sites/default/files/2018-05/girl-slide.jpg"
-	      ],
-	      _speed: 4000,
-	      _interval: 3000,
-	      _size: 60,
-        _radius: 30
-	    }
-	  }
-	};
+	
   var sliderSections = {
-    active: 0, 
     sections: [], 
     add: function(from, to) {
       sliderSections.sections.push({from: from*$board.width()/100, to: to*$board.width()/100})
@@ -116,16 +108,14 @@
     check: function(value) {
       for(var i = 0; i < sliderSections.sections.length; i++) {
         if(sliderSections.sections[i].from > value && sliderSections.sections[i].to <= value) {
-          sliderSections.active = i;
-          return sliderSections.active;
+          return sliderSections.sections[i];
         }
       }
     },
-    slider_width: 0,
     getSliderWidth() {
       return sliderSections.sections[0].from - sliderSections.sections[sliderSections.sections.length - 1].from;
     }
-  };                    // prepared for sections of slider (to track in which)
+  };
 
   let randomBetween = (max, min) => {
     return Math.floor(Math.random() * (max - min) ) + min;
@@ -144,7 +134,6 @@
 
     if(value - config._el_height > $h1.offset().top - offset && value < $h1.offset().top - offset + $h1.height()) return true;
     if(value - config._el_height > $p.offset().top - offset && value < $p.offset().top - offset + $p.height()) return true;
-
     if(value - config._el_height > $button.offset().top - $p.height() && value < $button.offset().top - offset + $button.height()) return true;
     return false;
   }
@@ -161,7 +150,6 @@
     let fadeElementsOut = [];
     let fadeElementsIn = [];
     let elementsToMove = [];
-
 
     stories.forEach(function(story) {
       if(category && story.category_id != category) {
@@ -180,7 +168,6 @@
     
     if(!mobile) {
       stories = sortForSlider(stories);
-
 
       fadeElementsOut.forEach(function(story, i) {
         setTimeout(function() {
@@ -203,6 +190,7 @@
       setSlider();  
     } else {
       let classCounter = 0;
+
       stories.forEach(function(item) {
         if(item.display) {
           if(classCounter % 2 != 0) {
@@ -273,7 +261,6 @@
       sliderSections.add(from, from - 100);
     }
 
-    console.log("sliderSections", sliderSections);
     return arr;
   }
 
@@ -286,19 +273,184 @@
         if(!initialised) {
           $p = $('.slider-wrapper .container-small p'), $h1 = $('.slider-wrapper .container-small h1'), $button = $('.slider-wrapper .container-small a');
 
+
+          data = [...data, {
+            "story_id":"96",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/sight-bg-b.png",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"}, {
+            "story_id":"86",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"101",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          },{
+            "story_id":"1011",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"1012",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"1013",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          },{
+            "story_id":"1014",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Custom cat",
+            "category_id":"10",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          },{
+            "story_id":"102",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"103",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"104",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"105",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"106",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"107",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"108",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }, {
+            "story_id":"109",
+            "first_name":"Kristin",
+            "last_name":"Michelle Dennis",
+            "category":"Patients Waiting",
+            "category_id":"4",
+            "featured_image":"\/sites\/default\/files\/2018-05\/slider1.jpg",
+            "image_1":"\/sites\/default\/files\/2018-05\/nature2.jpg",
+            "image_2":"\/sites\/default\/files\/2018-05\/kid1.jpg",
+            "image_3":"\/sites\/default\/files\/2018-05\/kid4.jpg",
+            "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
+          }]
           data.forEach((item, i) => {
-            //let newItem = item;
             let newItem = {
               ...item,
               target: '#story' + item.story_id,
               getCss: function() {
                 $(this.target).css({
                   'transform': 'translate(' + this.position.x + 'px, ' + this.position.y + 'px) scale(' + this.scale + ')',
-                  '-webkit-transition': this.speed + 'ms all ' + config.movement._smooth.type,
-                  '-moz-transition': item.speed + 'ms all ' + config.movement._smooth.type,
-                  '-ms-transition': item.speed + 'ms all ' + config.movement._smooth.type,
-                  '-o-transition': item.speed + 'ms all ' + config.movement._smooth.type,
-                  'transition': item.speed + 'ms all ' + config.movement._smooth.type,
+                  '-webkit-transition': this.speed + 'ms all linear',
+                  '-moz-transition': item.speed + 'ms all linear',
+                  '-ms-transition': item.speed + 'ms all linear',
+                  '-o-transition': item.speed + 'ms all linear',
+                  'transition': item.speed + 'ms all linear',
                   'filter': 'blur(' + this.blur + ')'
                 })
               },
@@ -355,7 +507,6 @@
                   this.speed = config.movement._entry.speed;
                   this.getCss();
                 }, 100);
-                
 
                 setTimeout(() => {
                   animations.makeElMove(this);
@@ -365,9 +516,6 @@
               move: function() {
                 this.fadeOut();
                 this.fadeIn();
-                setTimeout(() => {
-                  
-                }, config.movement._leave.speed)
               },
               slide: "undefined",
               getStartingPosition: function() {
@@ -384,16 +532,13 @@
             stories.push(newItem);
           })
 
-
 	        /* Check, if id in parameter and open story in modal, if is*/
 					var check_params = window.location.href.split('#')
 					if(check_params.length > 1) {
 					  openModal(check_params[check_params.length - 1]);
 					}
 
-
           createDOMStories();
-
           makeAnimatedBackground();
       	}
       });
@@ -764,7 +909,6 @@
       el.getCss();
       animations.animateBubble(el);
     })
-
 
     while(config.background._small_bubbles > 0 ){
       config.background._small_bubbles--;
