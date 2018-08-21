@@ -304,6 +304,7 @@ $option-width: 70px;
     }
 
     &.hovered {
+      z-index: 10;
       .label {
         @media (min-width: $screen-sm-min) {
           opacity: 1;
