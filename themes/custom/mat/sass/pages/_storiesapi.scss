@@ -68,7 +68,9 @@ $option-width: 70px;
 
 .adminimal-admin-toolbar {
   .slider-wrapper {
-    height: calc(100vh - 260px);
+    @media (min-width: $screen-sm-min) {
+      height: calc(100vh - 260px);
+    }
   }
   &.toolbar-tray-open {
     .stories-api {
@@ -203,7 +205,7 @@ $option-width: 70px;
   .bubble:first-child {
     display: none;
   }
-  
+
 
   .bubble {
     width: 300px;
