@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: ZrMjzs1jX1RS6Tea0xkF-h_PIX8OMEkrt_Wo2W_8BE0
 id: slide
-label: Slide
+label: 'Focal slide'
 icon_uuid: null
 description: ''
 behavior_plugins: {  }

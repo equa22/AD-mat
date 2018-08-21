@@ -15,61 +15,25 @@
 
   &.border-line {
     padding-bottom: 4rem;
-    border-bottom: 2px solid $hr-border-color;
+    border-bottom: 2px solid $hr-border-color-transparent;
   }
 }
 
 // Paragraph Rich text
-.paragraph--type--landing-page-rich-text {
+.paragraph--type--landing-page-rich-text,
+.paragraph--type--basic-page-image-and-text {
   // Lists
-  ul,
+  ul:not(.contextual-links),
   ol {
-    margin: 0 0 1em 0;
-    padding: 0;
-    list-style: none;
-    line-height: 1.4;
-
-    li {
-      padding-bottom: 1.4rem;
-    }
-
-    ul,
-    ol {
-      margin: 1em 0 0 0;
-    }
+    @extend %list-base;
   }
 
-  ul {
-    li {
-      position: relative;
-      padding-left: 3.8rem;
-
-      &:before {
-        content: '•';
-        position: absolute;
-        left: 0;
-        color: $mat-brand-primary;
-      }
-    }
+  ul:not(.contextual-links) {
+    @extend %list-ul;
   }
 
   ol {
-    counter-reset: step-counter;
-
-    li {
-      counter-increment: step-counter;
-      padding-left: 3.8rem;
-      position: relative;
-
-      &:before {
-        content: counter(step-counter)'.';
-        display: block-inline;
-        position: absolute;
-        left: 0;
-        font-weight: 700;
-        color: $mat-brand-primary;
-      }
-    }
+    @extend %list-ol;
   }
 }
 
@@ -120,6 +84,10 @@
 
 // Paragraph Quote
 .paragraph--type--basic-page-quote {
+  blockquote {
+    margin-bottom: 0!important;
+  }
+
   .quote--footer {
     padding: 3.8rem 0 0 4rem;
     @include font-size(1.4);
@@ -131,22 +99,13 @@
 
     @media (min-width: $screen-sm-min) {
       display: flex;
-      padding: 5rem 8rem 0 4rem;
-    }
-
-    @media (min-width: $screen-xs-min) {
-      
+      padding: 3.5rem 8rem 0 4rem;
     }
 
     .quote--author {
       @media (min-width: $screen-sm-min) {
-        min-width: 18rem;
-      }
-    }
-
-    .quote--author-about {
-      @media (min-width: $screen-sm-min) {
-        padding-left: 7rem;
+        //min-width: 18rem;
+        padding-right: 1rem;
       }
     }
   }
@@ -157,15 +116,19 @@
   .field--name-field-iframe {
       position: relative;
       width: 100%;
-      height: 0;
       padding-bottom: 56.25%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      height: 0;
   }
 
   iframe {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 1px;
+      min-width: 100%;
       height: 100%;
+      max-height: 100%;
   }
 }

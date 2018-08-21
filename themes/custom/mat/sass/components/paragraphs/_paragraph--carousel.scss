@@ -87,10 +87,10 @@
     > .slick-list .slick-track > .field__item {
       position: relative;
       padding: 2.5rem 1rem 0 1rem;
-      
+
       @media (min-width: $screen-sm-min) {
         margin-top: 0;
-        transition: margin-top 0.25s ease-in;
+        transition: margin-top 0.35s ease-out;
         padding-left: 3rem;
         padding-right: 3rem;
       }
@@ -107,12 +107,12 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
-        
+
         border-radius: 50%;
         border: 10px solid $color-white;
         box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1);
       }
-      
+
       &:hover {
         @media (min-width: $screen-sm-min) {
           margin-top: -2.5rem;
@@ -145,6 +145,10 @@
     .field--name-field-story-category {
       @extend %story-popup--category;
     }
+
+    .field--name-field-story-category .field__item {
+      font-weight: 500;
+    }
   }
 
   .slick-arrow {
@@ -174,6 +178,11 @@
       background-color: $mat-brand-primary;
       @include icons('i-chevron-slide');
       background-position: 2.5rem center;
+      transition: background-color 200ms linear;
+    }
+
+    &:hover:before {
+      background-color: $blue;
     }
 
     @media (max-width: $screen-xs-max) {
@@ -189,7 +198,7 @@
       left: 50%;
       margin-left: -8rem;
     }
-    
+
     &:before {
       transform: rotate(180deg);
     }
@@ -203,5 +212,5 @@
       margin-right: -8rem;
     }
   }
-  
+
 }

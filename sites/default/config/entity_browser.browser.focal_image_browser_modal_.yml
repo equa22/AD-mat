@@ -1,0 +1,53 @@
+uuid: 38d48bf8-3266-4afc-8879-b9543afc5577
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.focal_image
+    - views.view.focal_image_browser
+  module:
+    - dropzonejs_eb_widget
+    - media
+    - views
+name: focal_image_browser_modal_
+label: 'Focal image browser (Modal)'
+display: modal
+display_configuration:
+  width: '1070'
+  height: '500'
+  link_text: 'Select images'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  3c3acb67-0ff5-4fdb-9973-17c9802529ff:
+    settings:
+      form_mode: default
+      media_type: focal_image
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop files here to upload them'
+      max_filesize: 32M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: !!float 1
+      resize_method: contain
+      thumbnail_method: contain
+      submit_text: 'Select images'
+    uuid: 3c3acb67-0ff5-4fdb-9973-17c9802529ff
+    weight: 1
+    label: 'Import images'
+    id: dropzonejs_media_entity_inline_entity_form
+  fc244649-93a6-40c6-a875-b5ecaf787909:
+    settings:
+      view: focal_image_browser
+      view_display: entity_browser_1
+      submit_text: 'Select entities'
+      auto_select: false
+    uuid: fc244649-93a6-40c6-a875-b5ecaf787909
+    weight: 2
+    label: 'Select Image'
+    id: view

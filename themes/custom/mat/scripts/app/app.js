@@ -8,7 +8,7 @@ $.fn.isInViewport = function(props) {
   var viewportBottom = viewportTop + $(window).height();
   return elementBottom > viewportTop && elementTop < viewportBottom;
  };
- 
+
  function getShadow(angle, distance, spread, size) {
     angle = (180 - angle) * (Math.PI)/180;  // convert to radians
     var h_shadow = Math.round(Math.cos(angle)*distance);
@@ -18,10 +18,6 @@ $.fn.isInViewport = function(props) {
 
     return (h_shadow + 'px ' +  (v_shadow) + 'px ' +  size + 'px rgba(0,0,0,' + (size/100 < 0.4 ? size/100 : 0.4) + ')');
   }
-
-  
-  
- 
 
   // Toggling visibility of the main navigation (on mobile)
   Drupal.behaviors.mobileNavigation = {
@@ -94,7 +90,7 @@ $.fn.isInViewport = function(props) {
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
-          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).on('click', function(e){
+          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).off('click').on('click', function(e){
             e.preventDefault();
             var element = $(this).parent('li');
             if (element.hasClass('active')) {
@@ -120,6 +116,7 @@ $.fn.isInViewport = function(props) {
     attach: function (context, settings) {
       $('.region-sidebar li.menu-item--active-trail', context).first().find('a').addClass('active');
       $('.region-sidebar li.menu-item--active-trail', context).first().find('ul').slideDown();
+
       $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
         e.preventDefault();
         $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
@@ -148,7 +145,7 @@ $.fn.isInViewport = function(props) {
 
       function setMobilePlaceholder() {
         var windowWidth = $(window).width();
-        
+
         if (windowWidth < 768) {
          $('#block-header-search-block .form-text').attr('placeholder', Drupal.t('Search'));
         } else {
@@ -177,30 +174,62 @@ $.fn.isInViewport = function(props) {
     setTimeout(function() {                 // with optional timeout set interval
         write = setInterval(function() {
           $el.text( title += text[counter]); // add letter to string
-          counter++;                            // increase counter 
+          counter++;                            // increase counter
           if(counter == text.length) {          // stop interval, if all letters've been processed
             clearInterval(write);
             $(parent).addClass('animated');     // add class to parent to let DOM know animation is done
           }
-        }, 50);  
+        }, 50);
       }, delay);
+
+    setTimeout(function() {
+      $(parent).removeClass('animated');
+    }, 5700);
   }
 
   // Hero slider on home page
   Drupal.behaviors.heroSlider = {
     attach: function (context, settings) {
+      // Test if the browser is IE.
+      var ua = window.navigator.userAgent;
+      var is_internet_explorer = /MSIE|Trident/.test(ua);
+
+      // CSS object-fit:cover workaround for IE. Hides the default <img> elements and reveals
+      // .slide--image divs with a background image.
+      if (('.node--type-landing-page').length > 0) {
+        var $slider_images = $('.paragraph--type--slide img', context);
+        $slider_images.each(function(image) {
+          var $background_url = "url('" + $(this).attr('src') + "')";
+          $(this).hide();
+          $(this).siblings('.slide--image').css('background-image', $background_url).show();
+        });
+      }
+
+      // Slick slider config.
       $('.paragraph--type--landing-page-slider .field--name-field-slides', context).once('hero-slider').slick({
         infinite: true,
         arrows: false,
         slidesToShow: 1,
         autoplay: true,
-        autoplaySpeed: 6000,
-        draggable: false
+        speed: 1200,
+        autoplaySpeed: 15000,
+        fade: true,
+        cssEase: 'linear',
+        draggable: true,
+        pauseOnHover: false
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // if slide changed, animate next slide
         if(currentSlide != nextSlide) {
-          typeText($($('.slick-slide h1')[nextSlide + 1]), '.slick-active', 500);
-          $('.slick-slide').removeClass('animated');
+          //Todo: remove lines that are commented out if the typeText function is not used.
+          // typeText($($('.slick-slide h1')[nextSlide + 1]), '.slick-active', 500);
+          // $('.slick-slide').removeClass('animated');
+
+          // Grab the nth .slick-slide element.
+          var $current_slide = $('.slick-slide:eq(' + currentSlide + ')');
+          var $next_slide = $('.slick-slide:eq(' + nextSlide + ')');
+
+          $current_slide.removeClass('animated');
+          $next_slide.addClass('animated');
         }
       });
 
@@ -208,13 +237,16 @@ $.fn.isInViewport = function(props) {
       // remove all prefix labels with 'inspired by' text and replace them with one fixed label
       $('h1 .slide--title-prefix').remove();
       $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'fixed-slider-header container', 'text': 'Inspired by'}));
-
+      //$('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-description', 'text': 'Today, 115,000+ people are waiting for a lifesaving transplant. You can inspire hope for these patients and their families by signing up for the organ and tissue donor registry.'}));
+      $('.node--type-landing-page .slick-list').append($('<div>', {'class': 'homepage-slider-link', 'html': '<a href="/why-give-life">Why Give Life</a>'}));
 
       // add 'inspired by' fixed label
       //$('.slick-list.draggable').append($('<div class="fixed-slider-header"><div class="container">Inspired by</div></div>'));
 
       // animate first slide
-      typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
+      //Todo: remove lines that are commented out if the typeText function is not used.
+      // typeText($($('.slick-slide h1')[1]), '.slick-active', 500);
+      $('.slick-slide:eq(0)').addClass('animated');
     }
   };
 
@@ -270,16 +302,32 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-  // Pillars scrollReveal
+  // Pillars scrollReveal and positioning
   Drupal.behaviors.pillars = {
     attach: function (context, settings) {
+      // Positioning. Temporary solution: look at the 'right' CSS property of
+      // the :before pseudo-element - kind of hacky but it works for now).
+      $('.paragraph--type--pillar-group-item').each(function() {
+        // Grab the child elements that need to be moved.
+        var $children =
+          $(this).children('.field--name-field-link, .field--name-field-content, .pillar-group-item--heading');
+        // If the element is on the left side of the screen
+        if(window.getComputedStyle(this,':before').right === '0px') {
+          $children.addClass('left-side-of-screen');
+        // If the element is on the right side of the screen
+        } else {
+          $children.addClass('right-side-of-screen');
+        }
+      });
+
+      // Animation
       $(window).scroll(function(e) {
         var w_w = $(window).width();
         if (w_w >= 768) {
           $('.paragraph--type--pillar-group-item').each(function() {
             if($(this).isInViewport($(this).height()/2) && !$(this).hasClass('animate')) {
               $(this).addClass('animate');
-            } 
+            }
           });
         }
       });
@@ -290,7 +338,7 @@ $.fn.isInViewport = function(props) {
   /*
    * Helper function for converting num in string
    * @param num_ number to convert [int]
-   * @param length_ length of final number - used with holders (5:00003) - [int] 
+   * @param length_ length of final number - used with holders (5:00003) - [int]
    * @param char_ splitter in string [string]
    * @param surfix_ added character [string]
    * @param holder_ placeholder for empty spaces
@@ -307,7 +355,7 @@ $.fn.isInViewport = function(props) {
         string = string.slice(0, i) + char + string.slice(i);
         chars = 0;
       }
-    } 
+    }
     return string + surfix;
   }
 
@@ -345,19 +393,19 @@ $.fn.isInViewport = function(props) {
     // when counter comes to end, stop all intervals
     var $shine = $(field).next('.shine').length > 0 ? $($(field).next('.shine')[0]) : null;
     var $shadow = $($(field).parent()).find('.number-shadow ');
-    var counter = 0; // count iterations                               
+    var counter = 0; // count iterations
     var animateCounting = setInterval(function() {
       counter ++;
-  
+
       $(field).text(convertInString(Math.round($(field).data('number')/$(field).data('count-repeat')*counter), String($(field).data('number')).length, $(field).data('count-char'), $(field).data('count-surfix'), $(field).data('count-holder')));
       if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }     // apply value on shine
 
       if(counter == $(field).data('count-repeat')) {
-        clearInterval(animateCounting); 
+        clearInterval(animateCounting);
         return;
       }
       if(counter >= $(field).data('count-repeat')/2) { // on half way, slow down
-        clearInterval(animateCounting);       
+        clearInterval(animateCounting);
 
         animateCounting = setInterval(function() {
           counter ++;
@@ -365,7 +413,7 @@ $.fn.isInViewport = function(props) {
           if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
 
           if(counter == $(field).data('count-repeat')) {
-            clearInterval(animateCounting); 
+            clearInterval(animateCounting);
             return;
           }
           if(counter >= $(field).data('count-repeat')/4*3) {
@@ -377,7 +425,7 @@ $.fn.isInViewport = function(props) {
               if($shine) { $shine.html($(field).text()); $shadow.html($(field).text()); }
 
               if(counter == $(field).data('count-repeat')) {
-                clearInterval(animateCounting); 
+                clearInterval(animateCounting);
                 return;
               }
               if(counter >= $(field).data('count-repeat')/10*9) {
@@ -389,7 +437,7 @@ $.fn.isInViewport = function(props) {
                   if($shine) { $shine.html(splitTextInSpan($(field).text())); $shadow.html($(field).text()); }
 
                   if(counter == $(field).data('count-repeat')) {
-                    clearInterval(animateCounting); 
+                    clearInterval(animateCounting);
                     return;
                   }
                   if(counter == $(field).data('count-repeat')) {
@@ -431,12 +479,12 @@ $.fn.isInViewport = function(props) {
           'data-count-interval': Number(text.replace(/\D/g,'')) > 5000 ? 10 : 20,
           'data-count-surfix': text.search('X') < 0 ? (text.search('K') < 0 ? '' : 'K') : 'X',
           'data-count-holder': text.search(',') < 0 ? ' ' : '0'
-        });              
+        });
         //if($(el).data('number') > 10)
-        // set elements text to 0              
+        // set elements text to 0
         $(el).text(convertInString(0, $(el).text().replace(/\D/g,'').length, $(el).data('count-char'), $(el).data('count-surfix'), $(el).data('count-holder')));   // set text to 0
         // apply same text in shine element
-        if($(el).next('.shine')) { $(el).next('.shine').html($(el).text()); $($(el).parent()).find('.number-shadow ').html($(el).text()); } 
+        if($(el).next('.shine')) { $(el).next('.shine').html($(el).text()); $($(el).parent()).find('.number-shadow ').html($(el).text()); }
         else { $(el).css('opacity', 0.6); }
       });
 
@@ -464,10 +512,10 @@ $.fn.isInViewport = function(props) {
           $(this).css({'top': ($(this).offset().top - $(parent).offset().top) + 'px', 'bottom': 'auto'});
         });
       });*/
-      
 
 
-    
+
+
     $(window).on("mousewheel", function(event) {
       var st = $(this).scrollTop();
        if (st > lastScrollTop){
@@ -478,11 +526,11 @@ $.fn.isInViewport = function(props) {
        lastScrollTop = st;
 
       if(direction == "up" && $(this).scrollTop() == 0) return;
-      
+
       deltaY = Math.abs(event.originalEvent.deltaY)>=40 ? event.originalEvent.deltaY/40 : event.originalEvent.deltaY;
       $('.parallax').each(function() {
         if($(this).isInViewport(0) && (!mobile_device || mobile_device && $(this).data('mobile-parallax'))) { //-Number($(this).css('top').replace('px', '')))
-          currentPosition = Number($(this).css('top').replace('px', ''));   
+          currentPosition = Number($(this).css('top').replace('px', ''));
           $(this).css('top', currentPosition - Number($(this).data('parallax-depth')*deltaY) + 'px');
        }
       });
@@ -504,12 +552,20 @@ $.fn.isInViewport = function(props) {
         }
       });
     });
-     
+
 
      var prevPx = 0;
+     $('.myth-vs-fact--myth').wrapInner('<div class="fact--description"></div>');
+
+     $('.myth-vs-fact--myth .fact--description').each(function(i) {
+      $(this).parent().attr('id', 'myth-' + i);
+      $($(this)[0]).find('.dot').prependTo('#myth-' + i);
+     });
+
+
      $(window).on('scroll', function() {
-      
-      
+
+
       // get breaking point for animation
       var myth_fact_breakpoint =  mobile_device ? $(window).height()/4*3 : 100;
 
@@ -519,7 +575,7 @@ $.fn.isInViewport = function(props) {
        } else if(mobile_device) {
           $(this).removeClass('animate');
        }
-      });  
+      });
      });
     }
   };
@@ -579,7 +635,8 @@ $.fn.isInViewport = function(props) {
   // Story form auto open steps
   Drupal.behaviors.storyFormSteps = {
     attach: function (context, settings) {
-      function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
+
+      // function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
       $(document).bind('mouseup touchend click keyup', function(e) {
 
         var step1_progress = false;
@@ -591,19 +648,19 @@ $.fn.isInViewport = function(props) {
         var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
         var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
         var step1_field3 = $('input[name="field_story_category"]:checked', context);
-        
+
         if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
           step1_progress = true;
         } else {
           step1_progress = false;
         }
-        
+
         if (step1_progress == true) {
           $('.step2 .step-link', context).addClass('active');
           $('.step2 .step-content', context).slideDown();
-          goToByScroll('step2');
+          // goToByScroll('step2');
         }
-        
+
         // Step 2
         var step2_field1 = $('textarea#edit-body-0-value', context);
         if (step2_field1.val()) {
@@ -615,7 +672,7 @@ $.fn.isInViewport = function(props) {
         if (step2_progress == true) {
           $('.step3 .step-link', context).addClass('active');
           $('.step3 .step-content', context).slideDown();
-          goToByScroll('step3');
+          // goToByScroll('step3');
         }
 
         // step 3
@@ -623,7 +680,7 @@ $.fn.isInViewport = function(props) {
         step3_field1.on('click', function() {
           $('.step4 .step-link', context).addClass('active');
           $('.step4 .step-content', context).slideDown();
-          goToByScroll('step4');
+          // goToByScroll('step4');
         });
 
 
@@ -642,10 +699,55 @@ $.fn.isInViewport = function(props) {
         if (step4_progress == true) {
           $('.step5 .step-link', context).addClass('active');
           $('.step5 .step-content', context).slideDown();
-          goToByScroll('step5');
+          // goToByScroll('step5');
         }
-        
 
+      });
+
+    }
+  };
+
+  // Use ajax for menu items with the .uses-ajax class (assigned via the Admin Navigation interface).
+  Drupal.behaviors.secondaryPageAjax = {
+    attach: function (context, settings) {
+      // Grab all ajax link categories in the sidebar.
+      var $ajax_links = $('.region-sidebar .uses-ajax > .menu > .menu-item > a' , context);
+
+      // On click of every link whose parent category uses Ajax
+      $ajax_links.click(function(e) {
+        // Prevent page reloading on already active links.
+        if ($(this).hasClass('is-active')) {
+          e.preventDefault();
+          return false;
+        }
+        // Grab the parent category (to prevent ajax calls across different categories).
+        var $parent_category = $(this).parents().eq(2);
+
+        if (!$('html').hasClass('device-mobile') && $parent_category.hasClass('uses-ajax') && $parent_category.hasClass('menu-item--active-trail')) {
+        // Check if the appropriate menu category is open (e.g. Donor Support - has a shared hero image).
+        // We don't want ajax calls when we navigate from a different menu category.
+        // Also restrict to mobile browsers.
+          e.preventDefault();
+          var $this = $(this); // Capture current link element so that it works inside ajax's success function.
+          var $body = $("body", context);
+          var $content_div = $('.basic-page-content', context);
+          var $href = $(this).attr('href');
+          // Use Ajax to load a page without changing the scroll position.
+          $.ajax({
+            type: 'POST',
+            url: $href,
+            beforeSend: function() {
+              $body.addClass("loading"); // Add white overlay and loading icon.
+            },
+            success: function(data) {
+              $content_div.html($(data).find('.basic-page-content')); // Grab the content from the other page and place it inside the current page's content div.
+              $body.removeClass("loading"); // Remove overlay.
+              window.history.pushState("", "", $href); // Change the current URL in the toolbar.
+              $ajax_links.removeClass('is-active'); // Remove the active class (bold text) from all secondary page links.
+              $this.addClass('is-active'); // Make the currently selected link active (bold text).
+            }
+          });
+        }
       });
     }
   };

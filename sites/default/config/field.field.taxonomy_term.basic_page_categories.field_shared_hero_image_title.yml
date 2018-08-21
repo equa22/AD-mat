@@ -1,0 +1,23 @@
+uuid: fc1f52e8-41a8-4760-8571-626b5de0daf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_shared_hero_image_title
+    - taxonomy.vocabulary.basic_page_categories
+id: taxonomy_term.basic_page_categories.field_shared_hero_image_title
+field_name: field_shared_hero_image_title
+entity_type: taxonomy_term
+bundle: basic_page_categories
+label: 'Shared header + instant subpage loading'
+description: 'Select this if you want all subpages of this category to have the same header image and title. This also includes loading other subpages of the same parent category through AJAX (no reloading, maintains the vertical scroll position).'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -13,7 +13,7 @@
   @media (max-width: $screen-xs-max) {
     padding-bottom: 9rem;
   }
-  
+
   .container {
     @media (min-width: $screen-sm-min) {
       display: flex;
@@ -26,6 +26,19 @@
   .counter--content {
     position: relative;
     z-index: 2;
+
+    h2 {
+      font-family: $font-flama-semibold;
+      font-weight: 400;
+      p {
+        font-family: $font-flama-semibold;
+        font-weight: 400;
+      }
+    }
+
+    .field--name-field-text {
+      font-weight: 500;
+    }
 
     @media (min-width: $screen-sm-min) {
       width: 41%;
@@ -52,7 +65,7 @@
     z-index: 2;
     position: relative;
     top: 0;
-    
+
     @media (max-width: $screen-iphone5-max) {
       @include font-size(10.5);
     }
@@ -60,11 +73,37 @@
     @media (min-width: $screen-sm-min) {
       position: absolute;
       left: 0;
-      font-size: 25vw;
+      //font-size: 25vw;
     }
 
-    @media (min-width: $screen-lg-min) {
-      @include font-size(35);
+    // Number counter responsive font sizes
+    @include font-size(35);
+    @media (max-width: $container-lg) {
+      @include font-size(30);
+      left: 15%;
+      padding-top: 3rem;
+    }
+    @media (max-width: $screen-lg) {
+      @include font-size(27);
+      left: 10%;
+      padding-top: 4rem;
+    }
+    @media (max-width: $screen-md) {
+      @include font-size(24);
+      left: 5%;
+      padding-top: 6rem;
+    }
+    @media (max-width: $screen-sm) {
+      left: auto;
+      top: 0;
+      @include font-size(13);
+      padding-top: auto;
+    }
+    @media (max-width: $screen-sm) {
+      @include font-size(10);
+    }
+    @media (max-width: $screen-iphone5) {
+      @include font-size(8);
     }
 
     // IE10, IE11

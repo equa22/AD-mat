@@ -9,7 +9,8 @@
 .field--name-field-landing-page-description,
 .view-news-landing,
 .basic-page-container,
-.node-story-profile-story-submission-form {
+.node-story-profile-story-submission-form,
+.node-story-profile-story-submitted-thank-you-container {
   @include container;
   position: relative;
   margin: 0 auto;

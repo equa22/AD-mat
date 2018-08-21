@@ -18,6 +18,8 @@
 
     a {
       @include btn-secondary();
+      font-family: $font-flama-medium;
+      font-weight: 500;
 
       @media (max-width: $screen-xs-max) {
         border-color: $gray-darker;
@@ -31,6 +33,11 @@
   }
 
   .highlight--wrapper {
+
+    h2 {
+      font-family: $font-flama-medium;
+      font-weight: 400;
+    }
     @media (min-width: $screen-sm-min) {
       width: 100%;
       position: absolute;
@@ -64,6 +71,10 @@
         @include font-size(3.5);
         line-height: 1.2;
       }
+    }
+
+    .field--name-field-text {
+      font-weight: 500;
     }
   }
 

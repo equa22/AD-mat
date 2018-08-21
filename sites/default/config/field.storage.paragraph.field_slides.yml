@@ -4,7 +4,11 @@ status: true
 dependencies:
   module:
     - entity_reference_revisions
+    - field_permissions
     - paragraphs
+third_party_settings:
+  field_permissions:
+    permission_type: public
 _core:
   default_config_hash: 5Icdl3wnO1cASNJ-0FUF-kEetsKd8JarTGfpidKLqZc
 id: paragraph.field_slides

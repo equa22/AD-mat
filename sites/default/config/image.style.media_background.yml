@@ -5,8 +5,8 @@ dependencies: {  }
 name: media_background
 label: 'Media Background'
 effects:
-  7eb79598-bfe4-4e5b-9d8e-6ed42fc6efff:
-    uuid: 7eb79598-bfe4-4e5b-9d8e-6ed42fc6efff
+  6c17a961-48c5-4906-b3bf-8120a2432bbc:
+    uuid: 6c17a961-48c5-4906-b3bf-8120a2432bbc
     id: image_scale
     weight: 1
     data:

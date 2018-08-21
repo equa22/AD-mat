@@ -1,4 +1,7 @@
 <?php
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Menu\MenuActiveTrailInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuLinkInterface;
@@ -6,6 +9,7 @@ use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 function mat_global_page_attachments(array &$attachments) {
   if (\Drupal\user\Entity\User::load(\Drupal::currentUser()->id())->hasRole('administrator')) {
@@ -54,28 +58,9 @@ function mat_global_preprocess_node(&$variables) {
  * Implements hook_paragraphs_widget_actions_alter().
  */
 function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, array &$context) {
-  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
-
-    // Remove drop-down actions for inline form under certain condition.
-    $landingPageType = _mat_global_get_landing_page_from_node();
-
-    // Check condition for paragraphs type because
-    // we don't want to remove for all drop-downs.
-    if ($landingPageType == 'homepage_landing_page') {
-      if ($context["element"]["#paragraph_type"] != 'cta_item') {
-        $widget_actions['dropdown_actions'] = [];
-      }
-    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
-      if ($context["element"]["#paragraph_type"] != 'myth_vs_fact') {
-        $widget_actions['dropdown_actions'] = [];
-      }
-    } elseif ($landingPageType == 'what_we_do_landing_page') {
-      if ($context["element"]["#paragraph_type"] != 'pillar_group_item') {
-        $widget_actions['dropdown_actions'] = [];
-      }
-    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
-      $widget_actions['dropdown_actions'] = [];
-    }
+  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
+    // Client requirements changed here: all drop-down actions should now be removed if editor role.
+    $widget_actions['dropdown_actions'] = [];
   }
 }
 
@@ -83,30 +68,10 @@ function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, arra
  * Implements hook_preprocess_hook().
  */
 function mat_global_preprocess_field_multiple_value_form(&$variables) {
-  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
-
-    // Remove option to drag paragraphs.
-    $landingPageType = _mat_global_get_landing_page_from_node();
-
-    if ($landingPageType == 'homepage_landing_page') {
-      if ($variables["element"]["#field_name"] != 'field_cta_items') {
-        unset($variables['table']['#tabledrag']);
-        unset($variables['table']['#header'][1]);
-      }
-    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
-      if ($variables["element"]["#field_name"] != 'field_myths_vs_facts') {
-        unset($variables['table']['#tabledrag']);
-        unset($variables['table']['#header'][1]);
-      }
-    } elseif ($landingPageType == 'what_we_do_landing_page') {
-      if ($variables["element"]["#field_name"] != 'field_pillar_group_items') {
-        unset($variables['table']['#tabledrag']);
-        unset($variables['table']['#header'][1]);
-      }
-    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
-      unset($variables['table']['#tabledrag']);
-      unset($variables['table']['#header'][1]);
-    }
+  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
+    // Client requirements changed here: all drag actions should now be removed if editor role.
+    unset($variables['table']['#tabledrag']);
+    unset($variables['table']['#header'][1]);
   }
 }
 
@@ -114,49 +79,16 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
  * Implements hook_paragraphs_multiple_elements_alter().
  */
 function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$form_state) {
-  if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
     // Remove order column.
-    $landingPageType = _mat_global_get_landing_page_from_node();
+    // Client requirements changed here: all order actions should now be removed if editor role.
     $exceptions = [
       '#theme', '#attached', '#weight',
     ];
-
-    if ($landingPageType == 'homepage_landing_page') {
-      if ($elements["#field_name"] != 'field_cta_items') {
-        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-          unset($elements[$index]['_weight']);
-        }
-      }
-      $exceptions = [
-        '#theme', '#attached', '#weight', 'add_more_button_landing_page_cta', 'add_more_button_cta_item',
-      ];
-      _mat_global_remove_add_more_items($elements, $exceptions);
-    } elseif ($landingPageType == 'why_we_give_live_landing_page') {
-      if ($elements["#field_name"] != 'field_myths_vs_facts') {
-        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-          unset($elements[$index]['_weight']);
-        }
-      }
-      $exceptions = [
-        '#theme', '#attached', '#weight', 'add_more_button_timeline_facts', 'add_more_button_myth_vs_fact',
-      ];
-      _mat_global_remove_add_more_items($elements, $exceptions);
-    } elseif ($landingPageType == 'what_we_do_landing_page') {
-      if ($elements["#field_name"] != 'field_pillar_group_items') {
-        foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-          unset($elements[$index]['_weight']);
-        }
-      }
-      $exceptions = [
-        '#theme', '#attached', '#weight', 'add_more_button_pillar_group_item', 'add_more_button_pillar_group',
-      ];
-      _mat_global_remove_add_more_items($elements, $exceptions);
-    } elseif ($landingPageType != 'new_node' && $landingPageType != FALSE) {
-      foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
-        unset($elements[$index]['_weight']);
-      }
-      _mat_global_remove_add_more_items($elements, $exceptions);
+    foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
+      unset($elements[$index]['_weight']);
     }
+    _mat_global_remove_add_more_items($elements, $exceptions);
   }
 }
 
@@ -195,4 +127,63 @@ function _mat_global_get_landing_page_from_node() {
     // Return something so we know this is new node.
     return 'new_node';
   }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter()
+ *
+ * @param array $data Local tasks render array
+ * @param string $route_name
+ */
+function mat_global_menu_local_tasks_alter(&$data, $route_name) {
+  if($route_name == 'block.admin_display') {
+      // Hide system themes from "editor" role when user editing block layout
+      // which are not defined inside $accessAllowedTheme
+      $accessAllowedTheme = ['block.admin_display_theme:mat'];
+      if (in_array('editor', \Drupal::currentUser()->getRoles())) {
+        $localTabs = isset($data['tabs'][1]) ? $data['tabs'][1] : [];
+        foreach ($localTabs as $name => $options) {
+          if (!in_array($name, $accessAllowedTheme)) {
+            $data['tabs'][1][$name]['#access'] = false;
+          }
+        }
+      }
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
+ *
+ * @return mixed
+ */
+function mat_global_entity_base_field_info(\Drupal\Core\Entity\EntityTypeInterface $entity_type) {
+  /*
+   * Add 'uses AJAX' checkbox to menu items.
+   */
+  if ($entity_type->id() === 'menu_link_content') {
+    $fields['menu_uses_ajax'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Use AJAX for sub-pages'))
+      ->setDescription(t('[Only use this if you know what you are doing!] Loads this menu item\'s children sub-pages using Ajax (maintains the vertical position and leaves the hero image section intact). Intended for categories under Find Support.'))
+      ->setDisplayOptions('form', array('type' => 'string', 'weight' => 0));
+
+    return $fields;
+  }
+}
+
+
+/**
+ * Helper function: get entity type from bundle route.
+ *
+ * @param string $bundle Bundle name. Default: node.
+ * @return string Entity type or 'undefined'.
+ */
+function _mat_global_get_bundle_entity_type($bundle = 'node') {
+  $entity = \Drupal::routeMatch()->getParameter($bundle);
+  $type = 'undefined';
+  if ($entity !== null && $entity instanceof Drupal\Core\Entity\ContentEntityBase) {
+    $type = $entity->getType();
+  }
+  return $type;
 }

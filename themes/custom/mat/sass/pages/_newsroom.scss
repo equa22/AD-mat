@@ -98,6 +98,7 @@
     h1 {
       margin-bottom: 3rem;
       color: $blue-dark;
+      font-family: $font-flama-semibold;
     }
 
      @media (max-width: $screen-xs) {
@@ -156,7 +157,7 @@
       }
       .views-field-field-news-category {
         @extend %h5;
-        padding: 2.5rem 0 2rem 0;
+        padding: 2.5rem 0 .5rem 0;
 
         &,
         a {
@@ -167,14 +168,15 @@
       .views-field-title {
         margin-bottom: 1.5rem;
         @extend %h4;
-        font-weight: 600;
+        font-weight: 500;
+        font-family: $font-flama;
         a {
           color: $blue-dark;
         }
       }
 
       .views-field-body {
-        color: $link-color;
+        color: $gray-darker;
         @extend %small;
       }
 

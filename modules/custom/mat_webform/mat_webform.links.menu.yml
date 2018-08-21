@@ -1,0 +1,6 @@
+mat_webform.central_registry_api_settings:
+  title: 'Central Registry API'
+  route_name: mat_webform.central_registry_api_settings
+  description: 'Central Registry API configuration'
+  parent: system.admin_config_services
+  weight: 99

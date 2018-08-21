@@ -118,7 +118,15 @@
       </div>
       {% endif %}
       {% set date = node.createdtime|format_date('news_date_format') %}
-      <div class="news-article-header--content container">{{ 'Published'| t }} {{ date }} {{ 'in'| t }} <a href="/newsroom?field_news_category_target_id={{node.field_news_category.entity.id}}">{{ node.field_news_category.entity.label }}</a></div>
+      <div class="news-article-header--content container">{{ 'Published'| t }} {{ date }}
+          {{ 'in'| t }}
+        {% set cat_count = 0 %}
+        {% for category in  node.field_news_category %}
+            {% if cat_count > 0 %}|{% endif %}
+            <a href="/newsroom?field_news_category_target_id={{category.entity.id}}">{{ category.entity.label }}</a>
+            {% set cat_count = cat_count + 1 %}
+        {% endfor %}
+        </div>
     </section>
     <div class="news-article-content">
       {% if node.field_image_style.value.0.target_id == 'news_header_img' %}

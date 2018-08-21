@@ -1,0 +1,9 @@
+uuid: af516228-09a0-4363-8e60-4542eb7b8a89
+langcode: en
+status: true
+dependencies: {  }
+id: header_announcement
+label: 'Header announcement'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

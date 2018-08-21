@@ -1,0 +1,4 @@
+services:
+  mat_webform.central_registry_api:
+    class: Drupal\mat_webform\Service\CentralRegistryApi
+    arguments: ['@config.factory']

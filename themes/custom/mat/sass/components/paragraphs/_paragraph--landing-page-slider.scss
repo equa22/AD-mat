@@ -10,7 +10,7 @@
   @media (min-width: $screen-sm-min) {
     margin-top: -$header-height;
   }
-  
+
   @media (max-width: $screen-sm-max) {
     margin-top: -$header-height-mobile;
   }
@@ -24,13 +24,20 @@
     outline: none;
   }
 
+  .container .slide--content .field--name-field-content {
+    transition: transform 1.3s ease-in-out 0.1s, opacity 0.8s ease-in-out;
+    transition-delay: 1.5s;
+    font-weight: 500;
+  }
   .animated {
     .container .slide--content .field--name-field-content {
+      transition-delay: 0s;
       transform: translate(0);
       opacity: 1;
     }
     .container .slide--content .field--name-field-link {
       transform: translate(0);
+      transition: transform 1s ease-in-out 0.3s, opacity 1.3s ease-in-out 0.2s;
       opacity: 1;
     }
   }
@@ -45,12 +52,13 @@
 
   .paragraph--type--slide {
     position: relative;
-    
-    .slide--image {
+
+    .slide--image,
+    img {
       background-size: cover;
       background-position: center;
       height: 305px;
-      
+
       @media (min-width: $screen-sm-min) {
         position: absolute;
         top: 0;
@@ -58,23 +66,32 @@
         height: 955px;
       }
     }
+    img {
+      object-fit: cover; // Hidden in IE.
+    }
+    .slide--image {
+      display: none; // Hidden by default, shown in IE.
+    }
 
     .container {
       padding-top: 4rem;
       padding-bottom: 5rem;
       overflow: hidden;
-      
+
       .field--name-field-content {
         opacity: 0;
         transform: translate(-200px);
-        transition: transform 0.8s ease-in-out 0.1s, opacity 0.5s ease-in-out;
+
       }
       .field--name-field-link {
         opacity: 0;
         transform: translate(-200px);
-        transition: transform 0.8s ease-in-out 0.3s, opacity 0.5s ease-in-out 0.2s;
+
       }
 
+      @media (max-width: $screen-md) {
+        padding-bottom: 115px;
+      }
       @media (min-width: $screen-sm-min) {
         display: flex;
         height: 95.5rem;
@@ -84,10 +101,9 @@
     }
 
     .slide--content {
-      max-width: 61rem;
+      max-width: 100%; //61rem
       position: relative;
       color: $color-white;
-
       .contextual {
         top: 4rem;
 
@@ -97,9 +113,10 @@
       }
     }
 
-    h1 {
-      font-weight: 700;
-      font-style: italic;
+    .slide--heading {
+      //font-weight: 700;
+      //font-style: italic;
+      font-family: $font-flama-semibold-italic;
 
       @media (min-width: $screen-sm-min) {
         height: 30rem;
@@ -107,11 +124,19 @@
     }
 
     .field--name-field-content {
+     //display: none;
+     width: 610px;
+
+      @media (max-width: $screen-md) {
+        width: 100%;
+      }
+
       @extend %lead-small-mobile;
     }
 
     .field--name-field-link {
       margin-top: 3rem;
+      display: none;
 
       @media (min-width: $screen-sm-min) {
         margin-top: 4.5rem;
@@ -128,13 +153,65 @@
   }
 }
 
-.paragraph--type--landing-page-slider .paragraph--type--slide h1 {
+.homepage-slider-link {
+  display: inline-block;
+  position: absolute;
+  left: calc((100% - 1230px)/2 + 30px);
+  top: 63.5rem;
+  a {
+    @include btn-primary();
+  }
+
+  @media (max-width: $screen-md-max) {
+    left: 30px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    bottom: 30px;
+    top: auto;
+    margin: 0;
+    margin-top: 4.5rem;
+  }
+}
+
+.homepage-slider-description {
+    font-size: 2.4rem;
+    line-height: 1.45;
+    color: white;
+    position: absolute;
+    left: calc((100% - 1230px)/2 + 30px);
+    top: 43.5rem;
+    width: 610px;
+
+    @media (max-width: $screen-sm-min) {
+      padding: 1.7rem 30px;
+      left: 0;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      bottom: 100px;
+      width: 100%;
+      top: unset;
+    }
+}
+
+.paragraph--type--landing-page-slider .paragraph--type--slide .slide--heading {
   height: auto;
   padding-top: 5rem;
-
+  padding-bottom: 4.2rem;
   @media (min-width: $screen-sm-min) {
     padding-top: 10rem;
+
   }
+  @media (max-width: $screen-sm-min) {
+    padding-bottom: 1.7rem;
+
+  }
+  @extend %h1;
 }
 
 .fixed-slider-header {
@@ -142,12 +219,15 @@
   @extend %h1;
   font-weight: 700;
   color: $color-white;
+  font-family: $font-flama-semibold;
+
+
 
   @media (min-width: $screen-sm-min) {
     left: 0;
     top: 24.8rem;
   }
-  
+
   @media (min-width: $screen-lg-min) {
     left: calc((100% - 1230px)/2);
     top: 23rem;

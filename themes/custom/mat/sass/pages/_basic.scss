@@ -19,7 +19,11 @@
     width: 30%;
     min-width: 330px;
 
-    @media (max-width: $screen-sm-max) {
+    @media (max-width: $screen-sm-max) and (min-width: $screen-sm-min) {
+      margin: 0 auto;
+      padding-bottom: 10.5rem;
+    }
+    @media (max-width: $screen-xs-max) {
       display: none;
     }
   }
@@ -28,6 +32,16 @@
     @media (min-width: $screen-md-min) {
       width: 70%;
       margin: 0 auto;
+    }
+    // When using Ajax on secondary pages (e.g. 'Donor Support').
+    >.basic-page-content {
+      width: 100%;
+    }
+
+    .basic-page-content--summary {
+      p {
+        font-family: $font-flama;
+      }
     }
   }
 
@@ -42,18 +56,33 @@
 
 // Basic page, News Article -- Header
 // -----------------------------------------------------------------------------
+#loading-gif-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, .7) url('/themes/custom/mat/assets/images/loading.gif') 50% 50% no-repeat;
+}
+
 .basic-page-header,
 .news-article--bg .news-article-header {
   position: relative;
   color: $color-white;
   text-align: center;
-  
+
   @media (min-width: $screen-sm-min) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 60rem;
     padding: 12rem 0 12rem 0;
+  }
+
+  h1 {
+    font-family: $font-flama-semibold;
   }
 
   &--heading {
@@ -65,7 +94,7 @@
       display: flex;
       align-items: center;
     }
-    
+
     @media (min-width: $screen-sm-min) {
       position: static;
       min-height: auto;
@@ -181,7 +210,9 @@
 // Basic page, News Article -- Content
 // -----------------------------------------------------------------------------
 .basic-page-content,
-.news-article-content {
+.news-article-content,
+.path-stories #content,
+.path-stories #components {
   // General styles
   a {
     text-decoration: underline;
@@ -191,6 +222,13 @@
     }
   }
 
+  h2.basic-page-optional-header {
+    @include font-size(1.6);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  h2.basic-page-optional-header,
   h3,
   h4,
   table caption {
@@ -216,13 +254,14 @@
   blockquote {
     position: relative;
     padding: 4.8rem 0 0 4rem;
-    margin: 2.35em 0 0 0;
+    margin: 2.35em 0 1.2em 0;
     @extend %lead;
     font-family: $font-flama-light;
 
     @media (min-width: $screen-sm-min) {
       padding: 0 8rem 0 4rem;
       line-height: 1.5 !important;
+      margin-top: 4rem;
     }
 
     &:before {
@@ -244,6 +283,13 @@
     }
   }
 
+  table {
+    margin-top: 0;
+    caption {
+      padding-top: 4rem;
+    }
+  }
+
   hr {
     margin-bottom: 3rem;
   }
@@ -255,12 +301,40 @@
     p {
       @extend %h4;
       font-weight: 500;
-      color: $blue-dark;
 
       @media (min-width: $screen-md-min) {
-        @include font-size(3);
+        @include font-size(2.4);
         line-height: 1.35;
       }
+
+      &,
+      a {
+        color: $blue-dark;
+      }
+    }
+
+    blockquote {
+      p {
+        &,
+        a {
+          color: $gray-darker;
+        }
+      }
+    }
+
+    // Lists
+    ul,
+    ol {
+      @extend %list-base;
+    }
+
+    ul:not(.contextual-links) {
+      @extend %list-ul;
+    }
+
+    ol {
+      @extend %list-ol;
     }
   }
 }
+

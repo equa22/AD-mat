@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - block_content.type.topbar_block
-    - field.field.block_content.topbar_block.body
+    - field.field.block_content.topbar_block.field_headline_and_link
     - field.field.block_content.topbar_block.field_link_donation
     - field.field.block_content.topbar_block.field_link_foundation
   module:
+    - entity_reference_revisions
     - field_group
     - link
-    - text
 third_party_settings:
   field_group:
     group_topbar_links:
@@ -18,7 +18,7 @@ third_party_settings:
         - field_link_foundation
         - field_link_donation
       parent_name: ''
-      weight: 20
+      weight: 1
       format_type: html_element
       format_settings:
         label: 'Topbar links group'
@@ -36,11 +36,13 @@ targetEntityType: block_content
 bundle: topbar_block
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
+  field_headline_and_link:
+    type: entity_reference_revisions_entity_view
     weight: 0
-    settings: {  }
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
     region: content
   field_link_donation:

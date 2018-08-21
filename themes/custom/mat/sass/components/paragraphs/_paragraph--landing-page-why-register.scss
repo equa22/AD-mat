@@ -13,13 +13,14 @@
   @media (min-width: $screen-md-min) {
      padding-bottom: 22rem;
   }
-  
+
   @media (max-width: $screen-sm-max) {
     @include gradient-purple();
   }
 
   .field--name-field-text {
     @extend %lead-small-mobile;
+    font-weight: 500;
   }
 
   .container-large {
@@ -34,6 +35,10 @@
 
   .why-register--content {
     padding: 37.5rem 0 8rem 0;
+
+    h2 {
+      font-family: $font-flama-semibold;
+    }
 
      @media (min-width: $screen-md-min) {
       width: 61%;

@@ -51,14 +51,13 @@
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
-      <div class="slide--image" style="background-image: url('{{ paragraph_bg }}')"></div>
+      <div class="slide--image"></div>{# The div we use on IE (CSS object-fit:cover workaround. #}
+      {{ paragraph_bg }} {# <img> element. #}
 
       <div class="container">
         <div class="slide--content">
           {{ content.contextual_links }}
-          <h1>
-            {{ content.field_title[0]['#context'].value }}
-          </h1>
+          <div class="slide--heading">{{ content.field_title[0]['#context'].value }}</div>
           {{ content.field_content }}
           {{ content.field_link }}
         </div>

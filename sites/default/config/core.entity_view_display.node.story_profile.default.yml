@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.story_profile.field_story_markup_23
     - field.field.node.story_profile.field_story_markup_4
     - field.field.node.story_profile.field_story_markup_5
+    - field.field.node.story_profile.field_story_profile_components
     - field.field.node.story_profile.field_submissioner_email
     - field.field.node.story_profile.field_submissioner_first_name
     - field.field.node.story_profile.field_submissioner_last_name
@@ -26,6 +27,7 @@ dependencies:
     - field.field.node.story_profile.field_user_submitted
     - node.type.story_profile
   module:
+    - entity_reference_revisions
     - svg_image
     - text
     - user
@@ -50,7 +52,7 @@ content:
     type: entity_reference_label
     region: content
   field_story_featured_image:
-    weight: 5
+    weight: 6
     label: hidden
     settings:
       svg_attributes:
@@ -71,19 +73,6 @@ content:
     type: string
     region: content
   field_story_image_1:
-    weight: 6
-    label: hidden
-    settings:
-      svg_attributes:
-        width: ''
-        height: ''
-      svg_render_as_image: true
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
-  field_story_image_2:
     weight: 7
     label: hidden
     settings:
@@ -96,8 +85,21 @@ content:
     third_party_settings: {  }
     type: image
     region: content
-  field_story_image_3:
+  field_story_image_2:
     weight: 8
+    label: hidden
+    settings:
+      svg_attributes:
+        width: ''
+        height: ''
+      svg_render_as_image: true
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_story_image_3:
+    weight: 9
     label: hidden
     settings:
       svg_attributes:
@@ -117,8 +119,17 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  field_story_profile_components:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   field_user_submitted:
-    weight: 9
+    weight: 10
     label: above
     settings:
       format: default
@@ -128,7 +139,7 @@ content:
     type: boolean
     region: content
   links:
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -7,7 +7,7 @@
 
 #header {
   position: relative;
-  
+
   @media (min-width: $screen-sm-min) {
     z-index: $z-index-header-screen;
   }
@@ -21,12 +21,13 @@
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
     @include font-size(1.2);
   }
-  
+
   > .block {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    //flex-wrap: wrap;
+    //justify-content: center;
     @extend .container;
     height: 6rem;
 
@@ -48,16 +49,16 @@
         padding-left: 3.5vw;
       }
 
-      &:before {
-        content: '';
-        display: inline-block;
-        width: 2.5rem;
-        height: 2.5rem;
-        position: absolute;
-        top: 6px;
-        left: 0;
-        @include icons('i-exclamation');
-      }
+      //&:before {
+      //  content: '';
+      //  display: inline-block;
+      //  width: 2.5rem;
+      //  height: 2.5rem;
+      //  position: absolute;
+      //  top: 6px;
+      //  left: 0;
+      //  @include icons('i-exclamation');
+      //}
 
       @media (min-width: $screen-sm-min) {
         display: block;
@@ -73,8 +74,48 @@
       }
     }
 
+    .field--name-field-headline-and-link {
+      font-weight: 500;
+      .paragraph--type--header-announcement-content {
+        display: flex;
+        align-items: center;
+        padding-left: 3.5rem;
+        position: relative;
+        @media (max-width: $screen-md-min) {
+          padding-left: 3rem;
+        }
+        @media (max-width: $screen-sm-min) {
+          display: none;
+        }
+        .field--name-field-announcement-link-url {
+          margin-left: 1rem;
+          a {
+            color: rgba(255, 255, 255, .5);
+            text-decoration: underline;
+            transition: color .2s ease-in-out;
+            &:hover {
+              color: rgb(255, 255, 255);
+            }
+          }
+        }
+        &:before {
+          content: '';
+          display: inline-block;
+          width: 2.5rem;
+          height: 2.5rem;
+          position: absolute;
+          left: 0;
+          @include icons('i-exclamation');
+          @media (max-width: $screen-md-min) {
+            left: 1.5rem;
+          }
+        }
+      }
+    }
+
     .topbar_links--group {
       display: flex;
+      margin-left: auto;
 
       @media (max-width: $screen-xs-max) {
         justify-content: space-between;
@@ -86,48 +127,48 @@
       }
 
       @media (min-width: $screen-sm-min) {
-        align-self: flex-end;
         margin-right: 2.5rem;
       }
-    }
 
-    .field--type-link {
-      @media (min-width: $screen-sm-min) {
-        margin-right: 1.5rem;
-      }
-
-      @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-        margin-right: 1.1vw;
-      }
-
-      a {
-        @include btn-secondary();
-        padding-right: 1.3rem;
-        padding-left: 1.3rem;
-        font-weight: 700;
-        background-position: 1.2rem 1rem;
-        background-size: auto auto;
-        transition: background-color 0.4s, color 0.4s !important;
-
-        @media (max-width: $screen-iphone5-max) {
-          @include font-size(1.2);
-        }
-
-        @media (max-width: 360px) {
-          padding-right: .8rem;
-          padding-left: .8rem;
-        }
-
+      .field--type-link {
         @media (min-width: $screen-sm-min) {
-          padding-left: 3.8rem;
-          padding-right: 2.2rem;
+          margin-right: 1.5rem;
         }
 
         @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-          padding-left: 4vw;
-          padding-right: 1.8vw;
-          @include font-size(1.2);
-          background-position: 1rem .9rem;
+          margin-right: 1.1vw;
+        }
+
+        a {
+          @include btn-secondary();
+          padding-right: 1.3rem;
+          padding-left: 1.3rem;
+          font-family: $font-flama-medium;
+          font-weight: 400;
+          background-position: 1.2rem 1rem;
+          background-size: auto auto;
+          transition: all 0.4s !important;
+
+          @media (max-width: $screen-iphone5-max) {
+            @include font-size(1.2);
+          }
+
+          @media (max-width: 360px) {
+            padding-right: .8rem;
+            padding-left: .8rem;
+          }
+
+          @media (min-width: $screen-sm-min) {
+            padding-left: 3.8rem;
+            padding-right: 2.2rem;
+          }
+
+          @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+            padding-left: 4vw;
+            padding-right: 1.8vw;
+            @include font-size(1.2);
+            background-position: 1rem .9rem;
+          }
         }
       }
     }
@@ -158,11 +199,14 @@
         @include icons('i-search-plain');
         background-size: auto auto;
       }
+      @media (max-width: $screen-sm-min) {
+        display: none;
+      }
     }
 
     #topbar--search-open {
       display: none;
-      
+
       @media (min-width: $screen-sm-min) {
         display: block;
         position: absolute;
@@ -184,7 +228,7 @@
 .region-header {
   position: relative;
   z-index: 2;
-  
+
   @media (min-width: $screen-sm-min) {
     padding-top: 3.5rem;
     height: $header-height;
@@ -239,7 +283,7 @@
       width: 100%;
       height: 100%;
       z-index: $z-index-search-overlay;
-      @include gradient-blue();
+      background: linear-gradient(90deg, rgba(45, 176, 223, .95), rgba(47, 45, 131, .95));
       text-align: center;
 
       form {
@@ -263,6 +307,8 @@
           max-width: 90rem;
           padding: 0.5rem;
           margin-top: 3.2rem;
+          font-family: $font-flama-semibold;
+          font-weight: 400;
           @include font-size(8.5);
           line-height: 1;
           text-align: center;
@@ -271,11 +317,19 @@
           border: none;
           border-bottom: 2px solid $color-white;
           background-color: transparent;
+          border-radius: 0;
+          &:-webkit-autofill,
+          &:-webkit-autofill:hover,
+          &:-webkit-autofill:focus,
+          &:-webkit-autofill:active {
+            transition: background-color 5000s ease-in-out 0s;
+            -webkit-text-fill-color: rgb(255, 255, 255);
+          }
         }
 
         .form-actions {
           input {
-            padding: .6rem 2.7rem .6rem 5rem;
+            padding: .6rem 3rem .6rem 5rem;
             @include font-size(1.6);
             font-weight: 500;
             text-transform: none;
@@ -297,7 +351,7 @@
           max-width: 122rem;
           margin: 0 auto;
           padding: 0 $grid-gutter-width;
-          @include font-size(1.6); 
+          @include font-size(1.6);
           font-weight: 500;
           letter-spacing: .17em;
           text-transform: uppercase;
@@ -322,6 +376,7 @@
 // Transparent navigation
 body.page-node-type-landing-page {
   .region-header {
+    z-index: 3;
      // Logotype
     .block.branding {
       a {
@@ -353,16 +408,16 @@ body.mobile-menu--opened {
       }
     }
   }
-  @media (max-width: $screen-xs-max) { 
+  @media (max-width: $screen-xs-max) {
     #block-header-search-block {
       display: block;
-      position: fixed;
-      bottom: 0;
+      //position: fixed;
+      //bottom: 0;
       width: 100%;
       height: 11rem;
       padding: 3rem $grid-gutter-width 0 $grid-gutter-width;
       background-color: #F1F1F1;
-      box-shadow: inset 0 7px 10px -7px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 6px 10px -7px rgba(0, 0, 0, 0.3), inset 0 -1px 10px -4px rgba(0,0,0,0.3);
       z-index: $z-index-mobile-menu;
 
       form {

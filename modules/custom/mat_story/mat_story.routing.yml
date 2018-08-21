@@ -5,3 +5,11 @@ mat_story.config:
     _title: 'Story Sumbissions Settings'
   requirements:
     _permission: 'administer site configuration'
+
+mat_story.form.submitted:
+  path: '/stories/story-submitted'
+  defaults:
+    _controller: '\Drupal\mat_story\Controller\StoryController::renderFormSubmitted'
+    _title: 'Thank you!'
+  requirements:
+    _permission: 'access content'
