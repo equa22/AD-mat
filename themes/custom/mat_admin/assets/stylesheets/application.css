@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin-ext");
 .adminimal .button {
   border-radius: 5px;
-  border: 1px solid #7e7cce; }
+  border: 1px solid #307db6; }
   .adminimal .button:hover {
-    border-color: #7e7cce; }
+    border-color: #307db6; }
   .adminimal .button.paragraph-type-add-modal-button {
     border-width: 2px; }
 
@@ -14,34 +14,34 @@
     border: 2px solid #d9534f; }
 
 .adminimal .button--primary {
-  background-color: #3f0184;
+  background-color: #084f83;
   border: 1px solid transparent; }
   .adminimal .button--primary:hover, .adminimal .button--primary:focus {
-    background-color: #27084a; }
+    background-color: #084f83; }
 
 .adminimal .action-links .button--primary {
   padding: 10px 20px;
-  border-color: #3f0184;
-  background-color: #3f0184;
+  border-color: #084f83;
+  background-color: #084f83;
   color: white; }
   .adminimal .action-links .button--primary:hover, .adminimal .action-links .button--primary:focus {
-    background-color: #27084a; }
+    background-color: #084f83; }
 
 .paragraphs-actions .paragraphs-dropdown-actions {
-  border-color: #7e7cce; }
+  border-color: #307db6; }
 
 .paragraphs-actions .paragraphs-dropdown button:hover {
-  border-color: #7e7cce; }
+  border-color: #307db6; }
 
 .paragraphs-actions .paragraphs-dropdown input {
   border: none; }
 
 .paragraphs-actions .paragraphs-dropdown.open button {
-  border-color: #7e7cce; }
+  border-color: #307db6; }
 
 .js .adminimal .dropbutton-wrapper .dropbutton-widget .dropbutton-toggle button,
 .js .adminimal .dropbutton-wrapper .dropbutton-widget .dropbutton-toggle button {
-  border-left: 1px solid #7e7cce; }
+  border-left: 1px solid #307db6; }
   .js .adminimal .dropbutton-wrapper .dropbutton-widget .dropbutton-toggle button:hover, .js .adminimal .dropbutton-wrapper .dropbutton-widget .dropbutton-toggle button:focus,
   .js .adminimal .dropbutton-wrapper .dropbutton-widget .dropbutton-toggle button:hover,
   .js .adminimal .dropbutton-wrapper .dropbutton-widget .dropbutton-toggle button:focus {
@@ -51,38 +51,38 @@
   font-weight: 600; }
 
 .js .dropbutton-wrapper .dropbutton-widget .dropbutton-toggle button {
-  border-color: #7e7cce; }
+  border-color: #307db6; }
 
 .js .adminimal .dropbutton-widget .dropbutton-action input {
   font-weight: 600;
   border-radius: 5px; }
 
 .js .dropbutton-multiple .dropbutton-widget {
-  border: 1px solid #7e7cce !important;
+  border: 1px solid #307db6 !important;
   border-radius: 5px !important; }
   .js .dropbutton-multiple .dropbutton-widget .dropbutton-action a {
     border-radius: 5px !important; }
   .js .dropbutton-multiple .dropbutton-widget button:hover,
   .js .dropbutton-multiple .dropbutton-widget button:focus {
-    border-color: #7e7cce;
+    border-color: #307db6;
     border-radius: 0 5px 5px 0; }
 
 .js .paragraphs-subform button:hover {
-  border: 1px solid #7e7cce !important; }
+  border: 1px solid #307db6 !important; }
 
 a, button.link {
-  color: #5701b7; }
+  color: #0b6cb3; }
   a:hover, button.link:hover {
-    color: #3f0184; }
+    color: #084f83; }
 
 .adminimal thead th {
-  background-color: #f7f7f7; }
+  background-color: #c3d9e9; }
 
 .adminimal tbody tr:hover {
-  background: #fafafd; }
+  background: #d0e2f0; }
 
 input[type=checkbox]:checked {
-  background: #3f0184;
+  background: #084f83;
   box-shadow: inset 0px 0px 0px 3px white; }
 
 .adminimal input.form-autocomplete,
@@ -200,14 +200,14 @@ div[id^="edit-field-media-image"] input.button {
 
 .settings {
   margin-top: 20px;
-  background-color: #f7f7f7;
+  background-color: #c3d9e9;
   border: none;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 10px 15px;
-  border-top: 1px solid #c7c6f5; }
+  border-top: 1px solid #52c8ec; }
   .settings h3, .settings label, .settings legend, .settings .form-composite > legend {
     font-weight: 600; }
   .settings > h3 {
@@ -220,7 +220,7 @@ div[id^="edit-field-media-image"] input.button {
     padding: 0 10px;
     margin: 0 20px 0 0;
     padding-right: 20px;
-    border-right: 1px dotted #c7c6f5;
+    border-right: 1px dotted #52c8ec;
     font-size: 14px;
     text-transform: uppercase; }
   .settings > .form-wrapper {
@@ -255,7 +255,7 @@ div[id^="edit-field-media-image"] input.button {
   width: 100%; }
 
 .js input.paragraph-type-add-modal-button:hover {
-  color: #3f0184; }
+  color: #084f83; }
 
 .paragraph-form .field--name-field-link .fieldset-wrapper {
   display: -ms-flexbox;
@@ -273,7 +273,7 @@ div[id^="edit-field-media-image"] input.button {
 .adminimal-admin-toolbar {
   font-family: "Open Sans", sans-serif; }
   .adminimal-admin-toolbar .toolbar .toolbar-bar {
-    background-color: #150725;
+    background-color: #307db6;
     color: white; }
   .adminimal-admin-toolbar .toolbar .toolbar-bar .toolbar-item {
     color: white; }
@@ -281,9 +281,9 @@ div[id^="edit-field-media-image"] input.button {
     font-weight: 600; }
   .adminimal-admin-toolbar .toolbar .toolbar-bar .toolbar-tab > .toolbar-item:hover,
   .adminimal-admin-toolbar .toolbar .toolbar-bar .toolbar-tab > .toolbar-item:focus {
-    background-color: blue; }
+    background-color: #084f83; }
   .adminimal-admin-toolbar .toolbar .toolbar-bar .toolbar-tab > .toolbar-item.is-active {
-    background-color: blue; }
+    background-color: #084f83; }
   .adminimal-admin-toolbar .toolbar .toolbar-item {
     cursor: pointer;
     padding: 1em 1.3333em;
@@ -293,21 +293,26 @@ div[id^="edit-field-media-image"] input.button {
   .adminimal-admin-toolbar .toolbar .toolbar-item:focus {
     text-decoration: none; }
   .adminimal-admin-toolbar .toolbar .toolbar-tray {
-    background-color: blue; }
+    background-color: #084f83; }
+    .adminimal-admin-toolbar .toolbar .toolbar-tray .menu-item--expanded a.is-active {
+      color: white;
+      background-color: #0e6195; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray .toolbar-menu a {
-      background-color: blue;
-      color: #e5d6f6; }
+      background-color: #084f83;
+      color: white; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray .menu-item--expanded:hover > a,
     .adminimal-admin-toolbar .toolbar .toolbar-tray .menu-item--expanded:hover > .toolbar-box {
-      background-color: #150725; }
+      background-color: #307db6; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-horizontal ul ul li.menu-item:first-child {
-      border-top-color: blue; }
+      border-top-color: #4f9cd5; }
+    .adminimal-admin-toolbar .toolbar .toolbar-tray .toolbar-menu a:hover, .adminimal-admin-toolbar .toolbar .toolbar-tray .toolbar-menu a:focus {
+      background-color: #4f9cd5; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-vertical .toolbar-menu a:hover, .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-vertical .toolbar-menu a:focus {
-      background-color: #150725; }
+      background-color: #4f9cd5; }
     .adminimal-admin-toolbar .toolbar .toolbar-tray.toolbar-tray-vertical .menu-item--active-trail .toolbar-box a {
-      background-color: #150725; }
+      background-color: #307db6; }
   .adminimal-admin-toolbar .toolbar-toggle-orientation button {
-    background-color: #150725; }
+    background-color: #307db6; }
   .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:before,
   .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before,
   .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before {
@@ -332,7 +337,7 @@ div[id^="edit-field-media-image"] input.button {
 
 .adminimal-admin-toolbar .level-1 .toolbar-handle.open,
 .adminimal-admin-toolbar .toolbar-tray-vertical .level-2 {
-  background-color: #150725 !important;
+  background-color: #307db6 !important;
   border-radius: 0; }
 
 .adminimal-admin-toolbar .toolbar-icon-system-admin-content:before {
@@ -404,18 +409,27 @@ div[id^="edit-field-media-image"] input.button {
   background-repeat: no-repeat; }
 
 .adminimal-admin-toolbar .toolbar .toolbar-toggle-orientation {
-  background-color: #27084a; }
+  background-color: #084f83; }
 
 .adminimal-admin-toolbar .toolbar .toolbar-icon.toolbar-handle.open:before {
   background-image: url(../images/chevron-disc-up.svg) !important; }
 
+.adminimal-admin-toolbar .toolbar .toolbar-icon.toolbar-handle:before {
+  background-image: url(../images/chevron-disc-down.svg) !important; }
+
+.adminimal-admin-toolbar .toolbar .toolbar-icon-coffee:before, .adminimal-admin-toolbar .toolbar .toolbar .toolbar-bar .toolbar-icon-coffee.active:before {
+  background-image: url(../images/chevron-disc-down.svg) !important; }
+
+.adminimal-admin-toolbar .toolbar .toolbar-icon-escape-admin:before {
+  background-image: url(../images/chevron-disc-left.svg) !important; }
+
 .adminimal-admin-toolbar .toolbar-menu-administration ul {
   margin: 0; }
   .adminimal-admin-toolbar .toolbar-menu-administration ul li a {
-    background-color: blue;
-    color: #e5d6f6; }
+    background-color: #084f83;
+    color: white; }
     .adminimal-admin-toolbar .toolbar-menu-administration ul li a:hover {
-      background-color: #150725; }
+      background-color: #307db6; }
 
 .adminimal .content-header {
   margin-top: 10px; }

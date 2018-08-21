@@ -9,10 +9,10 @@
  */
 
  $toolbar-white:         white;
- $toolbar-link:          #e5d6f6;
- $toolbar-bar:           blue !default;
- $toolbar-over:          blue !default;
- $toolbar-tray:          #150725 !default;
+ $toolbar-link:          white;
+ $toolbar-bar:           #084f83 !default;
+ $toolbar-over:          #4f9cd5 !default;
+ $toolbar-tray:          #307db6 !default;
 
  .adminimal-admin-toolbar {
    font-family: $font-text;
@@ -58,6 +58,11 @@
    .toolbar .toolbar-tray {
      background-color: $toolbar-bar;
 
+     .menu-item--expanded a.is-active {
+       color: white;
+       background-color: #0e6195;
+     }
+
      .toolbar-menu a {
        background-color: $toolbar-bar;
        color: $toolbar-link;
@@ -72,11 +77,18 @@
        border-top-color: $toolbar-over;
      }
 
+    .toolbar-menu a {
+        &:hover,
+        &:focus {
+          background-color: #4f9cd5;
+        }
+      }
+
      &.toolbar-tray-vertical {
        .toolbar-menu a {
          &:hover,
          &:focus {
-           background-color: $toolbar-tray;
+           background-color: #4f9cd5;
          }
        }
 
@@ -181,6 +193,20 @@
     .toolbar-icon.toolbar-handle.open:before {
       background-image: url(../images/chevron-disc-up.svg) !important;
     }
+
+    .toolbar-icon.toolbar-handle:before {
+      background-image: url(../images/chevron-disc-down.svg) !important;
+    }
+
+    .toolbar-icon-coffee:before, .toolbar .toolbar-bar .toolbar-icon-coffee.active:before {
+      background-image: url(../images/chevron-disc-down.svg) !important;
+    }
+
+    .toolbar-icon-escape-admin:before {
+      background-image: url(../images/chevron-disc-left.svg) !important;
+    }
+
+
   }
 
   .toolbar-menu-administration {
@@ -195,4 +221,11 @@
       }
     }
   }
+}
+
+
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before {
+
 }

@@ -9,10 +9,10 @@
  */
 
  $toolbar-white:         white;
- $toolbar-link:          #e5d6f6;
- $toolbar-bar:           #200044 !default;
- $toolbar-over:          #7e7cce !default;
- $toolbar-tray:          #150725 !default;
+ $toolbar-link:          white;
+ $toolbar-bar:           #084f83 !default;
+ $toolbar-over:          #0baadb !default;
+ $toolbar-tray:          #307db6 !default;
 
  .adminimal-admin-toolbar {
    font-family: $font-text;
@@ -181,6 +181,10 @@
     .toolbar-icon.toolbar-handle.open:before {
       background-image: url(../images/toolbar/chevron-disc-up.svg) !important;
     }
+
+    .toolbar-icon.toolbar-handle:before {
+      background-image: url(../images/toolbar/chevron-disc-down.svg) !important;
+    }
   }
 
   .toolbar-menu-administration {
@@ -196,3 +200,4 @@
     }
   }
 }
+
