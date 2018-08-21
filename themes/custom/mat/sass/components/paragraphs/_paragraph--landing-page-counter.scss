@@ -80,20 +80,20 @@
     @include font-size(35);
     @media (max-width: $container-lg) {
       @include font-size(30);
-      left: 15%;
-      padding-top: 3rem;
+      left: 50%;
+      transform: translate(-50%, 0);
+      padding-top: 3.5rem;
     }
     @media (max-width: $screen-lg) {
       @include font-size(27);
-      left: 10%;
-      padding-top: 4rem;
+      padding-top: 5.5rem;
     }
     @media (max-width: $screen-md) {
-      @include font-size(24);
-      left: 5%;
-      padding-top: 6rem;
+      @include font-size(20.5);
+      padding-top: 11.5rem;
     }
     @media (max-width: $screen-sm) {
+      transform: none;
       left: auto;
       top: 0;
       @include font-size(13);
@@ -102,8 +102,11 @@
     @media (max-width: $screen-sm) {
       @include font-size(10);
     }
+    @media (max-width: $screen-xs) {
+      @include font-size(7);
+    }
     @media (max-width: $screen-iphone5) {
-      @include font-size(8);
+      @include font-size(5.5);
     }
 
     // IE10, IE11
