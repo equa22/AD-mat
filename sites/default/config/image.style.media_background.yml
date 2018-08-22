@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: media_background
-label: 'Media Background'
+label: 'Media Background (desktop)'
 effects:
   6c17a961-48c5-4906-b3bf-8120a2432bbc:
     uuid: 6c17a961-48c5-4906-b3bf-8120a2432bbc

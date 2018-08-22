@@ -54,11 +54,12 @@
     position: relative;
 
     .slide--image,
-    img {
+    img,
+    picture {
       background-size: cover;
       background-position: center;
       height: 305px;
-
+      width: 100%;
       @media (min-width: $screen-sm-min) {
         position: absolute;
         top: 0;
