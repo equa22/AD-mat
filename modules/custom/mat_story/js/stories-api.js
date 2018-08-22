@@ -110,12 +110,12 @@
         el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
         el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
 
-        /*if(el.position.y < config._el_height) {
+        if(el.position.y < config._el_height) {
 
           el.position.y = config._el_height;
         } else if(el.position.y > config._height - config._el_height) {
           el.position.y = config._height - config._el_height;
-        }*/
+        }
         getCss(el);
       }, el.speed);
 
