@@ -32,6 +32,19 @@
  * @ingroup themeable
  */
 #}
+
+<div class="controls">
+  <div class="container">
+    <div class="filter-wrapper"></div>
+    <div class="alphabet-wrapper">
+      <label>Find a Story by <span>Last </span>Name<i>:</i></label>
+      <div class="dropdown-wrapper">
+        <div class="dropdown"><div class="dropdown-inner"></div></div>
+        <div class="selected">A &mdash; Z</div>
+      </div>
+    </div>
+ </div>
+</div>
 {%
   set classes = [
     dom_id ? 'js-view-dom-id-' ~ dom_id,
@@ -55,18 +68,7 @@
     <section class="stories-api">
       <div id="stories-api"></div>
 
-      <div class="controls">
-        <div class="container">
-          <div class="filter-wrapper"></div>
-          <div class="alphabet-wrapper">
-            <label>Find a Story by <span>Last </span>Name<i>:</i></label>
-            <div class="dropdown-wrapper">
-              <div class="dropdown"><div class="dropdown-inner"></div></div>
-              <div class="selected">A &mdash; Z</div>
-            </div>
-          </div>
-       </div>
-      </div>
+      
 
       <div class="animation-wrapper"></div>
       <div id="slider"></div>

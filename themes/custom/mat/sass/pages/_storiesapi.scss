@@ -9,7 +9,7 @@ $option-width: 70px;
 
 .slider-wrapper {
   width: 100%;
-  height: calc(100vh - 220px);
+  height: calc(100vh - 300px);
   position: relative;
   margin: 0;
   display: flex;
@@ -23,6 +23,8 @@ $option-width: 70px;
   .container-small {
     color: $color-white;
     text-align: center;
+    max-width: 940px;
+    padding: 0;
 
     > * {
       position: relative;
@@ -32,6 +34,7 @@ $option-width: 70px;
     h1 {
       margin-bottom: 4.2rem;
       padding-bottom: 0;
+      font-family: $font-flama-semibold;
 
       @media (max-width: $screen-xs-max) {
         margin-bottom: 4.2rem;
@@ -302,6 +305,7 @@ $option-width: 70px;
     }
 
     &.hovered {
+      z-index: 10;
       .label {
         @media (min-width: $screen-sm-min) {
           opacity: 1;
@@ -786,6 +790,11 @@ $mobile-item-size: 100px;
   .slider-wrapper {
     height: 100%;
     max-height: unset;
+
+    .container-small {
+      margin-top: 50px;
+      padding: 0 30px;
+    }
   }
   .controls .filter-wrapper {
     display: block;
@@ -814,10 +823,10 @@ $mobile-item-size: 100px;
       -webkit-filter: blur(0) brightness(1);
       filter: blur(0) brightness(1);
       &.left {
-        transform: translate($mobile-item-margin, 0);
+        transform: translate($mobile-item-margin, 0) !important;
       }
       &.right {
-        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0);
+        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
       }
     }
     .slider-wrapper {
@@ -833,9 +842,7 @@ $mobile-item-size: 100px;
   .animation-wrapper {
     padding: 50px 0;
   }
-  .container-small {
-    padding-top: 50px;
-  }
+
 }
 
 
@@ -1048,4 +1055,5 @@ $mobile-item-size: 100px;
 .controls .filter-wrapper .active.cat-item {
     font-weight: bold !important;
     color: #4a4a4a;
+    white-space: nowrap;
 }

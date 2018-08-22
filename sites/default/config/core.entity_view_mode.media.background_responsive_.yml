@@ -1,0 +1,10 @@
+uuid: b789a3fd-9c45-4f58-88f7-e6530a1a7525
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.background_responsive_
+label: 'Background (responsive)'
+targetEntityType: media
+cache: true
