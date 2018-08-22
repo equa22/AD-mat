@@ -305,6 +305,7 @@ $option-width: 70px;
 
     &.hovered {
       z-index: 10;
+
       .label {
         @media (min-width: $screen-sm-min) {
           opacity: 1;
@@ -319,7 +320,7 @@ $option-width: 70px;
     }
 
 
-    @media (max-width: $screen-xs-max) {
+    @media (max-width: $screen-sm-max) {
       position: relative;
       transform: translate(0,0);
     }
