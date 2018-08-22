@@ -37,7 +37,7 @@ $option-width: 70px;
     h1 {
       margin-bottom: 4.2rem;
       padding-bottom: 0;
-      
+      font-family: $font-flama-semibold;
 
       @media (max-width: $screen-xs-max) {
         margin-bottom: 4.2rem;
@@ -892,8 +892,10 @@ $mobile-item-size: 100px;
       display: block;
     }
   }
+  .animation-wrapper {
+    padding: 50px 0;
+  }
 
-  
 }
 
 
