@@ -5,6 +5,8 @@ dependencies:
   config:
     - field.field.taxonomy_term.basic_page_categories.field_header_background_image
     - field.field.taxonomy_term.basic_page_categories.field_header_style
+    - field.field.taxonomy_term.basic_page_categories.field_hero_image_title
+    - field.field.taxonomy_term.basic_page_categories.field_shared_hero_image_title
     - taxonomy.vocabulary.basic_page_categories
   module:
     - options
@@ -41,6 +43,23 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_hero_image_title:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_shared_hero_image_title:
+    weight: 3
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
 hidden:
   langcode: true

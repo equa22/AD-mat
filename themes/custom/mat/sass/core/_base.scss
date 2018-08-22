@@ -10,6 +10,7 @@ body {
   color: $gray-darker;
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
   font-family: $font-text;
   font-weight: 400;
   &.modal-open {
@@ -17,6 +18,17 @@ body {
     position: fixed;
     overflow-y: scroll;
     width: 100%;
+  }
+  &.loading {
+    overflow: hidden;
+    #loading-gif-modal {
+      display: block;
+    }
+  }
+  &:after {
+    // Preload header SVG icons (black version) so that they don't flicker on hover.
+    content: url($icon-root + 'i-together-nav-dark.svg') url($icon-root + 'i-give-life-nav-dark.svg');
+    display: none;
   }
 }
 
@@ -39,7 +51,7 @@ select {
 hr {
   margin: 0;
   border: 0;
-  border-top: 2px solid $hr-border-color;
+  border-top: 2px solid $hr-border-color-transparent;
 }
 
 table {
@@ -61,6 +73,7 @@ table {
     background-color: #ECECEC;
     border: 1px solid $table-border-color;
     border-left: none;
+    font-weight: 500;
   }
 
   td {

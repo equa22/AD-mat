@@ -30,7 +30,7 @@
 
   .field--name-field-link {
     margin-top: 3.4rem;
-    
+
     @media (min-width: $screen-sm-min) {
       margin-top: 4.5rem;
     }
@@ -63,6 +63,8 @@
       width: 100%;
       margin: 2rem 0 4.5rem 0;
 
+
+
       @media (min-width: $screen-sm-min) {
         position: absolute;
         width: calc(100% - 60px);
@@ -78,6 +80,16 @@
       .hearts-container {
         position: relative;
 
+        @media (min-width: $screen-xl) {
+          left: 55%;
+        }
+
+        //Fix hearts bleeding off the edge on md-sized screens.
+        @media (max-width: $screen-xl - 1) {
+          left: 48%;
+        }
+
+
         @media (max-width: $screen-xs-max) {
           width: 512px;
           left: calc(50% - 157px);
@@ -87,9 +99,7 @@
           left: calc(50% - 130px);
         }
 
-        @media (min-width: $screen-sm-min) {
-          left: 55%;
-        }
+
       }
 
       .heart-6 {
@@ -182,6 +192,26 @@
       position: relative;
       z-index: 2;
 
+      h1 {
+        font-family: $font-flama-semibold-italic;
+        font-weight: 400;
+        p {
+          font-family: $font-flama-semibold-italic;
+          font-weight: 400;
+        }
+      }
+
+      .field--name-field-text {
+        p {
+          font-weight: 500;
+        }
+
+        strong {
+          font-family: $font-flama-semibold-italic;
+          font-weight: 400;
+        }
+      }
+
       @media (min-width: $screen-sm-min) {
         max-width: 48%;
         min-height: 62rem;
@@ -224,7 +254,7 @@
         max-width: 47%;
         min-height: 57rem;
         float: right;
-        
+
       }
 
       h1 {
@@ -232,14 +262,27 @@
           @include font-size(5);
           padding: 2rem 0 2.8rem 0;
         }
+        p {
+          font-family: $font-roboto;
+          font-weight: 500;
+        }
       }
 
       .field--name-field-text {
+        font-weight: 500;
         @media (max-width: $screen-xs-max) {
           @include font-size(2.4);
         }
       }
     }
   }
-}
 
+  &.right {
+    .hero--give-life__content h1 {
+      font-family: $font-flama-semibold-italic;
+      p {
+        font-family: $font-flama-semibold-italic;
+      }
+    }
+  }
+}

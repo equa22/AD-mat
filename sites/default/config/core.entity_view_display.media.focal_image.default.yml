@@ -1,0 +1,31 @@
+uuid: 3fcfda94-d9f3-4701-af1d-9608164b3846
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.focal_image.field_media_image_2
+    - media.type.focal_image
+    - responsive_image.styles.focal_media_background_responsive_
+  module:
+    - responsive_image
+id: media.focal_image.default
+targetEntityType: media
+bundle: focal_image
+mode: default
+content:
+  field_media_image_2:
+    weight: 0
+    label: hidden
+    settings:
+      responsive_image_style: focal_media_background_responsive_
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+    region: content
+hidden:
+  addtoany: true
+  created: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

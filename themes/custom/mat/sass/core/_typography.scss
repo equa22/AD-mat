@@ -164,7 +164,9 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   @extend %h1;
-  font-family: $font-flama;
+  //font-family: $font-flama;
+  font-family: $font-roboto;
+  font-weight: 500;
   padding-bottom: 1.7rem;
 
   @media (min-width: $screen-sm-min) {
@@ -183,7 +185,7 @@ h3 {
 
 h4 {
   @extend %h4;
-  font-weight: 400;
+  font-weight: 500;
   padding-bottom: .5rem;
 }
 

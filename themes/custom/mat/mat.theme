@@ -34,3 +34,20 @@ function mat_preprocess_node(&$variables) {
     }
   }
 }
+
+function mat_preprocess_menu(&$variables) {
+  /*
+   * Add a 'uses-ajax' class selector to all menu items that have the 'Uses AJAX' checkbox selected.
+   */
+  if ($variables['menu_name'] === 'main' && isset($variables['menu_block_configuration']['level']) && $variables['menu_block_configuration']['level'] > 1) {
+    foreach ($variables['items'] as $item) {
+      $menu_item_entities = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties(['uuid'=>$item['original_link']->getDerivativeId()]);
+      foreach ($menu_item_entities as $entity) {
+        if ($entity->menu_uses_ajax->value === '1') {
+          $item['attributes']['class'] = 'uses-ajax';
+        }
+      }
+    }
+  }
+}
+

@@ -52,6 +52,8 @@
       font-weight: 500;
       color: $color-white;
       border-radius: $border-radius-base;
+      font-family: $font-flama-semibold;
+
 
       @media (min-width: $screen-sm-min) {
         padding: 2rem 7.5rem;
@@ -68,6 +70,10 @@
         display: none;
       }
     }
+  }
+
+  .pillar-group-item--heading h4 {
+    font-family: $font-flama-semibold;
   }
 
   &.orange {
@@ -214,6 +220,8 @@
 
       a {
         @include btn-secondary('white');
+        font-weight: 400;
+        font-family: $font-flama;
       }
     }
   }
@@ -375,7 +383,7 @@
       transition: 0.5s width linear 0.3s;
     }
 
-    .field--name-field-link, 
+    .field--name-field-link,
     .field--name-field-content,
     .pillar-group-item--heading {
       //transform: translate(-100%, 0);
@@ -388,7 +396,7 @@
       transform: scale(0);
     }
     &.animate {
-      .field--name-field-link, 
+      .field--name-field-link,
       .field--name-field-content,
       .pillar-group-item--heading {
         opacity: 1;
@@ -405,9 +413,9 @@
     //transform: translate(-100%, 0);
     //opacity: 0;
 
-    
 
-    .field--name-field-link, 
+
+    .field--name-field-link,
     .field--name-field-content,
     .pillar-group-item--heading {
       //transform: translate(100%, 0);
@@ -417,7 +425,7 @@
 
 
     &.animate {
-      .field--name-field-link, 
+      .field--name-field-link,
       .field--name-field-content,
       .pillar-group-item--heading {
         opacity: 1;

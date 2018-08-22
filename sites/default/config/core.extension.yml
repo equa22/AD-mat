@@ -1,6 +1,7 @@
 module:
   addtoany: 0
   admin_toolbar: 0
+  admin_toolbar_links_access_filter: 0
   admin_toolbar_tools: 0
   adminimal_admin_toolbar: 0
   allowed_formats: 0
@@ -22,6 +23,8 @@ module:
   breakpoint: 0
   ckeditor: 0
   classy_paragraphs: 0
+  coffee: 0
+  conditional_fields: 0
   config: 0
   config_filter: 0
   config_ignore: 0
@@ -70,7 +73,6 @@ module:
   media: 0
   media_entity_browser: 0
   menu_block: 0
-  menu_link_attributes: 0
   menu_ui: 0
   metatag: 0
   metatag_open_graph: 0
@@ -95,6 +97,7 @@ module:
   text: 0
   token: 0
   toolbar: 0
+  twig_xdebug: 0
   update: 0
   user: 0
   video_embed_field: 0

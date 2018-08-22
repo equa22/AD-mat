@@ -36,9 +36,19 @@
         e.preventDefault();
       });*/
 
-      $('.node-story-profile-story-submission-form a.step-link', context).on('click', function(e) {
-        $(this).addClass('active');
-        $(this).next('.step-content').slideDown();
+      // $('.node-story-profile-story-submission-form a.step-link', context).on('click', function(e) {
+      //   $(this).addClass('active');
+      //   $(this).next('.step-content').slideDown();
+      // });
+
+      // Select all step links (except the first one, since it remains open anyway).
+      var step_links = $('a.step-link:not([href="#step1"])', context);
+      // Open parent div and scroll down.
+      step_links.on('click touchend', function() {
+        var selected = $(this);
+        selected.addClass('active');
+        selected.next('.step-content').slideDown();
+        $('html, body', context).animate({scrollTop: selected.offset().top}, 700);
       });
 
       // move button to step 5

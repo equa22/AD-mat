@@ -13,7 +13,7 @@ field_name: field_headline_and_link
 entity_type: block_content
 bundle: topbar_block
 label: 'Headline and link'
-description: 'The text and the link on the left side of the header.'
+description: ''
 required: false
 translatable: false
 default_value: {  }

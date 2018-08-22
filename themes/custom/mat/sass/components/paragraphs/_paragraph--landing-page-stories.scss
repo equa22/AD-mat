@@ -8,7 +8,8 @@
 // -----------------------------------------------------------------------------
 .paragraph--type--landing-page-stories {
   display: flex;
-  
+  justify-content: center;
+
   @include gradient-blue();
   color: $color-white;
 
@@ -32,6 +33,12 @@
   }
 
   .stories--content {
+
+    h2 {
+      font-family: $font-flama-semibold;
+      font-weight: 400;
+    }
+
     @media (min-width: $screen-sm-min) {
       width: 42%;
     }
@@ -43,6 +50,7 @@
 
   .field--name-field-text {
     @extend %lead-small-mobile;
+    font-weight: 500;
   }
 
   .field--name-field-link {
@@ -93,20 +101,26 @@
   .stories--img3 {
     z-index: 2;
 
-    @media (max-width: $screen-xs-max) {
-      position: relative !important;
-      max-width: 60%;
-      margin: 4rem auto 6rem auto;
-    }
-
     @media (min-width: $screen-sm-min) {
       width: 65%;
       bottom: -7%;
-      left: 65%;
+      left: 60%;
     }
 
     @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
       left: 58%;
+    }
+
+    // Prevent image bleeding.
+    @media (max-width: $screen-xl) and (min-width: $screen-sm-min) {
+      width: 45%;
+      left: 50%;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      position: relative !important;
+      max-width: 60%;
+      margin: 4rem auto 6rem auto;
     }
   }
 

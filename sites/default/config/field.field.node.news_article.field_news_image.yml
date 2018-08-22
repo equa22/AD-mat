@@ -11,7 +11,7 @@ field_name: field_news_image
 entity_type: node
 bundle: news_article
 label: 'News image'
-description: ''
+description: 'The required size is 820 pixels wide by 500 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: false
 translatable: false
 default_value: {  }

@@ -11,7 +11,7 @@ id: taxonomy_term.basic_page_categories.field_header_background_image
 field_name: field_header_background_image
 entity_type: taxonomy_term
 bundle: basic_page_categories
-label: 'Header background image'
+label: 'Header image'
 description: ''
 required: false
 translatable: false
