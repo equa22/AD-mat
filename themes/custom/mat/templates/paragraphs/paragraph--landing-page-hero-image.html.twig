@@ -51,7 +51,8 @@
   <div{{ attributes.addClass(classes) }}>
     {% block content %}
         <div class="hero-image--heading">
-          <div class="hero-image--bg" style="background-image: url('{{ paragraph_bg }}')"></div>
+          <div class="hero-image--bg"></div>
+          <div class="landing-page-hero-image--bg__hidden" style="display:none;">{{ paragraph_bg }}</div> {# We take the picture source from this element and place it into hero-image--bg #}
           <div class="hero-image--gradient"></div>
           <div class="container">
             {{ content.contextual_links }}

@@ -187,38 +187,59 @@ $.fn.isInViewport = function(props) {
     }, 5700);
   }
 
-  // Workaround for responsive backgrounds @ index.
+  function setResponsiveBackgroundImage(hidden_element, parent) {
+    var src = '';
+    var w_w = $(window).width();
+
+    // Mobile
+    if (w_w < 414) {
+      src = hidden_element.find('img').attr('src');
+    }
+    // Tablet
+    else if (w_w < 768) {
+      src = hidden_element.find('source[media="all and (min-width: 414px)"]').attr('srcset');
+    }
+    // Desktop
+    else {
+      src = hidden_element.find('source[media="all and (min-width: 768px)"]').attr('srcset');
+    }
+    // Set the background-image property of the element that needs it.
+    parent.css('background-image', 'url("' + src + '")');
+  }
+
+  // Workaround for responsive background images @ other pages.
   // Depending on current window width we take the proper src from the <picture>
-  // element (hidden via CSS) and use it as a background image for each highlight div.
-  Drupal.behaviors.landingPageHighlightResponsiveBackgrounds = {
+  // element (hidden via CSS) and use it as a background image for the div that needs a background image URL.
+  Drupal.behaviors.responsiveBackgroundImages = {
     attach: function (context, settings) {
-      if (('.node--type-landing-page').length > 0) {
-        var highlight_backgrounds = $('.field--name-field-media-background');
-        var w_w = $(window).width();
 
-        highlight_backgrounds.each(function() {
-          var src = '';
-
-          // Mobile
-          if (w_w < 414) {
-            src = $(this).find('img').attr('src');
-          }
-          // Tablet
-          else if (w_w < 768) {
-            src = $(this).find('source[media="all and (min-width: 414px)"]').attr('srcset');
-          }
-          // Desktop
-          else {
-            src = $(this).find('source[media="all and (min-width: 768px)"]').attr('srcset');
-          }
-
-          // Set background of the parent div.
-          $(this).parent().css('background-image', 'url("' + src + '")');
+      // Landing page highlights backgrounds.
+      if (('.node--type-landing-page').length > 0 && $('.field--name-field-media-background').length > 0) {
+        $('.field--name-field-media-background').each(function() {
+          setResponsiveBackgroundImage($(this), $(this).parent());
         });
-
       }
+
+      // Landing page hero image
+      if (('.landing-page-hero-image--bg__hidden').length > 0) {
+        $('.landing-page-hero-image--bg__hidden').each(function() {
+          setResponsiveBackgroundImage($(this).find('.field--name-field-media-image > picture'), $(this).siblings('.hero-image--bg'));
+        });
+      }
+
+      // Highlight slider block.
+    //
+      if (('.highlight-slide--image--hidden').length > 0) {
+        $('.highlight-slide--image--hidden').each(function() {
+          setResponsiveBackgroundImage($(this).find('picture'), $(this).siblings('.highlight-slide--image--visible'));
+        });
+      }
+
+
     }
   };
+
+
 
   // Hero slider on home page
   Drupal.behaviors.heroSlider = {
@@ -229,21 +250,25 @@ $.fn.isInViewport = function(props) {
 
       // CSS object-fit:cover workaround for IE. Hides the default <img> elements and reveals
       // .slide--image divs with a background image.
-      if (('.node--type-landing-page').length > 0 && is_internet_explorer) {
+      if (('.node--type-landing-page').length > 0 ) {
+
         // Slick slider on homepage
-        var $slider_images = $('.paragraph--type--slide picture source[media="all and (min-width: 768px)"]', context);
+        var $slider_images = $('.paragraph--type--slide picture', context);
+
         $slider_images.each(function() {
-          var $background_url = "url('" + $(this).attr('srcset') + "')";
-          $(this).parent('picture').siblings('.slide--image').css('background-image', $background_url).show();
-          $(this).parent('picture').hide();
+          setResponsiveBackgroundImage($(this), $(this).siblings('.slide--image'));
+          $(this).hide();
+          $(this).siblings('.slide--image').show();
         });
+
         // Highlight background image
-        var $bg_images = $('.paragraph--type--landing-page-highlight .field--name-field-media-background picture source[media="all and (min-width: 768px)"]', context);
+        var $bg_images = $('.paragraph--type--landing-page-highlight .field--name-field-media-background picture', context);
+
         $bg_images.each(function() {
-          var $background_url = "url('" + $(this).attr('srcset') + "')";
-          $(this).parents().eq(2).css('background-image', $background_url);
-          $(this).parent('picture').hide();
+          setResponsiveBackgroundImage($(this), $(this).parents().eq(1));
+          $(this).hide();
         });
+
       }
 
       // Slick slider config.
