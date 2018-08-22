@@ -35,7 +35,8 @@
         "drupal/devel": "1.x-dev",
         "drupal/conditional_fields": "^1.0-alpha4",
         "drupal/viewsreference": "^2.0",
-        "drupal/entity_browser": "^2.0"
+        "drupal/entity_browser": "^2.0",
+        "drupal/redirect": "^1.2"
     },
     "require-dev": {
         "behat/mink": "~1.7",
