@@ -13,6 +13,12 @@
   background-size: cover;
   overflow-x: hidden;
 
+  .field--name-field-media-background {
+    picture {
+      display: none; // Hidden because the picture is used as a background in landing page highlight divs (landingPageHighlightResponsiveBackgrounds@app.js)
+    }
+  }
+
   .field--name-field-link {
     margin-top: 3rem;
 

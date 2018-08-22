@@ -5,10 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.media.background
     - field.field.media.image.field_media_image
-    - image.style.media_background
     - media.type.image
+    - responsive_image.styles.media_background_responsive_
   module:
-    - image
+    - responsive_image
 _core:
   default_config_hash: LjYCZgbfhAftmnqfMyBKs4YVfkFgj62TAz1oRXlQO0w
 id: media.image.background
@@ -19,9 +19,10 @@ content:
   field_media_image:
     label: hidden
     settings:
-      image_style: media_background
+      responsive_image_style: media_background_responsive_
+      image_link: ''
     third_party_settings: {  }
-    type: image_url
+    type: responsive_image
     weight: 0
     region: content
 hidden:
