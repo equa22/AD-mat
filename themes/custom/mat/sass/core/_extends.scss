@@ -141,7 +141,8 @@
   z-index: 2;
   @include font-size(2.4);
   line-height: 1.45;
-  font-weight: 500;
+  font-family: $font-flama-semibold-italic;
+  //font-weight: 500;
   background-color: $color-white;
   color: $mat-brand-primary;
 }
@@ -156,7 +157,7 @@
 // MAT Blue Social share icons
 %social-share--blue {
   font-size: 0;
-  
+
   a {
     display: inline-block;
   }
@@ -172,7 +173,7 @@
   .i-mail {
     @include icons('i-mail-blue');
   }
-} 
+}
 
 // Adaptable columns - 100 % on mobile
 %col {

@@ -1,0 +1,15 @@
+uuid: 2af96eda-aa9c-4998-b198-db1935e6fdde
+langcode: en
+status: true
+dependencies: {  }
+name: media_background_tablet_
+label: 'Media Background (tablet)'
+effects:
+  750f1ab7-5489-4eb0-8094-70718cf9e01e:
+    uuid: 750f1ab7-5489-4eb0-8094-70718cf9e01e
+    id: image_scale
+    weight: 1
+    data:
+      width: 768
+      height: null
+      upscale: false

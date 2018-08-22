@@ -48,7 +48,7 @@
   var selectedLetter = null;
 
   function getDevice() {
-    if($(window).width() > 1024) {
+    if($(window).width() > 991) {
       return "desktop";
     } else if($(window).width() < 415) {
       return "mobile";
@@ -65,7 +65,7 @@
     return check;*/
     if($(window).width() < 415) {
       return true;
-    } else 
+    } else
       return false;
   };
   var mobile = checkMobile();
@@ -76,8 +76,8 @@
 
       animations.stopMovement(el);
       el.animate = setInterval(function() {
-        let x = randomBetween(el.position.x + config.background.image_bubbles._radius/2, el.position.x - config.background.image_bubbles._radius/2);
-        let y = randomBetween(el.position.y + config.background.image_bubbles._radius/2, el.position.y - config.background.image_bubbles._radius/2);
+        var x = randomBetween(el.position.x + config.background.image_bubbles._radius/2, el.position.x - config.background.image_bubbles._radius/2);
+        var y = randomBetween(el.position.y + config.background.image_bubbles._radius/2, el.position.y - config.background.image_bubbles._radius/2);
 
         el.position.x = x;
         el.position.y = y;
@@ -92,14 +92,16 @@
 
 
       el.position.x = getXPosition(
-        el.position.x - (config.movement._smooth.radius/2), 
-        el.position.x + (config.movement._smooth.radius/2), 
+        el,
+        el.position.x - (config.movement._smooth.radius/2),
+        el.position.x + (config.movement._smooth.radius/2),
         el.slide == 0 || el.slide == sliderSections.sections.length - 1);
       //el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
       //el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
       el.position.y = getYPosition(
-        el.position.y - (config.movement._smooth.radius/2), 
-        el.position.y + (config.movement._smooth.radius/2), 
+        el,
+        el.position.y - (config.movement._smooth.radius/2),
+        el.position.y + (config.movement._smooth.radius/2),
         el.slide == 0 || el.slide == sliderSections.sections.length - 1);
 
       getCss(el);
@@ -107,7 +109,7 @@
       el.animate = setInterval(function() {
         el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
         el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
-        
+
         if(el.position.y < config._el_height) {
 
           el.position.y = config._el_height;
@@ -150,28 +152,16 @@
     return Math.floor(Math.random() * (max - min) ) + min;
   }
 
-  function isOverlapingX(value) {
-    console.log("value: " + value + " X: ", $('.container-small').offset().left,
-       $('.container-small').offset().left + $('.container-small').width())
-
-
-
-
-    if(value > $('.container-small').offset().left &&
-       value < $('.container-small').offset().left + $('.container-small').width()){
+  function isOverlapingX(value, slide) {
+    if((value + slide*$board.width()) > $('.container-small').offset().left &&
+       (value + slide*$board.width()) < $('.container-small').offset().left + $('.container-small').width()){
       return true;
     }
-    
-  else 
+  else
     return false;
   }
 
   function isOverlapingY(value) {
-    console.log("value: " + value + " Y: " , $('.container-small').offset().top - $('.animation-wrapper').offset().top  - config._el_height,
-       $('.container-small').offset().top - $('.animation-wrapper').offset().top + $('.container-small').height())
-
-
-
     if(value > $('.container-small').offset().top - $('.animation-wrapper').offset().top  - config._el_height/2 &&
        value < $('.container-small').offset().top - $('.animation-wrapper').offset().top + $('.container-small').height()) {
       return true;
@@ -199,34 +189,34 @@
     })
   }
   function getStoriesReady() {
-    let fadeElementsOut = [];
-    let fadeElementsIn = [];
-    let elementsToMove = [];
+    var fadeElementsOut = [];
+    var fadeElementsIn = [];
+    var elementsToMove = [];
 
 
     stories.forEach(function(story) {
       // category is selected, letter not
-      if(!selectedLetter && 
-          selectedCategory && 
+      if(!selectedLetter &&
+          selectedCategory &&
           story.category_id != selectedCategory) {
-        
+
         if(story.display) fadeElementsOut.push(story);
         story.display = false;
 
       // letter is selected, category not
-      } else if(!selectedCategory && 
-          selectedLetter && 
-          selectedLetter.toLowerCase() != story.last_name[0].toLowerCase() && 
+      } else if(!selectedCategory &&
+          selectedLetter &&
+          selectedLetter.toLowerCase() != story.last_name[0].toLowerCase() &&
           selectedLetter.toLowerCase() != story.first_name[0].toLowerCase()) {
 
         if(story.display) fadeElementsOut.push(story);
         story.display = false;
-        
+
         // category and letter is selected
-      } else if(selectedCategory && 
-          selectedLetter && 
-          ( story.category_id != selectedCategory || 
-           selectedLetter.toLowerCase() != story.last_name[0].toLowerCase() && 
+      } else if(selectedCategory &&
+          selectedLetter &&
+          ( story.category_id != selectedCategory ||
+           selectedLetter.toLowerCase() != story.last_name[0].toLowerCase() &&
            selectedLetter.toLowerCase() != story.first_name[0].toLowerCase())) {
 
         if(story.display) fadeElementsOut.push(story);
@@ -235,7 +225,7 @@
       } else {
         if(!story.display) fadeElementsIn.push(story);
         else if(story.prevSlide != story.slide) elementsToMove.push(story);
-        
+
         story.display = true;
       }
     })
@@ -265,7 +255,7 @@
 
       setSlider();
     } else {
-      let classCounter = 0;
+      var classCounter = 0;
 
       stories.forEach(function(item) {
         animations.stopMovement(item);
@@ -278,7 +268,10 @@
             $(item.target).addClass('left');
             $(item.target).removeClass('right');
           }
-          $(item.target).css('display', 'block');
+          $(item.target).css({
+            'display': '-ms-flexbox',
+            'display': 'flex'
+          });
 
           classCounter++;
         } else {
@@ -289,11 +282,11 @@
   }
 
   function sortForSlider(arr) {
-    let counter = 0;    // counter of elements which are already set
-    let slide = 0;      // current slider
-    let totalDisplayed = 0;  // total number of displayed items
-    let displayedInMiddleSlide = 0;
-    let from = 0;
+    var counter = 0;    // counter of elements which are already set
+    var slide = 0;      // current slider
+    var totalDisplayed = 0;  // total number of displayed items
+    var displayedInMiddleSlide = 0;
+    var from = 0;
     sliderSections.sections = [];
 
     arr.forEach(function(item) {
@@ -342,11 +335,13 @@
     return arr;
   }
 
-  function getXPosition(from, to, checkOverlap) {
-    let x = randomBetween(from, to);
 
-    if(checkOverlap) {
-      console.log(from, to);
+
+
+  function getXPosition(el, from, to, checkOverlap) {
+    var x = randomBetween(from, to);
+
+    if(checkOverlap && isOverlapingX(x, el.slide) && isOverlapingY(el.position.y)) {
       var counter = 0;
       while(x < 40 && (x == 0 || isOverlapingX(x))) {
         x = randomBetween(from, to);
@@ -356,11 +351,11 @@
     return x;
   }
 
-  function getYPosition(from, to, checkOverlap) {
-    let y = randomBetween(from, to);
+  function getYPosition(el, from, to, checkOverlap) {
+    var y = randomBetween(from, to);
 
-    if(checkOverlap) {
-      let counter = 0;
+    if(checkOverlap && isOverlapingY(y) && isOverlapingX(el.position.x, el.slide)) {
+        var counter = 0;
         while(counter < 40 && (y == 0 || isOverlapingY(y))) {
         y = randomBetween(config._height - config._el_width,  config._el_width);
         counter++;
@@ -406,7 +401,7 @@
       getCss(el);
     }, 100);
 
-    setTimeout(() => {
+    setTimeout(function() {
       if(getDevice() == 'desktop')
         animations.makeElMove(el);
     }, 1000)
@@ -421,8 +416,8 @@
 
   function getStartingPosition(el) {
     el.speed = 0;
-    el.position.x =  getXPosition((sliderSections.sections[el.slide].from - config._el_width), sliderSections.sections[el.slide].to + config._el_width, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
-    el.position.y =  getYPosition(config._el_height - config._el_width, config._height - config._el_height, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
+    el.position.x =  getXPosition(el, (sliderSections.sections[el.slide].from - config._el_width), sliderSections.sections[el.slide].to + config._el_width, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
+    el.position.y =  getYPosition(el, config._el_height - config._el_width, config._height - config._el_height, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
     getCss(el);
 
     return el;
@@ -431,7 +426,6 @@
   Drupal.behaviors.mat_stories_api = {
     attach: function (context, settings) {
       config._width = $board.width();
-      console.log("OKOKOK");
       $.getJSON('/stories-api?_format=json', function(data) {
         // prevent Drupal from reloading script
         if(!initialised) {
@@ -603,7 +597,7 @@
             "content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E \u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E"
           }]
           data.forEach(function(item, i) {
-            let newItem = {
+            var newItem = {
               first_name: item.first_name,
               last_name: item.last_name,
               category: item.category,
@@ -651,20 +645,23 @@
       .mouseenter(function(e) {                                   // __mouse hover event
         $(e.target).find('.label').css('display', 'block');
         $('.item').removeClass('hovered');
+        $('body').addClass('story-in-front');
 
         setTimeout(function() { $(e.target).addClass('hovered');}, 50);
 
         if(mobile) return;
-        let item = findStory($(e.target).data('id'));
+        var item = findStory($(e.target).data('id'));
         animations.stopMovement(item);
       })
       .mouseleave(function(e) {                                   // __mouse leave event
         $(e.target).removeClass('hovered');
+        $('body').removeClass('story-in-front');
         setTimeout(function() {$(e.target).closest('.label').css('display', 'none'); }, 50);
 
         if(mobile) return;
-        let $item = $(e.target).closest('.item');
-        let item = findStory($item.data('id'));
+        var $item = $(e.target).closest('.item');
+        var item = findStory($item.data('id'));
+
 
         if(getDevice() == 'desktop')
           animations.makeElMove(item);
@@ -768,7 +765,7 @@
         'class': 'option'
       }).appendTo('.dropdown .dropdown-inner').click(function(e) {
         $('.selected').text($(e.target).data('letter'));
-        
+
         selectedLetter = $(e.target).data('letter');
         getStoriesReady();
       })
@@ -778,13 +775,21 @@
       $('.filter-wrapper').slick({
           arrows: false,
           infinite: false,
-          variableWidth: true
+          variableWidth: true,
+          centerMode: false
       }).on("afterChange", function (event, slick, currentSlide, nextSlide){
-        
-        $('.selected').text("A-Z");
 
+        $('.selected').text("A-Z");
         selectedCategory = $('.slick-active').data('category-id');
         getStoriesReady();
+      }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
+        // If the user is navigating from the first slide to the right (show the left-side gradient bg).
+        if (currentSlide == 0) {
+          $('.filter-wrapper.slick-slider').addClass('away-from-left-edge');
+        }
+        if (nextSlide == 0) {
+          $('.filter-wrapper.slick-slider').removeClass('away-from-left-edge');
+        }
       });
     }
   }
@@ -821,8 +826,8 @@
   }
 
   function setSlider(width) {
-    let prevSliderValue = 0;
-    let max = sliderSections.getSliderWidth()
+    var prevSliderValue = 0;
+    var max = sliderSections.getSliderWidth()
 
     $( "#slider" ).slider(
       { max: max,
@@ -845,10 +850,12 @@
           }
        },
        change: function( event, ui ) {
-        if(getDevice == 'desktop')
+        if(getDevice() == 'desktop') {
           stories.forEach(function(story) {
             animations.makeElMove(story);
           })
+        }
+          
 
         smallItems.forEach(function(el) {
           animations.stopMovement(el);
@@ -959,17 +966,25 @@
 
   $('.dropdown').mouseleave(function() { $('.dropdown').removeClass('open') });
 
+
+  var prevWidth = $(window).width();
   // on window resize, update config
   $(window).resize(function()  {
-    let width = 0;
+
+    if(getDevice() == 'desktop') {
+      var resized = $(window).width() - prevWidth;
+      moveItems(resized);
+      prevWidth = $(window).width();
+    }
+
+
+    var width = 0;
+
     $('.cat-item').toArray().forEach(function(item) {
       width += $(item).outerWidth();
     })
 
-
-
     if(width > $('.filter-wrapper').width() && $('.filter-wrapper.slick-slider').length == 0) {
-
       $('.filter-wrapper').slick({
         arrows: false,
         infinite: false,
@@ -978,20 +993,28 @@
         selectedCategory = $('.slick-active').data('category-id');
         getStoriesReady();
         $('.selected').text("A-Z");
-      })
-
+      }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
+        // If the user is navigating from the first slide to the right (show the left-side gradient bg).
+        if (currentSlide == 0) {
+          $('.filter-wrapper.slick-slider').addClass('away-from-left-edge');
+        }
+        if (nextSlide == 0) {
+          $('.filter-wrapper.slick-slider').removeClass('away-from-left-edge');
+        }
+      });
     } else if(width < $('.filter-wrapper').width() && $('.filter-wrapper.slick-slider').length > 0) { 
         $('.filter-wrapper').slick('unslick'); 
     }
-      
-
-
 
     if(device != getDevice()) {
       device = getDevice();
       
       getStoriesReady();
       
+      if(device != 'desktop') {
+        $('.container-small').css('z-index', 5);
+        $('.container-small').removeClass('fade-out');
+      }
     }
     config._width = $board.width();
     config._height = $board.height();
@@ -1031,8 +1054,8 @@
     });
 
     smallItems.forEach(function(el) {
-      el.position.x = getXPosition(config._el_width, config._width - config._el_width);
-      el.position.y = getYPosition(config._el_height, config._height);
+      el.position.x = getXPosition(el, config._el_width, config._width - config._el_width);
+      el.position.y = getYPosition(el, config._el_height, config._height);
       getCss(el);
       animations.animateBubble(el);
     })
@@ -1064,5 +1087,6 @@
 
   $('.container-small').on('mouseenter', function() {
     $('.item').removeClass('hovered');
+    $('body').removeClass('story-in-front');
   })
 })(jQuery, Drupal);

@@ -11,7 +11,7 @@ field_name: field_media
 entity_type: paragraph
 bundle: landing_page_hero_image
 label: Media
-description: ''
+description: 'The required size is 1788 pixels wide by 836 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: false
 translatable: true
 default_value: {  }

@@ -11,7 +11,7 @@ field_name: field_header_category
 entity_type: node
 bundle: basic_page
 label: Section
-description: ''
+description: 'Select this if you want to add this page to a certain category''s navigation menu. If you''re not sure what to do, leave it unselected.'
 required: false
 translatable: false
 default_value: {  }

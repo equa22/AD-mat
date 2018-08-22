@@ -7,7 +7,7 @@
 
 // Sidebar navigation (on Basic page, Newsroom)
 // Container
-#block-mainnavigation-2,
+#block-mainnavigation-2, #block-mainnavigation-2--2,
 #views-exposed-form-news-landing-page-1 {
   max-width: 300px;
   padding: 1.5rem 0 3rem 0;
@@ -21,15 +21,15 @@
 }
 
 //All items
-#block-mainnavigation-2 > ul.menu > li.menu-item a,
+#block-mainnavigation-2 > ul.menu > li.menu-item a, #block-mainnavigation-2--2 > ul.menu > li.menu-item a,
 #views-exposed-form-news-landing-page-1 fieldset legend,
-#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item label {
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .form-item label {
   display: block;
   padding: 1rem 7rem 1rem 2rem;
 }
 
 // First level items
-#block-mainnavigation-2 > ul.menu > li.menu-item > a,
+#block-mainnavigation-2 > ul.menu > li.menu-item > a, #block-mainnavigation-2--2 > ul.menu > li.menu-item > a,
 #views-exposed-form-news-landing-page-1 fieldset legend {
   position: relative;
   @extend %lead;
@@ -63,13 +63,13 @@
   }
 }
 
-#block-mainnavigation-2 > ul.menu > li.menu-item > ul {
+#block-mainnavigation-2 > ul.menu > li.menu-item > ul, #block-mainnavigation-2--2 > ul.menu > li.menu-item > ul {
   display: none;
 }
 
 // Other level items
-#block-mainnavigation-2 > ul.menu > li.menu-item > ul.menu a,
-#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item label {
+#block-mainnavigation-2 > ul.menu > li.menu-item > ul.menu a, #block-mainnavigation-2--2 > ul.menu > li.menu-item > ul.menu a,
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .form-item label {
   color: $gray-base;
   @extend %small-extra;
 
@@ -80,17 +80,19 @@
     color: $gray-dark;
   }
 }
-#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item {
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .form-item {
   margin-bottom: 0;
   label {
     @include font-size(1.6);
   }
 }
-#block-mainnavigation-2 > ul.menu > li.menu-item li.menu-item,
-#views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item {
+#block-mainnavigation-2 > ul.menu > li.menu-item li.menu-item, #block-mainnavigation-2--2 > ul.menu > li.menu-item li.menu-item,
+#views-exposed-form-news-landing-page-1 .fieldset-wrapper .form-item {
   border-bottom: 1px solid #EAEAEA;
 
   &:last-child {
     border-bottom: none;
   }
 }
+
+//#block-mainnavigation-2 > ul.menu > li.menu-item li.menu-item, #views-exposed-form-news-landing-page-1 .fieldset-wrapper .js-webform-radios .form-item

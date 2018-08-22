@@ -32,7 +32,10 @@
         "twig/extensions": "^1.5",
         "drupal/bamboo_twig": "^3.3",
         "drupal/core": "^8.5",
-        "drupal/devel": "1.x-dev"
+        "drupal/devel": "1.x-dev",
+        "drupal/conditional_fields": "^1.0-alpha4",
+        "drupal/viewsreference": "^2.0",
+        "drupal/entity_browser": "^2.0"
     },
     "require-dev": {
         "behat/mink": "~1.7",
@@ -41,7 +44,9 @@
         "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
         "mikey179/vfsstream": "~1.2",
         "phpunit/phpunit": ">=4.8.28 <5",
-        "symfony/css-selector": "~2.8|~3.0"
+        "symfony/css-selector": "~2.8|~3.0",
+        "drupal/twig_xdebug": "^1.0",
+        "drupal/coffee": "^1.0@beta"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

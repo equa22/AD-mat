@@ -145,6 +145,10 @@
     .field--name-field-story-category {
       @extend %story-popup--category;
     }
+
+    .field--name-field-story-category .field__item {
+      font-weight: 500;
+    }
   }
 
   .slick-arrow {

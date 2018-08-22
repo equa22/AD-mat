@@ -24,6 +24,8 @@
       h1 {
         margin-bottom: 3rem;
         color: $blue-dark;
+        font-family: $font-roboto;
+        font-weight: 500;
       }
 
       h3 {
@@ -66,6 +68,7 @@
         &--heading {
           a {
             text-decoration: underline;
+            font-weight: 500;
 
             &:hover {
               text-decoration: none;
@@ -78,7 +81,14 @@
           @include font-size(2.4);
           line-height: 1.45;
           font-weight: 500;
-          color: $blue-dark;
+          a {
+            color: $blue-dark;
+            text-decoration: none;
+            transition: color .2s ease-in-out;
+            &:hover {
+              color: $blue;
+            }
+          }
 
           @media (min-width: $screen-sm-min) {
             padding: 0 0 2.5rem 0;
@@ -95,7 +105,7 @@
           }
 
           hr {
-            border-top-color: #CACACA;
+            border-top-color: rgba(74, 74, 74, .5);
             margin-top: 6.5rem;
 
             @media (min-width: $screen-sm-min) {
@@ -113,7 +123,7 @@
         }
 
         &.result-with-image {
-          .search-result--heading {
+           .search-result--heading {
             @media (min-width: $screen-sm-min) {
               min-height: 15rem;
               padding-left: 20rem;

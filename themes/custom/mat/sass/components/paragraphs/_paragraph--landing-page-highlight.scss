@@ -13,11 +13,19 @@
   background-size: cover;
   overflow-x: hidden;
 
+  .field--name-field-media-background {
+    picture {
+      display: none; // Hidden because the picture is used as a background in landing page highlight divs (landingPageHighlightResponsiveBackgrounds@app.js)
+    }
+  }
+
   .field--name-field-link {
     margin-top: 3rem;
 
     a {
       @include btn-secondary();
+      font-family: $font-flama-medium;
+      font-weight: 500;
 
       @media (max-width: $screen-xs-max) {
         border-color: $gray-darker;
@@ -31,6 +39,11 @@
   }
 
   .highlight--wrapper {
+
+    h2 {
+      font-family: $font-flama-medium;
+      font-weight: 400;
+    }
     @media (min-width: $screen-sm-min) {
       width: 100%;
       position: absolute;
@@ -64,6 +77,10 @@
         @include font-size(3.5);
         line-height: 1.2;
       }
+    }
+
+    .field--name-field-text {
+      font-weight: 500;
     }
   }
 

@@ -1,0 +1,9 @@
+mat_webform.central_registry_api_settings:
+  path: '/admin/config/services/central-registry-api'
+  defaults:
+    _form: '\Drupal\mat_webform\Form\CentralRegistryApiSettings'
+    _title: 'Central Registry API'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

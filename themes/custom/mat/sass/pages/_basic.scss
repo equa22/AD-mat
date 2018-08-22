@@ -19,7 +19,11 @@
     width: 30%;
     min-width: 330px;
 
-    @media (max-width: $screen-sm-max) {
+    @media (max-width: $screen-sm-max) and (min-width: $screen-sm-min) {
+      margin: 0 auto;
+      padding-bottom: 10.5rem;
+    }
+    @media (max-width: $screen-xs-max) {
       display: none;
     }
   }
@@ -28,6 +32,16 @@
     @media (min-width: $screen-md-min) {
       width: 70%;
       margin: 0 auto;
+    }
+    // When using Ajax on secondary pages (e.g. 'Donor Support').
+    >.basic-page-content {
+      width: 100%;
+    }
+
+    .basic-page-content--summary {
+      p {
+        font-family: $font-flama;
+      }
     }
   }
 
@@ -42,18 +56,33 @@
 
 // Basic page, News Article -- Header
 // -----------------------------------------------------------------------------
+#loading-gif-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, .7) url('/themes/custom/mat/assets/images/loading.gif') 50% 50% no-repeat;
+}
+
 .basic-page-header,
 .news-article--bg .news-article-header {
   position: relative;
   color: $color-white;
   text-align: center;
-  
+
   @media (min-width: $screen-sm-min) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 60rem;
     padding: 12rem 0 12rem 0;
+  }
+
+  h1 {
+    font-family: $font-flama-semibold;
   }
 
   &--heading {
@@ -65,7 +94,7 @@
       display: flex;
       align-items: center;
     }
-    
+
     @media (min-width: $screen-sm-min) {
       position: static;
       min-height: auto;
