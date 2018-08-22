@@ -1,0 +1,25 @@
+uuid: 21afd382-e0ee-434a-9a99-3fe7bdecd5c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.focal_media_background
+    - image.style.focal_media_background_mobile_
+    - image.style.focal_media_background_tablet_
+  theme:
+    - mat
+id: focal_media_background_responsive_
+label: 'Focal media background (responsive)'
+image_style_mappings:
+  -
+    breakpoint_id: mat.screen-sm-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: focal_media_background
+  -
+    breakpoint_id: mat.screen-xs-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: focal_media_background_tablet_
+breakpoint_group: mat
+fallback_image_style: focal_media_background_mobile_

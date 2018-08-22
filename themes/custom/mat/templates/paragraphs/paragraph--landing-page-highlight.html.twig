@@ -39,7 +39,7 @@
  */
 #}
 
-{% set paragraph_bg = content.field_media_background.0 %}
+{% set paragraph_bg = content.field_media_background %}
 
 {%
   set classes = [
@@ -48,8 +48,9 @@
   ]
 %}
 {% block paragraph %}
-  <div{{ attributes.addClass(classes) }} style="background-image: url('{{ paragraph_bg }}')">
+  <div{{ attributes.addClass(classes) }}>
     {% block content %}
+      {{ paragraph_bg }}
       <div class="highlight--image">{{ content.field_media_foreground }}</div>
       <div class="highlight--wrapper">
         <div class="container">
@@ -64,5 +65,4 @@
     {% endblock %}
   </div>
 {% endblock paragraph %}
-
 

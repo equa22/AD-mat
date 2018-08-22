@@ -19,7 +19,11 @@
     width: 30%;
     min-width: 330px;
 
-    @media (max-width: $screen-sm-max) {
+    @media (max-width: $screen-sm-max) and (min-width: $screen-sm-min) {
+      margin: 0 auto;
+      padding-bottom: 10.5rem;
+    }
+    @media (max-width: $screen-xs-max) {
       display: none;
     }
   }

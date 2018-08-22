@@ -1,0 +1,25 @@
+uuid: 60f6b926-3df5-4655-beb2-1ff8922abafe
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.media_background
+    - image.style.media_background_mobile_
+    - image.style.media_background_tablet_
+  theme:
+    - mat
+id: media_background_responsive_
+label: 'Media Background (responsive)'
+image_style_mappings:
+  -
+    breakpoint_id: mat.screen-sm-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: media_background
+  -
+    breakpoint_id: mat.screen-xs-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: media_background_tablet_
+breakpoint_group: mat
+fallback_image_style: media_background_mobile_

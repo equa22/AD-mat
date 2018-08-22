@@ -187,6 +187,39 @@ $.fn.isInViewport = function(props) {
     }, 5700);
   }
 
+  // Workaround for responsive backgrounds @ index.
+  // Depending on current window width we take the proper src from the <picture>
+  // element (hidden via CSS) and use it as a background image for each highlight div.
+  Drupal.behaviors.landingPageHighlightResponsiveBackgrounds = {
+    attach: function (context, settings) {
+      if (('.node--type-landing-page').length > 0) {
+        var highlight_backgrounds = $('.field--name-field-media-background');
+        var w_w = $(window).width();
+
+        highlight_backgrounds.each(function() {
+          var src = '';
+
+          // Mobile
+          if (w_w < 414) {
+            src = $(this).find('img').attr('src');
+          }
+          // Tablet
+          else if (w_w < 768) {
+            src = $(this).find('source[media="all and (min-width: 414px)"]').attr('srcset');
+          }
+          // Desktop
+          else {
+            src = $(this).find('source[media="all and (min-width: 768px)"]').attr('srcset');
+          }
+
+          // Set background of the parent div.
+          $(this).parent().css('background-image', 'url("' + src + '")');
+        });
+
+      }
+    }
+  };
+
   // Hero slider on home page
   Drupal.behaviors.heroSlider = {
     attach: function (context, settings) {
@@ -196,12 +229,20 @@ $.fn.isInViewport = function(props) {
 
       // CSS object-fit:cover workaround for IE. Hides the default <img> elements and reveals
       // .slide--image divs with a background image.
-      if (('.node--type-landing-page').length > 0) {
-        var $slider_images = $('.paragraph--type--slide img', context);
-        $slider_images.each(function(image) {
-          var $background_url = "url('" + $(this).attr('src') + "')";
-          $(this).hide();
-          $(this).siblings('.slide--image').css('background-image', $background_url).show();
+      if (('.node--type-landing-page').length > 0 && is_internet_explorer) {
+        // Slick slider on homepage
+        var $slider_images = $('.paragraph--type--slide picture source[media="all and (min-width: 768px)"]', context);
+        $slider_images.each(function() {
+          var $background_url = "url('" + $(this).attr('srcset') + "')";
+          $(this).parent('picture').siblings('.slide--image').css('background-image', $background_url).show();
+          $(this).parent('picture').hide();
+        });
+        // Highlight background image
+        var $bg_images = $('.paragraph--type--landing-page-highlight .field--name-field-media-background picture source[media="all and (min-width: 768px)"]', context);
+        $bg_images.each(function() {
+          var $background_url = "url('" + $(this).attr('srcset') + "')";
+          $(this).parents().eq(2).css('background-image', $background_url);
+          $(this).parent('picture').hide();
         });
       }
 
@@ -635,7 +676,8 @@ $.fn.isInViewport = function(props) {
   // Story form auto open steps
   Drupal.behaviors.storyFormSteps = {
     attach: function (context, settings) {
-      function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
+
+      // function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
       $(document).bind('mouseup touchend click keyup', function(e) {
 
         var step1_progress = false;
@@ -657,7 +699,7 @@ $.fn.isInViewport = function(props) {
         if (step1_progress == true) {
           $('.step2 .step-link', context).addClass('active');
           $('.step2 .step-content', context).slideDown();
-          goToByScroll('step2');
+          // goToByScroll('step2');
         }
 
         // Step 2
@@ -671,7 +713,7 @@ $.fn.isInViewport = function(props) {
         if (step2_progress == true) {
           $('.step3 .step-link', context).addClass('active');
           $('.step3 .step-content', context).slideDown();
-          goToByScroll('step3');
+          // goToByScroll('step3');
         }
 
         // step 3
@@ -679,7 +721,7 @@ $.fn.isInViewport = function(props) {
         step3_field1.on('click', function() {
           $('.step4 .step-link', context).addClass('active');
           $('.step4 .step-content', context).slideDown();
-          goToByScroll('step4');
+          // goToByScroll('step4');
         });
 
 
@@ -698,15 +740,15 @@ $.fn.isInViewport = function(props) {
         if (step4_progress == true) {
           $('.step5 .step-link', context).addClass('active');
           $('.step5 .step-content', context).slideDown();
-          goToByScroll('step5');
+          // goToByScroll('step5');
         }
 
-
       });
+
     }
   };
 
-  // Use ajax for hyperlinks with the .secondary-pages class.
+  // Use ajax for menu items with the .uses-ajax class (assigned via the Admin Navigation interface).
   Drupal.behaviors.secondaryPageAjax = {
     attach: function (context, settings) {
       // Grab all ajax link categories in the sidebar.
