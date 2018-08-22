@@ -32,8 +32,6 @@ $option-width: 70px;
     h1 {
       margin-bottom: 4.2rem;
       padding-bottom: 0;
-      font-family: $font-flama-semibold;
-      font-weight: 500;
 
       @media (max-width: $screen-xs-max) {
         margin-bottom: 4.2rem;
@@ -49,7 +47,6 @@ $option-width: 70px;
       max-width: 630px;
       margin: 0 auto 2.8rem auto;
       @extend %lead;
-      font-weight: 500;
     }
 
     .btn-add-story {
@@ -69,7 +66,9 @@ $option-width: 70px;
 
 .adminimal-admin-toolbar {
   .slider-wrapper {
-    height: calc(100vh - 260px);
+    @media (min-width: $screen-sm-min) {
+      height: calc(100vh - 260px);
+    }
   }
   &.toolbar-tray-open {
     .stories-api {
@@ -85,6 +84,7 @@ $option-width: 70px;
   top: 0;
   height: 100%;
   width: 100%;
+  z-index: 2;
   //z-index: 1;
   @include gradient(90deg, #0f84d2, #0f84d2, #0b145e);
 
@@ -163,20 +163,30 @@ $option-width: 70px;
 }
 
 .slider-wrapper .container-small {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
   * {
     opacity: 1;
     transition: opacity 1s linear;
+    z-index: 10;
   }
   &.fade-out * {
     opacity: 0;
+  }
+
+  p {
+    display: inline-block;
   }
 }
 .stories-api {
   .small-item {
     border-radius: 50%;
-    width: 0;
-    height: 0;
+    width: 60px;
+    height: 60px;
     opacity:0;
     position: absolute;
     z-index: 4;
@@ -193,6 +203,7 @@ $option-width: 70px;
   .bubble:first-child {
     display: none;
   }
+
 
   .bubble {
     width: 300px;
@@ -252,6 +263,7 @@ $option-width: 70px;
     background-position: center;
     background-size: cover;
     border: solid 3px rgba(255,255,255,0.8);
+    transform: translate(-150px);
     z-index: 5;
     box-shadow: 0 0 50px rgba(255,255,255, 1);
     filter: blur(3.4px) brightness(1);
@@ -536,10 +548,7 @@ $option-width: 70px;
       h2 {
         padding-bottom: .5rem;
         color: $blue-dark;
-        font-weight: 500;
-      }
-      #content {
-        font-weight: 500;
+        font-weight: 300;
       }
     }
 
@@ -773,7 +782,7 @@ $option-width: 70px;
 
 $mobile-item-margin: 40px;
 $mobile-item-size: 100px;
-@media (max-width: $screen-xs-max) {
+@media (max-width: $screen-sm-max) {
   .slider-wrapper {
     height: 100%;
     max-height: unset;
@@ -802,6 +811,8 @@ $mobile-item-size: 100px;
 
 
     .item {
+      -webkit-filter: blur(0) brightness(1);
+      filter: blur(0) brightness(1);
       &.left {
         transform: translate($mobile-item-margin, 0);
       }
@@ -876,6 +887,7 @@ $mobile-item-size: 100px;
           padding: 0 2rem;
         }
       }
+
       // Mobile view - transparent gradient at the beginning and at the end of the controls slider.
       &.slick-slider {
         &:after {
@@ -1033,7 +1045,7 @@ $mobile-item-size: 100px;
     }
 }
 
-.controls .filter-wrapper .bold.cat-item {
-    //font-weight: bold !important;
+.controls .filter-wrapper .active.cat-item {
+    font-weight: bold !important;
     color: #4a4a4a;
 }

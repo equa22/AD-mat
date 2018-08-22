@@ -63,6 +63,8 @@
       width: 100%;
       margin: 2rem 0 4.5rem 0;
 
+
+
       @media (min-width: $screen-sm-min) {
         position: absolute;
         width: calc(100% - 60px);
@@ -78,6 +80,16 @@
       .hearts-container {
         position: relative;
 
+        @media (min-width: $screen-xl) {
+          left: 55%;
+        }
+
+        //Fix hearts bleeding off the edge on md-sized screens.
+        @media (max-width: $screen-xl - 1) {
+          left: 48%;
+        }
+
+
         @media (max-width: $screen-xs-max) {
           width: 512px;
           left: calc(50% - 157px);
@@ -87,9 +99,7 @@
           left: calc(50% - 130px);
         }
 
-        @media (min-width: $screen-sm-min) {
-          left: 55%;
-        }
+
       }
 
       .heart-6 {

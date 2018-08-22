@@ -3,3 +3,8 @@ adminlibrary:
   css:
     layout:
       css/admin-custom.css: {}
+editor.role.custom:
+  version: 1.x
+  css:
+    layout:
+      css/paragraphs.css: {}
