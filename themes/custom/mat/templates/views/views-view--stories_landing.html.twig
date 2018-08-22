@@ -58,11 +58,7 @@
   {{ title }}
   {{ title_suffix }}
 
-  {% if header %}
-    <div class="container-small">
-      {{ header }}
-    </div>
-  {% endif %}
+  
 
     <!-- Custom Stories Api -->
     <section class="stories-api">
@@ -70,7 +66,13 @@
 
       
 
-      <div class="animation-wrapper"></div>
+      <div class="animation-wrapper">
+        {% if header %}
+          <div class="container-small">
+            {{ header }}
+          </div>
+        {% endif %}
+      </div>
       <div id="slider"></div>
       {% autoescape false %}{{ audio_mute_button }}{% endautoescape %}
     </section>
