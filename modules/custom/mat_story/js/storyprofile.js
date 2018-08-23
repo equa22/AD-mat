@@ -43,7 +43,12 @@
 
       // Validate every field after a user fills it out (moves out of focus) - mostly used for special fields (email etc.)
       $('.node-story-profile-story-submission-form input, .node-story-profile-story-submission-form textarea').bind('focusout', function() {
-        checkForValidity($(this));
+        if ($(this).val() || $(this).val() !== '') {
+          $(this).parent('.js-form-item').removeClass('empty');
+          checkForValidity($(this));
+        } else {
+          $(this).parent('.js-form-item').addClass('empty');
+        }
       });
 
       // For every step, check if all of its inputs meet the validity criteria.
@@ -70,8 +75,9 @@
         var step2_progress = false;
         var step4_progress = false;
 
-        // Dynamically (on every change/keyup) update the validity status of items that have already been marked as invalid (red border, warning) - (email etc.).
-        $('.invalid input, .invalid textarea').on('keyup change', function() {
+        // Dynamically (on every change/keyup) update the validity status of items that have been marked as invalid/empty (red border, warning).
+        $('input, textarea').on('keyup change', function() {
+          // Invalid fields.
           if ($(this).parent('.js-form-item').hasClass('invalid')) {
             // E-mail
             if ($(this).is('.form-email') && !$(this).is(':invalid')) {
@@ -83,6 +89,16 @@
                 $(this).parent('.js-form-item').removeClass('invalid');
               }
             }
+          }
+          // Empty required fields.
+          if ($(this).parent('.js-form-item').hasClass('empty')) {
+            if ($(this).val() || $(this).val() !== '') {
+              $(this).parent('.js-form-item').removeClass('empty');
+            }
+          }
+          // Empty required fields.
+          if (!$(this).val() || $(this).val() === '') {
+            $(this).parent('.js-form-item').addClass('empty');
           }
         });
 

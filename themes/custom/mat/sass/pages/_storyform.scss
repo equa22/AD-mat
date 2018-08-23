@@ -45,7 +45,14 @@
       }
     }
 
-    &.invalid {
+    &.empty {
+      &:before {
+        content: 'Please fill out required field.'!important;
+      }
+    }
+
+    &.invalid,
+    &.empty {
       &:before {
         display: block;
       }
