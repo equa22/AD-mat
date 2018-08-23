@@ -3,14 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.carousel.field_carousel_cta_button
-    - field.field.paragraph.carousel.field_main_title
-    - field.field.paragraph.carousel.field_slide_items
-    - field.field.paragraph.carousel.field_small_title
-    - paragraphs.paragraphs_type.carousel
+  - field.field.paragraph.carousel.field_carousel_cta_button
+  - field.field.paragraph.carousel.field_main_title
+  - field.field.paragraph.carousel.field_slide_items
+  - field.field.paragraph.carousel.field_small_title
+  - paragraphs.paragraphs_type.carousel
   module:
-    - content_moderation
-    - link
+  - content_moderation
+  - link
+  - text
 id: paragraph.carousel.default
 targetEntityType: paragraph
 bundle: carousel
@@ -25,12 +26,12 @@ content:
     type: link_default
     region: content
   field_main_title:
-    weight: 2
+    weight: 1
     settings:
-      size: 60
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: text_textarea
     region: content
   field_slide_items:
     weight: 4
@@ -42,7 +43,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_small_title:
-    weight: 1
+    weight: 2
     settings:
       size: 60
       placeholder: ''
