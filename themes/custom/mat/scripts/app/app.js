@@ -699,76 +699,80 @@ $.fn.isInViewport = function(props) {
   };
 
   // Story form auto open steps
-  Drupal.behaviors.storyFormSteps = {
+   Drupal.behaviors.storyFormSteps = {
     attach: function (context, settings) {
 
+      /* THIS IS NOW IN STORYPROFILE.JS */
+
       // function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
-      $(document).bind('mouseup touchend click keyup', function(e) {
-
-        var step1_progress = false;
-        var step2_progress = false;
-        var step3_progress = false;
-        var step4_progress = false;
-
-        // Step 1
-        var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
-        var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
-        var step1_field3 = $('input[name="field_story_category"]:checked', context);
-
-        if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
-          step1_progress = true;
-        } else {
-          step1_progress = false;
-        }
-
-        if (step1_progress == true) {
-          $('.step2 .step-link', context).addClass('active');
-          $('.step2 .step-content', context).slideDown();
-          // goToByScroll('step2');
-        }
-
-        // Step 2
-        var step2_field1 = $('textarea#edit-body-0-value', context);
-        if (step2_field1.val()) {
-          step2_progress = true;
-        } else {
-          step2_progress = false;
-        }
-
-        if (step2_progress == true) {
-          $('.step3 .step-link', context).addClass('active');
-          $('.step3 .step-content', context).slideDown();
-          // goToByScroll('step3');
-        }
-
-        // step 3
-        var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
-        step3_field1.on('click', function() {
-          $('.step4 .step-link', context).addClass('active');
-          $('.step4 .step-content', context).slideDown();
-          // goToByScroll('step4');
-        });
-
-
-        // step 4
-        var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
-        var step4_field2 = $('input#edit-field-submissioner-last-name-0-value', context);
-        var step4_field3 = $('input#edit-field-submissioner-email-0-value', context);
-        var step4_field4 = $('input#edit-field-submissioner-phone-number-0-value', context);
-
-        if (step4_field1.val() && step4_field2.val() && step4_field3.val() && step4_field4.val()) {
-          step4_progress = true;
-        } else {
-          step4_progress = false;
-        }
-
-        if (step4_progress == true) {
-          $('.step5 .step-link', context).addClass('active');
-          $('.step5 .step-content', context).slideDown();
-          // goToByScroll('step5');
-        }
-
-      });
+      // $(document).bind('mouseup touchend click keyup', function(e) {
+      //
+      //   var step1_progress = false;
+      //   var step2_progress = false;
+      //   var step3_progress = false;
+      //   var step4_progress = false;
+      //
+      //   // Step 1
+      //   var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
+      //   var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
+      //   var step1_field3 = $('input[name="field_story_category"]:checked', context);
+      //
+      //   if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
+      //     console.log(step1_progress);
+      //     step1_progress = true;
+      //   } else {
+      //     step1_progress = false;
+      //     console.log(step1_progress);
+      //   }
+      //
+      //   if (step1_progress == true) {
+      //     $('.step2 .step-link', context).addClass('active');
+      //     $('.step2 .step-content', context).slideDown();
+      //     // goToByScroll('step2');
+      //   }
+      //
+      //   // Step 2
+      //   var step2_field1 = $('textarea#edit-body-0-value', context);
+      //   if (step2_field1.val()) {
+      //     step2_progress = true;
+      //   } else {
+      //     step2_progress = false;
+      //   }
+      //
+      //   if (step2_progress == true) {
+      //     $('.step3 .step-link', context).addClass('active');
+      //     $('.step3 .step-content', context).slideDown();
+      //     // goToByScroll('step3');
+      //   }
+      //
+      //   // step 3
+      //   var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
+      //   step3_field1.on('click', function() {
+      //     $('.step4 .step-link', context).addClass('active');
+      //     $('.step4 .step-content', context).slideDown();
+      //     // goToByScroll('step4');
+      //   });
+      //
+      //
+      //   // step 4
+      //   var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
+      //   var step4_field2 = $('input#edit-field-submissioner-last-name-0-value', context);
+      //   var step4_field3 = $('input#edit-field-submissioner-email-0-value', context);
+      //   var step4_field4 = $('input#edit-field-submissioner-phone-number-0-value', context);
+      //
+      //   if (step4_field1.val() && step4_field2.val() && step4_field3.val() && step4_field4.val()) {
+      //     step4_progress = true;
+      //   } else {
+      //     step4_progress = false;
+      //   }
+      //
+      //   if (step4_progress == true) {
+      //     $('.step5 .step-link', context).addClass('active');
+      //     $('.step5 .step-content', context).slideDown();
+      //     // goToByScroll('step5');
+      //   }
+      //
+      // });
 
     }
   };
