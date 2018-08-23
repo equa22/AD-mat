@@ -42,7 +42,7 @@
       }
 
       // Validate every field after a user fills it out (moves out of focus) - mostly used for special fields (email etc.)
-      $('.node-story-profile-story-submission-form input, .node-story-profile-story-submission-form textarea').bind('focusout', function() {
+      $('.node-story-profile-story-submission-form input, .node-story-profile-story-submission-form textarea').bind('blur', function() {
         if ($(this).val() || $(this).val() !== '') {
           $(this).parent('.js-form-item').removeClass('empty');
           checkForValidity($(this));
