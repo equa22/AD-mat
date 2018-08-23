@@ -92,6 +92,7 @@ permissions:
   - 'view basic_page revisions'
   - 'view blog_post revisions'
   - 'view field_carousel_cta_button'
+  - 'view field_media_background'
   - 'view field_media_foreground'
   - 'view field_small_title'
   - 'view field_text'

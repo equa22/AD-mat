@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-  - field.storage.paragraph.field_main_title
-  - paragraphs.paragraphs_type.carousel
+    - field.storage.paragraph.field_main_title
+    - paragraphs.paragraphs_type.carousel
   module:
-  - allowed_formats
-  - text
+    - allowed_formats
+    - text
 third_party_settings:
   allowed_formats:
     basic_editor: basic_editor
