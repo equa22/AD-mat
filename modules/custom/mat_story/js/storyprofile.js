@@ -46,22 +46,6 @@
         checkForValidity($(this));
       });
 
-      // Dynamically (on every change/keyup) update the validity status of items that have already been marked as invalid (red border, warning) - (email etc.).
-      $('.invalid input, .invalid textarea').on('keyup change', function() {
-        if ($(this).parent('.js-form-item').hasClass('invalid')) {
-          // E-mail
-          if ($(this).is('.form-email') && !$(this).is(':invalid')) {
-            $(this).parent('.js-form-item').removeClass('invalid');
-          }
-          // Phone number
-          if ($(this).is('#edit-field-submissioner-phone-number-0-value')) {
-            if (US_phone_number.test($(this).val())) {
-              $(this).parent('.js-form-item').removeClass('invalid');
-            }
-          }
-        }
-      });
-
       // For every step, check if all of its inputs meet the validity criteria.
       function hasValidInputs(step) {
         var isValid = true;
@@ -85,6 +69,22 @@
         var step1_progress = false;
         var step2_progress = false;
         var step4_progress = false;
+
+        // Dynamically (on every change/keyup) update the validity status of items that have already been marked as invalid (red border, warning) - (email etc.).
+        $('.invalid input, .invalid textarea').on('keyup change', function() {
+          if ($(this).parent('.js-form-item').hasClass('invalid')) {
+            // E-mail
+            if ($(this).is('.form-email') && !$(this).is(':invalid')) {
+              $(this).parent('.js-form-item').removeClass('invalid');
+            }
+            // Phone number
+            if ($(this).is('#edit-field-submissioner-phone-number-0-value')) {
+              if (US_phone_number.test($(this).val())) {
+                $(this).parent('.js-form-item').removeClass('invalid');
+              }
+            }
+          }
+        });
 
         /*---STEP 1---*/
         var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
@@ -130,7 +130,6 @@
         if (step4_progress == true && !$('.step5 .step-link', context).hasClass('active') && hasValidInputs($('.step4'))) {
           $('.step5 .step-link', context).addClass('active');
           $('.step5 .step-content', context).slideDown();
-          goToByScroll('step5');
         }
 
       });
