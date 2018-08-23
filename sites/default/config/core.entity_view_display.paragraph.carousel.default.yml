@@ -3,13 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.carousel.field_carousel_cta_button
-    - field.field.paragraph.carousel.field_main_title
-    - field.field.paragraph.carousel.field_slide_items
-    - field.field.paragraph.carousel.field_small_title
-    - paragraphs.paragraphs_type.carousel
+  - field.field.paragraph.carousel.field_carousel_cta_button
+  - field.field.paragraph.carousel.field_main_title
+  - field.field.paragraph.carousel.field_slide_items
+  - field.field.paragraph.carousel.field_small_title
+  - paragraphs.paragraphs_type.carousel
   module:
-    - link
+  - link
+  - text
 id: paragraph.carousel.default
 targetEntityType: paragraph
 bundle: carousel
@@ -28,12 +29,11 @@ content:
     type: link
     region: content
   field_main_title:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
+    weight: 4
+    label: above
+    settings: {  }
     third_party_settings: {  }
-    type: string
+    type: text_default
     region: content
   field_slide_items:
     weight: 3
