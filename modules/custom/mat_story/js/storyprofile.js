@@ -7,76 +7,81 @@
       // Submission steps - validation & progress
       ///////////////////////////////////////////
 
+      // Used to validate phone number field.
+      var US_phone_number = new RegExp('^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$');
+
+      // Check if a field is filled out and valid (proper e-mail / phone number format).
       function checkForValidity(field) {
-        var isValid = true;
-        var US_phone_number = new RegExp('^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$');
+        var isValid = !$(field).parent('.js-form-item').hasClass('invalid');
 
-        if ($(field).val() || $(field).val() !== '') {
+        if (!$(field).parent('.js-form-item').hasClass('invalid') && ($(field).val() || $(field).val() !== '')) {
 
-          // Retest an already invalid field
-          if ($(field).parent('.js-form-item').hasClass('invalid')) {
-            // E-mail
-            if ($(field).is('.form-email') && !$(field).is(':invalid')) {
+          // Invalid field (for now just the e-mail field).
+          if ($(field).is('.form-email')) {
+            if ($(field).is(':invalid')) {
+              $(field).parent('.js-form-item').addClass('invalid');
+              isValid = false;
+            } else {
+              $(field).parent('.js-form-item').removeClass('invalid');
+
+            };
+          }
+
+          // Test phone number for proper format (US).
+          if ($(field).is('#edit-field-submissioner-phone-number-0-value')) {
+            if (!US_phone_number.test($(field).val())) {
+              $(field).parent('.js-form-item').addClass('invalid');
+              isValid = false;
+            } else {
               $(field).parent('.js-form-item').removeClass('invalid');
             }
-            // Phone number
-            if ($(field).is('#edit-field-submissioner-phone-number-0-value')) {
-              if (US_phone_number.test($(field).val())) {
-                $(field).parent('.js-form-item').removeClass('invalid');
-              }
-            }
           }
-          // Test a field that has been un-focused (not yet invalid)
-          else {
-            // Invalid field (for now just the e-mail field).
-            if ($(field).is('.form-email')) {
-              if ($(field).is(':invalid')) {
-                $(field).parent('.js-form-item').addClass('invalid');
-                isValid = false;
-              } else {
-                $(field).parent('.js-form-item').removeClass('invalid');
-              };
-            }
-
-            // Test phone number for proper format (US).
-            if ($(field).is('#edit-field-submissioner-phone-number-0-value')) {
-              if (!US_phone_number.test($(field).val())) {
-                $(field).parent('.js-form-item').addClass('invalid');
-                isValid = false;
-              } else {
-                $(field).parent('.js-form-item').removeClass('invalid');
-              }
-            }
-          }
-
         }
 
         return isValid;
       }
 
+      // Validate every field after a user fills it out (moves out of focus) - mostly used for special fields (email etc.)
       $('.node-story-profile-story-submission-form input, .node-story-profile-story-submission-form textarea').bind('focusout', function() {
         checkForValidity($(this));
       });
 
+      // Dynamically (on every change/keyup) update the validity status of items that have already been marked as invalid (red border, warning) - (email etc.).
+      $('.invalid input, .invalid textarea').on('keyup change', function() {
+        if ($(this).parent('.js-form-item').hasClass('invalid')) {
+          // E-mail
+          if ($(this).is('.form-email') && !$(this).is(':invalid')) {
+            $(this).parent('.js-form-item').removeClass('invalid');
+          }
+          // Phone number
+          if ($(this).is('#edit-field-submissioner-phone-number-0-value')) {
+            if (US_phone_number.test($(this).val())) {
+              $(this).parent('.js-form-item').removeClass('invalid');
+            }
+          }
+        }
+      });
 
+      // For every step, check if all of its inputs meet the validity criteria.
       function hasValidInputs(step) {
         var isValid = true;
         var step_inputs = $(step).find('input, textarea');
-
         step_inputs.each(function(){
-          isValid = checkForValidity($(this));
+          // If one of the inputs is invalid, return false.
+          if(checkForValidity($(this)) === false) {
+            isValid = false;
+          };
         });
-
         return isValid;
       }
 
+      // Slide down to the next step.
       function goToByScroll(next_step) {
         next_step = next_step.replace('link', '');
         $('html, body', context).once().animate({scrollTop: $('.'+next_step).offset().top}, 700);
       }
 
       $(document).bind('mouseup touchend click keyup', function(e) {
-
         var step1_progress = false;
         var step2_progress = false;
         var step4_progress = false;
@@ -127,10 +132,6 @@
           $('.step5 .step-content', context).slideDown();
           goToByScroll('step5');
         }
-
-        $('.invalid input, .invalid textarea').on('keyup change', function() {
-          checkForValidity($(this));
-        });
 
       });
 
