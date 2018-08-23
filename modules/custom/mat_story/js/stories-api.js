@@ -79,6 +79,8 @@
         var x = randomBetween(el.position.x + config.background.image_bubbles._radius/2, el.position.x - config.background.image_bubbles._radius/2);
         var y = randomBetween(el.position.y + config.background.image_bubbles._radius/2, el.position.y - config.background.image_bubbles._radius/2);
 
+        /*if(x > el.to) x = el.position.to;
+        else if(x <= el.from) x = el.position.from;*/
         el.position.x = x;
         el.position.y = y;
 
@@ -89,33 +91,20 @@
       if(el.movement) return;
 
       el.speed = config.movement._smooth.speed;
-
-
-      el.position.x = getXPosition(
-        el,
-        el.position.x - (config.movement._smooth.radius/2),
-        el.position.x + (config.movement._smooth.radius/2),
-        el.slide == 0 || el.slide == sliderSections.sections.length - 1);
-      //el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
-      //el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
-      el.position.y = getYPosition(
-        el,
-        el.position.y - (config.movement._smooth.radius/2),
-        el.position.y + (config.movement._smooth.radius/2),
-        el.slide == 0 || el.slide == sliderSections.sections.length - 1);
-
+      el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
+      el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
       getCss(el);
-
+      
       el.animate = setInterval(function() {
         el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
         el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
+        
+        if(el.position.x < config._el_width) el.position.x = config._el_width;
+        else if(el.position.x >= config._width) el.position.x = config._width;
 
-        if(el.position.y < config._el_height) {
+        if(el.position.y < 0) el.position.y = 0;
+        if(el.position.y > config._height - 190) el.position.y = config._height - 190;
 
-          el.position.y = config._el_height;
-        } else if(el.position.y > config._height - config._el_height) {
-          el.position.y = config._height - config._el_height;
-        }
         getCss(el);
       }, el.speed);
 
@@ -253,7 +242,6 @@
         }, config.movement._entry.delay*i)
       })
 
-      setSlider();
     } else {
       var classCounter = 0;
 
@@ -287,18 +275,42 @@
     var totalDisplayed = 0;  // total number of displayed items
     var displayedInMiddleSlide = 0;
     var from = 0;
+    var totalPosition = config._width - config._el_width;
     sliderSections.sections = [];
 
     arr.forEach(function(item) {
       if(item.display) totalDisplayed++;
     })
 
-    arr.forEach(function(item) {
+    arr.forEach(function(item, index) {
       if(item.display) {
+
+
+
+        // set item range and limit
+        if(counter < config._num.first_and_last) {
+          item.from = totalPosition;
+          totalPosition -= Math.round(config._width/config._num.first_and_last);
+          item.to = totalPosition;
+
+        } else if(counter < totalDisplayed - config._num.first_and_last) {
+          item.from = totalPosition;
+          totalPosition -= Math.round(config._width/config._num.other_pages);
+          item.to = totalPosition;
+
+        } else {
+          item.from = totalPosition;
+          totalPosition -= Math.round(config._width/config._num.first_and_last);
+          item.to = totalPosition;
+
+          if(index == arr.length-1) {
+            item.to -= config._el_width;
+          }
+        }
+
         if(item.slide == slide) item.slideChanged = false;
         else item.slideChanged = true;
         item.prevSlide = item.slide;
-
         item.slide = slide;
 
         if(counter < config._num.first_and_last) {
@@ -331,6 +343,11 @@
     else if(totalDisplayed > config._num.first_and_last && totalDisplayed < config._num.first_and_last*2) {   // if not enough elements
       sliderSections.add(from, from - 100);
     }
+
+
+    setSlider(totalPosition);
+    console.log("ITEMS", arr)
+    console.log("sliderSections", sliderSections)
 
     return arr;
   }
@@ -410,7 +427,7 @@
     }, 100);
 
     setTimeout(function() {
-      if(getDevice() == 'desktop')
+      if(getDevice() == 'desktop' && el.position.x >= config._el_width*(-1) && el.position.x <= config._width * config._el_width)
         animations.makeElMove(el);
     }, 1000)
 
@@ -424,8 +441,8 @@
 
   function getStartingPosition(el) {
     el.speed = 0;
-    el.position.x =  getXPosition(el, (sliderSections.sections[el.slide].from - config._el_width), sliderSections.sections[el.slide].to + config._el_width, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
-    el.position.y =  getYPosition(el, config._el_height - config._el_width, config._height - config._el_height, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
+    el.position.x =  getXPosition(el, el.from, el.to, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
+    el.position.y =  getYPosition(el, 0, config._height - 190, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
     getCss(el);
 
     return el;
@@ -438,7 +455,8 @@
         // prevent Drupal from reloading script
         if(!initialised) {
           $p = $('.slider-wrapper .container-small p'), $h1 = $('.slider-wrapper .container-small h1'), $button = $('.slider-wrapper .container-small a');
-
+          data = [{"story_id":"146","first_name":"Magda","last_name":"Graham Larson","field_submissioner_email":"","category":"Living donor","category_id":"3","featured_image":"\/sites\/default\/files\/2018-07\/kate.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. In massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003ERich text coming from component field!\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n"},{"story_id":"392","first_name":"Stiven","last_name":"Rayden","field_submissioner_email":"","category":"Living donor","category_id":"3","featured_image":"\/sites\/default\/files\/2018-06\/stiven.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003Erich text\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n,   \u003Cdiv class=\u0022paragraph paragraph--type--basic-page-quote\u0022\u003E\n            \n        \u003Cblockquote\u003Equote\u003C\/blockquote\u003E\n                \u003Cdiv class=\u0022quote--footer\u0022\u003E\n          \u003Cdiv class=\u0022quote--author\u0022\u003E\n                          name,\n                      \u003C\/div\u003E\n          \u003Cdiv class=\u0022quote--author-about\u0022\u003Eabout\u003C\/div\u003E\n        \u003C\/div\u003E\n              \u003C\/div\u003E\n"},{"story_id":"39","first_name":"Stiven","last_name":"Rayden","field_submissioner_email":"","category":"Living donor","category_id":"3","featured_image":"\/sites\/default\/files\/2018-06\/stiven.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003Erich text\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n,   \u003Cdiv class=\u0022paragraph paragraph--type--basic-page-quote\u0022\u003E\n            \n        \u003Cblockquote\u003Equote\u003C\/blockquote\u003E\n                \u003Cdiv class=\u0022quote--footer\u0022\u003E\n          \u003Cdiv class=\u0022quote--author\u0022\u003E\n                          name,\n                      \u003C\/div\u003E\n          \u003Cdiv class=\u0022quote--author-about\u0022\u003Eabout\u003C\/div\u003E\n        \u003C\/div\u003E\n              \u003C\/div\u003E\n"},{"story_id":"38","first_name":"Ana","last_name":"Holton","field_submissioner_email":"","category":"Recipients","category_id":"5","featured_image":"\/sites\/default\/files\/2018-06\/ana.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"37","first_name":"Kate","last_name":"Graham","field_submissioner_email":"","category":"Liver recipient","category_id":"2","featured_image":"\/sites\/default\/files\/2018-06\/kate.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"36","first_name":"Jim","last_name":"Barlow","field_submissioner_email":"","category":"Recipients","category_id":"5","featured_image":"\/sites\/default\/files\/2018-06\/jim.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"35","first_name":"Miriam","last_name":"Alby","field_submissioner_email":"","category":"Patients Waiting","category_id":"4","featured_image":"\/sites\/default\/files\/2018-06\/miriam.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"34","first_name":"Robert","last_name":"Smith","field_submissioner_email":"","category":"Donors","category_id":"1","featured_image":"\/sites\/default\/files\/2018-06\/smith.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"16","first_name":"First","last_name":"Last","field_submissioner_email":"","category":"Patients Waiting","category_id":"4","featured_image":"\/sites\/default\/files\/2018-05\/nature2.jpg","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003Esearch test\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"7","first_name":"Jamall","last_name":"Augustine","field_submissioner_email":"","category":"Donors","category_id":"1","featured_image":"\/sites\/default\/files\/2018-06\/jamall-a.png","image_1":"\/sites\/default\/files\/2018-06\/jamall-a-img1.png","image_2":"","image_3":"","content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"6","first_name":"Kristina","last_name":"Michelle Dennis","field_submissioner_email":"","category":"Liver recipient","category_id":"2","featured_image":"\/sites\/default\/files\/2018-06\/kristin.png","image_1":"\/sites\/default\/files\/2018-06\/kristin-img1.png","image_2":"\/sites\/default\/files\/2018-06\/kristin-img2.png","image_3":"\/sites\/default\/files\/2018-06\/kristin_0.png","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis.\u0026amp;nbsp;\u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003ESome rich text coming from component!\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n"},
+          {"story_id":"12346","first_name":"Magda","last_name":"Graham Larson","field_submissioner_email":"","category":"Living donor","category_id":"3","featured_image":"\/sites\/default\/files\/2018-07\/kate.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. In massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003ERich text coming from component field!\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n"},{"story_id":"123392","first_name":"Stiven","last_name":"Rayden","field_submissioner_email":"","category":"Living donor","category_id":"3","featured_image":"\/sites\/default\/files\/2018-06\/stiven.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003Erich text\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n,   \u003Cdiv class=\u0022paragraph paragraph--type--basic-page-quote\u0022\u003E\n            \n        \u003Cblockquote\u003Equote\u003C\/blockquote\u003E\n                \u003Cdiv class=\u0022quote--footer\u0022\u003E\n          \u003Cdiv class=\u0022quote--author\u0022\u003E\n                          name,\n                      \u003C\/div\u003E\n          \u003Cdiv class=\u0022quote--author-about\u0022\u003Eabout\u003C\/div\u003E\n        \u003C\/div\u003E\n              \u003C\/div\u003E\n"},{"story_id":"12339","first_name":"Stiven","last_name":"Rayden","field_submissioner_email":"","category":"Living donor","category_id":"3","featured_image":"\/sites\/default\/files\/2018-06\/stiven.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003Erich text\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n,   \u003Cdiv class=\u0022paragraph paragraph--type--basic-page-quote\u0022\u003E\n            \n        \u003Cblockquote\u003Equote\u003C\/blockquote\u003E\n                \u003Cdiv class=\u0022quote--footer\u0022\u003E\n          \u003Cdiv class=\u0022quote--author\u0022\u003E\n                          name,\n                      \u003C\/div\u003E\n          \u003Cdiv class=\u0022quote--author-about\u0022\u003Eabout\u003C\/div\u003E\n        \u003C\/div\u003E\n              \u003C\/div\u003E\n"},{"story_id":"12338","first_name":"Ana","last_name":"Holton","field_submissioner_email":"","category":"Recipients","category_id":"5","featured_image":"\/sites\/default\/files\/2018-06\/ana.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"12337","first_name":"Kate","last_name":"Graham","field_submissioner_email":"","category":"Liver recipient","category_id":"2","featured_image":"\/sites\/default\/files\/2018-06\/kate.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"12336","first_name":"Jim","last_name":"Barlow","field_submissioner_email":"","category":"Recipients","category_id":"5","featured_image":"\/sites\/default\/files\/2018-06\/jim.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"12335","first_name":"Miriam","last_name":"Alby","field_submissioner_email":"","category":"Patients Waiting","category_id":"4","featured_image":"\/sites\/default\/files\/2018-06\/miriam.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"12334","first_name":"Robert","last_name":"Smith","field_submissioner_email":"","category":"Donors","category_id":"1","featured_image":"\/sites\/default\/files\/2018-06\/smith.png","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis. \u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"12316","first_name":"First","last_name":"Last","field_submissioner_email":"","category":"Patients Waiting","category_id":"4","featured_image":"\/sites\/default\/files\/2018-05\/nature2.jpg","image_1":"","image_2":"","image_3":"","content":"\u003Cp\u003Esearch test\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"1237","first_name":"Jamall","last_name":"Augustine","field_submissioner_email":"","category":"Donors","category_id":"1","featured_image":"\/sites\/default\/files\/2018-06\/jamall-a.png","image_1":"\/sites\/default\/files\/2018-06\/jamall-a-img1.png","image_2":"","image_3":"","content":"\u003Cp\u003EElmer Jamall Stephen Augustine Jr. was known to family and friends as Jamall or G-Wells. Jamall was full of love and life. His friends told me they called him G-Wells because he was always happy in spirit and gave his support with a smile on his face.\u003C\/p\u003E\n\u003Cp\u003EFive months before Jamall passed, he had been feeling tired and sleepy. He had a cold and flu-like symptoms. I told him to go to the doctor because I felt something besides the flu was going on with his body. A history of diabetes runs in my family, and I felt he had some of the symptoms of a diabetic. He promised me he would go to the doctor the following day. The next day was too late. I would never see him conscious again.\u003C\/p\u003E\n","field_story_profile_components":""},{"story_id":"1236","first_name":"Kristina","last_name":"Michelle Dennis","field_submissioner_email":"","category":"Liver recipient","category_id":"2","featured_image":"\/sites\/default\/files\/2018-06\/kristin.png","image_1":"\/sites\/default\/files\/2018-06\/kristin-img1.png","image_2":"\/sites\/default\/files\/2018-06\/kristin-img2.png","image_3":"\/sites\/default\/files\/2018-06\/kristin_0.png","content":"\u003Cp\u003ELorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pretium tincidunt urna sed rutrum. Quisque vestibulum nec lectus ut varius. Sed nec tempor nulla. Maecenas viverra rhoncus neque non sagittis.\u0026amp;nbsp;\u003C\/p\u003E\n\u003Cp\u003EIn massa ligula, mollis eu hendrerit consectetur, ornare ut sapien. Aenean luctus massa sed enim maximus elementum. Aenean tortor eros, sollicitudin vitae nibh quis, rutrum fringilla purus. Quisque id accumsan dui, quis semper ligula. Sed rutrum nisi tincidunt augue ornare varius.\u003C\/p\u003E\n","field_story_profile_components":"\n\n\n  \u003Cdiv class=\u0022paragraph paragraph--type--landing-page-rich-text\u0022\u003E\n    \u003Cdiv class=\u0022inner\u0022\u003E\n              \n            \u003Cdiv class=\u0022field field--name-field-text field--type-text-long field--label-hidden entity_type-paragraph field__item\u0022\u003E\u003Cp\u003ESome rich text coming from component!\u003C\/p\u003E\u003C\/div\u003E\n      \n          \u003C\/div\u003E\n  \u003C\/div\u003E\n"}];
           data.forEach(function(item, i) {
             var newItem = {
               first_name: item.first_name,
@@ -573,7 +591,6 @@
 
       $('.selected').text("A-Z");
 
-      //getStoriesReady(null, null);
       selectedLetter = null;
       selectedCategory = null;
       getStoriesReady();
@@ -680,12 +697,13 @@
   }
 
   function setSlider(width) {
+
     var prevSliderValue = 0;
-    var max = sliderSections.getSliderWidth()
+    var max = width*(-1);
 
     $( "#slider" ).slider(
       { max: max,
-        disabled: !max,
+        disabled: (max <= 0),
         value: 0,
         slide: function( event, ui ) {
           moveItems(Number(ui.value - prevSliderValue));
@@ -706,13 +724,15 @@
        change: function( event, ui ) {
         if(getDevice() == 'desktop') {
           stories.forEach(function(story) {
-            animations.makeElMove(story);
+            if(story.position.x >= (-config._el_width) && story.position.x <= config._width) {
+              animations.makeElMove(story);
+            }
           })
         }
-          
 
         smallItems.forEach(function(el) {
           animations.stopMovement(el);
+
           el.speed = config.background.image_bubbles._speed;
           animations.animateBubble(el);
         })
@@ -733,15 +753,12 @@
     var $overlay = $('.story-overlay'), selectedStory;
     var $body = $('body');
 
-
-
     $(".modal-inner").animate({ scrollTop: 0 }, "fast");
     stories.forEach(function(story) {
       if(story.story_id == id) {
         selectedStory = story;
       }
     })
-
 
     if(!selectedStory) return;
 
