@@ -142,7 +142,7 @@
       flex-basis: 50%;
     }
 
-    div {
+    .highlight-slide--image--visible {
       width: 22rem;
       height: 22rem;
       margin: 0 auto 0 auto;
@@ -172,6 +172,10 @@
         height: 32rem;
         border-width: 15px;
       }
+    }
+
+    .highlight-slide--image--hidden {
+      display: none;
     }
   }
 

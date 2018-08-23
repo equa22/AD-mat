@@ -60,7 +60,7 @@ function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, arra
   if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
     // Client requirements changed here: all drop-down actions should now be removed if editor role.
     // Exceptions: drop-down buttons that needs to be shown to editor role.
-    $exceptions = ['myth_vs_fact', 'pillar_group_item'];
+    $exceptions = ['myth_vs_fact', 'pillar_group_item', 'cta_item'];
     if (isset($context['paragraphs_entity']) && $context['paragraphs_entity'] instanceof Paragraph) {
       /* @var \Drupal\paragraphs\Entity\Paragraph $entity */
       $entity = $context['paragraphs_entity'];
@@ -80,12 +80,12 @@ function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$for
     // Remove order column, keep exception buttons
     // Client requirements changed here: all order actions should now be removed if editor role.
     $exceptions = [
-      '#theme', '#attached', '#weight', 'add_more_button_myth_vs_fact', 'add_more_button_pillar_group_item'
+      '#theme', '#attached', '#weight', 'add_more_button_myth_vs_fact', 'add_more_button_pillar_group_item', 'add_more_button_cta_item'
     ];
     foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
       // Unset sorting
       // Allow special paragraph sorting: special indicator
-      if (isset($elements[$child]['#paragraph_type']) && !in_array($elements[$child]['#paragraph_type'], ['myth_vs_fact', 'pillar_group_item'])) {
+      if (isset($elements[$child]['#paragraph_type']) && !in_array($elements[$child]['#paragraph_type'], ['myth_vs_fact', 'pillar_group_item', 'cta_item'])) {
         unset($elements[$index]['_weight']);
       }
     }
