@@ -7,7 +7,7 @@ dependencies:
     - field.field.taxonomy_term.basic_page_categories.field_header_style
     - field.field.taxonomy_term.basic_page_categories.field_hero_image_title
     - field.field.taxonomy_term.basic_page_categories.field_shared_hero_image_title
-    - image.style.thumbnail
+    - image.style.media_entity_browser_thumbnail
     - taxonomy.vocabulary.basic_page_categories
   module:
     - conditional_fields
@@ -29,8 +29,8 @@ content:
   field_header_background_image:
     weight: 4
     settings:
+      preview_image_style: media_entity_browser_thumbnail
       progress_indicator: throbber
-      preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
     region: content

@@ -14,6 +14,48 @@
 .node-story-profile-story-submission-form {
   max-width: 930px;
 
+  // Remove default Firefox border on required inputs.
+  input:required,
+  textarea:required {
+    box-shadow: none;
+  }
+
+  //Warnings.
+  .js-form-type-textfield,
+  .js-form-type-textarea,
+  .js-form-type-email {
+    position: relative;
+    &:before {
+      display: none;
+      content: 'test';
+      position: absolute;
+      right: 0;
+      top: 5px;
+      @include font-size(1.2);
+      color: $color-red;
+    }
+    &.js-form-type-email {
+      &:before {
+        content: 'Please enter a valid email address.';
+      }
+    }
+    &.form-item-field-submissioner-phone-number-0-value {
+      &:before {
+        content: 'Please enter a valid US telephone number.';
+      }
+    }
+
+    &.invalid {
+      &:before {
+        display: block;
+      }
+      input,
+      textarea {
+        border-color: $color-red;
+      }
+    }
+  }
+
   .field--name-field-intro-markup {
     text-align: center;
     margin-bottom: 1.8rem;
@@ -144,12 +186,32 @@
     }
 
     &.step1-content {
-      #edit-field-story-category--wrapper .fieldset-legend {
-        display: block;
-        margin: 3.5rem 0 1rem 0;
-        font-weight: 500;
-        color: $blue-dark;
-        @extend %lead;
+
+      #edit-field-story-category--wrapper {
+
+        .fieldset-legend {
+          display: block;
+          margin: 3.5rem 0 1rem 0;
+          font-weight: 500;
+          color: $blue-dark;
+          @extend %lead;
+        }
+
+        #edit-field-story-category {
+          display: flex;
+          flex-wrap: wrap;
+
+          label {
+            @include font-size(2.4);
+            font-weight: 500;
+            position: relative;
+            top: 5px;
+            left: 23px;
+            &::before {
+              background: #fff;
+            }
+          }
+        }
       }
 
       .field--name-field-story-first-name,
@@ -369,6 +431,7 @@
           margin-right: 0;
         }
       }
+
     }
 
     &.step5-content {
