@@ -1,17 +1,10 @@
-
 (function ($, Drupal) {
 
-	// global variables
-	var $board = $(".animation-wrapper"); // animation wrapper
-	var baseUrl = '';
-	var JSON;
-	var categories = [];                // array of all categories (get them from stories)
-	var letters = [];                   // array of stories initials
-	var stories = [];                   // list of all stories
+  // global variables
+  var $board = $(".animation-wrapper"); // animation wrapper
+  var stories = [];                   // list of all stories
   var smallItems = [];  // helper arr
-	var initialised = false;
-  var containerHeight;
-  var $p, $h1, $button;
+  var initialised = false;
   var config = {
     _num: {
       first_and_last: 5,
@@ -31,11 +24,11 @@
       _small_bubbles: 10,
       image_bubbles: {
         _images: [
-          baseUrl + "/sites/default/files/2018-05/nature2.jpg",
-          baseUrl + "/sites/default/files/2018-05/slider1.jpg",
-          baseUrl + "/sites/default/files/2018-05/sight-bg-b.png",
-          baseUrl + "/sites/default/files/2018-05/kid4.jpg",
-          baseUrl + "/sites/default/files/2018-05/girl-slide.jpg"
+          "/sites/default/files/2018-05/nature2.jpg",
+          "/sites/default/files/2018-05/slider1.jpg",
+          "/sites/default/files/2018-05/sight-bg-b.png",
+          "/sites/default/files/2018-05/kid4.jpg",
+          "/sites/default/files/2018-05/girl-slide.jpg"
         ],
         _speed: 4000,
         _size: 60,
@@ -43,6 +36,7 @@
       }
     }
   };
+
 
   var selectedCategory = null;
   var selectedLetter = null;
@@ -79,8 +73,6 @@
         var x = randomBetween(el.position.x + config.background.image_bubbles._radius/2, el.position.x - config.background.image_bubbles._radius/2);
         var y = randomBetween(el.position.y + config.background.image_bubbles._radius/2, el.position.y - config.background.image_bubbles._radius/2);
 
-        /*if(x > el.to) x = el.position.to;
-        else if(x <= el.from) x = el.position.from;*/
         el.position.x = x;
         el.position.y = y;
 
@@ -99,11 +91,11 @@
         el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
         el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
         
-        if(el.position.x < config._el_width) el.position.x = config._el_width;
-        else if(el.position.x >= config._width) el.position.x = config._width;
+        if(el.position.x > el.from) el.position.x = el.from;
+        else if(el.position.x < el.to) el.position.x = el.to;
 
-        if(el.position.y < 0) el.position.y = 0;
-        if(el.position.y > config._height - 190) el.position.y = config._height - 190;
+        if(el.position.y < el.up) el.position.y = el.up;
+        else if(el.position.y > el.down) el.position.y = el.down;
 
         getCss(el);
       }, el.speed);
@@ -119,44 +111,8 @@
     }
   }
 
-
-  var sliderSections = {
-    sections: [],
-    add: function(from, to) {
-      sliderSections.sections.push({from: from*$board.width()/100, to: to*$board.width()/100})
-    },
-    check: function(value) {
-      for(var i = 0; i < sliderSections.sections.length; i++) {
-        if(sliderSections.sections[i].from > value && sliderSections.sections[i].to <= value) {
-          return sliderSections.sections[i];
-        }
-      }
-    },
-    getSliderWidth() {
-      return sliderSections.sections[0].from - sliderSections.sections[sliderSections.sections.length - 1].from;
-    }
-  };
-
   function randomBetween(max, min) {
     return Math.floor(Math.random() * (max - min) ) + min;
-  }
-
-  function isOverlapingX(value, slide) {
-    if((value + slide*$board.width()) > $('.container-small').offset().left &&
-       (value + slide*$board.width()) < $('.container-small').offset().left + $('.container-small').width()){
-      return true;
-    }
-  else
-    return false;
-  }
-
-  function isOverlapingY(value) {
-    if(value > $('.container-small').offset().top - $('.animation-wrapper').offset().top  - config._el_height/2 &&
-       value < $('.container-small').offset().top - $('.animation-wrapper').offset().top + $('.container-small').height()) {
-      return true;
-    }
-    else
-      return false;
   }
 
   function findStory(id) {
@@ -167,219 +123,147 @@
     }
   }
 
+  function checkConditions(story) {
+    if(!selectedCategory && !selectedLetter) return true;
+    else if(!selectedCategory && selectedLetter && (
+      selectedLetter.toLowerCase() == story.last_name[0].toLowerCase() ||
+      selectedLetter.toLowerCase() == story.first_name[0].toLowerCase())) return true;
+    else if(!selectedLetter && selectedCategory &&
+      story.category_id == selectedCategory) return true;
+    else return false;
+  }
 
-  function checkFilters() {
-    var cat = [];
-    var lett = [];
+  function emptyStories() {
+    for(var i = 0; i < displayedStories.length; i++) {
+      // if doesn't suit to given conditions
+      if(!checkConditions(displayedStories[i])) {
+        // remove element and set array item to false
+        displayedStories[i] = false;
+      } else displayedStories[i].same_position = true;
+    }
+
+    // [item, false, false, false, item, ...]
+  }
+
+
+  var displayedStories = [];
+  var itemsToDisplay = [];
+  function getDisplayedStories(category, letter) {
+    // first empty displayedStories --> remove all items which aren't supposed to be displayed
+    emptyStories();
+    // array of items which are currently not dislayed
+    itemsToDisplay = [];
+
+    // check if it suits all selected conditions
     stories.forEach(function(story) {
-      if(story.display) {
+      // if not :: fade out --> set to displayed:false in fade f
+      if(!checkConditions(story)) fadeOut(story);
+      // if yes and is not displayed
+      else if(!story.display) itemsToDisplay.push(story);
+    })
 
+    // fill empty spots with itemsToDisplay
+    var tmpArray = itemsToDisplay;
+    for(var i = 0; i < displayedStories.length; i++) {
+      if(!displayedStories[i] && tmpArray.length > 0) {
+        displayedStories.push(tmpArray.shift());
       }
+    }
+
+    // clear empty items from displayed stories
+    for(var i = displayedStories.length - 1; i >= 0; i--) {
+      if(!displayedStories[i]) displayedStories.splice(i, 1);
+    }
+    // if some items left, add them to displayed stories
+    tmpArray.forEach(function(story) {
+      displayedStories.push(story);
+    })
+
+    // get positions by sections
+    displayedStories = sortForSlider(displayedStories);
+
+    // fade in stories which are not already visible and displayed
+    displayedStories.forEach(function(story) {
+      if(
+        (story.position.x == 0 && story.position.y == 0) || 
+        (!story.same_position || !isVisible(story))) {
+        if(story.display) fadeOut(story);
+        fadeIn(story);
+      }
+      story.same_position = false;
     })
   }
-  function getStoriesReady() {
-    var fadeElementsOut = [];
-    var fadeElementsIn = [];
-    var elementsToMove = [];
 
 
-    stories.forEach(function(story) {
-      // category is selected, letter not
-      if(!selectedLetter &&
-          selectedCategory &&
-          story.category_id != selectedCategory) {
+  function isVisible(el) {
+    return (el.position.x > -1 * config._el_width && el.position.x < config._width);
+  }
+    
 
-        if(story.display) fadeElementsOut.push(story);
-        story.display = false;
+  function getRandomTitleLimit(el) {
+    if(el.down) return el;
 
-      // letter is selected, category not
-      } else if(!selectedCategory &&
-          selectedLetter &&
-          selectedLetter.toLowerCase() != story.last_name[0].toLowerCase() &&
-          selectedLetter.toLowerCase() != story.first_name[0].toLowerCase()) {
-
-        if(story.display) fadeElementsOut.push(story);
-        story.display = false;
-
-        // category and letter is selected
-      } else if(selectedCategory &&
-          selectedLetter &&
-          ( story.category_id != selectedCategory ||
-           selectedLetter.toLowerCase() != story.last_name[0].toLowerCase() &&
-           selectedLetter.toLowerCase() != story.first_name[0].toLowerCase())) {
-
-        if(story.display) fadeElementsOut.push(story);
-        story.display = false;
-
-      } else {
-        if(!story.display) fadeElementsIn.push(story);
-        else if(story.prevSlide != story.slide) elementsToMove.push(story);
-
-        story.display = true;
-      }
-    })
-
-    checkFilters()
-
-    if(getDevice() == 'desktop') {
-      stories = sortForSlider(stories);
-
-      fadeElementsOut.forEach(function(story, i) {
-        setTimeout(function() {
-          story = fadeOut(story);
-        }, config.movement._leave.delay*i)
-      })
-
-      fadeElementsIn.forEach(function(story, i) {
-        setTimeout(function() {
-          story = fadeIn(story);
-        }, config.movement._entry.delay*i)
-      })
-
-      elementsToMove.forEach(function(story, i) {
-        setTimeout(function() {
-          move(story);
-        }, config.movement._entry.delay*i)
-      })
-
+    if(randomBetween(2, 0) == 1) {
+      el.up = 0;
+      el.down = $('.container-small').offset().top - $('.animation-wrapper').offset().top  - config._el_height/2;
     } else {
-      var classCounter = 0;
-
-      stories.forEach(function(item) {
-        animations.stopMovement(item);
-
-        if(item.display) {
-          if(classCounter % 2 != 0) {
-            $(item.target).removeClass('left');
-            $(item.target).addClass('right');
-          } else {
-            $(item.target).addClass('left');
-            $(item.target).removeClass('right');
-          }
-          $(item.target).css({
-            'display': '-ms-flexbox',
-            'display': 'flex'
-          });
-
-          classCounter++;
-        } else {
-          $(item.target).css('display', 'none');
-        }
-      })
+      el.up = $('.container-small').offset().top - $('.animation-wrapper').offset().top + $('.container-small').height();
+      el.down = config._height - 190;
     }
+    return el;
   }
 
-  function sortForSlider(arr) {
-    var counter = 0;    // counter of elements which are already set
-    var slide = 0;      // current slider
-    var totalDisplayed = 0;  // total number of displayed items
-    var displayedInMiddleSlide = 0;
-    var from = 0;
-    var totalPosition = config._width - config._el_width;
-    sliderSections.sections = [];
-
+  function sortForSlider(arr, index) {
+    var totalPosition = config._width - config._el_width/2;
+    var counter = 0;
+    var itemsCounter = 0;
+    
     arr.forEach(function(item) {
-      if(item.display) totalDisplayed++;
-    })
+      if(counter < config._num.first_and_last) {
+        item.from = totalPosition;
 
-    arr.forEach(function(item, index) {
-      if(item.display) {
+        if(arr.length > config._num.first_and_last) totalPosition -= Math.round(config._width/config._num.first_and_last);
+        else totalPosition -= Math.round(config._width/arr.length);
+        
+        item.to = totalPosition;
 
+        if(item.to < 0) item.to = 0;
 
-
-        // set item range and limit
-        if(counter < config._num.first_and_last) {
-          item.from = totalPosition;
-          totalPosition -= Math.round(config._width/config._num.first_and_last);
-          item.to = totalPosition;
-
-        } else if(counter < totalDisplayed - config._num.first_and_last) {
-          item.from = totalPosition;
-          totalPosition -= Math.round(config._width/config._num.other_pages);
-          item.to = totalPosition;
-
+        itemsCounter++;
+        if(itemsCounter%config._num.first_and_last == 0 || itemsCounter%config._num.first_and_last == 1) {
+          item.up = 0;
+          item.down = config._height - 190;
         } else {
-          item.from = totalPosition;
-          totalPosition -= Math.round(config._width/config._num.first_and_last);
-          item.to = totalPosition;
-
-          if(index == arr.length-1) {
-            item.to -= config._el_width;
-          }
+          item = getRandomTitleLimit(item);
         }
+      } else if(counter < arr.length - config._num.first_and_last) {
+        item.from = totalPosition;
+        totalPosition -= Math.round(config._width/config._num.other_pages);
+        item.to = totalPosition;
 
-        if(item.slide == slide) item.slideChanged = false;
-        else item.slideChanged = true;
-        item.prevSlide = item.slide;
-        item.slide = slide;
+        item.up = 0;
+        item.down = config._height - 190;
+      } else {
+        item.from = totalPosition;
+        totalPosition -= Math.round(config._width/config._num.first_and_last);
+        item.to = totalPosition;
 
-        if(counter < config._num.first_and_last) {
-          if(counter == config._num.first_and_last - 1) {
-            slide++;                      // move to next slide
-            sliderSections.add(100, 0);   // add slide to slider
-          }
-        } else if(counter < totalDisplayed - config._num.first_and_last) {  // if item is between first and last
-          displayedInMiddleSlide++;       // count middle items
 
-          if(displayedInMiddleSlide == config._num.other_pages) {
-            displayedInMiddleSlide = 0;   // reset counter
-            sliderSections.add(from, from - 100);  // add slide to slider
-            from = from - 100;
-            slide++;                               // move to next slide
-          } else if(counter == totalDisplayed - config._num.first_and_last - 1) {
-            sliderSections.add(from, from - displayedInMiddleSlide*100/config._num.first_and_last);   // add slide to slider
-            from = from - displayedInMiddleSlide*100/config._num.first_and_last;
-            slide++;
-
-            sliderSections.add(from, from - 100);         // add last slide
-          }
+        itemsCounter++;
+        if(itemsCounter%config._num.first_and_last == 0 || itemsCounter%config._num.first_and_last == 1) {
+          item.up = 0;
+          item.down = config._height - 190;
+        } else {
+          item = getRandomTitleLimit(item);
         }
-        counter++;
       }
+      
+      counter++;
     })
-    if(totalDisplayed < config._num.first_and_last) {
-      sliderSections.add(100, 0);
-    }
-    else if(totalDisplayed > config._num.first_and_last && totalDisplayed < config._num.first_and_last*2) {   // if not enough elements
-      sliderSections.add(from, from - 100);
-    }
-
-
     setSlider(totalPosition);
-    console.log("ITEMS", arr)
-    console.log("sliderSections", sliderSections)
-
     return arr;
   }
 
-
-
-
-  function getXPosition(el, from, to, checkOverlap) {
-    var x = randomBetween(from, to);
-
-    if(checkOverlap && isOverlapingX(x, el.slide) && isOverlapingY(el.position.y)) {
-      var counter = 0;
-      while(x < 40 && (x == 0 || isOverlapingX(x))) {
-        x = randomBetween(from, to);
-        counter++;
-      }
-    }
-    return x;
-  }
-
-  function getYPosition(el, from, to, checkOverlap) {
-    var y = randomBetween(from, to);
-
-    if(checkOverlap && isOverlapingY(y) && isOverlapingX(el.position.x, el.slide)) {
-        var counter = 0;
-        while(counter < 40 && (y == 0 || isOverlapingY(y))) {
-        y = randomBetween(config._height - config._el_width,  config._el_width);
-        counter++;
-      }
-    }
-    return y;
-  }
 
   function getTransition(speed) {
     return (
@@ -406,6 +290,8 @@
     })
   }
   function fadeOut(el) {
+    el.display = false;
+
     el.scale = '0';
     el.blur = '3.4px';
     el.speed = config.movement._leave.speed;
@@ -416,8 +302,46 @@
     return el;
   }
 
+  function moveItems(value) {
+    stories.forEach(function(el) {
+      el.position.x = el.position.x + (el.scale == 1 ? value :( value/2));
+      if(el.from) {
+        el.from = el.from + value;
+        el.to = el.to + value;
+      }
+      el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100;
+      if(el.movement)
+          animations.stopMovement(el);
+      getCss(el);
+    })
+
+    smallItems.forEach(function(el) {
+      el.position.x = el.position.x + value/2;
+
+      animations.stopMovement(el);
+      if(el.position.x > config._width + 60) {
+        el.position.x = -60;
+        el.position.y = randomBetween(config._el_height, config._height);
+        el.speed = 0;
+        getCss(el);
+      } else if(el.position.x < -60) {
+        el.position.x = config._width + 60;
+        el.position.y = randomBetween(config._el_height, config._height);
+        el.speed = 0;
+        getCss(el);
+      }
+      else {
+        el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ;
+        getCss(el);
+      }
+    })
+  }
   function fadeIn(el) {
-    el = getStartingPosition(el);
+    el.speed = 0;
+    el.position.x = randomBetween(el.from, el.to);
+    el.position.y = randomBetween(el.up, el.down);
+    el.display = true;
+    getCss(el);
 
     setTimeout(function() {
       el.scale = '1';
@@ -430,20 +354,6 @@
       if(getDevice() == 'desktop' && el.position.x >= config._el_width*(-1) && el.position.x <= config._width * config._el_width)
         animations.makeElMove(el);
     }, 1000)
-
-    return el;
-  }
-
-  function move(el) {
-    el = fadeOut(el);
-    el = fadeIn(el);
-  }
-
-  function getStartingPosition(el) {
-    el.speed = 0;
-    el.position.x =  getXPosition(el, el.from, el.to, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
-    el.position.y =  getYPosition(el, 0, config._height - 190, el.slide == 0 || el.slide == sliderSections.sections.length - 1);
-    getCss(el);
 
     return el;
   }
@@ -481,15 +391,13 @@
             stories.push(newItem);
           })
 
-	        /* Check, if id in parameter and open story in modal, if is*/
-					var check_params = window.location.href.split('#')
-					if(check_params.length > 1) {
-					  openModal(check_params[check_params.length - 1]);
-					}
-
+          /* Check, if id in parameter and open story in modal, if is*/
+          var check_params = window.location.href.split('#')
+          if(check_params.length > 1) {
+            openModal(check_params[check_params.length - 1]);
+          }
           createDOMStories();
-
-      	}
+        }
       });
     }
   };
@@ -522,18 +430,13 @@
           item.position.y = config._height - config._el_height - 130;
           getCss(item);
         }
-
-
       })
       .mouseleave(function(e) {                                   // __mouse leave event
+        var $item = $(e.target).closest('.item');
+        var item = findStory($item.data('id'));
         $(e.target).removeClass('hovered');
         $('body').removeClass('story-in-front');
         setTimeout(function() {$(e.target).closest('.label').css('display', 'none'); }, 50);
-
-        if(mobile) return;
-
-        var $item = $(e.target).closest('.item');
-        var item = findStory($item.data('id'));
 
         if(getDevice() == 'desktop' && item)
           animations.makeElMove(item);
@@ -541,7 +444,7 @@
       .click(function(e) {                                        // __click event
         openModal($(e.target).data('id'));
       })
-      .css({'backgroundImage': 'url(' + baseUrl + item.featured_image + ')', transition: 'none'})     // set some style
+      .css({'backgroundImage': 'url(' + item.featured_image + ')', transition: 'none'})     // set some style
       .append($('<div/>', {                       // add label to elemen
         'class': 'label',
         'html': '<label>'+item.first_name+' '+item.last_name+'</label><small>'+item.category+'</small><button class="pop-story" data-id="'+item.story_id +'"/>'
@@ -552,12 +455,13 @@
     config._height = $board.height();
 
     makeAnimatedBackground();
-    getStoriesReady(null, null, true);
+    getDisplayedStories(null, null, true);
     getFilters();
   }
 
   function getFilters() {
     var $filters = $('.filter-wrapper');
+    var letters = [], categories = [];
 
     categories.push({category: stories[0].category, category_id: stories[0].category_id});
     letters.push(stories[0].last_name[0].toUpperCase());
@@ -593,7 +497,7 @@
 
       selectedLetter = null;
       selectedCategory = null;
-      getStoriesReady();
+      getDisplayedStories();
     })
     // append all categories to filter wrapper
     categories.forEach(function(category, i) {
@@ -624,7 +528,7 @@
         }
 
         selectedCategory = $(e.target).data('category-id');
-        getStoriesReady();
+        getDisplayedStories();
       })
     });
 
@@ -638,7 +542,7 @@
         $('.selected').text($(e.target).data('letter'));
 
         selectedLetter = $(e.target).data('letter');
-        getStoriesReady();
+        getDisplayedStories();
       })
     })
 
@@ -652,7 +556,7 @@
 
         $('.selected').text("A-Z");
         selectedCategory = $('.slick-active').data('category-id');
-        getStoriesReady();
+        getDisplayedStories();
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // If the user is navigating from the first slide to the right (show the left-side gradient bg).
         if (currentSlide == 0) {
@@ -663,37 +567,6 @@
         }
       });
     }
-  }
-
-  function moveItems(value) {
-    stories.forEach(function(el) {
-      el.position.x = el.position.x + (el.scale == 1 ? value :( value/2));
-      el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100;
-      if(el.movement)
-          animations.stopMovement(el);
-      getCss(el);
-    })
-
-    smallItems.forEach(function(el) {
-      el.position.x = el.position.x + value/2;
-
-      animations.stopMovement(el);
-      if(el.position.x > config._width + 60) {
-        el.position.x = -60;
-        el.position.y = randomBetween(config._el_height, config._height);
-        el.speed = 0;
-        getCss(el);
-      } else if(el.position.x < -60) {
-        el.position.x = config._width + 60;
-        el.position.y = randomBetween(config._el_height, config._height);
-        el.speed = 0;
-        getCss(el);
-      }
-      else {
-        el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ;
-        getCss(el);
-      }
-    })
   }
 
   function setSlider(width) {
@@ -772,13 +645,13 @@
       $('#modal').addClass('drop');
     }, 350);
 
-    selectedStory.featured_image ? $('#image').attr('src', baseUrl + selectedStory.featured_image) : $('#image').attr('src', '');
+    selectedStory.featured_image ? $('#image').attr('src', selectedStory.featured_image) : $('#image').attr('src', '');
     $('#name').text(selectedStory.first_name + ' ' + selectedStory.last_name);
     $('#role').text(selectedStory.category);
     $('#gallery').html(
-      (selectedStory.image_1 ? '<img src="' + (baseUrl + selectedStory.image_1) + '">' : '') +
-      (selectedStory.image_2 ? '<img src="' + (baseUrl + selectedStory.image_2) + '">' : '') +
-      (selectedStory.image_3 ? '<img src="' + (baseUrl + selectedStory.image_3) + '">' : '')
+      (selectedStory.image_1 ? '<img src="' + (selectedStory.image_1) + '">' : '') +
+      (selectedStory.image_2 ? '<img src="' + (selectedStory.image_2) + '">' : '') +
+      (selectedStory.image_3 ? '<img src="' + (selectedStory.image_3) + '">' : '')
     )
     $('#content').html(selectedStory.content);
 
@@ -796,7 +669,7 @@
   }
 
   $('#link').click(function(e) {
-  	e.preventDefault();
+    e.preventDefault();
 
     var $temp = $("<input>");
     $("body").append($temp);
@@ -807,7 +680,7 @@
     $('#link-copied').addClass('show');
 
     setTimeout(function() {
-    	$('#link-copied').removeClass('show');
+      $('#link-copied').removeClass('show');
     }, 3000);
   });
 
@@ -862,7 +735,7 @@
         variableWidth: true
       }).on("afterChange", function (event, slick, currentSlide, nextSlide){
         selectedCategory = $('.slick-active').data('category-id');
-        getStoriesReady();
+        getDisplayedStories();
         $('.selected').text("A-Z");
       }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
         // If the user is navigating from the first slide to the right (show the left-side gradient bg).
@@ -880,7 +753,7 @@
     if(device != getDevice()) {
       device = getDevice();
       
-      getStoriesReady();
+      getDisplayedStories();
       
       if(device != 'desktop') {
         $('.container-small').css('z-index', 5);
@@ -902,7 +775,6 @@
       class: 'animated-background'
     }).appendTo($body);
 
-    containerHeight = $('.animated-background').height();
     // create bubbles with background image
     config.background.image_bubbles._images.forEach(function(item, i) {
       $('<div/>', {
@@ -925,8 +797,8 @@
     });
 
     smallItems.forEach(function(el) {
-      el.position.x = getXPosition(el, config._el_width, config._width - config._el_width);
-      el.position.y = getYPosition(el, config._el_height, config._height);
+      el.position.x = randomBetween(config._el_width, config._width - config._el_width);
+      el.position.y = randomBetween(config._el_height, config._height);
       getCss(el);
       animations.animateBubble(el);
     })
@@ -937,7 +809,7 @@
         class: 'star pulse-star-' + randomBetween(1,3)
       }).appendTo('.animated-background').css({
         left: randomBetween(config._width - 30, 30) + 'px',
-        top: randomBetween(containerHeight - 30, 30) + 'px'
+        top: randomBetween(config._height - 30, 30) + 'px'
       });
     }
 
@@ -948,7 +820,7 @@
         class: 'bubble pulse-bubble'
       }).appendTo('.animated-background').css({
         left: randomBetween(config._width - 30, 30) + 'px',
-        top: randomBetween(containerHeight - 30, 30) + 'px',
+        top: randomBetween(config._height - 30, 30) + 'px',
         width:  size,
         height: size
       });

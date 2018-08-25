@@ -275,6 +275,10 @@ $option-width: 70px;
     box-shadow: 0 0 50px rgba(255,255,255, 1);
     filter: blur(3.4px) brightness(1);
 
+
+    &.overlap {
+      border-color: red;
+    }
     .label {
       display: none;
       opacity: 0;
