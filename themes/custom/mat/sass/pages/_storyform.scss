@@ -27,7 +27,7 @@
     position: relative;
     &:before {
       display: none;
-      content: 'test';
+      content: '';
       position: absolute;
       right: 0;
       top: 5px;
@@ -369,6 +369,18 @@
             }
             &:after {
               content: 'Upload a  Featured Photo ';
+            }
+          }
+          position: relative;
+          &.empty {
+            border: 3px solid $color-red;
+            &:before {
+              content: 'At least one photo is required.';
+              position: absolute;
+              left: 0;
+              transform: translate(12.5%, 45%);
+              @include font-size(1.2);
+              color: $color-red;
             }
           }
         }

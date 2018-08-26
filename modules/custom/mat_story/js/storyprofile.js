@@ -9,6 +9,7 @@
 
       // Used to validate phone number field.
       var US_phone_number = new RegExp('^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$');
+      var imageIsSelected = false;
 
       // Check if a field is filled out and valid (proper e-mail / phone number format).
       function checkForValidity(field) {
@@ -42,7 +43,7 @@
       }
 
       // Validate every field after a user fills it out (moves out of focus) - mostly used for special fields (email etc.)
-      $('.node-story-profile-story-submission-form input, .node-story-profile-story-submission-form textarea').bind('focusout', function() {
+      $('.node-story-profile-story-submission-form input, .node-story-profile-story-submission-form textarea').bind('blur', function() {
         if ($(this).val() || $(this).val() !== '') {
           $(this).parent('.js-form-item').removeClass('empty');
           checkForValidity($(this));
@@ -63,6 +64,33 @@
         });
         return isValid;
       }
+
+      function checkIfImageIsSelected() {
+        var imageFileLength = $('img[data-drupal-selector="edit-field-story-featured-image-0-preview"]').length;
+        var errorMessageLength = $('.field--name-field-story-featured-image .messages--error').length;
+        if (imageFileLength > 0 && errorMessageLength == 0) {
+          imageIsSelected = true;
+          $('.field--name-field-story-featured-image').removeClass('empty');
+        } else {
+          imageIsSelected = false;
+          $('.field--name-field-story-featured-image').addClass('empty');
+        }
+      }
+
+      // Once the featured image stops uploading over AJAX, move to the next step.
+      $(document).ajaxStop(function() {
+        checkIfImageIsSelected();
+        var step4 = $('a.step-link[href="#step4"]', context);
+        if (!$('.step4 .step-link', context).hasClass('active') && imageIsSelected) {
+          $('.step4 .step-link', context).addClass('active');
+          $('.step4 .step-content', context).slideDown();
+        }
+        else if (!imageIsSelected && step4.hasClass('active')) {
+          $('.field--name-field-story-featured-image').addClass('empty');
+          step4.removeClass('active');
+          step4.next('.step-content').slideUp();
+        }
+      });
 
       // Slide down to the next step.
       function goToByScroll(next_step) {
@@ -127,14 +155,7 @@
           $('.step3 .step-content', context).slideDown();
          }
 
-        /*---STEP 3---*/
-        var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
-        step3_field1.on('change', function() {
-          if (!$('.step4 .step-link', context).hasClass('active') && hasValidInputs($('.step3'))) {
-            $('.step4 .step-link', context).addClass('active');
-            $('.step4 .step-content', context).slideDown();
-          }
-        });
+        // Step 3 is covered in the ajaxStop() function above.
 
         /*---STEP 4---*/
         var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
@@ -191,14 +212,35 @@
       //   $(this).next('.step-content').slideDown();
       // });
 
-      // Select all step links (except the first one, since it remains open anyway).
-      var step_links = $('a.step-link:not([href="#step1"])', context);
+      // Select all step links (except the first one, since it remains open anyway, and the fourth one
+      // since the image field needs special validation due to Ajax).
+      var step_links = $('a.step-link:not([href="#step1"]):not([href="#step4"])', context);
       // Open parent div and scroll down.
       step_links.on('click touchend', function() {
         var selected = $(this);
         if (!selected.hasClass('active')) {
           selected.addClass('active');
           selected.next('.step-content').slideDown();
+          $('html, body', context).animate({scrollTop: selected.offset().top}, 700);
+        }
+      });
+
+      //Step 4 validation
+      $('a.step-link[href="#step4"]', context).on('click touchend', function() {
+        // If the user wants to proceed to step 4 before uploading at least one image.
+        if (!imageIsSelected) {
+          var step3 = $('a.step-link[href="#step3"]', context);
+          $('.field--name-field-story-featured-image').addClass('empty');
+          if (!step3.hasClass('active')) {
+            step3.addClass('active');
+            step3.next('.step-content').slideDown();
+          }
+          $('html, body', context).animate({scrollTop: step3.offset().top}, 700);
+        }
+        // Else do regular validation.
+        else if (!$(this).hasClass('active')) {
+          $(this).addClass('active');
+          $(this).next('.step-content').slideDown();
           $('html, body', context).animate({scrollTop: selected.offset().top}, 700);
         }
       });
