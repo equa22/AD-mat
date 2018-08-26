@@ -66,7 +66,7 @@
   var animations = {
     //done: true,
     animateBubble: function(el)  {
-      if(el.movement) return;
+      if(el.movement || device !="desktop") return;
 
       animations.stopMovement(el);
       el.animate = setInterval(function() {
@@ -98,7 +98,7 @@
         else if(el.position.y > el.down) el.position.y = el.down;
 
         getCss(el);
-      }, el.speed);
+      }, el.speed + 100);
 
       el.movement = true;
     },
@@ -130,6 +130,10 @@
       selectedLetter.toLowerCase() == story.first_name[0].toLowerCase())) return true;
     else if(!selectedLetter && selectedCategory &&
       story.category_id == selectedCategory) return true;
+    else if(selectedLetter && (
+      selectedLetter.toLowerCase() == story.last_name[0].toLowerCase() ||
+      selectedLetter.toLowerCase() == story.first_name[0].toLowerCase()) &&
+      selectedCategory && story.category_id == selectedCategory) return true;
     else return false;
   }
 
@@ -161,6 +165,21 @@
       // if yes and is not displayed
       else if(!story.display) itemsToDisplay.push(story);
     })
+
+    // mix already displayed stories so, that visible stays on same place and not visible take new position 
+    for(var i = 0; i < displayedStories.length; i++) {
+      if(displayedStories[i]) {
+        if(!isVisible(displayedStories[i])) {
+          for(var j = 0; j < displayedStories.length; j++) {
+            if(!displayedStories[j]) {
+              displayedStories[j] = displayedStories[i];
+              displayedStories[i] = false;
+              break;
+            }
+          }
+        }
+      }
+    }
 
     // fill empty spots with itemsToDisplay
     var tmpArray = itemsToDisplay;
@@ -201,7 +220,17 @@
     
 
   function getRandomTitleLimit(el) {
-    if(el.down) return el;
+    if(el.position.y) {
+      if(el.position.y < $('.container-small').offset().top - $('.animation-wrapper').offset().top  - config._el_height/2) {
+        el.up = 0;
+        el.down = $('.container-small').offset().top - $('.animation-wrapper').offset().top  - config._el_height/2;
+      } else {
+        el.up = $('.container-small').offset().top - $('.animation-wrapper').offset().top + $('.container-small').height();
+        el.down = config._height - 190;
+      }
+      return el;
+    }
+    
 
     if(randomBetween(2, 0) == 1) {
       el.up = 0;
@@ -402,6 +431,26 @@
     }
   };
 
+  function appendSlick() {
+    $('.filter-wrapper').slick({
+      arrows: false,
+      infinite: false,
+      variableWidth: true
+    }).on("afterChange", function (event, slick, currentSlide, nextSlide){
+      selectedCategory = $('.slick-active').data('category-id');
+      getDisplayedStories();
+      $('.selected').text("A-Z");
+    }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
+      // If the user is navigating from the first slide to the right (show the left-side gradient bg).
+      if (currentSlide == 0) {
+        $('.filter-wrapper.slick-slider').addClass('away-from-left-edge');
+      }
+      if (nextSlide == 0) {
+        $('.filter-wrapper.slick-slider').removeClass('away-from-left-edge');
+      }
+    });
+  }
+
   function createDOMStories () {
     stories.forEach(function(item, j){
       $('<div />', {
@@ -547,25 +596,7 @@
     })
 
     if(mobile) {
-      $('.filter-wrapper').slick({
-          arrows: false,
-          infinite: false,
-          variableWidth: true,
-          centerMode: false
-      }).on("afterChange", function (event, slick, currentSlide, nextSlide){
-
-        $('.selected').text("A-Z");
-        selectedCategory = $('.slick-active').data('category-id');
-        getDisplayedStories();
-      }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
-        // If the user is navigating from the first slide to the right (show the left-side gradient bg).
-        if (currentSlide == 0) {
-          $('.filter-wrapper.slick-slider').addClass('away-from-left-edge');
-        }
-        if (nextSlide == 0) {
-          $('.filter-wrapper.slick-slider').removeClass('away-from-left-edge');
-        }
-      });
+      appendSlick();
     }
   }
 
@@ -576,7 +607,7 @@
 
     $( "#slider" ).slider(
       { max: max,
-        disabled: (max <= 0),
+        disabled: (max <= config._el_width),
         value: 0,
         slide: function( event, ui ) {
           moveItems(Number(ui.value - prevSliderValue));
@@ -627,12 +658,8 @@
     var $body = $('body');
 
     $(".modal-inner").animate({ scrollTop: 0 }, "fast");
-    stories.forEach(function(story) {
-      if(story.story_id == id) {
-        selectedStory = story;
-      }
-    })
 
+    selectedStory = findStory(id);
     if(!selectedStory) return;
 
     $overlay.addClass('open');
@@ -711,9 +738,11 @@
   $('.dropdown').mouseleave(function() { $('.dropdown').removeClass('open') });
 
 
-  var prevWidth = $(window).width();
+  var prevWidth = $(window).width(), resizeTimer;
   // on window resize, update config
   $(window).resize(function()  {
+    config._width = $board.width();
+    config._height = $board.height();
 
     if(getDevice() == 'desktop') {
       var resized = $(window).width() - prevWidth;
@@ -721,38 +750,38 @@
       prevWidth = $(window).width();
     }
 
+    clearTimeout(resizeTimer);
+    // timeout set so animations don't get fired on each users resize
+    resizeTimer = setTimeout(function() {
+      if(getDevice() == 'desktop') {
+        displayedStories.forEach(function(item) {
+          animations.makeElMove(item);
+        })
+        smallItems.forEach(function(item) {
+          animations.makeElMove(item);
+        })
+      }   else {
+        smallItems.forEach(function(item) {
+          animations.stopMovement(item);
+        })
+      }   
+    }, 250);
 
+    // check if categories are too long for wrapper
     var width = 0;
-
     $('.cat-item').toArray().forEach(function(item) {
       width += $(item).outerWidth();
     })
-
+    // if so, append slick
     if(width > $('.filter-wrapper').width() && $('.filter-wrapper.slick-slider').length == 0) {
-      $('.filter-wrapper').slick({
-        arrows: false,
-        infinite: false,
-        variableWidth: true
-      }).on("afterChange", function (event, slick, currentSlide, nextSlide){
-        selectedCategory = $('.slick-active').data('category-id');
-        getDisplayedStories();
-        $('.selected').text("A-Z");
-      }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
-        // If the user is navigating from the first slide to the right (show the left-side gradient bg).
-        if (currentSlide == 0) {
-          $('.filter-wrapper.slick-slider').addClass('away-from-left-edge');
-        }
-        if (nextSlide == 0) {
-          $('.filter-wrapper.slick-slider').removeClass('away-from-left-edge');
-        }
-      });
+      appendSlick();
+    // else, remove slick
     } else if(width < $('.filter-wrapper').width() && $('.filter-wrapper.slick-slider').length > 0) { 
-        $('.filter-wrapper').slick('unslick'); 
+      $('.filter-wrapper').slick('unslick'); 
     }
 
     if(device != getDevice()) {
       device = getDevice();
-      
       getDisplayedStories();
       
       if(device != 'desktop') {
@@ -760,8 +789,6 @@
         $('.container-small').removeClass('fade-out');
       }
     }
-    config._width = $board.width();
-    config._height = $board.height();
   });
 
   $('[data-role="closemodal"]').click(function() {
