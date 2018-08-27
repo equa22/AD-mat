@@ -6,6 +6,7 @@ use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigFactory;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
 /**
  * Class CentralRegistryApi.
@@ -32,6 +33,7 @@ class CentralRegistryApi {
 
   /*
    * Guzzle client for sending HTTP requests
+   *
    */
   protected $client = NULL;
 
@@ -88,7 +90,7 @@ class CentralRegistryApi {
       'headers' => [
         'Content-Type' => 'application/json',
         'Accept' => 'application/json',
-        'Authorization' => "Bearer {$jwtToken}"
+        #'Authorization' => "Bearer {$jwtToken}"
       ],
       'verify' => FALSE,
       'connect_timeout' => 60,
@@ -114,7 +116,7 @@ class CentralRegistryApi {
     $key = $privateKey;
     $token = array(
       "iss" => "t8I63gYYoiONZjwd8i2n",
-      "aud" => $this->aud,
+      "aud" => 'https://donatelifeamerica.com/api/',
       "iat" => $this->iat
     );
 
@@ -143,7 +145,13 @@ class CentralRegistryApi {
       $options = [
         'Authorization' => "Bearer {$jwt}"
       ];
-      $response = $this->client->request('POST', $this->getRequestUrl('token'));
+
+      $response = $this->client->request('POST', $this->getRequestUrl('token'), [
+        RequestOptions::JSON => [
+          'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+          'assertion'  => $jwt
+        ]
+      ]);
 
       $this->setDebugMessage('Endpoint response code: '. $response->getStatusCode());
       $this->setDebugMessage('Response body: '. $response->getBody()->getContents());
