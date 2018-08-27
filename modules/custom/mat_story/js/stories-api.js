@@ -149,6 +149,27 @@
     // [item, false, false, false, item, ...]
   }
 
+  function getMobileClasses() {
+    var displayed = [];
+    stories.forEach(function(story) {
+      if(story.display) {
+        displayed.push(story);
+        $(story.target).removeClass('hide');
+      } else {
+        $(story.target).addClass('hide');
+      }
+    })
+
+    displayed.forEach(function(story, i) {
+      $(story.target).css('disaply', 'block');
+
+      $(story.target).addClass(i%2 == 0 ? 'mobile-left' : 'mobile-right');
+      $(story.target).removeClass(i%2 == 0 ? 'mobile-right' : 'mobile-left');
+
+      $(story.target).addClass(i%3 == 0 ? 'tablet-left' : (i%3 == 1 ? 'tablet-center' : 'tablet-right'));
+      $(story.target).removeClass(i%3 == 0 ? 'tablet-center tablet-right' : (i%3 == 1 ? 'tablet-left tablet-right' : 'tablet-left tablet-center'));
+    })
+  }
 
   var displayedStories = [];
   var itemsToDisplay = [];
@@ -202,7 +223,7 @@
     displayedStories = sortForSlider(displayedStories);
 
     // fade in stories which are not already visible and displayed
-    displayedStories.forEach(function(story) {
+    displayedStories.forEach(function(story, i) {
       if(
         (story.position.x == 0 && story.position.y == 0) || 
         (!story.same_position || !isVisible(story))) {
@@ -210,7 +231,11 @@
         fadeIn(story);
       }
       story.same_position = false;
+
+      
     })
+
+    getMobileClasses();
   }
 
 
@@ -298,7 +323,7 @@
     return (
       'transform ' + speed + 'ms linear 0ms, ' +
       'opacity ' + speed + 'ms linear 0ms, ' +
-      'filter ' + speed + 'ms linear 0ms, ' +
+      'filter 2000ms linear 0ms, ' +
       'z-index 0ms linear'
     )
   }
@@ -319,7 +344,12 @@
     })
   }
   function fadeOut(el) {
+
     el.display = false;
+
+    if(getDevice() != 'desktop'){
+      return;
+    }
 
     el.scale = '0';
     el.blur = '3.4px';
@@ -338,14 +368,17 @@
         el.from = el.from + value;
         el.to = el.to + value;
       }
-      el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100;
+
       if(el.movement)
           animations.stopMovement(el);
+
+      el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100;
       getCss(el);
     })
 
     smallItems.forEach(function(el) {
       el.position.x = el.position.x + value/2;
+      
 
       animations.stopMovement(el);
       if(el.position.x > config._width + 60) {
@@ -360,16 +393,18 @@
         getCss(el);
       }
       else {
-        el.speed = Math.abs(value) > 100 ? Math.abs(value) + 100 : 100 ;
+        el.speed = Math.abs(value) > 100 ? config.background.image_bubbles._speed : 100;
         getCss(el);
       }
     })
   }
   function fadeIn(el) {
+    el.display = true;
+
     el.speed = 0;
     el.position.x = randomBetween(el.from, el.to);
     el.position.y = randomBetween(el.up, el.down);
-    el.display = true;
+    
     getCss(el);
 
     setTimeout(function() {
@@ -504,7 +539,7 @@
     config._height = $board.height();
 
     makeAnimatedBackground();
-    getDisplayedStories(null, null, true);
+    getDisplayedStories();
     getFilters();
   }
 
@@ -754,13 +789,15 @@
     // timeout set so animations don't get fired on each users resize
     resizeTimer = setTimeout(function() {
       if(getDevice() == 'desktop') {
-        displayedStories.forEach(function(item) {
+        getDisplayedStories();
+        /*displayedStories.forEach(function(item) {
           animations.makeElMove(item);
         })
         smallItems.forEach(function(item) {
           animations.makeElMove(item);
-        })
-      }   else {
+        })*/
+      }   
+      else {
         smallItems.forEach(function(item) {
           animations.stopMovement(item);
         })
@@ -780,7 +817,8 @@
       $('.filter-wrapper').slick('unslick'); 
     }
 
-    if(device != getDevice()) {
+    // if device changed
+    if(device != getDevice() && device != "desktop") {
       device = getDevice();
       getDisplayedStories();
       

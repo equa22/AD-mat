@@ -7,6 +7,8 @@
 // Aditional variables
 $option-width: 70px;
 
+$mobile-item-margin: 40px;
+$mobile-item-size: 100px;
 
 .slider-wrapper {
   width: 100%;
@@ -101,74 +103,7 @@ $option-width: 70px;
     overflow: hidden;
   }
 }
-/*
 
-
-@-webkit-keyframes Pulse {
-  from {  -webkit-box-shadow: 0 0 10px rgba(255,255,255,0.5) }
-  50% {  -webkit-box-shadow: 0 0 50px rgba(255,255,255,1) }
-  to {  -webkit-box-shadow: 0 0 10px rgba(255,255,255,0.5) }
-}
-
-@-webkit-keyframes Pulse-star-1 {
-  from { opacity: 0.3 }
-  50% { opacity: 0.7 }
-  to { opacity: 0.3 }
-}
-@-webkit-keyframes Pulse-star-2 {
-  from { opacity: 0.3; transform: scale(0.3)}
-  50% { opacity: 0.7; transform: scale(1) }
-  to { opacity: 0.3; transform: scale(0.3) }
-}
-@-webkit-keyframes Pulse-bubble {
-  from { opacity: 0.01; transform: scale(0.6)}
-  50% { opacity: 0.03; transform: scale(1) }
-  to { opacity: 0.01; transform: scale(0.6) }
-}
-
-
-@-webkit-keyframes Pulse-S {
-  from { -webkit-box-shadow: 0 0 0 rgba(255,255,255,0.1) }
-  50% {  -webkit-box-shadow: 0 0 10px rgba(255,255,255,0.15) }
-  to {  -webkit-box-shadow: 0 0 0 rgba(255,255,255,0.1) }
-}
-
-
-.pulse-2 {
-  -webkit-animation-name: Pulse;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-}
-
-.pulse-star-1 {
-  -webkit-animation-name: Pulse-star-1;
-  -webkit-animation-duration: 3s;
-  -webkit-animation-iteration-count: infinite;
-}
-.pulse-star-2 {
-  -webkit-animation-name: Pulse-star-2;
-  -webkit-animation-duration: 6s;
-  -webkit-animation-iteration-count: infinite;
-}
-
-.pulse-ns {
-  -webkit-animation-name: Pulse-ns;
-  -webkit-animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-}
-
-.pulse-s {
-  -webkit-animation-name: Pulse-S;
-  -webkit-animation-duration: 5s;
-  -webkit-animation-iteration-count: infinite;
-}
-
-.pulse-bubble {
-  -webkit-animation-name: Pulse-bubble;
-  -webkit-animation-duration: 15s;
-  -webkit-animation-iteration-count: infinite;
-}
-*/
 .slider-wrapper .container-small {
   display: flex;
   align-content: center;
@@ -181,9 +116,12 @@ $option-width: 70px;
     transition: opacity 1s linear;
     z-index: 10;
   }
-  &.fade-out * {
-    opacity: 0;
+  @media (min-width: $screen-md-min) {
+    &.fade-out * {
+      opacity: 0;
+    }
   }
+  
 
   p {
     display: inline-block;
@@ -274,8 +212,7 @@ $option-width: 70px;
     z-index: 1;
     box-shadow: 0 0 50px rgba(255,255,255, 1);
     filter: blur(3.4px) brightness(1);
-
-
+    
     &.overlap {
       border-color: red;
     }
@@ -364,6 +301,29 @@ $option-width: 70px;
       box-shadow: 0px 0px 124px -26px rgba(0,0,0,0.75);
     }
 
+
+    @media (max-width: $screen-sm-max) {
+      &.hide {
+        display: none;
+      }
+      &.tablet-left {
+        transform: translate($mobile-item-margin, 0) !important;
+      }
+      &.tablet-center {
+        transform: translate(calc(50vw - #{$mobile-item-size}/2), 0) !important;
+      }
+      &.tablet-right {
+        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
+      }
+    }
+    @media (max-width: $screen-xs-max) {
+      &.mobile-left {
+        transform: translate($mobile-item-margin, 0) !important;
+      }
+      &.mobile-right {
+        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
+      }
+    }
 
     @media (max-width: $screen-sm-max) {
       position: relative;
@@ -831,19 +791,19 @@ $option-width: 70px;
 }
 
 
-$mobile-item-margin: 40px;
-$mobile-item-size: 100px;
+
+
+
 @media (max-width: $screen-sm-max) {
   .slider-wrapper {
     height: 100%;
     max-height: unset;
-
-    .container-small {
-      margin-top: 50px;
+  }
+  .slider-wrapper .container-small {
+      margin: 50px 0;
       padding: 0 30px;
       position: relative;
     }
-  }
   .controls .filter-wrapper {
     display: block;
     width: 100%;
@@ -873,12 +833,6 @@ $mobile-item-size: 100px;
     .item {
       -webkit-filter: blur(0) brightness(1) !important;
       filter: blur(0) brightness(1) !important;
-      &.left {
-        transform: translate($mobile-item-margin, 0) !important;
-      }
-      &.right {
-        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
-      }
     }
     .slider-wrapper {
       height: 100%;
