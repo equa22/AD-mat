@@ -10,6 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.carousel
   module:
     - link
+    - text
 id: paragraph.carousel.default
 targetEntityType: paragraph
 bundle: carousel
@@ -28,12 +29,11 @@ content:
     type: link
     region: content
   field_main_title:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
+    weight: 4
+    label: above
+    settings: {  }
     third_party_settings: {  }
-    type: string
+    type: text_default
     region: content
   field_slide_items:
     weight: 3

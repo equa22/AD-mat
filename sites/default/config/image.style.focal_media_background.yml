@@ -5,7 +5,7 @@ dependencies:
   module:
     - focal_point
 name: focal_media_background
-label: 'Focal media background'
+label: 'Focal media background (desktop)'
 effects:
   4e21e5d9-6ed7-4531-8a28-9e0cb5d2b760:
     uuid: 4e21e5d9-6ed7-4531-8a28-9e0cb5d2b760

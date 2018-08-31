@@ -1,19 +1,11 @@
 <?php
-
-use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Menu\MenuActiveTrailInterface;
-use Drupal\Core\Menu\MenuLinkTreeInterface;
-use Drupal\Core\Menu\MenuLinkInterface;
-use Drupal\Core\Plugin\PluginBase;
-use Drupal\Core\Plugin\PluginFormInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\node\Entity\Node;
-use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Template\Attribute;
 use Drupal\user\Entity\User;
+use Drupal\paragraphs\Entity\Paragraph;
 
 function mat_global_page_attachments(array &$attachments) {
   if (User::load(\Drupal::currentUser()->id())->hasRole('administrator')) {
@@ -67,39 +59,16 @@ function mat_global_preprocess_node(&$variables) {
 function mat_global_paragraphs_widget_actions_alter(array &$widget_actions, array &$context) {
   if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
     // Client requirements changed here: all drop-down actions should now be removed if editor role.
-    $widget_actions['dropdown_actions'] = [];
+    // Exceptions: drop-down buttons that needs to be shown to editor role.
+    $exceptions = ['myth_vs_fact', 'pillar_group_item', 'cta_item'];
+    if (isset($context['paragraphs_entity']) && $context['paragraphs_entity'] instanceof Paragraph) {
+      /* @var \Drupal\paragraphs\Entity\Paragraph $entity */
+      $entity = $context['paragraphs_entity'];
+      if (!in_array($entity->bundle(), $exceptions))
+        $widget_actions['dropdown_actions'] = [];
+    }
   }
 }
-
-/**
- * Implements hook_preprocess_hook().
- *
-function mat_global_preprocess_field_multiple_value_form(&$variables) {
-  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
-    // Client requirements changed here: all drag actions should now be removed if editor role.
-    #dump("value_form");
-    #dump($variables);
-
-    #unset($variables['table']['#tabledrag']);
-    #unset($variables['table']['#header'][1]);
-
-    foreach (\Drupal\Core\Render\Element::children($variables['element']) as $i => $child) {
-      #dump($variables['element'][$i]);
-      // Use special option for drag & drop
-      if(isset($variables['element'][$i]['#drag_and_drop']) && $variables['element'][$i]['#drag_and_drop'] == false && isset($variables['table']['#rows'])) {
-        $delta = $variables['element'][$i]['#delta']+1;
-
-        $variables['element'][$i]['#process'][] = ['Drupal\mat_global\RenderProcessElementContainer', 'processContainer'];
-        $variables['element'][$i]['#processed'] = false;
-        #dump($variables['element'][$i]);
-        #dump($variables['element'][$i]['#element_validate'][0]);
-        #$variables['table']['#rows'][$delta]['data'][0]['class'] = [];
-        #$variables['table']['#rows'][$delta]['class'] = [];
-      }
-    }
-
-  }
-}*/
 
 /**
  * Implements hook_paragraphs_multiple_elements_alter().
@@ -111,12 +80,12 @@ function mat_global_paragraphs_multiple_elements_alter(&$elements, &$form, &$for
     // Remove order column, keep exception buttons
     // Client requirements changed here: all order actions should now be removed if editor role.
     $exceptions = [
-      '#theme', '#attached', '#weight', 'add_more_button_myth_vs_fact', 'add_more_button_pillar_group_item'
+      '#theme', '#attached', '#weight', 'add_more_button_myth_vs_fact', 'add_more_button_pillar_group_item', 'add_more_button_cta_item'
     ];
     foreach (\Drupal\Core\Render\Element::children($elements) as $index => $child) {
       // Unset sorting
       // Allow special paragraph sorting: special indicator
-      if (isset($elements[$child]['#paragraph_type']) && !in_array($elements[$child]['#paragraph_type'], ['myth_vs_fact', 'pillar_group_item'])) {
+      if (isset($elements[$child]['#paragraph_type']) && !in_array($elements[$child]['#paragraph_type'], ['myth_vs_fact', 'pillar_group_item', 'cta_item'])) {
         unset($elements[$index]['_weight']);
       }
     }
@@ -222,7 +191,6 @@ function _mat_global_get_bundle_entity_type($bundle = 'node') {
 
 /**
  * Implementation of hook_preprocess_field_multiple_value_form().
- *
  */
 function mat_global_preprocess_field_multiple_value_form(&$variables) {
   if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
@@ -324,11 +292,5 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
         $variables['elements'][] = $element[$key];
       }
     }
-  }
-
-  // Exceptions for editor role
-  if (in_array('editor', \Drupal::currentUser()->getRoles()) && _mat_global_get_bundle_entity_type() === 'landing_page') {
-    #unset($variables['table']['#tabledrag']);
-    #unset($variables['table']['#header'][1]);
   }
 }

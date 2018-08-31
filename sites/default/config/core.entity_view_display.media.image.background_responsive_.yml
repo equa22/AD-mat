@@ -1,20 +1,20 @@
-uuid: 21e6b3ea-a597-4350-99ae-95d29dca7bcc
+uuid: 8f7460df-d0e4-43cd-a6d8-dfe49beec390
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.full
+    - core.entity_view_mode.media.background_responsive_
     - field.field.media.image.field_media_image
     - media.type.image
     - responsive_image.styles.media_background_responsive_
   module:
     - responsive_image
 _core:
-  default_config_hash: ORR5RNsMUiNamCwwkKzk5i8cOiWGoQSRkuafJzegfF4
-id: media.image.full
+  default_config_hash: 5Z5FKsnaYSj-Z3YwyuihQ15vY5pa5OASLyqfl396RBA
+id: media.image.background_responsive_
 targetEntityType: media
 bundle: image
-mode: full
+mode: background_responsive_
 content:
   field_media_image:
     label: hidden

@@ -1,4 +1,5 @@
 table tr.field_landing_page_components .handle {display:none;}
 table tr.field_myths_vs_facts .handle,
-table tr.field_pillar_group_items .handle {display:block;}
+table tr.field_pillar_group_items .handle,
+table tr.field_cta_items .handle {display:block;}
 .delta-order, .field-label-order {visibility: hidden;}

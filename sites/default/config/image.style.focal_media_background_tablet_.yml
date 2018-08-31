@@ -1,0 +1,25 @@
+uuid: 8482935f-a0d4-40ff-a67e-d7ab8ae1f70c
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: focal_media_background_tablet_
+label: 'Focal media background (tablet)'
+effects:
+  0f81bc2e-98ae-4741-b6a1-8cc786c6f6ec:
+    uuid: 0f81bc2e-98ae-4741-b6a1-8cc786c6f6ec
+    id: image_scale
+    weight: 1
+    data:
+      width: 863
+      height: null
+      upscale: false
+  2b9f1e48-0b15-4cd1-bdf3-e035ec9e89c7:
+    uuid: 2b9f1e48-0b15-4cd1-bdf3-e035ec9e89c7
+    id: focal_point_crop
+    weight: 2
+    data:
+      width: 768
+      height: 410
+      crop_type: focal_point

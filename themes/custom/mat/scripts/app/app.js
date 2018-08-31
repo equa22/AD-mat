@@ -187,6 +187,60 @@ $.fn.isInViewport = function(props) {
     }, 5700);
   }
 
+  function setResponsiveBackgroundImage(hidden_element, parent) {
+    var src = '';
+    var w_w = $(window).width();
+
+    // Mobile
+    if (w_w < 414) {
+      src = hidden_element.find('img').attr('src');
+    }
+    // Tablet
+    else if (w_w < 768) {
+      src = hidden_element.find('source[media="all and (min-width: 414px)"]').attr('srcset');
+    }
+    // Desktop
+    else {
+      src = hidden_element.find('source[media="all and (min-width: 768px)"]').attr('srcset');
+    }
+    // Set the background-image property of the element that needs it.
+    parent.css('background-image', 'url("' + src + '")');
+  }
+
+  // Workaround for responsive background images @ other pages.
+  // Depending on current window width we take the proper src from the <picture>
+  // element (hidden via CSS) and use it as a background image for the div that needs a background image URL.
+  Drupal.behaviors.responsiveBackgroundImages = {
+    attach: function (context, settings) {
+
+      // Landing page highlights backgrounds.
+      if (('.node--type-landing-page').length > 0 && $('.field--name-field-media-background').length > 0) {
+        $('.field--name-field-media-background').each(function() {
+          setResponsiveBackgroundImage($(this), $(this).parent());
+        });
+      }
+
+      // Landing page hero image
+      if (('.landing-page-hero-image--bg__hidden').length > 0) {
+        $('.landing-page-hero-image--bg__hidden').each(function() {
+          setResponsiveBackgroundImage($(this).find('.field--name-field-media-image > picture'), $(this).siblings('.hero-image--bg'));
+        });
+      }
+
+      // Highlight slider block.
+    //
+      if (('.highlight-slide--image--hidden').length > 0) {
+        $('.highlight-slide--image--hidden').each(function() {
+          setResponsiveBackgroundImage($(this).find('picture'), $(this).siblings('.highlight-slide--image--visible'));
+        });
+      }
+
+
+    }
+  };
+
+
+
   // Hero slider on home page
   Drupal.behaviors.heroSlider = {
     attach: function (context, settings) {
@@ -196,13 +250,25 @@ $.fn.isInViewport = function(props) {
 
       // CSS object-fit:cover workaround for IE. Hides the default <img> elements and reveals
       // .slide--image divs with a background image.
-      if (('.node--type-landing-page').length > 0) {
-        var $slider_images = $('.paragraph--type--slide img', context);
-        $slider_images.each(function(image) {
-          var $background_url = "url('" + $(this).attr('src') + "')";
+      if (('.node--type-landing-page').length > 0 ) {
+
+        // Slick slider on homepage
+        var $slider_images = $('.paragraph--type--slide picture', context);
+
+        $slider_images.each(function() {
+          setResponsiveBackgroundImage($(this), $(this).siblings('.slide--image'));
           $(this).hide();
-          $(this).siblings('.slide--image').css('background-image', $background_url).show();
+          $(this).siblings('.slide--image').show();
         });
+
+        // Highlight background image
+        var $bg_images = $('.paragraph--type--landing-page-highlight .field--name-field-media-background picture', context);
+
+        $bg_images.each(function() {
+          setResponsiveBackgroundImage($(this), $(this).parents().eq(1));
+          $(this).hide();
+        });
+
       }
 
       // Slick slider config.
@@ -633,76 +699,80 @@ $.fn.isInViewport = function(props) {
   };
 
   // Story form auto open steps
-  Drupal.behaviors.storyFormSteps = {
+   Drupal.behaviors.storyFormSteps = {
     attach: function (context, settings) {
 
+      /* THIS IS NOW IN STORYPROFILE.JS */
+
       // function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
-      $(document).bind('mouseup touchend click keyup', function(e) {
-
-        var step1_progress = false;
-        var step2_progress = false;
-        var step3_progress = false;
-        var step4_progress = false;
-
-        // Step 1
-        var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
-        var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
-        var step1_field3 = $('input[name="field_story_category"]:checked', context);
-
-        if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
-          step1_progress = true;
-        } else {
-          step1_progress = false;
-        }
-
-        if (step1_progress == true) {
-          $('.step2 .step-link', context).addClass('active');
-          $('.step2 .step-content', context).slideDown();
-          // goToByScroll('step2');
-        }
-
-        // Step 2
-        var step2_field1 = $('textarea#edit-body-0-value', context);
-        if (step2_field1.val()) {
-          step2_progress = true;
-        } else {
-          step2_progress = false;
-        }
-
-        if (step2_progress == true) {
-          $('.step3 .step-link', context).addClass('active');
-          $('.step3 .step-content', context).slideDown();
-          // goToByScroll('step3');
-        }
-
-        // step 3
-        var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
-        step3_field1.on('click', function() {
-          $('.step4 .step-link', context).addClass('active');
-          $('.step4 .step-content', context).slideDown();
-          // goToByScroll('step4');
-        });
-
-
-        // step 4
-        var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
-        var step4_field2 = $('input#edit-field-submissioner-last-name-0-value', context);
-        var step4_field3 = $('input#edit-field-submissioner-email-0-value', context);
-        var step4_field4 = $('input#edit-field-submissioner-phone-number-0-value', context);
-
-        if (step4_field1.val() && step4_field2.val() && step4_field3.val() && step4_field4.val()) {
-          step4_progress = true;
-        } else {
-          step4_progress = false;
-        }
-
-        if (step4_progress == true) {
-          $('.step5 .step-link', context).addClass('active');
-          $('.step5 .step-content', context).slideDown();
-          // goToByScroll('step5');
-        }
-
-      });
+      // $(document).bind('mouseup touchend click keyup', function(e) {
+      //
+      //   var step1_progress = false;
+      //   var step2_progress = false;
+      //   var step3_progress = false;
+      //   var step4_progress = false;
+      //
+      //   // Step 1
+      //   var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
+      //   var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
+      //   var step1_field3 = $('input[name="field_story_category"]:checked', context);
+      //
+      //   if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
+      //     console.log(step1_progress);
+      //     step1_progress = true;
+      //   } else {
+      //     step1_progress = false;
+      //     console.log(step1_progress);
+      //   }
+      //
+      //   if (step1_progress == true) {
+      //     $('.step2 .step-link', context).addClass('active');
+      //     $('.step2 .step-content', context).slideDown();
+      //     // goToByScroll('step2');
+      //   }
+      //
+      //   // Step 2
+      //   var step2_field1 = $('textarea#edit-body-0-value', context);
+      //   if (step2_field1.val()) {
+      //     step2_progress = true;
+      //   } else {
+      //     step2_progress = false;
+      //   }
+      //
+      //   if (step2_progress == true) {
+      //     $('.step3 .step-link', context).addClass('active');
+      //     $('.step3 .step-content', context).slideDown();
+      //     // goToByScroll('step3');
+      //   }
+      //
+      //   // step 3
+      //   var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
+      //   step3_field1.on('click', function() {
+      //     $('.step4 .step-link', context).addClass('active');
+      //     $('.step4 .step-content', context).slideDown();
+      //     // goToByScroll('step4');
+      //   });
+      //
+      //
+      //   // step 4
+      //   var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
+      //   var step4_field2 = $('input#edit-field-submissioner-last-name-0-value', context);
+      //   var step4_field3 = $('input#edit-field-submissioner-email-0-value', context);
+      //   var step4_field4 = $('input#edit-field-submissioner-phone-number-0-value', context);
+      //
+      //   if (step4_field1.val() && step4_field2.val() && step4_field3.val() && step4_field4.val()) {
+      //     step4_progress = true;
+      //   } else {
+      //     step4_progress = false;
+      //   }
+      //
+      //   if (step4_progress == true) {
+      //     $('.step5 .step-link', context).addClass('active');
+      //     $('.step5 .step-content', context).slideDown();
+      //     // goToByScroll('step5');
+      //   }
+      //
+      // });
 
     }
   };
