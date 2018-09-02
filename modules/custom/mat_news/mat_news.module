@@ -1,25 +1,48 @@
 <?php
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ * Implements hook_form_alter().
+ *
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
 function mat_news_form_alter(&$form, $form_state, $form_id) {
+  /*
+   * News Landing exposed filters. Generate year numbers & categories (only those that have results).
+   */
   if(isset($form['#id']) && $form['#id'] == 'views-exposed-form-news-landing-page-1') {
     $form['field_news_category_target_id']['#type'] = 'radios';
-    // get years
+    // Get years.
     $nids = \Drupal::entityQuery('node')->condition('type','news_article')->execute();
     $nodes =  \Drupal\node\Entity\Node::loadMultiple($nids);
     $years = array();
+    // Get categories (hides filters with no results).
+    $options = ['All' => t('Show all')];
+
+    // Grab every news node's category and created time.
     foreach ($nodes as $k => $v) {
+      //year
       $get_year = date('Y', $v->getCreatedTime());
       $years[$get_year] = $get_year;
+      //category
+      $category = $v->field_news_category->entity;
+      $options[$category->id()] = $category->getName();
     }
+
+    // Remove duplicates.
     $years_clean = array_unique($years);
-    // sort by year desc
+    $options_clean = array_unique($options);
+
+    // Sort by year (descending).
     krsort($years_clean);
     $sorted_array = array();
     foreach ($years_clean as $key => $val) {
       $sorted_array[$key] = $val;
     }
-    // return values
+
+    // Return values.
     $cur_year = date('Y');
     $form['year'] = [
       '#title' => t('Archive'),
@@ -28,8 +51,8 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
       '#size' => NULL,
       '#default_value' => $cur_year,
     ];
-    // all to show all text
-    $form['field_news_category_target_id']['#options']['All'] = t('Show all');
+    // Set the exposed form's new (filtered) options.
+    $form['field_news_category_target_id']['#options'] = $options_clean;
   }
 }
 
