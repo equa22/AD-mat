@@ -17,6 +17,7 @@ permissions:
   - 'access files overview'
   - 'access focal_image_browser_modal_ entity browser pages'
   - 'access media overview'
+  - 'access media_entity_browser_icon entity browser pages'
   - 'access site in maintenance mode'
   - 'access toolbar'
   - 'access user profiles'

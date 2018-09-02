@@ -11,6 +11,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'access media_entity_browser entity browser pages'
+  - 'access media_entity_browser_icon entity browser pages'
   - 'access media_entity_browser_modal entity browser pages'
   - 'access media_entity_browser_multiple entity browser pages'
   - 'access media_entity_browser_video entity browser pages'
