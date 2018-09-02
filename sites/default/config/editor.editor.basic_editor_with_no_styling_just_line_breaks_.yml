@@ -1,0 +1,26 @@
+uuid: 6d1c508f-12c2-4979-91d6-54ab8bd95f33
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_editor_with_no_styling_just_line_breaks_
+  module:
+    - ckeditor
+format: basic_editor_with_no_styling_just_line_breaks_
+editor: ckeditor
+settings:
+  toolbar:
+    rows: {  }
+  plugins:
+    stylescombo:
+      styles: ''
+    language:
+      language_list: un
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

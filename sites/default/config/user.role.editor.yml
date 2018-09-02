@@ -91,6 +91,7 @@ permissions:
   - 'revert story_profile revisions'
   - 'update any media'
   - 'use node.default form mode'
+  - 'use text format basic_editor_with_no_styling_just_line_breaks_'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any unpublished content'

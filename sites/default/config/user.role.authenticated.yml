@@ -22,6 +22,7 @@ permissions:
   - 'use  The form mode story_submission linked to  node entity( story_profile )'
   - 'use text format advanced'
   - 'use text format basic_editor'
+  - 'use text format basic_editor_with_no_styling_just_line_breaks_'
   - 'use text format rich_editor'
   - 'use text format rich_text_editor'
   - 'use text format rich_title'

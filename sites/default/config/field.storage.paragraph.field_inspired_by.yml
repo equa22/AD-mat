@@ -1,0 +1,23 @@
+uuid: 35a4c0c1-5765-4a0b-bb73-fae2c115a25d
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - paragraphs
+    - text
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: paragraph.field_inspired_by
+field_name: field_inspired_by
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

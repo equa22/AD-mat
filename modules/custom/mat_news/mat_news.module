@@ -27,8 +27,10 @@ function mat_news_form_alter(&$form, $form_state, $form_id) {
       $get_year = date('Y', $v->getCreatedTime());
       $years[$get_year] = $get_year;
       //category
-      $category = $v->field_news_category->entity;
-      $options[$category->id()] = $category->getName();
+      foreach ($v->field_news_category as $category) {
+        $entity = $category->entity;
+        $options[$entity->id()] = $entity->getName();
+      }
     }
 
     // Remove duplicates.
