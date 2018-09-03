@@ -193,11 +193,16 @@
       z-index: 2;
 
       h1 {
-        font-family: $font-flama-semibold-italic;
+        font-family: $font-flama;
         font-weight: 400;
+        strong {font-family: $font-flama-semibold;}
+        em {font-family: $font-flama-semibold-italic;}
+
         p {
-          font-family: $font-flama-semibold-italic;
+          font-family: $font-flama;
           font-weight: 400;
+          strong {font-family: $font-flama-semibold;}
+          em {font-family: $font-flama-semibold-italic;}
         }
       }
 
@@ -254,7 +259,6 @@
         max-width: 47%;
         min-height: 57rem;
         float: right;
-
       }
 
       h1 {
@@ -262,9 +266,14 @@
           @include font-size(5);
           padding: 2rem 0 2.8rem 0;
         }
+        strong {font-family: $font-flama-semibold;}
+        em {font-family: $font-flama-semibold-italic;}
+
         p {
-          font-family: $font-roboto;
-          font-weight: 500;
+          font-family: $font-flama;
+          font-weight: 400;
+          strong {font-family: $font-flama-semibold;}
+          em {font-family: $font-flama-semibold-italic;}
         }
       }
 
@@ -279,9 +288,9 @@
 
   &.right {
     .hero--give-life__content h1 {
-      font-family: $font-flama-semibold-italic;
+      font-family: $font-flama;
       p {
-        font-family: $font-flama-semibold-italic;
+        font-family: $font-flama;
       }
     }
   }
