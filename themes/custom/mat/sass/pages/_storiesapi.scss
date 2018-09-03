@@ -296,9 +296,9 @@ $mobile-item-size: 100px;
       }
     }
     &:hover {
-      -webkit-box-shadow: 0px 0px 124px -26px rgba(0,0,0,0.75);
-      -moz-box-shadow: 0px 0px 124px -26px rgba(0,0,0,0.75);
-      box-shadow: 0px 0px 124px -26px rgba(0,0,0,0.75);
+      -webkit-box-shadow: 0 0px 70px white;
+      -moz-box-shadow: 0 0px 70px white;
+      box-shadow:0 0px 70px white;
     }
 
 
@@ -940,7 +940,7 @@ $mobile-item-size: 100px;
     .alphabet-wrapper {
       justify-content: space-between;
 
-      @media (min-width: $screen-sm-min) {
+      @media (min-width: $screen-md-max) {
         justify-content: flex-end;
       }
     }
@@ -1052,6 +1052,10 @@ $mobile-item-size: 100px;
 
           &:hover {
             color: $gray-light;
+          }
+
+          &.active {
+            color: #0BAADB;
           }
         }
       }
