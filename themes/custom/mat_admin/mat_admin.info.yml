@@ -2,7 +2,7 @@ name: MAT Admin
 type: theme
 description: 'MAT administration theme'
 core: 8.x
-base theme: tdx_adminal
+base theme: adminimal_theme
 
 libraries:
   - mat_admin/global-styling

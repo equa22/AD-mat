@@ -76,10 +76,10 @@ a, button.link {
     color: #084f83; }
 
 .adminimal thead th {
-  background-color: #c3d9e9; }
+  background-color: #edf1f4; }
 
 .adminimal tbody tr:hover {
-  background: #d0e2f0; }
+  background: #f3f5f7; }
 
 input[type=checkbox]:checked {
   background: #084f83;
@@ -200,7 +200,7 @@ div[id^="edit-field-media-image"] input.button {
 
 .settings {
   margin-top: 20px;
-  background-color: #c3d9e9;
+  background-color: #edf1f4;
   border: none;
   display: -ms-flexbox;
   display: flex;
@@ -316,24 +316,14 @@ div[id^="edit-field-media-image"] input.button {
   .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:before,
   .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before,
   .adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before {
-    background-image: url("../images/cotailored-icon.svg");
+    background-image: url("../images/heart.svg");
     background-repeat: no-repeat; }
-  .adminimal-admin-toolbar .toolbar-tray-horizontal ul li.menu-item--expanded ul li.menu-item--expanded:after {
-    content: '';
-    background-image: url("../images/chevron-white.svg");
-    background-repeat: no-repeat;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-    right: 10px;
-    width: 8px;
-    height: 12px; }
-  .adminimal-admin-toolbar .toolbar-tray-horizontal ul li.menu-item--expanded ul li.menu-item--expanded:hover:after {
-    content: '';
-    top: 50%;
-    -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-    right: 5px; }
+
+.toolbar-tray-horizontal .menu-item--expanded:hover .toolbar-icon-admin-toolbar-tools-help:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help.is-active:before {
+  background-image: url(../images/heart_white.svg) !important; }
 
 .adminimal-admin-toolbar .level-1 .toolbar-handle.open,
 .adminimal-admin-toolbar .toolbar-tray-vertical .level-2 {
@@ -423,13 +413,29 @@ div[id^="edit-field-media-image"] input.button {
 .adminimal-admin-toolbar .toolbar .toolbar-icon-escape-admin:before {
   background-image: url(../images/chevron-disc-left.svg) !important; }
 
-.adminimal-admin-toolbar .toolbar-menu-administration ul {
+.adminimal-admin-toolbar .toolbar .toolbar-icon-edit:before {
+  background-image: url(../images/pencil.svg) !important; }
+
+.adminimal-admin-toolbar .toolbar .toolbar-icon-devel:before {
+  background-image: url(../images/cog.svg) !important; }
+
+.adminimal-admin-toolbar .adminimal-admin-toolbar .toolbar-menu-administration ul {
   margin: 0; }
-  .adminimal-admin-toolbar .toolbar-menu-administration ul li a {
+  .adminimal-admin-toolbar .adminimal-admin-toolbar .toolbar-menu-administration ul li a {
     background-color: #084f83;
     color: white; }
-    .adminimal-admin-toolbar .toolbar-menu-administration ul li a:hover {
+    .adminimal-admin-toolbar .adminimal-admin-toolbar .toolbar-menu-administration ul li a:hover {
       background-color: #307db6; }
+
+.toolbar-menu > .menu-item > .toolbar-menu > .menu-item--expanded a {
+  position: relative;
+  display: block; }
+
+.adminimal-admin-toolbar .toolbar .toolbar-toggle-orientation {
+  background-color: #307db6; }
+  .adminimal-admin-toolbar .toolbar .toolbar-toggle-orientation .toolbar-icon {
+    position: relative;
+    z-index: 100; }
 
 .adminimal .content-header {
   margin-top: 10px; }

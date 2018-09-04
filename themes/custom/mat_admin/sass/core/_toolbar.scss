@@ -107,28 +107,17 @@
    .toolbar-icon-admin-toolbar-tools-help:before,
    .toolbar-icon-admin-toolbar-tools-help:active:before,
    .toolbar-icon-admin-toolbar-tools-help:hover:before {
-     @include image('cotailored-icon.svg');
-   }
-
-   .toolbar-tray-horizontal ul li.menu-item--expanded ul li.menu-item--expanded {
-     &:after {
-       content: '';
-       @include image('chevron-white.svg');
-       top: 50%;
-       transform: translateY(-50%);
-       right: 10px;
-       width: 8px;
-       height: 12px;
-     }
-
-     &:hover:after {
-       content: '';
-       top: 50%;
-       transform: translateY(-50%);
-       right: 5px;
-     }
+     @include image('heart.svg');
    }
  }
+
+
+.toolbar-tray-horizontal .menu-item--expanded:hover .toolbar-icon-admin-toolbar-tools-help:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before,
+.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help.is-active:before {
+  background-image: url(../images/heart_white.svg) !important;
+}
 
  .adminimal-admin-toolbar .level-1 .toolbar-handle.open,
  .adminimal-admin-toolbar .toolbar-tray-vertical .level-2 {
@@ -206,10 +195,16 @@
       background-image: url(../images/chevron-disc-left.svg) !important;
     }
 
+    .toolbar-icon-edit:before {
+      background-image: url(../images/pencil.svg) !important;
+    }
 
+    .toolbar-icon-devel:before {
+      background-image: url(../images/cog.svg) !important;
+    }
   }
 
-  .toolbar-menu-administration {
+  .adminimal-admin-toolbar .toolbar-menu-administration {
     ul {
       margin: 0;
       li a {
@@ -224,8 +219,16 @@
 }
 
 
-.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:before,
-.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:active:before,
-.adminimal-admin-toolbar .toolbar-icon-admin-toolbar-tools-help:hover:before {
 
+.toolbar-menu > .menu-item > .toolbar-menu > .menu-item--expanded a {
+  position: relative;
+  display: block;
+}
+
+.adminimal-admin-toolbar .toolbar .toolbar-toggle-orientation {
+  background-color: $toolbar-tray;
+  .toolbar-icon {
+    position: relative;
+    z-index: 100;
+  }
 }
