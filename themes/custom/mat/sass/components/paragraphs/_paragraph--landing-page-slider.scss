@@ -122,6 +122,10 @@
       @media (min-width: $screen-sm-min) {
         height: 30rem;
       }
+
+      p {
+        margin: 0;
+      }
     }
 
     .field--name-field-content {
@@ -158,7 +162,7 @@
   display: inline-block;
   position: absolute;
   left: calc((100% - 1230px)/2 + 30px);
-  top: 63.5rem;
+  top: 69.5rem;
   a {
     @include btn-primary();
   }

@@ -1,4 +1,4 @@
-uuid: 411e3c78-4939-4326-a3e6-7180352d46dc
+uuid: 35a4c0c1-5765-4a0b-bb73-fae2c115a25d
 langcode: en
 status: true
 dependencies:
@@ -8,9 +8,9 @@ dependencies:
     - text
 third_party_settings:
   field_permissions:
-    permission_type: custom
-id: paragraph.field_title_formatted
-field_name: field_title_formatted
+    permission_type: public
+id: paragraph.field_inspired_by
+field_name: field_inspired_by
 entity_type: paragraph
 type: text_long
 settings: {  }

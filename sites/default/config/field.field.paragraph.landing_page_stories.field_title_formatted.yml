@@ -12,7 +12,9 @@ third_party_settings:
   allowed_formats:
     basic_editor: basic_editor
     advanced: '0'
+    basic_editor_with_no_styling_just_line_breaks_: '0'
     rich_editor: '0'
+    rich_text_editor: '0'
     plain_text: '0'
 id: paragraph.landing_page_stories.field_title_formatted
 field_name: field_title_formatted

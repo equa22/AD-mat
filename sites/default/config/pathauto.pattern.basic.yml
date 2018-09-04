@@ -9,9 +9,9 @@ _core:
 id: basic
 label: Basic
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: '[node:field_header_category]/[node:title]'
 selection_criteria:
-  ec7fc199-a114-4175-9976-d27bb34187c9:
+  df4501bf-9497-4a95-9cb4-d2f93a0e2c1b:
     id: node_type
     bundles:
       basic_page: basic_page
@@ -19,7 +19,7 @@ selection_criteria:
     negate: false
     context_mapping:
       node: node
-    uuid: ec7fc199-a114-4175-9976-d27bb34187c9
+    uuid: df4501bf-9497-4a95-9cb4-d2f93a0e2c1b
 selection_logic: and
 weight: -5
 relationships: {  }
