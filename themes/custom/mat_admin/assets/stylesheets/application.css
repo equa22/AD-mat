@@ -419,6 +419,9 @@ div[id^="edit-field-media-image"] input.button {
 .adminimal-admin-toolbar .toolbar .toolbar-icon-devel:before {
   background-image: url(../images/cog.svg) !important; }
 
+.adminimal-admin-toolbar .toolbar .toolbar-icon-menu:before {
+  background-image: url(../images/hamburger.svg) !important; }
+
 .adminimal-admin-toolbar .adminimal-admin-toolbar .toolbar-menu-administration ul {
   margin: 0; }
   .adminimal-admin-toolbar .adminimal-admin-toolbar .toolbar-menu-administration ul li a {
