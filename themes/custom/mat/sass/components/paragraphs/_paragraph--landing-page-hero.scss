@@ -238,12 +238,8 @@
     }
 
     .hero--give-life__image {
-      width: 29.5rem;
-      margin: 0 auto;
 
-      @media (max-width: $screen-iphone5-max) {
-        width: 25rem;
-      }
+
 
       @media (min-width: $screen-sm-min) {
         width: 50%;
@@ -251,6 +247,21 @@
         top: 0;
         left: -5%;
       }
+
+      @media (max-width: $screen-xl) and (min-width: $screen-xs-min) {
+        width: 45%;
+        left: 3.5%;
+      }
+
+      @media (max-width: $screen-xs-max) {
+        width: 29.5rem;
+        margin: 0 auto;
+      }
+
+      @media (max-width: $screen-iphone5-max) {
+        width: 25rem;
+      }
+
     }
 
     .hero--give-life__content {
