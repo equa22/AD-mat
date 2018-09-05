@@ -1,0 +1,57 @@
+uuid: 46bd692c-55f4-4e05-ad5c-fb1e3935738d
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.thumbnail
+  module:
+    - file
+    - image
+    - node
+id: site_pages
+label: 'Site content'
+description: ''
+attributes:
+  title:
+    id: title
+    weight: 0
+    settings:
+      automatic_title: true
+matchers:
+  58608268-fec0-4a86-a2bb-224943e547d4:
+    uuid: 58608268-fec0-4a86-a2bb-224943e547d4
+    id: 'entity:node'
+    weight: 0
+    settings:
+      result_description: ''
+      bundles:
+        basic_page: basic_page
+        landing_page: landing_page
+        news_article: news_article
+      group_by_bundle: true
+      include_unpublished: false
+  b737f27f-9d74-4950-ab88-38262b296063:
+    uuid: b737f27f-9d74-4950-ab88-38262b296063
+    id: 'entity:file'
+    weight: 0
+    settings:
+      result_description: Image
+      bundles: null
+      group_by_bundle: null
+      images:
+        show_dimensions: true
+        show_thumbnail: true
+        thumbnail_image_style: thumbnail
+  09fccdd2-c210-4ee4-b492-6b7acdc3e639:
+    uuid: 09fccdd2-c210-4ee4-b492-6b7acdc3e639
+    id: 'entity:media'
+    weight: 0
+    settings:
+      result_description: Media
+      bundles:
+        file: file
+        focal_image: focal_image
+        icon: icon
+        image: image
+        video: video
+      group_by_bundle: true

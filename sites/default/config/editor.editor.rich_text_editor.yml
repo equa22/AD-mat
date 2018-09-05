@@ -37,17 +37,19 @@ settings:
         -
           name: Links
           items:
-            - DrupalLink
+            - Linkit
             - DrupalUnlink
         -
           name: Tools
           items:
             - Format
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: ''
+    language:
+      language_list: un
+    linkit:
+      linkit_profile: site_pages
 image_upload:
   status: false
   scheme: public

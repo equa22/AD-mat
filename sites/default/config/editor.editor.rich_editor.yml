@@ -28,7 +28,7 @@ settings:
         -
           name: Links
           items:
-            - DrupalLink
+            - Linkit
             - DrupalUnlink
         -
           name: Lists
@@ -48,10 +48,12 @@ settings:
             - Source
             - Styles
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: a.cta|CTA
+    language:
+      language_list: un
+    linkit:
+      linkit_profile: site_pages
 image_upload:
   status: false
   scheme: public

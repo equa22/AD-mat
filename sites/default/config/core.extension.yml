@@ -61,6 +61,7 @@ module:
   install_profile_generator: 0
   language: 0
   link: 0
+  linkit: 0
   mailsystem: 0
   markup: 0
   mat_global: 0
