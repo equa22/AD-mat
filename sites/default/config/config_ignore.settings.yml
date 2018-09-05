@@ -2,5 +2,7 @@ ignored_config_entities:
   0: mat_story.settings
   2: swiftmailer.transport
   4: mat_storyaudio.settings
+  6: 'views.view.news_landing:display.default.display_options.header.entity_block_content.target'
+  8: 'views.view.news_landing:dependencies.content'
 _core:
   default_config_hash: d61606zZ1cuO6QeNJ4JDpfDp8hxuV2qQh9LaqUk8si0

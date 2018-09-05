@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.basic_page.field_header_category
     - field.field.node.basic_page.field_header_style
     - field.field.node.basic_page.field_main_description
+    - field.field.node.basic_page.field_optional_content_section_h
     - field.field.node.basic_page.field_parent_background_image
     - field.field.node.basic_page.field_search_image_media
     - node.type.basic_page
@@ -53,6 +54,14 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
+  field_optional_content_section_h:
+    weight: 5
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   links:
     weight: 0
     region: content

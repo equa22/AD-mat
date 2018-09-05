@@ -9,8 +9,8 @@ id: node.basic_page.field_main_description
 field_name: field_main_description
 entity_type: node
 bundle: basic_page
-label: 'Optional header'
-description: 'Optional header at the top of the content block.'
+label: 'Optional hero section header'
+description: 'Optional header displayed in the hero image section.'
 required: false
 translatable: false
 default_value: {  }
