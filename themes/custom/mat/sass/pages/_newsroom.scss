@@ -151,7 +151,11 @@
     flex-wrap: wrap;
     width: 100%;
 
-    @media (min-width: $screen-md-min) {
+    @media (max-width: $screen-sm-max) {
+      margin: 0 auto;
+    }
+
+    @media (min-width: $screen-sm-min) {
       width: 70%;
     }
 
@@ -170,6 +174,12 @@
         max-width: 364px;
         margin: 20px auto;
 
+
+      }
+
+      @media (max-width: $screen-sm-max) {
+        left: 50%!important;
+        transform: translate(-50%)!important;
       }
       .views-field-field-news-image {
         img {
