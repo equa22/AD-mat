@@ -1,0 +1,22 @@
+uuid: 41aaa7d8-936b-45ed-952c-8a0dbff222e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.news_teaser_text.field_teaser_text
+    - paragraphs.paragraphs_type.news_teaser_text
+  module:
+    - text
+id: paragraph.news_teaser_text.default
+targetEntityType: paragraph
+bundle: news_teaser_text
+mode: default
+content:
+  field_teaser_text:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

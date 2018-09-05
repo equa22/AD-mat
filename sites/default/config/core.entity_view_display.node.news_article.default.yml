@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.news_article.body
     - field.field.node.news_article.field_hero_background_image
     - field.field.node.news_article.field_image_style
     - field.field.node.news_article.field_news_category
@@ -14,7 +13,6 @@ dependencies:
   module:
     - entity_reference_revisions
     - field_group
-    - text
     - user
 third_party_settings:
   field_group:
@@ -79,13 +77,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  body:
-    label: hidden
-    type: text_default
-    weight: 14
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_news_category:
     weight: 8
     label: hidden

@@ -1,0 +1,9 @@
+uuid: bb696824-75ee-47dc-ae3d-0e3ed9bb5d01
+langcode: en
+status: true
+dependencies: {  }
+id: news_teaser_text
+label: 'News teaser text'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }
