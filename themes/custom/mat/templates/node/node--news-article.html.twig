@@ -132,9 +132,9 @@
       {% if node.field_image_style.value.0.target_id == 'news_header_img' %}
         <div class="news-article-content--img"><img src="{{ header_image }}"></div>
       {% endif %}
-      <div class="news-article-content--summary">
-        {{ node.body.value|raw }}
-      </div>
+      {#<div class="news-article-content--summary">#}
+        {#{{ node.body.value|raw }}#}
+      {#</div>#}
       {% if node.field_news_components %}
         {% for parag_id in node.field_news_components.value %}
           {{ bamboo_render_entity('paragraph', parag_id['target_id']) }}

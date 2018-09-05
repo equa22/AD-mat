@@ -14,7 +14,6 @@ dependencies:
   module:
     - entity_reference_revisions
     - field_group
-    - text
     - user
 third_party_settings:
   field_group:
@@ -37,7 +36,6 @@ third_party_settings:
     group_main_content_area:
       children:
         - field_news_image
-        - body
         - field_news_components
         - links
       parent_name: ''
@@ -54,8 +52,7 @@ third_party_settings:
         speed: fast
       label: 'Main content area'
     group_top_section:
-      children:
-        - addtoany
+      children: {  }
       parent_name: ''
       weight: 0
       format_type: html_element
@@ -79,13 +76,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  body:
-    weight: 18
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
   field_news_category:
     weight: 8
     label: hidden
@@ -118,6 +108,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
   field_hero_background_image: true
   field_hero_headline: true
   field_image_style: true
