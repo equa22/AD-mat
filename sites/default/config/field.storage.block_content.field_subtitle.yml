@@ -1,22 +1,20 @@
-uuid: 3f27644d-c835-48a5-8259-87295202cf83
+uuid: 1cce17ee-7450-4b6f-a687-fad903bf4482
 langcode: en
 status: true
 dependencies:
   module:
     - block_content
     - field_permissions
+    - text
 third_party_settings:
   field_permissions:
     permission_type: public
-id: block_content.field_title
-field_name: field_title
+id: block_content.field_subtitle
+field_name: field_subtitle
 entity_type: block_content
-type: string
-settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true

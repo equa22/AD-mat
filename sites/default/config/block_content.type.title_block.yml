@@ -3,6 +3,6 @@ langcode: en
 status: true
 dependencies: {  }
 id: title_block
-label: 'Title block'
+label: 'View title block'
 revision: 1
-description: 'Block for title.'
+description: 'Title block for Views generated pages. '
