@@ -4,24 +4,16 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.media_entity_browser_modal
-    - field.field.node.basic_page.body
     - field.field.node.basic_page.field_basic_page_components
     - field.field.node.basic_page.field_header_category
-    - field.field.node.basic_page.field_header_style
-    - field.field.node.basic_page.field_main_description
-    - field.field.node.basic_page.field_optional_content_section_h
-    - field.field.node.basic_page.field_parent_background_image
     - field.field.node.basic_page.field_search_image_media
-    - image.style.thumbnail
     - node.type.basic_page
   module:
     - content_moderation
     - entity_browser
     - field_group
-    - focal_point
     - paragraphs
     - path
-    - text
 third_party_settings:
   field_group:
     group_settings:
@@ -48,15 +40,6 @@ targetEntityType: node
 bundle: basic_page
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 14
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-    third_party_settings: {  }
-    region: content
   created:
     type: datetime_timestamp
     weight: 8
@@ -86,38 +69,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_header_style:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_main_description:
-    weight: 4
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  field_optional_content_section_h:
-    weight: 5
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_parent_background_image:
-    weight: 2
-    settings:
-      preview_image_style: thumbnail
-      preview_link: true
-      offsets: '50,50'
-      progress_indicator: throbber
-    third_party_settings: {  }
-    type: image_focal_point
     region: content
   field_search_image_media:
     weight: 16

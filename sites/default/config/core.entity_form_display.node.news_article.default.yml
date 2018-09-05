@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.media_entity_browser_modal
+    - field.field.node.news_article.body
     - field.field.node.news_article.field_hero_background_image
     - field.field.node.news_article.field_image_style
     - field.field.node.news_article.field_news_category
@@ -17,13 +18,14 @@ dependencies:
     - field_group
     - paragraphs
     - path
+    - text
 third_party_settings:
   field_group:
     group_settings:
       children:
         - field_image_style
       parent_name: ''
-      weight: 10
+      weight: 11
       format_type: html_element
       format_settings:
         label: Settings
@@ -42,6 +44,15 @@ targetEntityType: node
 bundle: news_article
 mode: default
 content:
+  body:
+    weight: 9
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   created:
     type: datetime_timestamp
     weight: 3
@@ -55,14 +66,14 @@ content:
     type: options_select
     region: content
   field_news_category:
-    weight: 13
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_news_components:
     type: paragraphs
-    weight: 15
+    weight: 14
     settings:
       title: Components
       title_plural: Components
@@ -79,7 +90,7 @@ content:
     third_party_settings: {  }
     region: content
   field_news_image:
-    weight: 9
+    weight: 10
     settings:
       entity_browser: media_entity_browser_modal
       field_widget_display: rendered_entity
@@ -93,7 +104,7 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_search_image_media:
-    weight: 14
+    weight: 13
     settings:
       entity_browser: media_entity_browser_modal
       field_widget_display: rendered_entity
@@ -164,8 +175,10 @@ content:
     region: content
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 15
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_hero_background_image: true
   field_hero_headline: true

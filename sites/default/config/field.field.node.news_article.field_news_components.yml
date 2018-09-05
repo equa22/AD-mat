@@ -9,10 +9,10 @@ dependencies:
     - paragraphs.paragraphs_type.basic_page_image_and_text
     - paragraphs.paragraphs_type.basic_page_quote
     - paragraphs.paragraphs_type.basic_page_video
+    - paragraphs.paragraphs_type.intro_text
     - paragraphs.paragraphs_type.landing_page_form
     - paragraphs.paragraphs_type.landing_page_image
     - paragraphs.paragraphs_type.landing_page_rich_text
-    - paragraphs.paragraphs_type.news_teaser_text
   module:
     - entity_reference_revisions
 id: node.news_article.field_news_components
@@ -30,7 +30,7 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      news_teaser_text: news_teaser_text
+      intro_text: intro_text
       landing_page_rich_text: landing_page_rich_text
       basic_page_quote: basic_page_quote
       landing_page_image: landing_page_image
@@ -39,7 +39,7 @@ settings:
       landing_page_form: landing_page_form
       basic_page_iframe: basic_page_iframe
     target_bundles_drag_drop:
-      news_teaser_text:
+      intro_text:
         enabled: true
         weight: -69
       landing_page_rich_text:

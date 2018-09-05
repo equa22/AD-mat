@@ -294,3 +294,10 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
     }
   }
 }
+
+function mat_global_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'taxonomy_term_basic_page_categories_form') {
+    $form['name']['widget'][0]['value']['#title'] = 'Section name';
+    $form['description']['widget'][0]['#title'] = 'Section description';
+  }
+}

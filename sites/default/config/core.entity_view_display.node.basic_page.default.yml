@@ -3,18 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.basic_page.body
     - field.field.node.basic_page.field_basic_page_components
     - field.field.node.basic_page.field_header_category
-    - field.field.node.basic_page.field_header_style
-    - field.field.node.basic_page.field_main_description
-    - field.field.node.basic_page.field_optional_content_section_h
-    - field.field.node.basic_page.field_parent_background_image
     - field.field.node.basic_page.field_search_image_media
     - node.type.basic_page
   module:
     - entity_reference_revisions
-    - text
     - user
 _core:
   default_config_hash: NXmycy70SuANXNp3MiAkeZRHXSlFM49Hs2RE2T_eZFc
@@ -23,13 +17,6 @@ targetEntityType: node
 bundle: basic_page
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_basic_page_components:
     type: entity_reference_revisions_entity_view
     weight: 3
@@ -47,21 +34,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_main_description:
-    type: basic_string
-    weight: 1
-    region: content
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-  field_optional_content_section_h:
-    weight: 5
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   links:
     weight: 0
     region: content
@@ -69,7 +41,5 @@ content:
     third_party_settings: {  }
 hidden:
   addtoany: true
-  field_header_style: true
-  field_parent_background_image: true
   field_search_image_media: true
   langcode: true

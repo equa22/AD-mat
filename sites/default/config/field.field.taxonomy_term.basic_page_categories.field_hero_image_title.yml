@@ -9,8 +9,8 @@ id: taxonomy_term.basic_page_categories.field_hero_image_title
 field_name: field_hero_image_title
 entity_type: taxonomy_term
 bundle: basic_page_categories
-label: 'Header title'
-description: 'The title displayed over the hero image. Fill this out if you intend to use a shared header + instant subpage loading.'
+label: 'Section headline'
+description: 'The headline displayed over the hero image.'
 required: true
 translatable: false
 default_value: {  }
