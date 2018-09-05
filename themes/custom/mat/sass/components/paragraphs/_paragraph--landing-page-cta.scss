@@ -80,6 +80,22 @@
       @extend %col;
       flex-basis: 100%;
       margin-bottom: 2.5rem;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .8s ease-in-out;
+
+      &:nth-child(odd) {
+        transform: translate(-100%, 0);
+      }
+      &:nth-child(even) {
+        transform: translate(100%, 0);
+      }
+
+      &.visible {
+        transform: none;
+        visibility: visible;
+        opacity: 1;
+      }
 
       @media (min-width: $screen-sm-min) {
         flex-basis: 50%;
@@ -172,5 +188,6 @@
         line-height: 1.5;
       }
     }
+
   }
 }

@@ -822,5 +822,29 @@ $.fn.isInViewport = function(props) {
     }
   };
 
+  function elementIsInView(el) {
+    var rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  // Landing page CTA items reveal animation on scroll.
+  Drupal.behaviors.landingPageCTAScrollReveal = {
+    attach: function (context, settings) {
+      var cta_blocks = document.querySelectorAll('.field--name-field-cta-items > .field__item', context);
+      ['DOMContentLoaded', 'load', 'resize', 'scroll'].forEach(function(event) {
+        window.addEventListener(event, function() {
+          for (var i = 0; i < cta_blocks.length; i++) {
+            if (elementIsInView(cta_blocks[i])) {
+              cta_blocks[i].classList.add('visible');
+            }
+          }
+        });
+      });
+    }
+  };
+
 })(jQuery);
 
