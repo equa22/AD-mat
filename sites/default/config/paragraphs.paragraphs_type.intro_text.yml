@@ -1,0 +1,9 @@
+uuid: f7189fac-b30d-4a14-b258-eec672ddfc1d
+langcode: en
+status: true
+dependencies: {  }
+id: intro_text
+label: 'Intro text'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

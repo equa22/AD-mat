@@ -1,0 +1,19 @@
+uuid: faafbcfc-33da-4305-9033-91060b4cc7bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_optional_header
+    - paragraphs.paragraphs_type.intro_text
+id: paragraph.intro_text.field_optional_header
+field_name: field_optional_header
+entity_type: paragraph
+bundle: intro_text
+label: 'Optional header'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

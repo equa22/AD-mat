@@ -823,10 +823,16 @@ $.fn.isInViewport = function(props) {
   };
 
   function elementIsInView(el) {
+    var distance = 0;
+    if (window.innerWidth >= 768) {
+      distance = 200;
+    } else {
+      distance = 100;
+    }
     var rect = el.getBoundingClientRect();
     return (
       rect.top >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+      rect.bottom - distance <= (window.innerHeight || document.documentElement.clientHeight)
     );
   }
 
@@ -837,6 +843,8 @@ $.fn.isInViewport = function(props) {
       ['DOMContentLoaded', 'load', 'resize', 'scroll'].forEach(function(event) {
         window.addEventListener(event, function() {
           for (var i = 0; i < cta_blocks.length; i++) {
+            var rect = cta_blocks[0].getBoundingClientRect();
+            console.log(rect.bottom);
             if (elementIsInView(cta_blocks[i])) {
               cta_blocks[i].classList.add('visible');
             }

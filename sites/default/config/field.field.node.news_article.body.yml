@@ -1,0 +1,31 @@
+uuid: 88ee8dc6-67ea-4018-ba56-ac8eb9fce80d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.news_article
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    advanced: advanced
+    basic_editor: '0'
+    basic_editor_with_no_styling_just_line_breaks_: '0'
+    rich_editor: '0'
+    rich_text_editor: '0'
+    plain_text: '0'
+id: node.news_article.body
+field_name: body
+entity_type: node
+bundle: news_article
+label: 'News teaser text'
+description: 'Displayed on the "cards" on the news landing page.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary
