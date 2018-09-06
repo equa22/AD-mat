@@ -5,37 +5,6 @@
 //
 // ========================================
 
-label {
-
-}
-
-input[type=text],
-input[type=email],
-input[type=password] {
-
-  &:focus {
-
-  }
-}
-
-textarea {
-
-  &:focus {
-
-  }
-}
-
-input[type=checkbox] {
-
-}
-
-input[type=radio] {
-
-}
-
-input[type=file] {
-
-  &:focus {
-
-  }
+input::-ms-clear {
+  display: none;
 }
