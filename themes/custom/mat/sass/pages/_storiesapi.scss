@@ -289,10 +289,8 @@ $mobile-item-size: 100px;
       z-index: 10;
 
       .label {
-        @media (min-width: $screen-sm-min) {
-          opacity: 1;
-          transform: translate(0);
-        }
+        opacity: 1;
+        transform: translate(0);
       }
     }
     &:hover {
