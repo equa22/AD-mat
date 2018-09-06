@@ -301,8 +301,28 @@ $mobile-item-size: 100px;
       box-shadow:0 0px 70px white;
     }
 
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+      margin-bottom: -25px;
 
-    @media (max-width: $screen-sm-max) {
+      &.hide {
+        display: none;
+      }
+      &.landscape-left {
+        transform: translate($mobile-item-margin, 0) !important;
+      }
+      &.landscape-left-c {
+        transform: translate(calc(28vw + #{$mobile-item-size}/4), 0) !important;
+        top: 100px;
+      }
+      &.landscape-right-c  {
+        transform: translate(calc(56vw + #{$mobile-item-size}/4), 0) !important;
+        top: -36px;
+      }
+      &.landscape-right  {
+        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
+      }
+    }
+    @media (max-width: $screen-md-min) {
       &.hide {
         display: none;
       }
@@ -325,7 +345,7 @@ $mobile-item-size: 100px;
       }
     }
 
-    @media (max-width: $screen-sm-max) {
+    @media (max-width: $screen-md-max) {
       position: relative;
       transform: translate(0,0);
     }
@@ -388,6 +408,7 @@ $mobile-item-size: 100px;
     z-index: 10;
     background-color: transparent;
     border: none;
+    transition: opacity 0.3s linear;
 
     @media (min-width: $screen-md-min) {
       max-width: 840px;
@@ -402,8 +423,7 @@ $mobile-item-size: 100px;
 
 
     &.ui-state-disabled {
-      opacity: 0.5;
-      cursor: auto;
+      opacity: 0;
     }
 
     .prev {
@@ -794,7 +814,7 @@ $mobile-item-size: 100px;
 
 
 
-@media (max-width: $screen-sm-max) {
+@media (max-width: $screen-md-max) {
   .slider-wrapper {
     height: 100%;
     max-height: unset;
@@ -846,7 +866,7 @@ $mobile-item-size: 100px;
     }
 
     .animation-wrapper {
-      padding: 50px 0;
+      padding: 50px 0 150px 0;
       display: block;
     }
   }
@@ -1071,4 +1091,8 @@ $mobile-item-size: 100px;
     font-weight: bold !important;
     color: #4a4a4a;
     white-space: nowrap;
+}
+
+html.modal-open {
+  overflow: hidden;
 }
