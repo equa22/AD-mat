@@ -12,7 +12,7 @@ field_name: field_header_background_image
 entity_type: taxonomy_term
 bundle: basic_page_categories
 label: 'Section hero image'
-description: ''
+description: 'The required size is 1788 pixels wide by 836 pixels tall. Larger images will be scaled and cropped. '
 required: false
 translatable: false
 default_value: {  }

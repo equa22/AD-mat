@@ -10,7 +10,7 @@ field_name: field_image_style
 entity_type: node
 bundle: news_article
 label: 'Header style'
-description: ''
+description: 'On the full news article page, the News Image can be used as a header background or as the leading image.'
 required: false
 translatable: false
 default_value: {  }
@@ -25,6 +25,7 @@ settings:
         news_header_img: news_header_img
         align_left: 0
         align_right: 0
+        border: 0
         boxed: 0
         color_blue: 0
         color_dark_blue: 0

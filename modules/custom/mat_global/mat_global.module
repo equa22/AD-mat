@@ -295,9 +295,12 @@ function mat_global_preprocess_field_multiple_value_form(&$variables) {
   }
 }
 
+// Alter default fields @ Basic page category term form.
 function mat_global_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   if ($form_id == 'taxonomy_term_basic_page_categories_form') {
     $form['name']['widget'][0]['value']['#title'] = 'Section name';
     $form['description']['widget'][0]['#title'] = 'Section description';
+    $form['description']['widget'][0]['#format'] = 'rich_text_editor';
+    $form['description']['widget'][0]['#allowed_formats']['rich_text_editor'] = 'rich_text_editor';
   }
 }
