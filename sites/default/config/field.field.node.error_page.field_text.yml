@@ -1,0 +1,30 @@
+uuid: 8ebca8a2-d9e3-4b5f-bf50-2537b146878a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_text
+    - node.type.error_page
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    rich_text_editor: rich_text_editor
+    advanced: '0'
+    basic_editor: '0'
+    basic_editor_with_no_styling_just_line_breaks_: '0'
+    rich_editor: '0'
+    plain_text: '0'
+id: node.error_page.field_text
+field_name: field_text
+entity_type: node
+bundle: error_page
+label: Text
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

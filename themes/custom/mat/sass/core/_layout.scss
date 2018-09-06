@@ -10,7 +10,8 @@
 .view-news-landing,
 .basic-page-container,
 .node-story-profile-story-submission-form,
-.node-story-profile-story-submitted-thank-you-container {
+.node-story-profile-story-submitted-thank-you-container,
+.page-node-type-error-page #main {
   @include container;
   position: relative;
   margin: 0 auto;
