@@ -53,13 +53,11 @@
   var device = getDevice();
 
   function mobile() {
-    /*var check = false;
-    (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
-    return check;*/
-    if($(window).width() < 991) {
-      return true;
-    } else
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+     return true;
+    } else {
       return false;
+    }
   };
   
   var animations = {
@@ -167,6 +165,28 @@
 
       $(story.target).addClass(i%3 == 0 ? 'tablet-left' : (i%3 == 1 ? 'tablet-center' : 'tablet-right'));
       $(story.target).removeClass(i%3 == 0 ? 'tablet-center tablet-right' : (i%3 == 1 ? 'tablet-left tablet-right' : 'tablet-left tablet-center'));
+    
+      $(story.target).removeClass('landscape-left landscape-left-c landscape-right-c landscape-right');
+      
+      switch(i%4) {
+        case 0:
+          $(story.target).addClass('landscape-left');
+          break;
+        case 1:
+          $(story.target).addClass('landscape-left-c');
+          break;
+        case 2:
+          $(story.target).addClass('landscape-right-c');
+          break;
+        case 3:
+          $(story.target).addClass('landscape-right');
+          break;
+      }
+
+      $(story.target).css({
+        /*top: randomBetween(-50,50) + 'px',
+        left: randomBetween(-50,50) + 'px'*/
+      })
     })
   }
 
@@ -185,7 +205,6 @@
       // if yes and is not displayed
       else if(!story.display) itemsToDisplay.push(story);
     })
-
     // mix already displayed stories so, that visible stays on same place and not visible take new position 
     for(var i = 0; i < displayedStories.length; i++) {
       if(displayedStories[i]) {
@@ -200,7 +219,6 @@
         }
       }
     }
-
     // fill empty spots with itemsToDisplay
     var tmpArray = itemsToDisplay;
     for(var i = 0; i < displayedStories.length; i++) {
@@ -208,7 +226,6 @@
         displayedStories.push(tmpArray.shift());
       }
     }
-
     // clear empty items from displayed stories
     for(var i = displayedStories.length - 1; i >= 0; i--) {
       if(!displayedStories[i]) displayedStories.splice(i, 1);
@@ -230,10 +247,7 @@
         fadeIn(story);
       }
       story.same_position = false;
-
-      
     })
-
     getMobileClasses();
   }
 
@@ -427,6 +441,7 @@
     attach: function (context, settings) {
       config._width = $board.width();
       $.getJSON('/stories-api?_format=json', function(data) {
+        console.log(data)
         // prevent Drupal from reloading script
         if(!initialised) {
           $p = $('.slider-wrapper .container-small p'), $h1 = $('.slider-wrapper .container-small h1'), $button = $('.slider-wrapper .container-small a');
@@ -474,7 +489,7 @@
       variableWidth: true
     }).on("afterChange", function (event, slick, currentSlide, nextSlide){
       selectedCategory = $('.slick-active').data('category-id');
-      getDisplayedStories();
+      getMobileStories();
       $('.selected').text("A-Z");
     }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
       // If the user is navigating from the first slide to the right (show the left-side gradient bg).
@@ -487,6 +502,53 @@
     });
   }
 
+  function closeLabel(e) {
+    var $item = $(e.target).closest('.item');
+    var item = findStory($item.data('id'));
+    $(e.target).removeClass('hovered');
+    $('body').removeClass('story-in-front');
+    setTimeout(function() {$(e.target).closest('.label').css('display', 'none'); }, 50);
+
+    if(getDevice() == 'desktop' && item)
+      animations.makeElMove(item);
+  }
+
+  function showLabel(e) {
+    $(e.target).find('.label').css('display', 'block');
+    $('.item').removeClass('hovered');
+
+    setTimeout(function() { $(e.target).addClass('hovered');}, 50);
+    if(mobile()) return;
+
+    var item = findStory($(e.target).data('id'));
+    animations.stopMovement(item);
+
+    $(e.target).css({
+      'transform': 'translate(' + $(e.target).offset().left + 'px, ' + ($(e.target).offset().top - $('.slider-wrapper').offset().top) + 'px) scale(1)'
+    })
+
+    if(item.position.y > config._height - config._el_height - 130) {
+      item.speed = 1500;
+      item.position.y = config._height - config._el_height - 130;
+      getCss(item);
+    }
+  }
+
+  function getMobileStories() {
+    displayedStories = [];
+
+    stories.forEach(function(story) {
+      if(checkConditions(story)) {
+        story.display = true;
+        displayedStories.push(story);
+      } else {
+        story.display = false;
+      }
+    })
+    console.log(displayedStories);
+    getMobileClasses();
+  }
+
   function createDOMStories () {
     stories.forEach(function(item, j){
       $('<div />', {
@@ -497,37 +559,16 @@
         'id': 'story' + item.story_id                       // item id --> connected with item.target in object
       })
       .mouseenter(function(e) {                                   // __mouse hover event
-        $(e.target).find('.label').css('display', 'block');
-        $('.item').removeClass('hovered');
-
-        setTimeout(function() { $(e.target).addClass('hovered');}, 50);
-        if(mobile()) return;
-
-        var item = findStory($(e.target).data('id'));
-        animations.stopMovement(item);
-
-        $(e.target).css({
-          'transform': 'translate(' + $(e.target).offset().left + 'px, ' + ($(e.target).offset().top - $('.slider-wrapper').offset().top) + 'px) scale(1)'
-        })
-
-        if(item.position.y > config._height - config._el_height - 130) {
-          item.speed = 1500;
-          item.position.y = config._height - config._el_height - 130;
-          getCss(item);
-        }
+        showLabel(e);
       })
       .mouseleave(function(e) {                                   // __mouse leave event
-        var $item = $(e.target).closest('.item');
-        var item = findStory($item.data('id'));
-        $(e.target).removeClass('hovered');
-        $('body').removeClass('story-in-front');
-        setTimeout(function() {$(e.target).closest('.label').css('display', 'none'); }, 50);
-
-        if(getDevice() == 'desktop' && item)
-          animations.makeElMove(item);
+        closeLabel(e);
       })
       .click(function(e) {                                        // __click event
-        openModal($(e.target).data('id'));
+        if($(e.target).hasClass('hovered'))
+          openModal($(e.target).data('id'));
+        else
+          showLabel(e);
       })
       .css({'backgroundImage': 'url(' + item.featured_image + ')', transition: 'none'})     // set some style
       .append($('<div/>', {                       // add label to elemen
@@ -540,7 +581,8 @@
     config._height = $board.height();
 
     makeAnimatedBackground();
-    getDisplayedStories();
+    mobile() ? getMobileStories() : getDisplayedStories();
+    
     getFilters();
   }
 
@@ -576,7 +618,7 @@
       $('.option').removeClass('active');
 
       selectedLetter = null;
-      getDisplayedStories();
+      mobile() ? getMobileStories() : getDisplayedStories();
     });
 
     letters.forEach(function(letter) {
@@ -592,7 +634,7 @@
         $('.option').removeClass('active');
         $(e.target).addClass('active');
         selectedLetter = $(e.target).data('letter');
-        getDisplayedStories();
+        mobile() ? getMobileStories() : getDisplayedStories();
       })
     })
   }
@@ -635,7 +677,7 @@
 
       selectedLetter = null;
       selectedCategory = null;
-      getDisplayedStories();
+      mobile() ? getMobileStories() : getDisplayedStories();
       addLettersFilter(stories);
     })
     // append all categories to filter wrapper
@@ -660,7 +702,7 @@
           }
         })
 
-        if(mobile()) {
+        if(getDevice() == 'mobile') {
           var slider = $( '.filter-wrapper' );
           slider[0].slick.slickGoTo(parseInt($(e.target).data('slick-index')));
 
@@ -670,14 +712,14 @@
         }
 
         selectedCategory = $(e.target).data('category-id');
-        getDisplayedStories();
+        mobile() ? getMobileStories() : getDisplayedStories();
         addLettersFilter(displayedStories);
       })
     });
 
     addLettersFilter(stories);
 
-    if(mobile()) {
+    if(getDevice() == 'mobile') {
       appendSlick();
     }
   }
@@ -745,7 +787,7 @@
     if(!selectedStory) return;
 
     $overlay.addClass('open');
-    $body.addClass('modal-open'); // Prevent the body from scrolling while the modal is open.
+    $('html').addClass('modal-open'); // Prevent the body from scrolling while the modal is open.
     setTimeout(function() {
       $overlay.addClass('fade-in');
     }, 50);
@@ -797,7 +839,7 @@
     var $overlay = $('.story-overlay'), selectedStory;
     var $body = $('body');
 
-    $body.removeClass('modal-open'); // Re-enable body scrolling.
+    $('html').removeClass('modal-open'); // Re-enable body scrolling.
     $('#modal').removeClass('drop');
 
     setTimeout(function() {
@@ -823,57 +865,20 @@
   var prevWidth = $(window).width(), resizeTimer;
   // on window resize, update config
   $(window).resize(function()  {
+    if(mobile()) return;
+
     config._width = $board.width();
     config._height = $board.height();
 
-    if(getDevice() == 'desktop') {
-      var resized = $(window).width() - prevWidth;
-      moveItems(resized);
-      prevWidth = $(window).width();
-    }
+    var resized = $(window).width() - prevWidth;
+    moveItems(resized);
+    prevWidth = $(window).width();
 
     clearTimeout(resizeTimer);
     // timeout set so animations don't get fired on each users resize
     resizeTimer = setTimeout(function() {
-      if(getDevice() == 'desktop') {
-        getDisplayedStories();
-        /*displayedStories.forEach(function(item) {
-          animations.makeElMove(item);
-        })
-        smallItems.forEach(function(item) {
-          animations.makeElMove(item);
-        })*/
-      }   
-      else {
-        smallItems.forEach(function(item) {
-          animations.stopMovement(item);
-        })
-      }   
-    }, 250);
-
-    // check if categories are too long for wrapper
-    var width = 0;
-    $('.cat-item').toArray().forEach(function(item) {
-      width += $(item).outerWidth();
-    })
-    // if so, append slick
-    if(width > $('.filter-wrapper').width() && $('.filter-wrapper.slick-slider').length == 0) {
-      appendSlick();
-    // else, remove slick
-    } else if(width < $('.filter-wrapper').width() && $('.filter-wrapper.slick-slider').length > 0) { 
-      $('.filter-wrapper').slick('unslick'); 
-    }
-
-    // if device changed
-    if(device != getDevice() && device != "desktop") {
-      device = getDevice();
       getDisplayedStories();
-      
-      if(device != 'desktop') {
-        $('.container-small').css('z-index', 5);
-        $('.container-small').removeClass('fade-out');
-      }
-    }
+    }, 250);
   });
 
   $('[data-role="closemodal"]').click(function() {
