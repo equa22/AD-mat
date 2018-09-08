@@ -19,6 +19,18 @@
   }
 }
 
+.paragraph--type--landing-page-image,
+.paragraph--type--basic-page-image-and-text,
+.paragraph--type--basic-page-video {
+  .field--name-field-image-text {
+    padding: 10px 0;
+    color: $gray-darker;
+    font-family:$font-flama-semibold;
+    @include font-size(1.5);
+    line-height: 1.2;
+  }
+}
+
 // Paragraph Rich text
 .paragraph--type--landing-page-rich-text,
 .paragraph--type--basic-page-image-and-text {
@@ -54,7 +66,7 @@
     padding-top: .2rem !important;
   }
 
-  .field--name-field-media {
+  .image {
     margin-bottom: 4.7rem;
 
     @media (min-width: $screen-sm-min) {
@@ -66,20 +78,42 @@
     img {
       margin: 0 auto;
     }
+
+    .field--name-field-image-text {
+      margin: 0;
+    }
   }
 
   &.left {
     @media (min-width: $screen-sm-min) {
       justify-content: space-between;
     }
-    
-    .field--name-field-media {
+
+    .image {
       @media (min-width: $screen-sm-min) {
-        margin: 0 1rem 0 3rem;
+        order: 2;
+        .field--name-field-image-text {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &.right {
+    .image {
+      @media (min-width: $screen-sm-min) {
+        order: 1;
+        margin: 0;
+      }
+    }
+
+    .field--name-field-text {
+      @media (min-width: $screen-sm-min) {
         order: 2;
       }
     }
   }
+
 }
 
 // Paragraph Quote
