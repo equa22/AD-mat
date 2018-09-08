@@ -313,69 +313,38 @@ $mobile-item-size: 100px;
       -moz-box-shadow: 0 0px 70px white;
       box-shadow:0 0px 70px white;
     }
-/*
-    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-      margin-bottom: -25px;
-
-      &.hide {
-        display: none;
-      }
-      &.landscape-left {
-        transform: translate($mobile-item-margin, 0) !important;
-      }
-      &.landscape-left-c {
-        transform: translate(calc(28vw + #{$mobile-item-size}/4), 0) !important;
-        top: 100px;
-      }
-      &.landscape-right-c  {
-        transform: translate(calc(56vw + #{$mobile-item-size}/4), 0) !important;
-        top: -36px;
-      }
-      &.landscape-right  {
-        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
-      }
-    }
-    @media (max-width: $screen-md-min) {
-      &.hide {
-        display: none;
-      }
-      &.tablet-left {
-        transform: translate($mobile-item-margin, 0) !important;
-      }
-      &.tablet-center {
-        transform: translate(calc(50vw - #{$mobile-item-size}/2), 0) !important;
-      }
-      &.tablet-right {
-        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
-      }
-    }
-    @media (max-width: $screen-xs-max) {
-      &.mobile-left {
-        transform: translate($mobile-item-margin, 0) !important;
-
-        &:nth-child(2n) {
-            left: 20px;
-        }
-        &:nth-child(5n) {
-            left: 30px;
-        }
-      }
-      &.mobile-right {
-        transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
-
-        &:nth-child(3n) {
-            left: -30px;
-        }
-        &:nth-child(4n) {
-          top: 40px;
-          left: -50px;
-        }
-      }
-    }*/
 
     @media (max-width: $screen-md-max) {
       position: relative;
       transform: translate(0,0);
+
+      &[data-pattern = "1"] {
+        left: 20%;
+      }
+      &[data-pattern = "2"] {
+        left: calc(80% - 70px);
+        margin-top: 60px;
+      }
+      &[data-pattern = "3"] {
+        left: 50%;
+        margin-top: 65px;
+      }
+      &[data-pattern = "4"] {
+        left: 75%;
+      }
+      &[data-pattern = "5"] {
+        left: 23%;
+        margin-top: 50px;
+      }
+    }
+
+    @media (max-width: $screen-xs-max) {
+      &[data-pattern = "1"] {
+        left: 10%;
+      }
+      &[data-pattern = "4"] {
+        left: 65%;
+      }
     }
   }
 
