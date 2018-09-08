@@ -10,6 +10,15 @@ $option-width: 70px;
 $mobile-item-margin: 40px;
 $mobile-item-size: 100px;
 
+
+
+
+@media (max-width: $screen-md-min) {
+  * {
+    box-shadow: none !important;
+  }
+}
+
 .slider-wrapper {
   width: 100%;
   height: calc(100vh - 300px);
@@ -30,7 +39,11 @@ $mobile-item-size: 100px;
     padding: 0;
     position: absolute;
     pointer-events: none;
+    left: calc(50% - 470px);
 
+    @media (max-width: 940px) {
+      left: 0;
+    }
     > * {
       position: relative;
       z-index: 2;
@@ -116,7 +129,7 @@ $mobile-item-size: 100px;
     transition: opacity 1s linear;
     z-index: 10;
   }
-  @media (min-width: $screen-md-min) {
+  @media (min-width: $screen-md-max) {
     &.fade-out * {
       opacity: 0;
     }
@@ -221,15 +234,14 @@ $mobile-item-size: 100px;
       opacity: 0;
       transform: translate(0, 100%);
       transition: 0.2s all ease-in-out;
-      top: 10rem;
+      top: 11.1rem;
       width: 30rem;
       margin-top: 1rem;
-      padding: 0 2rem 2.5rem 2rem;
       position: relative;
-      background-color: $color-white;
       border-radius: $border-radius-base;
       box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
       text-align: center;
+      padding-bottom: 2.1rem;
 
       &:after {
         width: 100%;
@@ -257,11 +269,14 @@ $mobile-item-size: 100px;
 
       label {
         @extend %story-popup--title;
-        margin-bottom: -1rem;
+        padding: .8rem 2rem 0 2rem;
       }
 
       small {
          @extend %story-popup--category;
+         padding: 0 2rem 2.5rem 2rem;
+         display: block;
+         background-color: white;
       }
 
       button {
@@ -269,7 +284,7 @@ $mobile-item-size: 100px;
         height: 4.2rem;
         position: absolute;
         left: 50%;
-        bottom: -2.1rem;
+        bottom: 0;
         z-index: 10;
         margin-left: -2.1rem;
         border-radius: 50%;
@@ -298,7 +313,7 @@ $mobile-item-size: 100px;
       -moz-box-shadow: 0 0px 70px white;
       box-shadow:0 0px 70px white;
     }
-
+/*
     @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
       margin-bottom: -25px;
 
@@ -337,11 +352,26 @@ $mobile-item-size: 100px;
     @media (max-width: $screen-xs-max) {
       &.mobile-left {
         transform: translate($mobile-item-margin, 0) !important;
+
+        &:nth-child(2n) {
+            left: 20px;
+        }
+        &:nth-child(5n) {
+            left: 30px;
+        }
       }
       &.mobile-right {
         transform: translate(calc(100vw - #{$mobile-item-margin} - #{$mobile-item-size}), 0) !important;
+
+        &:nth-child(3n) {
+            left: -30px;
+        }
+        &:nth-child(4n) {
+          top: 40px;
+          left: -50px;
+        }
       }
-    }
+    }*/
 
     @media (max-width: $screen-md-max) {
       position: relative;
@@ -353,7 +383,6 @@ $mobile-item-size: 100px;
     width: 100vw;
     //height: calc(100% - #{$nav-pre-content-height});
     height: 100%;
-    overflow: hidden;
     position: relative;
     z-index: 1;
     display: flex;
@@ -813,6 +842,9 @@ $mobile-item-size: 100px;
 
 
 @media (max-width: $screen-md-max) {
+  body {
+    height: 100vh;
+  }
   .slider-wrapper {
     height: 100%;
     max-height: unset;
@@ -843,6 +875,7 @@ $mobile-item-size: 100px;
   .stories-api {
     background: transparent;
     position: unset;
+    @include gradient(90deg, #0f84d2, #0f84d2, #0b145e);
 
     #slider {
       display: none;
@@ -851,6 +884,7 @@ $mobile-item-size: 100px;
     .item {
       -webkit-filter: blur(0) brightness(1) !important;
       filter: blur(0) brightness(1) !important;
+      border: solid white 6px;
     }
     .slider-wrapper {
       height: 100%;
@@ -866,12 +900,13 @@ $mobile-item-size: 100px;
     .animation-wrapper {
       padding: 50px 0 150px 0;
       display: block;
+      background-size: 100%;
+      background-image: url(../images/stories/tablet_bg.jpg);
     }
   }
   .animation-wrapper {
     padding: 50px 0;
   }
-
 }
 
 
