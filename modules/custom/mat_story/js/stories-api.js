@@ -977,7 +977,7 @@
 
   if(mobile()) {
     var prev = 0, scrolled = 0, bg_position = 0;
-    $('body').on('scroll', function(e) {
+    $('body').scroll(function(e) {
       $('.animation-wrapper').css('backgroundPosition', '0 ' + (($('body').scrollTop())/3) + 'px');
     })
   }
