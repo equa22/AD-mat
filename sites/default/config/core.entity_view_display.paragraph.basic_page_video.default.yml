@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.basic_page_video.field_border
+    - field.field.paragraph.basic_page_video.field_image_text
     - field.field.paragraph.basic_page_video.field_video
     - paragraphs.paragraphs_type.basic_page_video
 id: paragraph.basic_page_video.default
@@ -11,6 +12,13 @@ targetEntityType: paragraph
 bundle: basic_page_video
 mode: default
 content:
+  field_image_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_video:
     type: entity_reference_entity_view
     weight: 0
