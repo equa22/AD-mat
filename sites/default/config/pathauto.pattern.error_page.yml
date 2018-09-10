@@ -1,0 +1,22 @@
+uuid: a480224d-8acb-44f3-ae7a-aa07a5847739
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: error_page
+label: 'Error page'
+type: 'canonical_entities:node'
+pattern: '[node:title]'
+selection_criteria:
+  8a76cb2c-fb48-427d-96a5-d84db9a0aa3e:
+    id: node_type
+    bundles:
+      error_page: error_page
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 8a76cb2c-fb48-427d-96a5-d84db9a0aa3e
+selection_logic: and
+weight: -5
+relationships: {  }
