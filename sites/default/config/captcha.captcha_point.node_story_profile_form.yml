@@ -1,7 +1,0 @@
-uuid: 49c5c349-c47a-4975-849a-7a6565571572
-langcode: en
-status: true
-dependencies: {  }
-formId: node_story_profile_form
-captchaType: default
-label: null

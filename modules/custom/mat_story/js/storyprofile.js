@@ -167,6 +167,7 @@
         if (step4_progress == true && !$('.step5 .step-link', context).hasClass('active') && hasValidInputs($('.step4'))) {
           $('.step5 .step-link', context).addClass('active');
           $('.step5 .step-content', context).slideDown();
+          $('.g-recaptcha', context).addClass('visible');
         }
 
       });
@@ -222,6 +223,9 @@
           selected.addClass('active');
           selected.next('.step-content').slideDown();
           $('html, body', context).animate({scrollTop: selected.offset().top}, 700);
+        }
+        if (selected.parent('div').hasClass('step5')) {
+          $('.g-recaptcha').addClass('visible');
         }
       });
 
