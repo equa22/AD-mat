@@ -318,6 +318,10 @@ $mobile-item-size: 100px;
       position: relative;
       transform: translate(0,0);
 
+      &.hide {
+        display: none;
+      }
+
       &[data-pattern = "1"] {
         left: 20%;
       }

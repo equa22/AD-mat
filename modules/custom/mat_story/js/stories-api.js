@@ -545,7 +545,6 @@
         story.display = false;
       }
     })
-    console.log(displayedStories);
     getMobileClasses();
   }
 
@@ -566,7 +565,6 @@
       })
       .click(function(e) {                                        // __click event
         var label = $(e.target).closest('.label');
-        console.log(label);
 
         if($(e.target).hasClass('hovered'))
           openModal($(e.target).data('id'));
@@ -797,7 +795,7 @@
     $(".modal-inner").animate({ scrollTop: 0 }, "fast");
 
     selectedStory = findStory(id);
-    console.log(selectedStory)
+
     if(!selectedStory) return;
 
     $overlay.addClass('open');
@@ -967,11 +965,7 @@
     $('body').removeClass('story-in-front');
   })
 
-  $('.pop-story').click(function(e) {
-    console.log(e)
-  })
   $('.pop-story').on('click', function(e) {
-    console.log(e)
     openModal($(e.target).data('id'));
   })
 
