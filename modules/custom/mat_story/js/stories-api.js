@@ -488,9 +488,9 @@
       infinite: false,
       variableWidth: true
     }).on("afterChange", function (event, slick, currentSlide, nextSlide){
-      selectedCategory = $('.slick-active').data('category-id');
+      /*selectedCategory = $('.slick-active').data('category-id');
       getMobileStories();
-      $('.selected').text("A-Z");
+      $('.selected').text("A-Z");*/
     }).on("beforeChange", function (event, slick, currentSlide, nextSlide){
       // If the user is navigating from the first slide to the right (show the left-side gradient bg).
       if (currentSlide == 0) {
