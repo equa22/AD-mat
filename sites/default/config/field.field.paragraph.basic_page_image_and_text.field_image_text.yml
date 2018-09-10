@@ -9,7 +9,7 @@ id: paragraph.basic_page_image_and_text.field_image_text
 field_name: field_image_text
 entity_type: paragraph
 bundle: basic_page_image_and_text
-label: 'Image text'
+label: Caption
 description: ''
 required: false
 translatable: true
