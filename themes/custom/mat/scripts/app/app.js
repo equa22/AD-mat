@@ -863,13 +863,14 @@ $.fn.isInViewport = function(props) {
             e.preventDefault();
             $('.g-recaptcha iframe', context).addClass('not-filled-out');
             $('.g-recaptcha > div', context).addClass('error');
-          }
-        });
-
-        $(document).bind('mouseup touchend click keyup', function(e) {
-          if(grecaptcha && grecaptcha.getResponse().length > 0) {
-            $('.g-recaptcha iframe', context).removeClass('not-filled-out');
-            $('.g-recaptcha > div', context).removeClass('error');
+            // keep watch for any changes
+            window.setInterval(function(){
+              if(grecaptcha && grecaptcha.getResponse().length > 0) {
+                $('.g-recaptcha iframe', context).removeClass('not-filled-out');
+                $('.g-recaptcha > div', context).removeClass('error');
+                clearInterval();
+              }
+            }, 400);
           }
         });
       }
