@@ -854,5 +854,27 @@ $.fn.isInViewport = function(props) {
     }
   };
 
+  // Prevent form submission if captcha is not checked.
+  Drupal.behaviors.captchaCheck = {
+    attach: function (context, settings) {
+      if($('.g-recaptcha', context).length > 0) {
+        $('#edit-actions-submit, #edit-submit', context).click(function(e) {
+          if(!(grecaptcha && grecaptcha.getResponse().length > 0)) {
+            e.preventDefault();
+            $('.g-recaptcha iframe', context).addClass('not-filled-out');
+            $('.g-recaptcha > div', context).addClass('error');
+          }
+        });
+
+        $(document).bind('mouseup touchend click keyup', function(e) {
+          if(grecaptcha && grecaptcha.getResponse().length > 0) {
+            $('.g-recaptcha iframe', context).removeClass('not-filled-out');
+            $('.g-recaptcha > div', context).removeClass('error');
+          }
+        });
+      }
+    }
+  };
+
 })(jQuery);
 

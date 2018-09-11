@@ -284,4 +284,30 @@ form:not(#views-exposed-form-news-landing-page-1) {
 
 .g-recaptcha {
   padding: 3rem 0 3.9rem 0;
+
+  >div {
+    position: relative;
+    transition: all .5s ease-in-out;
+    &:before {
+      transition: all .5s ease-in-out;
+      opacity: 0;
+      content: 'Completing this is required.';
+      position: absolute;
+      top: -21px;
+      right: 0;
+      font-size: 1.2rem;
+      color: $color-red;
+    }
+    &.error {
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+
+  iframe {
+    &.not-filled-out {
+      border: 1px solid #ff0000;
+    }
+  }
 }
