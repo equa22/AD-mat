@@ -14,12 +14,16 @@
 .node-story-profile-story-submission-form {
 
   .g-recaptcha {
-    margin-top: -204px;
-    margin-bottom: 65px;
-    opacity: 0;
-    transition-delay: .36s;
-    &.visible {
-      opacity: 1;
+    padding: 0;
+    position: relative;
+    >div {
+      position: absolute;
+      top: -175px;
+      opacity: 0;
+      transition-delay: .36s;
+      &.visible {
+        opacity: 1;
+      }
     }
   }
 
