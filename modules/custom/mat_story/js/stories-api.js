@@ -16,8 +16,8 @@
     _el_width: 110,
     _el_height: 110,
     movement: {
-      _entry: {speed: 2500, delay: 100 },
-      _leave: {speed: 2500, delay: 100 },
+      _entry: {speed: 500, delay: 100 },
+      _leave: {speed: 500, delay: 100 },
       _smooth: {speed: 4000, radius: 50 }
     },
     background: {
@@ -86,6 +86,7 @@
       getCss(el);
       
       el.animate = setInterval(function() {
+        el.speed = config.movement._smooth.speed;
         el.position.x = randomBetween(el.position.x - (config.movement._smooth.radius/2), el.position.x + (config.movement._smooth.radius/2));
         el.position.y = randomBetween(el.position.y - (config.movement._smooth.radius/2), el.position.y + (config.movement._smooth.radius/2));
         
@@ -104,7 +105,6 @@
       clearInterval(el.animate);
       clearTimeout(el.timeout);
 
-      getCss(el);
       el.movement = false;
     }
   }
@@ -363,15 +363,22 @@
     if(getDevice() != 'desktop'){
       return;
     }
+    setTimeout(function() {
+      clearInterval(el.animate);
+      clearTimeout(el.timeout);
 
-    el.scale = '0';
-    el.blur = '3.4px';
-    el.speed = config.movement._leave.speed;
+      el.movement = false;
 
-    animations.stopMovement(el);
-    getCss(el);
 
-    return el;
+      el.scale = '0';
+      el.blur = '3.4px';
+      el.speed = config.movement._leave.speed;
+
+      getCss(el);
+    }, 100);
+    
+
+    //return el;
   }
 
   function moveItems(value) {
@@ -564,12 +571,11 @@
         closeLabel(e);
       })
       .click(function(e) {                                        // __click event
-        var label = $(e.target).closest('.label');
-
-        if($(e.target).hasClass('hovered'))
-          openModal($(e.target).data('id'));
-        else
+        if(mobile() && !$(e.target).hasClass('hovered')) {
           showLabel(e);
+        } else {
+          openModal($(e.target).data('id'));
+        }
       })
       .css({'backgroundImage': 'url(' + item.featured_image + ')', transition: 'none'})     // set some style
       .append($('<div/>', {                       // add label to elemen
