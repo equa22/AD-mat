@@ -337,8 +337,8 @@
       'transform ' + speed + 'ms linear 0ms, ' +
       'opacity ' + speed + 'ms linear 0ms, ' +
       'filter ' + speed + 'ms linear 0ms, ' +
-      'z-index 0ms linear' + 
-      'box-shadow 500ms linear'
+      'z-index 0ms linear, ' + 
+      'box-shadow 200ms linear'
     )
   }
   function getCss(el) {
