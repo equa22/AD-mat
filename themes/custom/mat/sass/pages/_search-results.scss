@@ -104,13 +104,14 @@
             padding-top: 3.5rem;
           }
 
-          hr {
-            border-top-color: rgba(74, 74, 74, .5);
-            margin-top: 6.5rem;
+        }
 
-            @media (min-width: $screen-sm-min) {
-              margin-top: 9rem;
-            }
+        hr {
+          border-top-color: rgba(74, 74, 74, .5);
+          margin-top: 6.5rem;
+
+          @media (min-width: $screen-sm-min) {
+            margin-top: 9rem;
           }
         }
 
