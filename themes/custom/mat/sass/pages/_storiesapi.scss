@@ -309,9 +309,9 @@ $mobile-item-size: 100px;
       }
     }
     &:hover {
-      -webkit-box-shadow: 0 0px 70px white;
-      -moz-box-shadow: 0 0px 70px white;
-      box-shadow:0 0px 70px white;
+      -webkit-box-shadow: 0 0px 100px white;
+      -moz-box-shadow: 0 0px 100px white;
+      box-shadow:0 0px 100px white;
     }
 
     @media (max-width: $screen-md-max) {
