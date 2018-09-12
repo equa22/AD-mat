@@ -512,6 +512,8 @@
   function closeLabel(e) {
     var $item = $(e.target).closest('.item');
     var item = findStory($item.data('id'));
+
+
     $(e.target).removeClass('hovered');
     $('body').removeClass('story-in-front');
     setTimeout(function() {$(e.target).closest('.label').css('display', 'none'); }, 50);
@@ -521,10 +523,25 @@
   }
 
   function showLabel(e) {
-    $(e.target).find('.label').css('display', 'block');
+    var targetIsItem = $(e.target).hasClass('item');
+    var isButton = $(e.target).hasClass('pop-story');
+    
+    if(isButton && mobile()) {
+      openModal($(e.target).data('id'));
+      //return;
+    }
+    if(!targetIsItem && mobile()) return;
+
+
+    var $label = $(e.target).find('.label');
+    var $item = $(e.target).closest('.item');
+
+
+    $label.css('display', 'block');
     $('.item').removeClass('hovered');
 
-    setTimeout(function() { $(e.target).addClass('hovered');}, 50);
+    setTimeout(function() { $item.addClass('hovered');}, 50);
+
     if(mobile()) return;
 
     var item = findStory($(e.target).data('id'));
@@ -571,10 +588,9 @@
         closeLabel(e);
       })
       .click(function(e) {                                        // __click event
-        if(mobile() && !$(e.target).hasClass('hovered')) {
+        if(mobile()) {
           showLabel(e);
         } else {
-          closeLabel(e);
           openModal($(e.target).data('id'));
         }
       })
@@ -973,6 +989,8 @@
   })
 
   $('.pop-story').on('click', function(e) {
+    console.log(e);
+
     openModal($(e.target).data('id'));
   })
 
