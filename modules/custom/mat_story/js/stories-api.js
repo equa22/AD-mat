@@ -574,6 +574,7 @@
         if(mobile() && !$(e.target).hasClass('hovered')) {
           showLabel(e);
         } else {
+          closeLabel(e);
           openModal($(e.target).data('id'));
         }
       })
