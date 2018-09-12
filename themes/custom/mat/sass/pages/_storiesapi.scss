@@ -220,7 +220,7 @@ $mobile-item-size: 100px;
     cursor: pointer;
     background-position: center;
     background-size: cover;
-    border: solid 3px rgba(255,255,255,0.8);
+    border: solid 6px rgba(255,255,255,0.9);
     transform: translate(-150px);
     z-index: 1;
     box-shadow: 0 0 50px rgba(255,255,255, 1);
@@ -309,9 +309,9 @@ $mobile-item-size: 100px;
       }
     }
     &:hover {
-      -webkit-box-shadow: 0 0px 100px white;
-      -moz-box-shadow: 0 0px 100px white;
-      box-shadow:0 0px 100px white;
+      -webkit-box-shadow: 0 0px 90px white;
+      -moz-box-shadow: 0 0px 90px white;
+      box-shadow:0 0px 90px white;
     }
 
     @media (max-width: $screen-md-max) {
