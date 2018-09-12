@@ -336,7 +336,7 @@
     return (
       'transform ' + speed + 'ms linear 0ms, ' +
       'opacity ' + speed + 'ms linear 0ms, ' +
-      'filter 2000ms linear 0ms, ' +
+      'filter ' + speed + 'ms linear 0ms, ' +
       'z-index 0ms linear'
     )
   }
