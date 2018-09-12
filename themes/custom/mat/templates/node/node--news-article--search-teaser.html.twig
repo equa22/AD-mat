@@ -8,9 +8,10 @@
     </div>
     <a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ 'Link URL'| t }} {{ url('entity.node.canonical', {'node': node.id}) }}</a>
   </div>
+  {% if node.field_excerpt is not empty %}
   <div class="search-result--text">
-    {% set text = content.body|render|striptags %}
-    {{ text|length > 270 ? text|slice(0, 270) ~ '...' : text }}
-    <hr>
+    {{ node.field_excerpt.value|length > 270 ? node.field_excerpt.value|slice(0, 270) ~ '...' : node.field_excerpt.value }}
   </div>
+  {% endif %}
+  <hr>
 </div>

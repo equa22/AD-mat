@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.story_profile.body
+    - field.field.node.story_profile.field_excerpt
     - field.field.node.story_profile.field_intro_markup
+    - field.field.node.story_profile.field_meta_tags
     - field.field.node.story_profile.field_search_image_media
     - field.field.node.story_profile.field_story_category
     - field.field.node.story_profile.field_story_featured_image
@@ -145,7 +147,9 @@ content:
     third_party_settings: {  }
 hidden:
   addtoany: true
+  field_excerpt: true
   field_intro_markup: true
+  field_meta_tags: true
   field_search_image_media: true
   field_story_markup_1: true
   field_story_markup_2: true

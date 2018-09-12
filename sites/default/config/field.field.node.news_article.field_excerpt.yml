@@ -1,0 +1,19 @@
+uuid: cfa3869b-eae3-4a48-9b5f-38feb61e9d26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_excerpt
+    - node.type.news_article
+id: node.news_article.field_excerpt
+field_name: field_excerpt
+entity_type: node
+bundle: news_article
+label: Excerpt
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
