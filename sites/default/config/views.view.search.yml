@@ -3,12 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
-    - field.storage.node.field_news_image
+    - field.storage.node.field_search_image_media
     - search_api.index.global_index
   module:
     - search_api
-    - text
 id: search
 label: Search
 module: views
@@ -78,9 +76,15 @@ display:
               news_article: search_teaser
               story_profile: search_teaser
             'entity:paragraph':
+              basic_page_iframe: default
+              basic_page_image_and_text: default
+              basic_page_quote: default
+              basic_page_video: default
               carousel: default
               cta_item: default
+              header_announcement: default
               highlight_slide: default
+              intro_text: default
               landing_page_box: default
               landing_page_columns: default
               landing_page_counter: default
@@ -107,13 +111,85 @@ display:
               statistics_item: default
               timeline_facts: default
             'entity:taxonomy_term':
-              news_category: ''
-              story_categories: ''
+              basic_page_categories: default
+              news_category: default
+              story_categories: default
       fields:
-        field_news_image:
-          id: field_news_image
+        title:
+          id: title
           table: search_api_datasource_global_index_entity_node
-          field: field_news_image
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: false
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          entity_type: node
+          plugin_id: search_api_field
+        field_search_image_media:
+          id: field_search_image_media
+          table: search_api_datasource_global_index_entity_node
+          field: field_search_image_media
           relationship: none
           group_type: group
           admin_label: ''
@@ -183,15 +259,24 @@ display:
               file:
                 display_method: label
                 view_mode: default
+              focal_image:
+                display_method: label
+                view_mode: default
+              icon:
+                display_method: label
+                view_mode: default
               image:
+                display_method: label
+                view_mode: default
+              video:
                 display_method: label
                 view_mode: default
           entity_type: node
           plugin_id: search_api_field
-        title:
-          id: title
-          table: search_api_datasource_global_index_entity_node
-          field: title
+        search_api_excerpt:
+          id: search_api_excerpt
+          table: search_api_index_global_index
+          field: search_api_excerpt
           relationship: none
           group_type: group
           admin_label: ''
@@ -236,182 +321,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
+          link_to_item: false
+          use_highlighting: true
           multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
-        body:
-          id: body
-          table: search_api_datasource_global_index_entity_node
-          field: body
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 150
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: true
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: text_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-          entity_type: node
-          plugin_id: search_api_field
-        nid:
-          id: nid
-          table: search_api_datasource_global_index_entity_node
-          field: nid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api_numeric
-          fallback_options:
-            set_precision: false
-            precision: 0
-            decimal: .
-            separator: ','
-            format_plural: false
-            format_plural_string: !!binary MQNAY291bnQ=
-            prefix: ''
-            suffix: ''
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-            format_plural_values:
-              - '1'
-              - '@count'
-          entity_type: node
-          plugin_id: search_api_field
+          multi_separator: ', '
+          plugin_id: search_api
       filters:
         search_api_fulltext:
           id: search_api_fulltext
@@ -451,9 +365,40 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields: {  }
+          parse_mode: phrase
+          min_length: 1
+          fields:
+            - description_1
+            - description_2
+            - field_announcement_headline_1
+            - field_content_1
+            - field_fact_headline_1
+            - field_headline_1
+            - field_hero_image_title_1
+            - field_image_text_1
+            - field_landing_page_description
+            - field_main_title_1
+            - field_quote
+            - field_short_description_1
+            - field_story_first_name
+            - field_story_last_name
+            - field_submissioner_first_name
+            - field_submissioner_last_name
+            - field_text_1
+            - field_title
+            - field_title_1
+            - format
+            - markup
+            - name_1
+            - name_2
+            - processed
+            - processed_1
+            - processed_2
+            - processed_3
+            - processed_4
+            - summary
+            - summary_processed
+            - title
           plugin_id: search_api_fulltext
       sorts:
         search_api_relevance:
@@ -463,7 +408,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
+          order: ASC
           exposed: false
           expose:
             label: ''
@@ -506,8 +451,7 @@ display:
         - url
         - url.query_args
       tags:
-        - 'config:field.storage.node.body'
-        - 'config:field.storage.node.field_news_image'
+        - 'config:field.storage.node.field_search_image_media'
   page_1:
     display_plugin: page
     id: page_1
@@ -525,5 +469,4 @@ display:
         - url
         - url.query_args
       tags:
-        - 'config:field.storage.node.body'
-        - 'config:field.storage.node.field_news_image'
+        - 'config:field.storage.node.field_search_image_media'

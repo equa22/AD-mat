@@ -816,7 +816,7 @@ $mobile-item-size: 100px;
 
 @media (max-width: $screen-md-max) {
   body {
-    height: 100vh;
+    min-height: 100vh;
   }
   .slider-wrapper {
     height: 100%;

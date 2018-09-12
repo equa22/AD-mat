@@ -33,6 +33,16 @@ function mat_preprocess_node(&$variables) {
       $variables['header_image'] = ImageStyle::load('news_image_cropped')->buildUrl($entity->field_media_image->entity->getFileUri());
     }
   }
+
+  if ($variables['view_mode'] == 'search_teaser' && empty($node->field_excerpt->value)) {
+    $meta_field = $node->field_meta_tags->value;
+    if($meta_field != null) {
+      $metatag_list = unserialize($meta_field);
+    }
+    if (isset($metatag_list['description'])) {
+      $node->set('field_excerpt', $metatag_list['description']);
+    }
+  }
 }
 
 function mat_preprocess_menu(&$variables) {

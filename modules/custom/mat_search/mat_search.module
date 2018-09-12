@@ -1,9 +1,10 @@
 <?php
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\ViewExecutable;
 
-function mat_search_form_alter(&$form, &$form_state, $form_id) {
+function mat_search_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
   if ($form['#id'] == 'views-exposed-form-search-page-1') {
     $form['search_api_fulltext']['#attributes']['placeholder'] = t('Type here ...');
     $form['actions']['submit']['#value'] = t('Search');
@@ -21,4 +22,15 @@ function mat_search_views_pre_render(ViewExecutable $view) {
       $view->header['result']->options['content'] = '';
     }
   }
+}
+
+function mat_search_node_presave(EntityInterface $node) {
+  $meta_field = $node->get('field_meta_tags');
+  if($meta_field->first() != null) {
+    $metatag_list = unserialize($meta_field->first()->value);
+  }
+  if (isset($metatag_list['description'])) {
+    $node->set('field_excerpt', $metatag_list['description']);
+  }
+
 }

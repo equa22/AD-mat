@@ -12,6 +12,21 @@
 }
 
 .node-story-profile-story-submission-form {
+
+  .g-recaptcha {
+    padding: 0;
+    position: relative;
+    >div {
+      position: absolute;
+      top: -175px;
+      opacity: 0;
+      transition-delay: .36s;
+      &.visible {
+        opacity: 1;
+      }
+    }
+  }
+
   max-width: 930px;
 
   // Remove default Firefox border on required inputs.
@@ -546,7 +561,7 @@
     }
   }
   .form-actions {
-    margin-top: 7rem;
+    margin-top: 13rem;
     text-align: center;
   }
   button[type="submit"] {

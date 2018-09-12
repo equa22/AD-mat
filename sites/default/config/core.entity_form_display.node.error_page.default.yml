@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.error_page.field_text
     - node.type.error_page
   module:
+    - path
     - text
 id: node.error_page.default
 targetEntityType: node
@@ -20,6 +21,12 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
+  path:
+    type: path
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0
@@ -29,7 +36,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -37,7 +44,6 @@ hidden:
   created: true
   langcode: true
   moderation_state: true
-  path: true
   promote: true
   status: true
   sticky: true

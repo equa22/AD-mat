@@ -22,7 +22,7 @@
     </div>
   </div>
   {% if node.field_header_category.entity.description.value|render|trim %}
-  <div class="basic-page-header--content container">{{ node.field_header_category.entity.description.value }}</div>
+  <div class="basic-page-header--content container">{{ node.field_header_category.entity.description.value|raw }}</div>
   {% endif %}
 </section>
 

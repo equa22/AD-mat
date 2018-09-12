@@ -303,4 +303,10 @@ function mat_global_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $for
     $form['description']['widget'][0]['#format'] = 'rich_text_editor';
     $form['description']['widget'][0]['#allowed_formats']['rich_text_editor'] = 'rich_text_editor';
   }
+
+  if (isset($form['field_meta_tags']['widget']['0']['basic']['abstract'])) {
+    unset($form['field_meta_tags']['widget']['0']['basic']['abstract']);
+    $form['field_meta_tags']['widget']['0']['basic']['description']['#title'] = 'Summary / Search page excerpt';
+    $form['field_meta_tags']['widget']['0']['basic']['description']['#description'] = "A brief and concise summary of the page's content, preferably 320 characters or less. The description meta tag may be used by search engines and this website to display a snippet about the page in search results.";
+  }
 }

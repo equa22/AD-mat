@@ -3,35 +3,168 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
+    - field.storage.node.field_header_category
+    - field.storage.node.field_news_category
+    - field.storage.node.field_basic_page_components
+    - field.storage.paragraph.field_announcement_headline
+    - field.storage.paragraph.field_content
+    - field.storage.paragraph.field_fact_headline
+    - field.storage.paragraph.field_headline
+    - field.storage.taxonomy_term.field_hero_image_title
+    - field.storage.paragraph.field_image_text
+    - field.storage.node.field_landing_page_description
+    - field.storage.paragraph.field_main_title
+    - field.storage.paragraph.field_quote
+    - field.storage.paragraph.field_short_description
     - field.storage.node.field_story_first_name
     - field.storage.node.field_story_last_name
+    - field.storage.node.field_submissioner_first_name
+    - field.storage.node.field_submissioner_last_name
+    - field.storage.paragraph.field_text
+    - field.storage.node.field_landing_page_components
+    - field.storage.paragraph.field_title
+    - field.storage.node.field_intro_markup
+    - field.storage.paragraph.field_intro_text
     - search_api.server.global_search
   module:
+    - taxonomy
+    - paragraphs
     - search_api
     - node
-    - paragraphs
-    - taxonomy
 id: global_index
 name: 'Global index'
 description: ''
 read_only: false
 field_settings:
-  title:
-    label: Title
+  description_1:
+    label: 'Section » Taxonomy term » Description'
     datasource_id: 'entity:node'
-    property_path: title
-    type: text
-  body:
-    label: Body
-    datasource_id: 'entity:node'
-    property_path: body
+    property_path: 'field_header_category:entity:description'
     type: text
     dependencies:
       config:
-        - field.storage.node.body
+        - field.storage.node.field_header_category
+      module:
+        - taxonomy
+  description_2:
+    label: 'News Category » Taxonomy term » Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_category:entity:description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_news_category
+      module:
+        - taxonomy
+  field_announcement_headline_1:
+    label: 'Components » Paragraph » Headline'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_announcement_headline'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_announcement_headline
+      module:
+        - paragraphs
+  field_content_1:
+    label: 'Components » Paragraph » Content'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_content'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_content
+      module:
+        - paragraphs
+  field_fact_headline_1:
+    label: 'Components » Paragraph » Fact headline'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_fact_headline'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_fact_headline
+      module:
+        - paragraphs
+  field_headline_1:
+    label: 'Components » Paragraph » Headline'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_headline'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_headline
+      module:
+        - paragraphs
+  field_hero_image_title_1:
+    label: 'Section » Taxonomy term » Section headline'
+    datasource_id: 'entity:node'
+    property_path: 'field_header_category:entity:field_hero_image_title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_header_category
+        - field.storage.taxonomy_term.field_hero_image_title
+      module:
+        - taxonomy
+  field_image_text_1:
+    label: 'Components » Paragraph » Caption'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_image_text'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_image_text
+      module:
+        - paragraphs
+  field_landing_page_description:
+    label: Description
+    datasource_id: 'entity:node'
+    property_path: field_landing_page_description
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_landing_page_description
+  field_main_title_1:
+    label: 'Components » Paragraph » Main title'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_main_title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_main_title
+      module:
+        - paragraphs
+  field_quote:
+    label: 'Components » Paragraph » Quote'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_quote'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_quote
+      module:
+        - paragraphs
+  field_short_description_1:
+    label: 'Components » Paragraph » Description'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_short_description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_short_description
+      module:
+        - paragraphs
   field_story_first_name:
-    label: 'Story first name'
+    label: 'First Name'
     datasource_id: 'entity:node'
     property_path: field_story_first_name
     type: text
@@ -39,18 +172,184 @@ field_settings:
       config:
         - field.storage.node.field_story_first_name
   field_story_last_name:
-    label: 'Story last name'
+    label: 'Last Name'
     datasource_id: 'entity:node'
     property_path: field_story_last_name
     type: text
     dependencies:
       config:
         - field.storage.node.field_story_last_name
+  field_submissioner_first_name:
+    label: 'First name'
+    datasource_id: 'entity:node'
+    property_path: field_submissioner_first_name
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_submissioner_first_name
+  field_submissioner_last_name:
+    label: 'Last Name'
+    datasource_id: 'entity:node'
+    property_path: field_submissioner_last_name
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_submissioner_last_name
+  field_text_1:
+    label: 'Components » Paragraph » Text'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_text'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_text
+      module:
+        - paragraphs
+  field_title:
+    label: 'Components » Paragraph » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_landing_page_components:entity:field_title'
+    type: text
+    boost: !!float 8
+    dependencies:
+      config:
+        - field.storage.node.field_landing_page_components
+        - field.storage.paragraph.field_title
+      module:
+        - paragraphs
+  field_title_1:
+    label: 'Components » Paragraph » Title'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_title
+      module:
+        - paragraphs
+  format:
+    label: 'Description » Text format'
+    datasource_id: 'entity:node'
+    property_path: 'field_landing_page_description:format'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_landing_page_description
+  markup:
+    label: 'Intro markup » Markup'
+    datasource_id: 'entity:node'
+    property_path: 'field_intro_markup:markup'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_intro_markup
+  name_1:
+    label: 'Section » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_header_category:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_header_category
+      module:
+        - taxonomy
+  name_2:
+    label: 'News Category » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_category:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_news_category
+      module:
+        - taxonomy
+  processed:
+    label: 'News Category » Taxonomy term » Description » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_news_category:entity:description:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_news_category
+      module:
+        - taxonomy
+  processed_1:
+    label: 'Description » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_landing_page_description:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_landing_page_description
+  processed_2:
+    label: 'Components » Paragraph » Intro text » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_intro_text:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_intro_text
+      module:
+        - paragraphs
+  processed_3:
+    label: 'Components » Paragraph » Main title » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_main_title:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_main_title
+      module:
+        - paragraphs
+  processed_4:
+    label: 'Components » Paragraph » Text » Processed text'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_text:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_text
+      module:
+        - paragraphs
+  summary:
+    label: 'Components » Paragraph » Intro text » Summary'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_intro_text:summary'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_intro_text
+      module:
+        - paragraphs
+  summary_processed:
+    label: 'Components » Paragraph » Intro text » Processed summary'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_intro_text:summary_processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_intro_text
+      module:
+        - paragraphs
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 13
 datasource_settings:
   'entity:node':
     bundles:
       default: true
-      selected: {  }
+      selected:
+        - error_page
     languages:
       default: true
       selected: {  }
@@ -61,27 +360,173 @@ datasource_settings:
     languages:
       default: true
       selected: {  }
-  'entity:taxonomy_term':
-    bundles:
-      default: true
-      selected: {  }
-    languages:
-      default: true
-      selected: {  }
 processor_settings:
-  rendered_item: {  }
   add_url: {  }
   aggregated_field: {  }
+  entity_status: {  }
+  html_filter:
+    all_fields: true
+    fields:
+      - description_1
+      - description_2
+      - field_announcement_headline_1
+      - field_content_1
+      - field_fact_headline_1
+      - field_headline_1
+      - field_hero_image_title_1
+      - field_image_text_1
+      - field_landing_page_description
+      - field_main_title_1
+      - field_quote
+      - field_short_description_1
+      - field_story_first_name
+      - field_story_last_name
+      - field_submissioner_first_name
+      - field_submissioner_last_name
+      - field_text_1
+      - field_title
+      - field_title_1
+      - format
+      - markup
+      - name_1
+      - name_2
+      - processed
+      - processed_1
+      - processed_2
+      - processed_3
+      - processed_4
+      - summary
+      - summary_processed
+      - title
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+    weights:
+      preprocess_index: -47
+      preprocess_query: -46
   ignorecase:
     all_fields: true
     fields:
-      - title
-      - body
+      - description_1
+      - description_2
+      - field_announcement_headline_1
+      - field_content_1
+      - field_fact_headline_1
+      - field_headline_1
+      - field_hero_image_title_1
+      - field_image_text_1
+      - field_landing_page_description
+      - field_main_title_1
+      - field_quote
+      - field_short_description_1
       - field_story_first_name
       - field_story_last_name
+      - field_submissioner_first_name
+      - field_submissioner_last_name
+      - field_text_1
+      - field_title
+      - field_title_1
+      - format
+      - markup
+      - name_1
+      - name_2
+      - processed
+      - processed_1
+      - processed_2
+      - processed_3
+      - processed_4
+      - summary
+      - summary_processed
+      - title
     weights:
-      preprocess_index: -20
-      preprocess_query: -20
+      preprocess_index: -48
+      preprocess_query: -48
+  rendered_item: {  }
+  stemmer:
+    all_fields: true
+    fields:
+      - description_1
+      - description_2
+      - field_announcement_headline_1
+      - field_content_1
+      - field_fact_headline_1
+      - field_headline_1
+      - field_hero_image_title_1
+      - field_image_text_1
+      - field_landing_page_description
+      - field_main_title_1
+      - field_quote
+      - field_short_description_1
+      - field_story_first_name
+      - field_story_last_name
+      - field_submissioner_first_name
+      - field_submissioner_last_name
+      - field_text_1
+      - field_title
+      - field_title_1
+      - format
+      - markup
+      - name_1
+      - name_2
+      - processed
+      - processed_1
+      - processed_2
+      - processed_3
+      - processed_4
+      - summary
+      - summary_processed
+      - title
+    exceptions:
+      mexican: mexic
+      texan: texa
+    weights:
+      preprocess_index: -44
+      preprocess_query: -43
+  tokenizer:
+    all_fields: true
+    fields:
+      - description_1
+      - description_2
+      - field_announcement_headline_1
+      - field_content_1
+      - field_fact_headline_1
+      - field_headline_1
+      - field_hero_image_title_1
+      - field_image_text_1
+      - field_landing_page_description
+      - field_main_title_1
+      - field_quote
+      - field_short_description_1
+      - field_story_first_name
+      - field_story_last_name
+      - field_submissioner_first_name
+      - field_submissioner_last_name
+      - field_text_1
+      - field_title
+      - field_title_1
+      - format
+      - markup
+      - name_1
+      - name_2
+      - processed
+      - processed_1
+      - processed_2
+      - processed_3
+      - processed_4
+      - summary
+      - summary_processed
+      - title
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '1'
+    weights:
+      preprocess_index: -49
+      preprocess_query: -49
 tracker_settings:
   default:
     indexing_order: fifo
