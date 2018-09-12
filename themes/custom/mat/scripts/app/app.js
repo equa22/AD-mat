@@ -323,7 +323,9 @@ $.fn.isInViewport = function(props) {
         dots: true,
         infinite: true,
         arrows: true,
-        slidesToShow: 1
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 6000
       });
     }
   };
