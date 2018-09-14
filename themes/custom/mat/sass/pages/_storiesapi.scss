@@ -10,7 +10,9 @@ $option-width: 70px;
 $mobile-item-margin: 40px;
 $mobile-item-size: 100px;
 
-
+.path-stories {
+  height: 100%;
+}
 
 
 @media (max-width: $screen-md-min) {
@@ -243,6 +245,11 @@ $mobile-item-size: 100px;
       text-align: center;
       padding-bottom: 2.1rem;
 
+
+      @media (max-width: $screen-md-min) {
+        width: 18rem;
+      }
+
       &:after {
         width: 100%;
         height: 30px;
@@ -269,7 +276,9 @@ $mobile-item-size: 100px;
 
       label {
         @extend %story-popup--title;
-        padding: .8rem 2rem 0 2rem;
+        padding: .8rem 2rem 5px 2rem;
+        line-height: 1;
+        font-family: $font-flama;
       }
 
       small {
