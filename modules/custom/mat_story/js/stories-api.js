@@ -994,13 +994,12 @@
     openModal($(e.target).data('id'));
   })
 
-  if(mobile()) {
-    var prev = 0, scrolled = 0, bg_position = 0;
-    $('body').scroll(function(e) {
-      console.log(e);
-      $('.animation-wrapper').css('backgroundPosition', '0 ' + (($('body').scrollTop())/3) + 'px');
-    })
-  }
+  var prev = 0, scrolled = 0, bg_position = 0;
+  document.addEventListener('scroll', function(e) {
+    if(mobile()) {
+      $('.animation-wrapper').css('backgroundPosition', '0 ' + (($(document).scrollTop())/3) + 'px');
+    }    
+  })
   
 
 })(jQuery, Drupal);

@@ -37,7 +37,7 @@ $mobile-item-size: 100px;
   .container-small {
     color: $color-white;
     text-align: center;
-    width: 940px;
+    max-width: 940px;
     padding: 0;
     position: absolute;
     pointer-events: none;
