@@ -528,14 +528,18 @@
     
     if(isButton && mobile()) {
       openModal($(e.target).data('id'));
-      //return;
-    }
+    } 
+
     if(!targetIsItem && mobile()) return;
 
 
     var $label = $(e.target).find('.label');
     var $item = $(e.target).closest('.item');
 
+    if(mobile() && $item.hasClass('hovered')) {
+      closeLabel(e);
+      return;
+    }
 
     $label.css('display', 'block');
     $('.item').removeClass('hovered');
