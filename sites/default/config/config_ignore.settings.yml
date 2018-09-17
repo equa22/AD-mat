@@ -6,5 +6,9 @@ ignored_config_entities:
   8: 'views.view.news_landing:dependencies.content'
   10: 'system.site:page.403'
   12: 'system.site:page.404'
+  14: 'webform.webform.*'
+  16: 'recaptcha.settings:site_key'
+  18: 'recaptcha.settings:secret_key'
+  20: swiftmailer.transport
 _core:
   default_config_hash: d61606zZ1cuO6QeNJ4JDpfDp8hxuV2qQh9LaqUk8si0
