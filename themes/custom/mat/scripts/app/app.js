@@ -29,7 +29,7 @@ $.fn.isInViewport = function(props) {
     }
   };
 
-  // Fix multilevel navigation on tablet screens.
+  // Fix multilevel navigation on tablet screens - allow clicking to open.
   Drupal.behaviors.tabletNavigation = {
     attach: function (context, settings) {
       if ($('html').hasClass('device-mobile')) {

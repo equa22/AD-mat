@@ -67,10 +67,13 @@
 .path-newsroom {
   .pager {
     max-width: ($container-xs - $grid-gutter);
-    margin: 20rem auto 0 auto;
+    margin: 8.5rem auto 2rem auto;
+    padding: 0 30px;
+
+    .pager__items { position: relative; }
 
     @media (max-width: $screen-xs-max) {
-      margin: 9rem 25px 0 25px;
+      margin: 9rem 25px 4rem 25px;
     }
   }
 }
