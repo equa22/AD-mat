@@ -29,6 +29,23 @@ $.fn.isInViewport = function(props) {
     }
   };
 
+  // Fix multilevel navigation on tablet screens.
+  Drupal.behaviors.tabletNavigation = {
+    attach: function (context, settings) {
+      if ($('html').hasClass('device-mobile')) {
+        var menu_items = $('#block-mat-main-menu > ul li.menu-item--expanded', context);
+        menu_items.on('click', function () {
+          var submenu = $(this).children('.menu');
+          if (submenu.css('display') === 'none') {
+            submenu.css('display', 'block');
+          } else {
+            submenu.css('display', 'none');
+          }
+        });
+      }
+    }
+  };
+
   // Accordions for newsroom, sidebar
   Drupal.behaviors.newsroomAccordion = {
     attach: function (context, settings) {
