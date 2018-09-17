@@ -3,32 +3,32 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_header_category
-    - field.storage.node.field_news_category
     - field.storage.node.field_basic_page_components
-    - field.storage.paragraph.field_announcement_headline
-    - field.storage.paragraph.field_content
-    - field.storage.paragraph.field_fact_headline
-    - field.storage.paragraph.field_headline
-    - field.storage.taxonomy_term.field_hero_image_title
     - field.storage.paragraph.field_image_text
-    - field.storage.node.field_landing_page_description
+    - field.storage.paragraph.field_content
+    - field.storage.paragraph.field_short_description
+    - field.storage.paragraph.field_fact_headline
+    - field.storage.paragraph.field_announcement_headline
+    - field.storage.paragraph.field_headline
+    - field.storage.paragraph.field_intro_text
     - field.storage.paragraph.field_main_title
     - field.storage.paragraph.field_quote
-    - field.storage.paragraph.field_short_description
-    - field.storage.node.field_story_first_name
-    - field.storage.node.field_story_last_name
-    - field.storage.node.field_submissioner_first_name
-    - field.storage.node.field_submissioner_last_name
     - field.storage.paragraph.field_text
     - field.storage.node.field_landing_page_components
     - field.storage.paragraph.field_title
+    - field.storage.node.field_landing_page_description
+    - field.storage.node.field_submissioner_first_name
+    - field.storage.node.field_story_first_name
     - field.storage.node.field_intro_markup
-    - field.storage.paragraph.field_intro_text
+    - field.storage.node.field_submissioner_last_name
+    - field.storage.node.field_story_last_name
+    - field.storage.node.field_news_category
+    - field.storage.node.field_header_category
+    - field.storage.taxonomy_term.field_hero_image_title
     - search_api.server.global_search
   module:
-    - taxonomy
     - paragraphs
+    - taxonomy
     - search_api
     - node
 id: global_index
@@ -122,6 +122,26 @@ field_settings:
         - field.storage.paragraph.field_image_text
       module:
         - paragraphs
+  field_intro_text:
+    label: 'Components » Paragraph » Intro text'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_intro_text'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_intro_text
+      module:
+        - paragraphs
+  field_intro_text_1:
+    label: 'Intro text'
+    datasource_id: 'entity:paragraph'
+    property_path: field_intro_text
+    type: text
+    boost: !!float 5
+    dependencies:
+      config:
+        - field.storage.paragraph.field_intro_text
   field_landing_page_description:
     label: Description
     datasource_id: 'entity:node'
@@ -237,6 +257,25 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_landing_page_description
+  format_1:
+    label: 'Components » Paragraph » Intro text » Text format'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_intro_text:format'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_intro_text
+      module:
+        - paragraphs
+  format_2:
+    label: 'Intro text » Text format'
+    datasource_id: 'entity:paragraph'
+    property_path: 'field_intro_text:format'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_intro_text
   markup:
     label: 'Intro markup » Markup'
     datasource_id: 'entity:node'
@@ -316,6 +355,14 @@ field_settings:
         - field.storage.paragraph.field_text
       module:
         - paragraphs
+  processed_5:
+    label: 'Intro text » Processed text'
+    datasource_id: 'entity:paragraph'
+    property_path: 'field_intro_text:processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_intro_text
   summary:
     label: 'Components » Paragraph » Intro text » Summary'
     datasource_id: 'entity:node'
@@ -327,6 +374,25 @@ field_settings:
         - field.storage.paragraph.field_intro_text
       module:
         - paragraphs
+  summary_1:
+    label: 'Components » Paragraph » Intro text » Summary'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_intro_text:summary'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_intro_text
+      module:
+        - paragraphs
+  summary_2:
+    label: 'Intro text » Summary'
+    datasource_id: 'entity:paragraph'
+    property_path: 'field_intro_text:summary'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_intro_text
   summary_processed:
     label: 'Components » Paragraph » Intro text » Processed summary'
     datasource_id: 'entity:node'
@@ -338,6 +404,25 @@ field_settings:
         - field.storage.paragraph.field_intro_text
       module:
         - paragraphs
+  summary_processed_1:
+    label: 'Components » Paragraph » Intro text » Processed summary'
+    datasource_id: 'entity:node'
+    property_path: 'field_basic_page_components:entity:field_intro_text:summary_processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_basic_page_components
+        - field.storage.paragraph.field_intro_text
+      module:
+        - paragraphs
+  summary_processed_2:
+    label: 'Intro text » Processed summary'
+    datasource_id: 'entity:paragraph'
+    property_path: 'field_intro_text:summary_processed'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_intro_text
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -375,6 +460,8 @@ processor_settings:
       - field_headline_1
       - field_hero_image_title_1
       - field_image_text_1
+      - field_intro_text
+      - field_intro_text_1
       - field_landing_page_description
       - field_main_title_1
       - field_quote
@@ -387,6 +474,8 @@ processor_settings:
       - field_title
       - field_title_1
       - format
+      - format_1
+      - format_2
       - markup
       - name_1
       - name_2
@@ -395,8 +484,13 @@ processor_settings:
       - processed_2
       - processed_3
       - processed_4
+      - processed_5
       - summary
+      - summary_1
+      - summary_2
       - summary_processed
+      - summary_processed_1
+      - summary_processed_2
       - title
     title: true
     alt: true
@@ -420,6 +514,8 @@ processor_settings:
       - field_headline_1
       - field_hero_image_title_1
       - field_image_text_1
+      - field_intro_text
+      - field_intro_text_1
       - field_landing_page_description
       - field_main_title_1
       - field_quote
@@ -432,6 +528,8 @@ processor_settings:
       - field_title
       - field_title_1
       - format
+      - format_1
+      - format_2
       - markup
       - name_1
       - name_2
@@ -440,8 +538,13 @@ processor_settings:
       - processed_2
       - processed_3
       - processed_4
+      - processed_5
       - summary
+      - summary_1
+      - summary_2
       - summary_processed
+      - summary_processed_1
+      - summary_processed_2
       - title
     weights:
       preprocess_index: -48
@@ -458,6 +561,8 @@ processor_settings:
       - field_headline_1
       - field_hero_image_title_1
       - field_image_text_1
+      - field_intro_text
+      - field_intro_text_1
       - field_landing_page_description
       - field_main_title_1
       - field_quote
@@ -470,6 +575,8 @@ processor_settings:
       - field_title
       - field_title_1
       - format
+      - format_1
+      - format_2
       - markup
       - name_1
       - name_2
@@ -478,8 +585,13 @@ processor_settings:
       - processed_2
       - processed_3
       - processed_4
+      - processed_5
       - summary
+      - summary_1
+      - summary_2
       - summary_processed
+      - summary_processed_1
+      - summary_processed_2
       - title
     exceptions:
       mexican: mexic
@@ -498,6 +610,8 @@ processor_settings:
       - field_headline_1
       - field_hero_image_title_1
       - field_image_text_1
+      - field_intro_text
+      - field_intro_text_1
       - field_landing_page_description
       - field_main_title_1
       - field_quote
@@ -510,6 +624,8 @@ processor_settings:
       - field_title
       - field_title_1
       - format
+      - format_1
+      - format_2
       - markup
       - name_1
       - name_2
@@ -518,8 +634,13 @@ processor_settings:
       - processed_2
       - processed_3
       - processed_4
+      - processed_5
       - summary
+      - summary_1
+      - summary_2
       - summary_processed
+      - summary_processed_1
+      - summary_processed_2
       - title
     spaces: ''
     overlap_cjk: 1
