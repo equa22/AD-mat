@@ -110,10 +110,6 @@ display:
               social_link: default
               statistics_item: default
               timeline_facts: default
-            'entity:taxonomy_term':
-              basic_page_categories: default
-              news_category: default
-              story_categories: default
       fields:
         title:
           id: title
@@ -365,8 +361,8 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: phrase
-          min_length: 1
+          parse_mode: terms
+          min_length: null
           fields:
             - description_1
             - description_2
@@ -376,6 +372,8 @@ display:
             - field_headline_1
             - field_hero_image_title_1
             - field_image_text_1
+            - field_intro_text
+            - field_intro_text_1
             - field_landing_page_description
             - field_main_title_1
             - field_quote
@@ -388,6 +386,8 @@ display:
             - field_title
             - field_title_1
             - format
+            - format_1
+            - format_2
             - markup
             - name_1
             - name_2
@@ -396,8 +396,14 @@ display:
             - processed_2
             - processed_3
             - processed_4
+            - processed_5
+            - rendered_item
             - summary
+            - summary_1
+            - summary_2
             - summary_processed
+            - summary_processed_1
+            - summary_processed_2
             - title
           plugin_id: search_api_fulltext
       sorts:
