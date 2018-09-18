@@ -33,6 +33,7 @@ $.fn.isInViewport = function(props) {
   Drupal.behaviors.tabletNavigation = {
     attach: function (context, settings) {
       var menu_item_expanded = $('#block-mat-main-menu > .menu > .menu-item--expanded', context);
+      // Desktop
       if (!$('html').hasClass('device-mobile') ) {
         var menu_item = $('#block-mat-main-menu > .menu > .menu-item', context);
         menu_item
@@ -42,8 +43,15 @@ $.fn.isInViewport = function(props) {
           .mouseleave(function() {
             $(this).siblings('.menu-item').removeClass('blurred');
           });
+        menu_item_expanded
+          .mouseenter(function() {
+            $(this).addClass('visible');
+          })
+          .mouseleave(function() {
+            $(this).removeClass('visible');
+          });
       }
-
+      // Mobile / tablet
       if ($('html').hasClass('device-mobile') ) {
         menu_item_expanded.click(function(e) {
           e.stopPropagation();
@@ -55,6 +63,7 @@ $.fn.isInViewport = function(props) {
           menu_item_expanded.removeClass('visible');
         });
       }
+
     }
   };
 
