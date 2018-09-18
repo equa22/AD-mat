@@ -911,6 +911,24 @@ $mobile-item-size: 100px;
       justify-content: center;
     }
 
+    @media (max-width: $screen-md-max) {
+      height: unset;
+
+      .container {
+        margin: 0;
+        padding: 0;
+
+        .filter-wrapper,
+        .alphabet-wrapper {
+          padding: 10px 30px;
+        }
+
+        .alphabet-wrapper {
+          background-color: #e0e0e0;
+        }
+      }
+    }
+
     .filter-wrapper {
       color: $gray-base;
 
@@ -946,8 +964,9 @@ $mobile-item-size: 100px;
       &.slick-slider {
         &:after {
           content: '';
+          top: 0;
           position: absolute;
-          right: -0.1rem;
+          right: 30px;
           height: 100%;
           width: 2.5rem;
           background: #fff;
@@ -962,6 +981,11 @@ $mobile-item-size: 100px;
 
       @media (min-width: $screen-md-max) {
         justify-content: flex-end;
+      }
+
+      @media (min-width: 500px) and (max-width: $screen-md-max) {
+        justify-content: center;
+        background-color: red;
       }
     }
 

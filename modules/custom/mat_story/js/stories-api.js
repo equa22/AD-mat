@@ -452,7 +452,10 @@
       $.getJSON('/stories-api?_format=json', function(data) {
         // prevent Drupal from reloading script
         if(!initialised) {
-          $p = $('.slider-wrapper .container-small p'), $h1 = $('.slider-wrapper .container-small h1'), $button = $('.slider-wrapper .container-small a'); 
+          $p = $('.slider-wrapper .container-small p'), 
+          $h1 = $('.slider-wrapper .container-small h1'), 
+          $button = $('.slider-wrapper .container-small a'); 
+          
           data.forEach(function(item, i) {
             var newItem = {
               first_name: item.first_name,
