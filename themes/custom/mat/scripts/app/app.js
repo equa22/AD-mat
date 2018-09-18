@@ -22,7 +22,7 @@ $.fn.isInViewport = function(props) {
   // Toggling visibility of the main navigation (on mobile)
   Drupal.behaviors.mobileNavigation = {
     attach: function (context, settings) {
-      $('#header .bars', context).once('mobile-navigation').on('click', function() {
+      $('#header .bars', context).once('mobile-navigation').click(function() {
         $('body').toggleClass('mobile-menu--opened');
         $('html').toggleClass('no-overflow');
       });
@@ -32,17 +32,17 @@ $.fn.isInViewport = function(props) {
   // Fix multilevel navigation on tablet screens - allow clicking to open.
   Drupal.behaviors.tabletNavigation = {
     attach: function (context, settings) {
-      if ($('html').hasClass('device-mobile')) {
-        var menu_items = $('#block-mat-main-menu > ul li.menu-item--expanded', context);
-        menu_items.on('click', function () {
-          var submenu = $(this).children('.menu');
-          if (submenu.css('display') === 'none') {
-            submenu.css('display', 'block');
-          } else {
-            submenu.css('display', 'none');
-          }
-        });
-      }
+      // if ($('html').hasClass('device-mobile')) {
+      //   var menu_items = $('#block-mat-main-menu > ul li.menu-item--expanded', context);
+      //   menu_items.click(function () {
+      //     var submenu = $(this).children('.menu');
+      //     if (submenu.css('display') === 'none') {
+      //       submenu.css('display', 'block');
+      //     } else {
+      //       submenu.css('display', 'none');
+      //     }
+      //   });
+      // }
     }
   };
 
@@ -107,7 +107,7 @@ $.fn.isInViewport = function(props) {
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
-          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).off('click').on('click', function(e){
+          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).off('click').on('click touchstart', function(e){
             e.preventDefault();
             var element = $(this).parent('li');
             if (element.hasClass('active')) {
@@ -134,7 +134,7 @@ $.fn.isInViewport = function(props) {
       $('.region-sidebar li.menu-item--active-trail', context).first().find('a').addClass('active');
       $('.region-sidebar li.menu-item--active-trail', context).first().find('ul').slideDown();
 
-      $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
+      $('.region-sidebar li.menu-item--expanded > a', context).click(function(e){
         e.preventDefault();
         $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
         $('.region-sidebar li.menu-item--expanded > ul', context).slideUp();
@@ -148,12 +148,12 @@ $.fn.isInViewport = function(props) {
   Drupal.behaviors.topbarSearch = {
     attach: function (context, settings) {
       // To open Search overlay
-      $('#topbar--search-open', context).once('search-overlay').on('click', function() {
+      $('#topbar--search-open', context).once('search-overlay').click(function() {
         $('#block-header-search-block').addClass('search-block--opened');
       });
 
       // To close Search overlay
-      $('#topbar--search-close .i-close', context).once('search-overlay-close').on('click', function() {
+      $('#topbar--search-close .i-close', context).once('search-overlay-close').click(function() {
         $('#block-header-search-block').removeClass('search-block--opened');
       });
 
