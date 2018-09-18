@@ -1,64 +1,65 @@
 <?php
 
-use Drupal\webform\WebformSubmissionInterface;
-use Drupal\mat_webform\Service\CentralRegistryApi;
+//use Drupal\webform\WebformSubmissionInterface;
+//use Drupal\mat_webform\Service\CentralRegistryApi;
 
 /**
  * Implements hook_ENTITY_insert().
  */
-function mat_webform_webform_submission_insert(WebformSubmissionInterface $submission) {
-  $data = $submission->getData();  
-
-  if ($submission->bundle() === 'donations'){
-    $test = "test";
-
-    $api = new CentralRegistryApi();
-    $jwtToken = $api->getJwtToken();
-    $bla = $api->getAccessToken();
-    $test = 123;
-
-  }
-  else{
-    // get story category ID
-    $story_category     = $data['please_select_one_category'];
-    // get story featured photo
-    $story_image        = $data['featured_photo'];
-
-    // get story other images
-    if (isset($data['additional_photo1'])) {
-      $photo1 = $data['additional_photo1'];
-    } else {
-      $photo1 = '';
-    }
-    if (isset($data['additional_photo2'])) {
-      $photo2 = $data['additional_photo2'];
-    } else {
-      $photo2 = '';
-    }
-    if (isset($data['additional_photo3'])) {
-      $photo3 = $data['additional_photo3'];
-    } else {
-      $photo3 = '';
-    }
-    // add
-
-    $node = \Drupal\node\Entity\Node::create([
-      'type'                            => 'story_profile',
-      'status'                          => 'NODE_NOT_PUBLISHED',
-      'title'                           => $data['first_name'] .' '. $data['last_name'],
-      'body'                            => $data['tell_us_the_story'],
-      'field_story_first_name'          => $data['first_name'],
-      'field_story_last_name'           => $data['last_name'],
-      'field_story_category'            => $story_category,
-      'field_story_featured_image'      => $story_image,
-      'field_story_image_1'             => $photo1,
-      'field_story_image_2'             => $photo2,
-      'field_story_image_3'             => $photo3,
-      'field_submissioner_first_name'   => $data['author_first_name'],
-      'field_submissioner_last_name'    => $data['author_last_name'],
-      'field_submissioner_email'        => $data['author_email'],
-      'field_submissioner_phone_number' => $data['phone']
-    ]);
-    $node->save();
-  }
-}
+//function mat_webform_webform_submission_insert(WebformSubmissionInterface $submission) {
+//  $foo = "bar";
+//  $data = $submission->getData();
+//
+//  if ($submission->bundle() === 'donations'){
+//    $test = "test";
+//
+//    $api = new CentralRegistryApi();
+//    $jwtToken = $api->getJwtToken();
+//    $bla = $api->getAccessToken();
+//    $test = 123;
+//
+//  }
+//  else{
+//    // get story category ID
+//    $story_category     = $data['please_select_one_category'];
+//    // get story featured photo
+//    $story_image        = $data['featured_photo'];
+//
+//    // get story other images
+//    if (isset($data['additional_photo1'])) {
+//      $photo1 = $data['additional_photo1'];
+//    } else {
+//      $photo1 = '';
+//    }
+//    if (isset($data['additional_photo2'])) {
+//      $photo2 = $data['additional_photo2'];
+//    } else {
+//      $photo2 = '';
+//    }
+//    if (isset($data['additional_photo3'])) {
+//      $photo3 = $data['additional_photo3'];
+//    } else {
+//      $photo3 = '';
+//    }
+//    // add
+//
+//    $node = \Drupal\node\Entity\Node::create([
+//      'type'                            => 'story_profile',
+//      'status'                          => 'NODE_NOT_PUBLISHED',
+//      'title'                           => $data['first_name'] .' '. $data['last_name'],
+//      'body'                            => $data['tell_us_the_story'],
+//      'field_story_first_name'          => $data['first_name'],
+//      'field_story_last_name'           => $data['last_name'],
+//      'field_story_category'            => $story_category,
+//      'field_story_featured_image'      => $story_image,
+//      'field_story_image_1'             => $photo1,
+//      'field_story_image_2'             => $photo2,
+//      'field_story_image_3'             => $photo3,
+//      'field_submissioner_first_name'   => $data['author_first_name'],
+//      'field_submissioner_last_name'    => $data['author_last_name'],
+//      'field_submissioner_email'        => $data['author_email'],
+//      'field_submissioner_phone_number' => $data['phone']
+//    ]);
+//    $node->save();
+//  }
+//}

@@ -12,14 +12,16 @@ third_party_settings:
   allowed_formats:
     advanced: advanced
     basic_editor: '0'
+    basic_editor_with_no_styling_just_line_breaks_: '0'
     rich_editor: '0'
+    rich_text_editor: '0'
     plain_text: '0'
 id: paragraph.basic_page_iframe.field_iframe
 field_name: field_iframe
 entity_type: paragraph
 bundle: basic_page_iframe
 label: Code
-description: ''
+description: 'See <a href="https://www.w3schools.com/Tags/tag_iframe.asp" target="_blank">this link</a> for instructions on how to insert an iframe. <br>Include the <b>frameborder="0"</b> attribute to remove the default border (recommended).<br>Set the element''s height with the <b>height</b> attribute, for example <b>height="600"</b> (the default is 150 pixels).<br>You may control the visibility of the scroll bar with the <b>scrolling</b> property (="yes"/"no"/"auto").<br>'
 required: true
 translatable: false
 default_value: {  }
