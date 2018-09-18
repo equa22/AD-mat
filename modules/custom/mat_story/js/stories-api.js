@@ -643,7 +643,7 @@
         'display': 'none'
       }
     }).appendTo('.dropdown .dropdown-inner').click(function(e) {
-      $('.selected').text("A - Z");
+      $('.selected').text("A — Z");
       $('.option.all').css('display', 'none');
       $('.option').removeClass('active');
 
@@ -703,7 +703,7 @@
       $('.cat-item').removeClass('active');
       $(e.target).addClass('active');
 
-      $('.selected').text("A-Z");
+      $('.selected').text("A — Z");
 
       selectedLetter = null;
       selectedCategory = null;
@@ -722,7 +722,7 @@
         $('.cat-item').removeClass('active');
         $(e.target).addClass('active');
         // reset letter filter
-        $('.selected').text("A-Z");
+        $('.selected').text("A — Z");
         selectedLetter = null;
 
         var filtered = [];
@@ -737,7 +737,7 @@
           slider[0].slick.slickGoTo(parseInt($(e.target).data('slick-index')));
 
           if($(e.target).data('slick-index') == 0) {
-            $('.selected').text("A-Z");
+            $('.selected').text("A — Z");
           }
         }
 
