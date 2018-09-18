@@ -66,50 +66,17 @@ display:
           quantity: 9
       style:
         type: default
-      row:
-        type: search_api
         options:
-          view_modes:
-            'entity:node':
-              basic_page: search_teaser
-              landing_page: search_teaser
-              news_article: search_teaser
-              story_profile: search_teaser
-            'entity:paragraph':
-              basic_page_iframe: default
-              basic_page_image_and_text: default
-              basic_page_quote: default
-              basic_page_video: default
-              carousel: default
-              cta_item: default
-              header_announcement: default
-              highlight_slide: default
-              intro_text: default
-              landing_page_box: default
-              landing_page_columns: default
-              landing_page_counter: default
-              landing_page_cta: default
-              landing_page_form: default
-              landing_page_hero: default
-              landing_page_hero_image: default
-              landing_page_highlight: default
-              landing_page_image: default
-              landing_page_list: default
-              landing_page_pillars: default
-              landing_page_rich_text: default
-              landing_page_slider: default
-              landing_page_statement: default
-              landing_page_statistics: default
-              landing_page_stories: default
-              landing_page_why_register: default
-              landing_page_year_review: default
-              myth_vs_fact: default
-              pillar_group: default
-              pillar_group_item: default
-              slide: default
-              social_link: default
-              statistics_item: default
-              timeline_facts: default
+          grouping: {  }
+          row_class: search-result
+          default_row_class: true
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+          inline: {  }
+          separator: ''
+          hide_empty: true
       fields:
         title:
           id: title
@@ -119,7 +86,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -227,13 +194,13 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
-          hide_empty: false
+          hide_empty: true
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: entity_reference_label
+          type: entity_reference_entity_view
           settings:
-            link: true
+            view_mode: search_teaser_image_responsive_
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -268,6 +235,88 @@ display:
                 display_method: label
                 view_mode: default
           entity_type: node
+          plugin_id: search_api_field
+        nid:
+          id: nid
+          table: search_api_index_global_index
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "  <div class=\"search-result--title\">\n    <a href=\"{{ path('entity.node.canonical', {'node': nid}) }}\"><span>{{ title }}</span></a>\n  </div>\n  <div class=\"search-result--link\">\n    <a href=\"{{ path('entity.node.canonical', {'node': nid}) }}\">{{ 'Link URL'| t }} {{ url('entity.node.canonical', {'node': nid}) }}</a>\n  </div>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: div
+          element_class: search-result--title-and-link
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api_numeric
+          fallback_options:
+            set_precision: false
+            precision: 0
+            decimal: .
+            separator: ','
+            format_plural: false
+            format_plural_string: !!binary MQNAY291bnQ=
+            prefix: ''
+            suffix: ''
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+            format_plural_values:
+              - '1'
+              - '@count'
           plugin_id: search_api_field
         search_api_excerpt:
           id: search_api_excerpt
@@ -305,8 +354,8 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
-          element_class: ''
+          element_type: div
+          element_class: search-result--text
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -322,6 +371,55 @@ display:
           multi_type: separator
           multi_separator: ', '
           plugin_id: search_api
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '<hr>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
       filters:
         search_api_fulltext:
           id: search_api_fulltext

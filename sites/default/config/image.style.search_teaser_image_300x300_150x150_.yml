@@ -1,0 +1,14 @@
+uuid: 1c95d43c-a2f5-44bd-b569-a09b765f489c
+langcode: en
+status: true
+dependencies: {  }
+name: search_teaser_image_300x300_150x150_
+label: 'Search teaser image - desktop (300x300 -> 150x150)'
+effects:
+  8760b89a-432c-484e-802c-a79cf3e494e6:
+    uuid: 8760b89a-432c-484e-802c-a79cf3e494e6
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 300
+      height: 300

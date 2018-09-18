@@ -1,0 +1,14 @@
+uuid: 5e304f3a-68ad-4a84-a0af-6769eab90893
+langcode: en
+status: true
+dependencies: {  }
+name: search_teaser_image_tablet_mobile_728x400_364x200_
+label: 'Search teaser image - tablet/mobile (728x400-> 364x200)'
+effects:
+  d8b18080-fbeb-4188-99e1-764136920ccb:
+    uuid: d8b18080-fbeb-4188-99e1-764136920ccb
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 728
+      height: 400
