@@ -982,17 +982,16 @@ $mobile-item-size: 100px;
       @media (min-width: $screen-md-max) {
         justify-content: flex-end;
       }
-
-      @media (min-width: 500px) and (max-width: $screen-md-max) {
-        justify-content: center;
-        background-color: red;
-      }
     }
 
     .filter-wrapper,
     .alphabet-wrapper {
       display: flex;
       flex-grow: 1;
+
+      @media (min-width: 500px) and (max-width: $screen-md-max) {
+        justify-content: center;
+      }
 
       > label {
         color: $blue-dark;
