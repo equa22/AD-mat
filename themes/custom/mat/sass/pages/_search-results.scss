@@ -76,6 +76,13 @@
           }
 
         }
+
+        &.--title-and-link {
+          @media (min-width: $screen-sm-min) {
+            max-width: calc(100% - 20rem);
+            word-break: break-all;
+          }
+        }
         
         &--link {
           padding-left: 2.3rem;
