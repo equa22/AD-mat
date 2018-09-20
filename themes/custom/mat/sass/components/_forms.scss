@@ -8,3 +8,125 @@
 input::-ms-clear {
   display: none;
 }
+
+
+/*
+ * PayPal webform.
+ */
+.webform-submission-paypal-donation-form-form {
+
+  h4 {
+    color: $mat-brand-primary;
+  }
+
+  .webform-section {
+    padding-bottom: 4rem;
+  }
+
+  // Label positioning & animation.
+  .js-form-type-textfield,
+  .js-form-type-email {
+    position: relative;
+    width: 50%;
+    padding: 3rem 60px 0 0;
+
+    label {
+      position: absolute;
+      top: 4.2rem;
+      left: 2.3rem;
+      color: $gray-dark;
+    }
+
+    .description {
+      position: absolute;
+      right: 60px;
+      @include font-size(1.2);
+      font-weight: 500;
+      color: $gray-dark;
+    }
+  }
+
+  // Donation amount radios.
+  #edit-donation-amount {
+    margin: 0;
+
+    #edit-donation-amount--description {
+      margin: 2rem 0;
+      @include font-size(2);
+      color: $gray-darker;
+      font-weight: 500;
+    }
+
+    .fieldset-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .description {
+        order: 1;
+      }
+
+      #edit-donation-amount-radios {
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .webform-radios-other-input {
+        order: 3;
+      }
+    }
+  }
+
+  #edit-memorial-and-tribute-information {
+
+    #edit-i-am-donating-in-honor-of-a---wrapper {
+
+      .field-prefix {
+        line-height: 10px;
+      }
+
+      .description {
+        padding-bottom: 1.8rem;
+        padding-top: 1rem;
+        @include font-size(2);
+        color: $gray-darker;
+        font-weight: 500;
+      }
+    }
+
+    .form-item-the-person {
+      padding-top: 0;
+      padding-bottom: 1.4rem;
+    }
+
+    #edit-gift-notice-info {
+      padding-bottom: 0;
+    }
+
+    .form-item-the-person {
+      width: 100%;
+
+      label {
+        top: 1.2rem;
+      }
+    }
+
+    hr {
+      margin-bottom: 2rem;
+    }
+  }
+
+  #edit-your-information,
+  #edit-gift-notice-info {
+
+    .webform-section-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .g-recaptcha {
+    margin-top: -2.1rem;
+    padding: 0 0 4rem 0;
+  }
+}

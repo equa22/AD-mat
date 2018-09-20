@@ -9,7 +9,8 @@ ignored_config_entities:
   14: 'recaptcha.settings:secret_key'
   16: swiftmailer.transport
   18: 'webform.webform.*'
-  20: 'webform.webform.contact:handlers'
-  22: webform.settings
+  20: ~webform.webform.paypal_donation_form
+  22: 'webform.webform.contact:handlers'
+  24: webform.settings
 _core:
   default_config_hash: d61606zZ1cuO6QeNJ4JDpfDp8hxuV2qQh9LaqUk8si0

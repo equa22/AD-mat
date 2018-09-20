@@ -32,17 +32,38 @@ $.fn.isInViewport = function(props) {
   // Fix multilevel navigation on tablet screens - allow clicking to open.
   Drupal.behaviors.tabletNavigation = {
     attach: function (context, settings) {
-      // if ($('html').hasClass('device-mobile')) {
-      //   var menu_items = $('#block-mat-main-menu > ul li.menu-item--expanded', context);
-      //   menu_items.click(function () {
-      //     var submenu = $(this).children('.menu');
-      //     if (submenu.css('display') === 'none') {
-      //       submenu.css('display', 'block');
-      //     } else {
-      //       submenu.css('display', 'none');
-      //     }
-      //   });
-      // }
+      var menu_item_expanded = $('#block-mat-main-menu > .menu > .menu-item--expanded', context);
+      // Desktop
+      if (!$('html').hasClass('device-mobile') ) {
+        var menu_item = $('#block-mat-main-menu > .menu > .menu-item', context);
+        menu_item
+          .mouseenter(function() {
+            $(this).siblings('.menu-item').addClass('blurred');
+          })
+          .mouseleave(function() {
+            $(this).siblings('.menu-item').removeClass('blurred');
+          });
+        menu_item_expanded
+          .mouseenter(function() {
+            $(this).addClass('visible');
+          })
+          .mouseleave(function() {
+            $(this).removeClass('visible');
+          });
+      }
+      // Mobile / tablet
+      if ($('html').hasClass('device-mobile') ) {
+        menu_item_expanded.click(function(e) {
+          e.stopPropagation();
+          $(this).toggleClass('visible');
+          $(this).siblings('li').removeClass('visible');
+        });
+
+        $(window).click(function() {
+          menu_item_expanded.removeClass('visible');
+        });
+      }
+
     }
   };
 

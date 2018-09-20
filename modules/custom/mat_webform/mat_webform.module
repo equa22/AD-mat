@@ -2,6 +2,7 @@
 
 //use Drupal\webform\WebformSubmissionInterface;
 //use Drupal\mat_webform\Service\CentralRegistryApi;
+use Drupal\webform\Entity\Webform;
 
 /**
  * Implements hook_ENTITY_insert().
@@ -63,3 +64,10 @@
 //    $node->save();
 //  }
 //}
+
+function mat_webform_webform_insert(Webform $webform) {
+  $access_rules = $webform->getAccessRules();
+  $access_rules['administer']['roles']['0'] = 'editor';
+  $webform->setAccessRules($access_rules);
+  $foo = "bar";
+}

@@ -1,0 +1,19 @@
+uuid: 43b11d1d-c6b7-4034-889e-de578ab13f9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.search_teaser_image_300x300_150x150_
+    - image.style.search_teaser_image_tablet_mobile_728x400_364x200_
+  theme:
+    - mat
+id: search_teaser_image_responsive_
+label: 'Search teaser image (responsive)'
+image_style_mappings:
+  -
+    breakpoint_id: mat.screen-sm-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: search_teaser_image_300x300_150x150_
+breakpoint_group: mat
+fallback_image_style: search_teaser_image_tablet_mobile_728x400_364x200_
