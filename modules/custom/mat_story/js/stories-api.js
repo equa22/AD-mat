@@ -218,7 +218,8 @@
     var itemsCounter = 0;
     
     arr.forEach(function(item) {
-      if(counter < config._num.first_and_last) {
+      // less then number for first slider
+      if(counter < config._num.first_and_last && arr.length != 2) {
         item.from = totalPosition;
 
         if(arr.length > config._num.first_and_last) totalPosition -= Math.round(config._width/config._num.first_and_last);
@@ -229,13 +230,15 @@
         if(item.to < 0) item.to = 0;
 
         itemsCounter++;
-        if(itemsCounter%config._num.first_and_last == 0 || itemsCounter%config._num.first_and_last == 1) {
+        if(itemsCounter%config._num.first_and_last == 0 || 
+           itemsCounter%config._num.first_and_last == 1) {
+          
           item.up = 0;
           item.down = config._height - 190;
         } else {
           item = getRandomTitleLimit(item);
         }
-      } else if(counter < arr.length - config._num.first_and_last) {
+      } else if(counter < arr.length - config._num.first_and_last && arr.length != 2) {
         item.from = totalPosition;
         totalPosition -= Math.round(config._width/config._num.other_pages);
         item.to = totalPosition;
@@ -247,9 +250,8 @@
         totalPosition -= Math.round(config._width/config._num.first_and_last);
         item.to = totalPosition;
 
-
         itemsCounter++;
-        if(itemsCounter%config._num.first_and_last == 0 || itemsCounter%config._num.first_and_last == 1) {
+        if(itemsCounter%config._num.first_and_last == 0 || itemsCounter%config._num.first_and_last == 1 && arr.length != 2) {
           item.up = 0;
           item.down = config._height - 190;
         } else {
@@ -683,10 +685,6 @@
     if(getDevice() == 'mobile') {
       appendSlick();
     }
-  }
-
-  function moveWrap(value) {
-    $board.css('left', value + 'px');
   }
 
   function setSlider(width) {
