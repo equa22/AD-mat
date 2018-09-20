@@ -135,18 +135,6 @@
     else return false;
   }
 
-  function emptyStories() {
-    for(var i = 0; i < displayedStories.length; i++) {
-      // if doesn't suit to given conditions
-      if(!checkConditions(displayedStories[i])) {
-        // remove element and set array item to false
-        displayedStories[i] = false;
-      } else displayedStories[i].same_position = true;
-    }
-
-    // [item, false, false, false, item, ...]
-  }
-
   function getMobileClasses() {
     var displayed = [];
     stories.forEach(function(story) {
@@ -160,31 +148,6 @@
 
     var pattern = [1, 2, 3, 4, 5, 3, 2, 1, 3, 5, 4, 3], counter = 0;
     displayed.forEach(function(story, i) {
-      /*$(story.target).css('disaply', 'block');
-
-      $(story.target).addClass(i%2 == 0 ? 'mobile-left' : 'mobile-right');
-      $(story.target).removeClass(i%2 == 0 ? 'mobile-right' : 'mobile-left');
-
-      $(story.target).addClass(i%3 == 0 ? 'tablet-left' : (i%3 == 1 ? 'tablet-center' : 'tablet-right'));
-      $(story.target).removeClass(i%3 == 0 ? 'tablet-center tablet-right' : (i%3 == 1 ? 'tablet-left tablet-right' : 'tablet-left tablet-center'));
-    
-      $(story.target).removeClass('landscape-left landscape-left-c landscape-right-c landscape-right');
-      
-      switch(i%4) {
-        case 0:
-          $(story.target).addClass('landscape-left');
-          break;
-        case 1:
-          $(story.target).addClass('landscape-left-c');
-          break;
-        case 2:
-          $(story.target).addClass('landscape-right-c');
-          break;
-        case 3:
-          $(story.target).addClass('landscape-right');
-          break;
-      }*/
-
       $(story.target).attr("data-pattern", pattern[counter]);
       counter++;
       if(counter == pattern.length) counter = 0;
@@ -194,61 +157,29 @@
   var displayedStories = [];
   var itemsToDisplay = [];
   function getDisplayedStories(category, letter) {
-    // first empty displayedStories --> remove all items which aren't supposed to be displayed
-    emptyStories();
     // array of items which are currently not dislayed
-    itemsToDisplay = [];
+    displayedStories = [];
 
-    // check if it suits all selected conditions
+    // fade all stories out
     stories.forEach(function(story) {
-      // if not :: fade out --> set to displayed:false in fade f
-      if(!checkConditions(story)) fadeOut(story);
-      // if yes and is not displayed
-      else if(!story.display) itemsToDisplay.push(story);
-    })
-    // mix already displayed stories so, that visible stays on same place and not visible take new position 
-    for(var i = 0; i < displayedStories.length; i++) {
-      if(displayedStories[i]) {
-        if(!isVisible(displayedStories[i])) {
-          for(var j = 0; j < displayedStories.length; j++) {
-            if(!displayedStories[j]) {
-              displayedStories[j] = displayedStories[i];
-              displayedStories[i] = false;
-              break;
-            }
-          }
-        }
+      fadeOut(story);
+      console.log(checkConditions(story));
+
+      if(checkConditions(story)) {
+        displayedStories.push(story);
       }
-    }
-    // fill empty spots with itemsToDisplay
-    var tmpArray = itemsToDisplay;
-    for(var i = 0; i < displayedStories.length; i++) {
-      if(!displayedStories[i] && tmpArray.length > 0) {
-        displayedStories.push(tmpArray.shift());
-      }
-    }
-    // clear empty items from displayed stories
-    for(var i = displayedStories.length - 1; i >= 0; i--) {
-      if(!displayedStories[i]) displayedStories.splice(i, 1);
-    }
-    // if some items left, add them to displayed stories
-    tmpArray.forEach(function(story) {
-      displayedStories.push(story);
     })
 
-    // get positions by sections
     displayedStories = sortForSlider(displayedStories);
 
     // fade in stories which are not already visible and displayed
-    displayedStories.forEach(function(story, i) {
-      if(
-        (story.position.x == 0 && story.position.y == 0) || 
-        (!story.same_position || !isVisible(story))) {
-        if(story.display) fadeOut(story);
+    setTimeout(function() {
+      displayedStories.forEach(function(story, i) {
         fadeIn(story);
-      }
-      story.same_position = false;
-    })
+      })
+    }, config.movement._leave.speed)
+    
+
     getMobileClasses();
   }
 
