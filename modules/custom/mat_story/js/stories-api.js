@@ -163,7 +163,6 @@
     // fade all stories out
     stories.forEach(function(story) {
       fadeOut(story);
-      console.log(checkConditions(story));
 
       if(checkConditions(story)) {
         displayedStories.push(story);
@@ -924,8 +923,6 @@
   })
 
   $('.pop-story').on('click', function(e) {
-    console.log(e);
-
     openModal($(e.target).data('id'));
   })
 
