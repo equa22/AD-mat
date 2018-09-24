@@ -1,11 +1,15 @@
+uuid: fa575153-60b1-489e-a2c4-a98911b318bf
 langcode: en
 status: open
 dependencies:
   enforced:
     module:
       - webform
+_core:
+  default_config_hash: uurO8KoSsfe1vO8zN2j7GJrVqkoJYXaGj63SL589Z_o
 open: null
 close: null
+weight: 0
 uid: null
 template: false
 archive: false
@@ -17,7 +21,7 @@ elements: "name:\n  '#title': 'Your Name'\n  '#type': textfield\n  '#required': 
 css: ''
 javascript: ''
 settings:
-  ajax: false
+  ajax: true
   ajax_scroll_top: form
   page: true
   page_submit_path: ''
@@ -81,7 +85,7 @@ settings:
   draft_auto_save: false
   draft_saved_message: ''
   draft_loaded_message: ''
-  confirmation_type: url_message
+  confirmation_type: inline
   confirmation_title: ''
   confirmation_message: 'Your message has been sent.'
   confirmation_url: '<front>'
@@ -142,7 +146,8 @@ access:
     users: {  }
     permissions: {  }
   administer:
-    roles: {  }
+    roles:
+      - editor
     users: {  }
     permissions: {  }
   test:
@@ -216,7 +221,3 @@ handlers:
       sender_mail: ''
       sender_name: ''
       exclude_empty_checkbox: false
-uuid: fa575153-60b1-489e-a2c4-a98911b318bf
-_core:
-  default_config_hash: uurO8KoSsfe1vO8zN2j7GJrVqkoJYXaGj63SL589Z_o
-weight: 0

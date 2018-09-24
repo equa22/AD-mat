@@ -1,0 +1,14 @@
+uuid: 1f5bf822-add1-4264-bfb9-d3419d3fe3cc
+langcode: en
+status: true
+dependencies: {  }
+name: form_intro_image_620x538_310x269_
+label: 'Form intro image (620x538 -> 310x269)'
+effects:
+  1de5eac6-8582-4975-af2e-38ab8485b373:
+    uuid: 1de5eac6-8582-4975-af2e-38ab8485b373
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 620
+      height: 538

@@ -3,12 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.media_entity_browser_modal
     - field.field.paragraph.landing_page_form.field_border
+    - field.field.paragraph.landing_page_form.field_form_headline
+    - field.field.paragraph.landing_page_form.field_form_intro_text
+    - field.field.paragraph.landing_page_form.field_intro_image
     - field.field.paragraph.landing_page_form.field_webform
     - paragraphs.paragraphs_type.landing_page_form
   module:
     - content_moderation
+    - entity_browser
     - field_group
+    - text
     - webform
 third_party_settings:
   field_group:
@@ -16,7 +22,7 @@ third_party_settings:
       children:
         - field_border
       parent_name: ''
-      weight: 2
+      weight: 5
       format_type: html_element
       format_settings:
         id: ''
@@ -41,6 +47,36 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_form_headline:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_form_intro_text:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_intro_image:
+    weight: 4
+    settings:
+      entity_browser: media_entity_browser_modal
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: teaser
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
     region: content
   field_webform:
     weight: 1

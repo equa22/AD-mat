@@ -1,0 +1,10 @@
+uuid: d2fdee38-2350-431b-8a0b-4a12eebc4acf
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.form_intro_image_620x538_310x269_
+label: 'Form intro image (620x538 -> 310x269)'
+targetEntityType: media
+cache: true
