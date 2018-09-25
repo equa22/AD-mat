@@ -242,10 +242,13 @@ $mobile-item-size: 100px;
       margin-top: 1rem;
       position: relative;
       border-radius: $border-radius-base;
-      box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
       text-align: center;
       padding-bottom: 2.1rem;
 
+      .shadow-wrapper {
+        box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
 
       @media (max-width: $screen-md-min) {
         width: 18rem;
