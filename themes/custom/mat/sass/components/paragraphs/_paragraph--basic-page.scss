@@ -166,3 +166,39 @@
       //max-height: 100%;
   }
 }
+
+.paragraph--type--landing-page-form {
+
+  .landing-page-form--intro {
+    margin-bottom: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    .landing-page-form--intro--headline {
+      width: 100%;
+    }
+
+    .field--name-field-form-intro-text {
+      @media (min-width: $screen-sm-min) {
+        width: calc(100% - 310px);
+        padding: 0 2rem;
+      }
+    }
+
+    .field--name-field-intro-image {
+      width: 310px;
+      max-width: 100%;
+      @media (max-width: $screen-sm) {
+         padding-bottom: 0.9em;
+         width: 450px;
+         margin: 0 auto;
+      }
+      @media (max-width: $screen-xs) {
+        width: auto;
+      }
+    }
+  }
+
+}
+
+
