@@ -14,7 +14,7 @@ effects:
     data:
       width: 2880
       height: null
-      upscale: false
+      upscale: true
   3f600f58-9d15-4959-9252-2da2f3d1c020:
     uuid: 3f600f58-9d15-4959-9252-2da2f3d1c020
     id: focal_point_crop
