@@ -1,0 +1,19 @@
+uuid: 6ea44ea9-63bc-4de2-af86-e01300e2e810
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.why_register_image_1444x856_722x428_
+    - image.style.why_register_image_mobile_828x508_414x254_
+  theme:
+    - mat
+id: why_register_image_responsive_
+label: 'Why register image (responsive)'
+image_style_mappings:
+  -
+    breakpoint_id: mat.screen-sm-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: why_register_image_1444x856_722x428_
+breakpoint_group: mat
+fallback_image_style: why_register_image_mobile_828x508_414x254_

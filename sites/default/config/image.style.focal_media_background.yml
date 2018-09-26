@@ -5,14 +5,14 @@ dependencies:
   module:
     - focal_point
 name: focal_media_background
-label: 'Focal media background (desktop)'
+label: 'Focal media background - desktop (2880w)'
 effects:
   4e21e5d9-6ed7-4531-8a28-9e0cb5d2b760:
     uuid: 4e21e5d9-6ed7-4531-8a28-9e0cb5d2b760
     id: image_scale
     weight: 1
     data:
-      width: 2000
+      width: 2880
       height: null
       upscale: false
   3f600f58-9d15-4959-9252-2da2f3d1c020:
@@ -20,6 +20,6 @@ effects:
     id: focal_point_crop
     weight: 2
     data:
-      width: 1780
-      height: 950
+      width: 2564
+      height: 1368
       crop_type: focal_point

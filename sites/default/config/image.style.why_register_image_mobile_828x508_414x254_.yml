@@ -1,0 +1,14 @@
+uuid: 5707b3e7-3547-44fe-9a51-92d32a84ef85
+langcode: en
+status: true
+dependencies: {  }
+name: why_register_image_mobile_828x508_414x254_
+label: 'Why register image - mobile (828x508 -> 414x254)'
+effects:
+  81c87f1c-3b1d-4fe8-b85c-4cdc8a47df8e:
+    uuid: 81c87f1c-3b1d-4fe8-b85c-4cdc8a47df8e
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 828
+      height: 508

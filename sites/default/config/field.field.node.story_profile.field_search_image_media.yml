@@ -11,7 +11,7 @@ field_name: field_search_image_media
 entity_type: node
 bundle: story_profile
 label: 'Search image'
-description: 'The required size is 200 pixels wide by 200 pixels tall. Larger images will be scaled and cropped. <br><br>'
+description: 'The required size is 400 pixels wide by 400 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: false
 translatable: true
 default_value: {  }

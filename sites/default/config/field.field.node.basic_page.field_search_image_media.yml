@@ -11,7 +11,7 @@ field_name: field_search_image_media
 entity_type: node
 bundle: basic_page
 label: 'Search image'
-description: ''
+description: 'The required size is 728 pixels wide by 400 pixels tall. Larger images will be scaled and cropped. '
 required: false
 translatable: false
 default_value: {  }

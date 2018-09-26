@@ -1,0 +1,14 @@
+uuid: 0b9c2f27-3bc1-491d-be4f-2fb026930cdd
+langcode: en
+status: true
+dependencies: {  }
+name: basic_page_large_image_1640x1000_820x500_
+label: 'Basic page large image - desktop/tablet (1640x1000 -> 820x500)'
+effects:
+  824d432a-80b8-4ba8-b9aa-ce25e7436344:
+    uuid: 824d432a-80b8-4ba8-b9aa-ce25e7436344
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1640
+      height: 1000

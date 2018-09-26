@@ -3,13 +3,12 @@ langcode: en
 status: true
 dependencies: {  }
 name: news_image_cropped
-label: 'News image cropped'
+label: 'News image - cropped (1456x948 -> 728x474) '
 effects:
-  cba30123-79f5-48f7-ac21-d613510f8d96:
-    uuid: cba30123-79f5-48f7-ac21-d613510f8d96
-    id: image_crop
+  32c48670-9d8d-4fb5-a62f-005a7fbe04b5:
+    uuid: 32c48670-9d8d-4fb5-a62f-005a7fbe04b5
+    id: image_scale_and_crop
     weight: 1
     data:
-      width: 728
-      height: 474
-      anchor: center-center
+      width: 1456
+      height: 948
