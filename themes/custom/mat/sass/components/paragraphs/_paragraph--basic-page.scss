@@ -62,7 +62,7 @@
     display: flex;
   }
 
-  @media (max-width: $screen-sm-max) {
+  @media (max-width: $screen-sm) {
     display: flex;
     flex-direction: column;
   }
@@ -79,12 +79,14 @@
 
   .image {
     margin-bottom: 4.7rem;
+    max-width: none;
 
     @media (max-width: $screen-sm-max) {
       order: 2;
+      margin-bottom: 2.5rem;
     }
 
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $screen-md) {
       flex-shrink: 0;
       max-width: 200px;
       margin: 0 1rem 0 3rem;
@@ -96,10 +98,17 @@
         max-width: 315px;
       }
 
+      @media (max-width: $screen-xs-max) {
+        width: 100%;
+      }
+
     }
 
     .field--name-field-image-text {
       margin: 0;
+      @media (min-width: $screen-sm-max) {
+        text-align: center;
+      }
     }
   }
 
@@ -129,6 +138,7 @@
     .field--name-field-text {
       @media (min-width: $screen-sm-min) {
         order: 2;
+        max-width: calc(100% - 315px);
       }
     }
   }
