@@ -2,6 +2,7 @@
 
 //use Drupal\webform\WebformSubmissionInterface;
 //use Drupal\mat_webform\Service\CentralRegistryApi;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Entity\Webform;
 
 /**
@@ -69,5 +70,10 @@ function mat_webform_webform_insert(Webform $webform) {
   $access_rules = $webform->getAccessRules();
   $access_rules['administer']['roles']['0'] = 'editor';
   $webform->setAccessRules($access_rules);
-  $foo = "bar";
+}
+
+function mat_webform_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] === 'webform-submission-paypal-donation-form-paragraph-149-add-form') {
+    $form['#attached']['library'][] = 'mat_webform/paypal';
+  }
 }

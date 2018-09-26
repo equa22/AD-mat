@@ -1,0 +1,5 @@
+paypal:
+  js:
+    js/paypal.js: {}
+  dependencies:
+    - core/jquery
