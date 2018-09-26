@@ -28,16 +28,8 @@ input::-ms-clear {
   .js-form-type-email,
   .webform-address--wrapper {
     @extend %labelfocus;
-    position: relative;
     width: 50%;
     padding: 3rem 60px 0 0;
-
-    label {
-      position: absolute;
-      top: 4.2rem;
-      left: 2.3rem;
-      color: $gray-dark;
-    }
 
     .description {
       position: absolute;
@@ -81,10 +73,6 @@ input::-ms-clear {
 
   #edit-your-information {
 
-    .webform-address--wrapper {
-      margin: 0;
-      padding-top: 0;
-    }
   }
 
   #edit-memorial-and-tribute-information {
@@ -116,19 +104,24 @@ input::-ms-clear {
 
     .form-item-the-person {
       width: 100%;
-
-      label {
-        //top: 1.2rem;
-      }
     }
 
     hr {
       margin-bottom: 2rem;
     }
+
+    label[for="edit-same-as-your-information-above"] {
+      @include font-size(2.2);
+    }
   }
 
   #edit-your-information,
   #edit-gift-notice-info {
+
+    .webform-address--wrapper {
+      margin: 0;
+      padding-top: 0;
+    }
 
     .webform-section-wrapper {
       display: flex;

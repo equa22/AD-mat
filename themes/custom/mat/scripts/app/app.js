@@ -693,7 +693,7 @@ $.fn.isInViewport = function(props) {
         var inputValue = getThis.value;
         if (inputValue) {
           $('label[for="' + getThis.id + '"]').addClass('labelfocus');
-        } else {
+        } else if (getThis.id !== 'edit-the-person') {
           $('label[for="' + getThis.id + '"]').removeClass('labelfocus');
         }
       }
@@ -884,7 +884,6 @@ $.fn.isInViewport = function(props) {
         window.addEventListener(event, function() {
           for (var i = 0; i < cta_blocks.length; i++) {
             var rect = cta_blocks[0].getBoundingClientRect();
-            console.log(rect.bottom);
             if (elementIsInView(cta_blocks[i])) {
               cta_blocks[i].classList.add('visible');
             }
