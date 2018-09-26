@@ -22,10 +22,9 @@ class StoryConfigForm extends ConfigFormBase {
     $config = $this->config('mat_story.settings');
     $user_content_value = $config->get('mat_story.user_content');
     $story_submitted = $config->get('mat_story.story_submitted');
-    
     $form['title_admin'] = array(
       '#type' => 'inline_template',
-      '#template' => '<h2>Admin Config</h2><p>Add recepients <b>admins</b> email addresses separated with comma as shown on example below:<br> John Doe &lt;john.doe@domain.com&gt;, Mike Smith &lt;mike.smith@domain.com&gt;'
+      '#template' => '<h2>Admin Config</h2><p>Add recipient email addresses, separated with commas as shown below:<br> John Doe &lt;john.doe@domain.com&gt;, Mike Smith &lt;mike.smith@domain.com&gt;'
     );
 
     $form['email'] = array(
@@ -57,10 +56,10 @@ class StoryConfigForm extends ConfigFormBase {
 
     $form['story_submitted'] = array(
       '#type' => 'text_format',
-      '#title' => $this->t('Story submitted text for "Share story form"'),
+      '#title' => $this->t('Confirmation message'),
       '#description' => $this->t('Text displayed to user when form has been successfully submitted.'),
       '#default_value' => $story_submitted['value'],
-      '#format' => 'basic_editor',
+      '#format' => 'rich_editor',
       '#required' => TRUE
     );
  
