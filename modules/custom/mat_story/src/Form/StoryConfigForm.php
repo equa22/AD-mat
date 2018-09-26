@@ -88,8 +88,8 @@ class StoryConfigForm extends ConfigFormBase {
     $config->set('mat_story.user_content', $form_state->getValue('user_content'));
     $config->set('mat_story.story_submitted', $form_state->getValue('story_submitted'));
     $config->set('mat_story.story_submission_introduction', $form_state->getValue('story_submission_introduction'));
-
     $config->save();
+    drupal_flush_all_caches();
  
     return parent::submitForm($form, $form_state);
   }
