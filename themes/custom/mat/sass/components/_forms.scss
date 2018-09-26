@@ -25,7 +25,8 @@ input::-ms-clear {
 
   // Label positioning & animation.
   .js-form-type-textfield,
-  .js-form-type-email {
+  .js-form-type-email,
+  .webform-address--wrapper {
     @extend %labelfocus;
     position: relative;
     width: 50%;
@@ -75,6 +76,14 @@ input::-ms-clear {
       .webform-radios-other-input {
         order: 3;
       }
+    }
+  }
+
+  #edit-your-information {
+
+    .webform-address--wrapper {
+      margin: 0;
+      padding-top: 0;
     }
   }
 
