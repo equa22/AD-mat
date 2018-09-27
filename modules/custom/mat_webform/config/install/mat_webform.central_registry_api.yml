@@ -1,4 +1,6 @@
-endpoint_uri_stage: 'https://dla.lifelogics.org/api'
-endpoint_uri_production: 'https://www.registerme.org/api'
+endpoint_uri_stage: 'https://dla.lifelogics.org'
+endpoint_uri_production: 'https://www.registerme.org'
+endpoint_jwt_token: 'https://donatelifeamerica.com/api/'
+application_key_iss: 't8I63gYYoiONZjwd8i2n'
 environment: 0
 debug_mode: 1
