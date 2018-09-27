@@ -85,6 +85,26 @@ class CentralRegistryApiSettings extends ConfigFormBase {
       '#required' => TRUE
     ];
 
+    $form['endpoint_jwt_token'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('JWT token aud'),
+      '#description' => $this->t('Enter the JWT token aud (if different than API endpoint). If empty env API endpoint will be used.'),
+      '#maxlength' => 256,
+      '#size' => 80,
+      '#default_value' => $config->get('endpoint_jwt_token'),
+      '#required' => TRUE
+    ];
+
+    $form['application_key_iss'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Application key'),
+      '#description' => $this->t('Application key used by JWT token (iss).'),
+      '#maxlength' => 256,
+      '#size' => 80,
+      '#default_value' => $config->get('application_key_iss'),
+      '#required' => TRUE
+    ];
+
     $form['debug_mode'] = [
       '#type' => 'checkbox',
       '#title' => 'Debug mode',
@@ -134,6 +154,8 @@ class CentralRegistryApiSettings extends ConfigFormBase {
     $config = $this->configFactory->getEditable('mat_webform.central_registry_api');
     $config->set('endpoint_uri_stage', $form_state->getValue('endpoint_uri_stage'))
       ->set('endpoint_uri_production', $form_state->getValue('endpoint_uri_production'))
+      ->set('endpoint_jwt_token', $form_state->getValue('endpoint_jwt_token'))
+      ->set('application_key_iss', $form_state->getValue('application_key_iss'))
       ->set('debug_mode', $form_state->getValue('debug_mode'))
       ->set('environment', $form_state->getValue('environment'))
       ->save();

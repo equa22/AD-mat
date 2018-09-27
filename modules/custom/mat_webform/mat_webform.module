@@ -7,6 +7,30 @@ use Drupal\mat_webform\Service\CentralRegistryApi;
  * Implements hook_ENTITY_insert().
  */
 function mat_webform_webform_submission_insert(WebformSubmissionInterface $submission) {
+  // Central registry API submission
+  if ($submission->bundle() === 'dla_registry_create_registrant') {
+    // Execute API request: save registrant
+     /** @var CentralRegistryApi $centralApi */
+    $centralApi = \Drupal::service('mat_webform.central_registry_api');
+
+    $response = $centralApi->execute('registrants', $submission->getData());
+
+    if ($response->getStatusCode() === 201 && $response->getReasonPhrase() === 'Created') {
+      // @todo: request was succesful - redirect user to some summary page?
+      dump($response->getReasonPhrase());
+    }
+    else {
+      // @todo: some error handling needed here.
+      print "Request failed";
+    }
+    dump($submission->getData());
+  }
+  exit;
+
+  // @todo: This may be legacy code?
+  // I have no idea why this code below exists.
+  // Ask Mitja else should we get rid of it?
+
   $data = $submission->getData();  
 
   if ($submission->bundle() === 'donations'){

@@ -6,6 +6,7 @@ use Drupal\Core\Config\Config;
 use Drupal\Core\Config\ConfigFactory;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -27,13 +28,20 @@ class CentralRegistryApi {
   protected $aud = NULL;
 
   /**
+   * JWT token "aud", if empty CentralRegistryApi::$aud will be used.
+   * This property was added because JWT token can contain different aud than API endpoint to which requests are sent.
+   *
+   * @var string
+   */
+  protected $audJwtToken;
+
+  /**
    * Time of request in UNIX time
    */
   protected $iat = NULL;
 
   /*
    * Guzzle client for sending HTTP requests
-   *
    */
   protected $client = NULL;
 
@@ -43,9 +51,10 @@ class CentralRegistryApi {
   protected $debugMessages = [];
 
   /**
-   * Access token needed for sending POST requests
+   * Access token needed for sending POST requests.
+   * @var string
    */
-  protected $access_token = NULL;
+  protected $accessToken = NULL;
 
   /**
    * Production environment indicator
@@ -69,6 +78,16 @@ class CentralRegistryApi {
   protected $config;
 
   /**
+   * Access token structure for DLA API endpoint authorization.
+   *
+   * @var array Access token returned from the DLA API. Structure consist from the following keys:
+   * - access_token: access token used for making requests.
+   * - expires_in: seconds to expire.
+   * - token_type: auth scheme used (default: bearer).
+   */
+  protected $accessTokenStructure;
+
+  /**
    * Full path to private key.
    * @var string
    */
@@ -79,7 +98,10 @@ class CentralRegistryApi {
 
     // Prepare client options
     $this->aud = ($this->config->get('environment') === self::ENV_PRODUCTION) ? $this->config->get('endpoint_uri_production') : $this->config->get('endpoint_uri_stage');
+    $this->audJwtToken = ($this->config->get('endpoint_jwt_token')) ? $this->config->get('endpoint_jwt_token') : $this->aud;
+    $this->iss = ($this->config->get('application_key_iss')) ? $this->config->get('application_key_iss') : null;
     $this->iat = time();
+
     $this->debugMode = (boolean) $this->config->get('debug_mode');
     $this->privateKey = __DIR__. '/../private_key.pem';
     $jwtToken = $this->getJwtToken();
@@ -89,19 +111,20 @@ class CentralRegistryApi {
       'base_uri' => $this->aud,
       'headers' => [
         'Content-Type' => 'application/json',
-        'Accept' => 'application/json',
-        #'Authorization' => "Bearer {$jwtToken}"
+        'Accept' => 'application/json'
       ],
       'verify' => FALSE,
       'connect_timeout' => 60,
       'timeout' => 600,
-      'debug' => 0
+      'debug' => 1,
+      'allow_redirects' => true
     ]);
   }
 
   /**
-   * Returns the JWT token
+   * Generate JWT token.
    *
+   * @throws \Exception
    * @return string
    */
   public function getJwtToken(){
@@ -115,12 +138,13 @@ class CentralRegistryApi {
 
     $key = $privateKey;
     $token = array(
-      "iss" => "t8I63gYYoiONZjwd8i2n",
-      "aud" => 'https://donatelifeamerica.com/api/',
+      "iss" => $this->iss,
+      "aud" => $this->audJwtToken,
       "iat" => $this->iat
     );
 
     // Create JWT token
+    $this->setDebugMessage("JWT token aud: " . $this->audJwtToken);
     $this->setDebugMessage("Private key for JWT token: {$key}");
     $jwtToken = JWT::encode($token, $key, 'RS256');
     $this->setDebugMessage("JWT token created: {$jwtToken}");
@@ -129,41 +153,59 @@ class CentralRegistryApi {
   }
 
   /**
-   * Returns the access token
+   * Get access token for making API request using Bearer authentication scheme.
+   * Returned token structure is than stored inside CentralRegistryApi::$accessTokenStructure.
+   *
+   * NOTE: This method is only for storing access token structure, use CentralRegistryApi::getAccessToken() when making requests to API with access token.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function getAccessToken(){
+  protected function requestAccessToken(){
+    // Generate JWT token
     $jwt = $this->getJwtToken();
 
-    # PRODUCTION MAYBE? $url = 'https://www.registerme.org/api/token';
-
-    $this->setDebugMessage("Request access token from: " . $this->getRequestUrl('token'));
-
     try {
-      //$response = $this->client->request('GET', $this->getRequestUrl(), ['auth' => $jwt]);
+      $this->setDebugMessage("Request access token from: " . $this->getRequestUrl('token'));
       $options = [
-        'Authorization' => "Bearer {$jwt}"
-      ];
-
-      $response = $this->client->request('POST', $this->getRequestUrl('token'), [
         RequestOptions::JSON => [
           'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
           'assertion'  => $jwt
         ]
-      ]);
+      ];
+
+      $response = $this->client->request('POST', $this->getRequestUrl('token'), $options);
 
       $this->setDebugMessage('Endpoint response code: '. $response->getStatusCode());
-      $this->setDebugMessage('Response body: '. $response->getBody()->getContents());
+      $responseBody = $response->getBody()->getContents();
+      $this->setDebugMessage('Response body: '. $responseBody);
 
-      if($response->getStatusCode() === 200 && $response->getReasonPhrase() === 'OK'){
-        $token = json_decode($response->getBody()->getContents());
-        return $this->access_token = $token;
+      if($response->getStatusCode() === 200 && $response->getReasonPhrase() === 'OK') {
+
+        $token = json_decode($responseBody, true);
+        $this->accessTokenStructure = $token;
+
+        $this->setDebugMessage('Returned access token structure: '. print_r($token, true));
+
       }
     } catch (\Exception $e) {
       $this->setDebugMessage($e->getMessage());
     }
+  }
 
+  /**
+   * Get access token used for making API requests.
+   * @return mixed
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
+  public function getAccessToken() {
+    #return "AeDv7z_Pjiki-YN__hz_Gwi-RT8";
+    // Request token for auth from API.
+    $this->requestAccessToken();
+
+    if (!isset($this->accessTokenStructure['access_token']))
+     throw new \Exception("Failed to return access_token from accessTokenStructure");
+
+    return $this->accessTokenStructure['access_token'];
   }
 
   /**
@@ -190,6 +232,59 @@ class CentralRegistryApi {
         ]
       ]);
     }
+  }
+
+  /**
+   * Execute API action.
+   * @param string $action API action e.g.: /registrants,
+   * Supported actions
+   * - registrants: create new registrant
+   *
+   * @param array $params Additional action parameters. E.g.: id
+   * @param string $method HTTP method to be executed.
+   *
+   * @return Response
+   *
+   * @throws \Exception
+   */
+  public function execute($action, array $params = [], $method = 'POST') {
+    // First we request access token
+    try {
+
+      $accessToken = $this->getAccessToken();
+      $formParameters = [];
+
+      // Prepare action call parameters for form request body
+      switch ($action) {
+        case 'registrants':
+          // @todo: cancontact returns 400 Bad request, needs further debugging why this happens.
+          // $params['cancontact'] = (isset($params['cancontact']['0']) && $params['cancontact']['0'] == 1) ? 1 : 0;
+          $params['cancontact'] = "";
+          $params['dob'] = date("m/d/Y", strtotime($params['dob']));
+          $formParameters['registrant'] = $params;
+        break;
+      }
+
+      // Log the executed API call
+      $this->setDebugMessage("Prepared POST parameters: ". print_r($formParameters, true));
+      $this->setDebugMessage("Executing API action: {$action}");
+
+      // Execute call
+      $response = $this->client->request('POST', $this->getRequestUrl($action), [
+        'headers' => [
+          'Authorization' => "Bearer $accessToken",
+          'Content-Type' => 'application/json',
+          'Accept' => '*/*'
+        ],
+        RequestOptions::JSON  => $formParameters
+      ]);
+
+      return $response;
+
+    } catch (\Exception $e) {
+      watchdog_exception('mat_webform', $e, $e->getMessage());
+    }
+
   }
 
   /**
