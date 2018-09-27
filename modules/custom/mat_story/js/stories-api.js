@@ -481,12 +481,11 @@
 
   function showLabel(e) {
     var targetIsItem = $(e.target).hasClass('item');
-    var isButton = $(e.target).find('.label');
+    var isButton = $(e.target).hasClass('pop-story');
     
-    /*if(isButton && mobile()) {
+    if(isButton && mobile()) {
       openModal($(e.target).data('id'));
-    } */
-    console.log(e);
+    } 
 
     if(!targetIsItem && mobile()) return;
 
@@ -553,8 +552,7 @@
         if(mobile()) {
           showLabel(e);
         } else {
-          var $item = $(e.target).closest('.item');
-          openModal($item.data('id'));
+          openModal($(e.target).data('id'));
         }
       })
       .css({'backgroundImage': 'url(' + item.featured_image + ')', transition: 'none'})     // set some style
@@ -953,7 +951,9 @@
     $('body').removeClass('story-in-front');
   })
 
-
+  $('.pop-story').on('click', function(e) {
+    openModal($(e.target).data('id'));
+  })
 
   var prev = 0, scrolled = 0, bg_position = 0;
   document.addEventListener('scroll', function(e) {
