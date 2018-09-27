@@ -28,6 +28,11 @@ input::-ms-clear {
   .js-form-type-email,
   .webform-address--wrapper {
     @extend %labelfocus;
+    @extend %empty-required-field;
+    &:before {
+      right: 60px;
+    }
+
     width: 50%;
     padding: 3rem 60px 0 0;
 
@@ -71,10 +76,6 @@ input::-ms-clear {
     }
   }
 
-  #edit-your-information {
-
-  }
-
   #edit-memorial-and-tribute-information {
 
     #edit-i-am-donating-in-honor-of-a---wrapper {
@@ -93,8 +94,6 @@ input::-ms-clear {
     }
 
     .form-item-the-person {
-      //padding-top: 0;
-      //padding-bottom: 1.4rem;
       display: none;
     }
 

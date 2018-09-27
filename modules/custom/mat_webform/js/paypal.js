@@ -1,5 +1,38 @@
 (function ($, Drupal) {
 
+  function checkForValidity(field) {
+    var US_phone_number = new RegExp('^(\\([0-9]{3}\\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$');
+    var isValid = !$(field).parent('.js-form-item').hasClass('invalid');
+
+      // Invalid field (for now just the e-mail field).
+      if ($(field).is('#edit-email-address')) {
+        if ($(field).is(':invalid')) {
+          $(field).parent('.js-form-item').addClass('invalid');
+          isValid = false;
+        } else {
+          isValid = true;
+          $(field).parent('.js-form-item').removeClass('invalid');
+        };
+      } else if ($(field).is('#edit-phone-number')) {
+        if (!US_phone_number.test($(field).val())) {
+
+          $(field).parent('.js-form-item').addClass('invalid');
+          isValid = false;
+        } else {
+          isValid = true;
+          $(field).parent('.js-form-item').removeClass('invalid');
+        }
+      } else {
+        if ($(field).val() === '') {
+          $(field).parent('.js-form-item').addClass('empty');
+        } else {
+          $(field).parent('.js-form-item').removeClass('empty');
+        }
+      }
+
+    return isValid;
+  }
+
   Drupal.behaviors.paypal_form = {
     attach: function (context, settings) {
       // Donating in honor of: focus on the textfield once a radio is selected.
@@ -50,6 +83,19 @@
        }
 
       });
+
+      // On focus out, provide a warning if a required field is not filled out.
+
+      var requiredFields = $('#webform-submission-paypal-donation-form-paragraph-149-add-form input:required, ' +
+        '#webform-submission-paypal-donation-form-paragraph-149-add-form select:required', context);
+
+      requiredFields
+        .blur(function(){
+          checkForValidity($(this));
+        })
+        .bind('touchend keyup', function() {
+          checkForValidity($(this));
+        });
 
     }
   };

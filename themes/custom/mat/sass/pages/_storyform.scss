@@ -39,43 +39,44 @@
   .js-form-type-textfield,
   .js-form-type-textarea,
   .js-form-type-email {
-    position: relative;
-    &:before {
-      display: none;
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 5px;
-      @include font-size(1.2);
-      color: $color-red;
-    }
-    &.js-form-type-email {
-      &:before {
-        content: 'Please enter a valid email address.';
-      }
-    }
-    &.form-item-field-submissioner-phone-number-0-value {
-      &:before {
-        content: 'Please enter a valid US telephone number.';
-      }
-    }
-
-    &.empty {
-      &:before {
-        content: 'Please fill out required field.'!important;
-      }
-    }
-
-    &.invalid,
-    &.empty {
-      &:before {
-        display: block;
-      }
-      input,
-      textarea {
-        border-color: $color-red;
-      }
-    }
+    @extend %empty-required-field;
+    //position: relative;
+    //&:before {
+    //  display: none;
+    //  content: '';
+    //  position: absolute;
+    //  right: 0;
+    //  top: 5px;
+    //  @include font-size(1.2);
+    //  color: $color-red;
+    //}
+    //&.js-form-type-email {
+    //  &:before {
+    //    content: 'Please enter a valid email address.';
+    //  }
+    //}
+    //&.form-item-field-submissioner-phone-number-0-value {
+    //  &:before {
+    //    content: 'Please enter a valid US telephone number.';
+    //  }
+    //}
+    //
+    //&.empty {
+    //  &:before {
+    //    content: 'Please fill out  required field.'!important;
+    //  }
+    //}
+    //
+    //&.invalid,
+    //&.empty {
+    //  &:before {
+    //    display: block;
+    //  }
+    //  input,
+    //  textarea {
+    //    border-color: $color-red;
+    //  }
+    //}
   }
 
   .field--name-field-intro-markup {
