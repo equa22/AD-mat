@@ -1,0 +1,14 @@
+uuid: 63802fbe-9fa0-467a-9103-0af7a8850608
+langcode: en
+status: true
+dependencies: {  }
+name: basic_page_large_image_mobile_828x500_414x250_
+label: 'Basic page large image - mobile (828x500-> 414x250)'
+effects:
+  2d7466f4-ae0c-4f5a-aa78-7bf51c44ec60:
+    uuid: 2d7466f4-ae0c-4f5a-aa78-7bf51c44ec60
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 828
+      height: 500

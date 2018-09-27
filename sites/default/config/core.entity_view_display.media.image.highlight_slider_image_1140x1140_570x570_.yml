@@ -1,0 +1,33 @@
+uuid: f8adbe7f-4546-42f7-909a-aaf8ba2b48e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.highlight_slider_image_1140x1140_570x570_
+    - field.field.media.image.field_media_image
+    - image.style.highlight_slider_image_1140x1140_570x570_
+    - media.type.image
+  module:
+    - image
+_core:
+  default_config_hash: 5Z5FKsnaYSj-Z3YwyuihQ15vY5pa5OASLyqfl396RBA
+id: media.image.highlight_slider_image_1140x1140_570x570_
+targetEntityType: media
+bundle: image
+mode: highlight_slider_image_1140x1140_570x570_
+content:
+  field_media_image:
+    label: hidden
+    settings:
+      image_style: highlight_slider_image_1140x1140_570x570_
+    third_party_settings: {  }
+    type: image_url
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  created: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

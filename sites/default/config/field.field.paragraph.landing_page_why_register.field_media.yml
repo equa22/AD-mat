@@ -11,7 +11,7 @@ field_name: field_media
 entity_type: paragraph
 bundle: landing_page_why_register
 label: Media
-description: 'The required size is 722 pixels wide by 428 pixels tall. Larger images will be scaled and cropped. <br><br>'
+description: 'The required size is 1444 pixels wide by 856 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: true
 translatable: true
 default_value: {  }

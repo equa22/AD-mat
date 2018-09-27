@@ -1,0 +1,10 @@
+uuid: 6f6e0777-617b-4b4f-8a91-083a9f843185
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.highlight_slider_image_1140x1140_570x570_
+label: 'Highlight slider image (1140x1140 -> 570x570)'
+targetEntityType: media
+cache: true

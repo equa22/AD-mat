@@ -1,6 +1,4 @@
-
 {% set pargraph_col = paragraph.field_paragraph_column.value %}
-{% set view_mode = (content.field_webform['#view_mode'] is empty) %}
 
 {%
   set classes = [
@@ -10,14 +8,17 @@
   ]
 %}
 
-{% if view_mode %}
   {% block paragraph %}
     <div{{ attributes.addClass(classes) }}>
       <div class="inner">
         {% block content %}
-          {{ content }}
+          {% if content.field_form_intro_text is not empty or content.field_form_headline is not empty or content.field_form_intro_image is not empty %}
+            <div class="landing-page-form--intro">
+              {{ content|without('field_webform') }}
+            </div>
+          {% endif %}
+          {{ content.field_webform }}
         {% endblock %}
       </div>
     </div>
   {% endblock paragraph %}
-{% endif %}

@@ -62,6 +62,55 @@ input.form-submit {
   }
 }
 
+// Animated required field warning.
+%empty-required-field {
+  position: relative;
+  &:before {
+    display: none;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 5px;
+    @include font-size(1.2);
+    color: $color-red;
+  }
+  &.js-form-type-email {
+    &.invalid {
+      &:before {
+        content: 'Please enter a valid email address.'!important;
+      }
+    }
+
+  }
+  &.form-item-field-submissioner-phone-number-0-value,
+  &.form-item-phone-number {
+    &.invalid {
+      &:before {
+        content: 'Please enter a valid US telephone number.'!important;
+      }
+    }
+
+  }
+
+  &.empty {
+    &:before {
+      content: 'Please fill out required field.'!important;
+    }
+  }
+
+  &.invalid,
+  &.empty {
+    &:before {
+      display: block;
+    }
+    input,
+    textarea,
+    select {
+      border-color: $color-red;
+    }
+  }
+}
+
 // Textarea label
 .js-form-type-textarea {
   label {

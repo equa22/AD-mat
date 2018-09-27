@@ -1,0 +1,14 @@
+uuid: 5fce92a6-80e4-47a2-b1f4-993d940d0824
+langcode: en
+status: true
+dependencies: {  }
+name: highlight_slider_image_1140x1140_570x570_
+label: 'Highlight slider image (1140x1140 -> 570x570)'
+effects:
+  b1f312c5-345a-4c81-b069-2df39b7e69f9:
+    uuid: b1f312c5-345a-4c81-b069-2df39b7e69f9
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1140
+      height: 1140

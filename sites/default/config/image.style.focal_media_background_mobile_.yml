@@ -5,14 +5,14 @@ dependencies:
   module:
     - focal_point
 name: focal_media_background_mobile_
-label: 'Focal media background (mobile)'
+label: 'Focal media background - mobile (1142w -> 571w)'
 effects:
   0207c7f6-874e-49c6-b729-6826cf31fba2:
     uuid: 0207c7f6-874e-49c6-b729-6826cf31fba2
     id: image_scale
     weight: 1
     data:
-      width: 571
+      width: 1142
       height: null
       upscale: false
   71f95c9e-ee2e-4ac6-896b-60d5e8dad00f:
@@ -20,6 +20,6 @@ effects:
     id: focal_point_crop
     weight: 2
     data:
-      width: 571
-      height: 305
+      width: 1142
+      height: 610
       crop_type: focal_point

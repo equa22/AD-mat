@@ -22,10 +22,11 @@ class StoryConfigForm extends ConfigFormBase {
     $config = $this->config('mat_story.settings');
     $user_content_value = $config->get('mat_story.user_content');
     $story_submitted = $config->get('mat_story.story_submitted');
-    
+    $story_submission_introduction = $config->get('mat_story.story_submission_introduction');
+
     $form['title_admin'] = array(
       '#type' => 'inline_template',
-      '#template' => '<h2>Admin Config</h2><p>Add recepients <b>admins</b> email addresses separated with comma as shown on example below:<br> John Doe &lt;john.doe@domain.com&gt;, Mike Smith &lt;mike.smith@domain.com&gt;'
+      '#template' => '<h2>Admin Config</h2><p>Add recipient email addresses, separated with commas as shown below:<br> John Doe &lt;john.doe@domain.com&gt;, Mike Smith &lt;mike.smith@domain.com&gt;'
     );
 
     $form['email'] = array(
@@ -55,12 +56,21 @@ class StoryConfigForm extends ConfigFormBase {
       '#required' => TRUE
     );
 
+    $form['story_submission_introduction'] = array(
+      '#type' => 'text_format',
+      '#title' => $this->t('Introduction to the Story Submission form'),
+      '#description' => $this->t('Text displayed at the top of the Story Submission page.'),
+      '#default_value' => $story_submission_introduction['value'],
+      '#format' => 'rich_editor',
+      '#required' => TRUE
+    );
+
     $form['story_submitted'] = array(
       '#type' => 'text_format',
-      '#title' => $this->t('Story submitted text for "Share story form"'),
+      '#title' => $this->t('Confirmation message'),
       '#description' => $this->t('Text displayed to user when form has been successfully submitted.'),
       '#default_value' => $story_submitted['value'],
-      '#format' => 'basic_editor',
+      '#format' => 'rich_editor',
       '#required' => TRUE
     );
  
@@ -77,8 +87,9 @@ class StoryConfigForm extends ConfigFormBase {
     $config->set('mat_story.user_title', $form_state->getValue('user_title'));
     $config->set('mat_story.user_content', $form_state->getValue('user_content'));
     $config->set('mat_story.story_submitted', $form_state->getValue('story_submitted'));
- 
+    $config->set('mat_story.story_submission_introduction', $form_state->getValue('story_submission_introduction'));
     $config->save();
+    drupal_flush_all_caches();
  
     return parent::submitForm($form, $form_state);
   }

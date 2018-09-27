@@ -25,16 +25,19 @@ input::-ms-clear {
 
   // Label positioning & animation.
   .js-form-type-textfield,
-  .js-form-type-email {
-    position: relative;
+  .js-form-type-email,
+  .webform-address--wrapper {
+    @extend %labelfocus;
+    @extend %empty-required-field;
+    &:before {
+      right: 60px;
+    }
+
     width: 50%;
     padding: 3rem 60px 0 0;
 
-    label {
-      position: absolute;
-      top: 4.2rem;
-      left: 2.3rem;
-      color: $gray-dark;
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
     }
 
     .description {
@@ -44,6 +47,14 @@ input::-ms-clear {
       font-weight: 500;
       color: $gray-dark;
     }
+  }
+
+  .js-form-type-select {
+    select {
+      border: 3px solid #F5F5F5;
+      width: 100%;
+    }
+    @extend %empty-required-field;
   }
 
   // Donation amount radios.
@@ -77,6 +88,20 @@ input::-ms-clear {
     }
   }
 
+  #edit-donation-amount-radios,
+  #edit-i-am-donating-in-honor-of-a- {
+    @extend %empty-required-field;
+    &.empty {
+      &:before {
+        content: 'Selecting one of these options is required.'!important;
+        left: 0;
+        bottom: -14px;
+        top: unset;
+        right: unset;
+      }
+    }
+  }
+
   #edit-memorial-and-tribute-information {
 
     #edit-i-am-donating-in-honor-of-a---wrapper {
@@ -95,8 +120,7 @@ input::-ms-clear {
     }
 
     .form-item-the-person {
-      padding-top: 0;
-      padding-bottom: 1.4rem;
+      display: none;
     }
 
     #edit-gift-notice-info {
@@ -105,19 +129,24 @@ input::-ms-clear {
 
     .form-item-the-person {
       width: 100%;
-
-      label {
-        top: 1.2rem;
-      }
     }
 
     hr {
       margin-bottom: 2rem;
     }
+
+    label[for="edit-same-as-your-information-above"] {
+      @include font-size(2.2);
+    }
   }
 
   #edit-your-information,
   #edit-gift-notice-info {
+
+    .webform-address--wrapper {
+      margin: 0;
+      padding-top: 0;
+    }
 
     .webform-section-wrapper {
       display: flex;

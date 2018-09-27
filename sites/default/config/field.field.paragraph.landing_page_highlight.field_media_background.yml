@@ -13,7 +13,7 @@ field_name: field_media_background
 entity_type: paragraph
 bundle: landing_page_highlight
 label: 'Media Background'
-description: ''
+description: 'The required size is 2564 pixels wide by 1368 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: true
 translatable: false
 default_value: {  }

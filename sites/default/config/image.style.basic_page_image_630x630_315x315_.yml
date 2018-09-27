@@ -1,0 +1,14 @@
+uuid: 8d80583b-aec4-4ff9-8806-f1941b2abc79
+langcode: en
+status: true
+dependencies: {  }
+name: basic_page_image_630x630_315x315_
+label: 'Basic page image (630x630 -> 315x315)'
+effects:
+  56efc9cb-14a9-447a-8fd1-6d45c95dd592:
+    uuid: 56efc9cb-14a9-447a-8fd1-6d45c95dd592
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 630
+      height: 630

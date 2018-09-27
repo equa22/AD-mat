@@ -5,13 +5,12 @@ dependencies: {  }
 _core:
   default_config_hash: kfYOERHqVsgXHeI2vhi81OHgMOIE4h5iDc_n7syNZ4I
 name: large
-label: 'Large (480×480)'
+label: 'Large (960x960 -> 480×480)'
 effects:
-  ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d:
-    uuid: ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d
-    id: image_scale
-    weight: 0
+  50e64aad-ee65-4fba-a3d5-c8fcb1e08352:
+    uuid: 50e64aad-ee65-4fba-a3d5-c8fcb1e08352
+    id: image_scale_and_crop
+    weight: 1
     data:
-      width: 480
-      height: 480
-      upscale: false
+      width: 960
+      height: 960

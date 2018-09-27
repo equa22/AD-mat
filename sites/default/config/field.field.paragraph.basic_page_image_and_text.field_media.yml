@@ -11,7 +11,7 @@ field_name: field_media
 entity_type: paragraph
 bundle: basic_page_image_and_text
 label: Media
-description: 'The required size is 200 pixels wide by 200 pixels tall. Larger images will be scaled and cropped. <br><br>'
+description: 'The required size is 630 pixels wide by 630 pixels tall. Larger images will be scaled and cropped. <br><br>'
 required: true
 translatable: true
 default_value: {  }

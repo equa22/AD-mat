@@ -1,0 +1,10 @@
+uuid: f347f2c5-1118-461e-b0d2-dcc034e875a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.why_register_image_responsive_
+label: 'Why register image (responsive)'
+targetEntityType: media
+cache: true

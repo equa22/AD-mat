@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies: {  }
 name: media_background_mobile_
-label: 'Media Background (mobile)'
+label: 'Media Background - mobile (828w -> 414w)'
 effects:
   22b498c5-9a9b-40ee-90a0-5062382c1371:
     uuid: 22b498c5-9a9b-40ee-90a0-5062382c1371
     id: image_scale
     weight: 1
     data:
-      width: 414
+      width: 828
       height: null
       upscale: false

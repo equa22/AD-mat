@@ -1,0 +1,10 @@
+uuid: a7fbd278-985e-414b-8b3b-c9280bc8b8c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.basic_page_large_image_responsive_
+label: 'Basic page large image (responsive)'
+targetEntityType: media
+cache: true

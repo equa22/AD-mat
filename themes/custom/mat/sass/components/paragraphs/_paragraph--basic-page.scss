@@ -62,14 +62,31 @@
     display: flex;
   }
 
+  @media (max-width: $screen-sm) {
+    display: flex;
+    flex-direction: column;
+  }
+
   h4 {
     padding-top: .2rem !important;
   }
 
+  .field--name-field-text {
+    @media (max-width: $screen-sm-max) {
+      order: 3;
+    }
+  }
+
   .image {
     margin-bottom: 4.7rem;
+    max-width: none;
 
-    @media (min-width: $screen-sm-min) {
+    @media (max-width: $screen-sm-max) {
+      order: 2;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: $screen-md) {
       flex-shrink: 0;
       max-width: 200px;
       margin: 0 1rem 0 3rem;
@@ -77,10 +94,21 @@
 
     img {
       margin: 0 auto;
+      @media (max-width: $screen-sm-max) {
+        max-width: 315px;
+      }
+
+      @media (max-width: $screen-xs-max) {
+        width: 100%;
+      }
+
     }
 
     .field--name-field-image-text {
       margin: 0;
+      @media (min-width: $screen-sm-max) {
+        text-align: center;
+      }
     }
   }
 
@@ -110,6 +138,7 @@
     .field--name-field-text {
       @media (min-width: $screen-sm-min) {
         order: 2;
+        max-width: calc(100% - 315px);
       }
     }
   }
@@ -166,3 +195,40 @@
       //max-height: 100%;
   }
 }
+
+.paragraph--type--landing-page-form {
+
+  .landing-page-form--intro {
+    margin-bottom: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+
+    .landing-page-form--intro--headline {
+      width: 100%;
+      @include font-size(2.8);
+    }
+
+    .field--name-field-form-intro-text {
+      @media (min-width: $screen-sm-min) {
+        width: calc(100% - 310px);
+        padding: 0 2rem;
+      }
+    }
+
+    .field--name-field-intro-image {
+      width: 310px;
+      max-width: 100%;
+      @media (max-width: $screen-sm) {
+         padding-bottom: 0.9em;
+         width: 450px;
+         margin: 0 auto;
+      }
+      @media (max-width: $screen-xs) {
+        width: auto;
+      }
+    }
+  }
+
+}
+
+

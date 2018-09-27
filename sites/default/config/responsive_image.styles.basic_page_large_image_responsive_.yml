@@ -1,0 +1,19 @@
+uuid: 088df1b5-9c47-4ee1-b417-d4384d474e67
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.basic_page_large_image_1640x1000_820x500_
+    - image.style.basic_page_large_image_mobile_828x500_414x250_
+  theme:
+    - mat
+id: basic_page_large_image_responsive_
+label: 'Basic page large image (responsive)'
+image_style_mappings:
+  -
+    breakpoint_id: mat.screen-sm-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: basic_page_large_image_1640x1000_820x500_
+breakpoint_group: mat
+fallback_image_style: basic_page_large_image_mobile_828x500_414x250_
