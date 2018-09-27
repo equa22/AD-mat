@@ -578,7 +578,7 @@ $mobile-item-size: 100px;
 
     .modal-inner {
       max-height: 50rem;
-      overflow-y: scroll;
+      overflow-y: auto;
       overflow-x: hidden;
       padding-bottom: 4.5rem;
 
