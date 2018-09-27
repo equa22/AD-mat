@@ -245,6 +245,12 @@ form:not(#views-exposed-form-news-landing-page-1) {
 }
 
 // Select
+.webform-flex--container {
+  .js-form-type-select {
+    width: 100%;
+  }
+}
+
 .js-form-type-select {
   position: relative;
   padding-top: 3rem;
