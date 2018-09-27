@@ -1,0 +1,34 @@
+// ========================================
+//
+// @file _paragraph--base.scss
+// All the paragraph base elements
+//
+// ========================================
+
+// Paragraphs layout
+// -----------------------------------------------------------------------------
+.paragraph.paragraph--type--intro-text {
+
+  .field--name-field-optional-header {
+    @include font-size(1.6);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: $mat-brand-primary;
+    font-weight: 500;
+    padding-bottom: 1.5rem;
+  }
+
+  .field--name-field-intro-text {
+    font-family: $font-flama;
+    font-weight: 500;
+    color: $blue-dark;
+    line-height: 40px;
+    @include font-size(3.0);
+    padding-bottom: 4rem;
+
+    @media (max-width: $screen-sm-max) {
+      @include font-size(2.4);
+      line-height: 35px;
+    }
+  }
+}

@@ -3,9 +3,9 @@ name: 'Mid-America Transplant'
 mail: mat@example.com
 slogan: 'Design ambitious websites'
 page:
-  403: ''
-  404: ''
-  front: /homepage
+  403: /node/58
+  404: /node/57
+  front: /node/2
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

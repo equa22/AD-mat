@@ -4,12 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.slide.field_content
+    - field.field.paragraph.slide.field_inspired_by
     - field.field.paragraph.slide.field_link
     - field.field.paragraph.slide.field_media
-    - field.field.paragraph.slide.field_title
     - paragraphs.paragraphs_type.slide
   module:
     - link
+    - text
 _core:
   default_config_hash: cLppYXtxCVyetYQlnNJMWY5eFPW9wdefPNw3DhghZkw
 id: paragraph.slide.default
@@ -23,6 +24,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
+  field_inspired_by:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: content
   field_link:
     type: link
@@ -45,14 +53,6 @@ content:
       view_mode: background
       link: false
     third_party_settings: {  }
-  field_title:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
 hidden:
   field_statement: true
   field_text: true

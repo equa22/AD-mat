@@ -11,7 +11,7 @@ id: taxonomy_term.basic_page_categories.field_header_style
 field_name: field_header_style
 entity_type: taxonomy_term
 bundle: basic_page_categories
-label: 'Header style'
+label: 'Header gradient overlay color'
 description: ''
 required: true
 translatable: false

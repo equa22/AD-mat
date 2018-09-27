@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.news_article.body
+    - field.field.node.news_article.field_excerpt
     - field.field.node.news_article.field_hero_background_image
     - field.field.node.news_article.field_image_style
+    - field.field.node.news_article.field_meta_tags
     - field.field.node.news_article.field_news_category
     - field.field.node.news_article.field_news_components
     - field.field.node.news_article.field_news_image
@@ -14,7 +16,6 @@ dependencies:
   module:
     - entity_reference_revisions
     - field_group
-    - text
     - user
 third_party_settings:
   field_group:
@@ -37,7 +38,6 @@ third_party_settings:
     group_main_content_area:
       children:
         - field_news_image
-        - body
         - field_news_components
         - links
       parent_name: ''
@@ -54,8 +54,7 @@ third_party_settings:
         speed: fast
       label: 'Main content area'
     group_top_section:
-      children:
-        - addtoany
+      children: {  }
       parent_name: ''
       weight: 0
       format_type: html_element
@@ -79,13 +78,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  body:
-    label: hidden
-    type: text_default
-    weight: 14
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   field_news_category:
     weight: 8
     label: hidden
@@ -118,8 +110,11 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
+  field_excerpt: true
   field_hero_background_image: true
   field_hero_headline: true
   field_image_style: true
+  field_meta_tags: true
   field_search_image_media: true
   langcode: true

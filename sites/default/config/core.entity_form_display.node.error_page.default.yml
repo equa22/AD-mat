@@ -1,0 +1,50 @@
+uuid: 114c5e69-b590-4fc4-9063-9ccf44f5d7a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.error_page.field_text
+    - node.type.error_page
+  module:
+    - path
+    - text
+id: node.error_page.default
+targetEntityType: node
+bundle: error_page
+mode: default
+content:
+  field_text:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  path:
+    type: path
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  moderation_state: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

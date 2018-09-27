@@ -1,0 +1,22 @@
+uuid: 5e2e0279-fbf8-458c-b9f9-abe6bde2c952
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mat_admin
+_core:
+  default_config_hash: Qf_xATMJqh4Rv5AQjYjDoTh4kE3Dkj3hvxaW_mxJMds
+id: mat_admin_breadcrumbs
+theme: mat_admin
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

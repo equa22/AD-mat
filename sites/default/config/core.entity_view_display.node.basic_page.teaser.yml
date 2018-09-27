@@ -4,16 +4,13 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.basic_page.body
-    - field.field.node.basic_page.field_header_style
-    - field.field.node.basic_page.field_main_description
-    - field.field.node.basic_page.field_parent_background_image
+    - field.field.node.basic_page.field_basic_page_components
+    - field.field.node.basic_page.field_header_category
     - field.field.node.basic_page.field_search_image_media
     - image.style.medium
     - node.type.basic_page
   module:
     - media
-    - text
     - user
 _core:
   default_config_hash: bdeeQpR2GWgujxBjtLITIngJJj3flwe4bTR0qIIOI3E
@@ -22,14 +19,6 @@ targetEntityType: node
 bundle: basic_page
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 2
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    region: content
   field_search_image_media:
     type: media_thumbnail
     weight: 1
@@ -46,7 +35,6 @@ content:
     third_party_settings: {  }
 hidden:
   addtoany: true
-  field_header_style: true
-  field_main_description: true
-  field_parent_background_image: true
+  field_basic_page_components: true
+  field_header_category: true
   langcode: true

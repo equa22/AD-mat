@@ -57,7 +57,7 @@
       <div class="container">
         <div class="slide--content">
           {{ content.contextual_links }}
-          <div class="slide--heading">{{ content.field_title[0]['#context'].value }}</div>
+          <div class="slide--heading">{{ content.field_inspired_by[0]['#text'] | raw }}</div>
           {{ content.field_content }}
           {{ content.field_link }}
         </div>

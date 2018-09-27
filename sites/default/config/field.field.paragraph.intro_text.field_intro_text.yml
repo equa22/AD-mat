@@ -1,0 +1,31 @@
+uuid: d74cf2f9-7ee4-4a92-b7e5-bfe606d55a8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_intro_text
+    - paragraphs.paragraphs_type.intro_text
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    rich_text_editor: rich_text_editor
+    advanced: '0'
+    basic_editor: '0'
+    basic_editor_with_no_styling_just_line_breaks_: '0'
+    rich_editor: '0'
+    plain_text: '0'
+id: paragraph.intro_text.field_intro_text
+field_name: field_intro_text
+entity_type: paragraph
+bundle: intro_text
+label: 'Intro text'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

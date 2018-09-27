@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies: {  }
 name: media_background_tablet_
-label: 'Media Background (tablet)'
+label: 'Media Background - tablet (1536w -> 768w)'
 effects:
   750f1ab7-5489-4eb0-8094-70718cf9e01e:
     uuid: 750f1ab7-5489-4eb0-8094-70718cf9e01e
     id: image_scale
     weight: 1
     data:
-      width: 768
+      width: 1536
       height: null
       upscale: false

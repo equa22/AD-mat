@@ -5,37 +5,157 @@
 //
 // ========================================
 
-label {
-
+input::-ms-clear {
+  display: none;
 }
 
-input[type=text],
-input[type=email],
-input[type=password] {
 
-  &:focus {
+/*
+ * PayPal webform.
+ */
+.webform-submission-paypal-donation-form-form {
 
+  h4 {
+    color: $mat-brand-primary;
   }
-}
 
-textarea {
-
-  &:focus {
-
+  .webform-section {
+    padding-bottom: 4rem;
   }
-}
 
-input[type=checkbox] {
+  // Label positioning & animation.
+  .js-form-type-textfield,
+  .js-form-type-email,
+  .webform-address--wrapper {
+    @extend %labelfocus;
+    @extend %empty-required-field;
+    &:before {
+      right: 60px;
+    }
 
-}
+    width: 50%;
+    padding: 3rem 60px 0 0;
 
-input[type=radio] {
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
+    }
 
-}
+    .description {
+      position: absolute;
+      right: 60px;
+      @include font-size(1.2);
+      font-weight: 500;
+      color: $gray-dark;
+    }
+  }
 
-input[type=file] {
+  .js-form-type-select {
+    select {
+      border: 3px solid #F5F5F5;
+      width: 100%;
+    }
+    @extend %empty-required-field;
+  }
 
-  &:focus {
+  // Donation amount radios.
+  #edit-donation-amount {
+    margin: 0;
 
+    #edit-donation-amount--description {
+      margin: 2rem 0;
+      @include font-size(2);
+      color: $gray-darker;
+      font-weight: 500;
+    }
+
+    .fieldset-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .description {
+        order: 1;
+      }
+
+      #edit-donation-amount-radios {
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .webform-radios-other-input {
+        order: 3;
+      }
+    }
+  }
+
+  #edit-donation-amount-radios,
+  #edit-i-am-donating-in-honor-of-a- {
+    @extend %empty-required-field;
+    &.empty {
+      &:before {
+        content: 'Selecting one of these options is required.'!important;
+        left: 0;
+        bottom: -14px;
+        top: unset;
+        right: unset;
+      }
+    }
+  }
+
+  #edit-memorial-and-tribute-information {
+
+    #edit-i-am-donating-in-honor-of-a---wrapper {
+
+      .field-prefix {
+        line-height: 10px;
+      }
+
+      .description {
+        padding-bottom: 1.8rem;
+        padding-top: 1rem;
+        @include font-size(2);
+        color: $gray-darker;
+        font-weight: 500;
+      }
+    }
+
+    .form-item-the-person {
+      display: none;
+    }
+
+    #edit-gift-notice-info {
+      padding-bottom: 0;
+    }
+
+    .form-item-the-person {
+      width: 100%;
+    }
+
+    hr {
+      margin-bottom: 2rem;
+    }
+
+    label[for="edit-same-as-your-information-above"] {
+      @include font-size(2.2);
+    }
+  }
+
+  #edit-your-information,
+  #edit-gift-notice-info {
+
+    .webform-address--wrapper {
+      margin: 0;
+      padding-top: 0;
+    }
+
+    .webform-section-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .g-recaptcha {
+    margin-top: -2.1rem;
+    padding: 0 0 4rem 0;
   }
 }

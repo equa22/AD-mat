@@ -1,0 +1,30 @@
+uuid: 345fc21e-1d1d-45f6-8c64-316ae7697f40
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_inspired_by
+    - paragraphs.paragraphs_type.slide
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_editor_with_no_styling_just_line_breaks_: basic_editor_with_no_styling_just_line_breaks_
+    advanced: '0'
+    basic_editor: '0'
+    rich_editor: '0'
+    rich_text_editor: '0'
+    plain_text: '0'
+id: paragraph.slide.field_inspired_by
+field_name: field_inspired_by
+entity_type: paragraph
+bundle: slide
+label: 'Inspired by'
+description: 'The text below ''Inspired by'' goes here. Line-breaks are supported. In order to preserve the desired look of sliders, a maximum of two lines should be used.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

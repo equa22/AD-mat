@@ -3,54 +3,113 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
-    - field.storage.node.field_story_first_name
-    - field.storage.node.field_story_last_name
+    - field.storage.node.field_excerpt
     - search_api.server.global_search
   module:
     - search_api
     - node
     - paragraphs
-    - taxonomy
 id: global_index
 name: 'Global index'
 description: ''
 read_only: false
 field_settings:
+  field_excerpt:
+    label: Excerpt
+    datasource_id: 'entity:node'
+    property_path: field_excerpt
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_excerpt
+  nid:
+    label: ID
+    datasource_id: 'entity:node'
+    property_path: nid
+    type: integer
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+        authenticated: authenticated
+        editor: editor
+      view_mode:
+        'entity:node':
+          basic_page: default
+          landing_page: default
+          news_article: default
+          story_profile: default
+        'entity:paragraph':
+          basic_page_iframe: ''
+          basic_page_image_and_text: ''
+          basic_page_quote: ''
+          basic_page_video: ''
+          carousel: ''
+          cta_item: ''
+          header_announcement: ''
+          highlight_slide: ''
+          intro_text: ''
+          landing_page_box: ''
+          landing_page_columns: ''
+          landing_page_counter: ''
+          landing_page_cta: ''
+          landing_page_form: ''
+          landing_page_hero: ''
+          landing_page_hero_image: ''
+          landing_page_highlight: ''
+          landing_page_image: ''
+          landing_page_list: ''
+          landing_page_pillars: ''
+          landing_page_rich_text: ''
+          landing_page_slider: ''
+          landing_page_statement: ''
+          landing_page_statistics: ''
+          landing_page_stories: ''
+          landing_page_why_register: ''
+          landing_page_year_review: ''
+          myth_vs_fact: ''
+          pillar_group: ''
+          pillar_group_item: ''
+          slide: ''
+          social_link: ''
+          statistics_item: ''
+          timeline_facts: ''
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
   title:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
     type: text
-  body:
-    label: Body
+    boost: !!float 13
+  uid:
+    label: uid
     datasource_id: 'entity:node'
-    property_path: body
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.body
-  field_story_first_name:
-    label: 'Story first name'
-    datasource_id: 'entity:node'
-    property_path: field_story_first_name
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_story_first_name
-  field_story_last_name:
-    label: 'Story last name'
-    datasource_id: 'entity:node'
-    property_path: field_story_last_name
-    type: text
-    dependencies:
-      config:
-        - field.storage.node.field_story_last_name
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
 datasource_settings:
   'entity:node':
     bundles:
       default: true
-      selected: {  }
+      selected:
+        - error_page
     languages:
       default: true
       selected: {  }
@@ -61,27 +120,149 @@ datasource_settings:
     languages:
       default: true
       selected: {  }
-  'entity:taxonomy_term':
-    bundles:
-      default: true
-      selected: {  }
-    languages:
-      default: true
-      selected: {  }
 processor_settings:
-  rendered_item: {  }
   add_url: {  }
   aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -50
+  entity_status: {  }
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields:
+      - title
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  html_filter:
+    all_fields: true
+    fields:
+      - field_excerpt
+      - rendered_item
+      - title
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+    weights:
+      preprocess_index: -48
+      preprocess_query: -47
+  ignore_character:
+    all_fields: false
+    fields:
+      - rendered_item
+      - title
+    ignorable: '[''¿¡!?,.:;]'
+    strip:
+      character_sets:
+        Cc: 0
+        Cf: 0
+        Co: 0
+        Mc: 0
+        Me: 0
+        Mn: 0
+        Pc: Pc
+        Pd: Pd
+        Pe: Pe
+        Pf: Pf
+        Pi: Pi
+        Po: Po
+        Ps: Ps
+        Sc: 0
+        Sk: 0
+        Sm: 0
+        So: 0
+        Zl: 0
+        Zp: 0
+        Zs: 0
+    weights:
+      preprocess_index: -49
+      preprocess_query: -48
   ignorecase:
     all_fields: true
     fields:
+      - field_excerpt
+      - rendered_item
       - title
-      - body
-      - field_story_first_name
-      - field_story_last_name
     weights:
-      preprocess_index: -20
-      preprocess_query: -20
+      preprocess_index: -50
+      preprocess_query: -49
+  rendered_item: {  }
+  stemmer:
+    all_fields: true
+    fields:
+      - field_excerpt
+      - rendered_item
+      - title
+    exceptions:
+      mexican: mexic
+      texan: texa
+    weights:
+      preprocess_index: -45
+      preprocess_query: -44
+  stopwords:
+    all_fields: false
+    fields:
+      - rendered_item
+    stopwords:
+      - a
+      - an
+      - and
+      - are
+      - as
+      - at
+      - be
+      - but
+      - by
+      - for
+      - if
+      - in
+      - into
+      - is
+      - it
+      - 'no'
+      - not
+      - of
+      - 'on'
+      - or
+      - s
+      - such
+      - t
+      - that
+      - the
+      - their
+      - then
+      - there
+      - these
+      - they
+      - this
+      - to
+      - was
+      - will
+      - with
+    weights:
+      preprocess_index: -46
+      preprocess_query: -45
+  tokenizer:
+    all_fields: true
+    fields:
+      - field_excerpt
+      - rendered_item
+      - title
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '1'
+    weights:
+      preprocess_index: -47
+      preprocess_query: -46
 tracker_settings:
   default:
     indexing_order: fifo

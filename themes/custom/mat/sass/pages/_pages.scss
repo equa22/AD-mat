@@ -17,6 +17,17 @@ html, body {
   overflow-x: hidden;
 }
 
+.dialog-off-canvas-main-canvas {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    footer {
+      margin-top: auto;
+    }
+}
+
+
 body {
   &.page-node-type-blog-post,
   &.path-webform,
@@ -55,5 +66,26 @@ body {
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px dashed $brand-primary-alt;
+  }
+}
+
+// Error pages.
+.page-node-type-error-page {
+
+  #main {
+    padding: 10rem 3rem;
+    text-align: center;
+  }
+
+  #block-mat-page-title {
+    display: none;
+  }
+
+  .field--name-field-text p {
+    font-size: 2.5rem;
+    font-family: $font-flama-light;
+    @media (max-width: $screen-sm-max) {
+      font-size: 2rem;
+    }
   }
 }

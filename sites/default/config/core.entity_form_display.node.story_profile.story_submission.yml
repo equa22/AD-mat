@@ -5,7 +5,9 @@ dependencies:
   config:
     - core.entity_form_mode.node.story_submission
     - field.field.node.story_profile.body
+    - field.field.node.story_profile.field_excerpt
     - field.field.node.story_profile.field_intro_markup
+    - field.field.node.story_profile.field_meta_tags
     - field.field.node.story_profile.field_search_image_media
     - field.field.node.story_profile.field_story_category
     - field.field.node.story_profile.field_story_featured_image
@@ -19,11 +21,13 @@ dependencies:
     - field.field.node.story_profile.field_story_markup_23
     - field.field.node.story_profile.field_story_markup_4
     - field.field.node.story_profile.field_story_markup_5
+    - field.field.node.story_profile.field_story_profile_components
     - field.field.node.story_profile.field_submissioner_email
     - field.field.node.story_profile.field_submissioner_first_name
     - field.field.node.story_profile.field_submissioner_last_name
     - field.field.node.story_profile.field_submissioner_phone_number
     - field.field.node.story_profile.field_terms_and_conditions
+    - field.field.node.story_profile.field_user_submitted
     - image.style.thumbnail
     - node.type.story_profile
   module:
@@ -44,9 +48,10 @@ third_party_settings:
       weight: 2
       format_type: accordion
       format_settings:
-        id: step1
-        classes: step1
+        label: 'Step 1'
         effect: none
+        id: step1
+        classes: 'step1 story-step'
       label: 'Step 1'
     group_step_2:
       children:
@@ -56,9 +61,10 @@ third_party_settings:
       weight: 3
       format_type: accordion
       format_settings:
-        id: step2
-        classes: step2
+        label: 'Step 2'
         effect: none
+        id: step2
+        classes: 'step2 story-step'
       label: 'Step 2'
     group_step_3:
       children:
@@ -71,9 +77,10 @@ third_party_settings:
       weight: 4
       format_type: accordion
       format_settings:
-        id: step3
-        classes: step3
+        label: 'Step 3'
         effect: none
+        id: step3
+        classes: 'step3 story-step'
       label: 'Step 3'
     group_step_4:
       children:
@@ -86,9 +93,10 @@ third_party_settings:
       weight: 5
       format_type: accordion
       format_settings:
-        id: step4
-        classes: step4
+        label: 'Step 4'
         effect: none
+        id: step4
+        classes: 'step4 story-step'
       label: 'Step 4'
     group_step_5:
       children:
@@ -98,9 +106,10 @@ third_party_settings:
       weight: 6
       format_type: accordion
       format_settings:
-        id: step5
-        classes: step5
+        label: 'Step 5'
         effect: none
+        id: step5
+        classes: 'step5 story-step'
       label: 'Step 5'
 id: node.story_profile.story_submission
 targetEntityType: node
@@ -259,9 +268,18 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
+  field_excerpt: true
+  field_meta_tags: true
   field_search_image_media: true
+  field_story_profile_components: true
+  field_user_submitted: true
   langcode: true
   moderation_state: true
   promote: true

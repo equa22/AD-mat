@@ -1,0 +1,7 @@
+uuid: 49c5c349-c47a-4975-849a-7a6565571572
+langcode: en
+status: true
+dependencies: {  }
+formId: node_story_profile_story_submission_form
+captchaType: recaptcha/reCAPTCHA
+label: node_story_profile_story_submission_form

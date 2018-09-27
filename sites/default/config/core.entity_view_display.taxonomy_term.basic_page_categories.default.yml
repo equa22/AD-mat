@@ -6,8 +6,7 @@ dependencies:
     - field.field.taxonomy_term.basic_page_categories.field_header_background_image
     - field.field.taxonomy_term.basic_page_categories.field_header_style
     - field.field.taxonomy_term.basic_page_categories.field_hero_image_title
-    - field.field.taxonomy_term.basic_page_categories.field_shared_hero_image_title
-    - responsive_image.styles.media_background_responsive_
+    - responsive_image.styles.focal_media_background_responsive_
     - taxonomy.vocabulary.basic_page_categories
   module:
     - options
@@ -29,7 +28,7 @@ content:
     weight: 2
     label: above
     settings:
-      responsive_image_style: media_background_responsive_
+      responsive_image_style: focal_media_background_responsive_
       image_link: ''
     third_party_settings: {  }
     type: responsive_image
@@ -47,16 +46,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: content
-  field_shared_hero_image_title:
-    weight: 3
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
     region: content
 hidden:
   langcode: true

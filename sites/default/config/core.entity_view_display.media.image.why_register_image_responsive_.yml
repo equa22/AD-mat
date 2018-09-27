@@ -1,0 +1,23 @@
+uuid: 26eae0d3-3d50-4b43-afb9-50168d9ec630
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.why_register_image_responsive_
+    - field.field.media.image.field_media_image
+    - media.type.image
+_core:
+  default_config_hash: 5Z5FKsnaYSj-Z3YwyuihQ15vY5pa5OASLyqfl396RBA
+id: media.image.why_register_image_responsive_
+targetEntityType: media
+bundle: image
+mode: why_register_image_responsive_
+content: {  }
+hidden:
+  addtoany: true
+  created: true
+  field_media_image: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

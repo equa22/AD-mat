@@ -9,6 +9,8 @@ dependencies:
     - image.style.news_image_cropped
     - node.type.news_article
     - taxonomy.vocabulary.news_category
+  content:
+    - 'block_content:title_block:a0980362-a1ed-48a7-9dea-17d507a08014'
   module:
     - better_exposed_filters
     - media
@@ -305,14 +307,14 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 150
+            max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
             strip_tags: false
-            trim: true
+            trim: false
             preserve_tags: ''
             html: false
           element_type: ''
@@ -443,16 +445,19 @@ display:
             reduce: false
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'News Category (field_news_category)'
+            description: null
+            identifier: field_news_category_target_id
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
           reduce_duplicates: false
           type: select
           limit: true
@@ -476,24 +481,47 @@ display:
           entity_type: node
           entity_field: created
           plugin_id: date
+        weight:
+          id: weight
+          table: taxonomy_term_field_data
+          field: weight
+          relationship: field_news_category
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: Weight
+          entity_type: taxonomy_term
+          entity_field: weight
+          plugin_id: standard
       title: Newsroom
       header:
-        area:
-          id: area
+        entity_block_content:
+          id: entity_block_content
           table: views
-          field: area
+          field: entity_block_content
           relationship: none
           group_type: group
           admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<h3>Newsroom</h3>\n<h1>The Latest from<br> Mid-America Transplant </h1>"
-            format: advanced
-          plugin_id: text
+          empty: true
+          tokenize: true
+          target: a0980362-a1ed-48a7-9dea-17d507a08014
+          view_mode: default
+          bypass_access: true
+          plugin_id: entity
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        field_news_category:
+          id: field_news_category
+          table: node__field_news_category
+          field: field_news_category
+          relationship: none
+          group_type: group
+          admin_label: 'field_news_category: Taxonomy term'
+          required: true
+          plugin_id: standard
       arguments:
         created_year:
           id: created_year

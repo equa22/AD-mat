@@ -22,10 +22,48 @@ $.fn.isInViewport = function(props) {
   // Toggling visibility of the main navigation (on mobile)
   Drupal.behaviors.mobileNavigation = {
     attach: function (context, settings) {
-      $('#header .bars', context).once('mobile-navigation').on('click', function() {
+      $('#header .bars', context).once('mobile-navigation').click(function() {
         $('body').toggleClass('mobile-menu--opened');
         $('html').toggleClass('no-overflow');
       });
+    }
+  };
+
+  // Fix multilevel navigation on tablet screens - allow clicking to open.
+  Drupal.behaviors.tabletNavigation = {
+    attach: function (context, settings) {
+      var menu_item_expanded = $('#block-mat-main-menu > .menu > .menu-item--expanded', context);
+      // Desktop
+      if (!$('html').hasClass('device-mobile') ) {
+        var menu_item = $('#block-mat-main-menu > .menu > .menu-item', context);
+        menu_item
+          .mouseenter(function() {
+            $(this).siblings('.menu-item').addClass('blurred');
+          })
+          .mouseleave(function() {
+            $(this).siblings('.menu-item').removeClass('blurred');
+          });
+        menu_item_expanded
+          .mouseenter(function() {
+            $(this).addClass('visible');
+          })
+          .mouseleave(function() {
+            $(this).removeClass('visible');
+          });
+      }
+      // Mobile / tablet
+      if ($('html').hasClass('device-mobile') ) {
+        menu_item_expanded.click(function(e) {
+          e.stopPropagation();
+          $(this).toggleClass('visible');
+          $(this).siblings('li').removeClass('visible');
+        });
+
+        $(window).click(function() {
+          menu_item_expanded.removeClass('visible');
+        });
+      }
+
     }
   };
 
@@ -90,7 +128,7 @@ $.fn.isInViewport = function(props) {
       function accordionMenu() {
         var w_w = $(window).width();
         if (w_w < 768) {
-          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).off('click').on('click', function(e){
+          $('#header .menu--main li.menu-item--expanded > a, #header .menu--main li.menu-item--expanded > span', context).off('click').on('click touchstart', function(e){
             e.preventDefault();
             var element = $(this).parent('li');
             if (element.hasClass('active')) {
@@ -117,7 +155,7 @@ $.fn.isInViewport = function(props) {
       $('.region-sidebar li.menu-item--active-trail', context).first().find('a').addClass('active');
       $('.region-sidebar li.menu-item--active-trail', context).first().find('ul').slideDown();
 
-      $('.region-sidebar li.menu-item--expanded > a', context).on('click', function(e){
+      $('.region-sidebar li.menu-item--expanded > a', context).click(function(e){
         e.preventDefault();
         $('.region-sidebar li.menu-item--expanded > a', context).removeClass('active');
         $('.region-sidebar li.menu-item--expanded > ul', context).slideUp();
@@ -131,12 +169,12 @@ $.fn.isInViewport = function(props) {
   Drupal.behaviors.topbarSearch = {
     attach: function (context, settings) {
       // To open Search overlay
-      $('#topbar--search-open', context).once('search-overlay').on('click', function() {
+      $('#topbar--search-open', context).once('search-overlay').click(function() {
         $('#block-header-search-block').addClass('search-block--opened');
       });
 
       // To close Search overlay
-      $('#topbar--search-close .i-close', context).once('search-overlay-close').on('click', function() {
+      $('#topbar--search-close .i-close', context).once('search-overlay-close').click(function() {
         $('#block-header-search-block').removeClass('search-block--opened');
       });
 
@@ -323,7 +361,9 @@ $.fn.isInViewport = function(props) {
         dots: true,
         infinite: true,
         arrows: true,
-        slidesToShow: 1
+        slidesToShow: 1,
+        autoplay: true,
+        autoplaySpeed: 6000
       });
     }
   };
@@ -653,7 +693,7 @@ $.fn.isInViewport = function(props) {
         var inputValue = getThis.value;
         if (inputValue) {
           $('label[for="' + getThis.id + '"]').addClass('labelfocus');
-        } else {
+        } else if (getThis.id !== 'edit-the-person') {
           $('label[for="' + getThis.id + '"]').removeClass('labelfocus');
         }
       }
@@ -699,76 +739,80 @@ $.fn.isInViewport = function(props) {
   };
 
   // Story form auto open steps
-  Drupal.behaviors.storyFormSteps = {
+   Drupal.behaviors.storyFormSteps = {
     attach: function (context, settings) {
 
+      /* THIS IS NOW IN STORYPROFILE.JS */
+
       // function goToByScroll(id){ id = id.replace("link", ""); $('html,body', context).once().animate({ scrollTop: $("."+id).offset().top},'slow'); }
-      $(document).bind('mouseup touchend click keyup', function(e) {
-
-        var step1_progress = false;
-        var step2_progress = false;
-        var step3_progress = false;
-        var step4_progress = false;
-
-        // Step 1
-        var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
-        var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
-        var step1_field3 = $('input[name="field_story_category"]:checked', context);
-
-        if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
-          step1_progress = true;
-        } else {
-          step1_progress = false;
-        }
-
-        if (step1_progress == true) {
-          $('.step2 .step-link', context).addClass('active');
-          $('.step2 .step-content', context).slideDown();
-          // goToByScroll('step2');
-        }
-
-        // Step 2
-        var step2_field1 = $('textarea#edit-body-0-value', context);
-        if (step2_field1.val()) {
-          step2_progress = true;
-        } else {
-          step2_progress = false;
-        }
-
-        if (step2_progress == true) {
-          $('.step3 .step-link', context).addClass('active');
-          $('.step3 .step-content', context).slideDown();
-          // goToByScroll('step3');
-        }
-
-        // step 3
-        var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
-        step3_field1.on('click', function() {
-          $('.step4 .step-link', context).addClass('active');
-          $('.step4 .step-content', context).slideDown();
-          // goToByScroll('step4');
-        });
-
-
-        // step 4
-        var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
-        var step4_field2 = $('input#edit-field-submissioner-last-name-0-value', context);
-        var step4_field3 = $('input#edit-field-submissioner-email-0-value', context);
-        var step4_field4 = $('input#edit-field-submissioner-phone-number-0-value', context);
-
-        if (step4_field1.val() && step4_field2.val() && step4_field3.val() && step4_field4.val()) {
-          step4_progress = true;
-        } else {
-          step4_progress = false;
-        }
-
-        if (step4_progress == true) {
-          $('.step5 .step-link', context).addClass('active');
-          $('.step5 .step-content', context).slideDown();
-          // goToByScroll('step5');
-        }
-
-      });
+      // $(document).bind('mouseup touchend click keyup', function(e) {
+      //
+      //   var step1_progress = false;
+      //   var step2_progress = false;
+      //   var step3_progress = false;
+      //   var step4_progress = false;
+      //
+      //   // Step 1
+      //   var step1_field1 = $('input#edit-field-story-first-name-0-value', context);
+      //   var step1_field2 = $('input#edit-field-story-last-name-0-value', context);
+      //   var step1_field3 = $('input[name="field_story_category"]:checked', context);
+      //
+      //   if (step1_field1.val() && step1_field2.val() && step1_field3.val()) {
+      //     console.log(step1_progress);
+      //     step1_progress = true;
+      //   } else {
+      //     step1_progress = false;
+      //     console.log(step1_progress);
+      //   }
+      //
+      //   if (step1_progress == true) {
+      //     $('.step2 .step-link', context).addClass('active');
+      //     $('.step2 .step-content', context).slideDown();
+      //     // goToByScroll('step2');
+      //   }
+      //
+      //   // Step 2
+      //   var step2_field1 = $('textarea#edit-body-0-value', context);
+      //   if (step2_field1.val()) {
+      //     step2_progress = true;
+      //   } else {
+      //     step2_progress = false;
+      //   }
+      //
+      //   if (step2_progress == true) {
+      //     $('.step3 .step-link', context).addClass('active');
+      //     $('.step3 .step-content', context).slideDown();
+      //     // goToByScroll('step3');
+      //   }
+      //
+      //   // step 3
+      //   var step3_field1 = $('input[name="files[field_story_featured_image_0]"]', context);
+      //   step3_field1.on('click', function() {
+      //     $('.step4 .step-link', context).addClass('active');
+      //     $('.step4 .step-content', context).slideDown();
+      //     // goToByScroll('step4');
+      //   });
+      //
+      //
+      //   // step 4
+      //   var step4_field1 = $('input#edit-field-submissioner-first-name-0-value', context);
+      //   var step4_field2 = $('input#edit-field-submissioner-last-name-0-value', context);
+      //   var step4_field3 = $('input#edit-field-submissioner-email-0-value', context);
+      //   var step4_field4 = $('input#edit-field-submissioner-phone-number-0-value', context);
+      //
+      //   if (step4_field1.val() && step4_field2.val() && step4_field3.val() && step4_field4.val()) {
+      //     step4_progress = true;
+      //   } else {
+      //     step4_progress = false;
+      //   }
+      //
+      //   if (step4_progress == true) {
+      //     $('.step5 .step-link', context).addClass('active');
+      //     $('.step5 .step-content', context).slideDown();
+      //     // goToByScroll('step5');
+      //   }
+      //
+      // });
 
     }
   };
@@ -815,6 +859,60 @@ $.fn.isInViewport = function(props) {
           });
         }
       });
+    }
+  };
+
+  function elementIsInView(el) {
+    var distance = 0;
+    if (window.innerWidth >= 768) {
+      distance = 200;
+    } else {
+      distance = 100;
+    }
+    var rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.bottom - distance <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  // Landing page CTA items reveal animation on scroll.
+  Drupal.behaviors.landingPageCTAScrollReveal = {
+    attach: function (context, settings) {
+      var cta_blocks = document.querySelectorAll('.field--name-field-cta-items > .field__item', context);
+      ['DOMContentLoaded', 'load', 'resize', 'scroll'].forEach(function(event) {
+        window.addEventListener(event, function() {
+          for (var i = 0; i < cta_blocks.length; i++) {
+            var rect = cta_blocks[0].getBoundingClientRect();
+            if (elementIsInView(cta_blocks[i])) {
+              cta_blocks[i].classList.add('visible');
+            }
+          }
+        });
+      });
+    }
+  };
+
+  // Prevent form submission if captcha is not checked.
+  Drupal.behaviors.captchaCheck = {
+    attach: function (context, settings) {
+      if($('.g-recaptcha', context).length > 0) {
+        $('#edit-actions-submit, #edit-submit', context).click(function(e) {
+          if(!(grecaptcha && grecaptcha.getResponse().length > 0)) {
+            e.preventDefault();
+            $('.g-recaptcha iframe', context).addClass('not-filled-out');
+            $('.g-recaptcha > div', context).addClass('error');
+            // keep watch for any changes
+            window.setInterval(function(){
+              if(grecaptcha && grecaptcha.getResponse().length > 0) {
+                $('.g-recaptcha iframe', context).removeClass('not-filled-out');
+                $('.g-recaptcha > div', context).removeClass('error');
+                clearInterval();
+              }
+            }, 400);
+          }
+        });
+      }
     }
   };
 

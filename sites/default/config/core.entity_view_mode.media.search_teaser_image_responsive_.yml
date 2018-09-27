@@ -1,0 +1,10 @@
+uuid: e0fd7c3f-4643-4a37-a175-1cbfa2b2e5fe
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.search_teaser_image_responsive_
+label: 'Search teaser image (responsive)'
+targetEntityType: media
+cache: true

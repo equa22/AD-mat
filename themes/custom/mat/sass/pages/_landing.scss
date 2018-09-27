@@ -9,3 +9,13 @@
     display: none !important;  // do not change
   }
 }
+
+// Status message position fix for landing pages
+.page-node-type-landing-page {
+  .region-content > .messages {
+    position: absolute;
+    z-index: 200;
+    right: 0;
+    left: 0;
+  }
+}

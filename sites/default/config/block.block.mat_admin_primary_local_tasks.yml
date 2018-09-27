@@ -1,0 +1,22 @@
+uuid: 20809ac2-42d9-4e11-9bc7-4d9e9c7495d7
+langcode: en
+status: true
+dependencies:
+  theme:
+    - mat_admin
+_core:
+  default_config_hash: Om4fX_-69M9Bvx6EAcsfrBnyIvdbQY87FDbaDtsJ3_c
+id: mat_admin_primary_local_tasks
+theme: mat_admin
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: false
+visibility: {  }

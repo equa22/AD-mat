@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies: {  }
 name: media_background
-label: 'Media Background (desktop)'
+label: 'Media Background - desktop (2880w)'
 effects:
   6c17a961-48c5-4906-b3bf-8120a2432bbc:
     uuid: 6c17a961-48c5-4906-b3bf-8120a2432bbc
     id: image_scale
     weight: 1
     data:
-      width: 2000
+      width: 2880
       height: null
       upscale: false

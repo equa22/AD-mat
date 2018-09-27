@@ -21,6 +21,7 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
+  captcha: 0
   ckeditor: 0
   classy_paragraphs: 0
   coffee: 0
@@ -55,12 +56,14 @@ module:
   focal_point: 0
   form_mode_manager: 0
   google_analytics: 0
+  honeypot: 0
   image: 0
   inline_entity_form: 0
   inline_form_errors: 0
   install_profile_generator: 0
   language: 0
   link: 0
+  linkit: 0
   mailsystem: 0
   markup: 0
   mat_global: 0
@@ -81,8 +84,10 @@ module:
   page_cache: 0
   paragraphs_edit: 0
   path: 0
+  recaptcha: 0
   recreate_block_content: 0
   redirect: 0
+  redirect_404: 0
   responsive_image: 0
   rest: 0
   search_api: 0
@@ -103,9 +108,11 @@ module:
   user: 0
   video_embed_field: 0
   video_embed_media: 0
+  view_unpublished: 0
   views_ui: 0
   viewsreference: 0
   webform: 0
+  webform_ui: 0
   workflows: 0
   menu_link_content: 1
   pathauto: 1
@@ -123,6 +130,7 @@ theme:
   tdx_base: 0
   tdx_wireframe: 0
   mat: 0
+  mat_admin: 0
 profile: tdx
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

@@ -4,15 +4,25 @@ status: true
 dependencies:
   config:
     - block_content.type.title_block
+    - field.field.block_content.title_block.field_subtitle
     - field.field.block_content.title_block.field_title
+  module:
+    - text
 id: block_content.title_block.default
 targetEntityType: block_content
 bundle: title_block
 mode: default
 content:
-  field_title:
+  field_subtitle:
     weight: 1
-    label: above
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_title:
+    weight: 0
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }

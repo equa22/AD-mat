@@ -629,7 +629,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: "<h1>Every day, we are inspired by stories <br><i> of donation and transplantation.</i></h1>\n\n<p class=\"lead\">These stories honor the gifts of donors and donor families and celebrate the strength of recipients.</p>\n\n<p><a href=\"/node/add/story_profile/story_submission\" class=\"btn-add-story\">Share Your Story</a></p>"
+            value: "<h1>Every day, we are inspired by stories of donation and transplantation.</h1>\n\n<p class=\"lead\">These stories honor the gifts of donors and donor families and celebrate the strength of recipients.</p>\n\n<p><a href=\"/node/add/story_profile/story_submission\" class=\"btn-add-story\">Share Your Story</a></p>"
             format: advanced
           plugin_id: text
       footer: {  }

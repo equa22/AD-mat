@@ -4,9 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_form.field_border
+    - field.field.paragraph.landing_page_form.field_form_headline
+    - field.field.paragraph.landing_page_form.field_form_intro_text
+    - field.field.paragraph.landing_page_form.field_intro_image
     - field.field.paragraph.landing_page_form.field_webform
     - paragraphs.paragraphs_type.landing_page_form
   module:
+    - text
     - webform
 _core:
   default_config_hash: veNKbc5fOVJbEYO-xlJd75ZdD6LEWvSmDF4rbtDsIYM
@@ -15,8 +19,32 @@ targetEntityType: paragraph
 bundle: landing_page_form
 mode: default
 content:
-  field_webform:
+  field_form_headline:
     weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_form_intro_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_intro_image:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: form_intro_image_620x538_310x269_
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_webform:
+    weight: 3
     label: hidden
     settings:
       source_entity: true

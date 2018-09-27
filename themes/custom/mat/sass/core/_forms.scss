@@ -62,6 +62,55 @@ input.form-submit {
   }
 }
 
+// Animated required field warning.
+%empty-required-field {
+  position: relative;
+  &:before {
+    display: none;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 5px;
+    @include font-size(1.2);
+    color: $color-red;
+  }
+  &.js-form-type-email {
+    &.invalid {
+      &:before {
+        content: 'Please enter a valid email address.'!important;
+      }
+    }
+
+  }
+  &.form-item-field-submissioner-phone-number-0-value,
+  &.form-item-phone-number {
+    &.invalid {
+      &:before {
+        content: 'Please enter a valid US telephone number.'!important;
+      }
+    }
+
+  }
+
+  &.empty {
+    &:before {
+      content: 'Please fill out required field.'!important;
+    }
+  }
+
+  &.invalid,
+  &.empty {
+    &:before {
+      display: block;
+    }
+    input,
+    textarea,
+    select {
+      border-color: $color-red;
+    }
+  }
+}
+
 // Textarea label
 .js-form-type-textarea {
   label {
@@ -87,7 +136,8 @@ form:not(#views-exposed-form-news-landing-page-1) {
     z-index: -1;
   }
   .webform-type-radios label,
-  .js-form-type-checkbox label {
+  .js-form-type-checkbox label,
+  .js-form-type-radio label {
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -109,6 +159,8 @@ form:not(#views-exposed-form-news-landing-page-1) {
   .webform-type-radios label::after,
   .js-form-type-checkbox label::before,
   .js-form-type-checkbox label::after,
+  .js-form-type-radio label::before,
+  .js-form-type-radio label::after,
   .field--type-boolean label::before,
   .field--type-boolean label::after {
     position: absolute;
@@ -122,7 +174,8 @@ form:not(#views-exposed-form-news-landing-page-1) {
   }
   .field--type-boolean label::before,
   .webform-type-radios label::before,
-  .js-form-type-checkbox label::before {
+  .js-form-type-checkbox label::before,
+  .js-form-type-radio label::before {
     content: " ";
     border:0;
     background-color: $radio-bg-color;
@@ -182,7 +235,9 @@ form:not(#views-exposed-form-news-landing-page-1) {
   .webform-type-radios label::before,
   .webform-type-radios label::after,
   .js-form-type-checkbox label::before,
-  .js-form-type-checkbox label::after {
+  .js-form-type-checkbox label::after,
+  .js-form-type-radio label::before,
+  .js-form-type-radio label::after {
     -webkit-transition: .25s all ease;
     -o-transition: .25s all ease;
     transition: .25s all ease;
@@ -246,7 +301,7 @@ form:not(#views-exposed-form-news-landing-page-1) {
   }
 
   .form-actions {
-    margin-top: 3.5rem;
+    //margin-top: 3.5rem;
   }
 
   > label {
@@ -273,5 +328,35 @@ form:not(#views-exposed-form-news-landing-page-1) {
   @media (min-width: $screen-sm-min) {
     width: 55rem;
     margin: 0 auto;
+  }
+}
+
+.g-recaptcha {
+  padding: 3rem 0 3.9rem 0;
+
+  >div {
+    position: relative;
+    transition: all .5s ease-in-out;
+    &:before {
+      transition: all .5s ease-in-out;
+      opacity: 0;
+      content: 'Completing this is required.';
+      position: absolute;
+      top: -21px;
+      right: 0;
+      font-size: 1.2rem;
+      color: $color-red;
+    }
+    &.error {
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+
+  iframe {
+    &.not-filled-out {
+      border: 1px solid #ff0000;
+    }
   }
 }

@@ -222,13 +222,6 @@
     }
   }
 
-  h2.basic-page-optional-header {
-    @include font-size(1.6);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-  }
-
-  h2.basic-page-optional-header,
   h3,
   h4,
   table caption {

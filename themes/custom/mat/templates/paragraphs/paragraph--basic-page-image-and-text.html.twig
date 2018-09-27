@@ -1,0 +1,23 @@
+
+{% set pargraph_col = paragraph.field_paragraph_column.value %}
+
+{%
+  set classes = [
+    'paragraph',
+    pargraph_col,
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+  ]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+      {% block content %}
+      {{ content.contextual_links }}
+
+        {{ content.field_text	}}
+        <div class="image">
+          {{ content.field_media }}
+          {{ content.field_image_text }}
+        </div>
+      {% endblock %}
+  </div>
+{% endblock paragraph %}

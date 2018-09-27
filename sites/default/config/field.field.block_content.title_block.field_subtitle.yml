@@ -1,0 +1,30 @@
+uuid: cf320976-808f-452b-ae05-ca874873297c
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.title_block
+    - field.storage.block_content.field_subtitle
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_editor_with_no_styling_just_line_breaks_: basic_editor_with_no_styling_just_line_breaks_
+    advanced: '0'
+    basic_editor: '0'
+    rich_editor: '0'
+    rich_text_editor: '0'
+    plain_text: '0'
+id: block_content.title_block.field_subtitle
+field_name: field_subtitle
+entity_type: block_content
+bundle: title_block
+label: Subtitle
+description: 'This field supports line breaks.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

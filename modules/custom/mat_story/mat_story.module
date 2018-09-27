@@ -116,9 +116,9 @@ function mat_story_mail($key, &$message, $params) {
 
 function mat_story_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $logged_in = \Drupal::currentUser()->isAuthenticated();
-
   $current_user = \Drupal::currentUser();
   $roles = $current_user->getRoles();
+
   
   if (in_array('authenticated', $roles) && in_array('editor', $roles)) {
     $form['field_submissioner_first_name']['#attributes']['class'][] = 'hidden';
@@ -129,6 +129,11 @@ function mat_story_form_alter(&$form, FormStateInterface $form_state, $form_id) 
   
   // for ct form display
   if ($form['#id'] == 'node-story-profile-story-submission-form') {
+
+    $intro_value = \Drupal::service('config.factory')
+      ->getEditable('mat_story.settings')
+      ->get('mat_story.story_submission_introduction')['value'];
+    $form['field_intro_markup']['widget']['0']['markup']['#text'] = '<div class="story-submission-intro">' . $intro_value . '</div>';
     
     $form['#attached']['library'][] = 'mat_story/storyprofile';
     $form['field_terms_and_conditions']['widget']['value']['#title'] = t('I agree to the <a href="/terms-and-conditions">Terms and Conditions</a>.');

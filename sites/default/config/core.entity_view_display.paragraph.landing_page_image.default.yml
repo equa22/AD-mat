@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.landing_page_image.field_border
+    - field.field.paragraph.landing_page_image.field_image_text
     - field.field.paragraph.landing_page_image.field_media
     - paragraphs.paragraphs_type.landing_page_image
 _core:
@@ -13,12 +14,19 @@ targetEntityType: paragraph
 bundle: landing_page_image
 mode: default
 content:
+  field_image_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_media:
     type: entity_reference_entity_view
     weight: 0
     label: hidden
     settings:
-      view_mode: full
+      view_mode: basic_page_large_image_responsive_
       link: false
     third_party_settings: {  }
     region: content

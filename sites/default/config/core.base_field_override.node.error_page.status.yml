@@ -1,0 +1,22 @@
+uuid: 7fe1bf25-e834-4a1d-ab51-7ee41f8b4503
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.error_page
+id: node.error_page.status
+field_name: status
+entity_type: node
+bundle: error_page
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

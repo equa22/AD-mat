@@ -4,28 +4,38 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.basic_page_image_and_text.field_border
+    - field.field.paragraph.basic_page_image_and_text.field_image_text
     - field.field.paragraph.basic_page_image_and_text.field_media
     - field.field.paragraph.basic_page_image_and_text.field_text
     - field.field.paragraph.basic_page_image_and_text.field_text_align
+    - image.style.basic_page_image_630x630_315x315_
     - paragraphs.paragraphs_type.basic_page_image_and_text
   module:
+    - media
     - text
 id: paragraph.basic_page_image_and_text.default
 targetEntityType: paragraph
 bundle: basic_page_image_and_text
 mode: default
 content:
+  field_image_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_media:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
-      view_mode: full
-      link: false
+      image_style: basic_page_image_630x630_315x315_
+      image_link: ''
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: media_thumbnail
     region: content
   field_text:
-    weight: 1
+    weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
