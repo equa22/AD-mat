@@ -1,5 +1,5 @@
 <?php
-
+//
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\WebformSubmissionInterface;
@@ -7,8 +7,13 @@ use Drupal\mat_webform\Service\CentralRegistryApi;
 
 /**
  * Implements hook_ENTITY_insert().
+ *
+ * @param \Drupal\webform\WebformSubmissionInterface $submission
+ *
+ * @throws \Exception
  */
 function mat_webform_webform_submission_insert(WebformSubmissionInterface $submission) {
+
   // Central registry API submission
   if ($submission->bundle() === 'dla_registry_create_registrant') {
     // Execute API request: save registrant
@@ -27,8 +32,8 @@ function mat_webform_webform_submission_insert(WebformSubmissionInterface $submi
     }
     // TODO: Remove when solved redirection.
     dump($submission->getData());
+    exit;
   }
-  exit;
 }
 
 function mat_webform_webform_insert(Webform $webform) {
