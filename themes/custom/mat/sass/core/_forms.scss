@@ -104,7 +104,8 @@ input.form-submit {
       display: block;
     }
     input,
-    textarea {
+    textarea,
+    select {
       border-color: $color-red;
     }
   }
