@@ -116,7 +116,7 @@ class CentralRegistryApi {
       'verify' => FALSE,
       'connect_timeout' => 60,
       'timeout' => 600,
-      'debug' => 1,
+      'debug' => 0,
       'allow_redirects' => true
     ]);
   }
@@ -257,9 +257,7 @@ class CentralRegistryApi {
       // Prepare action call parameters for form request body
       switch ($action) {
         case 'registrants':
-          // @todo: cancontact returns 400 Bad request, needs further debugging why this happens.
-          // $params['cancontact'] = (isset($params['cancontact']['0']) && $params['cancontact']['0'] == 1) ? 1 : 0;
-          $params['cancontact'] = "";
+          $params['cancontact'] = (isset($params['cancontact']['0']) && $params['cancontact']['0'] == 1) ? true : false;
           $params['dob'] = date("m/d/Y", strtotime($params['dob']));
           $formParameters['registrant'] = $params;
         break;
