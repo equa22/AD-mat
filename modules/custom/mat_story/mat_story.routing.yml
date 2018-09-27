@@ -4,7 +4,7 @@ mat_story.config:
     _form: '\Drupal\mat_story\Form\StoryConfigForm'
     _title: 'Story Profile Submissions Settings'
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'access administration pages'
 
 mat_story.form.submitted:
   path: '/stories/story-submitted'
