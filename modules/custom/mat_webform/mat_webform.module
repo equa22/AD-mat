@@ -73,7 +73,8 @@ function mat_webform_webform_insert(Webform $webform) {
 }
 
 function mat_webform_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form['#id'] === 'webform-submission-paypal-donation-form-paragraph-149-add-form') {
+
+  if ((isset($form['#webform_id']) && $form['#webform_id'] === 'paypal_donation_form') || $form_id === 'webform_submission_paypal_donation_form_add_form') {
     $form['#attached']['library'][] = 'mat_webform/paypal';
   }
 }
