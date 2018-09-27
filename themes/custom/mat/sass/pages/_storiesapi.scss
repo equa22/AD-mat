@@ -638,8 +638,6 @@ $mobile-item-size: 100px;
           margin-right: 2rem;
         }
 
-        max-width: 25%;
-
         &:last-child {
           margin-right: 0;
         }
@@ -656,7 +654,6 @@ $mobile-item-size: 100px;
           @media (min-width: $screen-sm-min) {
             margin-right: 2rem;
           }
-          max-width: 33.33%;
         }
       }
     }

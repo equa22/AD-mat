@@ -797,10 +797,10 @@
     selectedStory.featured_image ? $('#image').attr('src', selectedStory.featured_image) : $('#image').attr('src', '');
     $('#name').text(selectedStory.first_name + ' ' + selectedStory.last_name);
     $('#role').text(selectedStory.category);
-    $('#gallery').html(
-      (selectedStory.image_1 ? '<img src="' + (selectedStory.image_1) + '">' : '') +
-      (selectedStory.image_2 ? '<img src="' + (selectedStory.image_2) + '">' : '') +
-      (selectedStory.image_3 ? '<img src="' + (selectedStory.image_3) + '">' : '')
+    $('.modal-gallery').append(
+      (selectedStory.image_1 ? '<div><img src="' + (selectedStory.image_1) + '"></div>' : '') +
+      (selectedStory.image_2 ? '<div><img src="' + (selectedStory.image_2) + '"></div>' : '') +
+      (selectedStory.image_3 ? '<div><img src="' + (selectedStory.image_3) + '"></div>' : '')
     )
     $('#content').html(selectedStory.content);
 
