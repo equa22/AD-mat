@@ -962,6 +962,18 @@
       $('.animation-wrapper').css('backgroundPosition', '0 ' + (($(document).scrollTop())/3) + 'px');
     }    
   })
+
+  $('.modal-inner').scroll(function(){
+      var scrollBottom =  $('.modal-inner').height() + $('.modal-inner').scrollTop();
+      var scrollHeight =  $('.modal-inner').prop('scrollHeight')
+
+      if (scrollBottom + 45 >= scrollHeight) {
+        $('#modal').addClass('after-hidden');
+      } else {
+        $('#modal').removeClass('after-hidden');
+      }
+
+  });
   
 
 })(jQuery, Drupal);
