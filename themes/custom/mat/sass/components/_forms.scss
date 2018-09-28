@@ -9,11 +9,44 @@ input::-ms-clear {
   display: none;
 }
 
+/*
+ * General webforms.
+ */
+.webform-submission-form {
+  .js-form-type-textfield,
+  .js-form-type-email,
+  .webform-address--wrapper {
+    @extend %labelfocus;
+  }
+
+  .js-form-type-date,
+  .radios--wrapper,
+  .js-form-type-select,
+  .checkboxes--wrapper {
+    margin-top: 2rem;
+  }
+
+  #edit-actions {
+    padding-top: 3rem;
+  }
+
+}
 
 /*
  * PayPal webform.
  */
 .webform-submission-paypal-donation-form-form {
+
+  .js-form-type-date,
+  .radios--wrapper,
+  .js-form-type-select,
+  .checkboxes--wrapper {
+    margin-top: 3rem;
+  }
+
+  #edit-actions {
+    padding-top: 0;
+  }
 
   h4 {
     color: $mat-brand-primary;
@@ -53,6 +86,9 @@ input::-ms-clear {
     select {
       border: 3px solid #F5F5F5;
       width: 100%;
+    }
+    >label {
+      display: none;
     }
     @extend %empty-required-field;
   }

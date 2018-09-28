@@ -253,7 +253,7 @@ form:not(#views-exposed-form-news-landing-page-1) {
 
 .js-form-type-select {
   position: relative;
-  padding-top: 3rem;
+  //padding-top: .8rem;
   color: $gray-dark;
   width: 50%;
   @media (max-width: $screen-sm-max) {
@@ -266,16 +266,17 @@ form:not(#views-exposed-form-news-landing-page-1) {
     width: 2rem;
     height: 2rem;
     position: absolute;
-    top: 5rem;
+    top: unset;
     right: 2.3rem;
+    bottom: 1.7rem;
     z-index: 1;
     pointer-events: none;
     @include icons('i-chevron-nav-blue-light');
     background-position: center center;
   }
 
-  > label {
-    display: none;
+  >label {
+    color: $gray-darker;
   }
 
   .form-select {
