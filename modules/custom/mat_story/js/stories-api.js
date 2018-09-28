@@ -818,6 +818,16 @@
     // set facebook, twitter share links
     $('#fb').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=' + window.location.href.split('/stories')[0] + '/node/' + id);
     $('#tw').attr('href', 'http://www.twitter.com/share?url=' + window.location.href.split('#')[0] + '#' + id);
+
+    // hide faded overlay bottom if initial height is small neough
+    var modalHeight =  $('.modal-inner').height();
+    var scrollHeight =  $('.modal-inner').prop('scrollHeight')
+
+    if (modalHeight + 45 >= scrollHeight) {
+      $('#modal').addClass('after-hidden');
+    } else {
+      $('#modal').removeClass('after-hidden');
+    }
   }
 
   $('#link').click(function(e) {
@@ -972,7 +982,6 @@
       } else {
         $('#modal').removeClass('after-hidden');
       }
-
   });
   
 
