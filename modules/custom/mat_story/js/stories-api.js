@@ -174,7 +174,9 @@
     // fade in stories which are not already visible and displayed
     setTimeout(function() {
       displayedStories.forEach(function(story, i) {
-        fadeIn(story);
+        story.timeout = setTimeout(function() {
+          fadeIn(story);
+        }, i*150);
       })
     }, config.movement._leave.speed)
     
