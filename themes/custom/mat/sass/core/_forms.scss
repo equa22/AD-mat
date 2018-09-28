@@ -245,10 +245,20 @@ form:not(#views-exposed-form-news-landing-page-1) {
 }
 
 // Select
+.webform-flex--container {
+  .js-form-type-select {
+    width: 100%;
+  }
+}
+
 .js-form-type-select {
   position: relative;
   padding-top: 3rem;
   color: $gray-dark;
+  width: 50%;
+  @media (max-width: $screen-sm-max) {
+    width: 100%;
+  }
 
   // Select caret
   &:after {
@@ -274,6 +284,7 @@ form:not(#views-exposed-form-news-landing-page-1) {
     border-radius: $input-border-radius;
     max-height: 60px;
     padding: 12px 5.8rem 12px 2.3rem;
+    width: 100%;
   }
 
   .form-select  {

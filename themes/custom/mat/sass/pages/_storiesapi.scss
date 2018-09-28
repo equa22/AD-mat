@@ -575,7 +575,7 @@ $mobile-item-size: 100px;
 
     .modal-inner {
       max-height: 50rem;
-      overflow-y: scroll;
+      overflow-y: auto;
       overflow-x: hidden;
       padding-bottom: 4.5rem;
 
@@ -620,6 +620,7 @@ $mobile-item-size: 100px;
 
     // Modal gallery
     .modal-gallery {
+      width: 100%;
       display: flex;
       max-height: 100px;
       margin-top: 4rem;
@@ -629,8 +630,10 @@ $mobile-item-size: 100px;
      -webkit-overflow-scrolling: touch;
 
       img {
-        height: 100px;
-        margin-right: 2rem;
+        max-height: 100px;
+        @media (min-width: $screen-sm-min) {
+          margin-right: 2rem;
+        }
 
         &:last-child {
           margin-right: 0;
@@ -639,7 +642,16 @@ $mobile-item-size: 100px;
 
       #gallery {
         display: flex;
+        justify-content: flex-start;
         flex-shrink: 0;
+        width: 75%;
+
+        img {
+          max-height: 100px;
+          @media (min-width: $screen-sm-min) {
+            margin-right: 2rem;
+          }
+        }
       }
     }
 
@@ -1056,6 +1068,7 @@ $mobile-item-size: 100px;
         .dropdown-inner {
           height: 0;
           margin-top: 50px;
+          width: 85px;
           padding-bottom: 50px;
           border-top-left-radius: $border-radius-base;
           border-top-right-radius: $border-radius-base;

@@ -4,4 +4,4 @@ mat_storyaudio.config:
     _form: '\Drupal\mat_storyaudio\Form\StoryAudioConfigForm'
     _title: 'Story Landing Audio Settings'
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'access administration pages'

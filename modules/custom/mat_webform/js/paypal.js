@@ -123,8 +123,8 @@
       });
 
       // On focus out, provide a warning if a required field is not filled out.
-      var requiredFields = $('#webform-submission-paypal-donation-form-paragraph-149-add-form input:required, ' +
-        '#webform-submission-paypal-donation-form-paragraph-149-add-form select:required', context);
+      var requiredFields = $('.webform-submission-paypal-donation-form-add-form input:required, ' +
+        '.webform-submission-paypal-donation-form-add-form select:required', context);
 
       requiredFields
         .blur(function(){
