@@ -146,8 +146,8 @@ $mobile-item-size: 100px;
 .stories-api {
   .small-item {
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     opacity:0;
     position: absolute;
     z-index: 4;
@@ -155,10 +155,6 @@ $mobile-item-size: 100px;
     left: 0;
     background-size: cover;
     background-position: center;
-    border: solid 1px rgba(255,255,255,0.8);
-    -webkit-filter: blur(2.4px) brightness(1);
-    -ms-filter: blur(2.4px) brightness(1);
-    filter: blur(2.4px) brightness(1);
     transform: translate(100vw, 50vh) scale(0);
     transition: all linear 0s;
   }
@@ -381,6 +377,7 @@ $mobile-item-size: 100px;
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
+    min-height: 800px;
 
     @media (max-width: $screen-md-max) {
       height: 100%;

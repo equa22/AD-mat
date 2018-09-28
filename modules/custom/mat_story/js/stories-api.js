@@ -25,11 +25,11 @@
       _small_bubbles: 10,
       image_bubbles: {
         _images: [
-          "/sites/default/files/2018-05/nature2.jpg",
-          "/sites/default/files/2018-05/slider1.jpg",
-          "/sites/default/files/2018-05/sight-bg-b.png",
-          "/sites/default/files/2018-05/kid4.jpg",
-          "/sites/default/files/2018-05/girl-slide.jpg"
+          "/themes/custom/mat/assets/images/stories/blur1.png",
+          "/themes/custom/mat/assets/images/stories/blur2.png",
+          "/themes/custom/mat/assets/images/stories/blur3.png",
+          "/themes/custom/mat/assets/images/stories/blur4.png",
+          "/themes/custom/mat/assets/images/stories/blur5.png"
         ],
         _speed: 4000,
         _size: 60,
